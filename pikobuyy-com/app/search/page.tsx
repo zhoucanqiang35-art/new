@@ -1,22 +1,26 @@
-import { redirect } from "next/navigation";
+"use client";
 
-type SearchParams = Promise<{
-  q?: string | string[];
-  keywords?: string | string[];
-}>;
+import { useEffect } from "react";
 
-export default async function SearchPage({ searchParams }: { searchParams: SearchParams }) {
-  const params = await searchParams;
-  const rawValue = params.keywords ?? params.q;
-  const rawQuery = Array.isArray(rawValue) ? rawValue[0] : rawValue;
-  const query = (rawQuery ?? "").trim();
+export default function SearchPage() {
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const query = (params.get("keywords") ?? params.get("q") ?? "").trim();
+    const target = query
+      ? `https://findspreadsheet.com/search.html?keywords=${encodeURIComponent(query)}&channelid=2`
+      : "https://findspreadsheet.com/AllProducts/";
 
-  if (!query) {
-    redirect("https://findspreadsheet.com/AllProducts/");
-  }
+    window.location.replace(target);
+  }, []);
 
-  const target = new URL("https://findspreadsheet.com/search.html");
-  target.searchParams.set("keywords", query);
-  target.searchParams.set("channelid", "2");
-  redirect(target.toString());
+  return (
+    <main style={{ padding: "3rem 1.25rem", textAlign: "center" }}>
+      <p>Opening the matching products on findspreadsheet.com…</p>
+      <p>
+        <a href="https://findspreadsheet.com/AllProducts/">
+          Continue to the product directory
+        </a>
+      </p>
+    </main>
+  );
 }
