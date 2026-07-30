@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { languages, localeCopy, routeFor, type Locale, type Section } from "./site-content";
 
 export function SiteHeader({ locale = "en", section }: { locale?: Locale; section?: Section }) {
@@ -7,7 +9,7 @@ export function SiteHeader({ locale = "en", section }: { locale?: Locale; sectio
   return (
     <header className="site-header">
       <a className="brand" href={routeFor(locale)} aria-label="Pikobuyy Spreadsheet home">
-        <img className="brand-logo" src="/pikobuy-logo.png" alt="Pikobuyy" />
+        <Image className="brand-logo" src="/pikobuy-logo.png" alt="Pikobuyy" width={204} height={48} />
       </a>
       <nav aria-label="Main navigation">
         {(["categories", "guides", "articles", "updates", "faq"] as Section[]).map((item) => (
@@ -42,9 +44,10 @@ export function SiteFooter({ locale = "en" }: { locale?: Locale }) {
   const copy = localeCopy[locale];
   return (
     <footer>
-      <div className="brand"><img className="brand-logo" src="/pikobuy-logo.png" alt="Pikobuyy" /></div>
+      <div className="brand"><Image className="brand-logo" src="/pikobuy-logo.png" alt="Pikobuyy" width={204} height={48} /></div>
       <p>{copy.independent}</p>
       <div>
+        <Link href="/pikobuy-spreadsheet/">Pikobuy Spreadsheet</Link>
         <a href={routeFor(locale, "categories")}>{copy.nav.categories}</a>
         <a href={routeFor(locale, "guides")}>{copy.nav.guides}</a>
         <a href={routeFor(locale, "articles")}>{copy.nav.articles}</a>

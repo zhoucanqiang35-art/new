@@ -1,3 +1,5 @@
+import Image from "next/image";
+import Link from "next/link";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 import {
   categoryLinks,
@@ -509,13 +511,13 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      { "@type": "WebSite", name: "Pikobuyy Spreadsheet", url: `https://pikobuyy.com${prefix}/`, description: copy.intro },
+      { "@type": "WebSite", "@id": "https://pikobuyy.com/#website", name: "Pikobuyy Spreadsheet", url: `https://pikobuyy.com${prefix}/`, description: copy.intro },
       { "@type": "FAQPage", mainEntity: faqTitles.map((question, index) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: faqAnswers[locale][index] } })) },
     ],
   };
 
   return (
-    <main className="home-page">
+    <main className="home-page" lang={locale}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <SiteHeader locale={locale} />
 
@@ -524,6 +526,9 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
           <p className="eyebrow"><span /> {copy.eyebrow}</p>
           <h1>{copy.title}<br /><em>{copy.accent}</em></h1>
           <p className="hero-text">{copy.intro}</p>
+          <Link className="pillar-link" href="/pikobuy-spreadsheet/">
+            Pikobuy Spreadsheet 2026 — complete guide <span>→</span>
+          </Link>
           <form
             className="search-box"
             action="https://findspreadsheet.com/search.html"
@@ -548,7 +553,7 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
           </div>
         </div>
         <a className="hero-product" href={`${prefix}/products/${products[0].slug}`} aria-label={`${home.viewProduct}: ${products[0].name}`}>
-          <div className="hero-product-image"><img src={products[0].image} alt={products[0].name} /><span>{home.featured}</span></div>
+          <div className="hero-product-image"><Image src={products[0].image} alt={products[0].name} width={800} height={600} priority /><span>{home.featured}</span></div>
           <div className="hero-product-info"><div><p>{categoryNames[locale][0]}</p><h2>{products[0].name}</h2></div><strong>${products[0].priceUsd} <small>USD</small></strong></div>
           <p>{copy.cards.categories.text}</p><b>{home.viewProduct} <span>→</span></b>
         </a>
@@ -564,7 +569,7 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
       <section className="featured-products home-products" id="products">
         <div className="section-heading"><div><p className="eyebrow"><span /> {home.productEyebrow}</p><h2>{home.productTitle}</h2></div><a href={routeFor(locale, "categories")}>{home.allCategories} →</a></div>
         <div className="product-grid">
-          {products.map((product) => <a className="product-card" href={`${prefix}/products/${product.slug}`} key={product.slug}><div className="product-image"><img src={product.image} alt={product.name} /></div><div className="product-meta"><span>{categoryNames[locale][categorySlugs.indexOf(product.category)]}</span><b>${product.priceUsd}</b></div><h3>{product.name}</h3><p>{copy.cards.categories.text}</p><strong>{home.viewProduct} →</strong></a>)}
+          {products.map((product) => <a className="product-card" href={`${prefix}/products/${product.slug}`} key={product.slug}><div className="product-image"><Image src={product.image} alt={product.name} width={640} height={480} /></div><div className="product-meta"><span>{categoryNames[locale][categorySlugs.indexOf(product.category)]}</span><b>${product.priceUsd}</b></div><h3>{product.name}</h3><p>{copy.cards.categories.text}</p><strong>{home.viewProduct} →</strong></a>)}
         </div>
       </section>
 
@@ -586,7 +591,7 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
             <ul>{home.qcChecks.map(([title, text], index) => <li key={title}><b>{String(index + 1).padStart(2, "0")}</b><span><strong>{title}</strong>{text}</span></li>)}</ul>
             <div className="deadline-box"><b>{evidence.deadlineLabel}</b><p>{evidence.deadlineText}</p></div>
             <p className="boundary-note">{research.qcBoundary}</p>
-            <div className="evidence-links"><a className="source-link" href={`${routeFor(locale, "guides")}/${sectionItemSlugs.guides[1]}`}>{evidence.qcGuideCta} →</a><a className="source-link muted-source" href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener noreferrer">{research.sourceLabel}: Returns & Exchanges ↗</a></div>
+            <div className="evidence-links"><a className="source-link" href={`${routeFor(locale, "guides")}/${sectionItemSlugs.guides[1]}`}>{evidence.qcGuideCta} →</a><span className="source-link muted-source">{research.sourceLabel}: pikobuy.com/protocol/returns</span></div>
           </div>
         </article>
         <article className="checklist-card shipping-card">
@@ -596,7 +601,7 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
             <p>{home.shippingText}</p>
             <div className="shipping-facts">{research.shippingFacts.map(([title, text]) => <div key={title}><strong>{title}</strong><span>{text}</span></div>)}</div>
             <p className="shipping-note">{research.shippingNote}</p>
-            <a className="calculator-link" href="https://www.pikobuy.com/shipping-cost" target="_blank" rel="noopener noreferrer">{research.calculatorCta} ↗</a>
+            <Link className="calculator-link" href="/pikobuy-shipping-guide/">{home.guideCta} →</Link>
           </div>
         </article>
       </section>

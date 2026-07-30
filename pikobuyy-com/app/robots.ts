@@ -7,7 +7,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/search"],
     },
     sitemap: "https://pikobuyy.com/sitemap.xml",
+    host: "https://pikobuyy.com",
   };
 }

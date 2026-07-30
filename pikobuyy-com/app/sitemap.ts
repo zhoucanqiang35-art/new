@@ -1,9 +1,11 @@
 import type { MetadataRoute } from "next";
+import { rankingSlugs } from "./ranking-content";
 import { productSlugs } from "./site-content";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date("2026-07-30");
   const sections = ["categories", "guides", "articles", "updates", "faq"];
   const locales = ["de", "fr", "es", "it", "pl", "nl", "pt"];
   const detailPages = {
@@ -15,48 +17,56 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const urls = [
     {
       url: "https://pikobuyy.com/",
-      lastModified: new Date("2026-07-29"),
+      lastModified,
       changeFrequency: "daily",
       priority: 1,
     },
   ];
+  for (const slug of rankingSlugs) {
+    urls.push({
+      url: `https://pikobuyy.com/${slug}/`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: slug === "pikobuy-spreadsheet" ? 0.95 : 0.82,
+    });
+  }
   for (const section of sections) {
     urls.push({
-      url: `https://pikobuyy.com/${section}`,
-      lastModified: new Date("2026-07-29"),
+      url: `https://pikobuyy.com/${section}/`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.85,
     });
   }
   for (const product of productSlugs) {
-    urls.push({ url: `https://pikobuyy.com/products/${product}`, lastModified: new Date("2026-07-29"), changeFrequency: "weekly", priority: 0.8 });
+    urls.push({ url: `https://pikobuyy.com/products/${product}/`, lastModified, changeFrequency: "weekly", priority: 0.8 });
   }
   for (const [section, slugs] of Object.entries(detailPages)) {
     for (const slug of slugs) {
-      urls.push({ url: `https://pikobuyy.com/${section}/${slug}`, lastModified: new Date("2026-07-29"), changeFrequency: "monthly", priority: 0.75 });
+      urls.push({ url: `https://pikobuyy.com/${section}/${slug}/`, lastModified, changeFrequency: "monthly", priority: 0.75 });
     }
   }
   for (const locale of locales) {
     urls.push({
-      url: `https://pikobuyy.com/${locale}`,
-      lastModified: new Date("2026-07-29"),
+      url: `https://pikobuyy.com/${locale}/`,
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     });
     for (const section of sections) {
       urls.push({
-        url: `https://pikobuyy.com/${locale}/${section}`,
-        lastModified: new Date("2026-07-29"),
+        url: `https://pikobuyy.com/${locale}/${section}/`,
+        lastModified,
         changeFrequency: "weekly",
         priority: 0.75,
       });
     }
     for (const product of productSlugs) {
-      urls.push({ url: `https://pikobuyy.com/${locale}/products/${product}`, lastModified: new Date("2026-07-29"), changeFrequency: "weekly", priority: 0.7 });
+      urls.push({ url: `https://pikobuyy.com/${locale}/products/${product}/`, lastModified, changeFrequency: "weekly", priority: 0.7 });
     }
     for (const [section, slugs] of Object.entries(detailPages)) {
       for (const slug of slugs) {
-        urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}`, lastModified: new Date("2026-07-29"), changeFrequency: "monthly", priority: 0.65 });
+        urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}/`, lastModified, changeFrequency: "monthly", priority: 0.65 });
       }
     }
   }

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   categoryLinks,
   categorySlugs,
@@ -23,7 +24,7 @@ export function SectionPage({ locale = "en", section }: { locale?: Locale; secti
   const items = sectionItemTitles[locale][section];
 
   return (
-    <main>
+    <main lang={locale}>
       <SiteHeader locale={locale} section={section} />
       <section className="inner-hero">
         <p className="eyebrow"><span /> Pikobuyy · {copy.nav[section]}</p>
@@ -59,7 +60,7 @@ export function CategoryPage({ locale = "en", category }: { locale?: Locale; cat
   const title = sectionItemTitles[locale].categories[index];
 
   return (
-    <main>
+    <main lang={locale}>
       <SiteHeader locale={locale} section="categories" />
       <section className="inner-hero category-detail-hero">
         <p className="eyebrow"><span /> {copy.categoryDetail.eyebrow}</p>
@@ -89,7 +90,7 @@ export function CategoryPage({ locale = "en", category }: { locale?: Locale; cat
           <div className="product-grid">
             {products.filter((product) => product.category === category).map((product) => (
               <a className="product-card" href={`${locale === "en" ? "" : `/${locale}`}/products/${product.slug}`} key={product.slug}>
-                <div className="product-image"><img src={product.image} alt={product.name} /></div>
+                <div className="product-image"><Image src={product.image} alt={product.name} width={640} height={480} /></div>
                 <div className="product-meta"><span>ID {product.productId}</span><b>${product.priceUsd}</b></div>
                 <h3>{product.name}</h3>
                 <p>{product.note}</p>

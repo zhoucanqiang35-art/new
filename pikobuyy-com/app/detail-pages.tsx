@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   localeCopy,
   products,
@@ -63,7 +64,7 @@ export function ContentDetailPage({ locale = "en", section, slug }: { locale?: L
   const paragraphs = localizedFallbackParagraphs[section];
 
   return (
-    <main>
+    <main lang={locale}>
       <SiteHeader locale={locale} section={section} />
       <article className="editorial-page">
         <header>
@@ -149,11 +150,11 @@ export function ProductDetailPage({ locale = "en", product }: { locale?: Locale;
   const copy = localeCopy[locale];
   const labels = detailCopy[locale];
   return (
-    <main>
+    <main lang={locale}>
       <SiteHeader locale={locale} section="categories" />
       <article className="product-detail-page">
         <div className="product-detail-image">
-          <img src={product.image} alt={product.name} />
+          <Image src={product.image} alt={product.name} width={800} height={800} />
           <span>{labels.source}</span>
         </div>
         <div className="product-detail-copy">
