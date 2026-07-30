@@ -1,0 +1,545 @@
+export type EditorialSection = {
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+};
+
+export type EditorialEntry = {
+  dek: string;
+  reviewed: string;
+  readingTime: string;
+  keyFacts: string[];
+  sections: EditorialSection[];
+  sources: {
+    label: string;
+    url: string;
+    note: string;
+    verifiedFacts: string[];
+    buyerAction: string;
+    mainUrl: string;
+    mainLabel: string;
+  }[];
+};
+
+const officialSources = {
+  home: {
+    label: "Pikobuy official homepage",
+    url: "https://www.pikobuy.com/home",
+    note: "The official homepage describes discovery, agent purchasing, warehouse inspection and international dispatch as separate stages.",
+    verifiedFacts: [
+      "Pikobuy accepts a product link, image or request and sources from multiple sellers.",
+      "Packages are inspected and repackaged at its China warehouse before a shipping option is selected.",
+      "This is a service workflow—not proof that a spreadsheet price, variant or link is still current.",
+    ],
+    buyerAction: "Use our live directory to choose a current product first; then verify the exact option before starting an agent order.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Browse all current finds",
+  },
+  about: {
+    label: "Pikobuy About page",
+    url: "https://www.pikobuy.com/about",
+    note: "The About page defines the service scope and the Chinese marketplaces named by Pikobuy.",
+    verifiedFacts: [
+      "The page names Taobao, 1688 and Weidian and says multiple currencies and payment methods are supported.",
+      "It describes warehouse quality checks and a choice of carriers and shipping routes.",
+      "It does not publish a universal international rate, guaranteed delivery time or professional authentication promise.",
+    ],
+    buyerAction: "Treat Pikobuy as the transaction and forwarding service; use FindsSpreadsheet as the independent product-research layer.",
+    mainUrl: "https://findspreadsheet.com/Agents/",
+    mainLabel: "Compare agent-platform resources",
+  },
+  guide: {
+    label: "Pikobuy Beginner's Guide",
+    url: "https://www.pikobuy.com/guide",
+    note: "The official guide publishes a six-step process with two distinct payment moments.",
+    verifiedFacts: [
+      "Confirm style, color and size, then paste the product link or keywords into Pikobuy.",
+      "The first payment covers the submitted product order; international shipping is paid later after warehouse inspection.",
+      "The guide says tracking information becomes available within three days after dispatch—not that delivery takes three days.",
+    ],
+    buyerAction: "Save the exact seller, product URL and selected option before paying so the warehouse arrival can be checked against the order.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Choose a product to research",
+  },
+  estimator: {
+    label: "Pikobuy Shipping Cost Estimation",
+    url: "https://www.pikobuy.com/shipping-cost",
+    note: "The calculator itself shows which inputs are needed before any shipping figure is meaningful.",
+    verifiedFacts: [
+      "Required context includes destination country or region, product type and parcel weight.",
+      "Length, width and height are separate inputs, so bulky light parcels cannot be judged by kilograms alone.",
+      "A pre-order estimate is planning evidence; the packed warehouse parcel supplies the real measurements.",
+    ],
+    buyerAction: "Compare product price and expected shipping separately, then replace guesses with measured warehouse weight and dimensions.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Browse products by size and type",
+  },
+  shipping: {
+    label: "Pikobuy Shipping Policy",
+    url: "https://www.pikobuy.com/protocol/shipping",
+    note: "The transportation policy explains inspection limits, transfer handling and risks outside the warehouse.",
+    verifiedFacts: [
+      "Transferred goods are unpacked for inspection and warehouse photos are supplied for confirmation.",
+      "Special or professional products do not receive professional inspection; detailed photos may need to be purchased.",
+      "Parcels use third-party logistics, and customs, loss, damage, confiscation and peak delays remain cross-border risks.",
+    ],
+    buyerAction: "Use QC photos for visible condition only, then compare eligible routes, restrictions and protection before paying international shipping.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Open the live product directory",
+  },
+  returns: {
+    label: "Pikobuy Returns & Exchanges",
+    url: "https://www.pikobuy.com/protocol/returns",
+    note: "The return page sets a precise request window and explains when a return is still conditional.",
+    verifiedFacts: [
+      "The request window is 120 hours after the order becomes “Warehoused,” counted from the next hour.",
+      "Eligibility still depends on seller support, seller agreement, marketable condition and intact packaging, tags or seals where required.",
+      "An unconditional return can include delivery to the warehouse, return delivery to the seller and a 5 RMB service fee.",
+    ],
+    buyerAction: "Review warehouse photos immediately and avoid removing tags, seals or packaging before deciding whether the item should be returned.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Research a current listing",
+  },
+};
+
+const researchStandard: EditorialSection = {
+  heading: "How we separate fact from advice",
+  paragraphs: [
+    "The facts in this article come from Pikobuy's public pages reviewed on July 29, 2026. When the official site states a process or rule, we identify it as an official fact. When we suggest a way to compare a listing, read a warehouse photo or plan a parcel, that is editorial guidance from Pikobuyy—not a promise from Pikobuy. This distinction matters because marketplace listings, shipping routes, return eligibility and prices can change after an article is published.",
+    "Pikobuy does not publicly disclose reliable country-by-country user counts, a universal delivery time or one fixed international shipping rate. We therefore do not invent those numbers. Use the live Pikobuy estimator and the current order or parcel page for a real transaction. A spreadsheet is useful for discovery and comparison; the official platform remains the final source for order status, eligibility, fees and available routes.",
+  ],
+};
+
+export const articleEntries: Record<string, EditorialEntry> = {
+  "what-is-a-pikobuy-spreadsheet": {
+    dek: "A fact-checked explanation of what a Pikobuy spreadsheet can organize, where the official Pikobuy service begins, and how to avoid confusing a research directory with the shopping agent itself.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "12 min read",
+    keyFacts: [
+      "Pikobuy describes itself as a China shopping and forwarding agent for global shoppers.",
+      "Its public pages name Taobao, Tmall, 1688, Weidian and Yupoo in the discovery workflow.",
+      "A spreadsheet is an independent discovery layer; it is not Pikobuy's warehouse, checkout or shipping service.",
+      "Prices, variants, return eligibility and shipping routes must be confirmed on current official pages.",
+    ],
+    sections: [
+      {
+        heading: "The short answer",
+        paragraphs: [
+          "A Pikobuy spreadsheet is an organized research directory for product links. It helps a shopper move from a vague idea—such as “black running shoes” or “heavyweight hoodie”—to a smaller set of listings that are worth opening. A useful spreadsheet adds structure that a raw list lacks: category, product title, source link, image, listed price, notes about what to inspect and, ideally, the date a link was last reviewed.",
+          "The spreadsheet is not the shopping agent. Pikobuy's official site describes a service that helps global shoppers find items from Chinese marketplaces, place an order, receive the goods at a China warehouse, inspect them and choose an international shipping route. Pikobuyy is independent and sits before that workflow. It helps with discovery and comparison, then points to a current product or category page. It does not collect payment, receive parcels, produce warehouse photos or promise delivery.",
+        ],
+      },
+      {
+        heading: "What Pikobuy officially says it does",
+        paragraphs: [
+          "Pikobuy's About page says the platform provides access to Taobao, 1688 and Weidian, supports multiple currencies and payment methods, performs warehouse quality checks and offers a range of shipping carriers and routes. Its Beginner's Guide adds Tmall and Yupoo to the product-selection step. The official homepage describes a sequence of discovery, ordering, warehouse inspection and worldwide shipping.",
+          "That sequence is the practical context behind every spreadsheet row. A product link is not an order and a product image is not a warehouse inspection. The link only gives Pikobuy a starting point. According to the official guide, the shopper still needs to confirm style, color and size, paste a link or keywords into Pikobuy, choose the actual options, submit the order and complete the first payment. The final purchasing price is based on the actual purchase, and the guide says an out-of-stock order is refunded.",
+        ],
+      },
+      {
+        heading: "Why a structured directory is more useful than a giant sheet",
+        paragraphs: [
+          "Large spreadsheets often fail for a simple reason: they optimize for quantity rather than decisions. Thousands of links may look impressive, but they create work for the visitor. The shopper still has to determine which rows are current, which product type is relevant, whether a price refers to the selected variant and what to inspect later. A smaller, well-labelled directory can be more valuable because it reduces uncertainty at each step.",
+          "For discovery, categories should reflect how people compare products. Shoes need silhouette, outsole, heel and sizing checks. Hoodies need measurements, fabric weight, print or embroidery placement and ribbing. Jackets need fill, lining, closure and overall proportion. Electronics require model, plug, voltage, battery and transport restrictions. These notes do not certify quality; they tell the reader what evidence to look for after the item arrives at the warehouse.",
+        ],
+      },
+      {
+        heading: "The role of the product page",
+        paragraphs: [
+          "A spreadsheet card should never replace the current product page. Marketplace sellers can change images, options, prices and availability without warning. A row that was accurate last week may point to a different selection today. That is why Pikobuyy product cards use a direct source path and explain that the destination page is the final source for the item.",
+          "Before saving a find, compare the title with the available variants. Check whether the displayed price belongs to the default option or to the option you actually want. Look for seller measurements rather than relying on a familiar letter size. Save the seller or store information when useful; Pikobuy's official beginner guide specifically recommends saving product or store information to make ordering easier. If the link cannot be found, the same guide directs users to customer service for help.",
+        ],
+      },
+      {
+        heading: "Where quality control enters the process",
+        paragraphs: [
+          "Pikobuy's official guide places warehouse inspection after the order and the first payment. Once the product reaches the warehouse, the guide says it is inspected, checked in, photographed and reviewed for defects. The homepage similarly says packages are inspected and repackaged at the China warehouse. This is much stronger evidence than a spreadsheet thumbnail, but it still has limits.",
+          "Warehouse photos show visible condition and selected details; they cannot prove every material claim, internal construction feature or long-term performance. Pikobuy's shipping policy is explicit that special and professional products cannot receive professional inspection. It also tells transfer customers to use inspection photos or purchase additional detailed photos. The sensible approach is to treat QC as a visual checkpoint: confirm the ordered variant, obvious damage, measurements when shown and category-specific details before deciding whether to ship.",
+        ],
+      },
+      {
+        heading: "The cost a spreadsheet cannot calculate",
+        paragraphs: [
+          "A low product price is not the final landed cost. Pikobuy's shipping estimator asks for destination, product type, weight, length, width and height. Those inputs reveal why a universal “shipping per kilogram” claim is misleading: route eligibility and the billable basis can change with the parcel, and bulky packaging can matter even when the product itself is light.",
+          "Use a spreadsheet price only to compare products. Keep a separate planning column for domestic delivery to the warehouse, optional services, return costs and international shipping. Do not hard-code one route or delivery promise into a product card. The official guide says routes differ in delivery time and billing method. The live estimator and the measured parcel provide the useful answer; an article can only explain what to prepare.",
+        ],
+      },
+      {
+        heading: "A practical workflow for using the spreadsheet",
+        paragraphs: [
+          "Start with one category and a real need. Open two or three plausible listings, not twenty. Record the exact variant, seller measurements and current CNY price. Eliminate options that do not show enough information. Then open the chosen source through Pikobuy and follow the official order flow. When warehouse photos arrive, compare them with the listing and your own checklist rather than with memory.",
+          "If the item is acceptable, build the parcel only after checking route choices and packaging. If it is not acceptable, act quickly. Pikobuy's returns page says an eligible return request generally needs to be submitted within five days after the order becomes “Warehoused,” calculated as 120 hours from the next hour after that status. Eligibility still depends on seller rules, the product remaining marketable and packaging conditions. The existence of a return page is not a guarantee that every product can be returned.",
+        ],
+        bullets: [
+          "Discovery: category, image, current link and price context.",
+          "Verification: exact variant, seller measurements and current availability.",
+          "Warehouse review: visible condition, ordered option and category-specific QC.",
+          "Parcel planning: destination, type, measured weight, dimensions and route.",
+          "Final decision: use the current official dashboard, not an old spreadsheet note.",
+        ],
+      },
+      {
+        heading: "What a trustworthy spreadsheet should disclose",
+        paragraphs: [
+          "A directory earns trust through limits as much as through links. Every product card should say whether the price is a live value, a dated reference or a currency conversion. It should use the actual destination image rather than an unrelated promotional picture. It should also distinguish a seller image from a warehouse QC image. Those labels prevent a visitor from believing that an item has already been inspected when only the marketplace listing has been reviewed.",
+          "The same rule applies to freshness. “Updated regularly” is too vague on its own. A useful page records the date a link or policy source was checked and removes claims that cannot be reproduced. If an item disappears, redirect the visitor to a relevant category rather than silently replacing the destination with a different product. If the official platform does not publish user numbers, average delivery performance or a fixed fee, the directory should say that clearly. Precision without a verifiable source is not useful information.",
+        ],
+      },
+      researchStandard,
+    ],
+    sources: [officialSources.home, officialSources.about, officialSources.guide, officialSources.estimator, officialSources.shipping, officialSources.returns],
+  },
+  "how-to-use-pikobuy-spreadsheet-2026": {
+    dek: "A practical, source-backed workflow for turning a product directory into a shortlist, placing the correct variant, reviewing warehouse evidence and planning the parcel without guessing.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "14 min read",
+    keyFacts: [
+      "Pikobuy's official beginner flow has six stages: select, search, submit and pay, inspect, pay shipping, then wait for the parcel.",
+      "The official guide says the final price is based on actual purchasing and out-of-stock orders are refunded.",
+      "Warehouse photos are a checkpoint, not proof of every hidden material or performance claim.",
+      "The live parcel quote depends on destination, product type, weight and dimensions.",
+    ],
+    sections: [
+      {
+        heading: "Begin with a decision, not a keyword",
+        paragraphs: [
+          "The fastest way to waste time in a product spreadsheet is to search without criteria. “Shoes” can return hundreds of results, but a usable brief is narrower: everyday low-top shoes, dark color, a stated insole measurement and a target product budget. Write the decision before opening rows. This keeps an attractive thumbnail from becoming the only reason you save a listing.",
+          "Choose three non-negotiables and two preferences. Non-negotiables might be size evidence, a particular color and a maximum product price. Preferences might be packaging or material. The spreadsheet can then do its real job: filter out obvious mismatches. It should not make the final quality claim because that evidence appears later, after the seller dispatches the selected item to the warehouse.",
+        ],
+      },
+      {
+        heading: "Step 1: select the product and preserve the source",
+        paragraphs: [
+          "Pikobuy's official Beginner's Guide begins with product selection on Taobao, Tmall, 1688, Weidian or Yupoo. It tells users to confirm style, color and size, and recommends saving the product or store information. This is practical advice because marketplace pages can change. Save the exact URL and the option you intend to buy; a screenshot of the option and size table can also help you compare the warehouse arrival later.",
+          "Do not treat a translated title as a full specification. Open the option selectors. Check whether a low displayed price belongs to an accessory, deposit or different variant. Read seller measurements and note the unit. For apparel, compare garment measurements with a piece you already own. For shoes, look for foot-length or insole guidance rather than assuming an EU or US size maps perfectly.",
+        ],
+      },
+      {
+        heading: "Step 2: search through Pikobuy",
+        paragraphs: [
+          "The official guide says users can paste a product link or keywords into the Pikobuy search box. A direct link is usually the cleaner route because it preserves the source you already reviewed. Keyword search is useful when a link cannot be parsed or when you are still exploring, but it may return several similar items. Confirm that the result matches the seller, option and price you intended.",
+          "If Pikobuy cannot find the item, its guide says to contact 24-hour customer service. That statement does not mean every product can be purchased or shipped. Marketplace availability, seller rules, prohibited items and route restrictions still matter. Use customer support to clarify the current transaction; do not infer approval from an old spreadsheet row.",
+        ],
+      },
+      {
+        heading: "Step 3: choose variants and complete the first payment",
+        paragraphs: [
+          "Pikobuy's third official step is “Submit And Pay.” The shopper selects color, size and quantity, submits the order and completes the first payment. The guide adds two important limits: final price is based on actual purchasing, and an out-of-stock item is refunded. These details explain why a spreadsheet price should be labelled as a listed or reference price rather than a guaranteed checkout amount.",
+          "Before paying, compare the order summary with your saved source. One wrong size selection can be expensive to correct after domestic dispatch. Review quantity, color, model and any seller notes. Separate the product payment from international shipping in your budget. The official workflow places international shipping later, after the warehouse stage, so a cheap product does not tell you the final total.",
+        ],
+      },
+      {
+        heading: "Step 4: read the warehouse inspection correctly",
+        paragraphs: [
+          "After arrival, Pikobuy says it inspects the product, checks it into the warehouse, takes photos and looks for defects. Start with identity: is this the ordered color, size and quantity? Then check visible condition and the features that matter for the category. Shoes need both sides, the heel, toe, outsole and size evidence. Apparel needs front and back alignment, labels, seams and measurements. Bags need hardware, straps, lining and scale.",
+          "QC photography has boundaries. Lighting can shift color. A flat image cannot prove comfort, composition or durability. Pikobuy's shipping policy says special and professional products cannot receive professional inspection, and it mentions purchasing additional detailed photos. Request a useful extra photo when one missing view determines your decision—for example, a measurement tape across a garment or the model label on an electronic item. Random close-ups add cost without necessarily reducing uncertainty.",
+        ],
+      },
+      {
+        heading: "Use the return window before it closes",
+        paragraphs: [
+          "If the warehouse evidence shows a wrong or unacceptable item, check return eligibility immediately. Pikobuy's public returns policy describes a “5-Day Return Guarantee” tied to seller and marketplace rules. It says a request can be made within five days after the status becomes “Warehoused,” beginning from the next hour and totalling 120 hours. The item must remain in a marketable state and the seller must offer the relevant guarantee.",
+          "The policy also lists categories and conditions that can be ineligible, including custom goods, second-hand products, undergarments and goods whose required seals or packaging have been opened. For an unconditional return, the published formula includes shipping to the seller, shipping from the seller and a 5 RMB service fee. Seller-caused wrong items or quality issues may be treated differently, but the current case and seller decision still control. Do not remove tags or packaging merely to obtain a better photo when that could affect eligibility.",
+        ],
+      },
+      {
+        heading: "Step 5: estimate and pay international shipping",
+        paragraphs: [
+          "Pikobuy's fifth official step is to choose a logistics route, submit the parcel and pay international shipping. The guide says routes differ in delivery time and billing method. The official estimator asks for destination, product type, weight and dimensions. Together, those facts show why a single shipping number copied into an SEO article is not useful for a real order.",
+          "Wait for warehouse measurements when possible. Compare routes by billable basis, restrictions, tracking, insurance options and estimated time—not only the headline price. Consider packaging changes deliberately. Minimal packaging may reduce dimensions, while reinforcement may protect a fragile item but add material. Pikobuy's guide says users can request minimal or reinforced packaging at the warehouse inspection stage, so packaging is a decision variable rather than an invisible constant.",
+        ],
+      },
+      {
+        heading: "Step 6: tracking and realistic expectations",
+        paragraphs: [
+          "After dispatch, the official guide says logistics information will be available within three days. That is a statement about initial tracking availability, not a universal delivery promise. Cross-border tracking can pause between export, airline movement, customs and local handoff. Pikobuy's shipping policy says parcels are carried by third-party logistics providers and names risks such as customs action, damage, loss and peak-period delays.",
+          "Keep the parcel number and route name. Use the Pikobuy parcel page first, then the carrier once a valid tracking number is active. A lack of movement for a short period does not by itself prove a lost parcel, but a status outside the route's current guidance should be raised through official support. Spreadsheet research ends once the order begins; transaction-specific decisions belong in the official account and support channel.",
+        ],
+      },
+      {
+        heading: "A compact checklist for every order",
+        paragraphs: [
+          "A repeatable process is more valuable than a lucky find. Keep a simple record of source URL, intended variant, seller measurement, listed CNY price, order number, warehouse status, QC decision and parcel route. This is enough to trace what changed without turning the spreadsheet into a second order-management system.",
+        ],
+        bullets: [
+          "Before order: source, seller, exact variant, measurements and current price.",
+          "At payment: quantity, options, domestic-delivery terms and first-payment total.",
+          "At warehouse: identity, visible defects, measurements and missing evidence.",
+          "Before parcel: return deadline, packaging choice, measured size and route restrictions.",
+          "After dispatch: parcel number, route, tracking activation and official support record.",
+        ],
+      },
+      researchStandard,
+    ],
+    sources: [officialSources.guide, officialSources.estimator, officialSources.shipping, officialSources.returns, officialSources.about],
+  },
+  "pikobuy-qc-photo-guide": {
+    dek: "A category-by-category way to read Pikobuy warehouse photos, understand what inspection can and cannot prove, and act within the current return rules.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "13 min read",
+    keyFacts: [
+      "Pikobuy says warehouse staff inspect, check in and photograph items after arrival.",
+      "Its shipping policy says special and professional products do not receive professional inspection.",
+      "Additional detailed photos may be available, so ask for a decision-changing view rather than random close-ups.",
+      "Return eligibility can depend on seller rules, packaging and a five-day warehouse request window.",
+    ],
+    sections: [
+      {
+        heading: "QC is a visual checkpoint, not a certificate",
+        paragraphs: [
+          "Pikobuy's Beginner's Guide says that after a product arrives at the warehouse, staff inspect it, check it in, take photos and look for defects. The official homepage also describes inspection and repackaging at the China warehouse. These images are valuable because they show the actual received unit before international shipping. They are not, however, a laboratory report, an authenticity opinion or a guarantee of hidden construction.",
+          "The platform's shipping policy makes that boundary explicit: special and professional products cannot receive professional inspection. It tells users to check inspection photos or purchase additional detailed photos. Read QC accordingly. First confirm identity and visible condition. Then inspect category-specific details. Do not claim that a photograph proves fiber content, electronics safety, waterproofing, battery health or long-term durability.",
+        ],
+      },
+      {
+        heading: "Start with the order, not the reference photo",
+        paragraphs: [
+          "Before judging quality, verify that the warehouse item matches what you ordered. Compare color, size, model, quantity and obvious accessories against the saved order. A perfect-looking item in the wrong size is still a failed order. Keep a screenshot of the chosen option and seller size table from the day you paid; live listings can change and memory is unreliable.",
+          "Check the warehouse status and photo set as soon as they appear. If you need to return an eligible item, time matters. Pikobuy's published returns page says requests generally must be made within five days after the order becomes “Warehoused,” calculated as 120 hours beginning from the next hour. Eligibility also depends on seller rules and the item remaining marketable.",
+        ],
+      },
+      {
+        heading: "Shoes: compare structure before tiny details",
+        paragraphs: [
+          "For shoes, begin with the pair as a whole. Compare left and right height, toe shape, side profile and heel position. Then inspect panel alignment, stitching lines, edge finishing and outsole pattern. A close-up logo means little if the overall silhouette is visibly inconsistent. Request a straight rear view when heel symmetry is important and a size-label or insole measurement when fit is uncertain.",
+          "Do not remove anti-theft clasps or damage-protection stickers simply to improve a view. Pikobuy's returns rules list special standards for new sneakers: required clasps and anti-damage stickers must remain uncut, present and functional. Protecting return eligibility is more important than obtaining a cosmetic photograph that does not change the decision.",
+        ],
+      },
+      {
+        heading: "Apparel: measurements beat familiar size letters",
+        paragraphs: [
+          "For T-shirts, hoodies, jackets and trousers, confirm the size tag but do not stop there. Compare chest width, length, shoulder, sleeve and waist measurements with a garment you own. Look at the full front and back before zooming into print or embroidery. Check whether large graphics sit level, whether side seams twist and whether pockets or zippers align.",
+          "Warehouse lighting may alter color, especially dark green, navy, beige and washed finishes. Compare several photos rather than treating one frame as exact color calibration. A photo can show texture, but it cannot prove the seller's fabric composition or weight claim unless that evidence is independently measured. If fabric weight is critical, ask official support what evidence can actually be provided before assuming.",
+        ],
+      },
+      {
+        heading: "Bags and accessories: inspect function points",
+        paragraphs: [
+          "For bags, inspect the full shape, handles, strap attachment, zip path, corners, edge paint, lining and hardware. Ask for a scale reference or measurements when size is unclear. Promotional photography often makes small bags appear larger. For belts and eyewear, verify the selected dimensions and look for obvious scratches, loose fittings or uneven finishing.",
+          "QC photos can show whether included accessories arrived, but they do not prove every metal or material claim. Avoid turning a visible stamp into an authenticity conclusion. The useful question is narrower: did the ordered model arrive in visibly acceptable condition with the stated pieces? Keep editorial descriptions factual and leave brand authentication to qualified services.",
+        ],
+      },
+      {
+        heading: "Electronics: model and condition, not professional testing",
+        paragraphs: [
+          "Electronics need especially careful language. Verify model number, plug type, voltage information, visible ports and included accessories. Look for screen or casing damage and confirm sealed packaging when the return rule requires it. Do not infer battery capacity, electrical safety or internal component quality from a warehouse photo.",
+          "Pikobuy's returns rules describe special packaging and condition standards for digital products, cameras, appliances and electronic components. Examples include undamaged permits or seals, limits on camera shutter use and no installation or welding for certain goods. Route restrictions for batteries or electronics may also affect shipping. Confirm the current product type and eligible routes through the official estimator or account before ordering.",
+        ],
+      },
+      {
+        heading: "How to request a useful extra photo",
+        paragraphs: [
+          "An extra photo should answer one decision. “More photos please” often produces another angle that adds little. Ask for a tape measurement across the chest, a straight heel view, a close-up of a model label, the underside of a bag, or all included accessories in one frame. State the feature and the angle.",
+          "Before requesting packaging to be opened, tags removed or seals broken, check whether doing so could affect a return. Pikobuy's published policy lists several categories where original seals or packaging matter. When uncertain, ask official support in the live order rather than relying on a generic guide. The return policy and seller response for that item control the outcome.",
+        ],
+      },
+      {
+        heading: "Decision framework: keep, clarify or return",
+        paragraphs: [
+          "Use three outcomes. Keep when the ordered identity is correct, visible condition is acceptable and no important evidence is missing. Clarify when one specific view or measurement could resolve the decision. Consider a return when the wrong option arrived, there is visible damage or a material mismatch is supported by the evidence. Record the reason factually and submit through the current order page.",
+          "An unconditional return may carry costs. Pikobuy's published formula includes shipping to the seller, shipping from the seller and a 5 RMB service fee, even where the first dispatch appeared free. Seller-caused wrong items or quality issues can be treated differently, but the official page says the actual seller agreement and circumstances matter. A spreadsheet should flag this possibility, not promise a free return.",
+        ],
+      },
+      {
+        heading: "Common QC mistakes that create false confidence",
+        paragraphs: [
+          "The first mistake is zooming into logos before confirming the whole item. Identity, size and overall shape carry more decision value than one sharp close-up. The second is comparing warehouse lighting with a heavily edited seller photo as if both were color-calibrated. Use several frames and look for consistency. The third is treating the absence of a visible defect as proof of invisible quality. A photograph cannot establish smell, comfort, internal wiring, material composition or durability.",
+          "Another mistake is waiting because the problem feels small. A wrong tag, missing accessory or unclear model may be easy to resolve with one targeted request, but the published return window continues to run. Finally, do not request destructive handling casually. Removing seals, tags or protective pieces can affect marketable condition under the current return policy. Ask whether the missing evidence would genuinely change the decision, then request the least invasive view that answers it.",
+        ],
+      },
+      researchStandard,
+    ],
+    sources: [officialSources.guide, officialSources.shipping, officialSources.returns, officialSources.home],
+  },
+  "pikobuy-shipping-cost": {
+    dek: "A fact-based explanation of the variables behind Pikobuy shipping quotes, why product price is not landed cost, and how to compare routes without inventing a universal rate.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "13 min read",
+    keyFacts: [
+      "Pikobuy's estimator requires destination, product type, weight, length, width and height.",
+      "The beginner guide says shipping routes differ in delivery time and billing method.",
+      "The shipping policy says third-party logistics and customs create unavoidable cross-border risks.",
+      "The official site does not publish one universal rate or delivery time for every country and parcel.",
+    ],
+    sections: [
+      {
+        heading: "Why there is no honest one-number answer",
+        paragraphs: [
+          "People searching “Pikobuy shipping cost” often want a price per kilogram. Pikobuy's own estimator shows why that question is incomplete. It asks where the parcel will go, what type of product it contains, its weight, and its length, width and height. Change any of those fields and the eligible routes or quote can change. A rate copied from someone else's parcel is context, not a forecast.",
+          "The product price is only the first layer. A realistic plan separates the seller price, domestic delivery to the China warehouse, optional warehouse services or packaging, possible return costs and international shipping. Taxes, customs treatment or last-mile charges may also depend on destination and route. Pikobuyy does not publish a single landed-cost promise because the official platform does not provide one universal answer.",
+        ],
+      },
+      {
+        heading: "The six inputs that matter first",
+        paragraphs: [
+          "Destination determines which logistics lines are available and which local conditions apply. Product type matters because batteries, liquids, cosmetics, food, branded goods or other restricted categories may have fewer routes. Actual weight is the scale measurement. Length, width and height capture bulk. Together, dimensions can produce a billable volume that matters even for a light parcel.",
+          "This is why shoes shipped with boxes, padded jackets and rigid packaging can cost more than a simple product-weight calculation suggests. Do not remove protective packaging automatically to reduce cost; decide based on fragility, return status and the value of the item. Pikobuy's Beginner's Guide mentions minimal and reinforced packaging requests, indicating that packaging can be adjusted, but the right choice depends on the parcel.",
+        ],
+      },
+      {
+        heading: "Estimate before ordering, quote after warehousing",
+        paragraphs: [
+          "Use the official estimator early to compare scenarios. Enter a plausible destination, product type, weight and dimensions. The result can show whether a category is likely to fit your budget. It cannot know the final packed parcel before the warehouse measures it. Treat the pre-order output as a planning range rather than a bill.",
+          "After all items arrive, review warehouse measurements and create the parcel. Compare the available lines at that moment. The official guide says routes differ in delivery time and billing method. Read the route details, restrictions and insurance options. A slightly higher quote may be worthwhile for a fragile or time-sensitive parcel, while a slower economy route may fit a low-value, non-urgent order.",
+        ],
+      },
+      {
+        heading: "Actual weight versus parcel volume",
+        paragraphs: [
+          "Actual weight is straightforward: what the packed parcel weighs on a scale. Dimensional or volumetric billing reflects the space a parcel occupies. Carriers use their own divisor or billing rules, so this article does not invent one formula for all Pikobuy routes. The important point is that a large light box can be billed differently from a compact parcel of the same actual weight.",
+          "To reduce avoidable volume, remove unnecessary retail boxes only when protection, resale value and return conditions allow it. Fold soft goods efficiently. Consolidation can reduce repeated outer packaging, but a larger combined parcel can also cross route or size thresholds. Compare the quote with and without a packaging change when the official workflow permits rehearsal or customer support can clarify.",
+        ],
+      },
+      {
+        heading: "Product type and route restrictions",
+        paragraphs: [
+          "A route available for ordinary clothing may not accept batteries, liquids, magnetic items, food or other controlled products. Select the product type accurately in the estimator. Misclassifying an item to reveal a cheaper line does not make that line valid and can lead to delay, rejection or risk later.",
+          "Pikobuy's shipping policy says parcels are carried by third-party logistics providers and that customs policies and uncontrollable cross-border factors can create confiscation, damage, loss or peak-period delays. This is a sober reminder: route selection is a risk decision as well as a price comparison. Read current restrictions and insurance terms before paying.",
+        ],
+      },
+      {
+        heading: "Delivery estimates and tracking",
+        paragraphs: [
+          "Pikobuy's guide says logistics information will be available within three days after dispatch. This refers to tracking becoming available; it is not a promise that the parcel will arrive in three days. Delivery estimates depend on route, export processing, flight capacity, customs and local handoff. Peak periods can lengthen pauses.",
+          "Save the parcel number and exact route name. Check the Pikobuy parcel page until carrier tracking activates, then use the carrier's official tracking where available. Judge progress against the route's current estimate, not a social-media post from another country. If the shipment exceeds current guidance, contact official support with the parcel number and status history.",
+        ],
+      },
+      {
+        heading: "Returns can become part of the shipping budget",
+        paragraphs: [
+          "Shipping planning begins before international dispatch because an unwanted warehouse item may need domestic return shipping. Pikobuy's returns page says an unconditional return can include the shipping cost to the seller, the shipping cost from the seller and a 5 RMB service fee. Even an item advertised with free seller shipping may require repayment of the first dispatch cost under that policy.",
+          "That does not mean every return has the same cost. Seller-caused wrong items or confirmed quality problems may be allocated differently, and the seller's decision and current case control. The practical lesson is to keep a small contingency and inspect warehouse photos promptly. Missing the return window can leave international shipping—or abandonment—as the remaining choices.",
+        ],
+      },
+      {
+        heading: "A shipping comparison that produces a useful answer",
+        paragraphs: [
+          "Build a small comparison table for the live routes: quote, billable weight, delivery estimate, product restrictions, tracking, insurance or compensation terms and packaging assumptions. Do not rank solely by price. Cross out any route that does not accept the actual product type. Then choose the trade-off that fits the order value and urgency.",
+        ],
+        bullets: [
+          "Use the live destination and correct product type.",
+          "Replace guessed weight and dimensions with warehouse measurements.",
+          "Check whether packaging changes alter protection or eligibility.",
+          "Read the route's current billing, restriction and risk information.",
+          "Keep the official quote and parcel page as the final source.",
+        ],
+      },
+      {
+        heading: "Worked planning example without a fake quote",
+        paragraphs: [
+          "Suppose a shopper is comparing a pair of shoes and a hoodie. The honest calculation does not begin with an invented dollar total. First record the product prices and any domestic seller delivery. Next, estimate the unboxed and boxed dimensions separately because the shoe box may change parcel volume. Select the actual destination and correct product types in Pikobuy's estimator, then compare the routes it currently returns. If the items later arrive at different weights or sizes, replace the estimate with warehouse measurements.",
+          "At the parcel stage, compare two scenarios: protective packaging preserved, and unnecessary outer packaging reduced. Note which scenario changes the billable basis and which introduces damage risk. Add optional service or insurance costs shown in the live workflow. The result is a dated decision for that parcel—not a reusable promise for every shopper. Publishing the inputs and method is more useful than publishing a dramatic low rate that readers cannot reproduce.",
+        ],
+      },
+      researchStandard,
+    ],
+    sources: [officialSources.estimator, officialSources.guide, officialSources.shipping, officialSources.returns],
+  },
+};
+
+export const guideEntries: Record<string, EditorialEntry> = {
+  "beginner-research-workflow": articleEntries["how-to-use-pikobuy-spreadsheet-2026"],
+  "qc-photo-checklist": articleEntries["pikobuy-qc-photo-guide"],
+  "shipping-cost-planning": articleEntries["pikobuy-shipping-cost"],
+  "product-link-verification": {
+    dek: "A concise workflow for checking a marketplace link before it becomes an order.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "7 min read",
+    keyFacts: [
+      "Pikobuy accepts a product link or keywords in its official search workflow.",
+      "The buyer still needs to confirm style, color, size and quantity.",
+      "Final price is based on actual purchasing; an out-of-stock order is refunded.",
+    ],
+    sections: [
+      {
+        heading: "Verify the source before saving it",
+        paragraphs: [
+          "Open the current marketplace page and record the exact seller, variant, size information and displayed CNY price. A spreadsheet thumbnail or translated title is not enough. Look for option-dependent pricing and save the product or store information; Pikobuy's Beginner's Guide recommends doing this so the order is easier to place.",
+          "When you paste the link into Pikobuy, compare the parsed result with the source. If the product cannot be found, use official customer service as the guide recommends. Do not replace the missing listing with a similar item without reviewing its own seller, options and measurements.",
+        ],
+      },
+      {
+        heading: "Recheck at each handoff",
+        paragraphs: [
+          "Verify the order summary before the first payment, then verify the warehouse photos against the saved option. The official guide says final price is based on actual purchasing and out-of-stock orders are refunded. Those statements are why directory prices must be treated as references rather than guarantees.",
+          "A good product record keeps the source URL, intended option, order number and warehouse result together. It does not pretend the source will remain unchanged forever.",
+        ],
+        bullets: [
+          "Exact seller and URL",
+          "Chosen color, size, model and quantity",
+          "Seller measurements or specification",
+          "Current price and date checked",
+          "Warehouse photo decision",
+        ],
+      },
+      researchStandard,
+    ],
+    sources: [officialSources.guide, officialSources.returns],
+  },
+};
+
+export const updateEntries: Record<string, EditorialEntry> = {
+  "category-structure-refreshed": {
+    dek: "Ten category routes were aligned with the live directory so visitors can move from research to the relevant collection without a dead end.",
+    reviewed: "Published Jul 29, 2026",
+    readingTime: "3 min read",
+    keyFacts: ["Category cards now open matching main-directory collections.", "Product details remain on Pikobuyy before opening an exact item."],
+    sections: [{ heading: "What changed", paragraphs: ["The categories now match the live directory's practical shopping lanes: shoes, hoodies and sweaters, T-shirts, jackets, pants and shorts, headwear, accessories, jerseys, electronics and other finds. Category cards lead directly to the corresponding main-site collection, while product cards retain a Pikobuyy detail step for image, price context and review notes.", "This update removes placeholder category destinations and reduces the chance of a visitor landing on a nonexistent route. External availability can still change, so each destination should be checked during regular link review."] }, researchStandard],
+    sources: [officialSources.home],
+  },
+  "current-link-checks-clarified": {
+    dek: "Product cards now explain what was checked and what still must be confirmed on the current destination page.",
+    reviewed: "Published Jul 29, 2026",
+    readingTime: "3 min read",
+    keyFacts: ["A saved product link can change.", "The current destination controls variants, price and availability."],
+    sections: [{ heading: "What changed", paragraphs: ["Each featured item now has a detail page with the source image, listed CNY price, a dated USD conversion note, product ID and category-specific checks. The page does not claim that an old price or option remains available.", "Before ordering, visitors should confirm the current listing and then follow Pikobuy's official process: select the exact option, submit the order, review the warehouse arrival and choose shipping."] }, researchStandard],
+    sources: [officialSources.guide],
+  },
+  "qc-guide-expanded": {
+    dek: "The QC guide now separates visible checks from claims that warehouse photos cannot prove.",
+    reviewed: "Published Jul 29, 2026",
+    readingTime: "4 min read",
+    keyFacts: ["Pikobuy says it photographs warehouse arrivals.", "Professional inspection is not available for every special product."],
+    sections: [{ heading: "What changed", paragraphs: ["The guide now uses different checklists for shoes, apparel, bags and electronics instead of repeating one generic list. It emphasizes identity, visible condition and measurements, and it avoids treating photos as proof of material composition, authenticity or performance.", "Return timing and packaging conditions were added from Pikobuy's current public policy so readers understand why QC should be reviewed promptly."] }, researchStandard],
+    sources: [officialSources.shipping, officialSources.returns],
+  },
+  "language-pages-introduced": {
+    dek: "Eight language routes provide localized navigation for the main research sections.",
+    reviewed: "Published Jul 29, 2026",
+    readingTime: "2 min read",
+    keyFacts: ["Pikobuy does not publish reliable country-by-country user counts.", "Language selection is editorial, not a claim about official market share."],
+    sections: [{ heading: "What changed", paragraphs: ["English, German, French, Spanish, Italian, Polish, Dutch and Portuguese routes are available for navigation and core page labels. The selection reflects the site's European and North American search focus, not an invented ranking of Pikobuy users by country.", "Where a long article has not yet received a human-quality localization, the site should avoid presenting a machine-length translation as equivalent editorial work. English source pages remain the fact-checked editorial reference."] }, researchStandard],
+    sources: [officialSources.about],
+  },
+};
+
+export const faqEntries: Record<string, EditorialEntry> = {
+  "what-is-a-pikobuy-spreadsheet": articleEntries["what-is-a-pikobuy-spreadsheet"],
+  "does-pikobuyy-sell-products": {
+    dek: "No. Pikobuyy is an independent research directory and does not sell, purchase, warehouse or ship products.",
+    reviewed: "Fact-checked Jul 29, 2026",
+    readingTime: "4 min read",
+    keyFacts: ["Pikobuyy is independent.", "Pikobuy is the shopping and forwarding platform described on pikobuy.com."],
+    sections: [{ heading: "The practical difference", paragraphs: ["Pikobuyy organizes categories, product references and editorial checklists. A product card can lead to a current source, but no payment or order is processed here. Pikobuy's official pages describe the agent workflow: sourcing, first payment, warehouse inspection, international shipping payment and parcel tracking.", "Questions about a real transaction, refund, warehouse photo, route or account must be handled through Pikobuy's official site and support."] }, researchStandard],
+    sources: [officialSources.home, officialSources.guide],
+  },
+  "how-to-use-qc-photos": articleEntries["pikobuy-qc-photo-guide"],
+  "what-affects-shipping-cost": articleEntries["pikobuy-shipping-cost"],
+  "how-often-links-change": guideEntries["product-link-verification"],
+  "where-the-live-directory-opens": {
+    dek: "Category cards open the matching findspreadsheet.com collection; product cards first open a Pikobuyy review page.",
+    reviewed: "Checked Jul 29, 2026",
+    readingTime: "3 min read",
+    keyFacts: ["Categories are direct navigation.", "Product detail pages preserve review context before the source."],
+    sections: [{ heading: "How links are organized", paragraphs: ["The category section is designed for fast browsing and opens the corresponding main-directory collection in a new tab. A featured product follows a different path: the first click opens its Pikobuyy detail page so the visitor can see the source image, listed price context and category-specific checks. The final button opens the exact product page.", "This distinction keeps broad discovery fast while giving individual products enough context. External pages can change, so the current destination remains the final source."] }, researchStandard],
+    sources: [officialSources.guide],
+  },
+};
+
+export function getEditorialEntry(section: string, slug: string) {
+  if (section === "articles") return articleEntries[slug];
+  if (section === "guides") return guideEntries[slug];
+  if (section === "updates") return updateEntries[slug];
+  if (section === "faq") return faqEntries[slug];
+  return undefined;
+}
