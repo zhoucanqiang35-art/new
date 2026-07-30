@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { productSlugs } from "./site-content";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const sections = ["categories", "guides", "articles", "updates", "faq"];
   const locales = ["de", "fr", "es", "it", "pl", "nl", "pt"];
