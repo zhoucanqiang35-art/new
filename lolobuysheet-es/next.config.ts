@@ -9,6 +9,9 @@ const nextConfig: NextConfig = isCloudflarePages
       images: {
         unoptimized: true,
       },
+      typescript: {
+        tsconfigPath: "tsconfig.pages.json",
+      },
     }
   : {};
 
