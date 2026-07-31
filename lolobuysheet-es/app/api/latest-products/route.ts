@@ -5,6 +5,8 @@ import {
   type Product,
 } from "../../product-data";
 
+export const dynamic = "force-static";
+
 const SOURCE_ORIGIN = "https://findspreadsheet.com";
 const SOURCE_PAGE = `${SOURCE_ORIGIN}/`;
 const REFRESH_SECONDS = 60 * 60 * 6;
