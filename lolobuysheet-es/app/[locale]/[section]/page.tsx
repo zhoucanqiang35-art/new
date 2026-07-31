@@ -3,6 +3,14 @@ import { notFound } from "next/navigation";
 import { StandalonePage } from "../../standalone-page";
 import { sectionTitles, supportedLocales } from "../../site-shell";
 
+export function generateStaticParams() {
+  return Array.from(supportedLocales)
+    .filter((locale) => locale !== "en")
+    .flatMap((locale) =>
+      Object.keys(sectionTitles).map((section) => ({ locale, section })),
+    );
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; section: string }> }): Promise<Metadata> {
   const { locale, section } = await params;
   if (!supportedLocales.has(locale) || !sectionTitles[section]) return {};
