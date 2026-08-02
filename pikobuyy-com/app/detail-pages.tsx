@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   localeCopy,
   products,
@@ -11,6 +12,7 @@ import {
 } from "./site-content";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 import { getEditorialEntry } from "./editorial-content";
+import { absoluteUrl, breadcrumbSchema } from "./seo";
 
 const detailCopy: Record<Locale, {
   read: string;
@@ -62,9 +64,39 @@ export function ContentDetailPage({ locale = "en", section, slug }: { locale?: L
   const labels = detailCopy[locale];
   const entry = getEditorialEntry(section, slug);
   const paragraphs = localizedFallbackParagraphs[section];
+  const articleSchema = locale === "en" && section === "articles" && entry
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Article",
+            "@id": `${absoluteUrl(`articles/${slug}`)}#article`,
+            headline: entry.seoTitle ?? title,
+            description: entry.dek,
+            datePublished: entry.published ?? "2026-07-29",
+            dateModified: entry.modified ?? entry.published ?? "2026-07-29",
+            mainEntityOfPage: absoluteUrl(`articles/${slug}`),
+            ...(entry.visual ? { image: `https://pikobuyy.com${entry.visual.src}` } : {}),
+            author: { "@type": "Organization", name: "Pikobuyy" },
+            publisher: { "@type": "Organization", name: "Pikobuyy", url: "https://pikobuyy.com/" },
+          },
+          breadcrumbSchema([
+            { name: "Pikobuyy", path: "/" },
+            { name: "SEO Articles", path: "/articles/" },
+            { name: entry.seoTitle ?? title, path: `/articles/${slug}/` },
+          ]),
+        ],
+      }
+    : null;
 
   return (
     <main lang={locale}>
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema).replace(/</g, "\\u003c") }}
+        />
+      )}
       <SiteHeader locale={locale} section={section} />
       <article className="editorial-page">
         <header>
@@ -93,6 +125,17 @@ export function ContentDetailPage({ locale = "en", section, slug }: { locale?: L
                   <b>Verified takeaways</b>
                   <ul>{entry.keyFacts.map((fact) => <li key={fact}>{fact}</li>)}</ul>
                 </div>
+                {entry.visual && (
+                  <figure className="article-visual">
+                    <Image
+                      src={entry.visual.src}
+                      alt={entry.visual.alt}
+                      width={entry.visual.width}
+                      height={entry.visual.height}
+                    />
+                    <figcaption>{entry.visual.caption}</figcaption>
+                  </figure>
+                )}
                 {entry.sections.map((contentSection) => (
                   <section className="article-section" key={contentSection.heading}>
                     <h2>{contentSection.heading}</h2>
@@ -100,10 +143,25 @@ export function ContentDetailPage({ locale = "en", section, slug }: { locale?: L
                     {contentSection.bullets && <ul>{contentSection.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
                   </section>
                 ))}
+                {entry.relatedLinks && (
+                  <section className="article-related" aria-labelledby="article-related-title">
+                    <p className="source-kicker">USEFUL INTERNAL GUIDES</p>
+                    <h2 id="article-related-title">Continue from payment to the next decision.</h2>
+                    <div>
+                      {entry.relatedLinks.map((link) => (
+                        <Link href={link.url} key={link.url}>
+                          <h3>{link.label}</h3>
+                          <p>{link.note}</p>
+                          <b>Read guide →</b>
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+                )}
                 <section className="article-sources">
                   <div className="source-heading-row">
                     <div>
-                      <p className="source-kicker">FACT CHECK · JUL 29, 2026</p>
+                      <p className="source-kicker">{entry.reviewed.replace("Fact-checked ", "FACT CHECK · ").toUpperCase()}</p>
                       <h2>What the official pages establish</h2>
                     </div>
                     <p>We reviewed Pikobuy’s current public pages, extracted the rules that affect a real decision, and separated those facts from our own practical advice. Every action below returns to the live directory on findspreadsheet.com.</p>

@@ -40,6 +40,9 @@ export function buildMetadata({
   locale = "en",
   translatedPath = path,
   type = "website",
+  publishedTime,
+  modifiedTime,
+  image,
 }: {
   title: string;
   description: string;
@@ -47,9 +50,17 @@ export function buildMetadata({
   locale?: Locale;
   translatedPath?: string | null;
   type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  image?: string;
 }): Metadata {
   const canonicalPath = localizedPath(locale, path);
   const canonical = absolutePath(canonicalPath);
+  const imageUrl = image
+    ? image.startsWith("http")
+      ? image
+      : `${SITE_ORIGIN}/${image.replace(/^\/+/, "")}`
+    : undefined;
   const languages =
     translatedPath === null ? undefined : languageAlternates(translatedPath);
 
@@ -67,10 +78,11 @@ export function buildMetadata({
       siteName: SITE_NAME,
       locale,
       type,
+      ...(imageUrl ? { images: [{ url: imageUrl, alt: title }] } : {}),
       ...(type === "article"
         ? {
-            publishedTime: `${LAST_FACT_CHECK}T00:00:00.000Z`,
-            modifiedTime: `${LAST_FACT_CHECK}T00:00:00.000Z`,
+            publishedTime: `${publishedTime ?? LAST_FACT_CHECK}T00:00:00.000Z`,
+            modifiedTime: `${modifiedTime ?? publishedTime ?? LAST_FACT_CHECK}T00:00:00.000Z`,
           }
         : {}),
     },
@@ -78,6 +90,7 @@ export function buildMetadata({
       card: "summary_large_image",
       title,
       description,
+      ...(imageUrl ? { images: [imageUrl] } : {}),
     },
     other: {
       "content-language": locale,

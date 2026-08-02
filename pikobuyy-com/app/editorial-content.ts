@@ -8,6 +8,21 @@ export type EditorialEntry = {
   dek: string;
   reviewed: string;
   readingTime: string;
+  seoTitle?: string;
+  published?: string;
+  modified?: string;
+  visual?: {
+    src: string;
+    alt: string;
+    caption: string;
+    width: number;
+    height: number;
+  };
+  relatedLinks?: {
+    label: string;
+    url: string;
+    note: string;
+  }[];
   keyFacts: string[];
   sections: EditorialSection[];
   sources: {
@@ -99,6 +114,45 @@ const officialSources = {
     buyerAction: "Review warehouse photos immediately and avoid removing tags, seals or packaging before deciding whether the item should be returned.",
     mainUrl: "https://findspreadsheet.com/AllProducts/",
     mainLabel: "Research a current listing",
+  },
+  terms: {
+    label: "Pikobuy Terms of Service",
+    url: "https://www.pikobuy.com/protocol/terms",
+    note: "The current terms define order acceptance, payment failure and possible cross-border charges outside the product price.",
+    verifiedFacts: [
+      "An order is an offer that Pikobuy or a participating merchant may accept or decline.",
+      "An unsuccessful payment means the order will not be processed.",
+      "Duties, taxes, brokerage fees or other cross-border costs can remain the buyer's responsibility.",
+    ],
+    buyerAction: "Treat the checkout total as one stage of the budget and review destination charges separately before dispatch.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Choose a current product",
+  },
+  userAgreement: {
+    label: "Pikobuy User Agreement",
+    url: "https://www.pikobuy.com/protocol/user",
+    note: "The official agreement explains what can enter the product-order payment and what is added when international freight is confirmed.",
+    verifiedFacts: [
+      "The purchasing-stage amount can include the product purchase price, seller-to-warehouse logistics and a service fee shown during confirmation.",
+      "The agreement states that international forwarding requires payment to the chosen logistics provider plus Pikobuy's platform service fee.",
+      "As reviewed on August 2, 2026, the published freight platform service fee is 8% of freight, with possible settlement differences from exchange-rate timing.",
+    ],
+    buyerAction: "Read the current payment breakdown before confirming because the agreement can be updated and the live amount controls the transaction.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Build a product shortlist",
+  },
+  privacy: {
+    label: "Pikobuy Privacy Policy",
+    url: "https://www.pikobuy.com/protocol/privacy",
+    note: "The privacy page describes the transaction and payment information used to process orders and related services.",
+    verifiedFacts: [
+      "Pikobuy says it collects order details, payment amount and time, and the payment channel.",
+      "The policy says this information is used for order processing, payments, logistics and after-sales support.",
+      "Users remain responsible for protecting their account credentials.",
+    ],
+    buyerAction: "Use the official checkout, keep account credentials private and retain the order and parcel payment records for reconciliation.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Return to the live directory",
   },
 };
 
@@ -434,6 +488,145 @@ export const articleEntries: Record<string, EditorialEntry> = {
       researchStandard,
     ],
     sources: [officialSources.estimator, officialSources.guide, officialSources.shipping, officialSources.returns],
+  },
+  "pikobuy-payment-guide": {
+    dek: "Understand Pikobuy payment as two separate decisions: paying for the product order first, then confirming international shipping after warehouse inspection and parcel measurements.",
+    reviewed: "Fact-checked Aug 2, 2026",
+    readingTime: "13 min read",
+    seoTitle: "Pikobuy Payment Guide: Two Checkout Stages",
+    published: "2026-08-02",
+    modified: "2026-08-02",
+    visual: {
+      src: "/pikobuy-two-stage-payment-flow.svg",
+      alt: "Diagram of the Pikobuy two-stage payment flow from product order through warehouse inspection to international shipping",
+      caption: "Original Pikobuyy diagram based on Pikobuy's public Beginner's Guide. It explains the sequence, not a guaranteed price; verify every amount in the current order and parcel pages.",
+      width: 1200,
+      height: 630,
+    },
+    relatedLinks: [
+      {
+        label: "Pikobuy Spreadsheet 2026",
+        url: "/pikobuy-spreadsheet/",
+        note: "Start with the product-research hub and preserve the exact seller, option and source before the first payment.",
+      },
+      {
+        label: "How to Use a Pikobuy Spreadsheet",
+        url: "/how-to-use-pikobuy-spreadsheet/",
+        note: "Follow the complete sequence from shortlist and product link to warehouse evidence and parcel planning.",
+      },
+      {
+        label: "Pikobuy Shipping Guide",
+        url: "/pikobuy-shipping-guide/",
+        note: "Compare the measured parcel, eligible routes, restrictions and risk before the second payment.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy's Beginner's Guide separates the product-order payment from the later international-shipping payment.",
+      "Warehouse arrival, inspection and photos sit between those two payment decisions.",
+      "The current User Agreement says freight payment includes the chosen third-party logistics charge and a Pikobuy platform service fee.",
+      "A product refund, return charge or destination tax should not be confused with the international-shipping quote.",
+    ],
+    sections: [
+      {
+        heading: "The short answer: Pikobuy payment happens in two stages",
+        paragraphs: [
+          "A Pikobuy order does not have one universal checkout that covers the product, warehouse work and international delivery in a single number. Pikobuy's official Beginner's Guide publishes two distinct payment moments. At “Submit And Pay,” the shopper selects the product options, submits the order and completes the first payment. After the seller sends the item to Pikobuy's warehouse and the warehouse checks it in, the shopper later chooses a logistics route, submits a parcel and pays international shipping.",
+          "That separation is useful because the international parcel does not yet exist when the product is ordered. The warehouse has not measured the final packed weight or dimensions, and the shopper may combine several orders, change packaging or return an item. The first payment moves a specific product toward the warehouse. The second pays for a measured parcel to travel from China to the destination. Treating them as separate budgets prevents a low listing price from being mistaken for the final landed cost.",
+        ],
+      },
+      {
+        heading: "Stage one: confirm the product order before paying",
+        paragraphs: [
+          "The official guide tells shoppers to confirm style, color and size, save the product or store information, and then paste the product link or keywords into Pikobuy. Before the first payment, check the exact seller, chosen variant, quantity, domestic delivery information and the amount shown in the live order breakdown. A spreadsheet price is research context; it cannot control a marketplace seller's current price or option-dependent charge.",
+          "Pikobuy's current User Agreement describes the purchasing-stage amount as the purchase price and logistics price of the selected goods, with possible small differences caused by exchange-rate fluctuations and settlement timing. It also says Pikobuy can add the necessary platform service fee when the buyer confirms payment for purchasing-agency goods. The agreement does not give one fixed product-order service-fee percentage that is safe to publish for every transaction, so the current confirmation page is the source for the actual amount.",
+        ],
+        bullets: [
+          "Match the seller and source URL to the listing you researched.",
+          "Confirm color, size, model, quantity and any option-dependent price.",
+          "Read every line in the live order total rather than copying an old example.",
+          "Keep a screenshot or record of the option and payment confirmation.",
+        ],
+      },
+      {
+        heading: "What the first payment does not settle",
+        paragraphs: [
+          "The first product payment is not the international shipping payment. Pikobuy's guide places “Pay Shipping” after “Warehouse Inspection,” not beside the original order. The later parcel price depends on the goods that actually arrive, the packaging plan, the destination and the routes currently available. It is therefore misleading to add a generic shipping rate to a spreadsheet card and call the result the final Pikobuy payment.",
+          "The first payment also should not be presented as a guarantee that the seller will fulfil the order. Pikobuy's Terms of Service say that placing an order is an offer that Pikobuy or a participating merchant may accept or decline, and an unsuccessful payment means the order is not processed. The Beginner's Guide says final price is based on actual purchasing and an out-of-stock order is refunded. Keep the order page until the purchase and warehouse status are confirmed.",
+        ],
+      },
+      {
+        heading: "The warehouse checkpoint protects the second decision",
+        paragraphs: [
+          "Between the two payments, the official guide says Pikobuy inspects the warehouse arrival, checks it in, takes photos and looks for defects. Use that checkpoint to confirm the ordered identity, selected color or size, quantity and visible condition. If one missing angle or measurement would change the keep-or-return decision, request that evidence before building the parcel rather than after paying to ship it internationally.",
+          "Inspection has limits. Pikobuy's shipping policy says special and professional products cannot receive professional inspection and directs users to inspection photos or additional detailed photos. Images cannot prove authenticity, internal construction, material chemistry, comfort or long-term durability. The useful question is whether the visible evidence supports the next decision: keep the item, request one clarification or submit an eligible return while time and packaging conditions still allow it.",
+        ],
+      },
+      {
+        heading: "Stage two: pay for the measured international parcel",
+        paragraphs: [
+          "Pikobuy's guide says the shopper chooses a suitable logistics route, submits the parcel and pays international shipping. The shipping estimator asks for destination country or region, product type, weight, length, width and height. Those inputs explain why another shopper's rate is not a reliable quote for you. A shoe box, reinforced corner protection or a combined parcel can change billable volume even when the products themselves are light.",
+          "The current User Agreement says the shopper independently chooses a third-party logistics provider, pays that provider's freight and pays Pikobuy a platform service fee. As reviewed on August 2, 2026, the agreement calculates that freight platform service fee at 8% of freight and warns that exchange-rate fluctuations or settlement timing can cause small differences. Because agreements and checkout rules can change, use this as a dated policy fact—not a permanent promise—and verify the live parcel total before paying.",
+        ],
+      },
+      {
+        heading: "Payment methods, currencies and account records",
+        paragraphs: [
+          "Pikobuy's About page says multiple currencies and payment methods are supported. Its public footer displays Visa, Mastercard, American Express and JCB marks. That does not prove that every method is available for every account, country, currency or transaction. Payment processors can apply region, card, verification or risk controls. The responsible instruction is simple: use the methods shown in your authenticated checkout and read the final currency and amount before confirming.",
+          "Pikobuy's Privacy Policy says the platform collects transaction and payment information including order details, payment amount and time, and the payment channel. Keep your own order confirmation and parcel payment record so you can reconcile the two stages. Use only the official checkout, protect the account password and do not send card details, passwords or one-time codes to a seller, spreadsheet editor or third-party chat account.",
+        ],
+      },
+      {
+        heading: "Refunds and returns are a separate money movement",
+        paragraphs: [
+          "An out-of-stock refund is not the same as a warehouse return. The Beginner's Guide says an out-of-stock order is refunded. Pikobuy's Returns & Exchanges page covers goods that have reached the warehouse and says an eligible request generally must be submitted within 120 hours beginning from the next hour after the order becomes “Warehoused.” Seller participation, marketable condition and packaging requirements still control whether the request can proceed.",
+          "The return page says the refund total is based on the product price actually paid and that Pikobuy can return the item only when the seller agrees. For an unconditional return, its published formula includes shipping to the seller, shipping from the seller and a 5 RMB service fee. It also tells users to keep enough account balance to pay return shipping and the service fee. These amounts belong in a return decision, not inside a made-up universal international-shipping rate.",
+        ],
+      },
+      {
+        heading: "Transferred parcels need an available balance",
+        paragraphs: [
+          "Pikobuy also publishes rules for goods transferred to its warehouse rather than purchased through the normal agent order. Its shipping policy says transferred goods are submitted, received, photographed and stored, after which the user submits a parcel and pays shipping as usual. The policy adds a specific caution: when a transferred package arrives with shipping charges collected on delivery, Pikobuy may deduct that cost from the account balance without separate confirmation.",
+          "That rule does not mean Pikobuy can deduct any unrelated amount at any time. It is a published condition for collected-on-delivery charges on transferred goods. If you use the transfer workflow, confirm the sender's domestic delivery terms and maintain enough balance for the expected inbound charge. If the amount or sender is unfamiliar, contact official support using the transfer order details before making further parcel decisions.",
+        ],
+      },
+      {
+        heading: "A payment checklist that avoids fake precision",
+        paragraphs: [
+          "A useful budget has separate lines rather than one attractive total. Record the seller price and domestic seller-to-warehouse charge first. Add any purchasing-stage service fee shown at confirmation. Keep optional photos, packaging or return costs separate. After warehouse measurements are available, record the chosen route's freight and the platform fee shown in the parcel checkout. Finally, consider destination duties, taxes or brokerage charges; Pikobuy's Terms of Service say these cross-border costs can be the buyer's responsibility.",
+          "Do not convert every amount to USD once and keep reusing it. Currency rates, settlement timing, parcel data and routes can change. If you need a planning comparison, write the date, original currency and input assumptions beside it. Replace the estimate with the real order or parcel total at each stage. This produces a record that can be checked later instead of a number that looks exact but cannot be reproduced.",
+        ],
+        bullets: [
+          "Product: current seller price, selected option and domestic delivery.",
+          "Order: purchasing-stage fee or adjustment shown at confirmation.",
+          "Warehouse: optional photo, packaging and possible return costs.",
+          "Parcel: measured weight, dimensions, route freight and current platform fee.",
+          "Destination: applicable duties, taxes, brokerage or last-mile charges.",
+        ],
+      },
+      {
+        heading: "Worked example without inventing a quote",
+        paragraphs: [
+          "Suppose you shortlist one hoodie and one pair of shoes. Before the first payment, save both seller links, exact colors, sizes and the live order breakdown. Pay only after the parsed Pikobuy options match the intended listings. When the items reach the warehouse, review the QC images and compare the hoodie measurements and shoe size evidence. Decide whether the shoe box is necessary for protection before creating the parcel.",
+          "At the second stage, use the warehouse weight and dimensions rather than a social-media estimate. Select the correct destination and product type, compare eligible routes, and read the freight and platform-fee lines displayed at that time. Add any destination charges separately. The example deliberately contains no dollar total because no honest total exists without a live seller order, measured parcel, selected route, current exchange rate and destination context.",
+        ],
+      },
+      {
+        heading: "The practical conclusion",
+        paragraphs: [
+          "Pikobuy payment is easier to understand when the warehouse is treated as the dividing line. Stage one pays for a specific product order and the charges shown for that purchase. The warehouse then supplies photos, status and parcel measurements. Stage two pays the current international route and related platform fee. Refunds, returns and destination charges remain separate events with their own rules.",
+          "This article was fact-checked against Pikobuy's public Beginner's Guide, About page, shipping estimator, Shipping Policy, Returns & Exchanges page, Terms of Service, User Agreement and Privacy Policy on August 2, 2026. Pikobuy can update its services and agreements. The current order page, parcel page and official policy text remain the final sources for a real transaction.",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.guide,
+      officialSources.userAgreement,
+      officialSources.estimator,
+      officialSources.returns,
+      officialSources.terms,
+      officialSources.shipping,
+      officialSources.privacy,
+    ],
   },
 };
 

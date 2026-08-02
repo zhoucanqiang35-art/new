@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ["de", "fr", "es", "it", "pl", "nl", "pt"];
   const detailPages = {
     guides: ["beginner-research-workflow", "qc-photo-checklist", "shipping-cost-planning", "product-link-verification"],
-    articles: ["what-is-a-pikobuy-spreadsheet", "how-to-use-pikobuy-spreadsheet-2026", "pikobuy-qc-photo-guide", "pikobuy-shipping-cost"],
+    articles: ["what-is-a-pikobuy-spreadsheet", "how-to-use-pikobuy-spreadsheet-2026", "pikobuy-qc-photo-guide", "pikobuy-shipping-cost", "pikobuy-payment-guide"],
     updates: ["category-structure-refreshed", "current-link-checks-clarified", "qc-guide-expanded", "language-pages-introduced"],
     faq: ["what-is-a-pikobuy-spreadsheet", "does-pikobuyy-sell-products", "how-to-use-qc-photos", "what-affects-shipping-cost", "how-often-links-change", "where-the-live-directory-opens"],
   };
@@ -43,7 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   for (const [section, slugs] of Object.entries(detailPages)) {
     for (const slug of slugs) {
-      urls.push({ url: `https://pikobuyy.com/${section}/${slug}/`, lastModified, changeFrequency: "monthly", priority: 0.75 });
+      const pageModified = slug === "pikobuy-payment-guide" ? new Date("2026-08-02") : lastModified;
+      urls.push({ url: `https://pikobuyy.com/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.75 });
     }
   }
   for (const locale of locales) {
@@ -66,7 +67,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     for (const [section, slugs] of Object.entries(detailPages)) {
       for (const slug of slugs) {
-        urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}/`, lastModified, changeFrequency: "monthly", priority: 0.65 });
+        const pageModified = slug === "pikobuy-payment-guide" ? new Date("2026-08-02") : lastModified;
+        urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.65 });
       }
     }
   }

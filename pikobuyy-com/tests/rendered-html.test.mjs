@@ -96,6 +96,7 @@ test("SEO articles contain long-form facts and route actions to the main site", 
     "/articles/how-to-use-pikobuy-spreadsheet-2026",
     "/articles/pikobuy-qc-photo-guide",
     "/articles/pikobuy-shipping-cost",
+    "/articles/pikobuy-payment-guide",
   ];
   for (const route of routes) {
     const response = await renderRoute(route);
@@ -136,6 +137,7 @@ test("product and full-content detail routes render and link correctly", async (
     ["/products/gallery-short", "Gallery Short", "https://findspreadsheet.com/pants-shorts/gallery-short-3003.html"],
     ["/guides/qc-photo-checklist", "QC photo checklist", "/categories"],
     ["/articles/what-is-a-pikobuy-spreadsheet", "What is a Pikobuy Spreadsheet?", "/categories"],
+    ["/articles/pikobuy-payment-guide", "Pikobuy Payment Guide: Two Checkout Stages", "/pikobuy-spreadsheet/"],
     ["/updates/category-structure-refreshed", "Category structure refreshed", "/categories"],
     ["/de/guides/qc-photo-checklist", "Checkliste für QC-Fotos", "/de/categories"],
     ["/fr/products/fendi-slides", "Fendi Slides", "https://findspreadsheet.com/shoes/fendi-slides-2272.html"],

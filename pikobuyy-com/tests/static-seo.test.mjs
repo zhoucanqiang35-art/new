@@ -85,6 +85,37 @@ test("homepage and crawler controls expose the pillar page", async () => {
   assert.ok(robots.includes("Sitemap: https://pikobuyy.com/sitemap.xml"));
 });
 
+test("new Pikobuy payment article has complete SEO signals and useful internal links", async () => {
+  const route = "articles/pikobuy-payment-guide";
+  const html = await htmlFor(route);
+  const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
+
+  assert.ok(sitemap.includes("https://pikobuyy.com/articles/pikobuy-payment-guide/"));
+  assert.equal(canonicalFrom(html), "https://pikobuyy.com/articles/pikobuy-payment-guide/");
+  assert.ok(html.includes("<title>Pikobuy Payment Guide: Two Checkout Stages</title>"));
+  assert.ok(html.includes("<h1>Pikobuy Payment Guide: Two Checkout Stages</h1>"));
+  assert.ok(html.includes('"@type":"Article"'));
+  assert.ok(html.includes('"@type":"BreadcrumbList"'));
+  assert.ok(!html.includes('"@type":"FAQPage"'));
+  assert.ok(html.includes("pikobuy-two-stage-payment-flow.svg"));
+  assert.ok(html.includes("Pikobuy two-stage payment flow"));
+  assert.ok(html.includes('href="/pikobuy-spreadsheet/"'));
+  assert.ok(html.includes('href="/how-to-use-pikobuy-spreadsheet/"'));
+  assert.ok(html.includes('href="/pikobuy-shipping-guide/"'));
+  assert.ok(html.includes("Fact-checked Aug 2, 2026"));
+  assert.ok(html.includes("8% of freight"));
+});
+
+test("payment article visual and related cards stay inside the mobile viewport", async () => {
+  const css = await readFile(path.resolve("app/globals.css"), "utf8");
+  const svg = await readFile(path.resolve("public/pikobuy-two-stage-payment-flow.svg"), "utf8");
+
+  assert.match(css, /\.article-visual img\s*\{[^}]*width:\s*100%[^}]*height:\s*auto/s);
+  assert.match(css, /@media \(max-width: 580px\)[\s\S]*\.article-related > div\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.ok(svg.includes('viewBox="0 0 1200 630"'));
+  assert.ok(!svg.includes("http://") || svg.includes('xmlns="http://www.w3.org/2000/svg"'));
+});
+
 test("representative multilingual and product routes use self canonicals", async () => {
   const checks = [
     ["guides", "https://pikobuyy.com/guides/"],

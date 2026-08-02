@@ -7,6 +7,11 @@ import { absoluteUrl, breadcrumbSchema, LAST_FACT_CHECK } from "./seo";
 
 export function RankingPage({ entry }: { entry: RankingPageEntry }) {
   const isPillar = entry.slug === "pikobuy-spreadsheet";
+  const linksToPaymentGuide = [
+    "pikobuy-spreadsheet",
+    "how-to-use-pikobuy-spreadsheet",
+    "pikobuy-shipping-guide",
+  ].includes(entry.slug);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -167,6 +172,14 @@ export function RankingPage({ entry }: { entry: RankingPageEntry }) {
                 </Link>
               );
             })}
+            {linksToPaymentGuide && (
+              <Link href="/articles/pikobuy-payment-guide/">
+                <span>{String(entry.related.length + 1).padStart(2, "0")}</span>
+                <h3>Pikobuy Payment Guide</h3>
+                <p>Separate the product-order payment from the measured international-shipping payment.</p>
+                <b>Read article →</b>
+              </Link>
+            )}
           </div>
         </section>
 
