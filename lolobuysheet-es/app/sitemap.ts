@@ -48,8 +48,9 @@ const pageDefinitions: PageDefinition[] = [
 const locales = siteLanguages.map(([code]) => code.toLowerCase());
 
 function localizedUrl(locale: string, path: string) {
-  if (locale === "en") return `${SITE_URL}${path || "/"}`;
-  return `${SITE_URL}/${locale}${path || "/"}`;
+  const canonicalPath = path ? `${path}/` : "/";
+  if (locale === "en") return `${SITE_URL}${canonicalPath}`;
+  return `${SITE_URL}/${locale}${canonicalPath}`;
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
