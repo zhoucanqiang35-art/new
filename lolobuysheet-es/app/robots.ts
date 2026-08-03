@@ -6,7 +6,10 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      disallow: "/",
+      allow: "/",
+      disallow: "/api/",
     },
+    sitemap: "https://lolobuysheet.es/sitemap.xml",
+    host: "https://lolobuysheet.es",
   };
 }
