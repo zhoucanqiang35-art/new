@@ -13,15 +13,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lolobuysheet.es"),
   title: "LoloBuy Spreadsheet 2026 — Finds, QC & Shipping Guides",
   description:
     "Independent LoloBuy spreadsheet, product discovery, QC checklists and practical shipping guides for shoppers in Europe and North America.",
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   other: {
-    "codex-preview": "review-only",
     "theme-color": "#1d6b4d",
   },
   icons: {
