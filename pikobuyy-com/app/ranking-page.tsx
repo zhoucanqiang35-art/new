@@ -12,6 +12,11 @@ export function RankingPage({ entry }: { entry: RankingPageEntry }) {
     "how-to-use-pikobuy-spreadsheet",
     "pikobuy-shipping-guide",
   ].includes(entry.slug);
+  const linksToWarehouseGuide = [
+    "pikobuy-spreadsheet",
+    "how-to-use-pikobuy-spreadsheet",
+    "pikobuy-shipping-guide",
+  ].includes(entry.slug);
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -177,6 +182,14 @@ export function RankingPage({ entry }: { entry: RankingPageEntry }) {
                 <span>{String(entry.related.length + 1).padStart(2, "0")}</span>
                 <h3>Pikobuy Payment Guide</h3>
                 <p>Separate the product-order payment from the measured international-shipping payment.</p>
+                <b>Read article →</b>
+              </Link>
+            )}
+            {linksToWarehouseGuide && (
+              <Link href="/articles/pikobuy-warehouse-consolidation-guide/">
+                <span>{String(entry.related.length + (linksToPaymentGuide ? 2 : 1)).padStart(2, "0")}</span>
+                <h3>Pikobuy Warehouse Guide</h3>
+                <p>Use warehouse photos, packaging choices and measured parcel data before consolidation and dispatch.</p>
                 <b>Read article →</b>
               </Link>
             )}

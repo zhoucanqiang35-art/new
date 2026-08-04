@@ -2,6 +2,10 @@ export type EditorialSection = {
   heading: string;
   paragraphs: string[];
   bullets?: string[];
+  subsections?: {
+    heading: string;
+    paragraphs: string[];
+  }[];
 };
 
 export type EditorialEntry = {
@@ -519,6 +523,11 @@ export const articleEntries: Record<string, EditorialEntry> = {
         url: "/pikobuy-shipping-guide/",
         note: "Compare the measured parcel, eligible routes, restrictions and risk before the second payment.",
       },
+      {
+        label: "Pikobuy Warehouse and Parcel Consolidation Guide",
+        url: "/articles/pikobuy-warehouse-consolidation-guide/",
+        note: "Plan the inspection, packaging and measured-parcel decisions that sit between the two payments.",
+      },
     ],
     keyFacts: [
       "Pikobuy's Beginner's Guide separates the product-order payment from the later international-shipping payment.",
@@ -626,6 +635,158 @@ export const articleEntries: Record<string, EditorialEntry> = {
       officialSources.terms,
       officialSources.shipping,
       officialSources.privacy,
+    ],
+  },
+  "pikobuy-warehouse-consolidation-guide": {
+    dek: "Learn how the Pikobuy warehouse receives, photographs and combines orders before shipping, with practical QC, packaging and parcel-planning checks.",
+    reviewed: "Fact-checked Aug 4, 2026",
+    readingTime: "12 min read",
+    seoTitle: "Pikobuy Warehouse and Parcel Consolidation Guide",
+    published: "2026-08-04",
+    modified: "2026-08-04",
+    visual: {
+      src: "/pikobuy-warehouse-consolidation-flow.svg",
+      alt: "Pikobuy warehouse flow showing separate orders, inspection photos, packaging choices and one measured consolidated parcel",
+      caption: "Original Pikobuyy planning diagram based on Pikobuy's public warehouse and shipping workflow. It does not state a storage allowance, consolidation fee or guaranteed saving; confirm live terms in your account.",
+      width: 1200,
+      height: 630,
+    },
+    relatedLinks: [
+      {
+        label: "Pikobuy Spreadsheet 2026",
+        url: "/pikobuy-spreadsheet/",
+        note: "Preserve the exact seller, variant and source for each item before it enters the warehouse workflow.",
+      },
+      {
+        label: "Pikobuy QC Photo Guide",
+        url: "/pikobuy-qc-photo-guide/",
+        note: "Use warehouse images for visible checks while respecting the limits of a non-professional inspection.",
+      },
+      {
+        label: "Pikobuy Shipping Guide",
+        url: "/pikobuy-shipping-guide/",
+        note: "Compare eligible routes only after the planned parcel has a real weight, dimensions and product mix.",
+      },
+      {
+        label: "Pikobuy Payment Guide",
+        url: "/articles/pikobuy-payment-guide/",
+        note: "See why warehouse review and parcel preparation separate the product payment from international freight.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy says it can source from multiple sellers and consolidate orders from different platforms.",
+      "Its Beginner's Guide places warehouse check-in, inspection and photos before parcel submission and international shipping payment.",
+      "Minimal or reinforced packaging can be requested, but the best option depends on the actual products and route rules.",
+      "Pikobuy does not publish one universal storage allowance or consolidation fee on the public pages reviewed for this guide.",
+    ],
+    sections: [
+      {
+        heading: "What the Pikobuy warehouse changes",
+        paragraphs: [
+          "The Pikobuy warehouse is the point where separate marketplace orders become physical items that can be checked and planned as a parcel. Pikobuy's homepage says the service sources from multiple sellers and consolidates orders from different platforms. Its Beginner's Guide then explains the sequence: a product arrives, the warehouse inspects it, checks it in, takes photos and looks for defects; only after that does the shopper choose a logistics route, submit a parcel and pay international shipping.",
+          "That order matters. Before arrival, product weight, packaging and seller information are still estimates or listing claims. After check-in, the dashboard can show what actually reached the warehouse. The photos can support a visible-condition review, and the eventual parcel measurements can replace a guessed shipping calculation. Consolidation is therefore not simply putting several boxes together. It is a decision about which items to keep, what packaging to retain, what protection to add and whether the combined parcel remains eligible for a suitable route.",
+        ],
+      },
+      {
+        heading: "Build a warehouse record before combining anything",
+        paragraphs: [
+          "A useful warehouse record begins before the seller ships. Save the source URL, seller or store, selected color, size or model, quantity and the order number. Pikobuy's official guide tells users to confirm style, color and size and recommends saving product or store information. That record gives the warehouse photos a reference. Without it, two similar black hoodies or two versions of the same shoe can be difficult to distinguish from memory.",
+          "When an item is checked in, compare the received identity first: order number, product type, quantity, selected variant and any visible size label. Then inspect condition and category-specific details. Do not start with tiny cosmetic differences while the wrong color or quantity goes unnoticed. If a decisive view or measurement is missing, Pikobuy's shipping policy says users can review the supplied inspection photos or purchase additional detailed photos. Request extra evidence only when it can change the keep, return or packaging decision.",
+        ],
+        subsections: [
+          {
+            heading: "A compact item-level checklist",
+            paragraphs: [
+              "Keep one line per warehouse item with the order number, intended option, arrival status, visible issue, return deadline, packaging request and final parcel decision. This does not replace the official dashboard; it prevents a multi-order shipment from becoming a memory exercise. Mark facts from the dashboard separately from your own preference, such as keeping a shoe box for protection.",
+            ],
+          },
+        ],
+        bullets: [
+          "Confirm identity and quantity before judging finish.",
+          "Compare the received option with the saved order record.",
+          "Record any missing view or measurement that would change the decision.",
+          "Do not call a visual check authentication or professional testing.",
+        ],
+      },
+      {
+        heading: "Understand what warehouse inspection cannot prove",
+        paragraphs: [
+          "Warehouse photos are evidence of visible condition, not a laboratory report or authentication certificate. Pikobuy's User Agreement says the platform cannot review every marketplace, merchant, product or service for quality, safety, legality, authenticity or accuracy. The same agreement says professional checks may not be possible for some items and that inspectors may be limited to appearance and included accessories. The Shipping Policy likewise excludes professional inspection for special and professional products.",
+          "Use the photos for claims the images can actually support: color, count, visible size tag, obvious damage, external shape, print placement, stitching or included pieces. They cannot establish material composition, battery condition, waterproofing, comfort, internal construction or long-term durability. A careful consolidation decision keeps this boundary visible. If uncertainty is unacceptable for the item value or intended use, do not assume that combining it into an international parcel will solve the evidence gap.",
+        ],
+      },
+      {
+        heading: "Parcel consolidation is a trade-off, not an automatic saving",
+        paragraphs: [
+          "Combining several warehouse orders can reduce repeated outer cartons and lets the shopper make one route decision for the selected items. It can also create a larger, heavier or more complex parcel. Pikobuy's shipping estimator asks for destination, product type, weight, length, width and height. Those inputs show why the word consolidated does not automatically mean cheaper. A compact clothing parcel and a parcel containing shoe boxes, structured bags or fragile goods can have very different billing and protection needs.",
+          "Compare at least two realistic packing plans when volume matters. In one, keep protective product packaging. In the other, remove only packaging that is genuinely unnecessary and safe to remove. Do not strip packaging that may protect a fragile surface, preserve resale condition or support a possible return before that decision is final. The Beginner's Guide says users can request minimal packaging or reinforced packaging. Treat each as an instruction with consequences, not a universal best practice.",
+        ],
+        subsections: [
+          {
+            heading: "When separate parcels may be more sensible",
+            paragraphs: [
+              "A split can be reasonable when product restrictions differ, one item needs special protection, the combined dimensions remove useful route choices or the shipment value becomes uncomfortable. Pikobuy's User Agreement tells users to understand international prohibited-item rules, while its public policies discuss sensitive goods, batteries, liquids and other transport risks. Use only routes shown as eligible for the real product mix; never misclassify an item to make a cheaper route appear.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Use measured parcel data before choosing a route",
+        paragraphs: [
+          "The early shipping estimate is a budget check, not the final parcel quote. Once the selected items and packaging plan are known, use the warehouse parcel's actual weight and dimensions. Compare the routes available for the correct destination and product type, then read their current billing method, restrictions, tracking and protection information. Pikobuy's guide explicitly says routes differ in delivery time and billing method, so another shopper's price per kilogram is not a reliable substitute.",
+          "Packaging can move more than the scale reading. Reinforcement, shoe boxes and structured products can increase dimensions; removing an outer seller carton may reduce wasted space. The practical question is not how to make the parcel look smallest. It is how to create a parcel that protects the goods, remains eligible for the chosen route and produces a quote based on reproducible inputs. Save the chosen packing instruction and final measurements with the parcel record.",
+        ],
+        bullets: [
+          "Destination country or region",
+          "Accurate product type and any route restrictions",
+          "Final packed weight, length, width and height",
+          "Protection, tracking and current compensation terms",
+          "The live freight and service-fee breakdown shown at submission",
+        ],
+      },
+      {
+        heading: "Resolve returns before submitting the parcel",
+        paragraphs: [
+          "International dispatch usually ends the practical warehouse review window, so check questionable items promptly. Pikobuy's Returns & Exchanges page states that an eligible request generally must be submitted within 120 hours beginning from the next hour after the order becomes Warehoused. The page also makes clear that seller support, seller agreement, marketable condition and packaging requirements still matter. A five-day label is not a guarantee that every item can be returned.",
+          "Keep tags, seals and packaging intact until the decision is made, especially where category rules require them. The policy says an unconditional return can include delivery to the warehouse, return delivery to the seller and a 5 RMB service fee, while responsibility can differ for a confirmed seller error or quality issue. Do not build the parcel simply because most items are ready. First close every keep, return or clarification decision so an unwanted product is not shipped internationally by accident.",
+        ],
+      },
+      {
+        heading: "Storage terms and optional charges need a live check",
+        paragraphs: [
+          "The public Pikobuy pages reviewed on August 4, 2026 describe warehouse receipt, inspection, photos, storage, packaging requests and parcel submission, but they do not publish one universal free-storage period or one fixed consolidation charge that this guide can responsibly quote. Account-level rules, optional-service prices and operating policies can change. Check the current warehouse or parcel page and ask official support before delaying a shipment based on an old post or another agent's terms.",
+          "Transferred goods also have distinct rules. Pikobuy's Shipping Policy says transfer items are photographed and stored before the user submits a parcel, but it does not provide after-sales service for the transferred products; the user must contact the original sender or seller, while Pikobuy can only assist with shipping them back. The policy also warns that inbound charges collected on delivery may be deducted from the account balance. Do not apply ordinary purchasing-order assumptions to a transfer order.",
+        ],
+      },
+      {
+        heading: "A practical consolidation workflow",
+        paragraphs: [
+          "Start with a complete arrival list, not the desire to ship quickly. Match each warehouse item to its saved order record and review the visible evidence. Resolve wrong variants, damage concerns and missing measurements. Mark each item keep, clarify or return. Only the keep group should enter parcel planning. Then compare packaging scenarios, identify any restricted or fragile products and decide whether one parcel or a split better fits the available routes and risk level.",
+          "After the packing instruction is final, use the measured parcel data to compare live options. Read the current quote and service lines, retain the route name and parcel number, and pay only when the contents and destination are correct. Pikobuy's guide says tracking information becomes available within three days after dispatch; that is a tracking-activation statement, not three-day delivery. Monitor the official parcel page until carrier tracking begins.",
+        ],
+        bullets: [
+          "Match every arrival to its exact order and intended option.",
+          "Finish QC, clarification and return decisions first.",
+          "Choose packaging for protection, size and route eligibility.",
+          "Compare one-parcel and split-parcel scenarios when restrictions or volume differ.",
+          "Submit using measured data and the current official route information.",
+        ],
+      },
+      {
+        heading: "Conclusion: consolidate evidence before products",
+        paragraphs: [
+          "A reliable Pikobuy warehouse workflow consolidates decisions before it consolidates goods. Preserve the source, confirm each arrival, respect the limits of warehouse photos, resolve returns, choose packaging and then compare routes using the final parcel measurements. That sequence is more useful than chasing a universal storage rule or a dramatic shipping saving that the public evidence does not support.",
+          "This guide was fact-checked on August 4, 2026 against Pikobuy's public homepage, Beginner's Guide, Shipping Cost Estimation, Shipping Policy, Returns & Exchanges page and User Agreement. Pikobuy can update its services and terms. The authenticated order, warehouse and parcel pages remain the final sources for a real transaction.",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.home,
+      officialSources.guide,
+      officialSources.estimator,
+      officialSources.shipping,
+      officialSources.returns,
+      officialSources.userAgreement,
     ],
   },
 };

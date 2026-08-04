@@ -141,12 +141,18 @@ export function ContentDetailPage({ locale = "en", section, slug }: { locale?: L
                     <h2>{contentSection.heading}</h2>
                     {contentSection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
                     {contentSection.bullets && <ul>{contentSection.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
+                    {contentSection.subsections?.map((subsection) => (
+                      <div className="article-subsection" key={subsection.heading}>
+                        <h3>{subsection.heading}</h3>
+                        {subsection.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                      </div>
+                    ))}
                   </section>
                 ))}
                 {entry.relatedLinks && (
                   <section className="article-related" aria-labelledby="article-related-title">
                     <p className="source-kicker">USEFUL INTERNAL GUIDES</p>
-                    <h2 id="article-related-title">Continue from payment to the next decision.</h2>
+                    <h2 id="article-related-title">Continue with the next practical decision.</h2>
                     <div>
                       {entry.relatedLinks.map((link) => (
                         <Link href={link.url} key={link.url}>

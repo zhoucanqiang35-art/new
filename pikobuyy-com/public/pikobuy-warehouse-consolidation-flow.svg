@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pikobuy warehouse and parcel consolidation decision flow</title>
+  <desc id="desc">An original four-step diagram showing separate seller orders arriving at the warehouse, inspection and photos, packaging decisions, and one measured parcel prepared for shipping.</desc>
+  <rect width="1200" height="630" rx="36" fill="#f5f3ee"/>
+  <text x="70" y="82" fill="#171716" font-family="Arial, sans-serif" font-size="34" font-weight="700">Warehouse evidence comes before the parcel decision</text>
+  <text x="70" y="122" fill="#5f5c55" font-family="Arial, sans-serif" font-size="20">A planning sequence based on Pikobuy's public workflow — not a fee or delivery promise.</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="70" y="185" width="230" height="290" rx="24" fill="#ffffff" stroke="#d9d5cc" stroke-width="2"/>
+    <circle cx="112" cy="229" r="22" fill="#ff6633"/><text x="105" y="237" fill="#fff" font-size="22" font-weight="700">1</text>
+    <text x="95" y="290" fill="#171716" font-size="27" font-weight="700">Orders arrive</text>
+    <text x="95" y="330" fill="#5f5c55" font-size="18">Items can come from</text><text x="95" y="357" fill="#5f5c55" font-size="18">different sellers or</text><text x="95" y="384" fill="#5f5c55" font-size="18">marketplaces.</text>
+
+    <rect x="340" y="185" width="230" height="290" rx="24" fill="#ffffff" stroke="#d9d5cc" stroke-width="2"/>
+    <circle cx="382" cy="229" r="22" fill="#ff6633"/><text x="375" y="237" fill="#fff" font-size="22" font-weight="700">2</text>
+    <text x="365" y="290" fill="#171716" font-size="27" font-weight="700">Inspect &amp; record</text>
+    <text x="365" y="330" fill="#5f5c55" font-size="18">Check-in, warehouse</text><text x="365" y="357" fill="#5f5c55" font-size="18">photos and visible</text><text x="365" y="384" fill="#5f5c55" font-size="18">condition checks.</text>
+
+    <rect x="610" y="185" width="230" height="290" rx="24" fill="#ffffff" stroke="#d9d5cc" stroke-width="2"/>
+    <circle cx="652" cy="229" r="22" fill="#ff6633"/><text x="645" y="237" fill="#fff" font-size="22" font-weight="700">3</text>
+    <text x="635" y="290" fill="#171716" font-size="27" font-weight="700">Choose packing</text>
+    <text x="635" y="330" fill="#5f5c55" font-size="18">Keep, reduce or</text><text x="635" y="357" fill="#5f5c55" font-size="18">reinforce packaging</text><text x="635" y="384" fill="#5f5c55" font-size="18">for the actual items.</text>
+
+    <rect x="880" y="185" width="250" height="290" rx="24" fill="#171716"/>
+    <circle cx="922" cy="229" r="22" fill="#ff6633"/><text x="915" y="237" fill="#fff" font-size="22" font-weight="700">4</text>
+    <text x="905" y="290" fill="#fff" font-size="27" font-weight="700">Measure parcel</text>
+    <text x="905" y="330" fill="#d7d4cd" font-size="18">Use final weight and</text><text x="905" y="357" fill="#d7d4cd" font-size="18">dimensions to compare</text><text x="905" y="384" fill="#d7d4cd" font-size="18">eligible routes.</text>
+  </g>
+  <g fill="none" stroke="#ff6633" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M304 330h28"/><path d="m324 320 10 10-10 10"/>
+    <path d="M574 330h28"/><path d="m594 320 10 10-10 10"/>
+    <path d="M844 330h28"/><path d="m864 320 10 10-10 10"/>
+  </g>
+  <rect x="70" y="515" width="1060" height="62" rx="18" fill="#fff0e9"/>
+  <text x="95" y="554" fill="#7d2f13" font-family="Arial, sans-serif" font-size="20" font-weight="700">Verify storage terms, optional-service prices and route rules in the live Pikobuy account before submitting.</text>
+</svg>
