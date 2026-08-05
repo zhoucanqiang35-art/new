@@ -13,6 +13,15 @@ const nextConfig: NextConfig = isCloudflarePages
         tsconfigPath: "tsconfig.pages.json",
       },
     }
-  : {};
+  : {
+      redirects: async () => [
+        {
+          source: "/:path*",
+          has: [{ type: "host", value: "www.lolobuysheet.es" }],
+          destination: "https://lolobuysheet.es/:path*",
+          permanent: true,
+        },
+      ],
+    };
 
 export default nextConfig;
