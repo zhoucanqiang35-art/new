@@ -44,6 +44,16 @@ test("normalizes the production host and language metadata", async () => {
   assert.equal(hostRedirect.status, 301);
   assert.equal(hostRedirect.headers.get("location"), "https://lolobuysheet.es/");
 
+  const pagesWorkerUrl = new URL("../public/_worker.js", import.meta.url);
+  pagesWorkerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  const { default: pagesWorker } = await import(pagesWorkerUrl.href);
+  const pagesRedirect = await pagesWorker.fetch(
+    new Request("https://www.lolobuysheet.es/guides/?from=www"),
+    { ASSETS: { fetch: async () => new Response("asset") } },
+  );
+  assert.equal(pagesRedirect.status, 301);
+  assert.equal(pagesRedirect.headers.get("location"), "https://lolobuysheet.es/guides/?from=www");
+
   const french = await renderRoute("/fr");
   const frenchHtml = await french.text();
   assert.equal(french.status, 200);
