@@ -31,4 +31,11 @@ compgen -G "${pages_output}/assets/*.css" >/dev/null || {
   exit 66
 }
 
+# Vinext writes a Worker-only Wrangler redirect during its build. Cloudflare
+# Pages follows that redirect after the user build command and then rejects the
+# Worker config because it contains `main`, `assets`, and `rules`. The Pages
+# artifact above is self-contained, so remove only the generated redirect and
+# let Pages continue with the repository's Pages configuration.
+rm -f "${project_root}/.wrangler/deploy/config.json"
+
 echo "Prepared Cloudflare Pages Advanced Mode artifact in dist/pages."
