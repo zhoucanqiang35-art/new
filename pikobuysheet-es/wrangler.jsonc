@@ -1,4 +1,5 @@
 {
+  // Source of truth for Cloudflare Pages Git deployments.
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "pikobuysheet-es",
   "pages_build_output_dir": "./dist/pages",
