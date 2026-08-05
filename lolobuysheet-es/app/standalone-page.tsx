@@ -5,6 +5,8 @@ import { mainCategories } from "./product-data";
 import { seoArticles } from "./seo-content";
 import { localePath, PageFrame, sectionTitles } from "./site-shell";
 import { officialUpdates } from "./update-data";
+import { TrustPage, trustPageContent, type TrustPageSlug } from "./trust-page";
+import { faqStructuredData, StructuredData } from "./structured-data";
 
 function PageHero({ eyebrow, title, lead, checked = "Sources checked July 30, 2026", checkedNote = "Official facts and editorial guidance are labelled separately." }: { eyebrow: string; title: string; lead: string; checked?: string; checkedNote?: string }) {
   return (
@@ -51,6 +53,7 @@ function GuideRoadmap({ locale }: { locale: string }) {
 
 export function StandalonePage({ section, locale = "en" }: { section: string; locale?: string }) {
   if (!sectionTitles[section]) notFound();
+  if (section in trustPageContent) return <TrustPage slug={section as TrustPageSlug} locale={locale} />;
   const currentPath = `/${section}`;
   const ui = getUiCopy(locale);
 
@@ -140,6 +143,7 @@ export function StandalonePage({ section, locale = "en" }: { section: string; lo
 
   return (
     <PageFrame locale={locale} currentPath={currentPath}>
+      <StructuredData data={faqStructuredData(getFaqItems(locale).map(({ question, answer }) => ({ question, answer })))} />
       <PageHero eyebrow={ui.faqEyebrow} title={ui.faqTitle} lead={ui.faqLead} checked={ui.checked} checkedNote={ui.checkedNote} />
       <section className="content-shell faq-page-list">
         <div className="fact-banner faq-fact-banner"><b>{ui.sourcePolicy}</b><p>{ui.sourceNote}</p></div>

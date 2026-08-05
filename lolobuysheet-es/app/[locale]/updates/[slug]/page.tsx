@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { supportedLocales } from "../../../site-shell";
+import { buildMetadata, localizedUrl } from "../../../seo";
 import { UpdatePage } from "../../../update-page";
 import { getOfficialUpdate, officialUpdates } from "../../../update-data";
 
@@ -18,11 +19,15 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const update = getOfficialUpdate(slug);
   if (!supportedLocales.has(locale) || locale === "en" || !update) return {};
-  return {
+  return buildMetadata({
     title: `${update.title} | LoloBuy Updates`,
     description: update.summary,
-    alternates: { canonical: `https://lolobuysheet.es/${locale}/updates/${update.slug}` },
-  };
+    path: `/updates/${update.slug}`,
+    locale,
+    canonical: localizedUrl("en", `/updates/${update.slug}`),
+    indexable: false,
+    type: "article",
+  });
 }
 
 export default async function LocalizedOfficialUpdateDetailPage({

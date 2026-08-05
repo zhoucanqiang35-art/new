@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 import { localePath, PageFrame } from "./site-shell";
+import { localizedUrl } from "./seo";
+import { articleStructuredData, breadcrumbStructuredData, StructuredData } from "./structured-data";
 import { getOfficialUpdate, officialUpdates } from "./update-data";
 
 export function UpdatePage({ slug, locale = "en" }: { slug: string; locale?: string }) {
@@ -10,6 +12,14 @@ export function UpdatePage({ slug, locale = "en" }: { slug: string; locale?: str
 
   return (
     <PageFrame locale={locale} currentPath={currentPath}>
+      <StructuredData data={[
+        breadcrumbStructuredData([
+          { name: "LoloBuy Sheet", url: localizedUrl(locale, "/") },
+          { name: "Updates", url: localizedUrl(locale, "/updates") },
+          { name: update.title, url: localizedUrl(locale, currentPath) },
+        ]),
+        articleStructuredData({ headline: update.title, description: update.summary, url: localizedUrl(locale, currentPath), dateModified: update.date }),
+      ]} />
       <article className="long-article update-detail">
         <header className="article-hero">
           <a className="article-back" href={localePath(locale, "/updates")}>← All LoloBuy updates</a>

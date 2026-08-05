@@ -1,15 +1,34 @@
 import { notFound } from "next/navigation";
-import { cnyUsdReference, getProduct, products } from "./product-data";
+import { allProducts, cnyUsdReference, getProduct } from "./product-data";
 import { localePath, PageFrame } from "./site-shell";
+import { localizedUrl } from "./seo";
+import { breadcrumbStructuredData, StructuredData } from "./structured-data";
 
 export function ProductPage({ slug, locale = "en" }: { slug: string; locale?: string }) {
   const product = getProduct(slug);
   if (!product) notFound();
-  const related = products.filter((item) => item.slug !== slug).slice(0, 3);
+  const related = allProducts.filter((item) => item.slug !== slug).slice(0, 3);
   const currentPath = `/products/${slug}`;
 
   return (
     <PageFrame locale={locale} currentPath={currentPath}>
+      <StructuredData data={[
+        breadcrumbStructuredData([
+          { name: "LoloBuy Sheet", url: localizedUrl(locale, "/") },
+          { name: "Spreadsheet", url: localizedUrl(locale, "/spreadsheet") },
+          { name: product.name, url: localizedUrl(locale, currentPath) },
+        ]),
+        {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.name,
+          image: product.image,
+          sku: product.productId,
+          category: product.category,
+          url: localizedUrl(locale, currentPath),
+          description: `A dated product reference linked to the matching source listing for ${product.name}.`,
+        },
+      ]} />
       <article className="product-detail">
         <section className="product-detail-hero">
           <div className="product-detail-image">

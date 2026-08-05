@@ -1,18 +1,18 @@
 import type { MetadataRoute } from "next";
 import { buyerGuides } from "./guide-data";
-import { products } from "./product-data";
+import { allProducts } from "./product-data";
 import { seoArticles } from "./seo-content";
-import { siteLanguages } from "./site-shell";
+import { localizedAlternates, localizedUrl, translatedFaqLocales, translatedHomeLocales } from "./seo";
 import { officialUpdates } from "./update-data";
 
 export const dynamic = "force-static";
 
-const SITE_URL = "https://lolobuysheet.es";
-const DEFAULT_LAST_MODIFIED = "2026-07-31";
+const DEFAULT_LAST_MODIFIED = "2026-08-05";
 
 type PageDefinition = {
   path: string;
   lastModified: string;
+  alternateLocales?: readonly string[];
 };
 
 const sectionPaths = [
@@ -21,13 +21,18 @@ const sectionPaths = [
   "/guides",
   "/seo-articles",
   "/updates",
-  "/faq",
 ];
 
 const pageDefinitions: PageDefinition[] = [
-  { path: "", lastModified: DEFAULT_LAST_MODIFIED },
+  { path: "", lastModified: DEFAULT_LAST_MODIFIED, alternateLocales: translatedHomeLocales },
   ...sectionPaths.map((path) => ({ path, lastModified: DEFAULT_LAST_MODIFIED })),
-  ...products.map((product) => ({
+  { path: "/faq", lastModified: DEFAULT_LAST_MODIFIED, alternateLocales: translatedFaqLocales },
+  { path: "/about", lastModified: DEFAULT_LAST_MODIFIED },
+  { path: "/editorial-methodology", lastModified: DEFAULT_LAST_MODIFIED },
+  { path: "/contact", lastModified: DEFAULT_LAST_MODIFIED },
+  { path: "/privacy", lastModified: DEFAULT_LAST_MODIFIED },
+  { path: "/affiliate-disclosure", lastModified: DEFAULT_LAST_MODIFIED },
+  ...allProducts.map((product) => ({
     path: `/products/${product.slug}`,
     lastModified: "2026-07-30",
   })),
@@ -45,26 +50,28 @@ const pageDefinitions: PageDefinition[] = [
   })),
 ];
 
-const locales = siteLanguages.map(([code]) => code.toLowerCase());
-
-function localizedUrl(locale: string, path: string) {
-  const canonicalPath = path ? `${path}/` : "/";
-  if (locale === "en") return `${SITE_URL}${canonicalPath}`;
-  return `${SITE_URL}/${locale}${canonicalPath}`;
-}
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  return pageDefinitions.flatMap(({ path, lastModified }) => {
-    const languages = Object.fromEntries(
-      locales.map((locale) => [locale, localizedUrl(locale, path)]),
-    );
+  const englishPages = pageDefinitions.map(({ path, lastModified, alternateLocales = ["en"] }) => ({
+    url: localizedUrl("en", path || "/"),
+    lastModified: new Date(lastModified),
+    alternates: { languages: localizedAlternates(path || "/", alternateLocales) },
+  }));
 
-    languages["x-default"] = localizedUrl("en", path);
-
-    return locales.map((locale) => ({
-      url: localizedUrl(locale, path),
-      lastModified: new Date(lastModified),
-      alternates: { languages },
+  const translatedHomes = translatedHomeLocales
+    .filter((locale) => locale !== "en")
+    .map((locale) => ({
+      url: localizedUrl(locale, "/"),
+      lastModified: new Date(DEFAULT_LAST_MODIFIED),
+      alternates: { languages: localizedAlternates("/", translatedHomeLocales) },
     }));
-  });
+
+  const translatedFaqs = translatedFaqLocales
+    .filter((locale) => locale !== "en")
+    .map((locale) => ({
+      url: localizedUrl(locale, "/faq"),
+      lastModified: new Date(DEFAULT_LAST_MODIFIED),
+      alternates: { languages: localizedAlternates("/faq", translatedFaqLocales) },
+    }));
+
+  return [...englishPages, ...translatedHomes, ...translatedFaqs];
 }

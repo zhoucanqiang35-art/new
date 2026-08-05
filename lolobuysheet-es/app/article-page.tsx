@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { getSeoArticle, seoArticles } from "./seo-content";
 import { localePath, PageFrame } from "./site-shell";
+import { localizedUrl } from "./seo";
+import { articleStructuredData, breadcrumbStructuredData, StructuredData } from "./structured-data";
 
 export function ArticlePage({ slug, locale = "en" }: { slug: string; locale?: string }) {
   const article = getSeoArticle(slug);
@@ -9,6 +11,14 @@ export function ArticlePage({ slug, locale = "en" }: { slug: string; locale?: st
 
   return (
     <PageFrame locale={locale} currentPath={currentPath}>
+      <StructuredData data={[
+        breadcrumbStructuredData([
+          { name: "LoloBuy Sheet", url: localizedUrl(locale, "/") },
+          { name: "SEO Articles", url: localizedUrl(locale, "/seo-articles") },
+          { name: article.title, url: localizedUrl(locale, currentPath) },
+        ]),
+        articleStructuredData({ headline: article.title, description: article.description, url: localizedUrl(locale, currentPath), dateModified: article.verified }),
+      ]} />
       <article className="long-article">
         <header className="article-hero">
           <a className="article-back" href={localePath(locale, "/seo-articles")}>← SEO Articles</a>

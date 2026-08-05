@@ -1,24 +1,28 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductPage } from "../../../product-page";
-import { getProduct, products } from "../../../product-data";
+import { allProducts, getProduct } from "../../../product-data";
+import { buildMetadata, localizedUrl } from "../../../seo";
 import { supportedLocales } from "../../../site-shell";
 
 export function generateStaticParams() {
   return Array.from(supportedLocales)
     .filter((locale) => locale !== "en")
-    .flatMap((locale) => products.map(({ slug }) => ({ locale, slug })));
+    .flatMap((locale) => allProducts.map(({ slug }) => ({ locale, slug })));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { locale, slug } = await params;
   const product = getProduct(slug);
   if (!supportedLocales.has(locale) || locale === "en" || !product) return {};
-  return {
+  return buildMetadata({
     title: `${product.name} — USD Price & Source Link | LoloBuy Sheet`,
     description: `Verified product reference for ${product.name}, with the matching main-site image, source listing and USD conversion.`,
-    alternates: { canonical: `https://lolobuysheet.es/${locale}/products/${product.slug}` },
-  };
+    path: `/products/${product.slug}`,
+    locale,
+    canonical: localizedUrl("en", `/products/${product.slug}`),
+    indexable: false,
+  });
 }
 
 export default async function LocalizedProductDetailPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {

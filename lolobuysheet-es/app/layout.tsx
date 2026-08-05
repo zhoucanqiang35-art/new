@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { homeMetadata, SITE_URL } from "./seo";
+import { siteStructuredData, StructuredData } from "./structured-data";
+import { ClientEnhancements } from "./client-enhancements";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,21 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lolobuysheet.es"),
-  title: "LoloBuy Spreadsheet 2026 — Finds, QC & Shipping Guides",
-  description:
-    "Independent LoloBuy spreadsheet, product discovery, QC checklists and practical shipping guides for shoppers in Europe and North America.",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  ...homeMetadata("en"),
+  metadataBase: new URL(SITE_URL),
   other: {
     "theme-color": "#1d6b4d",
   },
@@ -43,10 +33,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <StructuredData data={siteStructuredData} />
+        <ClientEnhancements />
         {children}
       </body>
     </html>

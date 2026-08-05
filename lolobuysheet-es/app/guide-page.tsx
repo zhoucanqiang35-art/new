@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { buyerGuides, getBuyerGuide } from "./guide-data";
 import { localePath, PageFrame } from "./site-shell";
+import { localizedUrl } from "./seo";
+import { articleStructuredData, breadcrumbStructuredData, StructuredData } from "./structured-data";
 
 export function GuidePage({ slug, locale = "en" }: { slug: string; locale?: string }) {
   const guide = getBuyerGuide(slug);
@@ -9,6 +11,14 @@ export function GuidePage({ slug, locale = "en" }: { slug: string; locale?: stri
 
   return (
     <PageFrame locale={locale} currentPath={currentPath}>
+      <StructuredData data={[
+        breadcrumbStructuredData([
+          { name: "LoloBuy Sheet", url: localizedUrl(locale, "/") },
+          { name: "Buyer Guides", url: localizedUrl(locale, "/guides") },
+          { name: guide.title, url: localizedUrl(locale, currentPath) },
+        ]),
+        articleStructuredData({ headline: guide.title, description: guide.summary, url: localizedUrl(locale, currentPath), dateModified: guide.verified }),
+      ]} />
       <article className="long-article practical-guide">
         <header className="article-hero guide-hero">
           <a className="article-back" href={localePath(locale, "/guides")}>← Buyer Guides</a>

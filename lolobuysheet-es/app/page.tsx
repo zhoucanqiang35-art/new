@@ -45,7 +45,7 @@ const englishCopy: PageCopy = {
   nav: ["Spreadsheet", "Categories", "Guides", "SEO Articles", "Updates", "FAQ"],
   database: "Full database",
   eyebrow: "Independent LoloBuy research hub",
-  title: "Find better LoloBuy picks.",
+  title: "Find better LoloBuy Spreadsheet picks.",
   accent: "Shop with context.",
   lead: "A searchable spreadsheet, practical QC checklists and shipping guides—built for shoppers across Europe and North America.",
   explore: "Explore the spreadsheet",
@@ -176,7 +176,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
   const [carouselSyncedAt, setCarouselSyncedAt] = useState<string | null>(null);
   const [carouselPaused, setCarouselPaused] = useState(false);
   const [panelPaused, setPanelPaused] = useState(false);
-  const [panelIndex, setPanelIndex] = useState(0);
+  const [panelIndex, setPanelIndex] = useState(2);
   const productCarousel = useRef<HTMLDivElement>(null);
   const faqList = useRef<HTMLDivElement>(null);
   const mainSearchAction = "https://findspreadsheet.com/search.html";
@@ -275,9 +275,9 @@ export function Home({ locale = "en" }: { locale?: string }) {
     const animate = (time: number) => {
       if (previousTime) {
         viewport.scrollLeft += ((time - previousTime) / 1000) * pixelsPerSecond;
-        const loopWidth = viewport.scrollWidth / 2;
-        if (loopWidth > 0 && viewport.scrollLeft >= loopWidth) {
-          viewport.scrollLeft -= loopWidth;
+        const loopEnd = viewport.scrollWidth - viewport.clientWidth;
+        if (loopEnd > 0 && viewport.scrollLeft >= loopEnd) {
+          viewport.scrollLeft = 0;
         }
       }
       previousTime = time;
@@ -310,11 +310,6 @@ export function Home({ locale = "en" }: { locale?: string }) {
 
   return (
     <main dir={normalizedLocale === "ar" ? "rtl" : "ltr"}>
-      <div className="preview-ribbon">
-        <span>{ui.previewBadge}</span>
-        <p>{copy.preview}</p>
-      </div>
-
       <header className="site-header">
         <a className="brand" href={`${localeRoot}#top`} aria-label="LoloBuy Sheet home">
           <img className="brand-logo" src="/lolobuy.webp" alt="" width="44" height="44" />
@@ -381,7 +376,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
 
         <div
           className="hero-panel"
-          aria-label="LoloBuy research preview"
+          aria-label="LoloBuy research dashboard"
           onMouseEnter={() => setPanelPaused(true)}
           onMouseLeave={() => setPanelPaused(false)}
           onFocusCapture={() => setPanelPaused(true)}
@@ -409,7 +404,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
           </form>
           <div className="mini-list" aria-live="off">
             {panelProducts.map((product) => (
-              <a className="mini-item" href={product.sourceUrl} target="_blank" rel="noreferrer" key={product.name}>
+              <a className="mini-item" href={pageHref(`products/${product.slug}`)} key={product.name}>
                 <span className="product-art"><img src={product.image} alt="" /></span>
                 <span><b>{product.name}</b><small>{product.category} · {product.checked}</small></span>
                 <strong>{product.usdPrice}</strong>
@@ -486,27 +481,25 @@ export function Home({ locale = "en" }: { locale?: string }) {
           onTouchEnd={() => setCarouselPaused(false)}
         >
           <div className="product-grid">
-            {[0, 1].map((setIndex) => (
-              <div className="product-loop-set" aria-hidden={setIndex === 1} key={setIndex}>
+            <div className="product-loop-set">
                 {visibleProducts.map((product) => (
-                  <article className="product-card" key={`${setIndex}-${product.name}`}>
-                    <a className="product-visual" href={product.sourceUrl} target="_blank" rel="noreferrer" tabIndex={setIndex === 1 ? -1 : undefined}>
+                  <article className="product-card" key={product.slug}>
+                    <a className="product-visual" href={pageHref(`products/${product.slug}`)}>
                       <img
                         src={product.image}
-                        alt={setIndex === 0 ? `Main product image for ${product.name} from findspreadsheet.com` : ""}
+                        alt={`Main product image for ${product.name} from findspreadsheet.com`}
                         loading="lazy"
                         decoding="async"
                       />
                       <span>{product.category}</span>
                     </a>
                     <div className="product-meta"><small>{product.category}</small><span className="checked">↻ {product.checked}</span></div>
-                    <h3>{product.name}</h3>
+                    <h3><a href={pageHref(`products/${product.slug}`)}>{product.name}</a></h3>
                     <p className="product-price-note">¥{product.sourcePriceCny.toFixed(product.sourcePriceCny % 1 ? 1 : 0)} · converted reference</p>
-                    <div className="product-foot"><b>{product.usdPrice}</b><a href={product.sourceUrl} target="_blank" rel="noreferrer" tabIndex={setIndex === 1 ? -1 : undefined} aria-label={`Open ${product.name} on findspreadsheet.com`}>Main site <span>↗</span></a></div>
+                    <div className="product-foot"><b>{product.usdPrice}</b><a href={product.sourceUrl} target="_blank" rel="noreferrer" aria-label={`Open ${product.name} on findspreadsheet.com`}>Main site <span>↗</span></a></div>
                   </article>
                 ))}
-              </div>
-            ))}
+            </div>
           </div>
         </div>
         {!visibleProducts.length && <p className="empty-state">No sample listings match that search yet.</p>}
@@ -571,6 +564,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div><b>{ui.explore}</b><a href={pageHref("spreadsheet")}>{navLabels[0]}</a><a href={pageHref("categories")}>{navLabels[1]}</a><a href={pageHref("guides")}>{navLabels[2]}</a></div>
         <div><b>{ui.research}</b><a href={pageHref("seo-articles")}>{navLabels[3]}</a><a href={pageHref("updates")}>{navLabels[4]}</a><a href={pageHref("faq")}>{navLabels[5]}</a></div>
         <div><b>{ui.sources}</b><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">{ui.mainDatabase} ↗</a></div>
+        <div className="footer-trust"><b>Trust</b><a href={pageHref("about")}>About</a><a href={pageHref("editorial-methodology")}>Methodology</a><a href={pageHref("contact")}>Contact</a><a href={pageHref("privacy")}>Privacy</a><a href={pageHref("affiliate-disclosure")}>Disclosure</a></div>
         <p className="legal">{ui.legal}</p>
       </footer>
     </main>

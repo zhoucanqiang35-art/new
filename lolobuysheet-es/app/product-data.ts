@@ -176,6 +176,8 @@ export const latestCarouselFallback: Product[] = [
   },
 ];
 
+export const allProducts: Product[] = [...products, ...latestCarouselFallback];
+
 export const mainCategories = [
   { icon: "◒", name: "Shoes", note: "Sneakers & footwear", href: "https://findspreadsheet.com/shoes/" },
   { icon: "▱", name: "Hoodies / Sweaters", note: "Layers & sweatshirts", href: "https://findspreadsheet.com/hoodies-sweaters/" },
@@ -190,5 +192,5 @@ export const mainCategories = [
 ];
 
 export function getProduct(slug: string) {
-  return products.find((product) => product.slug === slug);
+  return allProducts.find((product) => product.slug === slug);
 }

@@ -1,15 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const reviewPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']review-only["'])[^>]*>/i;
-
-async function renderRoute(pathname) {
+async function renderRoute(pathname, hostname = "localhost") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("route", `${process.pid}-${Date.now()}-${pathname}`);
   const { default: worker } = await import(workerUrl.href);
   return worker.fetch(
-    new Request(`http://localhost${pathname}`, {
+    new Request(`https://${hostname}${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -24,32 +21,52 @@ async function renderRoute(pathname) {
   );
 }
 
-test("renders review-only preview metadata", async () => {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
-      headers: { accept: "text/html" },
-    }),
-    {
-      ASSETS: {
-        fetch: async () => new Response("Not found", { status: 404 }),
-      },
-    },
-    {
-      waitUntil() {},
-      passThroughOnException() {},
-    },
-  );
-
+test("renders production SEO metadata without preview messaging", async () => {
+  const response = await renderRoute("/");
   assert.equal(response.status, 200);
   assert.match(
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), reviewPreviewMeta);
+  const html = await response.text();
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+https:\/\/lolobuysheet\.es\//i);
+  assert.match(html, /property=["']og:title["']/i);
+  assert.match(html, /name=["']twitter:card["']/i);
+  assert.match(html, /Find better LoloBuy Spreadsheet picks/i);
+  assert.match(html, /application\/ld\+json/i);
+  assert.ok(!html.includes("Review mode"));
+  assert.ok(!html.includes("not yet connected to lolobuysheet.es"));
+  assert.ok(!html.includes("preview-ribbon"));
+});
+
+test("normalizes the production host and language metadata", async () => {
+  const hostRedirect = await renderRoute("/", "www.lolobuysheet.es");
+  assert.equal(hostRedirect.status, 301);
+  assert.equal(hostRedirect.headers.get("location"), "https://lolobuysheet.es/");
+
+  const french = await renderRoute("/fr");
+  const frenchHtml = await french.text();
+  assert.equal(french.status, 200);
+  assert.match(frenchHtml, /<html lang="fr">/i);
+  assert.match(frenchHtml, /Tableau LoloBuy 2026/i);
+
+  const swedish = await renderRoute("/sv");
+  const swedishHtml = await swedish.text();
+  assert.equal(swedish.status, 200);
+  assert.match(swedishHtml, /<meta[^>]+name=["']robots["'][^>]+noindex/i);
+  assert.match(swedishHtml, /<link[^>]+rel=["']canonical["'][^>]+https:\/\/lolobuysheet\.es\//i);
+});
+
+test("keeps all sections while strengthening internal links and trust pages", async () => {
+  const home = await renderRoute("/");
+  const homeHtml = await home.text();
+  assert.match(homeHtml, /href=["']\/products\/multi-brand-hat-selection["']/i);
+  assert.equal((homeHtml.match(/multi-brand-hat-selection/g) || []).length >= 1, true);
+
+  for (const route of ["/about", "/editorial-methodology", "/contact", "/privacy", "/affiliate-disclosure"]) {
+    const response = await renderRoute(route);
+    assert.equal(response.status, 200, `${route} should render`);
+  }
 });
 
 test("buyer guides and SEO articles are distinct content systems", async () => {

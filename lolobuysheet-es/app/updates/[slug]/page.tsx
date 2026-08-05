@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { UpdatePage } from "../../update-page";
 import { getOfficialUpdate, officialUpdates } from "../../update-data";
+import { buildMetadata } from "../../seo";
 
 export function generateStaticParams() {
   return officialUpdates.map(({ slug }) => ({ slug }));
@@ -10,11 +11,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const update = getOfficialUpdate(slug);
   if (!update) return {};
-  return {
+  return buildMetadata({
     title: `${update.title} | LoloBuy Updates`,
     description: update.summary,
-    alternates: { canonical: `https://lolobuysheet.es/updates/${update.slug}` },
-  };
+    path: `/updates/${update.slug}`,
+    type: "article",
+  });
 }
 
 export default async function OfficialUpdateDetailPage({ params }: { params: Promise<{ slug: string }> }) {

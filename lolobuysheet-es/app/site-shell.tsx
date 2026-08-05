@@ -21,6 +21,11 @@ export const sectionTitles: Record<string, string> = {
   "seo-articles": "LoloBuy SEO Articles",
   updates: "LoloBuy Official Updates",
   faq: "LoloBuy Questions and Answers",
+  about: "About LoloBuy Sheet",
+  "editorial-methodology": "Editorial Methodology",
+  contact: "Contact LoloBuy Sheet",
+  privacy: "LoloBuy Sheet Privacy",
+  "affiliate-disclosure": "Affiliate Disclosure",
 };
 
 export function localePath(locale: string, path = "/") {
@@ -41,10 +46,6 @@ export function SiteHeader({
 
   return (
     <>
-      <div className="preview-ribbon">
-        <span>{ui.previewBadge}</span>
-        <p>{ui.previewText}</p>
-      </div>
       <header className="site-header">
         <a className="brand" href={home} aria-label="LoloBuy Sheet home">
           <img className="brand-logo" src="/lolobuy.webp" alt="" width="44" height="44" />
@@ -104,6 +105,7 @@ export function SiteFooter({ locale = "en" }: { locale?: string }) {
       <div><b>{ui.explore}</b>{sectionSlugs.slice(0, 3).map((slug, index) => <a href={localePath(locale, `/${slug}`)} key={slug}>{ui.nav[index]}</a>)}</div>
       <div><b>{ui.research}</b>{sectionSlugs.slice(3).map((slug, index) => <a href={localePath(locale, `/${slug}`)} key={slug}>{ui.nav[index + 3]}</a>)}</div>
       <div><b>{ui.sources}</b><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">{ui.mainDatabase} ↗</a></div>
+      <div className="footer-trust"><b>Trust</b><a href={localePath(locale, "/about")}>About</a><a href={localePath(locale, "/editorial-methodology")}>Methodology</a><a href={localePath(locale, "/contact")}>Contact</a><a href={localePath(locale, "/privacy")}>Privacy</a><a href={localePath(locale, "/affiliate-disclosure")}>Disclosure</a></div>
       <p className="legal">{ui.legal}</p>
     </footer>
   );
