@@ -69,8 +69,40 @@ test("normalizes the production host and language metadata", async () => {
   const swedish = await renderRoute("/sv");
   const swedishHtml = await swedish.text();
   assert.equal(swedish.status, 200);
-  assert.match(swedishHtml, /<meta[^>]+name=["']robots["'][^>]+noindex/i);
-  assert.match(swedishHtml, /<link[^>]+rel=["']canonical["'][^>]+https:\/\/lolobuysheet\.es\//i);
+  assert.match(swedishHtml, /<meta[^>]+name=["']robots["'][^>]+index/i);
+  assert.match(swedishHtml, /<link[^>]+rel=["']canonical["'][^>]+https:\/\/lolobuysheet\.es\/sv/i);
+});
+
+test("keeps every homepage module and translates the new SEO copy in all 24 languages", async () => {
+  const locales = [
+    "en", "es", "de", "fr", "it", "pt", "nl", "pl", "sv", "da", "no", "fi",
+    "cs", "ro", "hu", "el", "uk", "tr", "ru", "bg", "ja", "ko", "ar", "zh",
+  ];
+
+  for (const locale of locales) {
+    const route = locale === "en" ? "/" : `/${locale}`;
+    const response = await renderRoute(route);
+    const html = await response.text();
+    assert.equal(response.status, 200, `${route} should render`);
+    for (const sectionClass of ["seo-intro", "workflow-panel", "qc-context", "site-purpose", "faq-section"]) {
+      assert.ok(html.includes(sectionClass), `${route} should keep ${sectionClass}`);
+    }
+    assert.equal((html.match(/<details/g) || []).length >= 5, true, `${route} should include five FAQs`);
+
+    if (locale !== "en") {
+      for (const englishFragment of [
+        "The LoloBuy spreadsheet is useful because",
+        "How to use the LoloBuy spreadsheet",
+        "QC context matters",
+        "What this site is for",
+        "Read complete update",
+        "Main-site latest + popular",
+        "converted reference",
+      ]) {
+        assert.ok(!html.includes(englishFragment), `${route} should not retain: ${englishFragment}`);
+      }
+    }
+  }
 });
 
 test("keeps all sections while strengthening internal links and trust pages", async () => {

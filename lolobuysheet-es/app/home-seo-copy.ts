@@ -1,0 +1,382 @@
+export type HomeFaqCopy = { question: string; answer: string };
+
+export type HomeSeoCopy = {
+  intro: [string, string, string];
+  category: [string, string, string];
+  workflow: [string, string, string, [string, string, string, string, string], string];
+  qc: [string, string, string, string];
+  purpose: [string, string, string];
+  faqs: [HomeFaqCopy, HomeFaqCopy, HomeFaqCopy, HomeFaqCopy, HomeFaqCopy];
+};
+
+const en: HomeSeoCopy = {
+  intro: [
+    "The LoloBuy spreadsheet is useful because it shortens the distance between discovery and decision.",
+    "But lists alone rarely explain why a link matters, what to check in QC, or which step comes next.",
+    "This site organizes the LoloBuy spreadsheet into a more usable reference: category pages for browsing, guides for process questions, and update notes that make changes easier to follow.",
+  ],
+  category: [
+    "Instead of treating the spreadsheet as a single list, this site breaks it into clearer paths. Category pages make it easier to compare similar finds, notice recurring details, and move faster without losing context.",
+    "Popular sections can include shoes, hoodies, jackets, pants, bags, accessories, and seasonal picks. Each one should help users scan more efficiently and evaluate items with fewer blind spots.",
+    "Each category page should do more than collect links. It should help users understand what they are looking at, what usually goes wrong, and what to check before moving forward.",
+  ],
+  workflow: [
+    "A repeatable research process",
+    "How to use the LoloBuy spreadsheet",
+    "For most users, the spreadsheet is only the starting point. The real value comes from using it with a repeatable process.",
+    ["Browse a category", "Shortlist a few finds", "Review QC context", "Check the relevant guide", "Decide whether the item is worth carrying into the next step"],
+    "That approach is slower than random browsing, but it usually leads to better decisions.",
+  ],
+  qc: [
+    "Product evaluation",
+    "QC context matters",
+    "A useful LoloBuy spreadsheet should not stop at product discovery. It should help users evaluate common issues before they commit time or money.",
+    "QC notes are most useful when they stay practical: shape, stitching, logo placement, material texture, color balance, and recurring flaws. That is the difference between a list and a spreadsheet that helps users judge items.",
+  ],
+  purpose: [
+    "Independent editorial reference",
+    "What this site is for",
+    "This is an independent LoloBuy spreadsheet reference built to add structure, context, and process guidance. It is designed for readers who want more than a list of links and less noise than the usual shortcut pages.",
+  ],
+  faqs: [
+    { question: "What is the LoloBuy spreadsheet?", answer: "The LoloBuy spreadsheet is a structured way to browse finds, compare source links, and organize product research before ordering." },
+    { question: "How should I use the LoloBuy spreadsheet?", answer: "Start with a category page, shortlist relevant finds, review QC context, and then read the guide that matches the next step in your process." },
+    { question: "Why add guides to a spreadsheet site?", answer: "Because most users are not only looking for links. They also need help with QC, ordering, shipping, and deciding what to do next." },
+    { question: "Does this site replace the original spreadsheet?", answer: "No. It is a companion reference that adds context, structure, and editorial guidance around the LoloBuy spreadsheet." },
+    { question: "How often should the LoloBuy spreadsheet be updated?", answer: "Important category and guide changes should be dated clearly so readers can see what is current and what has been revised." },
+  ],
+};
+
+const copies: Record<string, HomeSeoCopy> = {
+  es: {
+    intro: ["La hoja de cálculo de LoloBuy acorta la distancia entre descubrir un producto y decidir.", "Una lista por sí sola rara vez explica por qué importa un enlace, qué revisar en el QC o cuál es el siguiente paso.", "Este sitio ordena la hoja de LoloBuy como una referencia útil: categorías para explorar, guías para resolver el proceso y notas de actualización fáciles de seguir."],
+    category: ["En lugar de una sola lista, el sitio crea recorridos claros. Las categorías permiten comparar hallazgos similares, detectar detalles repetidos y avanzar sin perder contexto.", "Hay secciones de zapatos, sudaderas, chaquetas, pantalones, bolsos, accesorios y selecciones de temporada. Cada una ayuda a revisar con más rapidez y menos puntos ciegos.", "Una categoría debe hacer más que reunir enlaces: debe explicar qué estás viendo, qué suele fallar y qué conviene comprobar antes de continuar."],
+    workflow: ["Un proceso de investigación repetible", "Cómo usar la hoja de cálculo de LoloBuy", "La hoja es solo el punto de partida. Su valor real aparece cuando se usa con un proceso constante.", ["Explora una categoría", "Selecciona algunos hallazgos", "Revisa el contexto QC", "Consulta la guía adecuada", "Decide si vale la pena continuar"], "Es más lento que navegar al azar, pero normalmente produce mejores decisiones."],
+    qc: ["Evaluación del producto", "El contexto QC importa", "Una hoja útil no debe detenerse en el descubrimiento. Debe ayudar a evaluar problemas comunes antes de invertir tiempo o dinero.", "Las notas QC deben ser prácticas: forma, costuras, ubicación del logotipo, textura, equilibrio de color y defectos recurrentes. Así una lista se convierte en una herramienta de evaluación."],
+    purpose: ["Referencia editorial independiente", "Para qué sirve este sitio", "Esta referencia independiente añade estructura, contexto y orientación al proceso. Está pensada para quien quiere más que una lista de enlaces y menos ruido que en las páginas de atajos."],
+    faqs: [
+      { question: "¿Qué es la hoja de cálculo de LoloBuy?", answer: "Es una forma estructurada de explorar hallazgos, comparar enlaces de origen y organizar la investigación antes de pedir." },
+      { question: "¿Cómo debo usarla?", answer: "Empieza por una categoría, elige algunos productos, revisa el contexto QC y consulta la guía del siguiente paso." },
+      { question: "¿Por qué añadir guías?", answer: "Porque los usuarios también necesitan ayuda con QC, pedidos, envíos y decisiones posteriores." },
+      { question: "¿Este sitio sustituye la hoja original?", answer: "No. Es una referencia complementaria con contexto, estructura y orientación editorial." },
+      { question: "¿Con qué frecuencia debe actualizarse?", answer: "Los cambios importantes de categorías y guías deben llevar fecha para mostrar qué está vigente y qué fue revisado." },
+    ],
+  },
+  de: {
+    intro: ["Das LoloBuy-Spreadsheet verkürzt den Weg vom Entdecken bis zur Entscheidung.", "Eine reine Liste erklärt selten, warum ein Link wichtig ist, was beim QC zu prüfen ist oder welcher Schritt folgt.", "Diese Seite macht daraus eine nutzbare Referenz: Kategorien zum Stöbern, Ratgeber für Prozessfragen und nachvollziehbare Aktualisierungen."],
+    category: ["Statt einer einzigen Liste bietet die Seite klare Wege. Kategorien erleichtern Vergleiche, zeigen wiederkehrende Details und bewahren den Kontext.", "Beliebte Bereiche umfassen Schuhe, Hoodies, Jacken, Hosen, Taschen, Accessoires und saisonale Auswahl. Jeder Bereich hilft bei einer effizienteren Prüfung.", "Eine Kategorieseite soll mehr als Links sammeln: Sie erklärt, was zu sehen ist, welche Fehler häufig sind und was vor dem nächsten Schritt zu prüfen ist."],
+    workflow: ["Ein wiederholbarer Rechercheprozess", "So nutzt du das LoloBuy-Spreadsheet", "Für die meisten ist das Spreadsheet nur der Anfang. Sein Wert entsteht durch einen gleichbleibenden Ablauf.", ["Kategorie öffnen", "Einige Funde auswählen", "QC-Kontext prüfen", "Passenden Ratgeber lesen", "Entscheiden, ob sich der nächste Schritt lohnt"], "Das dauert länger als zufälliges Stöbern, führt aber meist zu besseren Entscheidungen."],
+    qc: ["Produktbewertung", "QC-Kontext ist wichtig", "Ein gutes Spreadsheet endet nicht bei der Produktsuche. Es hilft, häufige Probleme vor Zeit- oder Geldeinsatz zu bewerten.", "Nützliche QC-Hinweise bleiben praktisch: Form, Nähte, Logoplatzierung, Materialstruktur, Farbbalance und wiederkehrende Mängel. So wird aus einer Liste eine Entscheidungshilfe."],
+    purpose: ["Unabhängige redaktionelle Referenz", "Wofür diese Seite gedacht ist", "Diese unabhängige LoloBuy-Referenz ergänzt Struktur, Kontext und Prozesshilfe. Sie richtet sich an Leser, die mehr als Links und weniger Lärm als auf typischen Shortcut-Seiten wollen."],
+    faqs: [
+      { question: "Was ist das LoloBuy-Spreadsheet?", answer: "Eine strukturierte Möglichkeit, Funde zu durchsuchen, Quelllinks zu vergleichen und die Produktrecherche vor einer Bestellung zu ordnen." },
+      { question: "Wie sollte ich es nutzen?", answer: "Mit einer Kategorie beginnen, passende Funde auswählen, den QC-Kontext prüfen und anschließend den Ratgeber für den nächsten Schritt lesen." },
+      { question: "Warum gehören Ratgeber dazu?", answer: "Weil Nutzer neben Links auch Hilfe zu QC, Bestellung, Versand und den nächsten Entscheidungen brauchen." },
+      { question: "Ersetzt diese Seite das ursprüngliche Spreadsheet?", answer: "Nein. Sie ist eine ergänzende Referenz mit Kontext, Struktur und redaktioneller Orientierung." },
+      { question: "Wie oft sollte es aktualisiert werden?", answer: "Wichtige Änderungen an Kategorien und Ratgebern sollten datiert werden, damit aktuelle und überarbeitete Inhalte erkennbar sind." },
+    ],
+  },
+  fr: {
+    intro: ["Le tableau LoloBuy réduit le chemin entre la découverte et la décision.", "Une simple liste explique rarement pourquoi un lien compte, quoi vérifier en QC ou quelle étape vient ensuite.", "Ce site transforme le tableau en référence pratique : catégories pour parcourir, guides pour comprendre le processus et notes de mise à jour faciles à suivre."],
+    category: ["Au lieu d’une liste unique, le site propose des parcours clairs. Les catégories facilitent la comparaison, révèlent les détails récurrents et préservent le contexte.", "Les sections couvrent chaussures, sweats, vestes, pantalons, sacs, accessoires et sélections saisonnières. Chacune aide à évaluer plus efficacement.", "Une catégorie doit faire plus que rassembler des liens : elle doit expliquer ce que l’on voit, les problèmes fréquents et les contrôles à effectuer."],
+    workflow: ["Un processus de recherche reproductible", "Comment utiliser le tableau LoloBuy", "Le tableau n’est que le point de départ. Sa valeur vient d’une méthode répétable.", ["Parcourir une catégorie", "Retenir quelques produits", "Examiner le contexte QC", "Lire le guide adapté", "Décider si l’étape suivante vaut la peine"], "Cette méthode est plus lente que la navigation au hasard, mais elle conduit souvent à de meilleures décisions."],
+    qc: ["Évaluation du produit", "Le contexte QC est essentiel", "Un tableau utile ne s’arrête pas à la découverte. Il aide à évaluer les problèmes courants avant d’engager du temps ou de l’argent.", "Les notes QC doivent rester concrètes : forme, coutures, logo, texture, équilibre des couleurs et défauts récurrents. C’est ce qui transforme une liste en outil d’évaluation."],
+    purpose: ["Référence éditoriale indépendante", "À quoi sert ce site", "Cette référence indépendante ajoute structure, contexte et conseils de processus. Elle s’adresse aux lecteurs qui veulent plus qu’une liste de liens et moins de bruit que sur les pages de raccourcis."],
+    faqs: [
+      { question: "Qu’est-ce que le tableau LoloBuy ?", answer: "Une manière structurée de parcourir des produits, comparer les liens sources et organiser la recherche avant une commande." },
+      { question: "Comment l’utiliser ?", answer: "Commencez par une catégorie, retenez quelques produits, examinez le QC puis lisez le guide correspondant à l’étape suivante." },
+      { question: "Pourquoi ajouter des guides ?", answer: "Parce que les utilisateurs ont aussi besoin d’aide pour le QC, la commande, l’expédition et la suite du processus." },
+      { question: "Ce site remplace-t-il le tableau d’origine ?", answer: "Non. C’est une référence complémentaire qui ajoute contexte, structure et conseils éditoriaux." },
+      { question: "À quelle fréquence faut-il le mettre à jour ?", answer: "Les changements importants de catégories et de guides doivent être datés pour montrer ce qui est actuel ou révisé." },
+    ],
+  },
+  it: {
+    intro: ["Il foglio LoloBuy accorcia il percorso tra scoperta e decisione.", "Un semplice elenco raramente spiega perché un link è utile, cosa controllare nel QC o quale passo viene dopo.", "Questo sito organizza il foglio come riferimento pratico: categorie da esplorare, guide sul processo e aggiornamenti facili da seguire."],
+    category: ["Invece di un unico elenco, il sito crea percorsi chiari. Le categorie facilitano il confronto e aiutano a riconoscere dettagli ricorrenti senza perdere contesto.", "Le sezioni includono scarpe, felpe, giacche, pantaloni, borse, accessori e scelte stagionali. Ognuna aiuta a valutare in modo più efficiente.", "Una categoria deve fare più che raccogliere link: deve spiegare cosa si sta guardando, i problemi comuni e i controlli da fare."],
+    workflow: ["Un processo di ricerca ripetibile", "Come usare il foglio LoloBuy", "Il foglio è solo il punto di partenza. Il valore reale nasce da un metodo costante.", ["Apri una categoria", "Seleziona alcuni articoli", "Controlla il contesto QC", "Leggi la guida pertinente", "Decidi se vale la pena procedere"], "È più lento della navigazione casuale, ma di solito porta a decisioni migliori."],
+    qc: ["Valutazione del prodotto", "Il contesto QC conta", "Un buon foglio non si ferma alla scoperta: aiuta a valutare i problemi comuni prima di spendere tempo o denaro.", "Le note QC utili sono pratiche: forma, cuciture, posizione del logo, texture, colore e difetti ricorrenti. Così un elenco diventa uno strumento di giudizio."],
+    purpose: ["Riferimento editoriale indipendente", "A cosa serve questo sito", "Questa risorsa indipendente aggiunge struttura, contesto e guida al processo. È pensata per chi vuole più di una lista di link e meno rumore delle comuni pagine scorciatoia."],
+    faqs: [
+      { question: "Che cos’è il foglio LoloBuy?", answer: "Un modo strutturato per esplorare articoli, confrontare link sorgente e organizzare la ricerca prima dell’ordine." },
+      { question: "Come dovrei usarlo?", answer: "Parti da una categoria, seleziona alcuni articoli, controlla il QC e leggi la guida relativa al passo successivo." },
+      { question: "Perché aggiungere guide?", answer: "Perché servono anche indicazioni su QC, ordini, spedizioni e decisioni successive." },
+      { question: "Questo sito sostituisce il foglio originale?", answer: "No. È una risorsa complementare con contesto, struttura e orientamento editoriale." },
+      { question: "Quanto spesso va aggiornato?", answer: "Le modifiche importanti a categorie e guide devono essere datate per mostrare cosa è attuale o revisionato." },
+    ],
+  },
+  pt: {
+    intro: ["A planilha LoloBuy encurta o caminho entre descobrir e decidir.", "Uma lista sozinha raramente explica por que um link importa, o que verificar no QC ou qual é o próximo passo.", "Este site organiza a planilha como referência prática: categorias para explorar, guias para entender o processo e notas de atualização fáceis de acompanhar."],
+    category: ["Em vez de uma lista única, o site cria caminhos claros. As categorias facilitam comparações, mostram detalhes recorrentes e preservam o contexto.", "As seções incluem calçados, moletons, jaquetas, calças, bolsas, acessórios e escolhas sazonais. Cada uma ajuda a avaliar com mais eficiência.", "Uma categoria deve fazer mais do que reunir links: precisa explicar o que está sendo visto, problemas comuns e o que conferir antes de avançar."],
+    workflow: ["Um processo de pesquisa repetível", "Como usar a planilha LoloBuy", "A planilha é apenas o começo. O valor real aparece quando ela é usada com um método consistente.", ["Explore uma categoria", "Selecione alguns itens", "Revise o contexto QC", "Leia o guia adequado", "Decida se vale avançar"], "Esse método é mais lento que navegar ao acaso, mas costuma gerar decisões melhores."],
+    qc: ["Avaliação do produto", "O contexto QC é importante", "Uma planilha útil não deve parar na descoberta. Ela ajuda a avaliar problemas comuns antes de investir tempo ou dinheiro.", "Notas QC devem ser práticas: formato, costura, logotipo, textura, equilíbrio de cor e defeitos recorrentes. Assim uma lista vira uma ferramenta de avaliação."],
+    purpose: ["Referência editorial independente", "Para que serve este site", "Esta referência independente acrescenta estrutura, contexto e orientação de processo. Foi feita para quem quer mais que uma lista de links e menos ruído que nas páginas de atalhos."],
+    faqs: [
+      { question: "O que é a planilha LoloBuy?", answer: "Uma forma estruturada de explorar itens, comparar links de origem e organizar a pesquisa antes de comprar." },
+      { question: "Como devo usá-la?", answer: "Comece por uma categoria, selecione itens, revise o QC e leia o guia correspondente ao próximo passo." },
+      { question: "Por que incluir guias?", answer: "Porque os usuários também precisam de ajuda com QC, pedidos, envio e decisões posteriores." },
+      { question: "Este site substitui a planilha original?", answer: "Não. É uma referência complementar que acrescenta contexto, estrutura e orientação editorial." },
+      { question: "Com que frequência deve ser atualizada?", answer: "Mudanças importantes em categorias e guias devem ter data para mostrar o que está atual ou revisado." },
+    ],
+  },
+  nl: {
+    intro: ["De LoloBuy-spreadsheet verkort de weg van ontdekking naar beslissing.", "Een lijst alleen legt zelden uit waarom een link telt, wat je bij QC controleert of welke stap volgt.", "Deze site maakt van de spreadsheet een bruikbare bron: categorieën om te bladeren, gidsen voor procesvragen en duidelijke update-notities."],
+    category: ["In plaats van één lange lijst biedt de site duidelijke routes. Categorieën maken vergelijken eenvoudiger en laten terugkerende details zien zonder context te verliezen.", "Populaire delen omvatten schoenen, hoodies, jassen, broeken, tassen, accessoires en seizoenskeuzes. Elk deel ondersteunt een efficiëntere beoordeling.", "Een categoriepagina moet meer doen dan links verzamelen: uitleggen wat je ziet, wat vaak misgaat en wat je controleert vóór de volgende stap."],
+    workflow: ["Een herhaalbaar onderzoeksproces", "Zo gebruik je de LoloBuy-spreadsheet", "De spreadsheet is slechts het begin. De echte waarde ontstaat door een vaste werkwijze.", ["Open een categorie", "Selecteer enkele vondsten", "Bekijk de QC-context", "Lees de relevante gids", "Beslis of de volgende stap de moeite waard is"], "Dat kost meer tijd dan willekeurig bladeren, maar leidt meestal tot betere beslissingen."],
+    qc: ["Productbeoordeling", "QC-context doet ertoe", "Een nuttige spreadsheet stopt niet bij productontdekking. Ze helpt veelvoorkomende problemen beoordelen vóór je tijd of geld inzet.", "Praktische QC-notities behandelen vorm, stiksels, logo, textuur, kleur en terugkerende gebreken. Zo wordt een lijst een hulpmiddel om producten te beoordelen."],
+    purpose: ["Onafhankelijke redactionele bron", "Waarvoor deze site is bedoeld", "Deze onafhankelijke LoloBuy-bron voegt structuur, context en procesuitleg toe. Ze is bedoeld voor lezers die meer willen dan links en minder ruis dan op gewone snelkoppelingspagina’s."],
+    faqs: [
+      { question: "Wat is de LoloBuy-spreadsheet?", answer: "Een gestructureerde manier om vondsten te bekijken, bronlinks te vergelijken en productonderzoek vóór een bestelling te ordenen." },
+      { question: "Hoe gebruik ik de spreadsheet?", answer: "Begin met een categorie, selecteer relevante vondsten, bekijk de QC-context en lees daarna de juiste gids." },
+      { question: "Waarom gidsen toevoegen?", answer: "Omdat gebruikers ook hulp nodig hebben bij QC, bestellen, verzenden en de volgende beslissing." },
+      { question: "Vervangt deze site de oorspronkelijke spreadsheet?", answer: "Nee. Het is een aanvullende bron met context, structuur en redactionele uitleg." },
+      { question: "Hoe vaak moet ze worden bijgewerkt?", answer: "Belangrijke wijzigingen in categorieën en gidsen horen een datum te hebben, zodat actueel en herzien duidelijk zijn." },
+    ],
+  },
+  pl: {
+    intro: ["Arkusz LoloBuy skraca drogę od znalezienia produktu do decyzji.", "Sama lista rzadko wyjaśnia, dlaczego link jest ważny, co sprawdzić w QC i jaki jest następny krok.", "Ta strona zmienia arkusz w praktyczne źródło: kategorie do przeglądania, poradniki procesu i czytelne notatki o zmianach."],
+    category: ["Zamiast jednej listy strona oferuje jasne ścieżki. Kategorie ułatwiają porównania i zauważanie powtarzających się szczegółów bez utraty kontekstu.", "Sekcje obejmują buty, bluzy, kurtki, spodnie, torby, akcesoria i wybory sezonowe. Każda pomaga oceniać sprawniej.", "Strona kategorii powinna nie tylko zbierać linki, ale też wyjaśniać, co widzisz, co często bywa problemem i co sprawdzić."],
+    workflow: ["Powtarzalny proces badania", "Jak korzystać z arkusza LoloBuy", "Arkusz to dopiero początek. Jego wartość rośnie przy stałym procesie.", ["Otwórz kategorię", "Wybierz kilka produktów", "Sprawdź kontekst QC", "Przeczytaj właściwy poradnik", "Zdecyduj, czy warto przejść dalej"], "To wolniejsze niż przypadkowe przeglądanie, ale zwykle daje lepsze decyzje."],
+    qc: ["Ocena produktu", "Kontekst QC ma znaczenie", "Dobry arkusz nie kończy się na odkrywaniu produktów. Pomaga ocenić typowe problemy przed wydaniem czasu lub pieniędzy.", "Praktyczne notatki QC dotyczą kształtu, szwów, logo, faktury, koloru i powtarzających się wad. Dzięki temu lista staje się narzędziem oceny."],
+    purpose: ["Niezależne źródło redakcyjne", "Do czego służy ta strona", "Ta niezależna strona dodaje strukturę, kontekst i wskazówki procesu. Jest dla osób, które chcą więcej niż listę linków i mniej szumu niż na stronach skrótowych."],
+    faqs: [
+      { question: "Czym jest arkusz LoloBuy?", answer: "To uporządkowany sposób przeglądania produktów, porównywania linków źródłowych i planowania badań przed zamówieniem." },
+      { question: "Jak z niego korzystać?", answer: "Zacznij od kategorii, wybierz produkty, sprawdź kontekst QC i przeczytaj poradnik pasujący do kolejnego kroku." },
+      { question: "Po co dodawać poradniki?", answer: "Użytkownicy potrzebują nie tylko linków, lecz także pomocy z QC, zamówieniem, wysyłką i decyzjami." },
+      { question: "Czy strona zastępuje oryginalny arkusz?", answer: "Nie. To uzupełniające źródło z kontekstem, strukturą i wskazówkami redakcyjnymi." },
+      { question: "Jak często należy go aktualizować?", answer: "Ważne zmiany kategorii i poradników powinny być datowane, aby było widać, co jest aktualne lub poprawione." },
+    ],
+  },
+  zh: {
+    intro: ["LoloBuy 商品表的价值，在于缩短从发现商品到作出判断的距离。", "只有链接清单，通常无法说明链接为什么值得看、QC 应检查什么，以及下一步该做什么。", "本站把 LoloBuy 商品表整理成更实用的参考：通过分类浏览商品，用指南回答流程问题，并以更新记录说明内容变化。"],
+    category: ["本站不会把商品表当成一条很长的清单，而是拆成更清晰的浏览路径。分类页便于比较相似商品、发现反复出现的细节，同时保留必要背景。", "常用分类包括鞋类、连帽衫、夹克、裤装、箱包、配件和季节选品。每个分类都帮助用户更高效地筛选，减少判断盲区。", "分类页不应只收集链接，还应该说明你正在看什么、常见问题在哪里，以及继续之前需要检查什么。"],
+    workflow: ["可重复使用的研究流程", "如何使用 LoloBuy 商品表", "对多数用户来说，商品表只是起点。真正的价值来自一套可以重复执行的流程。", ["先浏览一个分类", "筛选少量候选商品", "查看 QC 背景", "阅读对应指南", "判断是否值得进入下一步"], "这个方法比随意浏览慢一些，但通常能带来更可靠的决定。"],
+    qc: ["商品评估", "QC 背景很重要", "有用的 LoloBuy 商品表不应停留在发现商品，还应帮助用户在投入时间和金钱前评估常见问题。", "QC 说明应保持实用：版型、走线、标志位置、材质纹理、色差，以及同类商品反复出现的瑕疵。这正是普通链接清单与可辅助判断的商品表之间的区别。"],
+    purpose: ["独立编辑参考", "本站的用途", "这是一个独立的 LoloBuy 商品表参考站，用于补充结构、背景和流程说明。它面向希望获得比链接清单更多信息、同时减少无效噪音的读者。"],
+    faqs: [
+      { question: "什么是 LoloBuy 商品表？", answer: "它是一种结构化的商品研究方式，便于浏览选品、比较来源链接，并在下单前整理信息。" },
+      { question: "应该如何使用 LoloBuy 商品表？", answer: "先从分类页开始，筛选候选商品，查看 QC 背景，再阅读与下一步相对应的指南。" },
+      { question: "为什么商品表网站还需要指南？", answer: "因为用户不仅需要链接，也需要了解 QC、下单、运输以及下一步如何判断。" },
+      { question: "本站会替代原始商品表吗？", answer: "不会。本站是补充参考，用于在 LoloBuy 商品表周围增加背景、结构和编辑说明。" },
+      { question: "LoloBuy 商品表多久更新一次？", answer: "重要的分类和指南改动应明确标注日期，让读者知道哪些内容是最新的、哪些已经修订。" },
+    ],
+  },
+  sv: {
+    intro: ["LoloBuy-kalkylbladet förkortar vägen från upptäckt till beslut.", "En lista förklarar sällan varför en länk är viktig, vad som ska granskas i QC eller vilket steg som följer.", "Webbplatsen gör kalkylbladet användbart med kategorier, processguider och tydliga uppdateringsanteckningar."],
+    category: ["I stället för en lång lista skapas tydliga vägar. Kategorier gör jämförelser enklare och visar återkommande detaljer utan att sammanhanget försvinner.", "Avsnitten omfattar skor, hoodies, jackor, byxor, väskor, accessoarer och säsongsval. Varje del hjälper till med en effektivare bedömning.", "En kategorisida ska inte bara samla länkar utan förklara vad du ser, vanliga problem och vad som bör kontrolleras."],
+    workflow: ["En upprepningsbar researchprocess", "Så använder du LoloBuy-kalkylbladet", "Kalkylbladet är bara startpunkten. Värdet kommer från en konsekvent metod.", ["Öppna en kategori", "Välj några fynd", "Granska QC-sammanhanget", "Läs rätt guide", "Avgör om nästa steg är värt det"], "Metoden är långsammare än slumpmässig surfning men ger oftast bättre beslut."],
+    qc: ["Produktbedömning", "QC-sammanhang spelar roll", "Ett bra kalkylblad hjälper till att bedöma vanliga problem innan tid eller pengar läggs på ett köp.", "Praktiska QC-noteringar gäller form, sömmar, logotyp, struktur, färg och återkommande fel. Då blir listan ett bedömningsverktyg."],
+    purpose: ["Oberoende redaktionell referens", "Vad webbplatsen är till för", "Denna oberoende referens tillför struktur, sammanhang och processhjälp för läsare som vill ha mer än länkar och mindre brus."],
+    faqs: [
+      { question: "Vad är LoloBuy-kalkylbladet?", answer: "Ett strukturerat sätt att bläddra bland fynd, jämföra källänkar och ordna research före beställning." },
+      { question: "Hur använder jag det?", answer: "Börja med en kategori, välj relevanta fynd, granska QC och läs sedan guiden för nästa steg." },
+      { question: "Varför behövs guider?", answer: "Användare behöver också hjälp med QC, beställning, frakt och nästa beslut." },
+      { question: "Ersätter sidan originalarket?", answer: "Nej. Den kompletterar med sammanhang, struktur och redaktionell vägledning." },
+      { question: "Hur ofta ska det uppdateras?", answer: "Viktiga ändringar i kategorier och guider ska dateras så att aktuellt och reviderat innehåll syns." },
+    ],
+  },
+  da: {
+    intro: ["LoloBuy-regnearket forkorter vejen fra fund til beslutning.", "En liste forklarer sjældent, hvorfor et link er vigtigt, hvad QC skal kontrollere, eller hvad næste trin er.", "Siden gør regnearket brugbart med kategorier, procesguides og tydelige opdateringsnoter."],
+    category: ["I stedet for én lang liste får du klare veje. Kategorier gør sammenligning lettere og viser gentagne detaljer uden at miste konteksten.", "Sektionerne omfatter sko, hoodies, jakker, bukser, tasker, tilbehør og sæsonvalg. Hver sektion hjælper med en mere effektiv vurdering.", "En kategoriside skal ikke kun samle links, men forklare hvad du ser, almindelige fejl og hvad der bør kontrolleres."],
+    workflow: ["En gentagelig researchproces", "Sådan bruges LoloBuy-regnearket", "Regnearket er kun begyndelsen. Den reelle værdi kommer fra en fast metode.", ["Åbn en kategori", "Vælg nogle fund", "Gennemgå QC-konteksten", "Læs den relevante guide", "Vurder om næste trin er det værd"], "Metoden er langsommere end tilfældig browsing, men giver normalt bedre beslutninger."],
+    qc: ["Produktvurdering", "QC-kontekst betyder noget", "Et nyttigt regneark hjælper med at vurdere almindelige problemer, før du bruger tid eller penge.", "Praktiske QC-noter dækker form, syninger, logo, tekstur, farve og gentagne fejl. Så bliver listen et vurderingsværktøj."],
+    purpose: ["Uafhængig redaktionel reference", "Hvad siden er til", "Denne uafhængige reference tilføjer struktur, kontekst og proceshjælp til læsere, der ønsker mere end links og mindre støj."],
+    faqs: [
+      { question: "Hvad er LoloBuy-regnearket?", answer: "En struktureret måde at gennemse fund, sammenligne kildelinks og organisere research før bestilling." },
+      { question: "Hvordan bruger jeg det?", answer: "Start med en kategori, vælg relevante fund, gennemgå QC og læs guiden til næste trin." },
+      { question: "Hvorfor tilføje guides?", answer: "Brugere har også brug for hjælp til QC, bestilling, fragt og næste beslutning." },
+      { question: "Erstatter siden det oprindelige ark?", answer: "Nej. Den supplerer med kontekst, struktur og redaktionel vejledning." },
+      { question: "Hvor ofte skal det opdateres?", answer: "Vigtige ændringer i kategorier og guides skal dateres, så aktuelt og revideret indhold er tydeligt." },
+    ],
+  },
+  no: {
+    intro: ["LoloBuy-regnearket forkorter veien fra funn til beslutning.", "En liste forklarer sjelden hvorfor en lenke er viktig, hva QC skal kontrollere eller hvilket trinn som følger.", "Nettstedet gjør regnearket nyttig med kategorier, prosessguider og tydelige oppdateringsnotater."],
+    category: ["I stedet for én lang liste får du klare veier. Kategorier gjør sammenligning enklere og viser gjentatte detaljer uten å miste kontekst.", "Delene omfatter sko, hettegensere, jakker, bukser, vesker, tilbehør og sesongvalg. Hver del støtter en mer effektiv vurdering.", "En kategoriside skal ikke bare samle lenker, men forklare hva du ser, vanlige problemer og hva som bør sjekkes."],
+    workflow: ["En gjentakbar researchprosess", "Slik bruker du LoloBuy-regnearket", "Regnearket er bare starten. Den virkelige verdien kommer fra en fast metode.", ["Åpne en kategori", "Velg noen funn", "Se på QC-konteksten", "Les riktig guide", "Vurder om neste trinn er verdt det"], "Metoden er tregere enn tilfeldig surfing, men gir vanligvis bedre beslutninger."],
+    qc: ["Produktvurdering", "QC-kontekst er viktig", "Et nyttig regneark hjelper med å vurdere vanlige problemer før du bruker tid eller penger.", "Praktiske QC-notater dekker form, sømmer, logo, tekstur, farge og gjentatte feil. Da blir listen et vurderingsverktøy."],
+    purpose: ["Uavhengig redaksjonell referanse", "Hva nettstedet er til for", "Denne uavhengige referansen tilfører struktur, kontekst og prosesshjelp for lesere som vil ha mer enn lenker og mindre støy."],
+    faqs: [
+      { question: "Hva er LoloBuy-regnearket?", answer: "En strukturert måte å bla gjennom funn, sammenligne kildelenker og organisere research før bestilling." },
+      { question: "Hvordan bruker jeg det?", answer: "Start med en kategori, velg relevante funn, gjennomgå QC og les guiden for neste trinn." },
+      { question: "Hvorfor legge til guider?", answer: "Brukere trenger også hjelp med QC, bestilling, frakt og neste beslutning." },
+      { question: "Erstatter siden originalarket?", answer: "Nei. Den supplerer med kontekst, struktur og redaksjonell veiledning." },
+      { question: "Hvor ofte bør det oppdateres?", answer: "Viktige endringer i kategorier og guider bør dateres, slik at aktuelt og revidert innhold er tydelig." },
+    ],
+  },
+  fi: {
+    intro: ["LoloBuy-taulukko lyhentää matkaa löydöstä päätökseen.", "Pelkkä lista kertoo harvoin, miksi linkki on tärkeä, mitä QC:ssä tarkistetaan tai mikä vaihe seuraa.", "Sivusto tekee taulukosta hyödyllisen kategorioilla, prosessioppailla ja selkeillä päivitysmerkinnöillä."],
+    category: ["Yhden pitkän listan sijaan sivusto tarjoaa selkeät polut. Kategoriat helpottavat vertailua ja näyttävät toistuvat yksityiskohdat ilman kontekstin katoamista.", "Osioita ovat kengät, hupparit, takit, housut, laukut, asusteet ja kausivalinnat. Jokainen auttaa arvioimaan tehokkaammin.", "Kategoriasivun tulee linkkien lisäksi selittää, mitä katsot, mitkä ongelmat ovat yleisiä ja mitä tarkistaa."],
+    workflow: ["Toistettava tutkimusprosessi", "Näin käytät LoloBuy-taulukkoa", "Taulukko on vasta alku. Todellinen arvo syntyy johdonmukaisesta menetelmästä.", ["Avaa kategoria", "Valitse muutama löytö", "Tarkista QC-konteksti", "Lue sopiva opas", "Päätä kannattaako jatkaa"], "Menetelmä on satunnaista selaamista hitaampi, mutta johtaa yleensä parempiin päätöksiin."],
+    qc: ["Tuotteen arviointi", "QC-kontekstilla on merkitystä", "Hyödyllinen taulukko auttaa arvioimaan tavalliset ongelmat ennen ajan tai rahan käyttöä.", "Käytännölliset QC-muistiinpanot koskevat muotoa, ompeleita, logoa, pintaa, väriä ja toistuvia vikoja. Näin listasta tulee arviointityökalu."],
+    purpose: ["Riippumaton toimituksellinen lähde", "Mihin sivusto on tarkoitettu", "Tämä riippumaton lähde lisää rakennetta, kontekstia ja prosessiohjeita lukijoille, jotka haluavat enemmän kuin linkkejä ja vähemmän hälyä."],
+    faqs: [
+      { question: "Mikä LoloBuy-taulukko on?", answer: "Jäsennelty tapa selata löytöjä, vertailla lähdelinkkejä ja järjestää tutkimus ennen tilausta." },
+      { question: "Miten sitä käytetään?", answer: "Aloita kategoriasta, valitse löydöt, tarkista QC-konteksti ja lue seuraavan vaiheen opas." },
+      { question: "Miksi oppaita tarvitaan?", answer: "Käyttäjät tarvitsevat apua myös QC:ssä, tilaamisessa, toimituksessa ja seuraavissa päätöksissä." },
+      { question: "Korvaako sivusto alkuperäisen taulukon?", answer: "Ei. Se täydentää sitä kontekstilla, rakenteella ja toimituksellisella ohjauksella." },
+      { question: "Kuinka usein sitä päivitetään?", answer: "Tärkeät kategoria- ja opasmuutokset tulee päivätä, jotta ajantasainen ja korjattu sisältö erottuu." },
+    ],
+  },
+  cs: {
+    intro: ["Přehled LoloBuy zkracuje cestu od objevu k rozhodnutí.", "Samotný seznam málokdy vysvětlí, proč je odkaz důležitý, co kontrolovat v QC nebo jaký krok následuje.", "Web mění přehled v užitečný zdroj pomocí kategorií, průvodců procesem a jasných poznámek k aktualizacím."],
+    category: ["Místo jednoho dlouhého seznamu nabízí web jasné cesty. Kategorie usnadňují porovnání a ukazují opakující se detaily bez ztráty kontextu.", "Sekce zahrnují boty, mikiny, bundy, kalhoty, tašky, doplňky a sezónní výběry. Každá pomáhá hodnotit efektivněji.", "Kategorie nemá jen shromažďovat odkazy, ale také vysvětlit, co vidíte, běžné problémy a co zkontrolovat."],
+    workflow: ["Opakovatelný proces průzkumu", "Jak používat přehled LoloBuy", "Přehled je jen začátek. Skutečná hodnota vzniká při stálém postupu.", ["Otevřete kategorii", "Vyberte několik položek", "Projděte kontext QC", "Přečtěte vhodný návod", "Rozhodněte, zda pokračovat"], "Je to pomalejší než náhodné procházení, ale obvykle vede k lepším rozhodnutím."],
+    qc: ["Hodnocení produktu", "Kontext QC je důležitý", "Užitečný přehled pomáhá vyhodnotit běžné problémy dříve, než investujete čas nebo peníze.", "Praktické poznámky QC zahrnují tvar, švy, logo, texturu, barvu a opakující se vady. Seznam se tak mění v nástroj hodnocení."],
+    purpose: ["Nezávislý redakční zdroj", "K čemu web slouží", "Tento nezávislý zdroj přidává strukturu, kontext a vedení procesem pro čtenáře, kteří chtějí víc než odkazy a méně šumu."],
+    faqs: [
+      { question: "Co je přehled LoloBuy?", answer: "Strukturovaný způsob procházení nálezů, porovnávání zdrojových odkazů a uspořádání průzkumu před objednávkou." },
+      { question: "Jak jej používat?", answer: "Začněte kategorií, vyberte položky, zkontrolujte QC a přečtěte průvodce pro další krok." },
+      { question: "Proč přidávat průvodce?", answer: "Uživatelé potřebují pomoc také s QC, objednávkou, dopravou a dalším rozhodnutím." },
+      { question: "Nahrazuje web původní přehled?", answer: "Ne. Doplňuje jej kontextem, strukturou a redakčním vedením." },
+      { question: "Jak často se má aktualizovat?", answer: "Důležité změny kategorií a průvodců mají být datované, aby bylo jasné, co je aktuální či upravené." },
+    ],
+  },
+  ro: {
+    intro: ["Tabelul LoloBuy scurtează drumul de la descoperire la decizie.", "O listă simplă explică rar de ce contează un link, ce trebuie verificat în QC sau care este pasul următor.", "Site-ul transformă tabelul într-o referință utilă prin categorii, ghiduri de proces și note clare de actualizare."],
+    category: ["În locul unei liste lungi, site-ul oferă trasee clare. Categoriile ușurează comparația și arată detaliile recurente fără pierderea contextului.", "Secțiunile includ pantofi, hanorace, jachete, pantaloni, genți, accesorii și selecții sezoniere. Fiecare ajută la o evaluare mai eficientă.", "O categorie trebuie să facă mai mult decât să adune linkuri: să explice ce vezi, problemele comune și ce trebuie verificat."],
+    workflow: ["Un proces de cercetare repetabil", "Cum folosești tabelul LoloBuy", "Tabelul este doar începutul. Valoarea reală apare printr-o metodă consecventă.", ["Deschide o categorie", "Selectează câteva produse", "Verifică contextul QC", "Citește ghidul potrivit", "Decide dacă merită să continui"], "Metoda este mai lentă decât navigarea aleatorie, dar duce de obicei la decizii mai bune."],
+    qc: ["Evaluarea produsului", "Contextul QC contează", "Un tabel util ajută la evaluarea problemelor obișnuite înainte de a investi timp sau bani.", "Notele QC practice acoperă forma, cusăturile, logo-ul, textura, culoarea și defectele recurente. Astfel lista devine un instrument de evaluare."],
+    purpose: ["Referință editorială independentă", "Pentru ce este acest site", "Această referință independentă adaugă structură, context și ghidare de proces pentru cititorii care vor mai mult decât linkuri și mai puțin zgomot."],
+    faqs: [
+      { question: "Ce este tabelul LoloBuy?", answer: "O metodă structurată de a vedea produse, compara linkuri sursă și organiza cercetarea înainte de comandă." },
+      { question: "Cum ar trebui folosit?", answer: "Începe cu o categorie, alege produsele, verifică QC și citește ghidul pentru pasul următor." },
+      { question: "De ce sunt necesare ghiduri?", answer: "Utilizatorii au nevoie și de ajutor cu QC, comenzile, transportul și deciziile următoare." },
+      { question: "Site-ul înlocuiește tabelul original?", answer: "Nu. Îl completează cu context, structură și orientare editorială." },
+      { question: "Cât de des trebuie actualizat?", answer: "Schimbările importante ale categoriilor și ghidurilor trebuie datate pentru a arăta ce este actual sau revizuit." },
+    ],
+  },
+  hu: {
+    intro: ["A LoloBuy táblázat lerövidíti az utat a felfedezéstől a döntésig.", "Egy lista ritkán magyarázza el, miért fontos egy link, mit kell nézni a QC-ben, vagy mi a következő lépés.", "Az oldal kategóriákkal, folyamatútmutatókkal és egyértelmű frissítési jegyzetekkel teszi használhatóvá a táblázatot."],
+    category: ["Egy hosszú lista helyett világos útvonalakat kapsz. A kategóriák megkönnyítik az összehasonlítást és megmutatják a visszatérő részleteket.", "A részek cipőket, pulóvereket, kabátokat, nadrágokat, táskákat, kiegészítőket és szezonális választásokat tartalmaznak. Mindegyik segíti az értékelést.", "Egy kategóriaoldal ne csak linkeket gyűjtsön: magyarázza el, mit látsz, mik a gyakori hibák és mit kell ellenőrizni."],
+    workflow: ["Ismételhető kutatási folyamat", "A LoloBuy táblázat használata", "A táblázat csak a kezdet. Az igazi érték a következetes módszerből származik.", ["Nyiss meg egy kategóriát", "Válassz néhány terméket", "Nézd át a QC-környezetet", "Olvasd el a megfelelő útmutatót", "Döntsd el, érdemes-e továbblépni"], "Ez lassabb a véletlenszerű böngészésnél, de általában jobb döntésekhez vezet."],
+    qc: ["Termékértékelés", "A QC-környezet számít", "Egy hasznos táblázat segít a gyakori problémák felmérésében, mielőtt időt vagy pénzt költenél.", "A gyakorlati QC-jegyzetek az alakot, varrást, logót, textúrát, színt és ismétlődő hibákat vizsgálják. Így a lista értékelési eszközzé válik."],
+    purpose: ["Független szerkesztői referencia", "Mire szolgál az oldal", "Ez a független forrás struktúrát, kontextust és folyamatsegítséget ad azoknak, akik linkeknél többet és kevesebb zajt szeretnének."],
+    faqs: [
+      { question: "Mi a LoloBuy táblázat?", answer: "Strukturált mód a termékek böngészésére, a forráslinkek összehasonlítására és a rendelés előtti kutatás rendezésére." },
+      { question: "Hogyan használjam?", answer: "Kezdj egy kategóriával, válassz termékeket, ellenőrizd a QC-t, majd olvasd el a következő lépés útmutatóját." },
+      { question: "Miért kellenek útmutatók?", answer: "A felhasználóknak a QC, rendelés, szállítás és következő döntések terén is segítség kell." },
+      { question: "Az oldal helyettesíti az eredeti táblázatot?", answer: "Nem. Kontextussal, struktúrával és szerkesztői iránymutatással egészíti ki." },
+      { question: "Milyen gyakran kell frissíteni?", answer: "A fontos kategória- és útmutatóváltozásokat dátummal kell jelölni, hogy látszódjon az aktuális és felülvizsgált tartalom." },
+    ],
+  },
+  el: {
+    intro: ["Ο πίνακας LoloBuy μειώνει την απόσταση από την ανακάλυψη ως την απόφαση.", "Μια λίστα σπάνια εξηγεί γιατί έχει σημασία ένας σύνδεσμος, τι ελέγχουμε στο QC ή ποιο βήμα ακολουθεί.", "Ο ιστότοπος κάνει τον πίνακα χρήσιμο με κατηγορίες, οδηγούς διαδικασίας και σαφείς σημειώσεις ενημέρωσης."],
+    category: ["Αντί για μία μεγάλη λίστα, υπάρχουν καθαρές διαδρομές. Οι κατηγορίες διευκολύνουν τις συγκρίσεις και δείχνουν επαναλαμβανόμενες λεπτομέρειες.", "Οι ενότητες περιλαμβάνουν παπούτσια, φούτερ, μπουφάν, παντελόνια, τσάντες, αξεσουάρ και εποχικές επιλογές. Κάθε μία βοηθά στην αξιολόγηση.", "Μια κατηγορία πρέπει να κάνει περισσότερα από το να συγκεντρώνει συνδέσμους: να εξηγεί τι βλέπετε, τα συχνά προβλήματα και τι να ελέγξετε."],
+    workflow: ["Επαναλήψιμη διαδικασία έρευνας", "Πώς χρησιμοποιείται ο πίνακας LoloBuy", "Ο πίνακας είναι μόνο η αρχή. Η πραγματική αξία προέρχεται από μια σταθερή μέθοδο.", ["Ανοίξτε μια κατηγορία", "Επιλέξτε λίγα προϊόντα", "Ελέγξτε το πλαίσιο QC", "Διαβάστε τον σωστό οδηγό", "Αποφασίστε αν αξίζει το επόμενο βήμα"], "Η μέθοδος είναι πιο αργή από την τυχαία περιήγηση, αλλά συνήθως οδηγεί σε καλύτερες αποφάσεις."],
+    qc: ["Αξιολόγηση προϊόντος", "Το πλαίσιο QC έχει σημασία", "Ένας χρήσιμος πίνακας βοηθά να αξιολογήσετε συχνά προβλήματα πριν διαθέσετε χρόνο ή χρήματα.", "Οι πρακτικές σημειώσεις QC καλύπτουν σχήμα, ραφές, λογότυπο, υφή, χρώμα και επαναλαμβανόμενα ελαττώματα. Έτσι η λίστα γίνεται εργαλείο αξιολόγησης."],
+    purpose: ["Ανεξάρτητη συντακτική αναφορά", "Σε τι χρησιμεύει ο ιστότοπος", "Αυτή η ανεξάρτητη αναφορά προσθέτει δομή, πλαίσιο και καθοδήγηση για αναγνώστες που θέλουν περισσότερα από συνδέσμους και λιγότερο θόρυβο."],
+    faqs: [
+      { question: "Τι είναι ο πίνακας LoloBuy;", answer: "Ένας δομημένος τρόπος περιήγησης προϊόντων, σύγκρισης πηγών και οργάνωσης έρευνας πριν την παραγγελία." },
+      { question: "Πώς τον χρησιμοποιώ;", answer: "Ξεκινήστε από κατηγορία, επιλέξτε προϊόντα, ελέγξτε το QC και διαβάστε τον οδηγό για το επόμενο βήμα." },
+      { question: "Γιατί χρειάζονται οδηγοί;", answer: "Οι χρήστες χρειάζονται βοήθεια και για QC, παραγγελία, αποστολή και επόμενες αποφάσεις." },
+      { question: "Αντικαθιστά τον αρχικό πίνακα;", answer: "Όχι. Τον συμπληρώνει με πλαίσιο, δομή και συντακτική καθοδήγηση." },
+      { question: "Πόσο συχνά ενημερώνεται;", answer: "Οι σημαντικές αλλαγές κατηγοριών και οδηγών πρέπει να χρονολογούνται, ώστε να φαίνεται τι είναι τρέχον ή αναθεωρημένο." },
+    ],
+  },
+  uk: {
+    intro: ["Таблиця LoloBuy скорочує шлях від знахідки до рішення.", "Сам список рідко пояснює, чому посилання важливе, що перевірити в QC або який крок наступний.", "Сайт робить таблицю корисною завдяки категоріям, посібникам процесу та чітким нотаткам про оновлення."],
+    category: ["Замість одного довгого списку сайт пропонує зрозумілі шляхи. Категорії спрощують порівняння та показують повторювані деталі.", "Розділи охоплюють взуття, худі, куртки, штани, сумки, аксесуари й сезонні добірки. Кожен допомагає оцінювати ефективніше.", "Категорія має не лише збирати посилання, а й пояснювати, що ви бачите, типові проблеми та що слід перевірити."],
+    workflow: ["Повторюваний процес дослідження", "Як користуватися таблицею LoloBuy", "Таблиця — лише початок. Справжня цінність з’являється завдяки сталому методу.", ["Відкрийте категорію", "Оберіть кілька товарів", "Перевірте контекст QC", "Прочитайте відповідний посібник", "Вирішіть, чи варто переходити далі"], "Метод повільніший за випадковий перегляд, але зазвичай дає кращі рішення."],
+    qc: ["Оцінка товару", "Контекст QC має значення", "Корисна таблиця допомагає оцінити типові проблеми до витрати часу чи грошей.", "Практичні нотатки QC охоплюють форму, шви, логотип, текстуру, колір і повторювані дефекти. Так список стає інструментом оцінки."],
+    purpose: ["Незалежне редакційне джерело", "Для чого цей сайт", "Це незалежне джерело додає структуру, контекст і пояснення процесу для читачів, яким потрібно більше за посилання й менше шуму."],
+    faqs: [
+      { question: "Що таке таблиця LoloBuy?", answer: "Структурований спосіб переглядати товари, порівнювати джерела й організовувати дослідження до замовлення." },
+      { question: "Як нею користуватися?", answer: "Почніть із категорії, оберіть товари, перевірте QC і прочитайте посібник для наступного кроку." },
+      { question: "Навіщо додавати посібники?", answer: "Користувачам потрібна допомога також із QC, замовленням, доставкою та наступними рішеннями." },
+      { question: "Сайт замінює оригінальну таблицю?", answer: "Ні. Він доповнює її контекстом, структурою та редакційними порадами." },
+      { question: "Як часто її оновлювати?", answer: "Важливі зміни категорій і посібників слід датувати, щоб було видно актуальний і переглянутий вміст." },
+    ],
+  },
+  tr: {
+    intro: ["LoloBuy tablosu keşiften karara giden yolu kısaltır.", "Tek başına bir liste, bağlantının neden önemli olduğunu, QC’de neye bakılacağını veya sonraki adımı nadiren açıklar.", "Site tabloyu kategoriler, süreç rehberleri ve açık güncelleme notlarıyla kullanışlı bir kaynağa dönüştürür."],
+    category: ["Tek uzun liste yerine açık yollar sunulur. Kategoriler karşılaştırmayı kolaylaştırır ve bağlamı kaybetmeden tekrar eden ayrıntıları gösterir.", "Bölümler ayakkabı, kapüşonlu üst, ceket, pantolon, çanta, aksesuar ve sezonluk seçimleri kapsar. Her biri daha verimli değerlendirmeye yardımcı olur.", "Kategori sayfası yalnızca bağlantı toplamaz; neye baktığınızı, yaygın sorunları ve kontrol edilecek noktaları açıklar."],
+    workflow: ["Tekrarlanabilir araştırma süreci", "LoloBuy tablosu nasıl kullanılır", "Tablo yalnızca başlangıçtır. Gerçek değer tutarlı bir yöntemden gelir.", ["Bir kategori açın", "Birkaç ürün seçin", "QC bağlamını inceleyin", "İlgili rehberi okuyun", "Sonraki adımın değip değmediğine karar verin"], "Bu yöntem rastgele gezinmekten yavaştır, ancak genellikle daha iyi kararlar sağlar."],
+    qc: ["Ürün değerlendirmesi", "QC bağlamı önemlidir", "Kullanışlı bir tablo zaman veya para harcamadan önce yaygın sorunları değerlendirmeye yardım eder.", "Pratik QC notları biçim, dikiş, logo, doku, renk ve tekrarlayan kusurları ele alır. Böylece liste değerlendirme aracına dönüşür."],
+    purpose: ["Bağımsız editoryal kaynak", "Bu site ne için var", "Bu bağımsız kaynak, bağlantılardan fazlasını ve daha az gürültü isteyen okuyuculara yapı, bağlam ve süreç rehberliği sunar."],
+    faqs: [
+      { question: "LoloBuy tablosu nedir?", answer: "Ürünleri gezmek, kaynak bağlantılarını karşılaştırmak ve sipariş öncesi araştırmayı düzenlemek için yapılandırılmış bir yöntemdir." },
+      { question: "Nasıl kullanmalıyım?", answer: "Bir kategoriyle başlayın, ürünleri seçin, QC’yi inceleyin ve sonraki adımın rehberini okuyun." },
+      { question: "Neden rehber ekleniyor?", answer: "Kullanıcıların QC, sipariş, kargo ve sonraki kararlar için de yardıma ihtiyacı vardır." },
+      { question: "Site özgün tablonun yerini alır mı?", answer: "Hayır. Bağlam, yapı ve editoryal rehberlikle onu tamamlar." },
+      { question: "Ne sıklıkta güncellenmeli?", answer: "Önemli kategori ve rehber değişiklikleri, güncel ve revize içeriği göstermek için tarihlenmelidir." },
+    ],
+  },
+  ru: {
+    intro: ["Таблица LoloBuy сокращает путь от находки до решения.", "Один список редко объясняет, почему ссылка важна, что проверять в QC и какой шаг следующий.", "Сайт превращает таблицу в полезный источник с категориями, руководствами по процессу и понятными заметками об обновлениях."],
+    category: ["Вместо одного длинного списка сайт предлагает ясные пути. Категории упрощают сравнение и показывают повторяющиеся детали без потери контекста.", "Разделы охватывают обувь, худи, куртки, брюки, сумки, аксессуары и сезонные подборки. Каждый помогает оценивать эффективнее.", "Категория должна не только собирать ссылки, но и объяснять, что вы видите, типичные проблемы и что следует проверить."],
+    workflow: ["Повторяемый процесс исследования", "Как пользоваться таблицей LoloBuy", "Таблица — только начало. Настоящая ценность появляется благодаря последовательному методу.", ["Откройте категорию", "Выберите несколько товаров", "Проверьте контекст QC", "Прочитайте нужное руководство", "Решите, стоит ли переходить дальше"], "Метод медленнее случайного просмотра, но обычно приводит к лучшим решениям."],
+    qc: ["Оценка товара", "Контекст QC важен", "Полезная таблица помогает оценить типичные проблемы до траты времени или денег.", "Практичные заметки QC охватывают форму, швы, логотип, текстуру, цвет и повторяющиеся дефекты. Так список становится инструментом оценки."],
+    purpose: ["Независимый редакционный источник", "Для чего нужен сайт", "Этот независимый ресурс добавляет структуру, контекст и помощь по процессу для читателей, которым нужно больше ссылок и меньше шума."],
+    faqs: [
+      { question: "Что такое таблица LoloBuy?", answer: "Структурированный способ просматривать товары, сравнивать исходные ссылки и организовывать исследование до заказа." },
+      { question: "Как ею пользоваться?", answer: "Начните с категории, выберите товары, изучите QC и прочитайте руководство для следующего шага." },
+      { question: "Зачем нужны руководства?", answer: "Пользователям также нужна помощь с QC, заказом, доставкой и следующими решениями." },
+      { question: "Сайт заменяет исходную таблицу?", answer: "Нет. Он дополняет её контекстом, структурой и редакционными рекомендациями." },
+      { question: "Как часто её обновлять?", answer: "Важные изменения категорий и руководств следует датировать, чтобы было видно актуальное и пересмотренное содержание." },
+    ],
+  },
+  bg: {
+    intro: ["Таблицата LoloBuy съкращава пътя от откриването до решението.", "Един списък рядко обяснява защо дадена връзка е важна, какво да се провери в QC или коя е следващата стъпка.", "Сайтът превръща таблицата в полезен източник с категории, ръководства за процеса и ясни бележки за актуализации."],
+    category: ["Вместо един дълъг списък сайтът предлага ясни пътища. Категориите улесняват сравнението и показват повтарящи се детайли.", "Разделите включват обувки, суитшърти, якета, панталони, чанти, аксесоари и сезонни избори. Всеки помага за по-ефективна оценка.", "Категорията трябва не само да събира връзки, а да обяснява какво виждате, честите проблеми и какво да проверите."],
+    workflow: ["Повтаряем процес на проучване", "Как се използва таблицата LoloBuy", "Таблицата е само началото. Истинската стойност идва от последователен метод.", ["Отворете категория", "Изберете няколко продукта", "Прегледайте QC контекста", "Прочетете подходящото ръководство", "Решете дали следващата стъпка си струва"], "Методът е по-бавен от случайното разглеждане, но обикновено води до по-добри решения."],
+    qc: ["Оценка на продукта", "QC контекстът е важен", "Полезната таблица помага да оцените чести проблеми, преди да вложите време или пари.", "Практичните QC бележки обхващат форма, шевове, лого, текстура, цвят и повтарящи се дефекти. Така списъкът става инструмент за оценка."],
+    purpose: ["Независим редакционен източник", "За какво е този сайт", "Този независим източник добавя структура, контекст и помощ за процеса за читатели, които искат повече от връзки и по-малко шум."],
+    faqs: [
+      { question: "Какво е таблицата LoloBuy?", answer: "Структуриран начин за разглеждане на продукти, сравняване на източници и организиране на проучване преди поръчка." },
+      { question: "Как да я използвам?", answer: "Започнете с категория, изберете продукти, проверете QC и прочетете ръководството за следващата стъпка." },
+      { question: "Защо са нужни ръководства?", answer: "Потребителите се нуждаят от помощ и за QC, поръчки, доставка и следващи решения." },
+      { question: "Сайтът заменя ли оригиналната таблица?", answer: "Не. Той я допълва с контекст, структура и редакционни насоки." },
+      { question: "Колко често да се актуализира?", answer: "Важните промени по категории и ръководства трябва да имат дата, за да се вижда кое е актуално или преработено." },
+    ],
+  },
+  ja: {
+    intro: ["LoloBuy商品表は、商品を見つけてから判断するまでの距離を短くします。", "リンク一覧だけでは、そのリンクが重要な理由、QCで確認する点、次の手順までは分かりません。", "このサイトは、カテゴリー、手順ガイド、更新履歴を使って商品表を実用的な資料に整理しています。"],
+    category: ["一つの長い一覧ではなく、分かりやすい閲覧経路を用意しています。カテゴリーごとに比較し、繰り返し現れる特徴を確認できます。", "靴、パーカー、ジャケット、パンツ、バッグ、アクセサリー、季節商品などを扱います。各項目で効率よく評価できます。", "カテゴリーはリンクを集めるだけでなく、何を見ているか、よくある問題、次へ進む前の確認点を説明します。"],
+    workflow: ["繰り返し使える調査手順", "LoloBuy商品表の使い方", "商品表は出発点です。一貫した手順で使うことで本当の価値が生まれます。", ["カテゴリーを開く", "候補を少数に絞る", "QC情報を確認する", "関連ガイドを読む", "次の手順へ進む価値を判断する"], "無作為な閲覧より時間はかかりますが、通常はより良い判断につながります。"],
+    qc: ["商品評価", "QC情報が重要です", "実用的な商品表は、時間や費用を使う前に一般的な問題を評価できるようにします。", "QCでは形、縫製、ロゴ位置、素材感、色、繰り返し見られる欠点を確認します。これにより一覧が評価ツールになります。"],
+    purpose: ["独立した編集資料", "このサイトの目的", "この独立資料は、リンク一覧以上の情報を求める読者に、構造、背景、手順の案内を提供します。"],
+    faqs: [
+      { question: "LoloBuy商品表とは何ですか？", answer: "商品を閲覧し、元リンクを比較し、注文前の調査を整理するための構造化された方法です。" },
+      { question: "どのように使いますか？", answer: "カテゴリーから始め、候補を絞り、QC情報を確認して、次の手順に合うガイドを読みます。" },
+      { question: "なぜガイドが必要ですか？", answer: "QC、注文、配送、次の判断についても案内が必要だからです。" },
+      { question: "元の商品表を置き換えますか？", answer: "いいえ。背景、構造、編集上の案内を加える補助資料です。" },
+      { question: "どのくらいの頻度で更新しますか？", answer: "重要なカテゴリーやガイドの変更には日付を付け、最新または改訂済みであることを示します。" },
+    ],
+  },
+  ko: {
+    intro: ["LoloBuy 상품표는 상품 발견부터 판단까지의 거리를 줄여 줍니다.", "링크 목록만으로는 링크가 중요한 이유, QC 확인 사항, 다음 단계를 알기 어렵습니다.", "이 사이트는 카테고리, 과정 가이드, 업데이트 기록을 통해 상품표를 실용적인 자료로 정리합니다."],
+    category: ["하나의 긴 목록 대신 명확한 탐색 경로를 제공합니다. 카테고리별로 비교하고 반복되는 특징을 파악할 수 있습니다.", "신발, 후드, 재킷, 바지, 가방, 액세서리와 계절 상품을 다룹니다. 각 영역은 더 효율적인 평가를 돕습니다.", "카테고리는 링크만 모으지 않고 무엇을 보는지, 흔한 문제와 다음 단계 전 확인 사항을 설명해야 합니다."],
+    workflow: ["반복 가능한 조사 과정", "LoloBuy 상품표 사용 방법", "상품표는 시작점일 뿐입니다. 일정한 과정을 적용할 때 실제 가치가 생깁니다.", ["카테고리 열기", "후보 상품 추리기", "QC 정보 확인하기", "관련 가이드 읽기", "다음 단계로 갈 가치 판단하기"], "무작위 탐색보다 느리지만 보통 더 나은 결정으로 이어집니다."],
+    qc: ["상품 평가", "QC 정보가 중요합니다", "유용한 상품표는 시간이나 비용을 쓰기 전에 일반적인 문제를 평가하도록 도와야 합니다.", "실용적인 QC 메모는 형태, 봉제, 로고 위치, 재질감, 색상과 반복 결함을 다룹니다. 이를 통해 목록이 평가 도구가 됩니다."],
+    purpose: ["독립 편집 자료", "이 사이트의 목적", "이 독립 자료는 단순 링크보다 더 많은 정보를 원하는 독자에게 구조, 배경과 과정 안내를 제공합니다."],
+    faqs: [
+      { question: "LoloBuy 상품표란 무엇인가요?", answer: "상품을 탐색하고 원본 링크를 비교하며 주문 전 조사를 정리하는 구조화된 방식입니다." },
+      { question: "어떻게 사용하나요?", answer: "카테고리에서 시작해 후보를 고르고 QC를 확인한 다음 다음 단계에 맞는 가이드를 읽습니다." },
+      { question: "왜 가이드가 필요한가요?", answer: "QC, 주문, 배송과 다음 결정에도 도움이 필요하기 때문입니다." },
+      { question: "원본 상품표를 대체하나요?", answer: "아니요. 배경, 구조와 편집 안내를 더하는 보조 자료입니다." },
+      { question: "얼마나 자주 업데이트하나요?", answer: "중요한 카테고리와 가이드 변경에는 날짜를 표시해 최신 또는 수정 여부를 보여야 합니다." },
+    ],
+  },
+  ar: {
+    intro: ["يختصر جدول LoloBuy المسافة بين اكتشاف المنتج واتخاذ القرار.", "القائمة وحدها لا تشرح عادةً سبب أهمية الرابط أو ما يجب فحصه في QC أو الخطوة التالية.", "ينظم الموقع الجدول كمرجع عملي عبر الفئات وأدلة العملية وملاحظات التحديث الواضحة."],
+    category: ["بدلاً من قائمة طويلة، يقدم الموقع مسارات واضحة. تسهّل الفئات المقارنة وتظهر التفاصيل المتكررة دون فقدان السياق.", "تشمل الأقسام الأحذية والسترات والجاكيتات والسراويل والحقائب والإكسسوارات والاختيارات الموسمية. يساعد كل قسم على تقييم أكثر كفاءة.", "يجب ألا تجمع صفحة الفئة الروابط فقط، بل تشرح ما تراه والمشكلات الشائعة وما يجب فحصه قبل المتابعة."],
+    workflow: ["عملية بحث قابلة للتكرار", "كيفية استخدام جدول LoloBuy", "الجدول مجرد بداية. تظهر قيمته الحقيقية عند استخدامه بطريقة ثابتة.", ["افتح فئة", "اختر عدداً قليلاً من المنتجات", "راجع سياق QC", "اقرأ الدليل المناسب", "قرر ما إذا كانت الخطوة التالية تستحق"], "هذه الطريقة أبطأ من التصفح العشوائي، لكنها تؤدي غالباً إلى قرارات أفضل."],
+    qc: ["تقييم المنتج", "سياق QC مهم", "يساعد الجدول المفيد على تقييم المشكلات الشائعة قبل إنفاق الوقت أو المال.", "تغطي ملاحظات QC العملية الشكل والخياطة وموضع الشعار والملمس واللون والعيوب المتكررة. بذلك تصبح القائمة أداة للتقييم."],
+    purpose: ["مرجع تحريري مستقل", "الغرض من هذا الموقع", "يضيف هذا المرجع المستقل البنية والسياق وإرشاد العملية للقراء الذين يريدون أكثر من روابط وأقل من الضوضاء."],
+    faqs: [
+      { question: "ما هو جدول LoloBuy؟", answer: "طريقة منظمة لتصفح المنتجات ومقارنة روابط المصادر وترتيب البحث قبل الطلب." },
+      { question: "كيف أستخدمه؟", answer: "ابدأ بفئة، اختر المنتجات، راجع QC ثم اقرأ الدليل المتعلق بالخطوة التالية." },
+      { question: "لماذا نضيف الأدلة؟", answer: "لأن المستخدم يحتاج أيضاً إلى مساعدة في QC والطلب والشحن والقرارات التالية." },
+      { question: "هل يستبدل الموقع الجدول الأصلي؟", answer: "لا. إنه مرجع مكمل يضيف السياق والبنية والإرشاد التحريري." },
+      { question: "كم مرة يجب تحديثه؟", answer: "يجب تأريخ تغييرات الفئات والأدلة المهمة لإظهار المحتوى الحالي أو المنقح." },
+    ],
+  },
+};
+
+export function getHomeSeoCopy(locale = "en"): HomeSeoCopy {
+  return locale === "en" ? en : copies[locale] || en;
+}
+
+export const fullyTranslatedHomeLocales = [
+  "en", "es", "de", "fr", "it", "pt", "nl", "pl", "sv", "da", "no", "fi",
+  "cs", "ro", "hu", "el", "uk", "tr", "ru", "bg", "ja", "ko", "ar", "zh",
+] as const;

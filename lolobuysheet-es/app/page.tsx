@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { getFaqItems, getUiCopy } from "./i18n";
+import { getUiCopy } from "./i18n";
 import {
   latestCarouselFallback,
   mainCategories,
@@ -10,6 +10,9 @@ import {
 } from "./product-data";
 import { officialUpdates } from "./update-data";
 import { faqStructuredData, StructuredData } from "./structured-data";
+import { getHomeSeoCopy } from "./home-seo-copy";
+import { getCompactPageCompletion } from "./home-page-compact-copy";
+import { getHomeContentCopy } from "./home-content-copy";
 
 const languages = [
   ["EN", "English"], ["ES", "Español"], ["DE", "Deutsch"], ["FR", "Français"],
@@ -61,29 +64,6 @@ const englishCopy: PageCopy = {
   faq: ["LoloBuy spreadsheet FAQ", "Questions about the LoloBuy spreadsheet", "Five concise answers about using this site as a structured companion reference."],
   closing: ["Ready to explore?", "Use research here.", "Search wider on the main database.", "Browse LoloBuy finds", "Open findspreadsheet.com"],
 };
-
-const englishHomeFaqs = [
-  {
-    question: "What is the LoloBuy spreadsheet?",
-    answer: "The LoloBuy spreadsheet is a structured way to browse finds, compare source links, and organize product research before ordering.",
-  },
-  {
-    question: "How should I use the LoloBuy spreadsheet?",
-    answer: "Start with a category page, shortlist relevant finds, review QC context, and then read the guide that matches the next step in your process.",
-  },
-  {
-    question: "Why add guides to a spreadsheet site?",
-    answer: "Because most users are not only looking for links. They also need help with QC, ordering, shipping, and deciding what to do next.",
-  },
-  {
-    question: "Does this site replace the original spreadsheet?",
-    answer: "No. It is better framed as a companion reference that adds context, structure, and editorial guidance around the LoloBuy spreadsheet.",
-  },
-  {
-    question: "How often should the LoloBuy spreadsheet be updated?",
-    answer: "Important category and guide changes should be dated clearly so readers can see what is current and what has been revised.",
-  },
-] as const;
 
 const localizedCopy: Record<string, Partial<PageCopy>> = {
   es: {
@@ -187,10 +167,31 @@ const guides = [
   ["04", "Returns, refunds & after-sales", "What to document, when to act and what can change by seller or order status.", "5 min"],
 ];
 
+const englishChrome = {
+  latest: "Main-site latest + popular · auto-updated",
+  converted: "converted reference",
+  mainSite: "Main site",
+  empty: "No sample listings match that search yet.",
+  previous: "Show previous products",
+  next: "Show next products",
+  showcase: "Auto-rotating product showcase",
+  readUpdate: "Read complete update",
+  allUpdates: "View all dated updates",
+  trust: "Trust",
+  footer: ["About", "Methodology", "Contact", "Privacy", "Disclosure"] as [string, string, string, string, string],
+};
+
 export function Home({ locale = "en" }: { locale?: string }) {
   const normalizedLocale = locale.toLowerCase();
   const isEnglish = normalizedLocale === "en";
-  const copy: PageCopy = { ...englishCopy, ...(localizedCopy[normalizedLocale] || {}) };
+  const copy: PageCopy = {
+    ...englishCopy,
+    ...(localizedCopy[normalizedLocale] || {}),
+    ...(getCompactPageCompletion(normalizedLocale) || {}),
+  };
+  const seoCopy = getHomeSeoCopy(normalizedLocale);
+  const contentCopy = getHomeContentCopy(normalizedLocale);
+  const chrome = contentCopy?.chrome || englishChrome;
   const ui = getUiCopy(normalizedLocale);
   const activeLanguage = languages.find(([code]) => code.toLowerCase() === normalizedLocale) || languages[0];
   const localeRoot = normalizedLocale === "en" ? "/" : `/${normalizedLocale}/`;
@@ -205,9 +206,35 @@ export function Home({ locale = "en" }: { locale?: string }) {
   const productCarousel = useRef<HTMLDivElement>(null);
   const faqList = useRef<HTMLDivElement>(null);
   const mainSearchAction = "https://findspreadsheet.com/search.html";
-  const homepageFaqItems = isEnglish ? englishHomeFaqs : getFaqItems(normalizedLocale).slice(0, 5);
+  const homepageFaqItems = seoCopy.faqs;
 
   const visibleProducts = carouselProducts;
+  const categoryCards = mainCategories.map((category, index) => ({
+    ...category,
+    displayName: contentCopy?.categories[index]?.[0] || category.name,
+    displayNote: contentCopy?.categories[index]?.[1] || category.note,
+  }));
+  const guideCards = guides.map(([number, title, description, time], index) => {
+    const translated = contentCopy?.guides[index];
+    return [number, translated?.[0] || title, translated?.[1] || description, translated?.[2] || time] as const;
+  });
+  const updateCards = officialUpdates.slice(0, 3).map((update, index) => {
+    const translated = contentCopy?.updates[index];
+    return {
+      ...update,
+      category: translated?.[0] || update.category,
+      title: translated?.[1] || update.title,
+      summary: translated?.[2] || update.summary,
+    };
+  });
+  const localizedCategoryName = (category: string) =>
+    categoryCards.find((item) => item.name === category)?.displayName || category;
+  const formatUpdateDate = (date: string) => new Intl.DateTimeFormat(normalizedLocale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(`${date} 00:00:00 UTC`));
 
   const carouselCategories = useMemo(
     () => ["All", ...Array.from(new Set(carouselProducts.map((product) => product.category)))],
@@ -435,7 +462,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
             {panelProducts.map((product) => (
               <a className="mini-item" href={pageHref(`products/${product.slug}`)} key={product.name}>
                 <span className="product-art"><img src={product.image} alt="" /></span>
-                <span><b>{product.name}</b><small>{product.category} · {product.checked}</small></span>
+                <span><b>{product.name}</b><small>{localizedCategoryName(product.category)} · {copy.panel[2]}</small></span>
                 <strong>{product.usdPrice}</strong>
               </a>
             ))}
@@ -449,37 +476,33 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div>{copy.trust.slice(1).map((item) => <span key={item}>{item}</span>)}</div>
       </section>
 
-      {isEnglish && (
-        <section className="seo-intro" aria-labelledby="seo-intro-title">
-          <h2 id="seo-intro-title">The LoloBuy spreadsheet is useful because it shortens the distance between discovery and decision.</h2>
-          <div>
-            <p>But lists alone rarely explain why a link matters, what to check in QC, or which step comes next.</p>
-            <p>This site organizes the LoloBuy spreadsheet into a more usable reference: category pages for browsing, guides for process questions, and update notes that make changes easier to follow.</p>
-          </div>
-        </section>
-      )}
+      <section className="seo-intro" aria-labelledby="seo-intro-title">
+        <h2 id="seo-intro-title">{seoCopy.intro[0]}</h2>
+        <div>
+          <p>{seoCopy.intro[1]}</p>
+          <p>{seoCopy.intro[2]}</p>
+        </div>
+      </section>
 
       <section className="section" id="categories">
         <div className="section-heading">
           <div>
             <p className="kicker">{copy.categories[0]}</p>
             <h2>{copy.categories[1]}</h2>
-            {isEnglish && (
-              <p className="section-dek">Instead of treating the spreadsheet as a single list, this site breaks it into clearer paths. Category pages make it easier to compare similar finds, notice recurring details, and move faster without losing context.<br /><br />Popular sections can include shoes, hoodies, jackets, pants, bags, accessories, and seasonal picks. Each one should help users scan more efficiently and evaluate items with fewer blind spots.</p>
-            )}
+            <p className="section-dek">{seoCopy.category[0]}<br /><br />{seoCopy.category[1]}</p>
           </div>
           <a href={pageHref("categories")}>{copy.categories[2]} <span>→</span></a>
         </div>
         <div className="category-grid">
-          {mainCategories.map((category) => (
+          {categoryCards.map((category) => (
             <a href={category.href} target="_blank" rel="noreferrer" key={category.name}>
               <span className="category-icon">{category.icon}</span>
-              <span><b>{category.name}</b><small>{category.note}</small></span>
+              <span><b>{category.displayName}</b><small>{category.displayNote}</small></span>
               <i>↗</i>
             </a>
           ))}
         </div>
-        {isEnglish && <p className="category-context">Each category page should do more than collect links. It should help users understand what they are looking at, what usually goes wrong, and what to check before moving forward.</p>}
+        <p className="category-context">{seoCopy.category[2]}</p>
       </section>
 
       <section className="sheet-section" id="spreadsheet">
@@ -487,23 +510,19 @@ export function Home({ locale = "en" }: { locale?: string }) {
           <div><p className="kicker">{copy.sheet[0]}</p><h2>{copy.sheet[1]}</h2></div>
           <p className="section-note">{copy.sheet[2]}</p>
         </div>
-        {isEnglish && (
-          <div className="workflow-panel">
-            <div>
-              <p className="kicker">A repeatable research process</p>
-              <h3>How to use the LoloBuy spreadsheet</h3>
-              <p>For most users, the spreadsheet is only the starting point. The real value comes from using it with a repeatable process.</p>
-            </div>
-            <ol>
-              <li><span>01</span>Browse a category</li>
-              <li><span>02</span>Shortlist a few finds</li>
-              <li><span>03</span>Review QC context</li>
-              <li><span>04</span>Check the relevant guide</li>
-              <li><span>05</span>Decide whether the item is worth carrying into the next step</li>
-            </ol>
-            <p>That approach is slower than random browsing, but it usually leads to better decisions.</p>
+        <div className="workflow-panel">
+          <div>
+            <p className="kicker">{seoCopy.workflow[0]}</p>
+            <h3>{seoCopy.workflow[1]}</h3>
+            <p>{seoCopy.workflow[2]}</p>
           </div>
-        )}
+          <ol>
+            {seoCopy.workflow[3].map((step, index) => (
+              <li key={step}><span>{String(index + 1).padStart(2, "0")}</span>{step}</li>
+            ))}
+          </ol>
+          <p>{seoCopy.workflow[4]}</p>
+        </div>
         <div className="sheet-toolbar">
           <div className="filter-row">
             {carouselCategories.map((category, index) => (
@@ -512,10 +531,10 @@ export function Home({ locale = "en" }: { locale?: string }) {
                 href={categoryHref(category)}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`Open ${category} products on findspreadsheet.com`}
+                aria-label={`${ui.mainDatabase}: ${localizedCategoryName(category)}`}
                 key={category}
               >
-                {index === 0 ? copy.sheet[4] : category}
+                {index === 0 ? copy.sheet[4] : localizedCategoryName(category)}
               </a>
             ))}
           </div>
@@ -523,19 +542,19 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div className="carousel-heading">
           <p>
             <span className="carousel-live-dot" />
-            Main-site latest + popular · auto-updated
+            {chrome.latest}
             {carouselSyncedAt ? ` · ${new Date(carouselSyncedAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}` : ""}
           </p>
           <div>
-            <button type="button" onClick={() => moveCarousel(-1)} aria-label="Show previous products">←</button>
-            <button type="button" onClick={() => moveCarousel(1)} aria-label="Show next products">→</button>
+            <button type="button" onClick={() => moveCarousel(-1)} aria-label={chrome.previous}>←</button>
+            <button type="button" onClick={() => moveCarousel(1)} aria-label={chrome.next}>→</button>
           </div>
         </div>
         <div
           className="product-carousel"
           ref={productCarousel}
           role="region"
-          aria-label="Auto-rotating product showcase"
+          aria-label={chrome.showcase}
           onMouseEnter={() => setCarouselPaused(true)}
           onMouseLeave={() => setCarouselPaused(false)}
           onFocusCapture={() => setCarouselPaused(true)}
@@ -550,22 +569,22 @@ export function Home({ locale = "en" }: { locale?: string }) {
                     <a className="product-visual" href={pageHref(`products/${product.slug}`)}>
                       <img
                         src={product.image}
-                        alt={`Main product image for ${product.name} from findspreadsheet.com`}
+                        alt={`${product.name} · ${localizedCategoryName(product.category)}`}
                         loading="lazy"
                         decoding="async"
                       />
-                      <span>{product.category}</span>
+                      <span>{localizedCategoryName(product.category)}</span>
                     </a>
-                    <div className="product-meta"><small>{product.category}</small><span className="checked">↻ {product.checked}</span></div>
+                    <div className="product-meta"><small>{localizedCategoryName(product.category)}</small><span className="checked">↻ {copy.panel[2]}</span></div>
                     <h3><a href={pageHref(`products/${product.slug}`)}>{product.name}</a></h3>
-                    <p className="product-price-note">¥{product.sourcePriceCny.toFixed(product.sourcePriceCny % 1 ? 1 : 0)} · converted reference</p>
-                    <div className="product-foot"><b>{product.usdPrice}</b><a href={product.sourceUrl} target="_blank" rel="noreferrer" aria-label={`Open ${product.name} on findspreadsheet.com`}>Main site <span>↗</span></a></div>
+                    <p className="product-price-note">¥{product.sourcePriceCny.toFixed(product.sourcePriceCny % 1 ? 1 : 0)} · {chrome.converted}</p>
+                    <div className="product-foot"><b>{product.usdPrice}</b><a href={product.sourceUrl} target="_blank" rel="noreferrer" aria-label={`${chrome.mainSite}: ${product.name}`}>{chrome.mainSite} <span>↗</span></a></div>
                   </article>
                 ))}
             </div>
           </div>
         </div>
-        {!visibleProducts.length && <p className="empty-state">No sample listings match that search yet.</p>}
+        {!visibleProducts.length && <p className="empty-state">{chrome.empty}</p>}
       </section>
 
       <section className="section guide-section" id="guides">
@@ -576,17 +595,15 @@ export function Home({ locale = "en" }: { locale?: string }) {
           <a className="button dark" href={pageHref("faq")}>{copy.education[3]} <span>→</span></a>
         </div>
         <div className="guide-list">
-          {isEnglish && (
-            <article className="qc-context">
-              <p className="kicker">Product evaluation</p>
-              <h3>QC context matters</h3>
-              <p>A useful LoloBuy spreadsheet should not stop at product discovery. It should help users evaluate common issues before they commit time or money.</p>
-              <p>QC notes are most useful when they stay practical: shape, stitching, logo placement, material texture, color balance, and the flaws that repeatedly show up in the same type of item. That is the difference between a spreadsheet that only lists products and one that helps users judge them.</p>
-            </article>
-          )}
-          {guides.map(([number, title, description, time], index) => (
+          <article className="qc-context">
+            <p className="kicker">{seoCopy.qc[0]}</p>
+            <h3>{seoCopy.qc[1]}</h3>
+            <p>{seoCopy.qc[2]}</p>
+            <p>{seoCopy.qc[3]}</p>
+          </article>
+          {guideCards.map(([number, title, description, time], index) => (
             <a href={pageHref(`seo-articles/${["how-lolobuy-works", "lolobuy-qc-photos-guide", "lolobuy-shipping-cost-guide", "lolobuy-returns-refunds"][index]}`)} className="guide-item" id={`guide-${number}`} key={number}>
-              <span>{number}</span><div><h3>{title}</h3><p>{description}</p><small>{time} read</small></div><i>↗</i>
+              <span>{number}</span><div><h3>{title}</h3><p>{description}</p><small>{time}</small></div><i>↗</i>
             </a>
           ))}
         </div>
@@ -600,25 +617,23 @@ export function Home({ locale = "en" }: { locale?: string }) {
           <div className="source-rule"><span>✓</span><div><b>{ui.sourcePolicy}</b><p>{ui.sourceNote}</p></div></div>
         </div>
         <div className="timeline">
-          {officialUpdates.slice(0, 3).map((update) => (
+          {updateCards.map((update) => (
             <article key={update.slug}>
-              <small>{update.category.toUpperCase()} · {update.date.toUpperCase()}</small>
+              <small>{update.category.toUpperCase()} · {formatUpdateDate(update.date)}</small>
               <h3>{update.title}</h3>
               <p>{update.summary}</p>
-              <a href={pageHref(`updates/${update.slug}`)}>Read complete update →</a>
+              <a href={pageHref(`updates/${update.slug}`)}>{chrome.readUpdate} →</a>
             </article>
           ))}
-          <a className="timeline-all" href={pageHref("updates")}>View all dated updates →</a>
+          <a className="timeline-all" href={pageHref("updates")}>{chrome.allUpdates} →</a>
         </div>
       </section>
 
-      {isEnglish && (
-        <section className="site-purpose" aria-labelledby="site-purpose-title">
-          <p className="kicker">Independent editorial reference</p>
-          <h2 id="site-purpose-title">What this site is for</h2>
-          <p>This is an independent LoloBuy spreadsheet reference built to add structure, context, and process guidance. It is designed for readers who want more than a list of links and less noise than the usual shortcut pages.</p>
-        </section>
-      )}
+      <section className="site-purpose" aria-labelledby="site-purpose-title">
+        <p className="kicker">{seoCopy.purpose[0]}</p>
+        <h2 id="site-purpose-title">{seoCopy.purpose[1]}</h2>
+        <p>{seoCopy.purpose[2]}</p>
+      </section>
 
       <section className="faq-section" id="faq">
         <div className="faq-heading"><p className="kicker">{copy.faq[0]}</p><h2>{copy.faq[1]}</h2><p>{copy.faq[2]}</p></div>
@@ -643,7 +658,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div><b>{ui.explore}</b><a href={pageHref("spreadsheet")}>{navLabels[0]}</a><a href={pageHref("categories")}>{navLabels[1]}</a><a href={pageHref("guides")}>{navLabels[2]}</a></div>
         <div><b>{ui.research}</b><a href={pageHref("seo-articles")}>{navLabels[3]}</a><a href={pageHref("updates")}>{navLabels[4]}</a><a href={pageHref("faq")}>{navLabels[5]}</a></div>
         <div><b>{ui.sources}</b><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">{ui.mainDatabase} ↗</a></div>
-        <div className="footer-trust"><b>Trust</b><a href={pageHref("about")}>About</a><a href={pageHref("editorial-methodology")}>Methodology</a><a href={pageHref("contact")}>Contact</a><a href={pageHref("privacy")}>Privacy</a><a href={pageHref("affiliate-disclosure")}>Disclosure</a></div>
+        <div className="footer-trust"><b>{chrome.trust}</b><a href={pageHref("about")}>{chrome.footer[0]}</a><a href={pageHref("editorial-methodology")}>{chrome.footer[1]}</a><a href={pageHref("contact")}>{chrome.footer[2]}</a><a href={pageHref("privacy")}>{chrome.footer[3]}</a><a href={pageHref("affiliate-disclosure")}>{chrome.footer[4]}</a></div>
         <p className="legal">{ui.legal}</p>
       </footer>
     </main>
