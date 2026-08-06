@@ -16,6 +16,11 @@ rm -rf "${pages_output}"
 mkdir -p "${pages_output}"
 cp -R "${project_root}/dist/client/." "${pages_output}/"
 
+# Vinext does not currently emit Next.js metadata routes such as sitemap.xml
+# for this Pages build. Generate the crawl files directly in the Pages static
+# output so search engines receive stable XML/text responses from every host.
+node "${project_root}/scripts/generate-pages-seo.mjs" "${pages_output}"
+
 "${project_root}/node_modules/.bin/esbuild" \
   "${project_root}/scripts/pages-worker-entry.js" \
   --bundle \
@@ -26,6 +31,8 @@ cp -R "${project_root}/dist/client/." "${pages_output}/"
   --outfile="${pages_output}/_worker.js"
 
 test -s "${pages_output}/_worker.js"
+test -s "${pages_output}/sitemap.xml"
+test -s "${pages_output}/robots.txt"
 compgen -G "${pages_output}/assets/*.css" >/dev/null || {
   echo "Missing Pages client assets after packaging." >&2
   exit 66
