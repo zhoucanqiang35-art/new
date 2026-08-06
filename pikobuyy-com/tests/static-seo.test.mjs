@@ -164,6 +164,63 @@ test("warehouse article visual and internal cards remain mobile-safe", async () 
   assert.ok(svg.includes("Pikobuy warehouse and parcel consolidation decision flow"));
 });
 
+test("return-policy article is complete, source-bounded and indexable", async () => {
+  const route = "articles/pikobuy-return-policy-guide";
+  const html = await htmlFor(route);
+  const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
+
+  assert.ok(sitemap.includes("https://pikobuyy.com/articles/pikobuy-return-policy-guide/"));
+  assert.equal(canonicalFrom(html), "https://pikobuyy.com/articles/pikobuy-return-policy-guide/");
+  assert.ok(html.includes("<title>Pikobuy Return Policy: 120-Hour Warehouse Guide</title>"));
+  assert.ok(html.includes("<h1>Pikobuy Return Policy: 120-Hour Warehouse Guide</h1>"));
+  assert.ok(html.includes('"@type":"Article"'));
+  assert.ok(html.includes('"@type":"BreadcrumbList"'));
+  assert.ok(!html.includes('"@type":"FAQPage"'));
+  assert.ok(html.includes("pikobuy-return-decision-timeline.svg"));
+  assert.ok(html.includes("Pikobuy return decision timeline"));
+  assert.ok(html.includes("Fact-checked Aug 6, 2026"));
+  assert.ok(html.includes("120 hours"));
+  assert.ok(html.includes("5 RMB service fee"));
+  assert.ok(html.includes('href="/pikobuy-qc-photo-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-warehouse-consolidation-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-payment-guide/"'));
+  assert.ok(html.includes('href="/pikobuy-shipping-guide/"'));
+  const payment = await htmlFor("articles/pikobuy-payment-guide");
+  const warehouse = await htmlFor("articles/pikobuy-warehouse-consolidation-guide");
+  const home = await readFile(path.join(out, "index.html"), "utf8");
+  const archive = await htmlFor("articles");
+  assert.ok(payment.includes('href="/articles/pikobuy-return-policy-guide/"'));
+  assert.ok(warehouse.includes('href="/articles/pikobuy-return-policy-guide/"'));
+  assert.ok(home.includes('href="/articles/pikobuy-return-policy-guide"'));
+  assert.ok(home.includes('dateTime="2026-08-06"'));
+  assert.ok(archive.includes("Pikobuy Return Policy: 120-Hour Warehouse Guide"));
+});
+
+test("return-policy article body stays within the requested editorial length", async () => {
+  const html = await htmlFor("articles/pikobuy-return-policy-guide");
+  const sections = [...html.matchAll(/<section class="article-section"[\s\S]*?<\/section>/g)]
+    .map((match) => match[0])
+    .join(" ");
+  const words = sections
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&(?:amp|quot|#x27|#39);/g, " ")
+    .split(/\s+/)
+    .filter(Boolean);
+
+  assert.ok(words.length >= 1200, `article body should contain at least 1,200 words, found ${words.length}`);
+  assert.ok(words.length <= 1800, `article body should contain at most 1,800 words, found ${words.length}`);
+});
+
+test("return article visual and related cards remain mobile-safe", async () => {
+  const css = await readFile(path.resolve("app/globals.css"), "utf8");
+  const svg = await readFile(path.resolve("public/pikobuy-return-decision-timeline.svg"), "utf8");
+
+  assert.match(css, /\.article-visual img\s*\{[^}]*width:\s*100%[^}]*height:\s*auto/s);
+  assert.match(css, /@media \(max-width: 580px\)[\s\S]*\.article-related > div\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.ok(svg.includes('viewBox="0 0 1200 630"'));
+  assert.ok(svg.includes("Pikobuy return decision timeline after an order becomes Warehoused"));
+});
+
 test("representative multilingual and product routes use self canonicals", async () => {
   const checks = [
     ["guides", "https://pikobuyy.com/guides/"],

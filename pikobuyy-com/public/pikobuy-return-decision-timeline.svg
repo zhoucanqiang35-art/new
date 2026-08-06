@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pikobuy return decision timeline after an order becomes Warehoused</title>
+  <desc id="desc">A four-step original diagram showing warehouse status, evidence review, eligibility and fee checks, and a return request within the stated 120-hour window.</desc>
+  <rect width="1200" height="630" rx="36" fill="#f3f6eb"/>
+  <text x="72" y="88" fill="#182218" font-family="Arial, sans-serif" font-size="42" font-weight="700">Pikobuy return decision timeline</text>
+  <text x="72" y="126" fill="#536153" font-family="Arial, sans-serif" font-size="19">The clock, evidence and eligibility all matter before a return is accepted.</text>
+  <line x1="150" y1="302" x2="1050" y2="302" stroke="#b9c5a9" stroke-width="6"/>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(92 205)">
+      <circle cx="58" cy="97" r="58" fill="#182218"/>
+      <text x="58" y="107" text-anchor="middle" fill="#f5f8ee" font-size="30" font-weight="700">01</text>
+      <text x="0" y="205" fill="#182218" font-size="21" font-weight="700">Status changes</text>
+      <text x="0" y="235" fill="#536153" font-size="17">Record the exact</text>
+      <text x="0" y="259" fill="#536153" font-size="17">“Warehoused” time.</text>
+    </g>
+    <g transform="translate(365 205)">
+      <circle cx="58" cy="97" r="58" fill="#3f5f36"/>
+      <text x="58" y="107" text-anchor="middle" fill="#f5f8ee" font-size="30" font-weight="700">02</text>
+      <text x="0" y="205" fill="#182218" font-size="21" font-weight="700">Review evidence</text>
+      <text x="0" y="235" fill="#536153" font-size="17">Compare option, photos,</text>
+      <text x="0" y="259" fill="#536153" font-size="17">damage and measurements.</text>
+    </g>
+    <g transform="translate(638 205)">
+      <circle cx="58" cy="97" r="58" fill="#87a45c"/>
+      <text x="58" y="107" text-anchor="middle" fill="#182218" font-size="30" font-weight="700">03</text>
+      <text x="0" y="205" fill="#182218" font-size="21" font-weight="700">Check eligibility</text>
+      <text x="0" y="235" fill="#536153" font-size="17">Seller support, condition,</text>
+      <text x="0" y="259" fill="#536153" font-size="17">seals, tags and likely fees.</text>
+    </g>
+    <g transform="translate(911 205)">
+      <circle cx="58" cy="97" r="58" fill="#d7ef85"/>
+      <text x="58" y="107" text-anchor="middle" fill="#182218" font-size="30" font-weight="700">04</text>
+      <text x="0" y="205" fill="#182218" font-size="21" font-weight="700">Submit promptly</text>
+      <text x="0" y="235" fill="#536153" font-size="17">Use the order page within</text>
+      <text x="0" y="259" fill="#536153" font-size="17">the stated 120-hour window.</text>
+    </g>
+  </g>
+  <rect x="72" y="530" width="1056" height="52" rx="14" fill="#182218"/>
+  <text x="600" y="563" text-anchor="middle" fill="#f5f8ee" font-family="Arial, sans-serif" font-size="18">A request window is not automatic approval: seller rules and resale condition still apply.</text>
+</svg>

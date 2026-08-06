@@ -499,7 +499,7 @@ export const articleEntries: Record<string, EditorialEntry> = {
     readingTime: "13 min read",
     seoTitle: "Pikobuy Payment Guide: Two Checkout Stages",
     published: "2026-08-02",
-    modified: "2026-08-02",
+    modified: "2026-08-06",
     visual: {
       src: "/pikobuy-two-stage-payment-flow.svg",
       alt: "Diagram of the Pikobuy two-stage payment flow from product order through warehouse inspection to international shipping",
@@ -527,6 +527,11 @@ export const articleEntries: Record<string, EditorialEntry> = {
         label: "Pikobuy Warehouse and Parcel Consolidation Guide",
         url: "/articles/pikobuy-warehouse-consolidation-guide/",
         note: "Plan the inspection, packaging and measured-parcel decisions that sit between the two payments.",
+      },
+      {
+        label: "Pikobuy Return Policy Guide",
+        url: "/articles/pikobuy-return-policy-guide/",
+        note: "Understand the warehouse request window, eligibility limits, evidence and return-cost responsibility.",
       },
     ],
     keyFacts: [
@@ -643,7 +648,7 @@ export const articleEntries: Record<string, EditorialEntry> = {
     readingTime: "12 min read",
     seoTitle: "Pikobuy Warehouse and Parcel Consolidation Guide",
     published: "2026-08-04",
-    modified: "2026-08-04",
+    modified: "2026-08-06",
     visual: {
       src: "/pikobuy-warehouse-consolidation-flow.svg",
       alt: "Pikobuy warehouse flow showing separate orders, inspection photos, packaging choices and one measured consolidated parcel",
@@ -671,6 +676,11 @@ export const articleEntries: Record<string, EditorialEntry> = {
         label: "Pikobuy Payment Guide",
         url: "/articles/pikobuy-payment-guide/",
         note: "See why warehouse review and parcel preparation separate the product payment from international freight.",
+      },
+      {
+        label: "Pikobuy Return Policy Guide",
+        url: "/articles/pikobuy-return-policy-guide/",
+        note: "Close the keep-or-return decision while the item is still in its documented warehouse request window.",
       },
     ],
     keyFacts: [
@@ -786,6 +796,143 @@ export const articleEntries: Record<string, EditorialEntry> = {
       officialSources.estimator,
       officialSources.shipping,
       officialSources.returns,
+      officialSources.userAgreement,
+    ],
+  },
+  "pikobuy-return-policy-guide": {
+    dek: "Understand Pikobuy's 120-hour warehouse return window, eligibility limits, packaging rules and likely costs before submitting a return request.",
+    reviewed: "Fact-checked Aug 6, 2026",
+    readingTime: "12 min read",
+    seoTitle: "Pikobuy Return Policy: 120-Hour Warehouse Guide",
+    published: "2026-08-06",
+    modified: "2026-08-06",
+    visual: {
+      src: "/pikobuy-return-decision-timeline.svg",
+      alt: "Pikobuy return decision timeline from Warehoused status through evidence, eligibility and request submission",
+      caption: "Original Pikobuyy decision diagram based on Pikobuy's public Returns & Exchanges policy reviewed on August 6, 2026. The 120-hour request window does not guarantee seller approval.",
+      width: 1200,
+      height: 630,
+    },
+    relatedLinks: [
+      {
+        label: "Pikobuy QC Photo Guide",
+        url: "/pikobuy-qc-photo-guide/",
+        note: "Review the visible warehouse evidence before deciding whether an item should be kept or returned.",
+      },
+      {
+        label: "Pikobuy Warehouse Guide",
+        url: "/articles/pikobuy-warehouse-consolidation-guide/",
+        note: "Finish every keep, clarify or return decision before building an international parcel.",
+      },
+      {
+        label: "Pikobuy Payment Guide",
+        url: "/articles/pikobuy-payment-guide/",
+        note: "Separate product-order payments, return costs and international shipping in the transaction record.",
+      },
+      {
+        label: "Pikobuy Shipping Guide",
+        url: "/pikobuy-shipping-guide/",
+        note: "Estimate shipping early so an unexpectedly high parcel quote does not become a rushed return decision.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy's Returns & Exchanges page says the request window begins from the next hour after an order becomes Warehoused and runs for 120 hours.",
+      "A request is not automatic approval: seller participation, seller agreement, item condition and category-specific packaging rules still apply.",
+      "For a personal-choice return after warehousing, the published formula includes delivery to the warehouse, return delivery to the seller and a 5 RMB service fee.",
+      "The policy says the refund total is based on the product price actually paid, not an estimated spreadsheet price or the full international landed cost.",
+    ],
+    sections: [
+      {
+        heading: "The short answer: five days is a decision window, not a promise",
+        paragraphs: [
+          "Pikobuy's public Returns & Exchanges page describes a five-day warehouse return process, but the phrase can be misunderstood. The operational rule is more precise: a buyer can request return service within 120 hours, counted from the next hour after the order status changes to Warehoused. The page also warns that a request may not be accepted after the window expires. Recording the status time is therefore the first practical step, not something to reconstruct several days later.",
+          "That deadline does not make every item returnable and it does not make every return cost-free. Pikobuy says seller support, seller agreement, marketable condition, intact packaging and category rules can determine the outcome. Its policy also lists products for which the normal guarantee is unavailable or conditional. A useful return plan combines three questions: Is the request still in time? Is the item eligible in its current condition? Who is responsible for the reason and related costs?",
+        ],
+      },
+      {
+        heading: "Start the clock from the actual Warehoused status",
+        paragraphs: [
+          "The public policy does not say to count five calendar days from the order date, seller dispatch or warehouse delivery scan. It says the request period begins from the next hour after the order status becomes Warehoused, with five days defined as 120 hours. That distinction matters when a domestic shipment is delivered before the warehouse has completed check-in, or when several orders arrive on different days. Each order needs its own status record and review deadline.",
+          "Take a screenshot or note the displayed status time as soon as the warehouse entry appears. Open the warehouse photos, compare them with the saved product page and intended option, and schedule the decision well before the final hour. The official Beginner's Guide places warehouse inspection, check-in, photos and defect review before international shipping. Use that checkpoint promptly; do not wait for every other order in a consolidation plan if one questionable item is already inside its return window.",
+        ],
+      },
+      {
+        heading: "Eligibility depends on the seller, the product and its condition",
+        paragraphs: [
+          "Pikobuy divides products into items that can use the return guarantee and items for which the usual service is unavailable. For an eligible item, the seller must offer the return guarantee, the product must remain in the marketable condition required by the seller and the warehouse time must not exceed five days. Even then, the notes state that Pikobuy can return the product only when the seller agrees. The service is an assisted return process, not an independent guarantee that overrides the marketplace seller.",
+          "The policy identifies several common limitations. Custom-made goods are subject to negotiation and the seller's final decision. Second-hand items, undergarments, adult products, food, some bulk book orders and products bought outside mainland China are among the examples listed as unavailable. Seller-specific exclusions also matter. Before ordering an item with limited resale potential, confirm the seller's current terms rather than assuming the warehouse request button will solve the risk later.",
+        ],
+        subsections: [
+          {
+            heading: "Do not confuse a return label with eligibility",
+            paragraphs: [
+              "A visible return option can start a request, but the policy still requires review of timing, condition and seller rules. Describe the real reason accurately and keep evidence that matches it. Choosing a stronger-sounding reason does not change the item's condition or the seller's records, and it can make the dispute harder to resolve.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Preserve tags, seals, accessories and category-specific packaging",
+        paragraphs: [
+          "The easiest preventable return problem is changing the item before the decision is final. Pikobuy lists products whose packaging, tags or accessories were removed at the user's request as unavailable for the standard guarantee. It also publishes special standards for multiple categories. New sneakers may need their anti-theft clasp and anti-damage sticker intact and functional. Sealed personal-care, cosmetic, food, model, game and other products may become ineligible when the one-time seal or plastic wrap is opened.",
+          "Digital products and appliances have their own conditions, while cameras, books, electronic components and large appliances have separate use or packaging limits. The exact table should be checked for the product type rather than summarized into a vague rule such as keep the box. Until the keep-or-return decision is closed, avoid requesting tag removal, seal opening or packaging disposal. If a missing detail is decisive, ask whether an additional warehouse photo can show it without changing the product's return condition.",
+        ],
+      },
+      {
+        heading: "Build a clean evidence record before submitting",
+        paragraphs: [
+          "A return request is easier to evaluate when the evidence shows the ordered option, the received item and the specific mismatch. Save the source listing, selected color and size, order summary, warehouse status time and the relevant photos together. For a wrong product, show the expected and received options. For visible damage, identify the exact location and use the clearest warehouse image. For a measurement concern, distinguish a seller measurement from a warehouse measurement and note the tolerance or uncertainty.",
+          "Warehouse photos have limits. Pikobuy's User Agreement says some products cannot receive professional inspection for quality, authenticity or internal completeness, and the public shipping policy similarly limits professional checks. A photo may support a wrong-color or visible-stain claim, but it cannot prove long-term durability, comfort or every material claim. Keep the return reason tied to evidence the warehouse or seller can actually verify.",
+        ],
+        bullets: [
+          "Record the exact Warehoused time and calculate a deadline with a safety margin.",
+          "Save the seller page, intended variant and order confirmation.",
+          "Keep the original warehouse photos and identify the decisive image.",
+          "Preserve tags, seals, accessories and seller packaging while the request is reviewed.",
+          "Describe the factual reason without overstating what a photo proves.",
+        ],
+      },
+      {
+        heading: "Understand the fee formula before calling a return free",
+        paragraphs: [
+          "For an unconditional return after the product has reached the warehouse, Pikobuy's Returns & Exchanges page publishes a formula: shipping cost to the seller, shipping cost from the seller and a 5 RMB service fee. It adds that even when the seller originally offered free shipping, the buyer may need to repay the first dispatch cost when applying for return. The same page advises keeping enough account balance to cover return shipping and the service fee.",
+          "Responsibility changes the expected cost. The table places personal reasons, an accidental extra purchase and a shipping quote that exceeds the buyer's budget under customer responsibility. It says a customer normally does not need to pay return costs for a seller's wrong item or a verified quality issue, although the seller's response still matters. The FAQ says a not-yet-shipped order does not incur the return charge described there; charges apply when the product has no quality problem and is already warehoused.",
+        ],
+      },
+      {
+        heading: "Know what the refund covers—and what it may not restore",
+        paragraphs: [
+          "The policy says the refund total is based on the product price actually paid. That is not the same as refunding every cost connected with the shopping plan. Domestic transport, return shipping and the service fee can remain separate depending on responsibility. International shipping has not yet been paid for an item that is still at the warehouse, but optional services or exchange-rate differences should not be silently assumed to be included in the product refund.",
+          "Keep the original product payment and the return transaction as separate records. After approval, monitor the order and account balance until the actual refund is posted, and compare the credited amount with the published breakdown for the case. If the amount or reason is unclear, use Pikobuy's official ticket or support channel with the order number and evidence. Do not publish private order details in a public review while a support case is still being resolved.",
+        ],
+      },
+      {
+        heading: "A practical return workflow for warehouse orders",
+        paragraphs: [
+          "When the status becomes Warehoused, record the time and open the photos immediately. Compare the product with the intended variant and category checklist. If it is acceptable, mark it keep. If a missing angle prevents a decision, request clarification while preserving packaging. If there is a visible issue or buyer-choice return, check the seller's guarantee, the product category, its current condition and the likely cost before submitting the accurate reason through the order page.",
+          "Do not submit an international parcel containing the item while the return question is open. A parcel decision changes the practical stage of the transaction and can remove the warehouse opportunity to send the product back domestically. For several arrivals, maintain a simple table with order, Warehoused time, evidence result, eligibility, expected responsibility and final action. Consolidate only the items whose keep decisions are complete.",
+        ],
+        bullets: [
+          "Time: Is the request safely inside the 120-hour window?",
+          "Eligibility: Does the seller support returns for this exact product?",
+          "Condition: Are tags, seals, accessories and packaging still compliant?",
+          "Evidence: Can the stated reason be shown clearly and accurately?",
+          "Cost: Who is responsible, and is the account balance sufficient?",
+          "Status: Has the request, seller response and refund actually completed?",
+        ],
+      },
+      {
+        heading: "Conclusion: make the return decision before parcel planning",
+        paragraphs: [
+          "The useful way to read Pikobuy's return policy is as a timed warehouse decision system. The 120-hour window creates urgency, but seller support, item condition, packaging standards, evidence and fee responsibility decide whether the request is workable. Review each arrival early and preserve its return condition until the decision is final.",
+          "This guide was fact-checked on August 6, 2026 against Pikobuy's public Returns & Exchanges page, Beginner's Guide, Shipping Policy and User Agreement. Pikobuy and participating sellers can update their terms. The live order page, current policy and official support response remain the final sources for a specific transaction.",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.returns,
+      officialSources.guide,
+      officialSources.shipping,
       officialSources.userAgreement,
     ],
   },

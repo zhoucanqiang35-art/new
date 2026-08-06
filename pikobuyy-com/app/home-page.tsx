@@ -615,10 +615,13 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
           {evidence.notes.map(([topic, fact, implication, source], index) => {
             const destinations = [
               `${routeFor(locale, "guides")}/${sectionItemSlugs.guides[0]}`,
-              `${routeFor(locale, "guides")}/${sectionItemSlugs.guides[1]}`,
+              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[6]}`,
               `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[3]}`,
             ];
-            return <a className="research-note" href={destinations[index]} key={topic}><div className="research-note-top"><span>{topic}</span><time dateTime="2026-07-29">29.07.2026</time></div><h3>{evidence.verifiedLabel}</h3><p>{fact}</p><div className="research-impact"><b>{evidence.implicationLabel}</b><p>{implication}</p></div><div className="research-note-footer"><span>{source}</span><b>{evidence.readMore} →</b></div></a>;
+            const verifiedDate = index === 1
+              ? { dateTime: "2026-08-06", label: "06.08.2026" }
+              : { dateTime: "2026-07-29", label: "29.07.2026" };
+            return <a className="research-note" href={destinations[index]} key={topic}><div className="research-note-top"><span>{topic}</span><time dateTime={verifiedDate.dateTime}>{verifiedDate.label}</time></div><h3>{evidence.verifiedLabel}</h3><p>{fact}</p><div className="research-impact"><b>{evidence.implicationLabel}</b><p>{implication}</p></div><div className="research-note-footer"><span>{source}</span><b>{evidence.readMore} →</b></div></a>;
           })}
         </div>
       </section>
