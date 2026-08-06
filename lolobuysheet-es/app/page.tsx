@@ -9,6 +9,7 @@ import {
   type Product,
 } from "./product-data";
 import { officialUpdates } from "./update-data";
+import { faqStructuredData, StructuredData } from "./structured-data";
 
 const languages = [
   ["EN", "English"], ["ES", "Español"], ["DE", "Deutsch"], ["FR", "Français"],
@@ -44,22 +45,45 @@ const englishCopy: PageCopy = {
   preview: "Review mode — not yet connected to lolobuysheet.es",
   nav: ["Spreadsheet", "Categories", "Guides", "SEO Articles", "Updates", "FAQ"],
   database: "Full database",
-  eyebrow: "Independent LoloBuy research hub",
-  title: "Find better LoloBuy Spreadsheet picks.",
-  accent: "Shop with context.",
-  lead: "A searchable spreadsheet, practical QC checklists and shipping guides—built for shoppers across Europe and North America.",
-  explore: "Explore the spreadsheet",
-  buyerGuide: "Start with the buyer guide",
+  eyebrow: "Independent LoloBuy spreadsheet reference",
+  title: "LoloBuy Spreadsheet,",
+  accent: "with more context.",
+  lead: "A clearer way to browse LoloBuy spreadsheet finds, review QC patterns, compare source links, and follow the guides behind each step.",
+  explore: "Browse the spreadsheet",
+  buyerGuide: "Read the guides",
   proof: ["curated categories", "language routes", "research framework"],
   panel: ["LIVE RESEARCH VIEW", "Fresh finds, clearly labelled", "Updated", "Search verified listings…", "Transparent by design", "We show when links were checked and separate official facts from editorial advice."],
   trust: ["Built around the questions shoppers actually ask", "QC PHOTO CHECKS", "SHIPPING EXPLAINERS", "OFFICIAL UPDATE SOURCES", "COUNTRY GUIDES"],
-  categories: ["Browse by category", "Start with what you're looking for.", "See all finds"],
+  categories: ["LoloBuy spreadsheet categories", "Browse the LoloBuy spreadsheet by category", "See all finds"],
   sheet: ["Curated spreadsheet", "Useful finds, without the clutter.", "Prices are reference values in USD. Confirm the current listing before purchase.", "Search products or categories", "All"],
-  education: ["Buyer education", "Know what happens before you click buy.", "Independent, source-conscious explainers for the steps that usually cause confusion—from warehouse QC to volumetric weight.", "Read common questions"],
-  updates: ["Research & updates", "Official changes, translated into practical next steps.", "Platform information can change by destination, order and account. Our update centre records what was checked, links back to the source, and flags what shoppers should verify again before paying."],
-  faq: ["Common questions", "Clear answers. No sales spin.", "These answers explain our site and general process. Your checkout page and official platform terms remain the final source for any order."],
+  education: ["LoloBuy buyer guides", "Guides for ordering, shipping, and next steps", "Many users searching for a LoloBuy spreadsheet are also trying to understand what happens after they find an item. The guides here are meant to close that gap.\n\nThey should explain source listing, first payment, parcel preparation, shipping choices, returns, and the process details that are usually missing from simple link collections.", "Read the guides"],
+  updates: ["Dated research notes", "Updates that stay visible", "Spreadsheet-based sites change quickly. Categories shift, guides get refined, and some references stop being useful. A visible updates section helps readers understand what changed and helps the site remain easier to trust over time.\n\nMajor revisions should be dated clearly and tied to real changes, not just republished text."],
+  faq: ["LoloBuy spreadsheet FAQ", "Questions about the LoloBuy spreadsheet", "Five concise answers about using this site as a structured companion reference."],
   closing: ["Ready to explore?", "Use research here.", "Search wider on the main database.", "Browse LoloBuy finds", "Open findspreadsheet.com"],
 };
+
+const englishHomeFaqs = [
+  {
+    question: "What is the LoloBuy spreadsheet?",
+    answer: "The LoloBuy spreadsheet is a structured way to browse finds, compare source links, and organize product research before ordering.",
+  },
+  {
+    question: "How should I use the LoloBuy spreadsheet?",
+    answer: "Start with a category page, shortlist relevant finds, review QC context, and then read the guide that matches the next step in your process.",
+  },
+  {
+    question: "Why add guides to a spreadsheet site?",
+    answer: "Because most users are not only looking for links. They also need help with QC, ordering, shipping, and deciding what to do next.",
+  },
+  {
+    question: "Does this site replace the original spreadsheet?",
+    answer: "No. It is better framed as a companion reference that adds context, structure, and editorial guidance around the LoloBuy spreadsheet.",
+  },
+  {
+    question: "How often should the LoloBuy spreadsheet be updated?",
+    answer: "Important category and guide changes should be dated clearly so readers can see what is current and what has been revised.",
+  },
+] as const;
 
 const localizedCopy: Record<string, Partial<PageCopy>> = {
   es: {
@@ -165,6 +189,7 @@ const guides = [
 
 export function Home({ locale = "en" }: { locale?: string }) {
   const normalizedLocale = locale.toLowerCase();
+  const isEnglish = normalizedLocale === "en";
   const copy: PageCopy = { ...englishCopy, ...(localizedCopy[normalizedLocale] || {}) };
   const ui = getUiCopy(normalizedLocale);
   const activeLanguage = languages.find(([code]) => code.toLowerCase() === normalizedLocale) || languages[0];
@@ -180,6 +205,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
   const productCarousel = useRef<HTMLDivElement>(null);
   const faqList = useRef<HTMLDivElement>(null);
   const mainSearchAction = "https://findspreadsheet.com/search.html";
+  const homepageFaqItems = isEnglish ? englishHomeFaqs : getFaqItems(normalizedLocale).slice(0, 5);
 
   const visibleProducts = carouselProducts;
 
@@ -310,6 +336,9 @@ export function Home({ locale = "en" }: { locale?: string }) {
 
   return (
     <main dir={normalizedLocale === "ar" ? "rtl" : "ltr"}>
+      <StructuredData
+        data={faqStructuredData(homepageFaqItems.map(({ question, answer }) => ({ question, answer })))}
+      />
       <header className="site-header">
         <a className="brand" href={`${localeRoot}#top`} aria-label="LoloBuy Sheet home">
           <img className="brand-logo" src="/lolobuy.webp" alt="" width="44" height="44" />
@@ -361,7 +390,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
       <section className="hero" id="top">
         <div className="hero-copy">
           <div className="eyebrow"><span className="pulse" /> {copy.eyebrow}</div>
-          <h1>{copy.title}<br /><em>{copy.accent}</em></h1>
+          <h1>{copy.title}{" "}<br /><em>{copy.accent}</em></h1>
           <p className="hero-lead">{copy.lead}</p>
           <div className="hero-actions">
             <a className="button primary" href={pageHref("spreadsheet")}>{copy.explore} <span>→</span></a>
@@ -420,9 +449,25 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div>{copy.trust.slice(1).map((item) => <span key={item}>{item}</span>)}</div>
       </section>
 
+      {isEnglish && (
+        <section className="seo-intro" aria-labelledby="seo-intro-title">
+          <h2 id="seo-intro-title">The LoloBuy spreadsheet is useful because it shortens the distance between discovery and decision.</h2>
+          <div>
+            <p>But lists alone rarely explain why a link matters, what to check in QC, or which step comes next.</p>
+            <p>This site organizes the LoloBuy spreadsheet into a more usable reference: category pages for browsing, guides for process questions, and update notes that make changes easier to follow.</p>
+          </div>
+        </section>
+      )}
+
       <section className="section" id="categories">
         <div className="section-heading">
-          <div><p className="kicker">{copy.categories[0]}</p><h2>{copy.categories[1]}</h2></div>
+          <div>
+            <p className="kicker">{copy.categories[0]}</p>
+            <h2>{copy.categories[1]}</h2>
+            {isEnglish && (
+              <p className="section-dek">Instead of treating the spreadsheet as a single list, this site breaks it into clearer paths. Category pages make it easier to compare similar finds, notice recurring details, and move faster without losing context.<br /><br />Popular sections can include shoes, hoodies, jackets, pants, bags, accessories, and seasonal picks. Each one should help users scan more efficiently and evaluate items with fewer blind spots.</p>
+            )}
+          </div>
           <a href={pageHref("categories")}>{copy.categories[2]} <span>→</span></a>
         </div>
         <div className="category-grid">
@@ -434,6 +479,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
             </a>
           ))}
         </div>
+        {isEnglish && <p className="category-context">Each category page should do more than collect links. It should help users understand what they are looking at, what usually goes wrong, and what to check before moving forward.</p>}
       </section>
 
       <section className="sheet-section" id="spreadsheet">
@@ -441,6 +487,23 @@ export function Home({ locale = "en" }: { locale?: string }) {
           <div><p className="kicker">{copy.sheet[0]}</p><h2>{copy.sheet[1]}</h2></div>
           <p className="section-note">{copy.sheet[2]}</p>
         </div>
+        {isEnglish && (
+          <div className="workflow-panel">
+            <div>
+              <p className="kicker">A repeatable research process</p>
+              <h3>How to use the LoloBuy spreadsheet</h3>
+              <p>For most users, the spreadsheet is only the starting point. The real value comes from using it with a repeatable process.</p>
+            </div>
+            <ol>
+              <li><span>01</span>Browse a category</li>
+              <li><span>02</span>Shortlist a few finds</li>
+              <li><span>03</span>Review QC context</li>
+              <li><span>04</span>Check the relevant guide</li>
+              <li><span>05</span>Decide whether the item is worth carrying into the next step</li>
+            </ol>
+            <p>That approach is slower than random browsing, but it usually leads to better decisions.</p>
+          </div>
+        )}
         <div className="sheet-toolbar">
           <div className="filter-row">
             {carouselCategories.map((category, index) => (
@@ -509,10 +572,18 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div className="guide-intro">
           <p className="kicker">{copy.education[0]}</p>
           <h2>{copy.education[1]}</h2>
-          <p>{copy.education[2]}</p>
+          <p className={isEnglish ? "preserve-paragraphs" : undefined}>{copy.education[2]}</p>
           <a className="button dark" href={pageHref("faq")}>{copy.education[3]} <span>→</span></a>
         </div>
         <div className="guide-list">
+          {isEnglish && (
+            <article className="qc-context">
+              <p className="kicker">Product evaluation</p>
+              <h3>QC context matters</h3>
+              <p>A useful LoloBuy spreadsheet should not stop at product discovery. It should help users evaluate common issues before they commit time or money.</p>
+              <p>QC notes are most useful when they stay practical: shape, stitching, logo placement, material texture, color balance, and the flaws that repeatedly show up in the same type of item. That is the difference between a spreadsheet that only lists products and one that helps users judge them.</p>
+            </article>
+          )}
           {guides.map(([number, title, description, time], index) => (
             <a href={pageHref(`seo-articles/${["how-lolobuy-works", "lolobuy-qc-photos-guide", "lolobuy-shipping-cost-guide", "lolobuy-returns-refunds"][index]}`)} className="guide-item" id={`guide-${number}`} key={number}>
               <span>{number}</span><div><h3>{title}</h3><p>{description}</p><small>{time} read</small></div><i>↗</i>
@@ -525,7 +596,7 @@ export function Home({ locale = "en" }: { locale?: string }) {
         <div className="update-feature">
           <p className="kicker">{copy.updates[0]}</p>
           <h2>{copy.updates[1]}</h2>
-          <p>{copy.updates[2]}</p>
+          <p className={isEnglish ? "preserve-paragraphs" : undefined}>{copy.updates[2]}</p>
           <div className="source-rule"><span>✓</span><div><b>{ui.sourcePolicy}</b><p>{ui.sourceNote}</p></div></div>
         </div>
         <div className="timeline">
@@ -541,10 +612,18 @@ export function Home({ locale = "en" }: { locale?: string }) {
         </div>
       </section>
 
+      {isEnglish && (
+        <section className="site-purpose" aria-labelledby="site-purpose-title">
+          <p className="kicker">Independent editorial reference</p>
+          <h2 id="site-purpose-title">What this site is for</h2>
+          <p>This is an independent LoloBuy spreadsheet reference built to add structure, context, and process guidance. It is designed for readers who want more than a list of links and less noise than the usual shortcut pages.</p>
+        </section>
+      )}
+
       <section className="faq-section" id="faq">
         <div className="faq-heading"><p className="kicker">{copy.faq[0]}</p><h2>{copy.faq[1]}</h2><p>{copy.faq[2]}</p></div>
         <div className="faq-list" ref={faqList}>
-          {getFaqItems(normalizedLocale).slice(0, 5).map((item, index) => (
+          {homepageFaqItems.map((item, index) => (
             <details key={item.question} open={index === 0}>
               <summary><span>{String(index + 1).padStart(2, "0")}</span>{item.question}<i>+</i></summary>
               <p>{item.answer}</p>
