@@ -89,9 +89,15 @@ button { color: inherit; }
 .trust-bar { padding: 25px 7vw; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); background: white; }
 .trust-bar p { margin: 0; font-family: Georgia, serif; font-size: 15px; color: #435049; }
 .trust-bar div { display: flex; gap: 28px; color: #8a938e; font-size: 8px; font-weight: 800; letter-spacing: .12em; }
+.seo-intro { padding: 66px 7vw; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); gap: 9vw; align-items: start; border-bottom: 1px solid var(--line); background: #fff; }
+.seo-intro h2 { max-width: 720px; margin: 0; font-family: Georgia, serif; font-size: clamp(28px, 3.2vw, 42px); line-height: 1.13; letter-spacing: -.035em; font-weight: 500; }
+.seo-intro div { max-width: 650px; }
+.seo-intro p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.seo-intro p + p { margin-top: 18px; }
 .section { padding: 96px 7vw; }
 .section-heading { margin-bottom: 38px; display: flex; align-items: end; justify-content: space-between; gap: 30px; }
 .section-heading h2, .guide-intro h2, .updates h2, .faq-heading h2, .closing h2 { margin: 11px 0 0; font-family: Georgia, serif; font-size: clamp(35px, 4vw, 52px); line-height: 1.05; letter-spacing: -.04em; font-weight: 500; }
+.section-dek { max-width: 790px; margin: 24px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
 .section-heading > a { color: var(--green); font-size: 12px; font-weight: 800; border-bottom: 1px solid #bad0c3; padding-bottom: 5px; }
 .category-grid { display: grid; grid-template-columns: repeat(5, 1fr); border-left: 1px solid var(--line); border-top: 1px solid var(--line); }
 .category-grid > a { min-height: 126px; padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: transparent; display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: start; text-align: left; cursor: pointer; transition: background .2s ease; }
@@ -101,10 +107,18 @@ button { color: inherit; }
 .category-grid b { margin: 3px 0 7px; font-size: 13px; }
 .category-grid small { color: #849089; font-size: 9px; }
 .category-grid i { font-style: normal; color: #a6b0aa; font-size: 10px; }
+.category-context { max-width: 900px; margin: 24px 0 0; padding-left: 17px; border-left: 3px solid var(--green); color: var(--muted); font-size: 12px; line-height: 1.7; }
 
 .sheet-section { padding: 96px 7vw 110px; background: #173a2c; color: white; }
 .section-heading.light .kicker { color: #83c3a2; }
 .section-note { max-width: 360px; color: #9fbaac; font-size: 11px; line-height: 1.6; }
+.workflow-panel { margin: -5px 0 34px; padding: 30px; border: 1px solid #48675b; border-radius: 20px; background: #1d4233; }
+.workflow-panel > div { display: grid; grid-template-columns: .7fr 1.1fr 1fr; gap: 24px; align-items: start; }
+.workflow-panel h3 { margin: 0; font-family: Georgia, serif; font-size: 27px; line-height: 1.1; font-weight: 500; }
+.workflow-panel > div > p:last-child, .workflow-panel > p { margin: 0; color: #afc6bb; font-size: 11px; line-height: 1.65; }
+.workflow-panel ol { margin: 26px 0 18px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); list-style: none; border-top: 1px solid #4a675b; border-left: 1px solid #4a675b; }
+.workflow-panel li { min-height: 96px; padding: 15px; display: flex; flex-direction: column; gap: 14px; border-right: 1px solid #4a675b; border-bottom: 1px solid #4a675b; color: #edf6f1; font-size: 10px; line-height: 1.45; }
+.workflow-panel li span { color: #83c3a2; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
 .sheet-toolbar { margin-bottom: 30px; display: flex; align-items: center; justify-content: flex-end; gap: 20px; }
 .sheet-search { width: min(420px, 100%); height: 45px; padding: 0 6px 0 14px; display: flex; align-items: center; gap: 9px; border: 1px solid #4a675b; border-radius: 11px; background: #204737; }
 .sheet-toolbar input { width: 100%; border: 0; outline: 0; background: transparent; color: white; font-size: 12px; }
@@ -144,6 +158,11 @@ button { color: inherit; }
 .guide-intro { position: sticky; top: 120px; }
 .guide-intro > p:not(.kicker) { color: var(--muted); font-size: 13px; line-height: 1.7; max-width: 410px; }
 .guide-list { border-top: 1px solid #ccd4ce; }
+.preserve-paragraphs { white-space: pre-line; }
+.qc-context { padding: 30px 4px 32px; border-bottom: 1px solid #ccd4ce; }
+.qc-context h3 { margin: 10px 0 15px; font-family: Georgia, serif; font-size: 30px; font-weight: 500; }
+.qc-context p:not(.kicker) { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.75; }
+.qc-context p:not(.kicker) + p { margin-top: 13px; }
 .guide-item { padding: 27px 4px; display: grid; grid-template-columns: 35px 1fr auto; gap: 20px; border-bottom: 1px solid #ccd4ce; }
 .guide-item > span, .guide-item small { color: #8b9690; font-size: 9px; }
 .guide-item h3 { margin: 0 0 8px; font-family: Georgia, serif; font-size: 22px; font-weight: 500; }
@@ -162,6 +181,10 @@ button { color: inherit; }
 .timeline h3 { margin: 9px 0; font-family: Georgia, serif; font-size: 22px; font-weight: 500; }
 .timeline p { margin: 0 0 12px; color: var(--muted); font-size: 11px; line-height: 1.6; }
 .timeline a { color: var(--green); font-size: 10px; font-weight: 800; }
+
+.site-purpose { padding: 68px 12vw; display: grid; grid-template-columns: .45fr .75fr 1.3fr; gap: 4vw; align-items: start; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #edf5ef; }
+.site-purpose h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(31px, 3.6vw, 48px); line-height: 1.05; letter-spacing: -.04em; font-weight: 500; }
+.site-purpose > p:last-child { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
 
 .faq-section { padding: 96px 7vw; display: grid; grid-template-columns: .8fr 1.2fr; gap: 9vw; background: #f9faf6; border-top: 1px solid var(--line); }
 .faq-list { border-top: 1px solid var(--line); }
@@ -354,6 +377,12 @@ footer .brand { color: white; }
   .category-grid { grid-template-columns: repeat(2, 1fr); }
   .product-card { min-width: calc((100% - 14px) / 2); }
   .guide-section, .updates, .faq-section { grid-template-columns: 1fr; gap: 48px; }
+  .seo-intro { grid-template-columns: 1fr; gap: 28px; }
+  .workflow-panel > div { grid-template-columns: 1fr 1fr; }
+  .workflow-panel > div > p:last-child { grid-column: 1 / -1; }
+  .workflow-panel ol { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .site-purpose { grid-template-columns: .55fr 1fr; }
+  .site-purpose > p:last-child { grid-column: 1 / -1; }
   .guide-intro { position: static; }
   footer { grid-template-columns: 2fr 1fr 1fr; }
   .locale-hero { grid-template-columns: 1fr; }
@@ -404,17 +433,30 @@ footer .brand { color: white; }
   .trust-bar { padding: 9px 12px; display: block; }
   .trust-bar p { margin: 0 0 6px; font-size: 10px; }
   .trust-bar div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px 8px; font-size: 9px; line-height: 1.35; }
+  .seo-intro { padding: 22px 12px; gap: 10px; }
+  .seo-intro h2 { font-size: 21px; }
+  .seo-intro p { font-size: 11px; line-height: 1.5; }
+  .seo-intro p + p { margin-top: 7px; }
   .section, .sheet-section, .faq-section { padding: 21px 12px; }
   .section-heading { margin-bottom: 10px; align-items: flex-end; flex-direction: row; gap: 8px; }
   .section-heading h2, .guide-intro h2, .updates h2, .faq-heading h2 { margin-top: 5px; font-size: 22px; }
   .section-heading > a { flex: none; font-size: 10px; }
+  .section-dek { margin-top: 7px; font-size: 11px; line-height: 1.45; }
   .category-grid > a { min-height: 56px; padding: 7px; grid-template-columns: 23px 1fr; gap: 6px; }
   .category-grid b { margin: 0 0 2px; font-size: 11px; }
   .category-grid small { font-size: 9px; line-height: 1.25; }
   .category-icon { width: 21px; height: 21px; font-size: 10px; }
   .category-grid i { display: none; }
+  .category-context { margin-top: 9px; padding-left: 9px; font-size: 10.5px; line-height: 1.4; }
   .sheet-section { padding-bottom: 22px; }
   .section-note { max-width: 158px; margin: 0; font-size: 10px; line-height: 1.35; }
+  .workflow-panel { margin: 0 0 10px; padding: 10px; border-radius: 12px; }
+  .workflow-panel > div { grid-template-columns: 1fr; gap: 5px; }
+  .workflow-panel > div > p:last-child { grid-column: auto; }
+  .workflow-panel h3 { font-size: 18px; }
+  .workflow-panel > div > p:last-child, .workflow-panel > p { font-size: 10px; line-height: 1.4; }
+  .workflow-panel ol { margin: 9px 0 7px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workflow-panel li { min-height: 62px; padding: 7px; gap: 5px; font-size: 9.5px; line-height: 1.25; }
   .sheet-toolbar { width: 100%; margin-bottom: 8px; align-items: stretch; justify-content: stretch; }
   .filter-row { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; overflow: visible; padding: 0; }
   .filter-row a { min-width: 0; min-height: 38px; padding: 5px 3px; display: grid; place-items: center; white-space: normal; text-align: center; font-size: 9.5px; line-height: 1.15; }
@@ -450,6 +492,10 @@ footer .brand { color: white; }
   .guide-item h3 { margin-bottom: 2px; font-size: 14px; }
   .guide-item p { margin-bottom: 3px; font-size: 11px; line-height: 1.35; }
   .guide-item > span, .guide-item small { font-size: 9px; }
+  .qc-context { padding: 10px 1px 12px; }
+  .qc-context h3 { margin: 4px 0 6px; font-size: 18px; }
+  .qc-context p:not(.kicker) { font-size: 10.5px; line-height: 1.4; }
+  .qc-context p:not(.kicker) + p { margin-top: 6px; }
   .updates { padding-bottom: 21px; gap: 12px; }
   .update-feature > p:not(.kicker), .faq-heading > p:not(.kicker) { margin: 6px 0 0; font-size: 11px; line-height: 1.45; }
   .source-rule { margin-top: 8px; padding: 8px; gap: 8px; }
@@ -461,6 +507,9 @@ footer .brand { color: white; }
   .timeline p { margin-bottom: 5px; font-size: 11px; line-height: 1.4; }
   .timeline a { font-size: 10px; }
   .timeline-all { margin-top: 8px; }
+  .site-purpose { padding: 22px 12px; grid-template-columns: 1fr; gap: 6px; }
+  .site-purpose h2 { font-size: 22px; }
+  .site-purpose > p:last-child { grid-column: auto; font-size: 11px; line-height: 1.5; }
   .faq-section { gap: 11px; }
   .faq-list summary { min-height: 48px; grid-template-columns: 20px 1fr auto; gap: 6px; font-size: 12px; }
   .faq-list details > p { margin: -1px 16px 11px 26px; font-size: 11px; line-height: 1.45; }
