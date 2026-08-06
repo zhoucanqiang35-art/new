@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: "https://lolobuysheet.shop/",
     languages: Object.fromEntries([...localeCodes.map((code) => [code, code === "en" ? "https://lolobuysheet.shop/" : `https://lolobuysheet.shop/${code}`]), ["x-default", "https://lolobuysheet.shop/"]]),
   },
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "LoloBuy Spreadsheet 2026 | Researched Product Finds & Buyer Guides",
     description: "Independent LoloBuy spreadsheet research with verified product links, QC checklists, beginner guidance, and shipping research for Europe and North America.",
