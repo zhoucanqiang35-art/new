@@ -32,7 +32,13 @@ test("renders production SEO metadata without preview messaging", async () => {
   assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+https:\/\/lolobuysheet\.es\//i);
   assert.match(html, /property=["']og:title["']/i);
   assert.match(html, /name=["']twitter:card["']/i);
-  assert.match(html, /Find better LoloBuy Spreadsheet picks/i);
+  assert.match(html, /LoloBuy Spreadsheet,/i);
+  assert.match(html, /with more context\./i);
+  assert.match(html, /LoloBuy Spreadsheet 2026 \| Finds, QC Notes, Guides, and Categories/i);
+  assert.match(html, /How to use the LoloBuy spreadsheet/i);
+  assert.match(html, /QC context matters/i);
+  assert.match(html, /What is the LoloBuy spreadsheet\?/i);
+  assert.match(html, /FAQPage/i);
   assert.match(html, /application\/ld\+json/i);
   assert.ok(!html.includes("Review mode"));
   assert.ok(!html.includes("not yet connected to lolobuysheet.es"));
