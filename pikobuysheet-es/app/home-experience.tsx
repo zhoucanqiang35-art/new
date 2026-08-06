@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import Link from "next/link";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 import { getInterfaceLabels, getLocaleCopy, getMainSiteCategories, localPath } from "./site-config";
+import { keywordPageCards } from "./keyword-page-cards";
 
 type FeaturedProduct = {
   name: string;
@@ -139,10 +141,6 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
     return () => { active = false; window.clearInterval(timer); };
   }, []);
 
-  const scrollTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <main className="home-page">
       <SiteHeader locale={locale} active="home" />
@@ -204,11 +202,33 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
         <a href={`${localPath(locale, "seo-articles")}/pikobuy-qc-shipping-return-guide`}><Icon name="book"/><b>{isEnglish ? "QC-ready notes" : copy.nav["seo-articles"]}</b></a>
       </section>
 
+      <section className="definition-section" id="what-is-pikobuy-spreadsheet">
+        <div className="definition-number">01</div>
+        <div className="definition-copy">
+          <p>{local("WHAT IS THE PIKOBUY SPREADSHEET?", copy.nav.spreadsheet)}</p>
+          <h2>{local("What is the PikoBuy spreadsheet?", copy.homeTitle)}</h2>
+          <p>{local("A PikoBuy spreadsheet is a product-discovery list that helps shoppers move from a category or find to the original source page. This site adds the decision layer the raw row cannot provide: the exact destination, category-specific QC questions, official process notes, and a dated review trail. It does not guarantee stock, seller reliability, product quality, customs outcomes, or return approval.")}</p>
+          <div className="definition-actions">
+            <Link href={localPath(locale, "spreadsheet")}>{local("See how the spreadsheet is reviewed", copy.nav.spreadsheet)} <Icon name="arrow" /></Link>
+            <Link href="/how-to-use-pikobuy-spreadsheet">{local("Follow the complete workflow", copy.nav.guides)} <Icon name="arrow" /></Link>
+          </div>
+        </div>
+        <aside className="definition-facts">
+          <b>{local("A useful row answers four questions", labels.evidence)}</b>
+          <ol>
+            <li><span>01</span>{local("What is the exact product or category source?", copy.nav.spreadsheet)}</li>
+            <li><span>02</span>{local("Which size, variant and visible details must be checked?", copy.nav.guides)}</li>
+            <li><span>03</span>{local("What remains unknown until warehouse QC?", copy.nav.method)}</li>
+            <li><span>04</span>{local("Which official policy matters before the next payment?", copy.nav.updates)}</li>
+          </ol>
+        </aside>
+      </section>
+
       <section className="categories-section" id="categories">
         <div className="section-heading">
           <div>
             <p>10 · {labels.directCategories}</p>
-            <h2>{local("Start broad. Research deeper.", copy.nav.categories)}</h2>
+            <h2>{local("Browse PikoBuy spreadsheet categories", copy.nav.categories)}</h2>
           </div>
           <p className="section-intro">{local("Each category opens the matching collection on FindsSpreadsheet, so users reach relevant products instead of a generic homepage.")}</p>
         </div>
@@ -219,13 +239,30 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
             </a>
           ))}
         </div>
+        {isEnglish && <div className="topic-cluster">
+          <div className="topic-cluster-heading">
+            <p>2026 PIKOBUY TOPIC DIRECTORY</p>
+            <h3>Go from a broad category to a focused checklist.</h3>
+            <span>These pages answer different search intents; they are not the same article with a new title.</span>
+          </div>
+          <div className="topic-card-grid">
+            {keywordPageCards.map((page, index) => (
+              <Link key={page.slug} href={`/${page.slug}`}>
+                <span>{String(index + 1).padStart(2, "0")} / {page.intent}</span>
+                <strong>{page.shortTitle}</strong>
+                <small>{page.cardDescription}</small>
+                <i aria-hidden="true">→</i>
+              </Link>
+            ))}
+          </div>
+        </div>}
       </section>
 
       <section className="method-section" id="method">
         <div className="section-heading dark-heading">
           <div>
             <p>{copy.nav.method}</p>
-            <h2>{local("What sits between a link and a better decision.", copy.homeTitle)}</h2>
+            <h2>{local("How to use a PikoBuy spreadsheet", copy.homeTitle)}</h2>
           </div>
           <p className="section-intro">{local("The site separates source-page facts, official PikoBuy policy, and our own practical checkpoints. That distinction is central to trust.")}</p>
         </div>
@@ -248,8 +285,8 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
 
       <section className="guides-section" id="guides">
         <div className="section-heading">
-          <div><p>{copy.nav.guides}</p><h2>{local("Designed around real search intent.", copy.homeTitle)}</h2></div>
-          <p className="section-intro">{local("The content plan answers the questions users ask before choosing a product, paying an agent or shipping a parcel.")}</p>
+          <div><p>04 · QC</p><h2>{local("QC photo checklist for PikoBuy finds", copy.homeTitle)}</h2></div>
+          <p className="section-intro">{local("Use warehouse photos to confirm the ordered item and inspect visible details. Treat anything the images cannot prove as an open question, not a guarantee.")}</p>
         </div>
         <div className="guide-grid">
           <article className="guide-feature">
@@ -258,7 +295,7 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
             <p>{local("From a Taobao, Tmall, 1688, Weidian or Yupoo link to warehouse inspection and international dispatch.")}</p>
             <a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener noreferrer">{labels.sourceChecked} <Icon name="arrow"/></a>
           </article>
-          <article><span>02 / QC</span><h3>{local("How to read warehouse photos", copy.nav.guides)}</h3><p>{local("Check visible defects, measurements, labels, symmetry, colour and whether extra detail photos are needed.")}</p><button onClick={() => scrollTo("faq")}>{labels.questions} →</button></article>
+          <article><span>02 / QC</span><h3>{local("How to read warehouse photos", copy.nav.guides)}</h3><p>{local("Check visible defects, measurements, labels, symmetry, colour and whether extra detail photos are needed.")}</p><Link href="/pikobuy-spreadsheet-qc">Full QC checklist →</Link></article>
           <article><span>03 / {copy.nav.method}</span><h3>{local("Why dimensions can change cost", copy.nav.method)}</h3><p>{local("Use actual weight, parcel dimensions, route rules and destination before comparing shipping options.")}</p><a href="https://www.pikobuy.com/shipping-cost" target="_blank" rel="noopener noreferrer">{labels.sourceChecked} →</a></article>
           <article><span>04 / {copy.nav.updates}</span><h3>{local("Use the 120-hour window carefully", copy.nav.updates)}</h3><p>{local("Eligibility, seller agreement, packaging requirements, domestic shipping and possible service fees still matter.")}</p><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener noreferrer">{labels.sourceChecked} →</a></article>
         </div>
@@ -266,12 +303,13 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
 
       <section className="updates-section" id="updates">
         <div className="update-copy">
-          <p>{copy.nav.updates} / AUG 02, 2026</p>
-          <h2>{local("Facts first. Changes dated.", copy.homeTitle)}</h2>
+          <p>{copy.nav.updates} / AUG 06, 2026</p>
+          <h2>{local("Latest PikoBuy spreadsheet updates", copy.homeTitle)}</h2>
           <p>{local("The product showcase reads FindsSpreadsheet's public Latest and Popular ordering, refreshes on page load and every 30 minutes, and keeps PikoBuy process claims separate from source-product data.")}</p>
           <a href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noopener noreferrer">{copy.browse} <Icon name="arrow"/></a>
         </div>
         <div className="update-log">
+          <div><time>AUG 06</time><span><b>{local("2026 landing page and topic cluster", copy.nav.spreadsheet)}</b><small>{local("Homepage intent was clarified and eight independent category, QC, platform and shipping guides were added with direct internal links.")}</small></span><i>{labels.sourceChecked}</i></div>
           <div><time>AUG 02</time><span><b>{local("Latest + Popular product feed", copy.nav.spreadsheet)}</b><small>{local("Names, images, source prices and view signals are refreshed from FindsSpreadsheet's public product orderings.")}</small></span><i>{labels.sourceChecked}</i></div>
           <div><time>AUG 02</time><span><b>{local("Official buying flow", copy.nav.guides)}</b><small>{local("Six public steps were checked against PikoBuy's current beginner guide.")}</small></span><i>{labels.sourceChecked}</i></div>
           <div><time>AUG 02</time><span><b>{local("Returns and shipping", copy.nav.method)}</b><small>{local("The request window, eligibility conditions and estimator inputs are kept separate from our guidance.")}</small></span><i>{labels.sourceChecked}</i></div>
@@ -279,7 +317,7 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
       </section>
 
       <section className="faq-section" id="faq">
-        <div className="faq-title"><p>{labels.questions}</p><h2>{local("Clear answers, without invented promises.", copy.homeTitle)}</h2></div>
+        <div className="faq-title"><p>06 · {labels.questions}</p><h2>{local("FAQ about PikoBuy spreadsheet", copy.homeTitle)}</h2></div>
         <div className="faq-list">
           <details open><summary>{local("Is this the official PikoBuy website?", copy.independent)}<span>+</span></summary><p>{local("No. PikoBuy Sheet is an independent informational research site. It organizes source pages and explains publicly available PikoBuy processes; it does not sell products or represent PikoBuy.")}</p></details>
           <details><summary>{local("Does a live source page mean the product is in stock?", copy.nav.spreadsheet)}<span>+</span></summary><p>{local("No. It only means the referenced detail page loaded when reviewed. Stock, variants, seller availability, restrictions and prices can change.")}</p></details>

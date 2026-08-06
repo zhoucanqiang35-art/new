@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pikobuysheet.es"),
   title: "PikoBuy Sheet — Independent Spreadsheet Research",
   description: "An independent PikoBuy spreadsheet research guide with source-page checks, QC guidance, category navigation, and official process notes.",
   other: {

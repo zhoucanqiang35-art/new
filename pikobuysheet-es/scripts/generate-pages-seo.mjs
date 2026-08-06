@@ -21,12 +21,23 @@ const pagePaths = [
   "/seo-articles/pikobuy-qc-shipping-return-guide",
 ];
 
+const englishOnlyPaths = [
+  "/pikobuy-spreadsheet-shoes",
+  "/pikobuy-spreadsheet-hoodies",
+  "/pikobuy-spreadsheet-bags",
+  "/pikobuy-spreadsheet-qc",
+  "/how-to-use-pikobuy-spreadsheet",
+  "/pikobuy-spreadsheet-weidian",
+  "/pikobuy-spreadsheet-taobao",
+  "/pikobuy-spreadsheet-shipping-guide",
+];
+
 const sitemapUrls = locales.flatMap((locale) =>
   pagePaths.map((pagePath) => {
     const localizedPath = locale === "en" ? pagePath || "/" : `/${locale}${pagePath}`;
     return new URL(localizedPath, origin).href;
   }),
-);
+).concat(englishOnlyPaths.map((pagePath) => new URL(pagePath, origin).href));
 
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',

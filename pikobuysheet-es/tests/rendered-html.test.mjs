@@ -36,6 +36,36 @@ test("renders every primary independent route", async () => {
   }
 });
 
+test("renders the 2026 homepage search intent and all eight keyword landing pages", async () => {
+  const homepage = await render("/");
+  const homepageHtml = await homepage.text();
+  assert.match(homepageHtml, /PikoBuy Spreadsheet 2026: QC Finds, Categories, and How to Use It/);
+  assert.match(homepageHtml, /What is the PikoBuy spreadsheet\?/);
+  assert.match(homepageHtml, /Browse PikoBuy spreadsheet categories/);
+  assert.match(homepageHtml, /How to use a PikoBuy spreadsheet/);
+  assert.match(homepageHtml, /QC photo checklist for PikoBuy finds/);
+  assert.match(homepageHtml, /Latest PikoBuy spreadsheet updates/);
+  assert.match(homepageHtml, /FAQ about PikoBuy spreadsheet/);
+
+  for (const pathname of [
+    "/pikobuy-spreadsheet-shoes",
+    "/pikobuy-spreadsheet-hoodies",
+    "/pikobuy-spreadsheet-bags",
+    "/pikobuy-spreadsheet-qc",
+    "/how-to-use-pikobuy-spreadsheet",
+    "/pikobuy-spreadsheet-weidian",
+    "/pikobuy-spreadsheet-taobao",
+    "/pikobuy-spreadsheet-shipping-guide",
+  ]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+    const html = await response.text();
+    assert.match(html, /application\/ld\+json/, pathname);
+    assert.match(html, /Official sources checked/, pathname);
+    assert.match(html, new RegExp(`rel=["']canonical["'][^>]+${pathname}|${pathname}[^>]+rel=["']canonical["']`), pathname);
+  }
+});
+
 test("renders localized URLs and preserves page routes", async () => {
   const spanish = await render("/es");
   assert.equal(spanish.status, 200);
