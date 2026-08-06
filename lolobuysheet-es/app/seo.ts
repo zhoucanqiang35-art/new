@@ -18,8 +18,8 @@ export const translatedFaqLocales = ["en", "es", "de", "zh"] as const;
 
 const homeCopy: Record<string, { title: string; description: string }> = {
   en: {
-    title: "LoloBuy Spreadsheet 2026 — Finds, QC & Shipping Guides",
-    description: "Independent LoloBuy spreadsheet, product discovery, QC checklists and practical shipping guides for shoppers in Europe and North America.",
+    title: "LoloBuy Spreadsheet 2026 | Finds, QC Notes, Guides, and Categories",
+    description: "Explore the LoloBuy spreadsheet through category pages, QC notes, source-link context, and practical guides for ordering, shipping, and better shopping decisions in 2026.",
   },
   es: {
     title: "Hoja de cálculo LoloBuy 2026 — Productos, QC y envíos",
