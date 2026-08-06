@@ -17,7 +17,7 @@ export const siteStructuredData = [
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/lolobuy.webp`,
-    description: "Independent LoloBuy product research, QC education and shipping guidance.",
+    description: "Independent LoloBuy spreadsheet reference with category context, QC notes, ordering and shipping guides.",
   },
   {
     "@context": "https://schema.org",
