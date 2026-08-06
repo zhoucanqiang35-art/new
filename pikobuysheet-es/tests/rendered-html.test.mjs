@@ -39,6 +39,7 @@ test("renders every primary independent route", async () => {
 test("renders the 2026 homepage search intent and all eight keyword landing pages", async () => {
   const homepage = await render("/");
   const homepageHtml = await homepage.text();
+  assert.doesNotMatch(homepageHtml, /\/workspace\/sites\//, "public HTML must not expose internal font paths");
   assert.match(homepageHtml, /PikoBuy Spreadsheet 2026: QC Finds, Categories, and How to Use It/);
   assert.match(homepageHtml, /What is the PikoBuy spreadsheet\?/);
   assert.match(homepageHtml, /Browse PikoBuy spreadsheet categories/);
