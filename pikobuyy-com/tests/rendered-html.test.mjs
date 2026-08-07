@@ -99,6 +99,7 @@ test("SEO articles contain long-form facts and route actions to the main site", 
     "/articles/pikobuy-payment-guide",
     "/articles/pikobuy-warehouse-consolidation-guide",
     "/articles/pikobuy-return-policy-guide",
+    "/articles/pikobuy-tracking-guide",
   ];
   for (const route of routes) {
     const response = await renderRoute(route);
@@ -142,6 +143,7 @@ test("product and full-content detail routes render and link correctly", async (
     ["/articles/pikobuy-payment-guide", "Pikobuy Payment Guide: Two Checkout Stages", "/pikobuy-spreadsheet/"],
     ["/articles/pikobuy-warehouse-consolidation-guide", "Pikobuy Warehouse and Parcel Consolidation Guide", "/pikobuy-shipping-guide/"],
     ["/articles/pikobuy-return-policy-guide", "Pikobuy Return Policy: 120-Hour Warehouse Guide", "/pikobuy-qc-photo-guide/"],
+    ["/articles/pikobuy-tracking-guide", "Pikobuy Tracking Guide: Order & Parcel Status", "/pikobuy-shipping-guide/"],
     ["/updates/category-structure-refreshed", "Category structure refreshed", "/categories"],
     ["/de/guides/qc-photo-checklist", "Checkliste für QC-Fotos", "/de/categories"],
     ["/fr/products/fendi-slides", "Fendi Slides", "https://findspreadsheet.com/shoes/fendi-slides-2272.html"],
