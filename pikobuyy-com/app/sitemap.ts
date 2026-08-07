@@ -6,12 +6,12 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date("2026-07-30");
-  const contentModified = new Date("2026-08-06");
+  const contentModified = new Date("2026-08-07");
   const sections = ["categories", "guides", "articles", "updates", "faq"];
   const locales = ["de", "fr", "es", "it", "pl", "nl", "pt"];
   const detailPages = {
     guides: ["beginner-research-workflow", "qc-photo-checklist", "shipping-cost-planning", "product-link-verification"],
-    articles: ["what-is-a-pikobuy-spreadsheet", "how-to-use-pikobuy-spreadsheet-2026", "pikobuy-qc-photo-guide", "pikobuy-shipping-cost", "pikobuy-payment-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-return-policy-guide"],
+    articles: ["what-is-a-pikobuy-spreadsheet", "how-to-use-pikobuy-spreadsheet-2026", "pikobuy-qc-photo-guide", "pikobuy-shipping-cost", "pikobuy-payment-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-return-policy-guide", "pikobuy-tracking-guide"],
     updates: ["category-structure-refreshed", "current-link-checks-clarified", "qc-guide-expanded", "language-pages-introduced"],
     faq: ["what-is-a-pikobuy-spreadsheet", "does-pikobuyy-sell-products", "how-to-use-qc-photos", "what-affects-shipping-cost", "how-often-links-change", "where-the-live-directory-opens"],
   };
@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   for (const [section, slugs] of Object.entries(detailPages)) {
     for (const slug of slugs) {
-      const pageModified = ["pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
+      const pageModified = ["pikobuy-tracking-guide", "pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
         ? new Date("2026-08-06")
         : lastModified;
       urls.push({ url: `https://pikobuyy.com/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.75 });
@@ -70,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     for (const [section, slugs] of Object.entries(detailPages)) {
       for (const slug of slugs) {
-        const pageModified = ["pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
+        const pageModified = ["pikobuy-tracking-guide", "pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
           ? new Date("2026-08-06")
           : lastModified;
         urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.65 });
