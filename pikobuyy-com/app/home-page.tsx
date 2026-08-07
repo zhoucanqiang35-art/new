@@ -609,18 +609,20 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
       <section className="updates-section" id="research-notes">
         <div className="updates-heading">
           <div className="updates-title"><p className="eyebrow"><span /> {home.updatesEyebrow}</p><h2>{home.updatesTitle}</h2></div>
-          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>29 Jul 2026</span></div></div>
+          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>7 Aug 2026</span></div></div>
         </div>
         <div className="research-note-list">
           {evidence.notes.map(([topic, fact, implication, source], index) => {
             const destinations = [
               `${routeFor(locale, "guides")}/${sectionItemSlugs.guides[0]}`,
               `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[6]}`,
-              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[3]}`,
+              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[7]}`,
             ];
             const verifiedDate = index === 1
               ? { dateTime: "2026-08-06", label: "06.08.2026" }
-              : { dateTime: "2026-07-29", label: "29.07.2026" };
+              : index === 2
+                ? { dateTime: "2026-08-07", label: "07.08.2026" }
+                : { dateTime: "2026-07-29", label: "29.07.2026" };
             return <a className="research-note" href={destinations[index]} key={topic}><div className="research-note-top"><span>{topic}</span><time dateTime={verifiedDate.dateTime}>{verifiedDate.label}</time></div><h3>{evidence.verifiedLabel}</h3><p>{fact}</p><div className="research-impact"><b>{evidence.implicationLabel}</b><p>{implication}</p></div><div className="research-note-footer"><span>{source}</span><b>{evidence.readMore} →</b></div></a>;
           })}
         </div>
