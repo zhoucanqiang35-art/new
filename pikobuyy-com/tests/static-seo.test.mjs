@@ -221,6 +221,46 @@ test("return article visual and related cards remain mobile-safe", async () => {
   assert.ok(svg.includes("Pikobuy return decision timeline after an order becomes Warehoused"));
 });
 
+
+test("tracking article is source-bounded, indexable and internally linked", async () => {
+  const route = "articles/pikobuy-tracking-guide";
+  const html = await htmlFor(route);
+  const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes("https://pikobuyy.com/articles/pikobuy-tracking-guide/"));
+  assert.equal(canonicalFrom(html), "https://pikobuyy.com/articles/pikobuy-tracking-guide/");
+  assert.ok(html.includes("Pikobuy Tracking Guide: Order &amp; Parcel Status") || html.includes("Pikobuy Tracking Guide: Order & Parcel Status"));
+  assert.ok(html.includes('"@type":"Article"'));
+  assert.ok(html.includes('"@type":"BreadcrumbList"'));
+  assert.ok(!html.includes('"@type":"FAQPage"'));
+  assert.ok(html.includes("pikobuy-tracking-status-flow.svg"));
+  assert.ok(html.includes("Fact-checked Aug 7, 2026"));
+  assert.ok(html.includes("within three days after the parcel is shipped"));
+  assert.ok(html.includes("not a three-day delivery promise"));
+  assert.ok(html.includes('href="/articles/pikobuy-payment-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-warehouse-consolidation-guide/"'));
+  assert.ok(html.includes('href="/pikobuy-shipping-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-return-policy-guide/"'));
+  const home = await readFile(path.join(out, "index.html"), "utf8");
+  const archive = await htmlFor("articles");
+  assert.ok(home.includes('href="/articles/pikobuy-tracking-guide"'));
+  assert.ok(home.includes('dateTime="2026-08-07"'));
+  assert.ok(archive.includes("Pikobuy Tracking Guide: Order"));
+});
+test("tracking article body stays within the requested editorial length", async () => {
+  const html = await htmlFor("articles/pikobuy-tracking-guide");
+  const sections = [...html.matchAll(/<section class="article-section"[\s\S]*?<\/section>/g)].map((match) => match[0]).join(" ");
+  const words = sections.replace(/<[^>]+>/g, " ").replace(/&(?:amp|quot|#x27|#39);/g, " ").split(/\s+/).filter(Boolean);
+  assert.ok(words.length >= 1200, `article body should contain at least 1,200 words, found ${words.length}`);
+  assert.ok(words.length <= 1800, `article body should contain at most 1,800 words, found ${words.length}`);
+});
+test("tracking visual and related cards remain mobile-safe", async () => {
+  const css = await readFile(path.resolve("app/globals.css"), "utf8");
+  const trackingSvg = await readFile(path.resolve("public/pikobuy-tracking-status-flow.svg"), "utf8");
+  assert.match(css, /\.article-visual img\s*\{[^}]*width:\s*100%[^}]*height:\s*auto/s);
+  assert.match(css, /@media \(max-width: 580px\)[\s\S]*\.article-related > div\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.ok(trackingSvg.includes('viewBox="0 0 1200 630"'));
+  assert.ok(trackingSvg.includes("Pikobuy order and parcel tracking status flow"));
+});
 test("representative multilingual and product routes use self canonicals", async () => {
   const checks = [
     ["guides", "https://pikobuyy.com/guides/"],
