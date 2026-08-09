@@ -30,6 +30,7 @@ const englishOnlyPaths = [
   "/pikobuy-spreadsheet-weidian",
   "/pikobuy-spreadsheet-taobao",
   "/pikobuy-spreadsheet-shipping-guide",
+  "/seo-articles/pikobuy-total-cost-explained",
 ];
 
 const sitemapUrls = locales.flatMap((locale) =>
@@ -39,10 +40,18 @@ const sitemapUrls = locales.flatMap((locale) =>
   }),
 ).concat(englishOnlyPaths.map((pagePath) => new URL(pagePath, origin).href));
 
+function lastModified(url) {
+  const pathname = new URL(url).pathname.replace(/\/$/, "") || "/";
+  if (["/", "/updates", "/seo-articles", "/seo-articles/pikobuy-total-cost-explained"].includes(pathname)) return "2026-08-09";
+  if (pathname.includes("/seo-articles/how-to-use-a-pikobuy-spreadsheet") || pathname.includes("/seo-articles/pikobuy-qc-shipping-return-guide")) return "2026-07-31";
+  if (englishOnlyPaths.includes(pathname)) return "2026-08-06";
+  return "2026-08-02";
+}
+
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`),
+  ...sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastModified(url)}</lastmod></url>`),
   "</urlset>",
   "",
 ].join("\n");

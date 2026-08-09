@@ -22,7 +22,11 @@ export default async function LocalizedPage({ params }: { params: Promise<{ loca
   if (!slug.length) return <HomeExperience locale={locale} />;
   const page = slug[0] as Exclude<PageKey, "home">;
   if (!navKeys.includes(page)) notFound();
-  if (page === "seo-articles" && slug[1]) return <ArticlePage slug={slug[1]} locale={locale} />;
+  if (page === "seo-articles" && slug[1]) {
+    const article = articles.find((item) => item.slug === slug[1]);
+    if (!article || (article.publishedLocales && !article.publishedLocales.includes(locale))) notFound();
+    return <ArticlePage slug={slug[1]} locale={locale} />;
+  }
   if (slug.length > 1) notFound();
   return <ContentPage page={page} locale={locale} />;
 }

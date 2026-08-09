@@ -5,8 +5,19 @@ type Article = {
   slug: string;
   title: string;
   deck: string;
+  metaTitle?: string;
+  metaDescription?: string;
   date: string;
+  publishedISO?: string;
+  modifiedISO?: string;
+  lastChecked?: string;
   readTime: string;
+  wordCount?: number;
+  primaryKeyword?: string;
+  supportingKeywords?: string[];
+  publishedLocales?: string[];
+  sources?: { label: string; href: string; note: string }[];
+  relatedLinks?: { label: string; href: string; note: string }[];
   sections: { title: string; paragraphs: string[]; bullets?: string[] }[];
 };
 
@@ -181,6 +192,130 @@ export const articles: Article[] = [
           "Seller agreement, marketable condition and exclusions still affect return eligibility.",
           "Destination, product type, weight and dimensions are required for a meaningful shipping estimate.",
           "Third-party logistics and customs create risks that no spreadsheet can remove.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "pikobuy-total-cost-explained",
+    title: "PikoBuy Total Cost Explained: What You Pay Before International Delivery",
+    deck: "A practical way to estimate product payment, seller delivery, warehouse decisions, parcel dimensions, international shipping and the costs that may remain outside the checkout screen.",
+    metaTitle: "PikoBuy Total Cost: Two Payments & Shipping Guide",
+    metaDescription: "Calculate PikoBuy total cost across product payment, China delivery, warehouse choices, parcel dimensions, international shipping, returns, and import risk.",
+    date: "August 9, 2026",
+    publishedISO: "2026-08-09T08:00:00-07:00",
+    modifiedISO: "2026-08-09T08:00:00-07:00",
+    lastChecked: "August 9, 2026",
+    readTime: "15 min read · 1,713 words",
+    wordCount: 1713,
+    primaryKeyword: "PikoBuy total cost",
+    supportingKeywords: [
+      "PikoBuy fees",
+      "PikoBuy shipping cost",
+      "PikoBuy payment process",
+      "PikoBuy warehouse consolidation",
+      "PikoBuy international shipping",
+      "PikoBuy landed cost",
+      "PikoBuy shipping estimator",
+    ],
+    publishedLocales: ["en"],
+    sources: [
+      { label: "PikoBuy beginner's guide", href: "https://www.pikobuy.com/guide", note: "First product payment, warehouse inspection, packaging requests and the separate international-shipping payment." },
+      { label: "PikoBuy shipping estimate", href: "https://www.pikobuy.com/shipping-cost", note: "Destination, product type, weight and parcel dimensions used for route estimates." },
+      { label: "PikoBuy shipping terms", href: "https://www.pikobuy.com/protocol/shipping", note: "Forwarding workflow, account-balance note and third-party logistics/customs risk boundaries." },
+      { label: "PikoBuy returns and exchanges", href: "https://www.pikobuy.com/protocol/returns", note: "The five-day/120-hour request window, seller conditions, return responsibility and published fees." },
+      { label: "PikoBuy contact page", href: "https://www.pikobuy.com/contact", note: "PikoBuy's statement that items from different sellers can be combined into one parcel." },
+    ],
+    relatedLinks: [
+      { label: "PikoBuy Spreadsheet 2026", href: "/", note: "Return to the category and source-link research hub." },
+      { label: "How to use a PikoBuy spreadsheet", href: "/how-to-use-pikobuy-spreadsheet", note: "Check a source row before placing the product order." },
+      { label: "PikoBuy QC checklist", href: "/pikobuy-spreadsheet-qc", note: "Review the received item before accepting it for shipment." },
+      { label: "PikoBuy shipping guide", href: "/pikobuy-spreadsheet-shipping-guide", note: "Compare parcel and route inputs after warehousing." },
+    ],
+    sections: [
+      {
+        title: "The listing price is only the first number",
+        paragraphs: [
+          "A low product price can be useful for comparing finds, but it is not the PikoBuy total cost. The amount needed to receive an item abroad is assembled over several decisions: the product order, any seller-side delivery inside China, warehouse inspection, optional photographs or packaging, the packed parcel, international transport and possible destination charges. Some parts are visible before purchase; others become clearer only after the item reaches the warehouse.",
+          "That timing is important. A spreadsheet row can show a current source price and help identify a product, yet it cannot know the final packed weight, route availability for your country, customs treatment or the amount your payment provider will convert. The useful question is not, “What does this row cost?” It is, “Which costs can I verify now, which appear after warehousing, and which remain outside PikoBuy's control?”",
+        ],
+      },
+      {
+        title: "1. Understand the two payment moments",
+        paragraphs: [
+          "PikoBuy's current beginner guide separates the process clearly. In step three, the shopper selects the colour, size and quantity, submits the purchasing order and completes the first payment. After the product reaches the warehouse, PikoBuy says it checks the item in, takes confirmation photographs and looks for visible defects. In step five, the shopper chooses a logistics route, submits the parcel and pays the international shipping fee.",
+          "This is why a single checkout-style total shown at the discovery stage would be misleading. The first payment moves the product from the seller toward the warehouse. The later payment moves an accepted, packed parcel from the warehouse toward the destination. The second amount depends on information that may not exist at the first payment, including the parcel's measured weight, dimensions, product classification and the routes available for the destination.",
+        ],
+      },
+      {
+        title: "2. Build the product-side subtotal before ordering",
+        paragraphs: [
+          "Start a worksheet with the exact item and variant, not a rounded headline price. Record the source-page amount for the selected colour, size and quantity; the seller's domestic delivery charge if it is displayed; and any optional service you knowingly select. Save the date and currency shown. PikoBuy's guide notes that the final price is based on the actual purchase and that an out-of-stock order will be refunded, so the live order screen should take priority over an older spreadsheet snapshot.",
+          "Keep uncertain entries blank or label them as estimates. Do not invent a domestic shipping amount when the seller has not shown one, and do not assume that a displayed USD conversion will equal the final card debit. A clean subtotal has three columns: confirmed now, estimated for planning and unknown until later. That small distinction prevents an estimate from quietly becoming a promise when you compare several products.",
+        ],
+      },
+      {
+        title: "3. Treat the warehouse as a cost checkpoint",
+        paragraphs: [
+          "Warehouse arrival is not merely a pause between payments. It is the point where the order becomes more measurable and where a costly mistake may still be avoidable. PikoBuy says warehouse staff check in the item, photograph it and inspect for visible defects. Compare those photographs with the ordered variant and with a category-specific QC checklist. If size, colour, quantity or visible condition is wrong, resolve the issue before building an international parcel.",
+          "The warehouse stage can also introduce choices. PikoBuy's guide mentions requests such as minimal packaging or reinforced packaging. Additional detail photographs may be useful when the standard views do not answer a decision-changing question. Each optional step should have a purpose: confirming an insole measurement, protecting a fragile shape or reducing dispensable volume. “More” is not automatically better if it adds cost without reducing uncertainty or protecting the item.",
+        ],
+      },
+      {
+        title: "4. Recalculate when several sellers become one parcel",
+        paragraphs: [
+          "PikoBuy's contact page says items from different sellers can be combined into one package. Consolidation can remove the need to send several separate international parcels, but it should not be described as guaranteed savings. A combined parcel has its own packed weight, external dimensions, product mix and eligible routes. Adding a bulky box to lightweight clothing can change the result in ways that item prices do not reveal.",
+          "Compare at least two realistic parcel plans when the warehouse allows it: the intended consolidated parcel and a sensible alternative, such as removing nonessential outer packaging or separating a restricted product. Do not divide one estimated freight quote equally across every item. A better per-item analysis considers weight, occupied volume and whether one product forces a different route. The goal is to identify the item that changes the parcel decision, not to manufacture a perfectly precise allocation.",
+        ],
+      },
+      {
+        title: "5. Use the estimator with warehouse-quality inputs",
+        paragraphs: [
+          "PikoBuy's public shipping estimator asks for five practical inputs: destination country or region, product type, weight in kilograms, and parcel length, width and height in centimetres. These fields explain why product price alone cannot predict PikoBuy shipping cost. Destination and classification affect which routes may appear, while weight and dimensions describe what the carrier must handle.",
+          "Run an early scenario if you need a budget boundary, but write down every assumption. Seller-reported item weight is not necessarily packed weight, and product measurements are not parcel measurements. Once warehouse data is available, replace estimates with the measured figures and search again. Compare only the routes actually offered for that parcel and destination. The official guide states that routes differ in delivery time and billing method, so the cheapest displayed number should not be evaluated without its route conditions.",
+        ],
+      },
+      {
+        title: "6. Separate controllable costs from external exposure",
+        paragraphs: [
+          "Some decisions are directly manageable: which products enter the parcel, whether optional packaging is requested and which available route is selected. Other amounts may sit outside the product and shipping screens. Currency conversion can differ by payment provider, and destination authorities may assess tax, duty, brokerage or handling under rules that depend on the country, product and shipment. Check the current checkout and local official guidance instead of copying a percentage from an unrelated haul.",
+          "PikoBuy's shipping terms also state that third-party logistics providers carry international parcels and identify customs action, damage, loss and peak-season delay as cross-border risks. A cost plan should therefore include a risk decision, not a fake universal surcharge. Ask whether the parcel value is acceptable under the current route's protection terms and whether an unexpected destination charge would make the purchase unsuitable. If that answer is no, the budget is already too tight.",
+        ],
+      },
+      {
+        title: "7. Include the cost of changing your mind",
+        paragraphs: [
+          "A return before international dispatch can still carry costs. PikoBuy's returns page says an eligible request must normally be submitted within five days after the status changes to In Warehouse, counted from the next hour, which it defines as 120 hours. Eligibility also depends on seller support, marketable condition, packaging requirements and product exclusions. PikoBuy says it can return the product only with the seller's consent.",
+          "For an unconditional return, the published policy lists shipping back to the seller, the seller's original shipping fee and a RMB 5 service fee; it also says originally free seller delivery may still need to be repaid. Responsibility can differ for a wrong item or documented quality problem. These rules make prompt QC financially relevant. Accepting an uncertain item and paying international freight can turn a domestic after-sales question into a much harder cross-border problem.",
+        ],
+      },
+      {
+        title: "8. Use ranges instead of a false exact total",
+        paragraphs: [
+          "Before warehousing, calculate a planning range rather than one impressive-looking figure. The lower case can use the confirmed product subtotal and a cautious route scenario based on credible weight and dimensions. The upper case should reflect plausible packaging or dimensional uncertainty plus any destination-side amount you can support from current local rules. Unknown does not mean zero. It means the decision is not ready for an exact number.",
+          "After warehousing, narrow the range. Confirm the received variant, measured information, packaging plan and available routes. Save the route name, date and assumptions because prices and availability can change. The number shown at this stage is still not a permanent public tariff; it is an order-specific observation. A useful article teaches the calculation method without pretending that one reader's parcel quote applies to another country, product type or date.",
+        ],
+      },
+      {
+        title: "9. A practical total-cost worksheet",
+        paragraphs: [
+          "Use seven lines: selected product amount; seller delivery inside China; confirmed optional warehouse services; packed weight and dimensions; selected international route; payment-conversion difference; and destination tax, duty or handling where applicable. Add a separate line for return exposure while the item remains in China. Beside every line, mark the source: seller listing, PikoBuy order screen, warehouse measurement, PikoBuy estimator, route screen, payment provider or destination authority.",
+          "This worksheet is more useful than copying a creator's haul total because it exposes weak evidence. If international freight is based on guessed dimensions, the sheet says so. If a customs amount is not known, it remains a destination-side question. If an item is within the return window but the photos are unclear, the next action is additional evidence or an after-sales request—not automatically paying the second stage.",
+        ],
+      },
+      {
+        title: "10. The ten-minute review before international payment",
+        paragraphs: [
+          "Before submitting the parcel, reopen the live order and route screens. Confirm that the item in the warehouse matches the purchased variant, that any return-sensitive question has been resolved, and that the packaging request reflects the product rather than a generic preference. Enter measured weight and dimensions where available, compare the current eligible routes, and read their billing and restriction details. Check the receiving address and keep enough margin for payment conversion or legitimate destination charges.",
+          "The final PikoBuy total cost is not a number a spreadsheet can guarantee in advance. It is a documented chain of costs and decisions. The best workflow keeps the first product payment separate from the later international-shipping payment, replaces guesses when warehouse evidence arrives, and leaves external charges labelled honestly. That approach will not make every parcel cheap, but it makes the decision understandable before the most difficult costs are already committed.",
+        ],
+        bullets: [
+          "The selected product, colour, size and quantity still match the live order.",
+          "Warehouse photographs and measurements answer the questions that could trigger a return.",
+          "The 120-hour request period and seller conditions have been checked where relevant.",
+          "The shipping estimate uses the correct destination, product type, weight and dimensions.",
+          "The chosen route is assessed on restrictions, billing method and risk—not price alone.",
+          "Currency conversion and possible destination charges are not hidden inside a fake guaranteed total.",
         ],
       },
     ],
@@ -376,6 +511,7 @@ function UpdatesPage({ locale }: { locale: string }) {
             <div><b>{local("Impact", copy.nav.method)}</b><p>{local("Why the change affects browsing, interpretation or the next action.")}</p></div>
           </div>
           <div className="update-page-list">
+            {isEnglish && <div><time>AUG 09 · 2026</time><section><h3>PikoBuy total cost guide published</h3><p>Published a 1,713-word English guide that separates the first product payment from the later international-shipping payment and documents warehouse, parcel, return and destination-cost checkpoints. Official sources were rechecked on August 9, 2026.</p></section><i>PUBLISHED</i></div>}
             <div><time>AUG 02 · 2026</time><section><h3>{local("Complete interface localization", copy.language)}</h3><p>{local("The language switch now retains the current route and changes navigation, feed controls, trust links, category labels, section headings, source panels, footer copy and non-article page interfaces across all 24 language URLs.")}</p></section><i>{isEnglish ? "FIXED" : labels.sourceChecked}</i></div>
             <div><time>AUG 02 · 2026</time><section><h3>{local("Ten category destinations audited", copy.nav.categories)}</h3><p>{local("Shoes, hoodies, T-shirts, jackets, pants/shorts, headwear, accessories, jerseys, electronics and other products now use the exact category routes published by FindSpreadsheet, including the case-sensitive /Jersey/ path.")}</p></section><i>{isEnglish ? "10 / 10" : labels.sourceChecked}</i></div>
             <div><time>AUG 02 · 2026</time><section><h3>{local("Trust strip changed from labels to links", copy.nav.method)}</h3><p>{local("The five first-screen research signals now open Guides, Spreadsheet, Method, Categories and the QC/shipping/returns guide instead of behaving like dead controls.")}</p></section><i>{isEnglish ? "LINKED" : labels.sourceChecked}</i></div>
@@ -396,11 +532,14 @@ function UpdatesPage({ locale }: { locale: string }) {
 function ArticlesIndex({ locale }: { locale: string }) {
   const copy = getLocaleCopy(locale);
   const labels = getInterfaceLabels(locale);
+  const visibleArticles = articles
+    .filter((article) => !article.publishedLocales || article.publishedLocales.includes(locale))
+    .sort((left, right) => Date.parse(right.publishedISO ?? right.date) - Date.parse(left.publishedISO ?? left.date));
   return (
     <div className="content-shell">
       <section className="wide-content">
         <div className="content-heading"><p>{copy.nav["seo-articles"]}</p><h2>{locale === "en" ? "Useful before the next click." : copy.homeTitle}</h2><span>{locale === "en" ? "Each published guide is 1,200–1,800 words, cites primary PikoBuy pages for official facts and avoids fabricated reviews or promises." : copy.homeIntro}</span></div>
-        <div className="article-grid">{articles.map((article, index) => <a key={article.slug} href={`${localPath(locale, "seo-articles")}/${article.slug}`}><span>0{index + 1} / {copy.nav.guides}</span><h3>{article.title}</h3><p>{article.deck}</p><footer><time>{article.date}</time><b>{article.readTime}</b></footer></a>)}</div>
+        <div className="article-grid">{visibleArticles.map((article, index) => <a key={article.slug} href={`${localPath(locale, "seo-articles")}/${article.slug}`}><span>0{index + 1} / {copy.nav.guides}</span><h3>{article.title}</h3><p>{article.deck}</p><footer><time>{article.date}</time><b>{article.readTime}</b></footer></a>)}</div>
         <div className="fact-callout"><b>{labels.evidence}</b><p>{locale === "en" ? "When the official page and an older article disagree, the current official page wins. Articles are dated, independently written and never presented as private customer testimony." : copy.homeIntro}</p></div>
       </section>
     </div>
@@ -420,15 +559,45 @@ export function ContentPage({ page, locale = "en" }: { page: Exclude<PageKey, "h
 
 export function ArticlePage({ slug, locale = "en" }: { slug: string; locale?: string }) {
   const article = articles.find((item) => item.slug === slug);
-  if (!article) return <ContentPage page="seo-articles" locale={locale} />;
+  if (!article || (article.publishedLocales && !article.publishedLocales.includes(locale))) return <ContentPage page="seo-articles" locale={locale} />;
+  const canonicalUrl = `https://pikobuysheet.es/seo-articles/${article.slug}`;
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: article.title,
+      description: article.metaDescription ?? article.deck,
+      url: canonicalUrl,
+      mainEntityOfPage: canonicalUrl,
+      inLanguage: "en",
+      datePublished: article.publishedISO,
+      dateModified: article.modifiedISO ?? article.publishedISO,
+      author: { "@type": "Organization", name: "PikoBuy Sheet", url: "https://pikobuysheet.es/" },
+      publisher: { "@type": "Organization", name: "PikoBuy Sheet", url: "https://pikobuysheet.es/" },
+      keywords: [article.primaryKeyword, ...(article.supportingKeywords ?? [])].filter(Boolean).join(", "),
+      citation: article.sources?.map((source) => source.href),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://pikobuysheet.es/" },
+        { "@type": "ListItem", position: 2, name: "SEO Articles", item: "https://pikobuysheet.es/seo-articles" },
+        { "@type": "ListItem", position: 3, name: article.title, item: canonicalUrl },
+      ],
+    },
+  ];
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       <SiteHeader locale={locale} active="seo-articles" articleSlug={slug} />
       <article className="article-page">
-        <header><p>PIKOBUY SHEET / INDEPENDENT GUIDE</p><h1>{article.title}</h1><span>{article.deck}</span><div><time>{article.date}</time><b>{article.readTime}</b></div></header>
+        <header><p>PIKOBUY SHEET / INDEPENDENT GUIDE</p><h1>{article.title}</h1><span>{article.deck}</span><div><time dateTime={article.publishedISO}>{article.date}</time><b>{article.readTime}</b>{article.lastChecked && <b>Last checked · {article.lastChecked}</b>}</div></header>
         <div className="article-layout">
           <div className="article-body">
             {article.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</section>)}
+            {article.relatedLinks && <aside className="article-related"><h2>Continue the research</h2>{article.relatedLinks.map((link) => <a key={link.href} href={link.href}><b>{link.label}</b><span>{link.note} →</span></a>)}</aside>}
+            {article.sources && <aside className="article-source-log"><h2>Official sources checked</h2><p>Platform-specific facts were last checked on {article.lastChecked}. The live official page takes priority if a policy or feature changes.</p>{article.sources.map((source) => <a key={source.href} href={source.href} target="_blank" rel="noopener noreferrer"><b>{source.label}</b><span>{source.note} ↗</span></a>)}</aside>}
             <div className="article-disclosure"><b>Independent publication note</b><p>This article is informational and is not affiliated with PikoBuy. Policies, prices, availability and routes can change. Check the current official page and your live order before acting.</p></div>
           </div>
           <SourcePanel locale={locale} />

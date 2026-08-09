@@ -324,6 +324,13 @@ footer > div:not(:first-child) a:hover { color: var(--cyan); }
 .article-body p { color: #435d69; font-family: Georgia, "Times New Roman", serif; font-size: 18px; line-height: 1.9; margin: 0 0 20px; }
 .article-body ul { padding: 24px 30px 24px 48px; background: #e4f3f5; border-left: 3px solid #0cb8ca; color: #294c5a; }
 .article-body li { padding: 7px 0; line-height: 1.65; }
+.article-related, .article-source-log { margin: 55px 0; padding: 30px; border: 1px solid #bdd7dc; background: #edf6f7; }
+.article-related h2, .article-source-log h2 { font-size: 25px; margin-bottom: 10px; }
+.article-source-log > p { margin-bottom: 22px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.7; }
+.article-related a, .article-source-log a { display: grid; gap: 6px; padding: 16px 0; border-top: 1px solid #c9dde1; color: #082c3d; }
+.article-related a:first-of-type, .article-source-log a:first-of-type { margin-top: 20px; }
+.article-related a b, .article-source-log a b { font-size: 14px; }
+.article-related a span, .article-source-log a span { color: #4c6873; font-size: 12px; line-height: 1.55; }
 .article-disclosure { padding: 28px; background: #062338; color: #fff; }
 .article-disclosure p { color: #a4bac4; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.7; margin: 10px 0 0; }
 .keyword-page { background: #f2f6f7; color: #0a1e2a; overflow: visible; }
