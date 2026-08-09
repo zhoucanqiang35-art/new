@@ -6,9 +6,10 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pikobuyspreadsheet.shop"),
   title: "PikoBuy Spreadsheet — Independent Finds, QC & Shipping Research",
   description: "Search focused PikoBuy finds, compare category-specific QC checks and review current official shipping and return information.",
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   other: { "codex-preview": "development" },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
