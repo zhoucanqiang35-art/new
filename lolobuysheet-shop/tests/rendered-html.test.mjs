@@ -166,13 +166,39 @@ test("publishes the complete 24-language sitemap and article schema", async () =
   const sitemapResponse = await worker.fetch(new Request("http://localhost/sitemap.xml"), env, ctx);
   const sitemapXml = await sitemapResponse.text();
   assert.equal(sitemapResponse.status, 200);
-  assert.equal((sitemapXml.match(/<url>/g) ?? []).length, 528);
+  assert.equal((sitemapXml.match(/<url>/g) ?? []).length, 529);
   assert.match(sitemapXml, /hreflang="x-default"/);
   assert.match(sitemapXml, /https:\/\/lolobuysheet\.shop\/zh\/seo-articles\/lolobuy-qc-photo-checklist/);
+  assert.match(sitemapXml, /https:\/\/lolobuysheet\.shop\/seo-articles\/lolobuy-total-cost-fees-checklist/);
+  assert.doesNotMatch(sitemapXml, /https:\/\/lolobuysheet\.shop\/de\/seo-articles\/lolobuy-total-cost-fees-checklist/);
 
   const articleResponse = await worker.fetch(new Request("http://localhost/seo-articles/how-to-use-lolobuy-spreadsheet", { headers: { accept: "text/html" } }), env, ctx);
   const articleHtml = await articleResponse.text();
   assert.equal(articleResponse.status, 200);
   assert.match(articleHtml, /"@type":"Article"/);
   assert.match(articleHtml, /"dateModified":"2026-08-04"/);
+});
+
+test("publishes the English-only total-cost article with current metadata and evidence", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("cost-article-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const ctx = { waitUntil() {}, passThroughOnException() {} };
+
+  const response = await worker.fetch(new Request("http://localhost/seo-articles/lolobuy-total-cost-fees-checklist", { headers: { accept: "text/html" } }), env, ctx);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /LoloBuy Total Cost: A Two-Payment Fees Checklist for 2026/);
+  assert.match(html, /Official sources and verification record/);
+  assert.match(html, /https:\/\/www\.lolobuy\.com\/helpCenter\/1242296499766165/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+  assert.match(html, /"datePublished":"2026-08-10"/);
+  assert.match(html, /"dateModified":"2026-08-10"/);
+  assert.match(html, /rel="canonical" href="https:\/\/lolobuysheet\.shop\/seo-articles\/lolobuy-total-cost-fees-checklist"/);
+  assert.doesNotMatch(html, /href="https:\/\/www\.lolobuy\.com\//);
+
+  const untranslated = await worker.fetch(new Request("http://localhost/de/seo-articles/lolobuy-total-cost-fees-checklist", { headers: { accept: "text/html" } }), env, ctx);
+  assert.equal(untranslated.status, 404);
 });

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import SitePage from "../SitePage";
 import { copy, isLocale, localeCodes, products, type LocaleCode } from "../site-data";
-import { findEditorialArticle } from "../editorial-data";
+import { findEditorialArticle, isEditorialArticleAvailable } from "../editorial-data";
 
 function resolve(slug: string[]) {
   const lang: LocaleCode = isLocale(slug[0]) ? slug[0] : "en";
@@ -12,17 +12,20 @@ function resolve(slug: string[]) {
 
 const staticPaths = new Set(["/", "/spreadsheet", "/categories", "/guides", "/guides/beginner", "/guides/qc", "/guides/shipping", "/reviews", "/faq", "/sources", "/method", "/seo-articles", "/updates"]);
 
-function isKnownPath(path: string) {
+function isKnownPath(path: string, lang: LocaleCode) {
   if (staticPaths.has(path)) return true;
   if (path.startsWith("/products/")) return products.some((item) => item.slug === path.slice("/products/".length));
-  if (path.startsWith("/seo-articles/")) return Boolean(findEditorialArticle(path.slice("/seo-articles/".length)));
+  if (path.startsWith("/seo-articles/")) {
+    const article = findEditorialArticle(path.slice("/seo-articles/".length));
+    return Boolean(article && isEditorialArticleAvailable(article, lang));
+  }
   return false;
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
   const { slug } = await params;
   const { lang, path } = resolve(slug);
-  if (!isKnownPath(path)) return { title: "Page not found", robots: { index: false, follow: false } };
+  if (!isKnownPath(path, lang)) return { title: "Page not found", robots: { index: false, follow: false } };
   const c = copy[lang];
   const product = path.startsWith("/products/") ? products.find((item) => item.slug === path.slice("/products/".length)) : undefined;
   const editorialArticle = path.startsWith("/seo-articles/") ? findEditorialArticle(path.slice("/seo-articles/".length)) : undefined;
@@ -37,7 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     ? `https://lolobuysheet.shop${code === "en" ? "/" : `/${code}`}`
     : `https://lolobuysheet.shop${code === "en" ? "" : `/${code}`}${path}`;
   const canonical = localizedCanonical(lang);
-  const languages = Object.fromEntries([...localeCodes.map((code) => [code, localizedCanonical(code)]), ["x-default", localizedCanonical("en")]]);
+  const availableLocales = editorialArticle?.locales === "en" ? (["en"] as const) : localeCodes;
+  const languages = Object.fromEntries([...availableLocales.map((code) => [code, localizedCanonical(code)]), ["x-default", localizedCanonical("en")]]);
   const socialImage = product ? product.image : "/lolobuy-research-desk.jpg";
   return {
     title,
@@ -60,6 +64,6 @@ export default async function RoutedPage({ params }: { params: Promise<{ slug: s
   const { slug } = await params;
   const { lang, path } = resolve(slug);
   if (slug[0] === "en") permanentRedirect(path);
-  if (!isKnownPath(path)) notFound();
+  if (!isKnownPath(path, lang)) notFound();
   return <SitePage lang={lang} path={path} />;
 }

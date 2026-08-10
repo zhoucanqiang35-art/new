@@ -1,6 +1,7 @@
 import Header from "./components/Header";
+import Link from "next/link";
 import { categories, categoryNames, copy, faqExtraAnswers, faqQuestions, products, type LocaleCode, type Product } from "./site-data";
-import { communityReviewUrl, editorialArticles, findEditorialArticle, guideArticles, mainSiteUrl, type EditorialSection } from "./editorial-data";
+import { communityReviewUrl, editorialArticles, findEditorialArticle, guideArticles, isEditorialArticleAvailable, mainSiteUrl, type EditorialSection } from "./editorial-data";
 
 function localizedPath(lang: LocaleCode, path: string) {
   return lang === "en" ? path : `/${lang}${path === "/" ? "" : path}`;
@@ -114,6 +115,7 @@ function Home({ lang }: { lang: LocaleCode }) {
           <h2 id="latest-title">{c.spreadsheetTitle}</h2>
           <p>{c.spreadsheetIntro}</p>
           <a className="text-link" href={localizedPath(lang, "/spreadsheet")}>{c.explore} →</a>
+          {lang === "en" && <p className="latest-research"><strong>Latest research · 10 Aug 2026</strong><Link href="/seo-articles/lolobuy-total-cost-fees-checklist">LoloBuy total cost and two-payment fees checklist →</Link></p>}
           <p className="price-note">USD · {c.updated} · {c.verify}</p>
         </div>
         <div className="product-rail" aria-label={c.spreadsheetTitle}>
@@ -337,10 +339,11 @@ function Method({ lang }: { lang: LocaleCode }) {
 
 function SeoArticles({ lang }: { lang: LocaleCode }) {
   const c = copy[lang];
+  const availableArticles = editorialArticles.filter((article) => isEditorialArticleAvailable(article, lang));
   return (
     <Interior title={c.seoTitle} intro={c.seoIntro} eyebrow={`${c.updated} · ${c.byline}`}>
       <div className="article-list">
-        {editorialArticles.map((article, i) => (
+        {availableArticles.map((article, i) => (
           <article key={article.slug}>
             <span>0{i + 1} · {articleSummary(lang, article.slug)!.meta}</span>
             <h2>{articleSummary(lang, article.slug)!.title}</h2>
@@ -355,28 +358,44 @@ function SeoArticles({ lang }: { lang: LocaleCode }) {
 
 function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }) {
   const article = findEditorialArticle(slug);
-  if (!article) return null;
+  if (!article || !isEditorialArticleAvailable(article, lang)) return null;
   const c = copy[lang];
   const summary = articleSummary(lang, slug)!;
   const kind: GuideKind = slug === editorialArticles[1].slug ? "qc" : slug === editorialArticles[2].slug ? "shipping" : "beginner";
   const articleUrl = `https://lolobuysheet.shop${localizedPath(lang, `/seo-articles/${slug}`)}`;
+  const datePublished = article.published ?? "2026-08-04";
+  const dateModified = article.modified ?? "2026-08-04";
+  const availableArticles = editorialArticles.filter((item) => isEditorialArticleAvailable(item, lang));
+  const articleIndex = availableArticles.findIndex((item) => item.slug === slug);
+  const previousArticle = articleIndex > 0 ? availableArticles[articleIndex - 1] : undefined;
+  const nextArticle = articleIndex >= 0 && articleIndex < availableArticles.length - 1 ? availableArticles[articleIndex + 1] : undefined;
   const articleData = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: summary.title,
     description: summary.description,
     inLanguage: lang,
-    datePublished: "2026-08-04",
-    dateModified: "2026-08-04",
+    datePublished,
+    dateModified,
     mainEntityOfPage: articleUrl,
     image: "https://lolobuysheet.shop/lolobuy-research-desk.jpg",
     author: { "@type": "Organization", name: "FindSpreadsheet editorial team", url: mainSiteUrl },
     publisher: { "@type": "Organization", name: "FindSpreadsheet", url: mainSiteUrl },
   };
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://lolobuysheet.shop/" },
+      { "@type": "ListItem", position: 2, name: "SEO Articles", item: "https://lolobuysheet.shop/seo-articles" },
+      { "@type": "ListItem", position: 3, name: summary.title, item: articleUrl },
+    ],
+  };
   if (lang !== "en") {
     return (
       <>
         <JsonLd data={articleData} />
+        <JsonLd data={breadcrumbData} />
         <Interior title={summary.title} intro={summary.description} eyebrow={`${c.seoTitle} · ${c.updated}`}>
           <article className="guide-article">
             <div className="article-verification"><strong>{c.checks}</strong><span>{c.source} · {c.updated}</span><span>{c.verify} · {c.researchNote}</span></div>
@@ -391,6 +410,7 @@ function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }
   return (
     <>
       <JsonLd data={articleData} />
+      <JsonLd data={breadcrumbData} />
       <header className="interior-hero article-hero shell">
         <p className="eyebrow">{article.keyword} · {article.checked}</p>
         <h1>{article.title}</h1>
@@ -403,8 +423,8 @@ function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }
           {article.sections.map((section, index) => <a key={section.heading} href={`#section-${index + 1}`}><b>{String(index + 1).padStart(2, "0")}</b>{section.heading}</a>)}
         </nav>
         <div className="article-body">
-          <div className="process-figure" role="img" aria-label="LoloBuy buying workflow: verify link, order, warehouse QC, parcel planning, and tracking">
-            {['Verify link', 'Order', 'Warehouse QC', 'Plan parcel', 'Track delivery'].map((step, index) => <span key={step}><b>{String(index + 1).padStart(2, "0")}</b>{step}</span>)}
+          <div className="process-figure" role="img" aria-label={article.processAlt ?? "LoloBuy buying workflow: verify link, order, warehouse QC, parcel planning, and tracking"}>
+            {(article.processSteps ?? ['Verify link', 'Order', 'Warehouse QC', 'Plan parcel', 'Track delivery']).map((step, index) => <span key={step}><b>{String(index + 1).padStart(2, "0")}</b>{step}</span>)}
           </div>
           {article.sections.map((section, index) => (
             <section id={`section-${index + 1}`} key={section.heading}>
@@ -420,8 +440,20 @@ function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }
               <figcaption><strong>Example of a matched index entry:</strong> the image, product name, USD reference price, and destination link should describe the same maintained product record. <a href={products[0].href} target="_blank" rel="noreferrer">Open matching FindSpreadsheet page ↗</a></figcaption>
             </figure>
           )}
+          {article.sources && (
+            <section className="article-source-log" id="fact-check-log">
+              <p className="section-number">SOURCE LOG</p>
+              <h2>Official sources and verification record</h2>
+              <p>Platform-specific statements in this article were checked against the following LoloBuy pages. URLs are shown for auditability; the live account and checkout control an actual transaction.</p>
+              <ol>{article.sources.map((source) => <li key={source.url}><strong>{source.label}</strong><span>{source.url}</span><small>Last checked {source.checked}</small></li>)}</ol>
+            </section>
+          )}
           <SourceLinks lang={lang} includeCommunity={false} />
-          <aside className="article-disclosure"><strong>Editorial disclosure</strong><p>This is an independent educational article. It is not owned, operated, sponsored, or endorsed by LoloBuy. Platform details were checked against LoloBuy&apos;s public website and interface on 4 Aug 2026; live account terms control an actual transaction.</p><a className="text-link" href={localizedPath(lang, "/seo-articles")}>Back to research articles →</a></aside>
+          <nav className="article-pager" aria-label="Research article navigation">
+            {previousArticle ? <a href={`/seo-articles/${previousArticle.slug}`}><span>Previous research</span><strong>{previousArticle.title}</strong></a> : <span />}
+            {nextArticle ? <a href={`/seo-articles/${nextArticle.slug}`}><span>Next research</span><strong>{nextArticle.title}</strong></a> : <Link href="/seo-articles"><span>Research archive</span><strong>View all SEO articles</strong></Link>}
+          </nav>
+          <aside className="article-disclosure"><strong>Editorial disclosure</strong><p>This is an independent educational article. It is not owned, operated, sponsored, or endorsed by LoloBuy. Platform details were checked against LoloBuy&apos;s public website and interface on {new Date(`${dateModified}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" })}; live account terms control an actual transaction.</p><a className="text-link" href={localizedPath(lang, "/seo-articles")}>Back to research articles →</a></aside>
         </div>
       </article>
     </>
@@ -430,7 +462,7 @@ function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }
 
 function Updates({ lang }: { lang: LocaleCode }) {
   const c = copy[lang];
-  return <Interior title={`${c.source} · ${c.updated}`} intro={c.researchNote} eyebrow={c.checks}><div className="update-list"><article><time>04-08-2026</time><h2>{c.seoTitle}</h2><p>{c.seoIntro}</p></article><article><time>04-08-2026</time><h2>{c.reviewTitle}</h2><p>{c.reviewIntro}</p></article><article><time>04-08-2026</time><h2>{c.source}</h2><p>{c.beginnerBody}</p></article></div></Interior>;
+  return <Interior title={`${c.source} · ${c.updated}`} intro={c.researchNote} eyebrow={c.checks}><div className="update-list">{lang === "en" && <article><time>10-08-2026</time><h2>LoloBuy Total Cost: A Two-Payment Fees Checklist for 2026</h2><p>A fact-checked landed-cost method covering item payment, Chinese delivery, warehouse decisions, freight adjustments, payment fees and destination charges.</p><Link className="text-link" href="/seo-articles/lolobuy-total-cost-fees-checklist">Read the complete research article →</Link></article>}<article><time>04-08-2026</time><h2>{c.seoTitle}</h2><p>{c.seoIntro}</p></article><article><time>04-08-2026</time><h2>{c.reviewTitle}</h2><p>{c.reviewIntro}</p></article><article><time>04-08-2026</time><h2>{c.source}</h2><p>{c.beginnerBody}</p></article></div></Interior>;
 }
 
 function FAQ({ lang, standalone = false }: { lang: LocaleCode; standalone?: boolean }) {

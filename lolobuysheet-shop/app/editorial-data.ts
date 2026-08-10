@@ -11,6 +11,12 @@ export type EditorialArticle = {
   keyword: string;
   readTime: string;
   checked: string;
+  published?: string;
+  modified?: string;
+  locales?: "all" | "en";
+  processSteps?: string[];
+  processAlt?: string;
+  sources?: { label: string; url: string; checked: string }[];
   sections: EditorialSection[];
 };
 
@@ -414,8 +420,120 @@ export const editorialArticles: EditorialArticle[] = [
       },
     ],
   },
+  {
+    slug: "lolobuy-total-cost-fees-checklist",
+    title: "LoloBuy Total Cost: A Two-Payment Fees Checklist for 2026",
+    description: "Calculate LoloBuy total cost across item payment, China delivery, warehouse services, international freight, payment fees, and import charges.",
+    keyword: "LoloBuy total cost",
+    readTime: "13 min read",
+    checked: "Fact-checked 10 Aug 2026",
+    published: "2026-08-10",
+    modified: "2026-08-10",
+    locales: "en",
+    processSteps: ["Item price", "China delivery", "Warehouse decisions", "International freight", "Import and delivery"],
+    processAlt: "LoloBuy total-cost sequence: item price, Chinese domestic delivery, warehouse decisions, international freight, and destination charges",
+    sources: [
+      { label: "How to purchase on LoloBuy", url: "https://www.lolobuy.com/helpCenter/1242296499766165", checked: "10 Aug 2026" },
+      { label: "Delivery fee for several items from one seller", url: "https://www.lolobuy.com/helpCenter/1242296838456383", checked: "10 Aug 2026" },
+      { label: "Why a paid order may require an outstanding balance", url: "https://www.lolobuy.com/helpCenter/1242296867095670", checked: "10 Aug 2026" },
+      { label: "Estimated weight and real weight", url: "https://www.lolobuy.com/helpCenter/1242300798075086", checked: "10 Aug 2026" },
+      { label: "Supplemental parcel payments", url: "https://www.lolobuy.com/helpCenter/1242300801155283", checked: "10 Aug 2026" },
+      { label: "Packaging methods", url: "https://www.lolobuy.com/helpCenter/1242300751675537", checked: "10 Aug 2026" },
+      { label: "MyBank payment announcement for Italy", url: "https://www.lolobuy.com/noticeDetail?id=679826937547894", checked: "10 Aug 2026" },
+    ],
+    sections: [
+      {
+        heading: "The product-card price is only the first line",
+        paragraphs: [
+          "A LoloBuy product link can show what a seller currently asks for an item and variant. It cannot answer the larger question most international buyers care about: what will the order cost at the door? Several parties control different parts of that total—the seller, Chinese carrier, warehouse, international logistics provider, payment channel, and destination authorities.",
+          "LoloBuy's official purchase guide separates the process into an item payment and a later international-parcel payment. At the first checkout, the buyer pays for the product and Chinese local delivery. After the item reaches the warehouse and the buyer selects goods for a parcel, LoloBuy collects an international shipping deposit and a customs-related charge shown at submission. The logistics provider's final packed weight and dimensions can then create a refund or an additional payment.",
+          "That structure makes a permanent all-in price table misleading. A better LoloBuy total cost estimate is a worksheet with dated evidence, a realistic range, and a blank space for costs that are not known yet. The objective is not to predict the final cent before ordering. It is to prevent a cheap item from becoming an unexpectedly expensive parcel.",
+        ],
+      },
+      {
+        heading: "Stage one: price the item and China-side delivery",
+        paragraphs: [
+          "Start with the exact seller listing, selected colour or model, size, quantity, and price at the moment of checkout. Save a screenshot and the original URL. A spreadsheet card or converted USD figure is a discovery reference; the seller's live page and the LoloBuy order confirmation control the actual item-side amount. If the order uses a manual form, copy every option precisely and keep the seller's measurement or configuration notes.",
+          "Add Chinese domestic delivery as its own line. LoloBuy's help centre says that several items from one seller can be charged one domestic delivery fee when they are submitted and checked out together, although an overweight seller parcel can still produce a balance. This is a conditional saving, not a general promise that every item in a multi-seller basket shares one fee. Group by seller and checkout event when you record it.",
+          "Do not close the first-payment column immediately after authorisation. Another official help page explains that a paid shopping-agent order may require an outstanding balance when the seller's price changes or when Chinese domestic delivery differs from the submitted amount. Treat any request as a reconciliation task: compare the seller listing, order number, reason, and revised line item before paying. Never describe a price change as a platform fee unless the account actually labels it that way.",
+        ],
+        bullets: [
+          "Live item price for the exact variant and quantity.",
+          "Chinese domestic delivery, recorded per seller and checkout.",
+          "Any confirmed seller-price or domestic-freight balance.",
+          "Currency and payment-channel amount shown before authorisation.",
+        ],
+      },
+      {
+        heading: "The warehouse is a cost decision, not free time",
+        paragraphs: [
+          "Warehouse arrival changes what you know. The item can be weighed, photographed, and compared with the order evidence. This is when a buyer decides whether the product is acceptable, needs more evidence, should be returned if eligible, or can join a parcel. Optional services and packaging instructions may add cost, but skipping a decision-critical check can be more expensive if a wrong or damaged item is sent internationally.",
+          "Keep warehouse costs separate from freight. Record paid extra photographs, measurements, special handling, packaging removal, reinforcement, insurance or protection only when they appear in the live account. LoloBuy's purchase guide lists package removal, reinforcement and insurance as additional parcel services, while its packaging guidance distinguishes volume-focused from actual-weight packing.",
+          "The rational question is whether a service changes the decision or the chargeable parcel. Removing a large shoe box may reduce volume, but it can reduce protection and may affect return options. Reinforcement can add weight while reducing damage risk. A useful worksheet records the reason for the choice beside the charge rather than automatically selecting every option or removing every box.",
+        ],
+      },
+      {
+        heading: "Stage two: treat international freight as a deposit first",
+        paragraphs: [
+          "LoloBuy's current purchase guide describes the parcel payment as an international shipping fee deposit calculated from estimated weight, the selected shipment method, and the destination. It also says the final shipping fee is calculated from package size and weight verified by the shipping company. That means the number visible before packing is evidence for planning, not necessarily the final landed freight amount.",
+          "Record the route, destination, estimated weight, estimated dimensions if shown, billing unit, deposit, and selected parcel services. Do not copy a per-kilogram figure from another buyer whose destination, contents, packaging, route or date differs. Two parcels with the same product value can have very different freight because international delivery prices the shipment, not the retail value alone.",
+          "Evaluate a route beyond price. Eligibility, tracking, compensation, insurance, redelivery, return handling and customs instructions can change its practical value. The lowest deposit is not cheaper if it excludes the contents, creates unacceptable risk, or cannot deliver to the actual postcode.",
+        ],
+      },
+      {
+        heading: "Reconcile estimated, actual and volumetric weight",
+        paragraphs: [
+          "LoloBuy's weight explanation distinguishes estimated weight from the real packed weight. The estimate combines warehouse item information with a packaging assumption. The real weight is measured after parcel submission and packing. Removing original packaging, compressing soft goods, using a different carton or adding reinforcement can change the final result.",
+          "The same help page explains volumetric weight: a carrier can convert parcel dimensions into a billing weight for bulky, light shipments. It publishes examples of different divisors for several routes, but those examples should not be treated as permanent universal rules. Use the formula, rounding method and billing increment displayed for the route in the live checkout. The chargeable weight may be the greater of actual and volumetric weight.",
+          "LoloBuy says an overpayment against final freight is returned to the user's account, while its supplemental-payment page explains that a shortfall can generate an additional amount. This is why the worksheet needs three separate fields—deposit, final freight, and adjustment. A refund to an account balance is not the same as an immediate reversal to the original card or bank account, and a supplemental request should be matched to the parcel record before payment.",
+        ],
+      },
+      {
+        heading: "Payment-method fees belong beside each payment",
+        paragraphs: [
+          "A two-stage process can involve a payment channel more than once: once for the item-side order and again for the international parcel. Record the base amount, settlement currency, displayed percentage charge, displayed fixed charge, and the amount your bank or card actually debits for each transaction. If the platform credits a wallet or balance, also record the credited amount. This reveals conversion spread and issuer charges that a product-price column cannot show.",
+          "LoloBuy's July 7, 2026 announcement is a useful example of why fees must be scoped. It introduced MyBank for eligible users in Italy paying in euros and stated a 1.65% transaction fee plus a fixed CNY 1.71 processing fee at launch. Those figures describe one country, currency and payment method on a stated date. They are not a universal LoloBuy service fee and should be rechecked in the live checkout before use.",
+          "Apply the same discipline to coupons and credits. Record a discount only after checkout accepts it, and keep shipping coupons separate from item discounts. A headline coupon value may represent several conditional coupons rather than cash. The final comparison is the amount paid after eligibility rules, expiry, minimum spend and route restrictions are applied.",
+        ],
+      },
+      {
+        heading: "Leave room for returns, tax and delivery problems",
+        paragraphs: [
+          "A landed-cost plan needs a contingency column because not every possible charge belongs to LoloBuy. A seller return can involve Chinese domestic return freight or handling. Destination VAT, sales tax, duty, brokerage or carrier collection depends on the country, product, declared information and route. A delivery exception can create storage, redelivery or return costs. None of these should be guessed as zero merely because they are absent from the first checkout.",
+          "Use truthful descriptions and values and consult the current destination rules. Keep the order confirmation, payment records, parcel contents, declaration, freight adjustment and carrier number together. If customs or a carrier asks for evidence, a complete record is more useful than a spreadsheet containing only product links and converted prices.",
+          "Contingency is not a prediction that something will go wrong. It is a decision threshold. Before placing the item order, decide the maximum delivered total you would accept. If the later parcel quote pushes the estimate beyond that limit, you can reconsider the parcel composition, packaging or route using real warehouse evidence instead of paying because money has already been spent.",
+        ],
+      },
+      {
+        heading: "Build a landed-cost worksheet that can be audited",
+        paragraphs: [
+          "Use one row per item for seller-side costs and one linked parcel record for shared international costs. Do not force a precise per-item freight allocation before the parcel is packed. If you need category profitability or a personal cost comparison later, allocate final shared costs by a consistent method—such as chargeable weight contribution—and label the method. The operational total should still reconcile to the actual parcel invoice.",
+          "Add a source and checked date beside every variable figure. Use the seller URL for item price, the order record for domestic delivery, the warehouse record for weight and services, the parcel record for freight, the payment statement for the real debit, and destination documents for import charges. This turns the sheet into an evidence trail rather than guesses.",
+        ],
+        bullets: [
+          "Item: seller, URL, variant, quantity, live price and screenshot date.",
+          "China side: domestic delivery, seller adjustment, return contingency and warehouse services.",
+          "Parcel: selected items, packing choices, route, deposit, final chargeable weight and adjustment.",
+          "Payment: settlement currency, platform-displayed fee, issuer charge, credited amount and coupon actually applied.",
+          "Destination: tax, duty, brokerage, carrier charge and final delivered date.",
+          "Control: evidence link, checked date, maximum acceptable total and unresolved assumptions.",
+        ],
+      },
+      {
+        heading: "The honest answer to ‘How much does LoloBuy cost?’",
+        paragraphs: [
+          "The defensible answer is a structure, not a universal percentage: item price plus Chinese domestic delivery and confirmed item-side adjustments; then decision-relevant warehouse services; then international freight based on the packed parcel and live route; then payment-channel and destination charges that actually apply. Subtract only discounts that the checkout accepts, and reconcile any freight refund or supplemental payment after packing.",
+          "This method is less dramatic than publishing a single cheap number, but it is more useful. It lets a buyer compare alternatives before committing, recognize which party controls each cost, and update only the line that changed. Most importantly, it prevents the spreadsheet price from being mistaken for a delivered quote. Check every live amount again before authorising payment because platform methods, carrier rules and destination charges can change after this article's August 10, 2026 verification date.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEditorialArticle(slug: string) {
   return editorialArticles.find((article) => article.slug === slug);
+}
+
+export function isEditorialArticleAvailable(article: EditorialArticle, locale: string) {
+  return article.locales !== "en" || locale === "en";
 }
