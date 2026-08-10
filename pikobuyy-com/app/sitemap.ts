@@ -45,9 +45,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
   for (const [section, slugs] of Object.entries(detailPages)) {
     for (const slug of slugs) {
-      const pageModified = ["pikobuy-tracking-guide", "pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
-        ? new Date("2026-08-06")
-        : lastModified;
+      const pageModified = slug === "pikobuy-tracking-guide"
+        ? contentModified
+        : ["pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
+          ? new Date("2026-08-06")
+          : lastModified;
       urls.push({ url: `https://pikobuyy.com/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.75 });
     }
   }
@@ -71,9 +73,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     for (const [section, slugs] of Object.entries(detailPages)) {
       for (const slug of slugs) {
-        const pageModified = ["pikobuy-tracking-guide", "pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
-          ? new Date("2026-08-06")
-          : lastModified;
+        const pageModified = slug === "pikobuy-tracking-guide"
+          ? contentModified
+          : ["pikobuy-return-policy-guide", "pikobuy-warehouse-consolidation-guide", "pikobuy-payment-guide"].includes(slug)
+            ? new Date("2026-08-06")
+            : lastModified;
         urls.push({ url: `https://pikobuyy.com/${locale}/${section}/${slug}/`, lastModified: pageModified, changeFrequency: "monthly", priority: 0.65 });
       }
     }
