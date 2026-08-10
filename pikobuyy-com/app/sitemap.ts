@@ -4,6 +4,7 @@ import { productSlugs } from "./site-content";
 
 export const dynamic = "force-static";
 
+// Editorial content last verified: 2026-08-10.
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date("2026-07-30");
   const contentModified = new Date("2026-08-10");
