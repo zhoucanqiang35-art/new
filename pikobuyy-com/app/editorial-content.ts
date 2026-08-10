@@ -145,6 +145,19 @@ const officialSources = {
     mainUrl: "https://findspreadsheet.com/AllProducts/",
     mainLabel: "Build a product shortlist",
   },
+  contact: {
+    label: "Pikobuy Contact page",
+    url: "https://www.pikobuy.com/contact",
+    note: "The official contact page identifies the recommended support path and a published support email.",
+    verifiedFacts: [
+      "The page marks Submit a Ticket as the recommended contact method.",
+      "It lists Support@pikobuy.com as the customer service email.",
+      "A useful tracking request should identify the relevant parcel and the last confirmed event.",
+    ],
+    buyerAction: "Keep the parcel number, dispatch time, route and tracking evidence together before submitting one focused support ticket.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Return to the live directory",
+  },
   privacy: {
     label: "Pikobuy Privacy Policy",
     url: "https://www.pikobuy.com/protocol/privacy",
@@ -934,6 +947,134 @@ export const articleEntries: Record<string, EditorialEntry> = {
       officialSources.guide,
       officialSources.shipping,
       officialSources.userAgreement,
+    ],
+  },
+  "pikobuy-tracking-guide": {
+    dek: "Track a Pikobuy order without confusing seller delivery, warehouse check-in, parcel dispatch and international carrier updates.",
+    reviewed: "Fact-checked Aug 10, 2026",
+    readingTime: "12 min read",
+    seoTitle: "Pikobuy Tracking Guide: Order & Parcel Status",
+    published: "2026-08-10",
+    modified: "2026-08-10",
+    visual: {
+      src: "/pikobuy-tracking-status-flow.svg",
+      alt: "Pikobuy tracking flow from product order and seller delivery through warehouse check-in to international parcel tracking",
+      caption: "Original Pikobuyy tracking map based on Pikobuy's public Beginner's Guide, Shipping Policy and Contact page reviewed on August 10, 2026.",
+      width: 1200,
+      height: 630,
+    },
+    relatedLinks: [
+      {
+        label: "Pikobuy Payment Guide",
+        url: "/articles/pikobuy-payment-guide/",
+        note: "Separate the product-order payment from the later international shipping payment and record both transactions.",
+      },
+      {
+        label: "Pikobuy Warehouse Guide",
+        url: "/articles/pikobuy-warehouse-consolidation-guide/",
+        note: "Understand why seller delivery is followed by check-in, inspection and parcel preparation before international dispatch.",
+      },
+      {
+        label: "Pikobuy Shipping Guide",
+        url: "/pikobuy-shipping-guide/",
+        note: "Compare route, billing and risk information before turning warehouse items into an international parcel.",
+      },
+      {
+        label: "Pikobuy Return Policy Guide",
+        url: "/articles/pikobuy-return-policy-guide/",
+        note: "Use the actual Warehoused time when a questionable item may need a return decision.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy's Beginner's Guide says international tracking information becomes available within three days after a parcel is shipped.",
+      "The three-day statement concerns tracking availability, not a three-day delivery promise.",
+      "A product order, seller-to-warehouse shipment and international parcel are different records and should not be tracked as if they were one shipment.",
+      "Pikobuy's Shipping Policy says international parcels use third-party logistics providers and remain exposed to customs and other cross-border risks.",
+    ],
+    sections: [
+      {
+        heading: "The short answer: first identify what is actually moving",
+        paragraphs: [
+          "Pikobuy tracking becomes much easier when the transaction is divided into its real stages. A product order can be paid while the seller has not yet sent anything. A seller can then deliver the item inside China, but that domestic movement is not the international parcel. After warehouse check-in and inspection, the shopper chooses items, submits a parcel, pays international shipping and waits for dispatch. Only then does the final cross-border tracking stage begin.",
+          "This distinction prevents a common mistake: searching one number and assuming every status belongs to the same journey. Keep the product order, seller shipment, warehouse record and international parcel in separate rows. Record the identifier, last event, event time and action owner for each. If a product is still moving to the warehouse, an international carrier cannot explain it. If a parcel has not been dispatched, refreshing a tracking site will not create a carrier scan.",
+        ],
+      },
+      {
+        heading: "Use Pikobuy's six-step guide as the tracking backbone",
+        paragraphs: [
+          "Pikobuy's public Beginner's Guide sets out six steps: select an item; search through Pikobuy; submit the purchasing order and complete the first payment; wait for warehouse inspection; choose a shipping route and pay the international shipping fee; then wait for the parcel. The guide says warehouse inspection includes check-in, photo confirmation and a defect check. It also says the parcel is dispatched after the shopper submits it and pays the shipping fee.",
+          "That sequence is more useful than memorizing isolated labels because it shows which evidence should exist at each checkpoint. Before purchase, save the seller page, selected size, color and quantity. After the first payment, use the order record to follow purchasing progress. After seller dispatch, watch the domestic shipment until the warehouse receives it. After check-in, review the warehouse photos. After parcel payment and dispatch, use the international tracking information for the cross-border journey.",
+        ],
+      },
+      {
+        heading: "Do not confuse an order number with a tracking number",
+        paragraphs: [
+          "An order number identifies a commercial record. A tracking number identifies a shipment handled by a logistics provider. One Pikobuy shopping plan can contain several product orders from different sellers, each arriving at the warehouse separately. Those items can later be combined into one parcel. The reverse can also happen: a buyer may split warehouse items across several international parcels because of route restrictions, weight, dimensions or risk preferences.",
+          "Build a simple tracking sheet with one row per physical movement rather than one row per shopping idea. Useful columns are record type, Pikobuy order or parcel number, seller, product, domestic tracking reference, warehouse status time, international tracking reference, carrier or route, latest event, latest event time and next action. This is original editorial advice, not an official Pikobuy dashboard specification, but it mirrors the stages the official guide actually publishes.",
+        ],
+      },
+      {
+        heading: "Seller delivery is not the same as warehouse check-in",
+        paragraphs: [
+          "A domestic carrier event can show that a shipment reached an address, while the warehouse record still needs receiving, identification, inspection and check-in. Pikobuy's guide describes warehouse inspection as a distinct step after the product arrives. Its Shipping Policy similarly says forwarded goods are received, photographed for confirmation and stored in the warehouse. Treat carrier delivery and warehouse availability as related but separate events.",
+          "When several orders are expected, compare each domestic reference with the correct product and seller. Do not mark an item ready for parcel submission merely because a domestic carrier says delivered. Wait for the warehouse record and its photos. If a forwarded package is missing goods when received, Pikobuy's Shipping Policy tells the user to contact the sender for verification and states that Pikobuy is not responsible for shortages it did not cause.",
+        ],
+      },
+      {
+        heading: "The official three-day statement starts after dispatch",
+        paragraphs: [
+          "Pikobuy's Beginner's Guide says tracking information will be available within three days after the parcel is shipped. The starting event matters. The statement does not begin at product payment, seller dispatch, warehouse arrival, parcel submission or international shipping payment. Confirm that the parcel has actually been shipped, note that dispatch time, and then evaluate whether the published tracking-information window has passed.",
+          "It is equally important not to turn the statement into a delivery promise. The guide immediately warns that international shipping takes longer and asks users to wait for tracking updates and delivery. It also says routes differ in delivery time and billing method. A tracking number appearing within three days does not mean the parcel will arrive within three days, and an initial electronic record is not evidence that customs clearance or last-mile delivery has finished.",
+        ],
+      },
+      {
+        heading: "Read tracking events as evidence, not guarantees",
+        paragraphs: [
+          "A tracking event records what a carrier or logistics system has reported at a particular time. It can help establish that a parcel was accepted, processed, transferred or presented for another stage, but it cannot promise the next scan. Cross-border parcels may pass through export handling, line-haul transport, import review and a local delivery network. The public Pikobuy pages do not publish one universal event glossary or one guaranteed timetable covering every route.",
+          "Use exact dates instead of descriptions such as stuck for ages. Record the last event text, its time zone when shown and the number of full days since that event. Compare it with the route information visible for the actual parcel rather than with a different buyer's route. If a status is unclear, keep the original wording in the support ticket. Rewriting it into a stronger conclusion such as lost or seized before the carrier confirms that outcome can make the case less precise.",
+        ],
+      },
+      {
+        heading: "Allow for third-party logistics and cross-border risk",
+        paragraphs: [
+          "Pikobuy's Shipping Policy says parcels are carried by third-party logistics providers. It lists customs policy, confiscation, damage, loss and peak-season delivery delays among risks that can arise from cross-border transport or other uncontrollable factors. The policy says Pikobuy will assist with risk assessment, alerts and logistics insurance, but it does not promise that every delay or loss can be prevented.",
+          "That boundary changes how a tracking problem should be documented. Save the parcel page, chosen route, declared contents, value record, protection or insurance selection, tracking reference and screenshots of meaningful events. When asking for help, identify the last confirmed event and the elapsed time. Do not assume that Pikobuy, the international carrier, customs and the last-mile carrier are the same organization. The next responsible party depends on the parcel's confirmed stage.",
+        ],
+      },
+      {
+        heading: "What to do when tracking has not appeared or has stopped",
+        paragraphs: [
+          "If no tracking information is visible, first confirm that Pikobuy shows the parcel as shipped rather than merely submitted, paid or being prepared. Note the dispatch time and apply the official within-three-days statement from that point. Check the parcel record for the correct reference and route. If three days have passed after confirmed dispatch without usable tracking, prepare a concise support request with the parcel number, dispatch time, route and a screenshot showing the missing information.",
+          "If tracking exists but has not changed, preserve the latest event instead of opening several conflicting reports. Check whether the route page or carrier gives a relevant operational notice, then calculate the elapsed time. Pikobuy's official Contact page marks Submit a Ticket as the recommended contact method and also lists Support@pikobuy.com. Use one well-documented case and update it with new evidence; repeated messages without new information can fragment the record.",
+        ],
+        bullets: [
+          "Confirm the stage: order, domestic shipment, warehouse item or international parcel.",
+          "Copy the exact identifier associated with that stage.",
+          "Record the latest event and its timestamp before contacting support.",
+          "For missing international tracking, count from confirmed parcel dispatch.",
+          "Include the route, parcel number and a focused screenshot in the ticket.",
+          "Keep public posts free of addresses, account details and full tracking numbers.",
+        ],
+      },
+      {
+        heading: "A practical order-and-parcel tracking routine",
+        paragraphs: [
+          "Review active product orders and parcels on a schedule rather than refreshing them continuously. At the purchasing stage, look for seller action and domestic movement. At the warehouse stage, check that the item, option and photos match the order, then finish any keep-or-return decision before parcel submission. At the parcel stage, retain the measured weight, dimensions, selected route and shipping payment. After dispatch, add the international tracking reference and update only meaningful events.",
+          "For a consolidated parcel, keep the item list attached to the parcel record. If one product later becomes relevant to a claim, this prevents confusion about which shipment contained it. For a split shipment, create a separate row for every parcel. This small amount of record keeping is more useful than relying on browser history or memory, especially when orders from Taobao, Tmall, 1688, Weidian or Yupoo reach the warehouse on different dates.",
+        ],
+      },
+      {
+        heading: "Conclusion: track the handoffs, not just the final number",
+        paragraphs: [
+          "Reliable Pikobuy tracking is a handoff problem. The seller, domestic carrier, warehouse, Pikobuy parcel process, international logistics provider, customs and local carrier can each create a different record. Start by identifying the present stage, then use the identifier and evidence belonging to that stage. The official three-day statement applies only after international parcel dispatch and describes tracking availability, not delivery speed.",
+          "This guide was fact-checked on August 10, 2026 against Pikobuy's public Beginner's Guide, Shipping Policy and Contact page. Routes, dashboard labels and support processes can change. The current Pikobuy order or parcel page, carrier record and official support response remain the final sources for a specific shipment. Pikobuyy provides independent research guidance and does not process orders, carry parcels or control tracking events.",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.guide,
+      officialSources.shipping,
+      officialSources.contact,
     ],
   },
 };
