@@ -34,4 +34,18 @@ if (!worker.default || typeof worker.default.fetch !== "function") {
 }
 NODE
 
+if rg -n 'codex-preview[^>]*development' \
+  "${SITES_PROJECT_ROOT}/dist/server" \
+  "${SITES_PROJECT_ROOT}/dist/client"; then
+  echo "Production artifact contains development preview metadata." >&2
+  exit 66
+fi
+
+if rg -n '/workspace/(sites|scratch)/.*\.woff2' \
+  "${SITES_PROJECT_ROOT}/dist/server" \
+  "${SITES_PROJECT_ROOT}/dist/client"; then
+  echo "Production artifact contains a workspace-only font URL." >&2
+  exit 66
+fi
+
 echo "Validated Sites artifact: ESM Worker default.fetch and hosting manifest are present."

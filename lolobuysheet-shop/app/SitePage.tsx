@@ -120,7 +120,7 @@ function Home({ lang }: { lang: LocaleCode }) {
         </div>
         <div className="product-rail" aria-label={c.spreadsheetTitle}>
           {products.map((product) => (
-            <a href={product.href} target="_blank" rel="noreferrer" className="product-row" key={product.href}>
+            <a href={localizedPath(lang, `/products/${product.slug}`)} className="product-row" key={product.slug}>
               <ProductImage product={product} className="product-thumb" />
               <span><strong>{product.name}</strong><small>{categoryNames[lang][product.categoryIndex]} · {product.cny}</small></span>
               <span className="product-price">{product.usd}<small>{c.open}</small></span>
@@ -151,7 +151,7 @@ function ProductIndex({ lang }: { lang: LocaleCode }) {
     <Interior title={c.spreadsheetTitle} intro={c.spreadsheetIntro} eyebrow={c.source}>
       <div className="product-grid">
         {products.map((product, index) => (
-          <a href={product.href} target="_blank" rel="noreferrer" className="product-card" key={product.href}>
+          <a href={localizedPath(lang, `/products/${product.slug}`)} className="product-card" key={product.slug}>
             <span className="card-index">{String(index + 1).padStart(2, "0")}</span>
             <ProductImage product={product} className="product-card-image" />
             <h2>{product.name}</h2><p>{categoryNames[lang][product.categoryIndex]}</p><strong>{product.usd}</strong><small>{product.cny} · ID {product.itemId}</small><b>{c.open} →</b>
@@ -165,8 +165,20 @@ function ProductIndex({ lang }: { lang: LocaleCode }) {
 
 function ProductDetail({ lang, product }: { lang: LocaleCode; product: Product }) {
   const c = copy[lang];
+  const productPath = localizedPath(lang, `/products/${product.slug}`);
+  const productUrl = `https://lolobuysheet.shop${productPath}`;
+  const breadcrumbData = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "LoloBuy Sheet", item: `https://lolobuysheet.shop${localizedPath(lang, "/")}` },
+      { "@type": "ListItem", position: 2, name: c.spreadsheetTitle, item: `https://lolobuysheet.shop${localizedPath(lang, "/spreadsheet")}` },
+      { "@type": "ListItem", position: 3, name: product.name, item: productUrl },
+    ],
+  };
   return (
     <>
+      <JsonLd data={breadcrumbData} />
       <header className="interior-hero product-detail-hero shell">
         <p className="eyebrow">FindSpreadsheet · ID {product.itemId}</p>
         <h1>{product.name}</h1>
@@ -210,6 +222,9 @@ function GuideArticle({ lang, kind }: { lang: LocaleCode; kind: GuideKind }) {
   const body = kind === "beginner" ? c.beginnerBody : kind === "qc" ? c.qcBody : c.shippingBody;
   const related = editorialArticles[kind === "beginner" ? 0 : kind === "qc" ? 1 : 2];
   const relatedSummary = articleSummary(lang, related.slug)!;
+  const relatedHref = isEditorialArticleAvailable(related, lang)
+    ? localizedPath(lang, `/seo-articles/${related.slug}`)
+    : `/seo-articles/${related.slug}`;
   return (
     <Interior title={title} intro={body} eyebrow={`${title} · ${c.updated}`}>
       <article className="guide-article">
@@ -217,7 +232,7 @@ function GuideArticle({ lang, kind }: { lang: LocaleCode; kind: GuideKind }) {
         <EditorialSections sections={localizedGuideSections(lang, kind)} />
         <aside className="article-next">
           <div><span>{c.seoTitle} · {relatedSummary.meta}</span><h2>{relatedSummary.title}</h2><p>{relatedSummary.description}</p></div>
-          <a className="button button-primary" href={localizedPath(lang, `/seo-articles/${related.slug}`)}>{c.open} →</a>
+          <a className="button button-primary" href={relatedHref}>{c.open} →</a>
         </aside>
         <SourceLinks lang={lang} includeCommunity={false} />
       </article>
@@ -285,29 +300,64 @@ function Review({ lang }: { lang: LocaleCode }) {
 
 function Sources({ lang }: { lang: LocaleCode }) {
   const c = copy[lang];
+  const officialSources = [
+    {
+      label: "Purchase workflow",
+      title: "How to purchase on LoloBuy",
+      fact: "Supports the documented sequence from submitting a compatible product link and confirming item details through item payment and warehouse intake.",
+      url: "https://www.lolobuy.com/helpCenter/1242296499766165",
+    },
+    {
+      label: "China delivery",
+      title: "Delivery fee for several items from one seller",
+      fact: "Explains how domestic delivery can be handled when several items come from the same seller; the live order remains authoritative.",
+      url: "https://www.lolobuy.com/helpCenter/1242296838456383",
+    },
+    {
+      label: "Parcel weight",
+      title: "Estimated weight and real weight",
+      fact: "Distinguishes an early estimate from warehouse-measured parcel data used later in the shipping process.",
+      url: "https://www.lolobuy.com/helpCenter/1242300798075086",
+    },
+    {
+      label: "Parcel preparation",
+      title: "Packaging methods",
+      fact: "Documents packaging choices that can affect protection, dimensions, and the final parcel configuration.",
+      url: "https://www.lolobuy.com/helpCenter/1242300751675537",
+    },
+    {
+      label: "Freight adjustment",
+      title: "Supplemental parcel payments",
+      fact: "Explains that a parcel can require an additional payment when the final amount differs from the earlier estimate.",
+      url: "https://www.lolobuy.com/helpCenter/1242300801155283",
+    },
+  ];
   return (
     <Interior title={c.source} intro={c.researchNote} eyebrow={`${c.source} · ${c.updated}`}>
       <div className="method-grid">
+        {officialSources.map((source, index) => (
+          <article key={source.url}>
+            <span>{String(index + 1).padStart(2, "0")} · {source.label}</span>
+            <h2>{source.title}</h2>
+            <p>{source.fact}</p>
+            <small>Official LoloBuy help center · Last checked 10 Aug 2026 · Details may change</small>
+            <a className="text-link" href={source.url} target="_blank" rel="noreferrer">Open official LoloBuy source ↗</a>
+          </article>
+        ))}
         <article>
-          <span>01 · {c.source}</span>
-          <h2>LoloBuy</h2>
-          <p>{c.beginnerBody}</p>
-          <a className="text-link" href={mainSiteUrl} target="_blank" rel="noreferrer">FindSpreadsheet ↗</a>
-        </article>
-        <article>
-          <span>02 · {c.spreadsheetTitle}</span>
+          <span>06 · {c.spreadsheetTitle}</span>
           <h2>FindSpreadsheet</h2>
           <p>{c.spreadsheetIntro}</p>
           <a className="text-link" href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">FindSpreadsheet ↗</a>
         </article>
         <article>
-          <span>03 · {c.nav[3]}</span>
+          <span>07 · {c.nav[3]}</span>
           <h2>{c.nav[3]}</h2>
           <p>{c.qcBody}</p>
           <a className="text-link" href={localizedPath(lang, "/guides/qc")}>{c.open} →</a>
         </article>
         <article>
-          <span>04 · {c.nav[4]}</span>
+          <span>08 · {c.nav[4]}</span>
           <h2>{c.nav[4]}</h2>
           <p>{c.shippingBody}</p>
           <a className="text-link" href={localizedPath(lang, "/guides/shipping")}>{c.open} →</a>
@@ -445,7 +495,7 @@ function EditorialArticlePage({ lang, slug }: { lang: LocaleCode; slug: string }
               <p className="section-number">SOURCE LOG</p>
               <h2>Official sources and verification record</h2>
               <p>Platform-specific statements in this article were checked against the following LoloBuy pages. URLs are shown for auditability; the live account and checkout control an actual transaction.</p>
-              <ol>{article.sources.map((source) => <li key={source.url}><strong>{source.label}</strong><span>{source.url}</span><small>Last checked {source.checked}</small></li>)}</ol>
+              <ol>{article.sources.map((source) => <li key={source.url}><strong>{source.label}</strong><a href={source.url} target="_blank" rel="noreferrer">{source.url}</a><small>Last checked {source.checked}</small></li>)}</ol>
             </section>
           )}
           <SourceLinks lang={lang} includeCommunity={false} />
@@ -531,6 +581,7 @@ function SourceLinks({ lang, includeCommunity }: { lang: LocaleCode; includeComm
   return (
     <aside className="source-links">
       <strong>{c.source} · {c.checks}</strong>
+      <a href={localizedPath(lang, "/sources")}>{c.source} · {c.updated} →</a>
       <a href={mainSiteUrl} target="_blank" rel="noreferrer">FindSpreadsheet · {c.spreadsheetTitle} · {c.updated} ↗</a>
       {includeCommunity && <a href={communityReviewUrl} target="_blank" rel="noreferrer">Reddit · {c.reviewTitle} · {c.updated} ↗</a>}
       <span>{c.researchNote}</span>

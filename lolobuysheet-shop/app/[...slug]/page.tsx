@@ -34,8 +34,64 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const localizedEditorialDescriptions = [c.spreadsheetIntro, c.qcBody, c.shippingBody];
   const editorialTitle = lang === "en" ? editorialArticle?.title : localizedEditorialTitles[editorialIndex] ?? c.seoTitle;
   const editorialDescription = lang === "en" ? editorialArticle?.description : localizedEditorialDescriptions[editorialIndex] ?? c.seoIntro;
-  const title = product ? `${product.name} · ${product.usd}` : editorialArticle ? editorialTitle : path === "/" ? c.heroTitle : path === "/spreadsheet" ? c.spreadsheetTitle : path === "/categories" ? c.categoryTitle : path.startsWith("/guides") ? c.guidesTitle : path === "/reviews" ? c.reviewTitle : path === "/faq" ? c.faqTitle : path === "/sources" ? c.source : path === "/method" ? c.checks : path === "/updates" ? c.updated : c.seoTitle;
-  const description = product ? `${product.name}, ${product.usd}, ID ${product.itemId}. ${c.researchNote}` : editorialArticle ? editorialDescription : path === "/" ? c.heroLede : path === "/spreadsheet" ? c.spreadsheetIntro : path.startsWith("/guides") ? c.guidesIntro : path === "/reviews" ? c.reviewIntro : path === "/faq" ? c.faqIntro : path === "/sources" || path === "/method" || path === "/updates" ? c.researchNote : c.seoIntro;
+  const title = product
+    ? `${product.name} LoloBuy Find · ${product.usd} Reference`
+    : editorialArticle
+      ? editorialTitle ?? c.seoTitle
+      : path === "/"
+        ? lang === "en" ? "LoloBuy Spreadsheet 2026: Finds, QC & Buyer Guides" : c.heroTitle
+        : path === "/spreadsheet"
+          ? c.spreadsheetTitle
+          : path === "/categories"
+            ? lang === "en" ? "LoloBuy Product Categories: 10 Spreadsheet Sections" : c.categoryTitle
+            : path === "/guides"
+              ? lang === "en" ? "LoloBuy Buyer Guides: Ordering, QC & Shipping" : c.guidesTitle
+              : path === "/guides/beginner"
+                ? lang === "en" ? "How to Use LoloBuy: Beginner Buying Guide" : `${c.beginner} · ${c.guidesTitle}`
+                : path === "/guides/qc"
+                  ? lang === "en" ? "LoloBuy QC Guide: Check Warehouse Photos" : `${c.nav[3]} · ${c.guidesTitle}`
+                  : path === "/guides/shipping"
+                    ? lang === "en" ? "LoloBuy Shipping Guide: Weight, Routes & Tracking" : `${c.nav[4]} · ${c.guidesTitle}`
+                    : path === "/reviews"
+                      ? c.reviewTitle
+                      : path === "/faq"
+                        ? c.faqTitle
+                        : path === "/sources"
+                          ? lang === "en" ? "LoloBuy Official Sources & Verification Record" : c.source
+                          : path === "/method"
+                            ? lang === "en" ? "LoloBuy Research & Editorial Method" : c.checks
+                            : path === "/updates"
+                              ? lang === "en" ? "LoloBuy Research Updates" : c.updated
+                              : c.seoTitle;
+  const description = product
+    ? `${product.name}, ${product.usd} reference price, ID ${product.itemId}. Open the internal research record before continuing to the matching FindSpreadsheet product page.`
+    : editorialArticle
+      ? editorialDescription
+      : path === "/"
+        ? c.heroLede
+        : path === "/spreadsheet"
+          ? c.spreadsheetIntro
+          : path === "/categories"
+            ? `Browse 10 LoloBuy spreadsheet categories with verified FindSpreadsheet destinations. ${c.researchNote}`
+            : path === "/guides"
+              ? c.guidesIntro
+              : path === "/guides/beginner"
+                ? c.beginnerBody
+                : path === "/guides/qc"
+                  ? c.qcBody
+                  : path === "/guides/shipping"
+                    ? c.shippingBody
+                    : path === "/reviews"
+                      ? c.reviewIntro
+                      : path === "/faq"
+                        ? c.faqIntro
+                        : path === "/sources"
+                          ? `Direct LoloBuy help-center URLs, checked dates, and the facts each source supports. ${c.researchNote}`
+                          : path === "/method"
+                            ? `${c.reviewIntro} ${c.researchNote}`
+                            : path === "/updates"
+                              ? c.researchNote
+                              : c.seoIntro;
   const localizedCanonical = (code: LocaleCode) => path === "/"
     ? `https://lolobuysheet.shop${code === "en" ? "/" : `/${code}`}`
     : `https://lolobuysheet.shop${code === "en" ? "" : `/${code}`}${path}`;
@@ -44,7 +100,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const languages = Object.fromEntries([...availableLocales.map((code) => [code, localizedCanonical(code)]), ["x-default", localizedCanonical("en")]]);
   const socialImage = product ? product.image : "/lolobuy-research-desk.jpg";
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical, languages },
     robots: { index: true, follow: true },

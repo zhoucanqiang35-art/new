@@ -3,7 +3,7 @@ import SitePage from "./SitePage";
 import { localeCodes } from "./site-data";
 
 export const metadata: Metadata = {
-  title: "LoloBuy Spreadsheet 2026 | Researched Product Finds & Buyer Guides",
+  title: { absolute: "LoloBuy Spreadsheet 2026: Finds, QC & Buyer Guides" },
   description: "Independent LoloBuy spreadsheet research with verified product links, QC checklists, beginner guidance, and shipping research for Europe and North America.",
   alternates: {
     canonical: "https://lolobuysheet.shop/",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   openGraph: {
-    title: "LoloBuy Spreadsheet 2026 | Researched Product Finds & Buyer Guides",
+    title: "LoloBuy Spreadsheet 2026: Finds, QC & Buyer Guides",
     description: "Independent LoloBuy spreadsheet research with verified product links, QC checklists, beginner guidance, and shipping research for Europe and North America.",
     url: "https://lolobuysheet.shop/",
     siteName: "LoloBuy Sheet",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "LoloBuy Spreadsheet 2026 | Researched Product Finds & Buyer Guides",
+    title: "LoloBuy Spreadsheet 2026: Finds, QC & Buyer Guides",
     description: "Independent LoloBuy spreadsheet research with verified product links, QC checklists, beginner guidance, and shipping research for Europe and North America.",
     images: ["/lolobuy-research-desk.jpg"],
   },

@@ -28,7 +28,7 @@ export const categories = [
 export const products = [
   {
     slug: "gallery-short",
-    name: "Gallery Short",
+    name: "Gallery Shorts",
     itemId: "7711437541",
     category: "Pants / Shorts",
     categoryIndex: 4,
@@ -39,7 +39,7 @@ export const products = [
   },
   {
     slug: "high-quality-burberry-jacket",
-    name: "High quality Burberry Jacket",
+    name: "High-Quality Burberry Jacket",
     itemId: "7714490692",
     category: "Jackets",
     categoryIndex: 3,
@@ -50,7 +50,7 @@ export const products = [
   },
   {
     slug: "sock-37-colores-top",
-    name: "sock(37 colores TOP)",
+    name: "Socks (37 Colors)",
     itemId: "7714498572",
     category: "Other Finds",
     categoryIndex: 9,
@@ -61,7 +61,7 @@ export const products = [
   },
   {
     slug: "dior-t-shirthoodie-39-style-top",
-    name: "Dior T-shirtHoodie（39 style TOP",
+    name: "Dior T-Shirt / Hoodie (39 Styles)",
     itemId: "7711391539",
     category: "Hoodies",
     categoryIndex: 1,
@@ -72,7 +72,7 @@ export const products = [
   },
   {
     slug: "cp-company-t-shirt",
-    name: "cp company t-shirt",
+    name: "C.P. Company T-Shirt",
     itemId: "7714478764",
     category: "T-Shirts",
     categoryIndex: 2,
@@ -83,7 +83,7 @@ export const products = [
   },
   {
     slug: "the-north-face-outdoorjacket",
-    name: "The North Face Outdoorjacket",
+    name: "The North Face Outdoor Jacket",
     itemId: "7711524403",
     category: "Jackets",
     categoryIndex: 3,

@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 :root {
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --paper: #f5f0e4;
   --paper-deep: #e9e2d2;
   --ink: #171712;
@@ -23,7 +25,7 @@ body {
     radial-gradient(circle at 20% 0%, rgba(255,255,255,.68), transparent 32rem),
     repeating-linear-gradient(95deg, rgba(73,64,46,.018) 0 1px, transparent 1px 5px),
     var(--paper);
-  font-family: var(--font-sans), Arial, sans-serif;
+  font-family: var(--font-sans);
 }
 
 a { color: inherit; text-decoration: none; }
@@ -175,6 +177,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .method-grid article > span, .article-list article > span { color: var(--red); letter-spacing: .13em; font-size: 10px; }
 .method-grid h2, .article-list h2, .update-list h2 { font-family: var(--font-serif), Georgia, serif; font-size: 30px; margin: 24px 0 12px; }
 .method-grid p, .article-list p, .update-list p { color: var(--muted); line-height: 1.6; }
+.method-grid article > small { display: block; color: var(--muted); font-size: 10px; line-height: 1.5; }
 .article-list { max-width: 950px; }
 .article-list article { border-top: 1px solid var(--line); padding: 34px 0; display: grid; grid-template-columns: 1.25fr .75fr; column-gap: 40px; }
 .article-list article > span { grid-column: 1 / -1; }
@@ -251,7 +254,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .article-source-log > p:not(.section-number) { color: var(--muted); }
 .article-source-log ol { display: grid; gap: 0; list-style: none; margin: 24px 0 0; padding: 0; }
 .article-source-log li { display: grid; grid-template-columns: 1.15fr 2fr auto; gap: 16px; align-items: start; border-top: 1px solid var(--line); padding: 14px 0; }
-.article-source-log li span { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; overflow-wrap: anywhere; }
+.article-source-log li a { color: var(--muted); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; overflow-wrap: anywhere; }
+.article-source-log li a:hover { color: var(--red); }
 .article-source-log li small { color: var(--red); white-space: nowrap; }
 .article-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid var(--ink); margin-top: 30px; padding-top: 24px; }
 .article-pager a { display: grid; gap: 8px; border: 1px solid var(--line); color: var(--ink); padding: 16px; text-decoration: none; }

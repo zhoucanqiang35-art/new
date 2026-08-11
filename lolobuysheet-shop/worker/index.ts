@@ -1,47 +1,76 @@
 /** Cloudflare Worker entry point for the vinext-starter template. */
-import { handleImageOptimization, DEFAULT_DEVICE_SIZES, DEFAULT_IMAGE_SIZES } from "vinext/server/image-optimization";
 import handler from "vinext/server/app-router-entry";
 
-interface Env {
-  ASSETS: Fetcher;
-  DB: D1Database;
-  IMAGES: {
-    input(stream: ReadableStream): {
-      transform(options: Record<string, unknown>): {
-        output(options: { format: string; quality: number }): Promise<{ response(): Response }>;
-      };
-    };
-  };
+type WorkerEnv = NonNullable<Parameters<typeof handler.fetch>[1]>;
+
+const locales = new Set([
+  "en", "de", "fr", "es", "it", "pt", "pl", "nl", "sv", "da", "no", "fi",
+  "cs", "ro", "hu", "el", "uk", "tr", "ru", "bg", "ja", "ko", "ar", "zh",
+]);
+
+function localeFromPath(pathname: string) {
+  const firstSegment = pathname.split("/").filter(Boolean)[0];
+  return firstSegment && locales.has(firstSegment) ? firstSegment : "en";
 }
 
-interface ExecutionContext {
-  waitUntil(promise: Promise<unknown>): void;
-  passThroughOnException(): void;
-}
+function withCacheHeaders(response: Response) {
+  const headers = new Headers(response.headers);
+  const contentType = headers.get("content-type") ?? "";
 
-// Image security config. SVG sources with .svg extension auto-skip the
-// optimization endpoint on the client side (served directly, no proxy).
-// To route SVGs through the optimizer (with security headers), set
-// dangerouslyAllowSVG: true in next.config.js and uncomment below:
-// const imageConfig: ImageConfig = { dangerouslyAllowSVG: true };
+  if (response.status === 200 && (contentType.startsWith("text/html") || contentType.includes("xml") || contentType.startsWith("text/plain"))) {
+    headers.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
+    headers.set("Cloudflare-CDN-Cache-Control", "public, max-age=3600, stale-while-revalidate=86400");
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 const worker = {
-  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: WorkerEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    if (url.pathname === "/_vinext/image") {
-      const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
-      return handleImageOptimization(request, {
-        fetchAsset: (path) => env.ASSETS.fetch(new Request(new URL(path, request.url))),
-        transformImage: async (body, { width, format, quality }) => {
-          const result = await env.IMAGES.input(body).transform(width > 0 ? { width } : {}).output({ format, quality });
-          return result.response();
-        },
-      }, allowedWidths);
+    if (url.hostname === "www.lolobuysheet.shop") {
+      url.hostname = "lolobuysheet.shop";
+      return Response.redirect(url.toString(), 301);
     }
 
-    return handler.fetch(request, env, ctx);
+    const isLocal = url.hostname === "localhost" || url.hostname === "127.0.0.1" || url.hostname === "terminal.local";
+    const edgeCache = typeof caches === "undefined"
+      ? undefined
+      : (caches as CacheStorage & { readonly default: Cache }).default;
+    const canUseEdgeCache = request.method === "GET" && !url.search && !isLocal && Boolean(edgeCache);
+    const cacheKey = new Request(url.toString(), { method: "GET" });
+
+    if (canUseEdgeCache && edgeCache) {
+      const cached = await edgeCache.match(cacheKey);
+      if (cached) return cached;
+    }
+
+    let response = withCacheHeaders(await handler.fetch(request, env, ctx));
+    const contentType = response.headers.get("content-type") ?? "";
+
+    if (contentType.startsWith("text/html") && typeof HTMLRewriter !== "undefined") {
+      const locale = localeFromPath(url.pathname);
+      response = new HTMLRewriter()
+        .on("html", {
+          element(element) {
+            element.setAttribute("lang", locale);
+            element.setAttribute("dir", locale === "ar" ? "rtl" : "ltr");
+          },
+        })
+        .transform(response);
+    }
+
+    if (canUseEdgeCache && edgeCache && response.status === 200 && !response.headers.has("set-cookie")) {
+      ctx.waitUntil(edgeCache.put(cacheKey, response.clone()));
+    }
+
+    return response;
   },
-};
+} satisfies ExportedHandler<WorkerEnv>;
 
 export default worker;

@@ -158,6 +158,7 @@ export const guideArticles: Record<"beginner" | "qc" | "shipping", EditorialSect
 export const editorialArticles: EditorialArticle[] = [
   {
     slug: "how-to-use-lolobuy-spreadsheet",
+    locales: "en",
     title: "How to Use a LoloBuy Spreadsheet Without Treating It Like a Store",
     description: "A practical, evidence-led workflow for using a LoloBuy spreadsheet to discover products, verify live listings, review warehouse evidence, and plan a parcel.",
     keyword: "LoloBuy spreadsheet guide",
@@ -238,6 +239,7 @@ export const editorialArticles: EditorialArticle[] = [
   },
   {
     slug: "lolobuy-qc-photo-checklist",
+    locales: "en",
     title: "LoloBuy QC Photos: A Complete Warehouse Inspection Checklist",
     description: "A detailed method for reviewing LoloBuy warehouse photographs, documenting visible mismatches, and deciding whether to ship, request more evidence, or contact support.",
     keyword: "LoloBuy QC photos",
@@ -327,6 +329,7 @@ export const editorialArticles: EditorialArticle[] = [
   },
   {
     slug: "lolobuy-shipping-rehearsal-weight-routes",
+    locales: "en",
     title: "LoloBuy Shipping Guide: Rehearsal, Weight, Routes and Customs",
     description: "A fact-checked LoloBuy shipping guide covering consolidation, actual and volumetric weight, rehearsal packing, route comparison, customs, and parcel tracking.",
     keyword: "LoloBuy shipping guide",
