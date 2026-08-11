@@ -58,7 +58,7 @@ test("generates a canonical sitemap for every supported language and route", asy
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/zh\/seo-articles\/pikobuy-qc-shipping-return-guide<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/pikobuy-spreadsheet-shoes<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/pikobuy-spreadsheet-shipping-guide<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-total-cost-explained<\/loc><lastmod>2026-08-09<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-total-cost-explained<\/loc><lastmod>2026-08-11<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc><lastmod>2026-08-11<\/lastmod>/);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/es\/seo-articles\/pikobuy-total-cost-explained<\/loc>/);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/es\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc>/);

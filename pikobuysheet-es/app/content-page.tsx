@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 import { getInterfaceLabels, getLocaleCopy, getMainSiteCategories, localPath, officialSources, type PageKey } from "./site-config";
 
@@ -204,8 +205,8 @@ export const articles: Article[] = [
     metaDescription: "Calculate PikoBuy total cost across product payment, China delivery, warehouse choices, parcel dimensions, international shipping, returns, and import risk.",
     date: "August 9, 2026",
     publishedISO: "2026-08-09T08:00:00-07:00",
-    modifiedISO: "2026-08-09T08:00:00-07:00",
-    lastChecked: "August 9, 2026",
+    modifiedISO: "2026-08-11T08:00:00-07:00",
+    lastChecked: "August 11, 2026",
     readTime: "15 min read · 1,713 words",
     wordCount: 1713,
     primaryKeyword: "PikoBuy total cost",
@@ -213,7 +214,7 @@ export const articles: Article[] = [
       "PikoBuy fees",
       "PikoBuy shipping cost",
       "PikoBuy payment process",
-      "PikoBuy warehouse consolidation",
+      "PikoBuy parcel planning",
       "PikoBuy international shipping",
       "PikoBuy landed cost",
       "PikoBuy shipping estimator",
@@ -231,6 +232,7 @@ export const articles: Article[] = [
       { label: "How to use a PikoBuy spreadsheet", href: "/how-to-use-pikobuy-spreadsheet", note: "Check a source row before placing the product order." },
       { label: "PikoBuy QC checklist", href: "/pikobuy-spreadsheet-qc", note: "Review the received item before accepting it for shipment." },
       { label: "PikoBuy shipping guide", href: "/pikobuy-spreadsheet-shipping-guide", note: "Compare parcel and route inputs after warehousing." },
+      { label: "PikoBuy warehouse consolidation guide", href: "/seo-articles/pikobuy-warehouse-consolidation-guide", note: "Plan QC, returns, storage questions and packaging before parcel submission." },
     ],
     sections: [
       {
@@ -629,7 +631,7 @@ function UpdatesPage({ locale }: { locale: string }) {
             <div><b>{local("Impact", copy.nav.method)}</b><p>{local("Why the change affects browsing, interpretation or the next action.")}</p></div>
           </div>
           <div className="update-page-list">
-            {isEnglish && <div><time>AUG 11 · 2026</time><section><h3>PikoBuy warehouse consolidation guide published</h3><p>Published a 1,619-word English guide covering arrival records, warehouse QC, the 120-hour return decision, unpublished storage limits, parcel combinations, packaging and measured shipping inputs. Official sources were rechecked on August 11, 2026.</p><a href="/seo-articles/pikobuy-warehouse-consolidation-guide">Read the article →</a></section><i>PUBLISHED</i></div>}
+            {isEnglish && <div><time>AUG 11 · 2026</time><section><h3>PikoBuy warehouse consolidation guide published</h3><p>Published a 1,619-word English guide covering arrival records, warehouse QC, the 120-hour return decision, unpublished storage limits, parcel combinations, packaging and measured shipping inputs. Official sources were rechecked on August 11, 2026.</p><Link href="/seo-articles/pikobuy-warehouse-consolidation-guide">Read the article →</Link></section><i>PUBLISHED</i></div>}
             {isEnglish && <div><time>AUG 09 · 2026</time><section><h3>PikoBuy total cost guide published</h3><p>Published a 1,713-word English guide that separates the first product payment from the later international-shipping payment and documents warehouse, parcel, return and destination-cost checkpoints. Official sources were rechecked on August 9, 2026.</p></section><i>PUBLISHED</i></div>}
             <div><time>AUG 02 · 2026</time><section><h3>{local("Complete interface localization", copy.language)}</h3><p>{local("The language switch now retains the current route and changes navigation, feed controls, trust links, category labels, section headings, source panels, footer copy and non-article page interfaces across all 24 language URLs.")}</p></section><i>{isEnglish ? "FIXED" : labels.sourceChecked}</i></div>
             <div><time>AUG 02 · 2026</time><section><h3>{local("Ten category destinations audited", copy.nav.categories)}</h3><p>{local("Shoes, hoodies, T-shirts, jackets, pants/shorts, headwear, accessories, jerseys, electronics and other products now use the exact category routes published by FindSpreadsheet, including the case-sensitive /Jersey/ path.")}</p></section><i>{isEnglish ? "10 / 10" : labels.sourceChecked}</i></div>

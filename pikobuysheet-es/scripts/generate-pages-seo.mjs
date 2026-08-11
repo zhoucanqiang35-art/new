@@ -44,7 +44,7 @@ const sitemapUrls = locales.flatMap((locale) =>
 function lastModified(url) {
   const pathname = new URL(url).pathname.replace(/\/$/, "") || "/";
   if (["/", "/updates", "/seo-articles", "/seo-articles/pikobuy-warehouse-consolidation-guide"].includes(pathname)) return "2026-08-11";
-  if (pathname === "/seo-articles/pikobuy-total-cost-explained") return "2026-08-09";
+  if (pathname === "/seo-articles/pikobuy-total-cost-explained") return "2026-08-11";
   if (pathname.includes("/seo-articles/how-to-use-a-pikobuy-spreadsheet") || pathname.includes("/seo-articles/pikobuy-qc-shipping-return-guide")) return "2026-07-31";
   if (englishOnlyPaths.includes(pathname)) return "2026-08-06";
   return "2026-08-02";

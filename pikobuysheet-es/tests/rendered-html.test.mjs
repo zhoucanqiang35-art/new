@@ -85,6 +85,7 @@ test("renders the total-cost article with unique metadata, schema, sources and i
   assert.match(html, /1,713 words/);
   assert.match(html, /Official sources checked/);
   assert.match(html, /href="\/pikobuy-spreadsheet-qc"/);
+  assert.match(html, /href="\/seo-articles\/pikobuy-warehouse-consolidation-guide"/);
   assert.doesNotMatch(html, /private conversation|ChatGPT prompt/i);
 });
 
