@@ -8,78 +8,81 @@ async function loadPagesWorker() {
   return (await import(workerUrl.href)).default;
 }
 
-function testContext() {
-  return { waitUntil() {}, passThroughOnException() {} };
+function context(pending = []) {
+  return { waitUntil(promise) { pending.push(promise); }, passThroughOnException() {} };
 }
 
-test("forwards browser assets and crawl files to the Pages ASSETS binding", async () => {
+test("forwards static assets and crawl files to Pages ASSETS with cache headers", async () => {
   const worker = await loadPagesWorker();
   for (const [pathname, contentType] of [
-    ["/assets/site.css", "text/css; charset=utf-8"],
+    ["/assets/site-hash.css", "text/css; charset=utf-8"],
+    ["/pikobuy-logo.png", "image/png"],
+    ["/og-pikobuy-spreadsheet.png", "image/png"],
     ["/robots.txt", "text/plain; charset=utf-8"],
     ["/sitemap.xml", "application/xml; charset=utf-8"],
   ]) {
-    let forwardedPathname = null;
+    let forwarded = null;
     const response = await worker.fetch(
-      new Request(`http://localhost${pathname}`),
-      {
-        ASSETS: {
-          async fetch(request) {
-            forwardedPathname = new URL(request.url).pathname;
-            return new Response("test asset", { headers: { "content-type": contentType } });
-          },
-        },
-      },
-      testContext(),
+      new Request(`https://pikobuyspreadsheet.shop${pathname}`),
+      { ASSETS: { async fetch(request) { forwarded = new URL(request.url).pathname; return new Response("asset", { headers: { "content-type": contentType } }); } } },
+      context(),
     );
-
-    assert.equal(forwardedPathname, pathname);
+    assert.equal(forwarded, pathname);
     assert.equal(response.status, 200);
-    assert.ok((response.headers.get("content-type") ?? "").startsWith(contentType.split(";")[0]));
+    assert.match(response.headers.get("cache-control") ?? "", /public/);
+    assert.equal(response.headers.get("x-content-type-options"), "nosniff");
   }
 });
 
-test("renders the homepage and an article through the Pages Worker", async () => {
+test("redirects www and Pages fallback hosts to the canonical domain", async () => {
   const worker = await loadPagesWorker();
-  for (const pathname of ["/", "/seo-articles/pikobuy-spreadsheet-guide-2026"]) {
+  for (const hostname of ["www.pikobuyspreadsheet.shop", "pikobuyspreadsheet-shop.pages.dev"]) {
     const response = await worker.fetch(
-      new Request(`https://pikobuyspreadsheet-shop.pages.dev${pathname}`, {
-        headers: { accept: "text/html" },
-      }),
-      { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
-      testContext(),
+      new Request(`https://${hostname}/guides/shipping?source=test`),
+      { ASSETS: { fetch: async () => new Response("unexpected") } },
+      context(),
     );
-    const html = await response.text();
-    assert.equal(response.status, 200);
-    assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-    assert.doesNotMatch(html, /noindex/i);
+    assert.equal(response.status, 301);
+    assert.equal(response.headers.get("location"), "https://pikobuyspreadsheet.shop/guides/shipping?source=test");
   }
 });
 
-test("permanently redirects www requests to the canonical root host", async () => {
+test("caches canonical HTML responses at the edge", async () => {
   const worker = await loadPagesWorker();
-  const response = await worker.fetch(
-    new Request("https://www.pikobuyspreadsheet.shop/guides/shipping?source=test"),
-    { ASSETS: { fetch: async () => new Response("unexpected") } },
-    testContext(),
-  );
-  assert.equal(response.status, 301);
-  assert.equal(
-    response.headers.get("location"),
-    "https://pikobuyspreadsheet.shop/guides/shipping?source=test",
-  );
+  const cacheStore = new Map();
+  const previousCaches = globalThis.caches;
+  globalThis.caches = { default: {
+    async match(request) { return cacheStore.get(request.url)?.clone(); },
+    async put(request, response) { cacheStore.set(request.url, response.clone()); },
+  } };
+
+  try {
+    const pending = [];
+    const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+    const request = new Request("https://pikobuyspreadsheet.shop/categories/shoes", { headers: { accept: "text/html" } });
+    const first = await worker.fetch(request, env, context(pending));
+    assert.equal(first.status, 200);
+    assert.equal(first.headers.get("x-edge-cache"), "MISS");
+    assert.match(first.headers.get("cache-control") ?? "", /s-maxage=3600/);
+    await Promise.all(pending);
+
+    const second = await worker.fetch(request, env, context());
+    assert.equal(second.status, 200);
+    assert.equal(second.headers.get("x-edge-cache"), "HIT");
+  } finally {
+    globalThis.caches = previousCaches;
+  }
 });
 
-test("generates canonical crawl files for every public route", async () => {
+test("generates a canonical sitemap for every public route", async () => {
   const sitemap = await readFile(new URL("../dist/pages/sitemap.xml", import.meta.url), "utf8");
   const robots = await readFile(new URL("../dist/pages/robots.txt", import.meta.url), "utf8");
-
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 12);
-  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/seo-articles<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-spreadsheet-guide-2026<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/guides\/shipping<\/loc>/);
-  assert.doesNotMatch(sitemap, /pages\.dev/);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 19);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/faq<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/categories\/electronics<\/loc>/);
+  assert.doesNotMatch(sitemap, /pages\.dev|\/preview\//);
   assert.match(robots, /Allow: \/\s/);
+  assert.match(robots, /Disallow: \/preview\//);
   assert.match(robots, /Sitemap: https:\/\/pikobuyspreadsheet\.shop\/sitemap\.xml/);
 });

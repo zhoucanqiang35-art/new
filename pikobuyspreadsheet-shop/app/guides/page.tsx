@@ -1,12 +1,13 @@
 import type { CSSProperties } from "react";
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../content-layout";
 import { normalizeLanguage } from "../i18n";
+import { createPageMetadata } from "../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Guides: QC Photos, Shipping, Fees & Returns",
   description: "Source-checked PikoBuy buyer guides covering the official six-step flow, warehouse QC photos, shipping planning, fees, restrictions and returns.",
-};
+  path: "/guides",
+});
 
 const guideCards = [
   ["QC", "How to Read PikoBuy QC Photos", "Turn warehouse images into a category-specific decision checklist and understand what a visual inspection cannot prove.", "/guides/qc-photos", "#79e8ff"],
@@ -26,7 +27,7 @@ const officialFlow = [
 export default async function GuidesPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   const suffix = language === "en" ? "" : `?lang=${language}`;
-  return <ContentLayout language={language} kicker="BUYER GUIDES / OFFICIAL SOURCES" title="Slow down at the decisions that can still be changed." intro="These guides translate PikoBuy’s published process into practical checks. Official facts are linked; independent advice is labelled as judgment rather than a platform promise." tone="pink">
+  return <ContentLayout language={language} pathname="/guides" kicker="BUYER GUIDES / OFFICIAL SOURCES" title="Slow down at the decisions that can still be changed." intro="These guides translate PikoBuy’s published process into practical checks. Official facts are linked; independent advice is labelled as judgment rather than a platform promise." tone="pink">
     <section className="content-section">
       <div className="guide-index-grid">{guideCards.map(([code, title, copy, href, color], index) => <a href={`${href}${suffix}`} key={code} style={{ "--card-color": color } as CSSProperties}><span>0{index + 1}</span><b>{code}</b><h2>{title}</h2><p>{copy}</p><strong>Read full guide ↗</strong></a>)}</div>
     </section>

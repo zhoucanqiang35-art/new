@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../content-layout";
 import { normalizeLanguage } from "../i18n";
 import { ProductShowcase } from "../product-showcase";
+import { createPageMetadata } from "../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Finds: Product Categories, Link Checks & Buyer Notes",
   description: "Browse PikoBuy spreadsheet finds by category and learn how to verify seller links, variants, prices, warehouse evidence and shipping context.",
-};
+  path: "/finds",
+});
 
 const categories = [
   ["SN", "Shoes", "Sizing, insole length, sole shape, heel alignment and visible glue lines.", "https://findspreadsheet.com/shoes/"],
@@ -33,7 +34,7 @@ const rowChecks = [
 export default async function FindsPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   const suffix = language === "en" ? "" : `?lang=${language}`;
-  return <ContentLayout language={language} kicker="PRODUCT INDEX / RESEARCH BEFORE PURCHASE" title="PikoBuy finds arranged by what you need to verify." intro="A useful spreadsheet is not a wall of links. It shortens discovery, then hands the buyer back to the live listing, the actual PikoBuy order options and the warehouse evidence." tone="blue">
+  return <ContentLayout language={language} pathname="/finds" kicker="PRODUCT INDEX / RESEARCH BEFORE PURCHASE" title="PikoBuy finds arranged by what you need to verify." intro="A useful spreadsheet is not a wall of links. It shortens discovery, then hands the buyer back to the live listing, the actual PikoBuy order options and the warehouse evidence." tone="blue">
     <section className="content-section">
       <div className="content-section-heading"><span>01 / PRODUCT DETAILS</span><h2>Current examples with a direct path to the main product page.</h2><p>Names, first images, item IDs and source prices were checked on FindSpreadsheet on 06 August 2026. Every card opens the exact corresponding product page—there is no extra local detail page or dead-end button.</p></div>
       <ProductShowcase />

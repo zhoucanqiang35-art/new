@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { ContentLayout, PageSearchParams } from "../content-layout";
 import { normalizeLanguage } from "../i18n";
+import { createPageMetadata } from "../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Spreadsheet Guides & SEO Research Articles (2026)",
   description: "Read human-edited PikoBuy spreadsheet articles on link checking, warehouse QC, returns, shipping cost, fees, routes and buyer risk.",
-};
+  path: "/seo-articles",
+});
 
 const articles = [
   ["01 · BEGINNER GUIDE", "How to Use a PikoBuy Spreadsheet Without Skipping the Important Checks", "A practical walkthrough of seller-link verification, product variants, warehouse QC, the 120-hour return window, packaging, shipping routes and the current fee language.", "/seo-articles/pikobuy-spreadsheet-guide-2026", "Buyer workflow", "#f8ff70"],
@@ -17,7 +18,7 @@ const articles = [
 export default async function SeoArticlesPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   const suffix = language === "en" ? "" : `?lang=${language}`;
-  return <ContentLayout language={language} kicker="SEO ARTICLES / HUMAN-EDITED RESEARCH" title="Long-form answers built from the buyer’s real decision." intro="Each article begins with a narrow question, checks current primary sources, separates facts from judgment and records when the policy information was reviewed." tone="pink">
+  return <ContentLayout language={language} pathname="/seo-articles" kicker="SEO ARTICLES / HUMAN-EDITED RESEARCH" title="Long-form answers built from the buyer’s real decision." intro="Each article begins with a narrow question, checks current primary sources, separates facts from judgment and records when the policy information was reviewed." tone="pink">
     <section className="content-section article-index article-library">
       <div className="article-card-list">{articles.map(([tag, title, copy, href, length, color]) => <article className="featured-article-card" style={{ "--article-color": color } as CSSProperties} key={href}><div><span>{tag}</span><small>{length} · English</small></div><h2>{title}</h2><p>{copy}</p><footer><span>Official sources rechecked · 06 Aug 2026</span><a href={`${href}${suffix}`}>Read article ↗</a></footer></article>)}</div>
       <aside className="editorial-rules"><span>EDITORIAL CHECKLIST</span><ol><li>Start with a real search intent.</li><li>Use primary PikoBuy sources for policy claims.</li><li>Do not invent customer experiences, ratings or traffic.</li><li>Label estimates, interpretation and changing information.</li><li>Keep every visible article arrow connected to a complete page.</li><li>Recheck facts before each update.</li></ol></aside>

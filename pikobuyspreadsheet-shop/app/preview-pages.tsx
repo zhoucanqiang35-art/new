@@ -120,7 +120,7 @@ function BazaarHero({ words, query, setQuery, submit, language }: HeroProps) {
     <a className="pop-sticker sticker-one" href={`/qc-method${suffix}`} aria-label="Open the full QC method">QC FIRST</a>
     <a className="pop-sticker sticker-two" href={`/finds${suffix}`} aria-label="Browse all 10 product categories">10 CATEGORIES</a>
     <a className="pop-sticker sticker-three" href={`/sources${suffix}`} aria-label="Open the source and link checking policy">LINK CHECK</a>
-    <div className="hero-copy"><p className="preview-eyebrow">{words.eyebrow}</p><h1>{words.line1}<br /><em>{words.line2}</em><br />{words.line3}</h1><p>{words.intro}</p><Search query={query} setQuery={setQuery} submit={submit} placeholder={words.search} button={words.searchButton} /></div>
+    <div className="hero-copy"><p className="preview-eyebrow">{words.eyebrow}</p><p className="hero-tagline">Find it. Check it. Then decide.</p><h1>PikoBuy Spreadsheet 2026:<br /><em>Product Finds, QC</em><br />&amp; Shipping Guides</h1><p>{words.intro}</p><Search query={query} setQuery={setQuery} submit={submit} placeholder={words.search} button={words.searchButton} /></div>
     <a className="pop-card card-shoe" href="https://findspreadsheet.com/shoes/" target="_blank" rel="noopener noreferrer" aria-label="Open footwear finds on FindSpreadsheet"><span>SN</span><strong>Footwear finds</strong><small>Open shoe category →</small></a>
     <a className="pop-card card-qc" href={`/guides/qc-photos${suffix}`} aria-label="Open the full QC photo guide"><span>QC</span><strong>Photo checks</strong><small>Read the full guide →</small></a>
   </section>;
@@ -181,6 +181,14 @@ export default function PreviewPage({ variant, standalone = false, language = "e
               return <a href={item.href} target="_blank" rel="noopener noreferrer" className="preview-category" key={item.code} aria-label={`Browse ${item.name} on FindSpreadsheet`}><span className="category-number">{String(index + 1).padStart(2, "0")}</span><b>{item.code}</b><span className="category-icon" aria-hidden="true"><CategoryIcon size={56} stroke={1.55} /></span><div><strong>{item.name}</strong><small>{item.note}</small></div><i>↗</i></a>;
             })}
           </div>
+          <nav className="category-guide-links" aria-label="Independent category research guides">
+            <span>Independent QC guides:</span>
+            <a href="/categories/shoes">Shoes</a>
+            <a href="/categories/hoodies">Hoodies</a>
+            <a href="/categories/jerseys">Jerseys</a>
+            <a href="/categories/accessories">Accessories</a>
+            <a href="/categories/electronics">Electronics</a>
+          </nav>
         </section>
 
         <section className="product-detail-section" id="products">

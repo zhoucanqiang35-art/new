@@ -1,17 +1,21 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
 import { normalizeLanguage } from "../../i18n";
+import { createPageMetadata } from "../../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Shipping Cost & Fees Guide 2026: What to Calculate",
   description: "A source-checked guide to PikoBuy shipping estimates, packed weight, dimensions, routes, the published 8% freight fee and logistics risk.",
-};
+  path: "/seo-articles/pikobuy-shipping-cost-fees-2026",
+  type: "article",
+  publishedTime: "2026-08-06",
+  modifiedTime: "2026-08-10",
+});
 
 export default async function ShippingFeesArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
-  return <ContentLayout language={language} kicker="SEO ARTICLE / SHIPPING & FEES" title="PikoBuy Shipping Cost and Fees: What to Calculate Before You Build a Haul" intro="A low product total is not a landed-cost estimate. This guide follows PikoBuy’s published parcel flow and separates the inputs you can plan from the live information you must verify." tone="blue">
+  return <ContentLayout language={language} pathname="/seo-articles/pikobuy-shipping-cost-fees-2026" article kicker="SEO ARTICLE / SHIPPING & FEES" title="PikoBuy Shipping Cost and Fees: What to Calculate Before You Build a Haul" intro="A low product total is not a landed-cost estimate. This guide follows PikoBuy’s published parcel flow and separates the inputs you can plan from the live information you must verify." tone="blue">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 06 August 2026</span><span>Source-checked cost guide</span></div>
+      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked cost guide</span></div>
 
       <p className="article-dek">The product page is where most shopping decisions begin, so it is natural to focus on the item price. International forwarding rearranges that logic. A cheap bulky item can be costly to send; an expensive compact item can be straightforward. The honest time to think about shipping is before the warehouse shelf fills up, not after every item has already passed its return window.</p>
 

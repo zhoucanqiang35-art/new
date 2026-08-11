@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
 import { normalizeLanguage } from "../../i18n";
 import { ProductShowcase } from "../../product-showcase";
+import { createPageMetadata } from "../../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "How to Read PikoBuy QC Photos: Complete Warehouse Checklist",
   description: "Use PikoBuy warehouse photos effectively with category-specific measurements, angles, defect checks, return safeguards and inspection limits.",
-};
+  path: "/guides/qc-photos",
+});
 
 const checks = [
   {
@@ -94,7 +95,7 @@ const requestExamples = [
 
 export default async function QcPhotosPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
-  return <ContentLayout language={language} kicker="FULL GUIDE / QC PHOTOS" title="Ask for photographs that can change the decision." intro="The goal is not to collect more images. It is to obtain the angle, scale and close-up that answer the highest-risk question for the exact product." tone="blue">
+  return <ContentLayout language={language} pathname="/guides/qc-photos" kicker="FULL GUIDE / QC PHOTOS" title="Ask for photographs that can change the decision." intro="The goal is not to collect more images. It is to obtain the angle, scale and close-up that answer the highest-risk question for the exact product." tone="blue">
     <section className="content-section">
       <div className="content-section-heading"><div><span>QC REVIEW CHECKPOINTS</span><h2>Six checks with a clear purpose.</h2></div><p>These cards are a buyer-side review method, not six services PikoBuy promises automatically. Each card separates the official warehouse or return-policy basis from the action the buyer still has to take.</p></div>
       <div className="check-grid check-grid-rich">{checks.map((check) => <article key={check.number}><a className="check-card-link" href={check.href} aria-label={`Read the matching explanation: ${check.title}`}><span>{check.number}</span><h2>{check.title}</h2><p>{check.summary}</p><ul>{check.actions.map((action) => <li key={action}>{action}</li>)}</ul><small><b>LIMIT</b>{check.limit}</small><strong className="card-destination">Read the matching explanation ↓</strong></a></article>)}</div>

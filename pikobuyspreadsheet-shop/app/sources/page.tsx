@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams } from "../content-layout";
 import { normalizeLanguage } from "../i18n";
+import { createPageMetadata } from "../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Official Sources & Independent Editorial Policy",
   description: "See the official PikoBuy pages used for claims about buying, QC, shipping, fees, returns, restrictions and platform responsibilities.",
-};
+  path: "/sources",
+});
 
 const sources = [
   ["Official homepage", "Platform positioning, link/image/request discovery, purchasing assistance, warehouse QC and worldwide shipping overview.", "https://www.pikobuy.com/", "Service overview"],
@@ -32,7 +33,7 @@ const claimMap = [
 export default async function SourcesPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   const suffix = language === "en" ? "" : `?lang=${language}`;
-  return <ContentLayout language={language} kicker="EDITORIAL POLICY / PRIMARY SOURCES" title="Every factual claim should have somewhere to go." intro="We use PikoBuy’s published pages for platform facts, show when they were checked and avoid turning changeable routes, prices or policies into permanent promises." tone="blue">
+  return <ContentLayout language={language} pathname="/sources" kicker="EDITORIAL POLICY / PRIMARY SOURCES" title="Every factual claim should have somewhere to go." intro="We use PikoBuy’s published pages for platform facts, show when they were checked and avoid turning changeable routes, prices or policies into permanent promises." tone="blue">
     <section className="content-section"><div className="source-list">{sources.map(([title, copy, href, use], index) => <a href={href} target="_blank" rel="noopener noreferrer" key={href}><span>{String(index + 1).padStart(2, "0")}</span><div><small>{use}</small><h2>{title}</h2><p>{copy}</p></div><b>Open official page ↗</b></a>)}</div></section>
 
     <section className="content-section">

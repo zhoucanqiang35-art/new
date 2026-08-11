@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy Spreadsheet 2026 research hub</title>
+  <desc id="desc">A purple, pink and lime editorial card for PikoBuy product finds, quality-control and shipping guides.</desc>
+  <rect width="1200" height="630" rx="38" fill="#d9c7ff"/>
+  <circle cx="1010" cy="120" r="165" fill="#ff9fc3" stroke="#40165d" stroke-width="5"/>
+  <circle cx="1085" cy="520" r="195" fill="#7be8ff" stroke="#40165d" stroke-width="5"/>
+  <rect x="58" y="54" width="1084" height="522" rx="34" fill="#f5ff62" stroke="#40165d" stroke-width="6"/>
+  <rect x="88" y="86" width="224" height="52" rx="26" fill="#fffdf2" stroke="#40165d" stroke-width="4"/>
+  <text x="112" y="120" fill="#40165d" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="2">INDEPENDENT RESEARCH</text>
+  <text x="88" y="234" fill="#40165d" font-family="Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="-4">PikoBuy Spreadsheet</text>
+  <text x="88" y="316" fill="#ff4e8c" font-family="Arial, sans-serif" font-size="82" font-weight="800" letter-spacing="-4">2026</text>
+  <text x="88" y="402" fill="#40165d" font-family="Arial, sans-serif" font-size="38" font-weight="700">Product Finds · QC · Shipping Guides</text>
+  <rect x="88" y="460" width="640" height="70" rx="35" fill="#40165d"/>
+  <text x="122" y="505" fill="#fffdf2" font-family="Arial, sans-serif" font-size="25" font-weight="700">Find it. Check it. Then decide.</text>
+  <g transform="translate(932 382) rotate(-7)">
+    <rect width="150" height="150" rx="36" fill="#ff9fc3" stroke="#40165d" stroke-width="5"/>
+    <text x="75" y="102" text-anchor="middle" fill="#40165d" font-family="Arial, sans-serif" font-size="76" font-weight="900">P</text>
+  </g>
+</svg>

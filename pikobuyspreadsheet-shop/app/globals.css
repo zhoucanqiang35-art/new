@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --sans: var(--font-geist-sans), Arial, sans-serif; --mono: var(--font-geist-mono), ui-monospace, monospace; }
+:root { --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; --mono: "SFMono-Regular", Consolas, "Liberation Mono", ui-monospace, monospace; }
 * { box-sizing: border-box; }
 html { overflow-x: clip; scroll-behavior: smooth; }
 body { margin: 0; overflow-x: hidden; font-family: var(--sans); }
@@ -109,7 +109,8 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
 .preview-bazaar .preview-switcher > div a.active { color: #fff; background: #f04f91; }
 .bazaar-hero { min-height: 760px; padding: 86px 0; display: grid; place-items: center; text-align: center; overflow: hidden; border-radius: 42px; background: var(--accent); }
 .bazaar-hero .hero-copy { width: min(820px, 85%); }
-.bazaar-hero .hero-copy h1 { font-size: clamp(70px, 9vw, 137px); }
+.bazaar-hero .hero-copy h1 { font-size: clamp(48px, 6.4vw, 96px); line-height: .91; }
+.hero-tagline { width: fit-content; margin: 0 auto 18px !important; padding: 7px 13px; border: 2px solid var(--ink); border-radius: 30px; color: var(--ink) !important; background: #fff; box-shadow: 3px 3px 0 var(--ink); font: 800 9px var(--mono) !important; letter-spacing: .04em; }
 .bazaar-hero .hero-copy > p:not(.preview-eyebrow) { margin-inline: auto; }
 .bazaar-hero .preview-search { margin-inline: auto; border: 2px solid var(--ink); border-radius: 35px; box-shadow: 7px 7px 0 var(--ink); }
 .bazaar-hero .preview-search button { border-radius: 27px; background: var(--accent2); }
@@ -196,6 +197,9 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
 .preview-bazaar .preview-category:nth-child(3n+2) { background: #80e8ff; transform: rotate(1deg); }
 .preview-bazaar .preview-category:nth-child(3n) { background: #ff9fc2; }
 .preview-bazaar .preview-category:hover { transform: translateY(-5px) rotate(0); }
+.category-guide-links { margin-top: 30px; padding: 18px 0; display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.category-guide-links span { color: var(--muted); font: 8px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.category-guide-links a { padding-bottom: 3px; border-bottom: 1px solid currentColor; font-size: 10px; font-weight: 800; }
 
 /* Direct-to-main-site product details */
 .product-detail-section { padding: 105px 0; border-top: 1px solid var(--line); }
@@ -486,6 +490,25 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
 .wide-prose { max-width: 950px; margin: 0 auto; }
 .source-note { margin: 50px 0 0; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--muted); font: 9px/1.8 var(--mono) !important; }
 .source-note a { color: var(--ink); border-bottom: 1px solid; }
+.category-checklist { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.category-checklist article { min-height: 260px; padding: 22px; display: flex; flex-direction: column; border: 2px solid var(--ink); border-radius: 24px; background: var(--panel); box-shadow: 5px 5px 0 var(--ink); }
+.category-checklist article:nth-child(3n+1) { background: #f5ff71; }
+.category-checklist article:nth-child(3n+2) { background: #7be8ff; }
+.category-checklist article:nth-child(3n) { background: #ff9fc3; }
+.category-checklist span { font: 9px var(--mono); }
+.category-checklist p { margin: auto 0 0; color: #4f3962; font-size: 11px; line-height: 1.75; }
+.category-index-grid { grid-template-columns: repeat(3, 1fr); }
+.category-guide-evidence { grid-template-columns: repeat(4, 1fr); }
+.category-guide-evidence article { min-height: 300px; }
+.faq-list { border-top: 2px solid var(--ink); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary { padding: 25px 0; display: grid; grid-template-columns: 55px 1fr 30px; gap: 20px; align-items: center; cursor: pointer; list-style: none; }
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary span { font: 9px var(--mono); }
+.faq-list summary h2 { margin: 0; font-size: clamp(23px, 2.5vw, 36px); letter-spacing: -.04em; }
+.faq-list summary i { font: normal 26px var(--mono); transition: transform .2s ease; }
+.faq-list details[open] summary i { transform: rotate(45deg); }
+.faq-list details > p { max-width: 900px; margin: 0 0 30px 75px; color: #5e4870; font-size: 14px; line-height: 1.85; }
 
 .guide-index-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .guide-index-grid > a { --card-color: #fff; min-height: 520px; padding: 26px; display: flex; flex-direction: column; border: 2px solid var(--ink); border-radius: 28px; background: var(--card-color); box-shadow: 7px 7px 0 var(--ink); transition: transform .2s ease; }
@@ -651,6 +674,7 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
   .source-list > a { grid-template-columns: 45px 1fr; }
   .source-list b { grid-column: 2; justify-self: start; }
   .evidence-table, .official-flow { grid-template-columns: repeat(2, 1fr); }
+  .category-checklist, .category-guide-evidence, .category-index-grid { grid-template-columns: repeat(2, 1fr); }
   .check-grid-rich article { min-height: 430px; }
   .responsibility-table header, .claim-table header { display: none; }
   .responsibility-table article, .claim-table article { grid-template-columns: 1fr; gap: 9px; }
@@ -675,6 +699,10 @@ a, button, select { -webkit-tap-highlight-color: transparent; }
   .split-callout { padding-inline: 20px; }
   .source-list > a { padding: 22px 0; }
   .evidence-table, .official-flow { grid-template-columns: 1fr; }
+  .category-checklist, .category-guide-evidence, .category-index-grid { grid-template-columns: 1fr; }
+  .category-checklist article { min-height: 220px; }
+  .faq-list summary { grid-template-columns: 35px 1fr 20px; gap: 10px; }
+  .faq-list details > p { margin-left: 45px; font-size: 13px; }
   .evidence-table article, .official-flow article { min-height: 220px; }
   .category-evidence-grid article, .estimator-grid article { min-height: 360px; }
   .big-source-link { padding: 18px; }

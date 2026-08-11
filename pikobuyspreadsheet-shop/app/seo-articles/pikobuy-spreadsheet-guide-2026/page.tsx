@@ -1,17 +1,21 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
 import { normalizeLanguage } from "../../i18n";
+import { createPageMetadata } from "../../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "How to Use a PikoBuy Spreadsheet: Complete 2026 Guide",
   description: "Use a PikoBuy spreadsheet carefully with live link checks, order options, warehouse QC photos, the 120-hour return policy and shipping planning.",
-};
+  path: "/seo-articles/pikobuy-spreadsheet-guide-2026",
+  type: "article",
+  publishedTime: "2026-08-06",
+  modifiedTime: "2026-08-10",
+});
 
 export default async function SpreadsheetGuideArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
-  return <ContentLayout language={language} kicker="SEO ARTICLE / BEGINNER GUIDE" title="How to Use a PikoBuy Spreadsheet Without Skipping the Important Checks" intro="A spreadsheet can make product discovery faster, but speed is useful only when you know what still needs to be verified. This guide follows the actual PikoBuy buying flow and shows where a careful buyer should pause." tone="lime">
+  return <ContentLayout language={language} pathname="/seo-articles/pikobuy-spreadsheet-guide-2026" article kicker="SEO ARTICLE / BEGINNER GUIDE" title="How to Use a PikoBuy Spreadsheet Without Skipping the Important Checks" intro="A spreadsheet can make product discovery faster, but speed is useful only when you know what still needs to be verified. This guide follows the actual PikoBuy buying flow and shows where a careful buyer should pause." tone="lime">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 06 August 2026</span><span>Source-checked buyer guide</span></div>
+      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked buyer guide</span></div>
 
       <p className="article-dek">The first time you open a PikoBuy spreadsheet, it is tempting to treat the neat rows as finished recommendations. There is a product name, perhaps an image, a price and a link. It feels more certain than scrolling through an unfamiliar marketplace. But a spreadsheet is best understood as a research index. It can point you toward a product; it cannot freeze the seller, the available variant, the price, the warehouse result or the shipping conditions in time.</p>
 

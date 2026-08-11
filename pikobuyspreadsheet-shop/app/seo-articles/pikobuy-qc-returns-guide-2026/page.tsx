@@ -1,17 +1,21 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
 import { normalizeLanguage } from "../../i18n";
+import { createPageMetadata } from "../../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy QC Photos & Returns Guide 2026: 120-Hour Checks",
   description: "A detailed PikoBuy warehouse guide covering useful QC photo requests, inspection limits, return condition, seller agreement and fees.",
-};
+  path: "/seo-articles/pikobuy-qc-returns-guide-2026",
+  type: "article",
+  publishedTime: "2026-08-06",
+  modifiedTime: "2026-08-10",
+});
 
 export default async function QcReturnsArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
-  return <ContentLayout language={language} kicker="SEO ARTICLE / QC & RETURNS" title="PikoBuy QC Photos and Returns: The Warehouse Decision Guide" intro="The warehouse is the last point where visible evidence and an eligible domestic return may meet. This guide explains how to use that short decision window carefully." tone="pink">
+  return <ContentLayout language={language} pathname="/seo-articles/pikobuy-qc-returns-guide-2026" article kicker="SEO ARTICLE / QC & RETURNS" title="PikoBuy QC Photos and Returns: The Warehouse Decision Guide" intro="The warehouse is the last point where visible evidence and an eligible domestic return may meet. This guide explains how to use that short decision window carefully." tone="pink">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 06 August 2026</span><span>Source-checked QC guide</span></div>
+      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked QC guide</span></div>
 
       <p className="article-dek">A warehouse photograph is reassuring because it proves that something arrived. That is only the beginning. The useful question is whether the photographs show the exact item ordered, answer the risk that matters for its category and arrive while a return request may still be possible.</p>
 

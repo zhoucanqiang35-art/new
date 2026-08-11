@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
 import { normalizeLanguage } from "../../i18n";
+import { createPageMetadata } from "../../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy Returns: 120-Hour Window, Eligibility & Fees",
   description: "Understand PikoBuy’s published five-day return window, seller acceptance, eligible and excluded goods, fee formula and packaging conditions.",
-};
+  path: "/guides/returns",
+});
 
 const eligibility = [
   ["Potentially eligible", "The seller offers a return guarantee, the item remains marketable under seller rules and warehouse time has not exceeded five days."],
@@ -27,7 +28,7 @@ const responsibility = [
 
 export default async function ReturnsPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
-  return <ContentLayout language={language} kicker="FULL GUIDE / RETURNS" title="The PikoBuy 120-hour warehouse clock, explained." intro="The official returns page describes a five-day request period for eligible products, but timing alone does not create an automatic or free refund." tone="pink">
+  return <ContentLayout language={language} pathname="/guides/returns" kicker="FULL GUIDE / RETURNS" title="The PikoBuy 120-hour warehouse clock, explained." intro="The official returns page describes a five-day request period for eligible products, but timing alone does not create an automatic or free refund." tone="pink">
     <section className="return-timeline"><div><span>0H</span><b>Status becomes Warehoused</b><small>The published count begins from the next hour.</small></div><i>→</i><div><span>120H</span><b>Published request limit</b><small>A request after this point might not be accepted.</small></div><i>→</i><div><span>SELLER</span><b>Agreement still required</b><small>PikoBuy says the item can be returned only when the seller agrees.</small></div></section>
 
     <section className="content-section prose-body wide-prose">

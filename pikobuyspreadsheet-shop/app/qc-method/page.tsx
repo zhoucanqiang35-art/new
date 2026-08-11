@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
 import { ContentLayout, PageSearchParams, SourceNote } from "../content-layout";
 import { normalizeLanguage } from "../i18n";
+import { createPageMetadata } from "../seo";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "PikoBuy QC Method: Listing, Warehouse Photo & Return Checks",
   description: "A practical PikoBuy QC workflow covering source listings, order options, warehouse photos, inspection limits, returns and shipping readiness.",
-};
+  path: "/qc-method",
+});
 
 const categoryChecks = [
   { title: "Clothing", copy: "Readable chest, length, sleeve or waist measurements; seams; print alignment; fabric appearance; zippers and buttons.", href: "https://findspreadsheet.com/t-shirts/", cta: "Browse clothing products" },
@@ -18,7 +19,7 @@ const categoryChecks = [
 export default async function QcMethodPage({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   const suffix = language === "en" ? "" : `?lang=${language}`;
-  return <ContentLayout language={language} kicker="QC METHOD / FIVE DECISION PASSES" title="Read PikoBuy warehouse photos like evidence." intro="PikoBuy publishes a warehouse inspection and photo stage, but the buyer still has to decide whether the evidence answers the risk of the exact product." tone="lime">
+  return <ContentLayout language={language} pathname="/qc-method" kicker="QC METHOD / FIVE DECISION PASSES" title="Read PikoBuy warehouse photos like evidence." intro="PikoBuy publishes a warehouse inspection and photo stage, but the buyer still has to decide whether the evidence answers the risk of the exact product." tone="lime">
     <section className="content-section prose-grid">
       <aside className="sticky-index"><span>FIVE PASSES</span><a href="#listing">01 · Listing</a><a href="#order">02 · Order</a><a href="#photos">03 · Photos</a><a href="#return">04 · Return clock</a><a href="#landed">05 · Parcel</a><a href={`/guides/qc-photos${suffix}`}>Detailed photo guide ↗</a></aside>
       <div className="prose-body">
