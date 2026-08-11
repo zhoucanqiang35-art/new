@@ -305,6 +305,7 @@ footer > div:not(:first-child) a:hover { color: var(--cyan); }
 .update-page-list time { color: #07899b; font-size: 10px; letter-spacing: .08em; }
 .update-page-list h3 { margin: 0; font-size: 18px; }
 .update-page-list p { color: #5e737c; line-height: 1.6; font-size: 12px; margin: 8px 0 0; }
+.update-page-list section > a { display: inline-block; margin-top: 10px; color: #07899b; font-size: 11px; font-weight: 800; }
 .update-page-list i { color: #003042; background: #77e8f1; border-radius: 16px; padding: 7px 9px; font-size: 8px; font-style: normal; font-weight: 800; }
 .article-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .article-grid > a { min-height: 410px; padding: 37px; background: #fff; border: 1px solid #c2d5d9; color: #061927; text-decoration: none; display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; }
@@ -331,6 +332,11 @@ footer > div:not(:first-child) a:hover { color: var(--cyan); }
 .article-related a:first-of-type, .article-source-log a:first-of-type { margin-top: 20px; }
 .article-related a b, .article-source-log a b { font-size: 14px; }
 .article-related a span, .article-source-log a span { color: #4c6873; font-size: 12px; line-height: 1.55; }
+.article-pagination { margin: 55px 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.article-pagination a { min-width: 0; padding: 22px; border: 1px solid #bdd7dc; background: #fff; color: #082c3d; }
+.article-pagination a:last-child { text-align: right; }
+.article-pagination small { display: block; margin-bottom: 9px; color: #56717b; font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.article-pagination b { display: block; font-size: 14px; line-height: 1.45; }
 .article-disclosure { padding: 28px; background: #062338; color: #fff; }
 .article-disclosure p { color: #a4bac4; font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.7; margin: 10px 0 0; }
 .keyword-page { background: #f2f6f7; color: #0a1e2a; overflow: visible; }
@@ -521,6 +527,8 @@ footer > div:not(:first-child) a:hover { color: var(--cyan); }
   .article-page > header > span { font-size: 15px; }
   .article-layout { padding: 60px 16px 75px; gap: 45px; }
   .article-body p { font-size: 16px; line-height: 1.8; }
+  .article-pagination { grid-template-columns: 1fr; }
+  .article-pagination a:last-child { text-align: left; }
   .keyword-hero { min-height: auto; padding: 65px 18px 55px; }
   .keyword-hero h1 { font-size: 43px; }
   .keyword-hero > div > span { font-size: 15px; }

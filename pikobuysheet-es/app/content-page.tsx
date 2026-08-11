@@ -320,6 +320,124 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "pikobuy-warehouse-consolidation-guide",
+    title: "PikoBuy Warehouse Consolidation: A Practical Packing Decision Guide",
+    deck: "A step-by-step warehouse workflow for checking each arrival, protecting the return window, combining orders, choosing packaging and estimating the finished parcel.",
+    metaTitle: "PikoBuy Warehouse Consolidation & Packing Guide",
+    metaDescription: "Plan PikoBuy warehouse consolidation: review QC photos, protect the 120-hour return window, combine orders, choose packaging, and estimate the parcel.",
+    date: "August 11, 2026",
+    publishedISO: "2026-08-11T08:00:00-07:00",
+    modifiedISO: "2026-08-11T08:00:00-07:00",
+    lastChecked: "August 11, 2026",
+    readTime: "14 min read · 1,619 words",
+    wordCount: 1619,
+    primaryKeyword: "PikoBuy warehouse consolidation",
+    supportingKeywords: [
+      "combine PikoBuy orders",
+      "PikoBuy parcel consolidation",
+      "PikoBuy warehouse QC",
+      "PikoBuy packaging options",
+      "PikoBuy shipping estimate",
+      "PikoBuy parcel submission",
+    ],
+    publishedLocales: ["en"],
+    sources: [
+      { label: "PikoBuy beginner's guide", href: "https://www.pikobuy.com/guide", note: "Warehouse check-in, photo confirmation, defect checks, packaging requests, parcel submission and international-shipping payment." },
+      { label: "PikoBuy contact page", href: "https://www.pikobuy.com/contact", note: "PikoBuy's public statement that items from different sellers can be combined into one package." },
+      { label: "PikoBuy shipping estimate", href: "https://www.pikobuy.com/shipping-cost", note: "Destination, product type, weight and parcel dimensions used for shipping estimates." },
+      { label: "PikoBuy returns and exchanges", href: "https://www.pikobuy.com/protocol/returns", note: "The five-day/120-hour request period, seller conditions, packaging requirements and fee responsibility." },
+      { label: "PikoBuy shipping terms", href: "https://www.pikobuy.com/protocol/shipping", note: "Inspection limits, forwarded-goods handling and third-party logistics/customs risk boundaries." },
+      { label: "PikoBuy home process overview", href: "https://www.pikobuy.com/home", note: "Central order management, warehouse quality inspection, repacking and worldwide delivery workflow." },
+    ],
+    relatedLinks: [
+      { label: "PikoBuy Spreadsheet 2026", href: "/", note: "Return to the main product-discovery and research hub." },
+      { label: "PikoBuy QC checklist", href: "/pikobuy-spreadsheet-qc", note: "Review category-specific evidence before accepting an arrival." },
+      { label: "PikoBuy shipping guide", href: "/pikobuy-spreadsheet-shipping-guide", note: "Compare route inputs after the packing plan is known." },
+      { label: "PikoBuy total cost explained", href: "/seo-articles/pikobuy-total-cost-explained", note: "Place consolidation inside the two-payment cost workflow." },
+    ],
+    sections: [
+      {
+        title: "Consolidation is a decision point, not an automatic saving",
+        paragraphs: [
+          "PikoBuy warehouse consolidation means turning items that reached the China warehouse from different sellers into one international parcel. PikoBuy's contact page says those items can be combined into one package, while its beginner guide places warehouse inspection before parcel submission and the international-shipping payment. That sequence gives the buyer a useful pause: check what actually arrived, decide what should travel together, choose an appropriate packing request and only then compare the routes available for the finished plan.",
+          "The important word is can. Combining orders removes the need to dispatch every purchase as a separate international parcel, but the official pages do not promise that every combination will be cheaper. A consolidated parcel has its own product mix, packed weight, external dimensions and route eligibility. One bulky box, fragile item or restricted product can change the available choices. Treat consolidation as a planning tool, not as a discount that exists before the warehouse has useful evidence.",
+        ],
+      },
+      {
+        title: "1. Build an arrival list before building a parcel",
+        paragraphs: [
+          "Start with a simple inventory of the orders intended for the same shipment. For each item, record the seller, ordered colour and size, quantity, warehouse status, arrival date, visible condition and any unresolved question. Do not use the seller's dispatch notice as proof that the warehouse received the correct product. PikoBuy's guide says the warehouse stage includes check-in, photo confirmation and a defect check; those are the records that should move an item from expected to received.",
+          "This list also prevents an early arrival from pulling the whole parcel forward. Mark each item keep, question or return. Keep means the warehouse evidence reasonably matches the order. Question means a specific photograph, measurement or support answer is still needed. Return means an after-sales request is being considered. Only keep items belong in a packing plan. Combining an unresolved product with accepted goods makes the later decision harder without creating better evidence.",
+        ],
+      },
+      {
+        title: "2. Finish warehouse QC before asking for consolidation",
+        paragraphs: [
+          "Review every arrival on its own merits before looking at the convenience of one parcel. Compare the warehouse photos with the ordered variant and a category-specific checklist. For clothing, check labels, colour, print placement, seams and measurements that affect fit. For footwear, check the pair, size marks, soles, heels and box condition if the box matters. The official shipping terms warn that special or professional products cannot receive professional inspection, so visible photographs should not be upgraded into claims about authenticity, internal performance or long-term durability.",
+          "If the standard views do not answer a decision-changing question, the shipping terms say buyers can purchase additional detailed photographs. A useful request is narrow: a tape measurement, a straight view of a label or a close-up of visible damage. 'More photos' without a defined question may produce more images without reducing uncertainty. Consolidation should begin after the evidence is adequate for the shipping decision, not merely after every order shows an in-warehouse status.",
+        ],
+      },
+      {
+        title: "3. Protect the 120-hour return decision",
+        paragraphs: [
+          "PikoBuy's returns page says a return request can be submitted within five days after the order status changes to In Warehouse, counted from the next hour, and explicitly defines five days as 120 hours. Timing is only one condition. The seller must support the relevant return, the item must remain in the resalable condition required by the seller, and product-specific seals, labels, accessories or packaging may need to stay intact. PikoBuy also says it can return an item only with the seller's consent.",
+          "Make the return decision before requesting removal of packaging or approving the international parcel. For a no-quality-issue return, the current policy publishes responsibility for return shipping, the seller's original shipping and an RMB 5 service fee; responsibility can differ for a wrong item or documented quality problem. The practical lesson is not that every item should be returned quickly. It is that packaging and consolidation choices should not quietly close an option you still need to evaluate.",
+        ],
+      },
+      {
+        title: "4. Do not assume an unpublished storage allowance",
+        paragraphs: [
+          "Waiting for several sellers can make consolidation possible, but waiting also requires a storage plan. The official public pages reviewed for this guide describe items entering and being held in the warehouse, yet they do not publish a general free-storage duration or a complete schedule of storage charges on the accessible guide, contact, shipping-estimate, returns or shipping-terms pages. That missing fact should remain missing; copying a number from an old forum post or a different agent would create a false deadline.",
+          "Before ordering products with very different seller lead times, check the current account notice, order page or PikoBuy support channel for the storage rule that applies to the account and item. Record the answer and date. If the rule is not visible, ask how long the earliest arrival can remain, whether any product category has a different limit, whether charges apply after a threshold and what happens at expiry. Then set a latest acceptable arrival date for the slowest order.",
+        ],
+      },
+      {
+        title: "5. Choose what actually belongs together",
+        paragraphs: [
+          "A good consolidated parcel groups products that can share a sensible route and packing strategy. Soft clothing is usually a simpler planning group than clothing mixed with a delicate structured item, but the live route screen must decide what is actually eligible. Consider whether one product adds exceptional bulk, needs protection that changes the outer dimensions, carries a category restriction or raises the value of the parcel beyond the risk you are prepared to accept. Removing one awkward item can sometimes change the whole comparison.",
+          "Create two plans instead of forcing a single answer. Plan A is the intended combined parcel. Plan B removes or separates the item most likely to change size, protection or route eligibility. Do not claim a saving until both plans use current, comparable inputs. The value of the exercise is identifying the product that drives the parcel decision. If both plans remain uncertain, wait for measured information or ask PikoBuy for the specific eligibility detail rather than inventing a universal rule.",
+        ],
+      },
+      {
+        title: "6. Match the packaging request to the failure mode",
+        paragraphs: [
+          "PikoBuy's beginner guide names minimal packaging and reinforced packaging as examples of requests at the warehouse inspection stage. Those labels describe different priorities, not a universally right choice. Minimal packaging may be worth considering when dispensable outer material adds bulk and the product itself is not dependent on a rigid retail box. Reinforcement may be more appropriate when crushing, impact or loss of shape is the main concern. Neither option should be selected by habit.",
+          "Write down what may be removed, what must remain and what needs protection. A shoe buyer might decide whether the retail box has practical value; a collector may consider that same box part of the item. Sealed goods and return-sensitive products need extra caution because PikoBuy's returns policy lists packaging, seals and accessories among the conditions that can affect eligibility. Ask what a packaging request will change before approving it, especially when the return decision is still open.",
+        ],
+      },
+      {
+        title: "7. Estimate the parcel after the packing plan is credible",
+        paragraphs: [
+          "PikoBuy's shipping estimator asks for the destination country or region, product type, weight in kilograms, and parcel length, width and height in centimetres. Those fields explain why a pile of item prices cannot answer the shipping question. Product dimensions are not the same as outer parcel dimensions, and seller-reported weight is not necessarily the final packed weight. Run early scenarios only as budget limits, with every guessed input clearly labelled.",
+          "Once the warehouse evidence and packaging plan are available, replace assumptions with the best measured figures shown in the live process and compare the routes actually offered. The beginner guide says routes differ in delivery time and billing method. That means the lowest number should be read together with the route's current restrictions, tracking information, protection terms and destination coverage. Save the route, date and inputs; an estimate is a dated observation, not a permanent tariff.",
+        ],
+      },
+      {
+        title: "8. Submit only after one final evidence review",
+        paragraphs: [
+          "Before parcel submission, reopen the arrival list. Every included item should have the correct colour, size and quantity; adequate QC evidence; a closed return decision; and a packaging instruction that matches its real risk. Confirm the receiving address, the parcel composition and the current eligible routes. PikoBuy's guide places parcel submission and international-shipping payment after these warehouse steps, so paying freight should be the end of the warehouse decision, not the moment when inspection begins.",
+          "Remember the logistics boundary as well. PikoBuy's shipping terms say third-party providers carry international parcels and identify customs action, loss, damage and peak-period delay among cross-border risks. Consolidation reduces the number of parcels, but it can also place more items and value into one shipment. The right plan is the one whose product mix, protection, route and financial exposure you can explain—not automatically the biggest parcel the warehouse can assemble.",
+        ],
+      },
+      {
+        title: "A concise consolidation checklist",
+        paragraphs: [
+          "PikoBuy warehouse consolidation works best as a sequence: receive, verify, resolve, pack, measure and then submit. It is suitable when several accepted items can share a sensible route and protection strategy. It is less convincing when one item remains return-sensitive, requires incompatible handling or makes the parcel risk unacceptable. Keep official facts separate from your own packing judgment, and recheck the live account whenever an unpublished storage rule or order-specific restriction matters.",
+        ],
+        bullets: [
+          "List every intended item and confirm its actual warehouse status.",
+          "Review QC photos and request only decision-relevant detail.",
+          "Resolve returns within the current 120-hour conditions where applicable.",
+          "Confirm the storage rule instead of borrowing an unsupported number.",
+          "Compare a combined plan with one realistic alternative.",
+          "Choose packaging for bulk, protection and return-sensitive seals.",
+          "Use destination, type, packed weight and dimensions in the estimator.",
+          "Read the current route conditions before parcel submission and payment.",
+        ],
+      },
+    ],
+  },
 ];
 
 const pageIntros: Record<Exclude<PageKey, "home">, string> = {
@@ -511,6 +629,7 @@ function UpdatesPage({ locale }: { locale: string }) {
             <div><b>{local("Impact", copy.nav.method)}</b><p>{local("Why the change affects browsing, interpretation or the next action.")}</p></div>
           </div>
           <div className="update-page-list">
+            {isEnglish && <div><time>AUG 11 · 2026</time><section><h3>PikoBuy warehouse consolidation guide published</h3><p>Published a 1,619-word English guide covering arrival records, warehouse QC, the 120-hour return decision, unpublished storage limits, parcel combinations, packaging and measured shipping inputs. Official sources were rechecked on August 11, 2026.</p><a href="/seo-articles/pikobuy-warehouse-consolidation-guide">Read the article →</a></section><i>PUBLISHED</i></div>}
             {isEnglish && <div><time>AUG 09 · 2026</time><section><h3>PikoBuy total cost guide published</h3><p>Published a 1,713-word English guide that separates the first product payment from the later international-shipping payment and documents warehouse, parcel, return and destination-cost checkpoints. Official sources were rechecked on August 9, 2026.</p></section><i>PUBLISHED</i></div>}
             <div><time>AUG 02 · 2026</time><section><h3>{local("Complete interface localization", copy.language)}</h3><p>{local("The language switch now retains the current route and changes navigation, feed controls, trust links, category labels, section headings, source panels, footer copy and non-article page interfaces across all 24 language URLs.")}</p></section><i>{isEnglish ? "FIXED" : labels.sourceChecked}</i></div>
             <div><time>AUG 02 · 2026</time><section><h3>{local("Ten category destinations audited", copy.nav.categories)}</h3><p>{local("Shoes, hoodies, T-shirts, jackets, pants/shorts, headwear, accessories, jerseys, electronics and other products now use the exact category routes published by FindSpreadsheet, including the case-sensitive /Jersey/ path.")}</p></section><i>{isEnglish ? "10 / 10" : labels.sourceChecked}</i></div>
@@ -560,6 +679,10 @@ export function ContentPage({ page, locale = "en" }: { page: Exclude<PageKey, "h
 export function ArticlePage({ slug, locale = "en" }: { slug: string; locale?: string }) {
   const article = articles.find((item) => item.slug === slug);
   if (!article || (article.publishedLocales && !article.publishedLocales.includes(locale))) return <ContentPage page="seo-articles" locale={locale} />;
+  const visibleArticles = articles.filter((item) => !item.publishedLocales || item.publishedLocales.includes(locale));
+  const articleIndex = visibleArticles.findIndex((item) => item.slug === slug);
+  const previousArticle = articleIndex > 0 ? visibleArticles[articleIndex - 1] : undefined;
+  const nextArticle = articleIndex >= 0 && articleIndex < visibleArticles.length - 1 ? visibleArticles[articleIndex + 1] : undefined;
   const canonicalUrl = `https://pikobuysheet.es/seo-articles/${article.slug}`;
   const structuredData = [
     {
@@ -598,6 +721,10 @@ export function ArticlePage({ slug, locale = "en" }: { slug: string; locale?: st
             {article.sections.map((section) => <section key={section.title}><h2>{section.title}</h2>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</section>)}
             {article.relatedLinks && <aside className="article-related"><h2>Continue the research</h2>{article.relatedLinks.map((link) => <a key={link.href} href={link.href}><b>{link.label}</b><span>{link.note} →</span></a>)}</aside>}
             {article.sources && <aside className="article-source-log"><h2>Official sources checked</h2><p>Platform-specific facts were last checked on {article.lastChecked}. The live official page takes priority if a policy or feature changes.</p>{article.sources.map((source) => <a key={source.href} href={source.href} target="_blank" rel="noopener noreferrer"><b>{source.label}</b><span>{source.note} ↗</span></a>)}</aside>}
+            {(previousArticle || nextArticle) && <nav className="article-pagination" aria-label="Article navigation">
+              {previousArticle && <a href={`/seo-articles/${previousArticle.slug}`}><small>Previous guide</small><b>{previousArticle.title}</b></a>}
+              {nextArticle && <a href={`/seo-articles/${nextArticle.slug}`}><small>Next guide</small><b>{nextArticle.title}</b></a>}
+            </nav>}
             <div className="article-disclosure"><b>Independent publication note</b><p>This article is informational and is not affiliated with PikoBuy. Policies, prices, availability and routes can change. Check the current official page and your live order before acting.</p></div>
           </div>
           <SourcePanel locale={locale} />

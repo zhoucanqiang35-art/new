@@ -303,12 +303,13 @@ export default function HomeExperience({ locale = "en" }: { locale?: string }) {
 
       <section className="updates-section" id="updates">
         <div className="update-copy">
-          <p>{copy.nav.updates} / {isEnglish ? "AUG 09, 2026" : "AUG 06, 2026"}</p>
+          <p>{copy.nav.updates} / {isEnglish ? "AUG 11, 2026" : "AUG 06, 2026"}</p>
           <h2>{local("Latest PikoBuy spreadsheet updates", copy.homeTitle)}</h2>
           <p>{local("The product showcase reads FindsSpreadsheet's public Latest and Popular ordering, refreshes on page load and every 30 minutes, and keeps PikoBuy process claims separate from source-product data.")}</p>
           <a href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noopener noreferrer">{copy.browse} <Icon name="arrow"/></a>
         </div>
         <div className="update-log">
+          {isEnglish && <div><time>AUG 11</time><span><b>PikoBuy warehouse consolidation guide published</b><small>A 1,619-word workflow covers arrival records, QC, return timing, storage questions, packing choices and parcel measurements.</small><Link href="/seo-articles/pikobuy-warehouse-consolidation-guide">Read the guide →</Link></span><i>NEW</i></div>}
           {isEnglish && <div><time>AUG 09</time><span><b>PikoBuy total cost guide published</b><small>A 1,713-word guide separates the product payment, warehouse decisions, parcel inputs, international shipping and destination-side unknowns.</small><Link href="/seo-articles/pikobuy-total-cost-explained">Read the guide →</Link></span><i>NEW</i></div>}
           <div><time>AUG 06</time><span><b>{local("2026 landing page and topic cluster", copy.nav.spreadsheet)}</b><small>{local("Homepage intent was clarified and eight independent category, QC, platform and shipping guides were added with direct internal links.")}</small></span><i>{labels.sourceChecked}</i></div>
           <div><time>AUG 02</time><span><b>{local("Latest + Popular product feed", copy.nav.spreadsheet)}</b><small>{local("Names, images, source prices and view signals are refreshed from FindsSpreadsheet's public product orderings.")}</small></span><i>{labels.sourceChecked}</i></div>
