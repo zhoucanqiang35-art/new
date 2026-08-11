@@ -531,6 +531,99 @@ export const editorialArticles: EditorialArticle[] = [
       },
     ],
   },
+  {
+    slug: "lolobuy-return-refund-process",
+    title: "LoloBuy Return and Refund Process: A Status-by-Status Guide for 2026",
+    description: "A fact-checked guide to LoloBuy cancellations, warehouse returns, exchanges, refund timing, seller approval, fees, deadlines, and evidence.",
+    keyword: "LoloBuy return and refund process",
+    readTime: "12 min read",
+    checked: "Fact-checked 11 Aug 2026",
+    published: "2026-08-11",
+    modified: "2026-08-11",
+    locales: "en",
+    processSteps: ["Check status", "Confirm eligibility", "Save evidence", "Submit request", "Reconcile refund"],
+    processAlt: "LoloBuy return and refund process: check order status, confirm seller eligibility, save evidence, submit the request, and reconcile the refund",
+    sources: [
+      { label: "Return the Product: status, deadlines and refund timing", url: "https://www.lolobuy.com/helpCenter/1242296772133891", checked: "11 Aug 2026" },
+      { label: "Terms of Promised Returns with no reasons", url: "https://www.lolobuy.com/helpCenter/1242296939447441", checked: "11 Aug 2026" },
+      { label: "Can shopping-agent orders be cancelled or refunded?", url: "https://www.lolobuy.com/helpCenter/1242297000395937", checked: "11 Aug 2026" },
+      { label: "Handling defective products and quality issues", url: "https://www.lolobuy.com/helpCenter/1242297021695144", checked: "11 Aug 2026" },
+      { label: "How to purchase on LoloBuy", url: "https://www.lolobuy.com/helpCenter/1242296499766165", checked: "11 Aug 2026" },
+    ],
+    sections: [
+      {
+        heading: "First identify the transaction you are trying to reverse",
+        paragraphs: [
+          "A cancellation, return, exchange and refund are not four names for the same event. A cancellation tries to stop an order before the seller-side purchase or shipment is complete. A return sends a received item back to the seller. An exchange adds another seller decision and another domestic delivery cycle. A refund is the money movement that may follow a successful cancellation or return. The correct LoloBuy action therefore starts with the current order status, not with a generic support message.",
+          "LoloBuy's official return guide directs users to My LoloBuy and My Orders to inspect that status. Its current status examples include Awaiting Payment, Not Processed, Under Review, In Process, Ordered, Shipped, Delivered, Arrived at Warehouse and Stored. Labels can change with interface updates, so use the wording shown in the live account and save a screenshot before acting. The status determines whether the platform can stop its own processing, must negotiate with a seller, or must wait for the item to enter warehouse storage.",
+          "This distinction matters because the word 'refund' can make a slow seller-side return sound like an instant card reversal. The platform may acknowledge an application quickly while the seller still has to accept a cancellation, receive a returned product or release funds. Plan around the complete chain rather than one button click.",
+        ],
+      },
+      {
+        heading: "Check eligibility before ordering, not after a QC surprise",
+        paragraphs: [
+          "Open the original seller listing and look for the return or exchange rule attached to the exact product and variant. LoloBuy's guide says that shipped, delivered, warehouse-arrived or stored items should be checked against the purchased product link to see whether unconditional returns or exchanges are supported. It also says the product must be capable of being returned without affecting the seller's ability to resell it. A category-wide assumption is not enough; seller terms and product condition control the practical outcome.",
+          "The official five-day guarantee article describes eligible and ineligible products and says a return or exchange still depends on the seller agreeing. It also lists packaging requirements for some product types. This makes original boxes, tags, accessories and protective materials decision-relevant. Removing packaging to reduce parcel volume can be sensible only after the item has passed QC and the return decision is closed. Do not discard evidence or packaging while a mismatch is unresolved.",
+          "Some orders carry stricter limits. LoloBuy's current return page says second-hand purchasing and warehouse treasure-hunt orders do not support returns. The platform's manual-order warning also says products from certain third-party channels may not offer the same return or exchange service as mainstream marketplaces. Treat those orders as higher-commitment purchases and verify the live warning before payment.",
+        ],
+      },
+      {
+        heading: "Use the stored date as a real deadline",
+        paragraphs: [
+          "For an item already moving through Chinese domestic logistics, the warehouse may be the first practical point at which a normal return request becomes available. LoloBuy's current guide says orders marked Shipped, Delivered or Arrived at Warehouse need to reach Stored status before the user applies. It then states that the application should be made within five days after the storage date and that late applications will not be accepted.",
+          "A separate official guarantee article expresses the same window more precisely: the clock starts from the next hour after the status changes to Stocked in, and five days equals 120 hours. Because interface wording and timestamps can vary, do not calculate the last safe moment from memory. Record the stored timestamp, inspect the item promptly, and submit well before the displayed deadline. A support conversation that begins after the window is not a substitute for an in-account application filed on time.",
+          "Do not submit the item in an international parcel while the seller-side problem is open. Once it leaves the warehouse, the cost, parties and available remedies change. The best time to solve a wrong colour, incorrect size, missing unit or visible defect is while the item and its packaging remain in China and the warehouse evidence can still be tied directly to the order.",
+        ],
+      },
+      {
+        heading: "Build a return request that another person can verify",
+        paragraphs: [
+          "A short evidence packet is more useful than an emotional paragraph. Save the order number, seller URL, selected variant, order confirmation, stored timestamp and the relevant warehouse photographs. Write one sentence describing what was expected and one sentence describing what the evidence shows. If the issue is measurable, include the seller's measurement and the warehouse measurement. If the issue is visible damage, identify the exact photo and area rather than claiming that the whole item is unusable.",
+          "Choose the return reason that matches the evidence. The official guarantee page specifically tells users to select responsibility according to the actual situation. That decision can affect shipping costs and how the seller evaluates the request. A no-fault change of mind is different from a seller sending the wrong product, and both are different from a feature that photographs cannot prove. Do not describe a colour shift caused by lighting as a confirmed defect without stronger evidence.",
+          "Keep screenshots of the submitted application, any seller response, return tracking number, warehouse or service charges, and the final account transaction. If a support agent asks for clarification, reply within the same order context. A compact chronological record makes it easier to see whether the case is waiting on LoloBuy processing, seller consent, domestic return delivery or the seller's refund.",
+        ],
+        bullets: [
+          "Order number, live status and stored timestamp.",
+          "Seller URL, ordered variant, quantity and amount paid.",
+          "Warehouse photos or measurements showing the claimed mismatch.",
+          "Requested outcome: cancel, return, exchange or partial resolution.",
+          "Application time, reply, return tracking and final balance entry.",
+        ],
+      },
+      {
+        heading: "Read response times as service stages, not guarantees",
+        paragraphs: [
+          "LoloBuy's August return guide publishes different response targets by order status. It says applications for Awaiting Payment, Not Processed or Under Review orders receive an immediate response; In Process orders receive a response within 24 hours; Ordered purchases within 72 hours; and Shipped, Delivered, Arrived at Warehouse or Stored orders within 48 hours. These figures describe the platform's handling of the request before or while it communicates with the seller.",
+          "The same page separates response time from estimated refund arrival. For early statuses it lists immediate, 24-hour or 72-hour refund estimates. For shipped through stored statuses, it says timing depends on the seller and gives an approximate range of seven to fifteen days. An older official cancellation FAQ describes the same dependency: after a warehouse return, money is credited only after the seller receives the item and refunds the purchasing side.",
+          "Use these numbers to decide when to follow up, not to promise a completion date. Weekends, seller response, domestic return transit, item inspection and dispute evidence can extend the case. When following up, identify the last completed stage and its timestamp. 'Return delivered to seller on this date; refund not yet credited' is more actionable than 'my refund is late.'",
+        ],
+      },
+      {
+        heading: "Calculate the cost of a no-fault return before submitting",
+        paragraphs: [
+          "A return can recover the product amount and still cost money. LoloBuy's five-day guarantee article describes an unconditional return or exchange cost as shipping to the seller, shipping associated with the seller side, and a return or exchange service fee. It also says the user normally bears shipping when there is no quality issue, while the seller may bear it for an accepted quality issue. Actual responsibility and amounts must be confirmed in the live request because the seller, product and reason matter.",
+          "The same official page warns that a product advertised with free seller shipping can still create two-way shipping costs on return, and that seller shipping insurance may not produce a successful claim for the purchasing account. It also tells users to maintain enough LoloBuy balance to cover return shipping and service charges. Before approving the request, compare the expected refund with all displayed return costs and with the value of keeping the item.",
+          "For an exchange, include another delivery cycle and more time. The official cancellation FAQ says exchanges can involve two domestic shipments and gives a general seven-to-twenty-day reference depending on the seller. An exchange is therefore most defensible when the replacement is important, clearly available and worth the extra delay. If timing is critical, a refund and new order may be easier to audit, but only the live seller options can confirm what is possible.",
+        ],
+      },
+      {
+        heading: "Reconcile the refund to the place it actually arrives",
+        paragraphs: [
+          "LoloBuy's current return guide says that, after a successfully paid return request is accepted, the refund is credited to the user's available LoloBuy account balance. That is not the same as an immediate reversal to the original card, bank account or payment wallet. Check the bill or balance ledger for the amount, currency and order reference before treating the case as complete.",
+          "Compare the refund with the amount actually paid for the product, then list any non-refundable domestic delivery, service or return costs separately. The five-day guarantee page says the refund or exchange total is based on the product price actually paid. If a coupon, seller adjustment or currency conversion was involved, do not expect the original product-card number to reconcile automatically. Use the order ledger and final balance entry as the accounting evidence.",
+          "If the amount differs, ask for a line-by-line explanation tied to the order rather than assuming a hidden percentage fee. Keep the response with the seller decision, return tracking and account entry. A complete return record should answer five questions: what was paid, why the order was reversed, what costs were charged, where the refund was credited, and what amount remains available for withdrawal or future use under the live account rules.",
+        ],
+      },
+      {
+        heading: "A practical decision rule for LoloBuy returns",
+        paragraphs: [
+          "Cancel as early as possible when the order itself is wrong. At the warehouse, inspect immediately and preserve packaging until the item passes. If there is a mismatch, submit a factual request within the five-day window and keep the item out of an international parcel. Confirm seller eligibility, likely responsibility, displayed fees and the destination of the refund before agreeing to the return or exchange.",
+          "The most important limitation is that LoloBuy facilitates a purchase from third-party sellers; it does not make every seller policy identical. A platform response is not seller approval, an estimated timeline is not a guarantee, and an account-balance credit is not necessarily a payment-method reversal. The strongest case combines a timely application with clear order evidence and a product that remains eligible for resale.",
+          "Recheck the live help page and account before acting because statuses, time limits, fees and seller rules can change after this article's August 11, 2026 verification date. This guide is a decision framework, not a substitute for the terms attached to a specific transaction.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEditorialArticle(slug: string) {
