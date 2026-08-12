@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Pikobuy customs and taxes planning map for 2026</title>
+  <desc id="desc">Four destination cards compare the current starting points for the European Union, United Kingdom, United States and Canada, followed by a reminder to declare goods accurately and verify the live route.</desc>
+  <rect width="1200" height="630" rx="32" fill="#071b32"/>
+  <circle cx="1090" cy="70" r="150" fill="#ff7a45" opacity="0.12"/>
+  <circle cx="70" cy="585" r="170" fill="#32c6a6" opacity="0.11"/>
+  <text x="70" y="76" fill="#86f0d4" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="3">FACT-CHECKED 12 AUG 2026</text>
+  <text x="70" y="122" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="800">Customs starts with the destination—not one global threshold.</text>
+  <text x="70" y="156" fill="#b8c8dc" font-family="Arial, sans-serif" font-size="20">Current planning checkpoints; final assessment belongs to the destination authority and carrier.</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="60" y="195" width="255" height="250" rx="22" fill="#0e2947" stroke="#2d5276"/>
+    <text x="86" y="235" fill="#86f0d4" font-size="22" font-weight="800">EU</text>
+    <text x="86" y="274" fill="#ffffff" font-size="18" font-weight="700">VAT has no low-value</text>
+    <text x="86" y="299" fill="#ffffff" font-size="18" font-weight="700">general exemption.</text>
+    <text x="86" y="341" fill="#b8c8dc" font-size="17">From 1 Jul 2026:</text>
+    <text x="86" y="370" fill="#ffb38f" font-size="23" font-weight="800">€3 per tariff item</text>
+    <text x="86" y="398" fill="#b8c8dc" font-size="16">for consignments up to €150</text>
+
+    <rect x="335" y="195" width="255" height="250" rx="22" fill="#0e2947" stroke="#2d5276"/>
+    <text x="361" y="235" fill="#86f0d4" font-size="22" font-weight="800">UK</text>
+    <text x="361" y="274" fill="#ffffff" font-size="18" font-weight="700">Current GBP 135</text>
+    <text x="361" y="299" fill="#ffffff" font-size="18" font-weight="700">consignment boundary.</text>
+    <text x="361" y="341" fill="#b8c8dc" font-size="17">VAT and Customs Duty</text>
+    <text x="361" y="370" fill="#ffb38f" font-size="20" font-weight="800">are separate charges</text>
+    <text x="361" y="398" fill="#b8c8dc" font-size="16">Future reform is not yet today's rule</text>
+
+    <rect x="610" y="195" width="255" height="250" rx="22" fill="#0e2947" stroke="#2d5276"/>
+    <text x="636" y="235" fill="#86f0d4" font-size="22" font-weight="800">US</text>
+    <text x="636" y="274" fill="#ffffff" font-size="18" font-weight="700">Old USD 800 rule</text>
+    <text x="636" y="299" fill="#ffffff" font-size="18" font-weight="700">is no longer reliable.</text>
+    <text x="636" y="341" fill="#b8c8dc" font-size="17">Global de minimis suspension:</text>
+    <text x="636" y="370" fill="#ffb38f" font-size="21" font-weight="800">29 Aug 2025</text>
+    <text x="636" y="398" fill="#b8c8dc" font-size="16">Applicable duties, taxes and fees</text>
+
+    <rect x="885" y="195" width="255" height="250" rx="22" fill="#0e2947" stroke="#2d5276"/>
+    <text x="911" y="235" fill="#86f0d4" font-size="22" font-weight="800">CANADA</text>
+    <text x="911" y="274" fill="#ffffff" font-size="18" font-weight="700">China-origin mail or</text>
+    <text x="911" y="299" fill="#ffffff" font-size="18" font-weight="700">courier starts at CAD 20.</text>
+    <text x="911" y="341" fill="#b8c8dc" font-size="17">Do not borrow the higher</text>
+    <text x="911" y="370" fill="#ffb38f" font-size="20" font-weight="800">US / Mexico thresholds</text>
+    <text x="911" y="398" fill="#b8c8dc" font-size="16">GST/HST and handling may apply</text>
+  </g>
+
+  <rect x="60" y="482" width="1080" height="96" rx="20" fill="#102f51" stroke="#2d5276"/>
+  <text x="88" y="520" fill="#ffffff" font-family="Arial, sans-serif" font-size="21" font-weight="800">Before dispatch</text>
+  <text x="88" y="552" fill="#b8c8dc" font-family="Arial, sans-serif" font-size="18">Use accurate descriptions and real values → check the current destination rule → verify the live route → save the records.</text>
+  <text x="1115" y="611" text-anchor="end" fill="#6e88a4" font-family="Arial, sans-serif" font-size="14">Original Pikobuyy editorial graphic · official sources listed in the article</text>
+</svg>

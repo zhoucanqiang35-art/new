@@ -173,6 +173,61 @@ const officialSources = {
   },
 };
 
+const customsSources = {
+  eu: {
+    label: "European Commission low-value import guidance",
+    url: "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
+    note: "The Commission's current guidance explains the temporary customs-duty treatment for low-value distance-sale imports entering the EU.",
+    verifiedFacts: [
+      "From July 1, 2026, the old customs-duty relief for consignments up to EUR 150 was replaced by a temporary EUR 3 duty per tariff-classification item.",
+      "The EUR 3 measure applies per item category rather than per physical unit or per parcel and is scheduled to run until July 1, 2028.",
+      "VAT remains separate: the EU abolished the VAT exemption below EUR 22 in 2021 and requires an import declaration regardless of value.",
+    ],
+    buyerAction: "Keep product descriptions, values and destination records together before parcel submission; then verify the live route and destination treatment.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Return to current product research",
+  },
+  uk: {
+    label: "UK tax and duty guidance for goods sent from abroad",
+    url: "https://www.gov.uk/goods-sent-from-abroad/tax-and-duty",
+    note: "GOV.UK separates current VAT collection from customs duty and explains how the GBP 135 consignment boundary works today.",
+    verifiedFacts: [
+      "VAT applies to purchased goods; for qualifying consignments worth GBP 135 or less, it is normally collected at the point of sale rather than at delivery.",
+      "Under the rules checked on August 12, 2026, customs duty generally applies to non-excise goods above GBP 135 and is calculated using the goods plus postage, packaging and insurance.",
+      "The UK announced a future removal of low-value customs-duty relief in July 2026, but the announcement is not itself a reason to ignore the rules currently in force.",
+    ],
+    buyerAction: "Use the total consignment value and current UK guidance rather than applying a per-item threshold or calling a purchase a gift.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Review the intended items",
+  },
+  us: {
+    label: "U.S. Customs and Border Protection low-value shipment guidance",
+    url: "https://www.help.cbp.gov/s/article/Article-1902",
+    note: "CBP's current mail guidance reflects the nationwide suspension of de minimis duty-free treatment.",
+    verifiedFacts: [
+      "Effective August 29, 2025, shipments valued at or below USD 800 from all countries stopped qualifying for the former de minimis duty-free treatment, subject to limited statutory exceptions.",
+      "Low value no longer means automatically duty free; applicable duties, taxes and fees depend on the goods, origin, value and entry method.",
+      "For mailed goods, CBP examines the shipment and any amount due is typically collected through the local postal delivery process.",
+    ],
+    buyerAction: "Budget for an assessment instead of assuming the former USD 800 exemption still protects a new parcel.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Check the planned product mix",
+  },
+  canada: {
+    label: "Canada Border Services Agency low-value shipment thresholds",
+    url: "https://www.cbsa-asfc.gc.ca/services/cusma-aceum/lvs-efv-eng.html",
+    note: "CBSA distinguishes shipments from countries other than the United States and Mexico from the higher CUSMA courier thresholds.",
+    verifiedFacts: [
+      "For mail imported from any country, goods worth CAD 20 or less can be duty and tax free; above CAD 20, duties and taxes can apply.",
+      "For courier goods arriving from a country other than the United States or Mexico, the same CAD 20 threshold applies.",
+      "The higher CAD 40 and CAD 150 courier thresholds concern imports from the United States or Mexico and should not be applied automatically to goods sent from China.",
+    ],
+    buyerAction: "Confirm the shipment origin and transport mode before using any Canadian low-value threshold in a budget.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Review products before parcel planning",
+  },
+};
+
 const researchStandard: EditorialSection = {
   heading: "How we separate fact from advice",
   paragraphs: [
@@ -1075,6 +1130,150 @@ export const articleEntries: Record<string, EditorialEntry> = {
       officialSources.guide,
       officialSources.shipping,
       officialSources.contact,
+    ],
+  },
+  "pikobuy-customs-taxes-guide": {
+    dek: "Plan Pikobuy customs and taxes for EU, UK, US and Canadian deliveries using current 2026 rules, accurate records and a practical pre-dispatch checklist.",
+    reviewed: "Fact-checked Aug 12, 2026",
+    readingTime: "13 min read",
+    seoTitle: "Pikobuy Customs and Taxes 2026: EU, UK, US & Canada",
+    published: "2026-08-12",
+    modified: "2026-08-12",
+    visual: {
+      src: "/pikobuy-customs-taxes-2026.svg",
+      alt: "Comparison of 2026 customs and tax planning checkpoints for Pikobuy parcels sent to the European Union, United Kingdom, United States and Canada",
+      caption: "Original Pikobuyy comparison based on Pikobuy's terms and current EU, UK, US and Canadian government guidance checked on August 12, 2026. Thresholds and procedures can change.",
+      width: 1200,
+      height: 630,
+    },
+    relatedLinks: [
+      {
+        label: "Pikobuy Spreadsheet 2026",
+        url: "/pikobuy-spreadsheet/",
+        note: "Keep product identity, source and option records clear before the shopping-agent and customs stages begin.",
+      },
+      {
+        label: "Pikobuy Payment Guide",
+        url: "/articles/pikobuy-payment-guide/",
+        note: "Separate product, international shipping and destination charges instead of treating checkout as one final landed cost.",
+      },
+      {
+        label: "Pikobuy Shipping Cost Guide",
+        url: "/articles/pikobuy-shipping-cost/",
+        note: "Estimate freight with destination, product type, weight and dimensions before adding a customs contingency.",
+      },
+      {
+        label: "Pikobuy Tracking Guide",
+        url: "/articles/pikobuy-tracking-guide/",
+        note: "Identify the carrier and customs handoff when tracking stops or a destination payment is requested.",
+      },
+      {
+        label: "Pikobuy Return Policy Guide",
+        url: "/articles/pikobuy-return-policy-guide/",
+        note: "Resolve questionable warehouse items before international dispatch, when a domestic return may still be possible.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy's Terms say cross-border transactions may create duties, taxes, brokerage fees or other charges for which the user is responsible.",
+      "The EU introduced a temporary EUR 3 customs duty per tariff-classification item for low-value consignments from July 1, 2026; EU import VAT remains a separate obligation.",
+      "The United States suspended the former USD 800 de minimis duty-free treatment worldwide from August 29, 2025.",
+      "The UK and Canada use different current thresholds, so a rule from one destination must never be copied into another parcel plan.",
+    ],
+    sections: [
+      {
+        heading: "The short answer: customs starts before the parcel moves",
+        paragraphs: [
+          "Pikobuy customs and taxes cannot be reduced to one percentage or one safe parcel value. The result depends on destination, product classification, origin, declared value, transport method and the rules in force when the parcel enters the country. Pikobuy's public Terms of Service make the boundary clear: cross-border transactions may incur duties, taxes, brokerage fees or other charges, and the user is responsible for those costs. The displayed product price and international shipping payment are therefore not a universal landed-cost guarantee.",
+          "The practical response is not to guess a lower value. It is to preserve accurate product and payment records, identify the destination rule, review the route information shown for the real parcel and maintain a contingency for charges collected later. This guide compares the EU, UK, US and Canada as of August 12, 2026. It is planning guidance, not a tax calculation or a promise about how a specific parcel will be assessed.",
+        ],
+      },
+      {
+        heading: "Build the evidence file before international dispatch",
+        paragraphs: [
+          "Start with the records already created during product research and warehouse review. Keep the marketplace description, seller, exact variant, quantity, price actually paid and product-order receipt. Add the warehouse item list, photos, parcel contents, measured weight, dimensions, selected route and international shipping payment. If a customs authority or carrier asks what is inside, these records let you answer consistently instead of reconstructing the purchase from memory.",
+          "Descriptions should be specific enough to classify the goods. “Clothes” is less useful than “two cotton T-shirts”; “accessory” is less useful than “one synthetic-fibre cap.” Record each item's real purchase value. A consolidated parcel can contain several tariff classifications, which matters under rules such as the EU's current per-item-category duty. Do not assume that several units or several orders become one item merely because Pikobuy packs them into one box.",
+        ],
+        bullets: [
+          "Commercial description, material and intended use",
+          "Quantity and price actually paid for every item",
+          "Seller and product-order records",
+          "Country of origin when known and supported",
+          "Parcel weight, dimensions, route and dispatch record",
+          "Copies of any destination charge and payment receipt",
+        ],
+      },
+      {
+        heading: "European Union: VAT and the new EUR 3 duty are different",
+        paragraphs: [
+          "EU import VAT has no general low-value exemption. The European Commission says the exemption for imported goods below EUR 22 ended on July 1, 2021, and an import declaration is required regardless of value. IOSS and special arrangements can simplify collection for eligible consignments up to EUR 150, but Pikobuy's public pages reviewed for this article do not publish a universal promise that every route uses IOSS or that every parcel arrives with all destination charges prepaid. Check the actual route and payment breakdown rather than inferring tax treatment from a route name.",
+          "A second change began on July 1, 2026. The EU replaced the old customs-duty relief for low-value distance-sale consignments up to EUR 150 with a temporary EUR 3 customs duty per item category, scheduled until July 1, 2028. The Commission explains that classification, not the number of physical units, controls the count: five T-shirts can represent one category, while a T-shirt and a watch can represent two. The declarant is normally responsible for payment, but the commercial handling of that cost can still affect the transaction. Treat the live parcel terms as the source for what is collected and when.",
+        ],
+      },
+      {
+        heading: "United Kingdom: use today's GBP 135 rule, not the future reform",
+        paragraphs: [
+          "For Great Britain, current GOV.UK guidance says VAT applies to purchased goods from abroad. For a qualifying consignment worth GBP 135 or less, the seller normally includes VAT at the point of sale; above GBP 135, import VAT is generally collected before delivery or collection. Customs Duty currently applies to non-excise goods above GBP 135, with the rate depending on product type and origin. When duty is due, the calculation can include the goods price plus postage, packaging and insurance.",
+          "The UK published a reform measure on July 13, 2026 that will remove the GBP 135 customs-duty relief and create new arrangements for low-value imports. An announced reform is not the same as an active assessment rule. As of this fact check, the public tax-and-duty guide still presents the GBP 135 boundary. Buyers should check the current GOV.UK page again before dispatch and keep the total consignment value clear. The boundary applies to the consignment, not separately to every product packed inside it.",
+        ],
+      },
+      {
+        heading: "United States: the old USD 800 assumption is obsolete",
+        paragraphs: [
+          "For years, many shopping guides treated USD 800 as a simple US duty-free ceiling. That is no longer reliable. U.S. Customs and Border Protection says de minimis duty-free treatment for shipments at or below USD 800 was suspended globally from August 29, 2025, subject to limited statutory exceptions. A low-value parcel can now face applicable duties, taxes and fees, and the entry method matters. Advice that still says “under $800 means no duty” is using an expired rule.",
+          "Do not turn that change into a made-up universal rate. CBP assessment can depend on product classification, origin, value and the way the shipment enters. International mail and non-postal shipments also follow different entry processes. Budget for possible assessment, keep a real invoice and review the carrier's payment request carefully. If a message asks for money, confirm it through the official carrier channel linked to the tracking record rather than paying through an unsolicited link.",
+        ],
+      },
+      {
+        heading: "Canada: do not borrow the higher US and Mexico thresholds",
+        paragraphs: [
+          "Canada's low-value rules distinguish the shipment's origin and transport mode. The Canada Border Services Agency says mailed goods worth CAD 20 or less can be duty and tax free when imported from any country; above CAD 20, duties and taxes can apply. For courier imports arriving from a country other than the United States or Mexico, the same CAD 20 threshold applies. This is the relevant starting point for goods sent directly from China.",
+          "The higher CUSMA courier thresholds—CAD 40 for tax and CAD 150 for duty—concern goods imported from the United States or Mexico under the stated conditions. They should not be attached automatically to a Pikobuy parcel simply because a courier operates in North America. Canada may also collect GST, HST or provincial tax, and the carrier or postal operator can charge a handling or brokerage fee. Confirm origin, transport mode, province and the official assessment rather than estimating from one threshold alone.",
+        ],
+      },
+      {
+        heading: "Do not use under-declaration or a false gift label",
+        paragraphs: [
+          "A lower declared value may look like a saving, but it creates inconsistent evidence and can expose the parcel to delay, reassessment, seizure or penalties. Pikobuy's Terms require accurate, complete and current shipping information and prohibit fraudulent or improper activity. UK guidance likewise warns that goods must be declared correctly. A purchased item is not transformed into a genuine private gift because someone writes “gift” on the parcel.",
+          "Accurate declaration also protects later claims. If a parcel is lost or damaged, an artificially low value can conflict with the order receipt and weaken the evidence of loss. If customs asks for proof, inconsistent product descriptions, quantities or payments take longer to explain. The sensible optimization is operational: remove unnecessary packaging where the warehouse option allows it, avoid prohibited or restricted combinations, and compare lawful routes—not falsify the goods or their value.",
+        ],
+      },
+      {
+        heading: "Separate four costs in the landed-cost plan",
+        paragraphs: [
+          "Use four budget lines: product-stage cost, warehouse or optional-service cost, international freight, and destination charges. The first two are explained in the Pikobuy payment and warehouse guides. International freight is estimated with destination, product type, weight and dimensions. The final line covers duty, VAT or sales tax, brokerage, carrier handling and any other destination assessment. Keeping the lines separate makes a missing charge visible and prevents a low product price from being mistaken for the complete cost.",
+          "Avoid publishing one destination percentage in a spreadsheet product row. Two products at the same price can use different tariff classifications. Two parcels with the same goods can be treated differently when sent to different countries. Route features can change, and Pikobuy's official pages do not publish one tax-included guarantee covering every route. If the parcel page uses a term such as tax-free or duty-paid, read the live conditions and eligible destination scope rather than relying on the label alone.",
+        ],
+      },
+      {
+        heading: "A practical pre-dispatch customs checklist",
+        paragraphs: [
+          "Before submitting the parcel, remove any warehouse item whose keep-or-return decision is still open. Confirm that every remaining item is allowed on the selected route and at the destination. Match the parcel contents to the order records, write usable descriptions and calculate the true total value. Then check the current destination authority page and the actual Pikobuy route terms. Save screenshots or PDFs of the parcel breakdown and payment screen as dated transaction evidence.",
+          "After dispatch, follow the international tracking number and carrier handoffs. A customs event is not automatically a loss event. If a charge is issued, compare the authority or carrier notice with the parcel number, contents and declared value. Pay only through a verified official channel and retain the receipt. If the assessment appears wrong, use the destination authority's review process; Pikobuy can provide transaction records, but the customs authority or its appointed carrier controls the assessment.",
+        ],
+        bullets: [
+          "Destination rule checked on the dispatch date",
+          "Item descriptions, quantities and values match the purchase records",
+          "Restricted or prohibited goods removed",
+          "Route treatment and collection point understood",
+          "Contingency reserved for destination charges",
+          "Parcel, tracking and payment evidence saved privately",
+        ],
+      },
+      {
+        heading: "Conclusion: plan for the border without guessing it",
+        paragraphs: [
+          "Pikobuy customs and taxes are a destination-specific part of landed cost, not a hidden extension of the product price. The EU now combines import VAT with a temporary low-value customs duty. The UK still shows its current GBP 135 boundary while preparing reform. The United States no longer provides the former universal USD 800 de minimis treatment, and Canada uses a much lower threshold for goods arriving from China. These are distinct systems, not interchangeable tips.",
+          "This article was fact-checked on August 12, 2026 against Pikobuy's Terms and Shipping Policy and current European Commission, GOV.UK, CBP and CBSA guidance. Border rules and route arrangements can change quickly. Recheck the official destination page and the live Pikobuy parcel terms immediately before dispatch. Accurate records, lawful declarations and a separate customs contingency are more dependable than any old threshold copied from a forum post.",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.terms,
+      officialSources.shipping,
+      customsSources.eu,
+      customsSources.uk,
+      customsSources.us,
+      customsSources.canada,
     ],
   },
 };

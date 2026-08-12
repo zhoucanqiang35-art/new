@@ -371,7 +371,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["ORDER FLOW", "The first payment covers the product order. International shipping is selected and paid after warehouse inspection.", "Keep product cost and international shipping as separate budget lines; a low listing price is not the landed cost.", "Beginner’s Guide"],
       ["QC + RETURNS", "Warehouse photos show the received item’s visible condition. Eligible returns use a 120-hour window after “Warehoused,” counted from the next hour.", "Review the photos promptly. Check the ordered option, visible damage and decisive measurements before packaging or tags are altered.", "Returns & Exchanges"],
-      ["SHIPPING QUOTE", "Pikobuy’s estimator asks for destination, product type, weight, length, width and height. Routes also differ in delivery time and billing method.", "Estimate before ordering, then calculate again after the warehouse has measured and packed the real parcel.", "Shipping Cost Estimation"],
+      ["CUSTOMS 2026", "Pikobuy says destination duties and taxes can remain the buyer’s responsibility. EU, UK, US and Canadian low-value rules now differ materially.", "Keep accurate item values and check the destination rule before dispatch; do not reuse an old threshold from another country.", "Terms + government customs guidance"],
     ],
   },
   de: {
@@ -387,7 +387,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["BESTELLABLAUF", "Die erste Zahlung betrifft den Artikel; internationalen Versand wählt und bezahlt man nach der Lagerprüfung.", "Artikel und internationalen Versand getrennt budgetieren. Ein niedriger Angebotspreis ist nicht der Endpreis.", "Einsteigerleitfaden"],
       ["QC + RÜCKGABE", "Lagerfotos zeigen den sichtbaren Zustand. Berechtigte Rückgaben haben 120 Stunden ab der nächsten Stunde nach „Warehoused“.", "Fotos sofort prüfen: Variante, sichtbare Schäden und entscheidende Maße kontrollieren, bevor Verpackung oder Etiketten verändert werden.", "Rückgabe & Umtausch"],
-      ["VERSANDANGEBOT", "Der Rechner fragt Ziel, Produkttyp, Gewicht sowie Länge, Breite und Höhe ab; Routen unterscheiden sich bei Zeit und Abrechnung.", "Vor dem Kauf schätzen und nach Messung und Verpackung im Lager erneut rechnen.", "Versandkostenrechner"],
+      ["ZOLL 2026", "Laut Pikobuy können Zielzölle und Steuern beim Käufer bleiben. Die Regeln für EU, UK, USA und Kanada unterscheiden sich deutlich.", "Werte korrekt dokumentieren und vor Versand die Zielregel prüfen; keine alte Grenze aus einem anderen Land übernehmen.", "AGB + behördliche Zollquellen"],
     ],
   },
   fr: {
@@ -403,7 +403,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["PARCOURS DE COMMANDE", "Le premier paiement couvre l’article. Le transport international est choisi et payé après le contrôle en entrepôt.", "Séparez prix du produit et transport international ; un prix bas n’est pas le coût rendu.", "Guide débutant"],
       ["QC + RETOURS", "Les photos montrent l’état visible. Un retour éligible dispose de 120 heures dès l’heure suivant « Warehoused ».", "Contrôlez vite variante, dégâts visibles et mesures décisives avant de modifier emballage ou étiquettes.", "Retours et échanges"],
-      ["DEVIS D’EXPÉDITION", "Le calculateur demande destination, type, poids, longueur, largeur et hauteur ; lignes et facturation varient.", "Estimez avant l’achat, puis recalculez après mesure et emballage du colis réel.", "Estimation des frais"],
+      ["DOUANES 2026", "Pikobuy indique que droits et taxes de destination peuvent rester à la charge de l’acheteur. UE, Royaume-Uni, États-Unis et Canada ont des règles différentes.", "Conservez les valeurs exactes et vérifiez la règle du pays avant l’envoi ; ne transposez pas un ancien seuil étranger.", "Conditions + sources douanières officielles"],
     ],
   },
   es: {
@@ -419,7 +419,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUJO DEL PEDIDO", "El primer pago cubre el producto. El envío internacional se elige y paga después de la inspección del almacén.", "Separa producto y envío internacional en el presupuesto; un precio bajo no es el coste final.", "Guía para principiantes"],
       ["QC + DEVOLUCIONES", "Las fotos muestran el estado visible. Las devoluciones elegibles tienen 120 horas desde la hora siguiente a «Warehoused».", "Revisa pronto variante, daños visibles y medidas clave antes de alterar embalaje o etiquetas.", "Devoluciones y cambios"],
-      ["PRESUPUESTO DE ENVÍO", "El estimador pide destino, tipo, peso, largo, ancho y alto; las rutas varían en plazo y facturación.", "Estima antes de comprar y recalcula tras medir y embalar el paquete real.", "Estimación de envío"],
+      ["ADUANAS 2026", "Pikobuy indica que los aranceles e impuestos de destino pueden corresponder al comprador. UE, Reino Unido, EE. UU. y Canadá aplican reglas distintas.", "Guarda valores reales y revisa la norma del destino antes del envío; no reutilices el límite antiguo de otro país.", "Condiciones + fuentes aduaneras oficiales"],
     ],
   },
   it: {
@@ -435,7 +435,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUSSO D’ORDINE", "Il primo pagamento copre l’articolo; la spedizione internazionale si sceglie e paga dopo il controllo in magazzino.", "Separa articolo e spedizione nel budget: il prezzo basso non è il costo finale.", "Guida per principianti"],
       ["QC + RESI", "Le foto mostrano condizioni visibili. I resi idonei hanno 120 ore dall’ora successiva a «Warehoused».", "Controlla subito variante, danni visibili e misure decisive prima di cambiare imballo o etichette.", "Resi e cambi"],
-      ["PREVENTIVO SPEDIZIONE", "Il calcolatore chiede destinazione, tipo, peso, lunghezza, larghezza e altezza; rotte e addebiti variano.", "Stima prima dell’acquisto e ricalcola dopo misura e imballaggio del pacco reale.", "Stima costi di spedizione"],
+      ["DOGANA 2026", "Pikobuy indica che dazi e imposte di destinazione possono restare a carico dell’acquirente. UE, Regno Unito, USA e Canada hanno regole diverse.", "Conserva i valori reali e verifica la norma del paese prima dell’invio; non riutilizzare una vecchia soglia estera.", "Termini + fonti doganali ufficiali"],
     ],
   },
   pl: {
@@ -451,7 +451,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["PRZEBIEG ZAMÓWIENIA", "Pierwsza płatność dotyczy produktu; wysyłkę międzynarodową wybiera się i opłaca po kontroli magazynowej.", "Oddziel koszt produktu od wysyłki. Niska cena oferty nie jest kosztem końcowym.", "Poradnik dla początkujących"],
       ["QC + ZWROTY", "Zdjęcia pokazują widoczny stan. Kwalifikujący się zwrot ma 120 godzin od następnej godziny po „Warehoused”.", "Szybko sprawdź wariant, uszkodzenia i kluczowe wymiary przed zmianą opakowania lub metek.", "Zwroty i wymiany"],
-      ["WYCENA WYSYŁKI", "Kalkulator wymaga kraju, typu, wagi, długości, szerokości i wysokości; trasy różnią się czasem i rozliczeniem.", "Oszacuj przed zakupem i przelicz po zmierzeniu oraz spakowaniu prawdziwej paczki.", "Kalkulator wysyłki"],
+      ["CŁO 2026", "Pikobuy wskazuje, że cło i podatki docelowe mogą obciążać kupującego. UE, Wielka Brytania, USA i Kanada stosują różne zasady.", "Zachowaj prawdziwe wartości i sprawdź regułę kraju przed wysyłką; nie kopiuj starego progu z innego państwa.", "Warunki + urzędowe źródła celne"],
     ],
   },
   nl: {
@@ -467,7 +467,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["BESTELPROCES", "De eerste betaling is voor het product; internationale verzending kies en betaal je na magazijncontrole.", "Begroot product en internationale verzending apart. Een lage productprijs is niet de totaalprijs.", "Beginnersgids"],
       ["QC + RETOUR", "Foto’s tonen de zichtbare staat. Een geschikte retour heeft 120 uur vanaf het volgende uur na ‘Warehoused’.", "Controleer snel variant, zichtbare schade en beslissende maten voordat verpakking of labels veranderen.", "Retourneren en ruilen"],
-      ["VERZENDOFFERTE", "De calculator vraagt bestemming, type, gewicht, lengte, breedte en hoogte; routes verschillen in tijd en berekening.", "Schat vóór aankoop en herbereken na meten en verpakken van het echte pakket.", "Verzendkostencalculator"],
+      ["DOUANE 2026", "Pikobuy zegt dat invoerrechten en belastingen voor de koper kunnen blijven. EU, VK, VS en Canada hanteren verschillende regels.", "Bewaar echte waarden en controleer vóór verzending de bestemmingsregel; neem geen oude grens van een ander land over.", "Voorwaarden + officiële douanebronnen"],
     ],
   },
   pt: {
@@ -483,7 +483,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUXO DA ENCOMENDA", "O primeiro pagamento cobre o artigo; o envio internacional é escolhido e pago após a inspeção no armazém.", "Separe produto e envio no orçamento. Um preço baixo não é o custo final.", "Guia para iniciantes"],
       ["QC + DEVOLUÇÕES", "As fotos mostram o estado visível. Uma devolução elegível tem 120 horas desde a hora seguinte a «Warehoused».", "Verifique cedo variante, danos e medidas decisivas antes de alterar embalagem ou etiquetas.", "Devoluções e trocas"],
-      ["COTAÇÃO DE ENVIO", "A calculadora pede destino, tipo, peso, comprimento, largura e altura; rotas variam em prazo e cobrança.", "Estime antes de comprar e recalcule após medir e embalar o pacote real.", "Estimativa de envio"],
+      ["ALFÂNDEGA 2026", "A Pikobuy indica que direitos e impostos de destino podem ficar a cargo do comprador. UE, Reino Unido, EUA e Canadá têm regras diferentes.", "Guarde valores reais e confirme a regra do destino antes do envio; não reutilize um limite antigo de outro país.", "Termos + fontes aduaneiras oficiais"],
     ],
   },
 };
@@ -507,6 +507,7 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
   const prefix = locale === "en" ? "" : `/${locale}`;
   const faqTitles = sectionItemTitles[locale].faq;
   const guideTitles = sectionItemTitles[locale].guides;
+  const articleTitles = sectionItemTitles[locale].articles;
 
   const schema = {
     "@context": "https://schema.org",
@@ -609,23 +610,26 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
       <section className="updates-section" id="research-notes">
         <div className="updates-heading">
           <div className="updates-title"><p className="eyebrow"><span /> {home.updatesEyebrow}</p><h2>{home.updatesTitle}</h2></div>
-          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>10 Aug 2026</span></div></div>
+          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>12 Aug 2026</span></div></div>
         </div>
         <div className="research-note-list">
           {evidence.notes.map(([topic, fact, implication, source], index) => {
             const destinations = [
               `${routeFor(locale, "guides")}/${sectionItemSlugs.guides[0]}`,
               `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[6]}`,
-              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[7]}`,
+              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[8]}`,
             ];
             const verifiedDate = index === 1
               ? { dateTime: "2026-08-06", label: "06.08.2026" }
               : index === 2
-                ? { dateTime: "2026-08-10", label: "10.08.2026" }
+                ? { dateTime: "2026-08-12", label: "12.08.2026" }
                 : { dateTime: "2026-07-29", label: "29.07.2026" };
             return <a className="research-note" href={destinations[index]} key={topic}><div className="research-note-top"><span>{topic}</span><time dateTime={verifiedDate.dateTime}>{verifiedDate.label}</time></div><h3>{evidence.verifiedLabel}</h3><p>{fact}</p><div className="research-impact"><b>{evidence.implicationLabel}</b><p>{implication}</p></div><div className="research-note-footer"><span>{source}</span><b>{evidence.readMore} →</b></div></a>;
           })}
         </div>
+        <a className="text-link" href={`${routeFor(locale, "articles")}/${sectionItemSlugs.articles[7]}`}>
+          {articleTitles[7]} <time dateTime="2026-08-10">10.08.2026</time> <span>→</span>
+        </a>
       </section>
 
       <section className="faq-section">

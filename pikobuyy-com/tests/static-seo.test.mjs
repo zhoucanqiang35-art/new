@@ -261,6 +261,51 @@ test("tracking visual and related cards remain mobile-safe", async () => {
   assert.ok(trackingSvg.includes('viewBox="0 0 1200 630"'));
   assert.ok(trackingSvg.includes("Pikobuy order and parcel tracking status flow"));
 });
+
+test("customs article is current, source-bounded and indexable", async () => {
+  const route = "articles/pikobuy-customs-taxes-guide";
+  const html = await htmlFor(route);
+  const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes("https://pikobuyy.com/articles/pikobuy-customs-taxes-guide/"));
+  assert.equal(canonicalFrom(html), "https://pikobuyy.com/articles/pikobuy-customs-taxes-guide/");
+  assert.ok(html.includes("Pikobuy Customs and Taxes 2026: EU, UK, US &amp; Canada") || html.includes("Pikobuy Customs and Taxes 2026: EU, UK, US & Canada"));
+  assert.ok(html.includes('"@type":"Article"'));
+  assert.ok(html.includes('"@type":"BreadcrumbList"'));
+  assert.ok(!html.includes('"@type":"FAQPage"'));
+  assert.ok(html.includes("Fact-checked Aug 12, 2026"));
+  assert.ok(html.includes("pikobuy-customs-taxes-2026.svg"));
+  assert.ok(html.includes("temporary EUR 3 customs duty"));
+  assert.ok(html.includes("suspended globally from August 29, 2025"));
+  assert.ok(html.includes("current GBP 135 boundary"));
+  assert.ok(html.includes("same CAD 20 threshold"));
+  assert.ok(html.includes('href="/pikobuy-spreadsheet/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-payment-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-shipping-cost/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-tracking-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-return-policy-guide/"'));
+  const home = await readFile(path.join(out, "index.html"), "utf8");
+  const archive = await htmlFor("articles");
+  assert.ok(home.includes('href="/articles/pikobuy-customs-taxes-guide"'));
+  assert.ok(home.includes('dateTime="2026-08-12"'));
+  assert.ok(archive.includes("Pikobuy Customs and Taxes"));
+});
+
+test("customs article body stays within the requested editorial length", async () => {
+  const html = await htmlFor("articles/pikobuy-customs-taxes-guide");
+  const sections = [...html.matchAll(/<section class="article-section"[\s\S]*?<\/section>/g)].map((match) => match[0]).join(" ");
+  const words = sections.replace(/<[^>]+>/g, " ").replace(/&(?:amp|quot|#x27|#39);/g, " ").split(/\s+/).filter(Boolean);
+  assert.ok(words.length >= 1200, `article body should contain at least 1,200 words, found ${words.length}`);
+  assert.ok(words.length <= 1800, `article body should contain at most 1,800 words, found ${words.length}`);
+});
+
+test("customs comparison visual and related cards remain mobile-safe", async () => {
+  const css = await readFile(path.resolve("app/globals.css"), "utf8");
+  const customsSvg = await readFile(path.resolve("public/pikobuy-customs-taxes-2026.svg"), "utf8");
+  assert.match(css, /\.article-visual img\s*\{[^}]*width:\s*100%[^}]*height:\s*auto/s);
+  assert.match(css, /@media \(max-width: 580px\)[\s\S]*\.article-related > div\s*\{\s*grid-template-columns:\s*1fr;/);
+  assert.ok(customsSvg.includes('viewBox="0 0 1200 630"'));
+  assert.ok(customsSvg.includes("Pikobuy customs and taxes planning map for 2026"));
+});
 test("representative multilingual and product routes use self canonicals", async () => {
   const checks = [
     ["guides", "https://pikobuyy.com/guides/"],
