@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
+const pageRegistry = JSON.parse(await readFile(new URL("../content/page-registry.json", import.meta.url), "utf8"));
+
 async function loadPagesWorker() {
   const workerUrl = new URL("../dist/pages/_worker.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
@@ -17,6 +19,7 @@ test("forwards static assets and crawl files to Pages ASSETS with cache headers"
   for (const [pathname, contentType] of [
     ["/assets/site-hash.css", "text/css; charset=utf-8"],
     ["/pikobuy-logo.png", "image/png"],
+    ["/organization-logo.png", "image/png"],
     ["/og-pikobuy-spreadsheet.png", "image/png"],
     ["/robots.txt", "text/plain; charset=utf-8"],
     ["/sitemap.xml", "application/xml; charset=utf-8"],
@@ -78,11 +81,18 @@ test("generates a canonical sitemap for every public route", async () => {
   const sitemap = await readFile(new URL("../dist/pages/sitemap.xml", import.meta.url), "utf8");
   const robots = await readFile(new URL("../dist/pages/robots.txt", import.meta.url), "utf8");
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 19);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, pageRegistry.length);
   assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/faq<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/categories\/electronics<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/categories\/other-stuff<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/editorial-policy<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/updates<\/loc><lastmod>2026-08-11<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc><lastmod>2026-08-11<\/lastmod>/);
   assert.doesNotMatch(sitemap, /pages\.dev|\/preview\//);
+  for (const page of pageRegistry) {
+    const entry = `<loc>https://pikobuyspreadsheet.shop${page.path === "/" ? "/" : page.path}</loc><lastmod>${page.lastModified}</lastmod>`;
+    assert.match(sitemap, new RegExp(entry.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), page.path);
+  }
   assert.match(robots, /Allow: \/\s/);
-  assert.match(robots, /Disallow: \/preview\//);
+  assert.doesNotMatch(robots, /Disallow:\s*\/preview\//);
   assert.match(robots, /Sitemap: https:\/\/pikobuyspreadsheet\.shop\/sitemap\.xml/);
 });

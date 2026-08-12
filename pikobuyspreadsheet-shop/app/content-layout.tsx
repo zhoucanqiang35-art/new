@@ -21,7 +21,7 @@ export function ContentLayout({ language, kicker, title, intro, pathname, articl
         <SiteHeader language={language} />
         <section className="content-hero">
           <div><p className="preview-eyebrow">{kicker}</p><h1>{title}</h1><p>{intro}</p></div>
-          <aside><span>{uiText[language].checked}</span><b>Independent research</b><small>Official pages are linked beside factual claims. Policy facts were rechecked on 10 August 2026; live prices, routes and terms can still change.</small></aside>
+          <aside><span>{uiText[language].checked}</span><b>Independent research</b><small>Official pages are linked beside factual claims. Policy facts were rechecked on 11 August 2026; live prices, routes and terms can still change.</small></aside>
         </section>
         {children}
         <SiteFooter language={language} />

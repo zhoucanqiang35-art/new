@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getPageRecord } from "./page-registry";
 
 export const SITE_ORIGIN = "https://pikobuyspreadsheet.shop";
 export const SITE_NAME = "PikoBuy Spreadsheet Research Hub";
@@ -26,6 +27,9 @@ export function createPageMetadata({
   modifiedTime,
 }: PageMetadataOptions): Metadata {
   const url = absoluteUrl(path);
+  const page = getPageRecord(path);
+  const resolvedPublishedTime = publishedTime ?? page.published;
+  const resolvedModifiedTime = modifiedTime ?? page.modified;
   return {
     title,
     description,
@@ -38,7 +42,7 @@ export function createPageMetadata({
       description,
       url,
       images: [{ url: DEFAULT_SOCIAL_IMAGE, width: 1200, height: 630, alt: `${title} — ${SITE_NAME}` }],
-      ...(type === "article" ? { publishedTime, modifiedTime } : {}),
+      ...(type === "article" ? { publishedTime: resolvedPublishedTime, modifiedTime: resolvedModifiedTime } : {}),
     },
     twitter: {
       card: "summary_large_image",

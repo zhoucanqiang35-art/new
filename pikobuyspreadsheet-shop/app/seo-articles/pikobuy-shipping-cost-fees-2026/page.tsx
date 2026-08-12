@@ -1,4 +1,5 @@
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
+import { ArticleMeta, ArticleNavigation } from "../../article-meta";
 import { normalizeLanguage } from "../../i18n";
 import { createPageMetadata } from "../../seo";
 
@@ -7,15 +8,13 @@ export const metadata = createPageMetadata({
   description: "A source-checked guide to PikoBuy shipping estimates, packed weight, dimensions, routes, the published 8% freight fee and logistics risk.",
   path: "/seo-articles/pikobuy-shipping-cost-fees-2026",
   type: "article",
-  publishedTime: "2026-08-06",
-  modifiedTime: "2026-08-10",
 });
 
 export default async function ShippingFeesArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   return <ContentLayout language={language} pathname="/seo-articles/pikobuy-shipping-cost-fees-2026" article kicker="SEO ARTICLE / SHIPPING & FEES" title="PikoBuy Shipping Cost and Fees: What to Calculate Before You Build a Haul" intro="A low product total is not a landed-cost estimate. This guide follows PikoBuy’s published parcel flow and separates the inputs you can plan from the live information you must verify." tone="blue">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked cost guide</span></div>
+      <ArticleMeta pathname="/seo-articles/pikobuy-shipping-cost-fees-2026" label="Source-checked cost guide" />
 
       <p className="article-dek">The product page is where most shopping decisions begin, so it is natural to focus on the item price. International forwarding rearranges that logic. A cheap bulky item can be costly to send; an expensive compact item can be straightforward. The honest time to think about shipping is before the warehouse shelf fills up, not after every item has already passed its return window.</p>
 
@@ -40,6 +39,7 @@ export default async function ShippingFeesArticle({ searchParams }: PageSearchPa
       <section><h2>Final view: shipping should filter the spreadsheet</h2><p>A spreadsheet is more useful when shipping information changes what you choose. If two products are similar, the smaller, easier-to-inspect and easier-to-route option may be the better find even when its listing price is slightly higher. If a product is fragile, restricted or too bulky for the value it provides, discovering that before purchase is a success.</p><p>Use PikoBuy’s live estimator and parcel screen for current options. Use the official policies for fee and risk boundaries. Use the spreadsheet to keep those facts attached to each candidate. That is how a product list becomes a buying tool rather than a collection of cheap-looking prices.</p></section>
 
       <SourceNote>Primary sources: <a href="https://www.pikobuy.com/shipping-cost" target="_blank" rel="noopener noreferrer">PikoBuy Shipping Estimate</a>, <a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener noreferrer">Beginner’s Guide</a>, <a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener noreferrer">Shipping Policy</a>, <a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener noreferrer">Returns & Exchanges</a>, <a href="https://www.pikobuy.com/protocol/user" target="_blank" rel="noopener noreferrer">User Agreement</a> and <a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>. Checked 06 August 2026.</SourceNote>
+      <ArticleNavigation pathname="/seo-articles/pikobuy-shipping-cost-fees-2026" />
     </article>
   </ContentLayout>;
 }

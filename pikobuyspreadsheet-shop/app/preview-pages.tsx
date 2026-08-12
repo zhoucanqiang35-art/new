@@ -188,6 +188,7 @@ export default function PreviewPage({ variant, standalone = false, language = "e
             <a href="/categories/jerseys">Jerseys</a>
             <a href="/categories/accessories">Accessories</a>
             <a href="/categories/electronics">Electronics</a>
+            <a href={`/categories${language === "en" ? "" : `?lang=${language}`}`}>View all 10 category guides</a>
           </nav>
         </section>
 
@@ -230,6 +231,13 @@ export default function PreviewPage({ variant, standalone = false, language = "e
               </footer>
             </article>;
           })}</div>
+        </section>
+
+        <section className="latest-update-section" aria-labelledby="latest-update-title">
+          <div><span>04 / LATEST UPDATE</span><small>Published · 11 August 2026</small></div>
+          <h2 id="latest-update-title">PikoBuy warehouse consolidation, without the one-box shortcut.</h2>
+          <p>The new source-checked guide shows how to finish QC, protect eligible returns, compare consolidated and split parcel plans, choose packing by failure risk and use credible packed inputs.</p>
+          <footer><a href={`/seo-articles/pikobuy-warehouse-consolidation-guide${language === "en" ? "" : `?lang=${language}`}`}>Read the new guide ↗</a><a href={`/updates${language === "en" ? "" : `?lang=${language}`}`}>View all updates ↗</a></footer>
         </section>
 
         <section className="source-section" id="sources">

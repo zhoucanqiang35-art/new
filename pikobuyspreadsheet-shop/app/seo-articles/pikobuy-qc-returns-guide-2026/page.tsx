@@ -1,4 +1,5 @@
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
+import { ArticleMeta, ArticleNavigation } from "../../article-meta";
 import { normalizeLanguage } from "../../i18n";
 import { createPageMetadata } from "../../seo";
 
@@ -7,15 +8,13 @@ export const metadata = createPageMetadata({
   description: "A detailed PikoBuy warehouse guide covering useful QC photo requests, inspection limits, return condition, seller agreement and fees.",
   path: "/seo-articles/pikobuy-qc-returns-guide-2026",
   type: "article",
-  publishedTime: "2026-08-06",
-  modifiedTime: "2026-08-10",
 });
 
 export default async function QcReturnsArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   return <ContentLayout language={language} pathname="/seo-articles/pikobuy-qc-returns-guide-2026" article kicker="SEO ARTICLE / QC & RETURNS" title="PikoBuy QC Photos and Returns: The Warehouse Decision Guide" intro="The warehouse is the last point where visible evidence and an eligible domestic return may meet. This guide explains how to use that short decision window carefully." tone="pink">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked QC guide</span></div>
+      <ArticleMeta pathname="/seo-articles/pikobuy-qc-returns-guide-2026" label="Source-checked QC guide" />
 
       <p className="article-dek">A warehouse photograph is reassuring because it proves that something arrived. That is only the beginning. The useful question is whether the photographs show the exact item ordered, answer the risk that matters for its category and arrive while a return request may still be possible.</p>
 
@@ -44,6 +43,7 @@ export default async function QcReturnsArticle({ searchParams }: PageSearchParam
       <section><h2>Final view: QC is a decision system, not a photo gallery</h2><p>The most attractive spreadsheet row is not necessarily the safest purchase, and the largest collection of warehouse images is not necessarily the best inspection. Useful QC begins with a precise order record, asks category-specific questions, respects the limits of visual evidence and keeps the return conditions visible.</p><p>PikoBuy’s official pages provide the process and policy boundaries. The buyer’s job is to connect them: verify what was ordered, read what arrived, preserve eligibility, understand responsibility and decide before international dispatch makes the problem harder to reverse.</p></section>
 
       <SourceNote>Primary sources: <a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener noreferrer">PikoBuy Beginner’s Guide</a>, <a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener noreferrer">Shipping Policy</a>, <a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener noreferrer">Returns & Exchanges</a> and <a href="https://www.pikobuy.com/protocol/user" target="_blank" rel="noopener noreferrer">User Agreement</a>. Checked 06 August 2026.</SourceNote>
+      <ArticleNavigation pathname="/seo-articles/pikobuy-qc-returns-guide-2026" />
     </article>
   </ContentLayout>;
 }

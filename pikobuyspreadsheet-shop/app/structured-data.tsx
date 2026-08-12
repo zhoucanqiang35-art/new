@@ -1,4 +1,6 @@
 import { absoluteUrl, DEFAULT_SOCIAL_IMAGE, SITE_NAME, SITE_ORIGIN } from "./seo";
+import { EDITORIAL_AUTHOR_NAME, EDITORIAL_AUTHOR_PATH } from "./article-meta";
+import { getPageRecord } from "./page-registry";
 
 type JsonLdValue = Record<string, unknown> | Array<Record<string, unknown>>;
 
@@ -15,7 +17,12 @@ export function SiteIdentityJsonLd() {
       "@id": `${SITE_ORIGIN}/#organization`,
       name: SITE_NAME,
       url: `${SITE_ORIGIN}/`,
-      logo: absoluteUrl("/pikobuy-logo.png"),
+      logo: {
+        "@type": "ImageObject",
+        url: absoluteUrl("/organization-logo.png"),
+        width: 512,
+        height: 512,
+      },
       description: "An independent research site for PikoBuy spreadsheet finds, QC checks, shipping planning and source-linked buyer guidance.",
     },
     {
@@ -41,6 +48,8 @@ const breadcrumbLabels: Record<string, string> = {
   shipping: "Shipping",
   sources: "Sources",
   "seo-articles": "SEO Articles",
+  "editorial-policy": "Editorial Policy",
+  updates: "Latest Updates",
 };
 
 export function PageStructuredData({
@@ -48,8 +57,8 @@ export function PageStructuredData({
   title,
   description,
   article = false,
-  publishedTime = "2026-08-06",
-  modifiedTime = "2026-08-10",
+  publishedTime,
+  modifiedTime,
   extra,
 }: {
   pathname: string;
@@ -60,6 +69,9 @@ export function PageStructuredData({
   modifiedTime?: string;
   extra?: Record<string, unknown>;
 }) {
+  const page = getPageRecord(pathname);
+  const resolvedPublishedTime = publishedTime ?? page.published;
+  const resolvedModifiedTime = modifiedTime ?? page.modified;
   const parts = pathname.split("/").filter(Boolean);
   const breadcrumbs = [
     { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
@@ -88,10 +100,15 @@ export function PageStructuredData({
       headline: title,
       description,
       image: absoluteUrl(DEFAULT_SOCIAL_IMAGE),
-      datePublished: publishedTime,
-      dateModified: modifiedTime,
+      datePublished: resolvedPublishedTime,
+      dateModified: resolvedModifiedTime,
       mainEntityOfPage: absoluteUrl(pathname),
-      author: { "@type": "Organization", "@id": `${SITE_ORIGIN}/#organization`, name: SITE_NAME },
+      author: {
+        "@type": "Organization",
+        "@id": `${absoluteUrl(EDITORIAL_AUTHOR_PATH)}#editorial`,
+        name: EDITORIAL_AUTHOR_NAME,
+        url: absoluteUrl(EDITORIAL_AUTHOR_PATH),
+      },
       publisher: { "@id": `${SITE_ORIGIN}/#organization` },
       inLanguage: "en",
     });

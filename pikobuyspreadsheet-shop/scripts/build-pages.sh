@@ -27,6 +27,7 @@ test -s "${pages_output}/_worker.js"
 test -s "${pages_output}/sitemap.xml"
 test -s "${pages_output}/robots.txt"
 test -s "${pages_output}/og-pikobuy-spreadsheet.png"
+test -s "${pages_output}/organization-logo.png"
 compgen -G "${pages_output}/assets/*.css" >/dev/null || {
   echo "Missing Pages client assets after packaging." >&2
   exit 66

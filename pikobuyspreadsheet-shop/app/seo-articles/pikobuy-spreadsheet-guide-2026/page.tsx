@@ -1,4 +1,5 @@
 import { ContentLayout, PageSearchParams, SourceNote } from "../../content-layout";
+import { ArticleMeta, ArticleNavigation } from "../../article-meta";
 import { normalizeLanguage } from "../../i18n";
 import { createPageMetadata } from "../../seo";
 
@@ -7,15 +8,13 @@ export const metadata = createPageMetadata({
   description: "Use a PikoBuy spreadsheet carefully with live link checks, order options, warehouse QC photos, the 120-hour return policy and shipping planning.",
   path: "/seo-articles/pikobuy-spreadsheet-guide-2026",
   type: "article",
-  publishedTime: "2026-08-06",
-  modifiedTime: "2026-08-10",
 });
 
 export default async function SpreadsheetGuideArticle({ searchParams }: PageSearchParams) {
   const language = normalizeLanguage((await searchParams).lang);
   return <ContentLayout language={language} pathname="/seo-articles/pikobuy-spreadsheet-guide-2026" article kicker="SEO ARTICLE / BEGINNER GUIDE" title="How to Use a PikoBuy Spreadsheet Without Skipping the Important Checks" intro="A spreadsheet can make product discovery faster, but speed is useful only when you know what still needs to be verified. This guide follows the actual PikoBuy buying flow and shows where a careful buyer should pause." tone="lime">
     <article className="longform-article">
-      <div className="article-meta"><span>By PikoBuy Spreadsheet Editorial</span><span>Updated 10 August 2026</span><span>Source-checked buyer guide</span></div>
+      <ArticleMeta pathname="/seo-articles/pikobuy-spreadsheet-guide-2026" label="Source-checked buyer guide" />
 
       <p className="article-dek">The first time you open a PikoBuy spreadsheet, it is tempting to treat the neat rows as finished recommendations. There is a product name, perhaps an image, a price and a link. It feels more certain than scrolling through an unfamiliar marketplace. But a spreadsheet is best understood as a research index. It can point you toward a product; it cannot freeze the seller, the available variant, the price, the warehouse result or the shipping conditions in time.</p>
 
@@ -40,6 +39,7 @@ export default async function SpreadsheetGuideArticle({ searchParams }: PageSear
       <section><h2>Final verdict: the spreadsheet should make you more careful, not less</h2><p>The best PikoBuy spreadsheet is not the one with the most rows. It is the one that makes changing information visible, points to the original listing and helps you ask better questions at the warehouse stage. Used that way, it can turn product discovery into a repeatable research process. Used as a substitute for checking, it simply makes outdated information look organized.</p><p>Start with the spreadsheet, but finish each decision with the live listing, the actual order options, the warehouse photographs and the current shipping and return pages. That is the difference between collecting links and using them responsibly.</p></section>
 
       <SourceNote>Primary sources: <a href="https://www.pikobuy.com/" target="_blank" rel="noopener noreferrer">PikoBuy homepage</a>, <a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener noreferrer">Beginner’s Guide</a>, <a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener noreferrer">Returns & Exchanges</a>, <a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener noreferrer">Shipping Policy</a> and <a href="https://www.pikobuy.com/protocol/user" target="_blank" rel="noopener noreferrer">User Agreement</a>. All checked 06 August 2026.</SourceNote>
+      <ArticleNavigation pathname="/seo-articles/pikobuy-spreadsheet-guide-2026" />
     </article>
   </ContentLayout>;
 }
