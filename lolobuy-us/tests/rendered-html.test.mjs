@@ -30,6 +30,11 @@ test("build emits the standalone Cloudflare Worker configuration", async () => {
   assert.equal(config.main, "index.js");
   assert.equal(config.compatibility_date, "2026-08-12");
   assert.deepEqual(config.compatibility_flags, ["nodejs_compat"]);
+  assert.equal(config.workers_dev, true);
+  assert.deepEqual(config.routes, [
+    { pattern: "lolobuy.us", custom_domain: true },
+    { pattern: "www.lolobuy.us", custom_domain: true },
+  ]);
   assert.deepEqual(config.assets, {
     binding: "ASSETS",
     directory: "../client",

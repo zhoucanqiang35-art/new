@@ -4,6 +4,17 @@
   "main": "./worker/index.ts",
   "compatibility_date": "2026-08-12",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "lolobuy.us",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.lolobuy.us",
+      "custom_domain": true
+    }
+  ],
   "assets": {
     "binding": "ASSETS"
   },
