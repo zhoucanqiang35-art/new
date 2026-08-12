@@ -232,10 +232,11 @@ test("publishes localized core pages and English-only long-form articles", async
   const sitemapResponse = await worker.fetch(new Request("http://localhost/sitemap.xml"), env, ctx);
   const sitemapXml = await sitemapResponse.text();
   assert.equal(sitemapResponse.status, 200);
-  assert.equal((sitemapXml.match(/<url>/g) ?? []).length, 461);
+  assert.equal((sitemapXml.match(/<url>/g) ?? []).length, 462);
   assert.match(sitemapXml, /hreflang="x-default"/);
   assert.match(sitemapXml, /https:\/\/lolobuysheet\.shop\/seo-articles\/lolobuy-total-cost-fees-checklist/);
   assert.match(sitemapXml, /https:\/\/lolobuysheet\.shop\/seo-articles\/lolobuy-return-refund-process/);
+  assert.match(sitemapXml, /https:\/\/lolobuysheet\.shop\/seo-articles\/how-to-track-lolobuy-parcel/);
   assert.doesNotMatch(sitemapXml, /https:\/\/lolobuysheet\.shop\/zh\/seo-articles\/lolobuy-qc-photo-checklist/);
   assert.doesNotMatch(sitemapXml, /https:\/\/lolobuysheet\.shop\/de\/seo-articles\/how-to-use-lolobuy-spreadsheet/);
   assert.doesNotMatch(sitemapXml, /https:\/\/lolobuysheet\.shop\/de\/seo-articles\/lolobuy-total-cost-fees-checklist/);
@@ -292,5 +293,31 @@ test("publishes the English-only return and refund article with official evidenc
   assert.match(html, /href="https:\/\/www\.lolobuy\.com\/helpCenter\/1242296939447441"/);
 
   const untranslated = await worker.fetch(new Request("http://localhost/de/seo-articles/lolobuy-return-refund-process", { headers: { accept: "text/html" } }), env, ctx);
+  assert.equal(untranslated.status, 404);
+});
+
+test("publishes the English-only parcel tracking article with official evidence", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("tracking-article-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const ctx = { waitUntil() {}, passThroughOnException() {} };
+
+  const response = await worker.fetch(new Request("http://localhost/seo-articles/how-to-track-lolobuy-parcel", { headers: { accept: "text/html" } }), env, ctx);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /How to Track a LoloBuy Parcel: Status, Handoffs and Delivery Exceptions/);
+  assert.match(html, /Official sources and verification record/);
+  assert.match(html, /https:\/\/www\.lolobuy\.com\/helpCenter\/1242300842705117/);
+  assert.match(html, /"@type":"Article"/);
+  assert.match(html, /"@type":"BreadcrumbList"/);
+  assert.match(html, /"datePublished":"2026-08-12"/);
+  assert.match(html, /"dateModified":"2026-08-12"/);
+  assert.match(html, /rel="canonical" href="https:\/\/lolobuysheet\.shop\/seo-articles\/how-to-track-lolobuy-parcel"/);
+  assert.match(html, /href="https:\/\/www\.lolobuy\.com\/helpCenter\/679482255081817"/);
+  assert.match(html, /href="\/seo-articles\/lolobuy-shipping-rehearsal-weight-routes"/);
+  assert.match(html, /LoloBuy spreadsheet product-discovery hub/);
+
+  const untranslated = await worker.fetch(new Request("http://localhost/de/seo-articles/how-to-track-lolobuy-parcel", { headers: { accept: "text/html" } }), env, ctx);
   assert.equal(untranslated.status, 404);
 });
