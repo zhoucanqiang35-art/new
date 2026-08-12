@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 const publicInspectionMeta =
@@ -19,6 +20,23 @@ async function render(worker, path) {
   assert.equal(response.status, 200, path);
   return response.text();
 }
+
+test("build emits the standalone Cloudflare Worker configuration", async () => {
+  const config = JSON.parse(
+    await readFile(new URL("../dist/server/wrangler.json", import.meta.url), "utf8"),
+  );
+
+  assert.equal(config.name, "lolobuy-us-site");
+  assert.equal(config.main, "index.js");
+  assert.equal(config.compatibility_date, "2026-08-12");
+  assert.deepEqual(config.compatibility_flags, ["nodejs_compat"]);
+  assert.deepEqual(config.assets, {
+    binding: "ASSETS",
+    directory: "../client",
+  });
+  assert.deepEqual(config.images, { binding: "IMAGES" });
+  assert.equal(config.observability?.enabled, true);
+});
 
 test("renders public inspection metadata", async () => {
   const worker = await loadWorker("home");

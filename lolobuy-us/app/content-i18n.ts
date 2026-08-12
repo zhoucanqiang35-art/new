@@ -74,7 +74,6 @@ const reviewedOverrides: TranslationTable = {
     "Footer guide navigation": "页脚实用导航",
     "SOURCE REGISTER / LAST CHECKED 11 AUG 2026": "资料来源 / 2026年8月11日核对",
     "Primary sources behind this preview": "本检查版使用的主要资料来源",
-    "A short, transparent register of what supports the current site—and what remains editorial advice.": "这里逐条说明哪些内容有 LoloBuy 公开页面支持，哪些只是本站的独立核对建议；费用、线路和限制等易变信息仍需在实时账户中复查。",
     "Warehouse inspection and photo evidence": "仓库检查与照片依据",
     "Warehouse inspection & photo evidence": "仓库检查与照片依据",
     "For that reason, the QC guide treats the images as visible evidence only. Its seven-frame checklist—order match, silhouette, symmetry, construction, colour and surface, measurements, and packaging—is independent editorial guidance rather than a service promise made by LoloBuy. The official LoloBuy process page checked on 10 August 2026 is linked below.": "因此，本站只把仓库照片当作可见状态的证据。七项核对顺序包括订单对应、整体轮廓、左右对称、结构做工、颜色与表面、实际测量和包装情况；这是一套独立检查方法，不是 LoloBuy 作出的服务承诺。下方列出的是2026年8月10日核对过的官方流程资料。",
