@@ -18,6 +18,11 @@ rm -rf "${SITES_PROJECT_ROOT}/out" "${SITES_PROJECT_ROOT}/.next"
 echo "Building static Cloudflare Pages output..."
 CLOUDFLARE_PAGES_EXPORT=1 "${next_bin}" build
 
+rm -rf "${SITES_PROJECT_ROOT}/dist"
+mkdir -p "${SITES_PROJECT_ROOT}/dist/pages"
+cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/"
+cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/pages/"
+
 required_pages=(
   "out/index.html"
   "out/categories/index.html"
@@ -26,6 +31,8 @@ required_pages=(
   "out/seo-articles/index.html"
   "out/faq/index.html"
   "out/robots.txt"
+  "dist/index.html"
+  "dist/pages/index.html"
 )
 
 for page in "${required_pages[@]}"; do
