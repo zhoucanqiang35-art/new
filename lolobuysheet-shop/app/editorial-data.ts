@@ -725,6 +725,105 @@ export const editorialArticles: EditorialArticle[] = [
       },
     ],
   },
+  {
+    slug: "lolobuy-warehouse-consolidation-packaging",
+    title: "LoloBuy Warehouse Consolidation: Storage and Packaging Decisions",
+    description: "Plan LoloBuy warehouse consolidation with a storage clock, item-readiness checks, original packaging trade-offs, package removal and packing choices.",
+    keyword: "LoloBuy warehouse consolidation",
+    readTime: "13 min read",
+    checked: "Fact-checked 13 Aug 2026",
+    published: "2026-08-13",
+    modified: "2026-08-13",
+    locales: "en",
+    processSteps: ["Audit stored items", "Set a ship date", "Choose what to keep", "Select packaging", "Submit one parcel"],
+    processAlt: "LoloBuy warehouse consolidation workflow: audit stored items, set a ship date, choose which packaging to keep, select parcel packaging, and submit the parcel",
+    relatedLinks: [
+      { label: "LoloBuy spreadsheet product-discovery hub", href: "/", context: "Keep source records together" },
+      { label: "LoloBuy QC photo inspection checklist", href: "/seo-articles/lolobuy-qc-photo-checklist", context: "Approve each stored item" },
+      { label: "LoloBuy two-stage total-cost checklist", href: "/seo-articles/lolobuy-total-cost-fees-checklist", context: "Budget before consolidating" },
+      { label: "LoloBuy shipping, rehearsal and route guide", href: "/seo-articles/lolobuy-shipping-rehearsal-weight-routes", context: "Choose the international route" },
+      { label: "LoloBuy return and refund workflow", href: "/seo-articles/lolobuy-return-refund-process", context: "Resolve an item before packing" },
+    ],
+    sources: [
+      { label: "What to do after items are stored in the warehouse", url: "https://www.lolobuy.com/helpCenter/1242296871158912", checked: "13 Aug 2026" },
+      { label: "Product weight and warehouse stocking details", url: "https://www.lolobuy.com/helpCenter/1242300744204423", checked: "13 Aug 2026" },
+      { label: "Free Storage Period", url: "https://www.lolobuy.com/helpCenter/1242300757049499", checked: "13 Aug 2026" },
+      { label: "Packaging Methods You Need To Know", url: "https://www.lolobuy.com/helpCenter/1242300751675537", checked: "13 Aug 2026" },
+      { label: "Simple Packing", url: "https://www.lolobuy.com/helpCenter/1242306514453946", checked: "13 Aug 2026" },
+      { label: "Package Removal", url: "https://www.lolobuy.com/helpCenter/1242306518844916", checked: "13 Aug 2026" },
+    ],
+    sections: [
+      {
+        heading: "Treat warehouse arrival as a decision point",
+        paragraphs: [
+          "LoloBuy describes Stored in warehouse as the stage at which an item has arrived at its warehouse and can be selected in My Warehouse for an overseas delivery order. That status is not a recommendation to ship immediately. It means the China-side purchase has reached the point where you can inspect the evidence, resolve exceptions and decide which ready items belong in the same international parcel.",
+          "Good LoloBuy warehouse consolidation starts item by item. Match each warehouse entry to the original order, saved seller listing and QC record. Mark it Ready only when the quantity, variant and visible condition are acceptable. Mark it Hold when a useful photo or measurement is missing. Mark it Resolve when the wrong item, visible damage or a seller-side problem may require support. Do not place a Hold or Resolve item into a parcel merely because the other items have arrived.",
+          "This article deals with the warehouse and packaging decision, not route ranking. Consolidation can reduce the number of outbound parcels, but it does not guarantee a lower delivered cost. A larger combined parcel may change packed dimensions, chargeable weight, route eligibility or the value exposed to one delivery event. The practical objective is one coherent parcel whose contents are ready, compatible and worth shipping together—not the largest box you can assemble.",
+        ],
+      },
+      {
+        heading: "Build a consolidation sheet before selecting items",
+        paragraphs: [
+          "Use a simple inventory table outside the account with one row per stored item. Record the LoloBuy order or warehouse identifier, arrival date, item description, QC result, packaging preference, approximate stored weight and the action still required. Add a target ship date for the group. This turns My Warehouse from a visual queue into an auditable plan and prevents an older item from being hidden behind newer purchases.",
+          "Group items by readiness first, then by handling needs. Soft, non-fragile clothing may tolerate compact packaging; a boxed collectible, structured bag or fragile object may need protection that adds volume. An item with a possible return should stay outside the group until the decision is closed. A route-restricted or unusual product also deserves a separate live eligibility check before you assume it can travel with ordinary goods.",
+          "Set a stopping rule before continuing to shop. Examples include a fixed calendar date, every selected item reaching Ready, or the parcel reaching a weight range that you will compare in the live estimator. The rule should not depend on an advertised coupon or an old route price. Continue adding products only when the expected saving from one more domestic delivery and one combined dispatch is worth the extra waiting, size and concentration risk.",
+        ],
+        bullets: [
+          "Ready: the stored item matches the order and its remaining uncertainty is acceptable.",
+          "Hold: one specific photo, measurement or support answer is still needed.",
+          "Resolve: return, exchange, damage or order mismatch must be handled before parcel submission.",
+          "Exclude: the item does not fit this parcel's handling, timing or live route requirements.",
+        ],
+      },
+      {
+        heading: "Use the live storage clock, not memory",
+        paragraphs: [
+          "LoloBuy's Free Storage Period help page stated on August 13, 2026 that ordinary items receive 180 days of free storage. It also stated that a reminder is sent if no parcel delivery order has been submitted after 150 days, and described a CNY 1 per LI per day storage fee after the free period. The same page says items with no delivery order or feedback after 180 days are automatically treated as abandoned and processed as overdue, with LoloBuy retaining disposal rights.",
+          "Those statements should not be interpreted as a paid extension you can safely rely on. The fee language and overdue-disposal language appear on the same official page, so the conservative reading is to act before day 180 and ask support for transaction-specific clarification if an item is already close to the limit. Save the warehouse arrival date and set your own reminders well before the platform's stated 150-day notice.",
+          "The page separately gives unusual parcels a 30-day storage period. It describes these as parcels signed for before an order is submitted or logistics information is supplied, which means the warehouse cannot match them to a user and may be unable to send a reminder. If you forward something independently, enter the required order and tracking information promptly; do not assume the ordinary-item clock applies. Because these periods and fees can change, the live help page and account warning control your decision.",
+        ],
+      },
+      {
+        heading: "Decide whether original packaging is evidence or dead weight",
+        paragraphs: [
+          "Original packaging can protect an item, preserve model information or matter for a gift. It can also add dimensions that increase volumetric weight. LoloBuy's warehouse-stocking page says original-box stocking is available only when one LoloBuy order corresponds to one package. It lists several cases where that treatment is unavailable, including multiple orders in one package, an order split across multiple packages, certain detailed-photo work, damaged inbound express boxes, abnormal items requiring inspection and a split-order or discard-item service.",
+          "The same official page says inbound express packaging is generally removed when an item does not qualify for original-box stocking. It lists exceptions for action figures, some fragile products and large quantities where the box may be retained as a container, subject to actual handling. This is a useful warning against assuming that every seller carton remains untouched from domestic receipt to international dispatch.",
+          "Make the keep-or-remove decision before parcel submission. Keep packaging when it provides structural support, contains identifiers you need, or has genuine preservation value. Consider removing it when it is mainly an oversized retail or courier box and the item remains adequately protected without it. Photograph labels or model details you may need later. Warehouse dimensions are measured after the product is packaged for storage, but the final outbound size can change after consolidation and packaging services, so stored-item dimensions are planning inputs rather than a final freight quote.",
+        ],
+      },
+      {
+        heading: "Choose parcel packaging for the billing method and contents",
+        paragraphs: [
+          "LoloBuy's packaging guide separates parcels billed by actual weight from those billed by volume weight. For actual-weight parcels, it describes right-sized bag packaging without forced compression and cartons arranged with filling material; when a carton gap exceeds the stated handling threshold, the guide says further cutting may be used. For volume-weight parcels, it emphasizes folding excess bag space or cutting excess carton volume to reduce billable size, while acknowledging that a cut-down carton can be less secure.",
+          "That trade-off should drive the warehouse packaging decision. Bag packaging can suit flexible, non-fragile goods, but it offers less rigid protection. Cartons make more sense when shape, crush risk or several different items require structure. Empty space is not automatically waste if it is occupied by protection that prevents collision. Conversely, a large retail box inside a larger shipping carton can make a light parcel expensive when the route charges by volume.",
+          "LoloBuy also describes Simple Packing as a choice for non-fragile items designed to minimize parcel weight with light stretch film or plastic bags. The page says bag packaging is prioritized, while LoloBuy decides whether the actual goods require a carton. Treat that as a handling request rather than a guaranteed bag outcome. If the contents include anything crushable, sharp-edged, liquid-sensitive or valuable in its presentation box, ask whether the expected saving justifies the weaker outer structure.",
+        ],
+      },
+      {
+        heading: "Use package removal as a deliberate instruction",
+        paragraphs: [
+          "The current LoloBuy Package Removal page lists the service as free when selected during delivery-order submission. It offers choices ranging from removing only the packing box to removing the packing box, product box and packing bag, plus an option for other requirements. The page says necessary protective packaging—such as structural support for vulnerable goods or protective air bags—will still be retained, subject to actual handling.",
+          "Free does not mean consequence-free. Removing a shoe box or retail carton can reduce weight or volume, but it may also reduce crush protection, erase useful labels, weaken presentation or make a later resale or gift less attractive. The official page specifically tells users who need all original packaging for gifts or preservation not to select removal. Write a precise note when only one layer should go; 'remove packaging' is too broad when a parcel contains items with different needs.",
+          "Review the choice for every consolidated item, not only for the parcel as a whole. A sensible mixed instruction might remove disposable courier bags and oversized retail boxes from soft goods while retaining the rigid support around one fragile item. Capture the saved instruction before paying. If the interface does not let you express the combination clearly, contact support before submission instead of assuming warehouse staff will infer your priorities.",
+        ],
+      },
+      {
+        heading: "Run the final warehouse consolidation check",
+        paragraphs: [
+          "Before submitting, compare the selected items with your consolidation sheet. Every item should be Ready; every Hold or Resolve row should be excluded. Confirm the oldest arrival date, the packaging to retain, the removal request, the proposed outer packaging and the destination. Then move to the live parcel flow and compare available routes using the final or rehearsed package evidence rather than adding stored item weights and treating the sum as exact.",
+          "Keep cost and risk in the same decision. One parcel may avoid duplicated base handling or packaging, yet it concentrates several purchases into one customs, loss, damage or delivery event. Two parcels may cost more but allow incompatible contents, different protection or different timing. There is no universal best item count. The right split follows the live route rules, packed dimensions, value, fragility and your tolerance for having everything travel together.",
+          "Save the item list, packaging instructions, parcel number, quote and payment record. After submission, use the separate tracking workflow for carrier handoffs and delivery evidence. LoloBuy's warehouse policies, fees and interface can change; the platform-specific details in this guide were checked on August 13, 2026. Reopen the official pages and read any account warning before relying on the 180-day period, the listed fee or a packaging option for an actual parcel.",
+        ],
+        bullets: [
+          "All selected items have passed QC and no return or support decision remains open.",
+          "The oldest storage date leaves enough time for packing and any clarification.",
+          "Keep, remove and simple-packing instructions are recorded item by item.",
+          "Protection is appropriate for the most fragile item, not merely the softest one.",
+          "The live route, packed weight, dimensions, declaration and total are checked before payment.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEditorialArticle(slug: string) {
