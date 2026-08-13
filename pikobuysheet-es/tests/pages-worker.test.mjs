@@ -53,14 +53,16 @@ test("generates a canonical sitemap for every supported language and route", asy
   const robots = await readFile(new URL("../dist/pages/robots.txt", import.meta.url), "utf8");
 
   assert.match(sitemap, /^<\?xml version="1\.0" encoding="UTF-8"\?>/);
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 226);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 227);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/sitemap\.xml<\/loc>/, "sitemap should not list itself");
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/zh\/seo-articles\/pikobuy-qc-shipping-return-guide<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/pikobuy-spreadsheet-shoes<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/pikobuy-spreadsheet-shipping-guide<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-total-cost-explained<\/loc><lastmod>2026-08-11<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc><lastmod>2026-08-11<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-tracking-status-guide<\/loc><lastmod>2026-08-13<\/lastmod>/);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/es\/seo-articles\/pikobuy-total-cost-explained<\/loc>/);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/es\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc>/);
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/pikobuysheet\.es\/es\/seo-articles\/pikobuy-tracking-status-guide<\/loc>/);
   assert.match(robots, /Sitemap: https:\/\/pikobuysheet\.es\/sitemap\.xml/);
 });

@@ -440,6 +440,130 @@ export const articles: Article[] = [
       },
     ],
   },
+  {
+    slug: "pikobuy-tracking-status-guide",
+    title: "PikoBuy Tracking Status: What Updates, Delays and Delivery Events Mean",
+    deck: "A post-dispatch workflow for reading PikoBuy parcel tracking, judging a quiet tracking page, documenting a delay and checking the package at delivery.",
+    metaTitle: "PikoBuy Tracking Status: Delays & Delivery Guide",
+    metaDescription: "Understand PikoBuy tracking status: first updates, quiet scans, route delays, customs, delivery exceptions, support evidence, and arrival checks.",
+    date: "August 13, 2026",
+    publishedISO: "2026-08-13T08:00:00-07:00",
+    modifiedISO: "2026-08-13T08:00:00-07:00",
+    lastChecked: "August 13, 2026",
+    readTime: "14 min read · 1,688 words",
+    wordCount: 1688,
+    primaryKeyword: "PikoBuy tracking status",
+    supportingKeywords: [
+      "PikoBuy parcel tracking",
+      "PikoBuy tracking not updating",
+      "PikoBuy logistics update",
+      "PikoBuy shipping delay",
+      "PikoBuy parcel delivery",
+      "PikoBuy delivery issue",
+    ],
+    publishedLocales: ["en"],
+    sources: [
+      { label: "PikoBuy beginner's guide", href: "https://www.pikobuy.com/guide", note: "Parcel submission, dispatch sequence and PikoBuy's statement that tracking information is available within three days after shipment." },
+      { label: "PikoBuy shipping terms", href: "https://www.pikobuy.com/protocol/shipping", note: "Third-party carrier responsibility and the published limits involving customs, loss, damage and peak-season delay." },
+      { label: "PikoBuy terms of service", href: "https://www.pikobuy.com/protocol/user", note: "Route-specific delay language, carrier claims, failed delivery and reshipment, customs requests, insurance, and checks at receipt." },
+      { label: "PikoBuy contact page", href: "https://www.pikobuy.com/contact", note: "Official support email and ticket channel for an order-specific tracking or delivery question." },
+    ],
+    relatedLinks: [
+      { label: "PikoBuy Spreadsheet 2026", href: "/", note: "Return to the independent source-link and product research hub." },
+      { label: "PikoBuy shipping guide", href: "/pikobuy-spreadsheet-shipping-guide", note: "Compare route inputs and risks before submitting a parcel." },
+      { label: "PikoBuy warehouse consolidation guide", href: "/seo-articles/pikobuy-warehouse-consolidation-guide", note: "Complete QC, packing and parcel decisions before dispatch." },
+      { label: "PikoBuy total cost explained", href: "/seo-articles/pikobuy-total-cost-explained", note: "Keep post-dispatch risk inside the full two-payment budget." },
+    ],
+    sections: [
+      {
+        title: "Tracking begins after dispatch, not after parcel submission",
+        paragraphs: [
+          "A PikoBuy tracking status is useful only when it is tied to the correct stage of the order. Paying international shipping and submitting a parcel authorise the shipment, but they are not the same event as the parcel being handed into the international logistics chain. PikoBuy's beginner guide places route selection, parcel submission and payment before dispatch. Its next step says tracking information will be available within three days after the parcel is shipped.",
+          "That published three-day window is the first practical reference point. Count from the shipment or dispatch event shown in the live order, not from the day the products reached the warehouse and not from the first product payment. If an order still says it is being packed, submitted or arranged, a blank tracking result should not be described as a carrier delay. The action at that stage is to confirm whether dispatch has actually occurred.",
+        ],
+      },
+      {
+        title: "1. Save the shipment record before interpreting a status",
+        paragraphs: [
+          "Create a small shipment record containing the PikoBuy parcel number, carrier tracking number, selected route, destination, dispatch timestamp and the latest visible event. Take a screenshot or copy the exact wording with its date and time. Similar phrases can represent different stages on different carrier systems, so the live PikoBuy order and the carrier page attached to that order should take priority over a generic status glossary.",
+          "The public pages reviewed for this guide do not provide a complete official dictionary for every possible tracking label. This article therefore groups events by decision, not by pretending one phrase always has one meaning. Separate three facts: what the order page says, what the carrier page says and what you infer from them. If the two official records disagree, preserve both and ask support which record currently controls the shipment.",
+        ],
+      },
+      {
+        title: "2. Treat tracking as an event log, not a live map",
+        paragraphs: [
+          "A tracking page records scans and data transfers at logistics milestones; it does not prove the parcel's location continuously between them. A quiet page can mean the next facility has not scanned the parcel, a carrier handoff has not yet appeared in the shared feed, the parcel is moving between distant points, or a customs process has not produced a public event. Those are possible explanations, not a diagnosis of a specific PikoBuy order.",
+          "Read the last confirmed event literally. A data-received or label-style event is weaker evidence than a physical acceptance scan. An export or departure event does not prove arrival in the destination country. A destination-carrier event does not necessarily mean delivery is scheduled that day. Avoid upgrading vague wording into a promise, and do not mark a parcel lost merely because the status did not change overnight.",
+        ],
+      },
+      {
+        title: "3. Use the three-day publication window correctly",
+        paragraphs: [
+          "PikoBuy's current guide says tracking information becomes available within three days after shipment. If the parcel has a confirmed shipped timestamp but no usable tracking information after that published window, the next step is an order-specific support question. Include the parcel number, dispatch time and a screenshot showing the blank or unusable result. Ask whether the tracking number is pending upload, whether the carrier has received the parcel and which page should be used for updates.",
+          "Do not convert the three-day statement into a delivery estimate. It describes when tracking information should become available, not when the parcel should reach Europe or North America. PikoBuy's same guide says routes differ in delivery time and billing method. Delivery expectations must therefore come from the current route details attached to the submitted parcel, not from the three-day tracking publication period.",
+        ],
+      },
+      {
+        title: "4. Judge a tracking pause against the selected route",
+        paragraphs: [
+          "A pause is more meaningful when compared with the route's current published transit time and the last physical event. PikoBuy's terms describe an insured-route delay as exceeding the transit time published for that route, counted from the date the parcel is handed to the third-party carrier. That language makes two inputs essential: the route-specific time and the carrier handover date. Another shopper's delivery time is not a substitute for either one.",
+          "Build a dated timeline instead of repeatedly refreshing the page. Record dispatch, carrier acceptance, export movement, destination entry, customs or delivery events when they appear. If the parcel remains inside the current route window and shows no exception, continue monitoring. If it exceeds the published window, preserve the route terms that applied when the parcel was submitted and ask whether the shipment qualifies for the route's current delay or insurance process.",
+        ],
+      },
+      {
+        title: "5. Separate customs activity from carrier movement",
+        paragraphs: [
+          "PikoBuy's shipping terms identify customs action as a cross-border risk, and the terms of service say destination or transit authorities may detain, confiscate or destroy parcels under local law. They also state that customs may contact the recipient for invoices or clearance documents when a parcel is considered special, oversized, overweight or sensitive. A customs-related tracking event therefore requires attention to the destination authority or carrier instructions, not a guessed delivery date.",
+          "Check the recipient's email, telephone messages and carrier page using contact details entered for the parcel. Respond only through a verifiable official authority or carrier channel, and keep copies of documents sent. A status that mentions clearance does not by itself prove a tax amount, seizure or release date. Those outcomes depend on the shipment and destination; the tracking phrase alone is not enough evidence for a conclusion.",
+        ],
+      },
+      {
+        title: "6. Act quickly on address and delivery exceptions",
+        paragraphs: [
+          "A delivery exception is different from a quiet in-transit page because it may require the recipient to act. PikoBuy's terms say that if an overseas parcel is returned for reasons including no one signing, an incorrect or incomplete address, or delivery failure, the user bears the reshipment cost. When the destination carrier requests an address correction, collection or delivery choice, verify the request through that carrier and respond before its stated deadline.",
+          "Keep the shipping address submitted to PikoBuy beside the carrier's displayed destination. Do not post a tracking number or full address publicly while asking for help. If the carrier will not accept a correction from the recipient, send PikoBuy support the parcel number, the exact exception, the carrier's instruction and the deadline. The goal is to identify who is authorised to change the delivery record before the parcel enters a return process.",
+        ],
+      },
+      {
+        title: "7. Build an escalation packet that can be checked",
+        paragraphs: [
+          "A useful tracking enquiry is short and chronological. Include the PikoBuy parcel number, carrier number, route, destination country, dispatch or carrier-handover date, last event and timestamp, days without a new event, and the outcome requested. Attach the relevant screenshots rather than a long series of refreshes. Use PikoBuy's official ticket channel or support email published on its contact page for transaction-specific help.",
+          "Ask a precise question: Has the carrier physically accepted the parcel? Is there a replacement tracking number after a handoff? Does the latest event require recipient action? Has the route's published transit time been exceeded? Which insurance or enquiry rule applies? PikoBuy's terms say it may act as a communication agent in a claim with the third-party logistics provider, while compensation remains subject to that provider's standards. Support contact is therefore not the same as automatic compensation.",
+        ],
+      },
+      {
+        title: "8. Understand the limit of delay and insurance claims",
+        paragraphs: [
+          "PikoBuy's terms distinguish an ordinary delay from circumstances excluded from delayed-delivery compensation. The published exclusions include government or judicial action such as customs, weather, traffic control, strikes, regulatory change, war and other force-majeure events. Parcel insurance also has its own conditions and insured amount. Do not assume that a late scan, a late parcel and a compensable insured delay are interchangeable conclusions.",
+          "Before filing, save the route promise, insurance selection if any, declared or insured amount, carrier-handover date and complete tracking history. Ask for the rule and calculation applied to this parcel. If the issue is loss rather than delay, use the claim path connected to the selected carrier and insurance terms. Avoid quoting compensation from an unrelated route, old post or different destination because it may not govern the shipment.",
+        ],
+      },
+      {
+        title: "9. Inspect the parcel before the delivery record goes cold",
+        paragraphs: [
+          "PikoBuy's terms recommend checking the outer packaging carefully when signing and contacting customer service immediately if a related issue appears. At delivery, photograph the parcel before opening when it is crushed, wet, punctured, retaped or visibly open. Capture the shipping label, all sides, the damaged area and the contents as they are unpacked. Keep the packaging until the evidence question is resolved.",
+          "Compare the contents with the warehouse record and parcel list. Note missing items, visible damage and any weight information shown on the label without claiming a cause that the evidence cannot prove. A delivered scan confirms a carrier event; it does not prove that every item inside is correct or intact. Prompt, ordered evidence is more useful than discovering later that the packaging and delivery details were discarded.",
+        ],
+      },
+      {
+        title: "A practical PikoBuy tracking decision rule",
+        paragraphs: [
+          "First confirm dispatch. Allow the published three-day period for tracking information to appear. After that, interpret the last confirmed event against the selected route and carrier-handover date. Monitor a quiet parcel that remains within its route window, but act on customs, address and delivery exceptions. Escalate with a dated record when tracking never appears, the route window is exceeded or the carrier requests action.",
+          "This workflow is useful after international dispatch; it is not a replacement for the shipping-cost guide or a universal carrier-status dictionary. PikoBuy uses third-party logistics providers, and the current order, carrier and destination authority control the shipment-specific facts. Keep those records separate from editorial interpretation, protect personal information, and inspect the parcel while delivery evidence is still fresh.",
+        ],
+        bullets: [
+          "Confirm the parcel is marked shipped before starting the tracking clock.",
+          "Save the parcel number, carrier number, route and dispatch timestamp.",
+          "Allow up to three days after shipment for tracking information to appear.",
+          "Compare a pause with the route's current time and carrier-handover date.",
+          "Act on customs, address, collection or delivery instructions promptly.",
+          "Send support a factual timeline instead of a general 'where is it?' message.",
+          "Check insurance and carrier standards before assuming compensation.",
+          "Photograph visible package problems before opening at delivery.",
+        ],
+      },
+    ],
+  },
 ];
 
 const pageIntros: Record<Exclude<PageKey, "home">, string> = {
@@ -631,6 +755,7 @@ function UpdatesPage({ locale }: { locale: string }) {
             <div><b>{local("Impact", copy.nav.method)}</b><p>{local("Why the change affects browsing, interpretation or the next action.")}</p></div>
           </div>
           <div className="update-page-list">
+            {isEnglish && <div><time>AUG 13 · 2026</time><section><h3>PikoBuy tracking status guide published</h3><p>Published a 1,688-word English guide covering the first tracking update, quiet scans, route-specific delay checks, customs and address exceptions, carrier claims, support evidence and delivery inspection. Official sources were rechecked on August 13, 2026.</p><Link href="/seo-articles/pikobuy-tracking-status-guide">Read the article →</Link></section><i>PUBLISHED</i></div>}
             {isEnglish && <div><time>AUG 11 · 2026</time><section><h3>PikoBuy warehouse consolidation guide published</h3><p>Published a 1,619-word English guide covering arrival records, warehouse QC, the 120-hour return decision, unpublished storage limits, parcel combinations, packaging and measured shipping inputs. Official sources were rechecked on August 11, 2026.</p><Link href="/seo-articles/pikobuy-warehouse-consolidation-guide">Read the article →</Link></section><i>PUBLISHED</i></div>}
             {isEnglish && <div><time>AUG 09 · 2026</time><section><h3>PikoBuy total cost guide published</h3><p>Published a 1,713-word English guide that separates the first product payment from the later international-shipping payment and documents warehouse, parcel, return and destination-cost checkpoints. Official sources were rechecked on August 9, 2026.</p></section><i>PUBLISHED</i></div>}
             <div><time>AUG 02 · 2026</time><section><h3>{local("Complete interface localization", copy.language)}</h3><p>{local("The language switch now retains the current route and changes navigation, feed controls, trust links, category labels, section headings, source panels, footer copy and non-article page interfaces across all 24 language URLs.")}</p></section><i>{isEnglish ? "FIXED" : labels.sourceChecked}</i></div>

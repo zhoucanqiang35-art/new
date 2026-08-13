@@ -27,12 +27,41 @@ test("renders development preview metadata", async () => {
 });
 
 test("renders every primary independent route", async () => {
-  for (const pathname of ["/spreadsheet", "/categories", "/guides", "/method", "/updates", "/seo-articles", "/seo-articles/how-to-use-a-pikobuy-spreadsheet", "/seo-articles/pikobuy-qc-shipping-return-guide", "/seo-articles/pikobuy-total-cost-explained", "/seo-articles/pikobuy-warehouse-consolidation-guide"]) {
+  for (const pathname of ["/spreadsheet", "/categories", "/guides", "/method", "/updates", "/seo-articles", "/seo-articles/how-to-use-a-pikobuy-spreadsheet", "/seo-articles/pikobuy-qc-shipping-return-guide", "/seo-articles/pikobuy-total-cost-explained", "/seo-articles/pikobuy-warehouse-consolidation-guide", "/seo-articles/pikobuy-tracking-status-guide"]) {
     const response = await render(pathname);
     assert.equal(response.status, 200, pathname);
     const html = await response.text();
     assert.match(html, /pikobuy-logo\.png/, pathname);
     assert.match(html, /SEO Articles/, pathname);
+  }
+});
+
+test("renders the tracking-status article with unique metadata, schema, sources and navigation", async () => {
+  const response = await render("/seo-articles/pikobuy-tracking-status-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /PikoBuy Tracking Status: What Updates, Delays and Delivery Events Mean/);
+  assert.match(html, /PikoBuy Tracking Status: Delays &amp; Delivery Guide/);
+  assert.match(html, /rel="canonical"[^>]+pikobuy-tracking-status-guide|pikobuy-tracking-status-guide[^>]+rel="canonical"/);
+  assert.equal((html.match(/<h1\b/g) ?? []).length, 1);
+  assert.match(html, /property="og:type" content="article"/);
+  assert.match(html, /property="og:url" content="https:\/\/pikobuysheet\.es\/seo-articles\/pikobuy-tracking-status-guide"/);
+  assert.match(html, /property="article:published_time" content="2026-08-13T08:00:00-07:00"/);
+  assert.match(html, /BlogPosting/);
+  assert.match(html, /BreadcrumbList/);
+  assert.match(html, /1,688 words/);
+  assert.match(html, /Official sources checked/);
+  assert.match(html, /href="\/pikobuy-spreadsheet-shipping-guide"/);
+  assert.match(html, /href="\/seo-articles\/pikobuy-warehouse-consolidation-guide"/);
+  assert.match(html, /Previous guide/);
+  assert.doesNotMatch(html, /private conversation|ChatGPT prompt/i);
+});
+
+test("links the tracking-status article from the archive, homepage and updates log", async () => {
+  for (const pathname of ["/", "/seo-articles", "/updates"]) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, pathname);
+    assert.match(await response.text(), /href="\/seo-articles\/pikobuy-tracking-status-guide"/, pathname);
   }
 });
 
@@ -94,6 +123,8 @@ test("does not create untranslated localized copies of the new English article",
   assert.equal(response.status, 404);
   const consolidation = await render("/es/seo-articles/pikobuy-warehouse-consolidation-guide");
   assert.equal(consolidation.status, 404);
+  const tracking = await render("/es/seo-articles/pikobuy-tracking-status-guide");
+  assert.equal(tracking.status, 404);
 });
 
 test("renders the 2026 homepage search intent and all eight keyword landing pages", async () => {
