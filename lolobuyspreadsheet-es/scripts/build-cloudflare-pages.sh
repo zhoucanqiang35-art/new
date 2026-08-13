@@ -19,8 +19,9 @@ echo "Building static Cloudflare Pages output..."
 CLOUDFLARE_PAGES_EXPORT=1 "${next_bin}" build
 
 rm -rf "${SITES_PROJECT_ROOT}/dist"
-mkdir -p "${SITES_PROJECT_ROOT}/dist/pages"
+mkdir -p "${SITES_PROJECT_ROOT}/dist/client" "${SITES_PROJECT_ROOT}/dist/pages"
 cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/"
+cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/client/"
 cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/pages/"
 
 required_pages=(
@@ -32,6 +33,7 @@ required_pages=(
   "out/faq/index.html"
   "out/robots.txt"
   "dist/index.html"
+  "dist/client/index.html"
   "dist/pages/index.html"
 )
 
