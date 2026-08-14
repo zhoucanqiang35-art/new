@@ -371,7 +371,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["ORDER FLOW", "The first payment covers the product order. International shipping is selected and paid after warehouse inspection.", "Keep product cost and international shipping as separate budget lines; a low listing price is not the landed cost.", "Beginner’s Guide"],
       ["QC + RETURNS", "Warehouse photos show the received item’s visible condition. Eligible returns use a 120-hour window after “Warehoused,” counted from the next hour.", "Review the photos promptly. Check the ordered option, visible damage and decisive measurements before packaging or tags are altered.", "Returns & Exchanges"],
-      ["CUSTOMS 2026", "Pikobuy says destination duties and taxes can remain the buyer’s responsibility. EU, UK, US and Canadian low-value rules now differ materially.", "Keep accurate item values and check the destination rule before dispatch; do not reuse an old threshold from another country.", "Terms + government customs guidance"],
+      ["RESTRICTED ITEMS", "Pikobuy distinguishes prohibited goods from sensitive products such as batteries, liquids, powders, food and medicine that may need a compatible route.", "Identify the exact product specification, route and destination before ordering; warehouse receipt alone does not prove transport eligibility.", "User Agreement + border guidance"],
     ],
   },
   de: {
@@ -387,7 +387,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["BESTELLABLAUF", "Die erste Zahlung betrifft den Artikel; internationalen Versand wählt und bezahlt man nach der Lagerprüfung.", "Artikel und internationalen Versand getrennt budgetieren. Ein niedriger Angebotspreis ist nicht der Endpreis.", "Einsteigerleitfaden"],
       ["QC + RÜCKGABE", "Lagerfotos zeigen den sichtbaren Zustand. Berechtigte Rückgaben haben 120 Stunden ab der nächsten Stunde nach „Warehoused“.", "Fotos sofort prüfen: Variante, sichtbare Schäden und entscheidende Maße kontrollieren, bevor Verpackung oder Etiketten verändert werden.", "Rückgabe & Umtausch"],
-      ["ZOLL 2026", "Laut Pikobuy können Zielzölle und Steuern beim Käufer bleiben. Die Regeln für EU, UK, USA und Kanada unterscheiden sich deutlich.", "Werte korrekt dokumentieren und vor Versand die Zielregel prüfen; keine alte Grenze aus einem anderen Land übernehmen.", "AGB + behördliche Zollquellen"],
+      ["VERSANDBESCHRÄNKUNGEN", "Pikobuy unterscheidet verbotene Waren von sensiblen Produkten wie Batterien, Flüssigkeiten, Pulver, Lebensmitteln und Medikamenten.", "Vor dem Kauf genaue Produktspezifikation, Route und Ziel prüfen; die Einlagerung allein bestätigt nicht die Versandfähigkeit.", "Nutzungsvereinbarung + Grenzbehörden"],
     ],
   },
   fr: {
@@ -403,7 +403,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["PARCOURS DE COMMANDE", "Le premier paiement couvre l’article. Le transport international est choisi et payé après le contrôle en entrepôt.", "Séparez prix du produit et transport international ; un prix bas n’est pas le coût rendu.", "Guide débutant"],
       ["QC + RETOURS", "Les photos montrent l’état visible. Un retour éligible dispose de 120 heures dès l’heure suivant « Warehoused ».", "Contrôlez vite variante, dégâts visibles et mesures décisives avant de modifier emballage ou étiquettes.", "Retours et échanges"],
-      ["DOUANES 2026", "Pikobuy indique que droits et taxes de destination peuvent rester à la charge de l’acheteur. UE, Royaume-Uni, États-Unis et Canada ont des règles différentes.", "Conservez les valeurs exactes et vérifiez la règle du pays avant l’envoi ; ne transposez pas un ancien seuil étranger.", "Conditions + sources douanières officielles"],
+      ["ARTICLES RESTREINTS", "Pikobuy distingue les biens interdits des produits sensibles comme les batteries, liquides, poudres, aliments et médicaments.", "Vérifiez la spécification exacte, la ligne et le pays avant l’achat ; l’entrée en entrepôt ne prouve pas l’admissibilité au transport.", "Accord utilisateur + autorités frontalières"],
     ],
   },
   es: {
@@ -419,7 +419,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUJO DEL PEDIDO", "El primer pago cubre el producto. El envío internacional se elige y paga después de la inspección del almacén.", "Separa producto y envío internacional en el presupuesto; un precio bajo no es el coste final.", "Guía para principiantes"],
       ["QC + DEVOLUCIONES", "Las fotos muestran el estado visible. Las devoluciones elegibles tienen 120 horas desde la hora siguiente a «Warehoused».", "Revisa pronto variante, daños visibles y medidas clave antes de alterar embalaje o etiquetas.", "Devoluciones y cambios"],
-      ["ADUANAS 2026", "Pikobuy indica que los aranceles e impuestos de destino pueden corresponder al comprador. UE, Reino Unido, EE. UU. y Canadá aplican reglas distintas.", "Guarda valores reales y revisa la norma del destino antes del envío; no reutilices el límite antiguo de otro país.", "Condiciones + fuentes aduaneras oficiales"],
+      ["ARTÍCULOS RESTRINGIDOS", "Pikobuy diferencia los bienes prohibidos de productos sensibles como baterías, líquidos, polvos, alimentos y medicamentos.", "Comprueba la especificación exacta, la ruta y el destino antes de comprar; la entrada en almacén no prueba que pueda enviarse.", "Acuerdo de usuario + autoridades fronterizas"],
     ],
   },
   it: {
@@ -435,7 +435,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUSSO D’ORDINE", "Il primo pagamento copre l’articolo; la spedizione internazionale si sceglie e paga dopo il controllo in magazzino.", "Separa articolo e spedizione nel budget: il prezzo basso non è il costo finale.", "Guida per principianti"],
       ["QC + RESI", "Le foto mostrano condizioni visibili. I resi idonei hanno 120 ore dall’ora successiva a «Warehoused».", "Controlla subito variante, danni visibili e misure decisive prima di cambiare imballo o etichette.", "Resi e cambi"],
-      ["DOGANA 2026", "Pikobuy indica che dazi e imposte di destinazione possono restare a carico dell’acquirente. UE, Regno Unito, USA e Canada hanno regole diverse.", "Conserva i valori reali e verifica la norma del paese prima dell’invio; non riutilizzare una vecchia soglia estera.", "Termini + fonti doganali ufficiali"],
+      ["ARTICOLI SOGGETTI A LIMITI", "Pikobuy distingue i beni vietati dai prodotti sensibili come batterie, liquidi, polveri, alimenti e medicinali.", "Verifica specifica, rotta e destinazione prima dell’acquisto; l’ingresso in magazzino non dimostra l’idoneità alla spedizione.", "Accordo utente + autorità di frontiera"],
     ],
   },
   pl: {
@@ -451,7 +451,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["PRZEBIEG ZAMÓWIENIA", "Pierwsza płatność dotyczy produktu; wysyłkę międzynarodową wybiera się i opłaca po kontroli magazynowej.", "Oddziel koszt produktu od wysyłki. Niska cena oferty nie jest kosztem końcowym.", "Poradnik dla początkujących"],
       ["QC + ZWROTY", "Zdjęcia pokazują widoczny stan. Kwalifikujący się zwrot ma 120 godzin od następnej godziny po „Warehoused”.", "Szybko sprawdź wariant, uszkodzenia i kluczowe wymiary przed zmianą opakowania lub metek.", "Zwroty i wymiany"],
-      ["CŁO 2026", "Pikobuy wskazuje, że cło i podatki docelowe mogą obciążać kupującego. UE, Wielka Brytania, USA i Kanada stosują różne zasady.", "Zachowaj prawdziwe wartości i sprawdź regułę kraju przed wysyłką; nie kopiuj starego progu z innego państwa.", "Warunki + urzędowe źródła celne"],
+      ["TOWARY OGRANICZONE", "Pikobuy odróżnia towary zakazane od produktów wrażliwych, takich jak baterie, płyny, proszki, żywność i leki.", "Przed zakupem sprawdź dokładną specyfikację, trasę i kraj; samo przyjęcie do magazynu nie potwierdza możliwości wysyłki.", "Umowa użytkownika + organy graniczne"],
     ],
   },
   nl: {
@@ -467,7 +467,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["BESTELPROCES", "De eerste betaling is voor het product; internationale verzending kies en betaal je na magazijncontrole.", "Begroot product en internationale verzending apart. Een lage productprijs is niet de totaalprijs.", "Beginnersgids"],
       ["QC + RETOUR", "Foto’s tonen de zichtbare staat. Een geschikte retour heeft 120 uur vanaf het volgende uur na ‘Warehoused’.", "Controleer snel variant, zichtbare schade en beslissende maten voordat verpakking of labels veranderen.", "Retourneren en ruilen"],
-      ["DOUANE 2026", "Pikobuy zegt dat invoerrechten en belastingen voor de koper kunnen blijven. EU, VK, VS en Canada hanteren verschillende regels.", "Bewaar echte waarden en controleer vóór verzending de bestemmingsregel; neem geen oude grens van een ander land over.", "Voorwaarden + officiële douanebronnen"],
+      ["BEPERKTE GOEDEREN", "Pikobuy onderscheidt verboden goederen van gevoelige producten zoals batterijen, vloeistoffen, poeders, voedsel en medicijnen.", "Controleer vóór aankoop de exacte specificatie, route en bestemming; magazijnontvangst bewijst geen verzendbaarheid.", "Gebruikersovereenkomst + grensautoriteiten"],
     ],
   },
   pt: {
@@ -483,7 +483,7 @@ const evidenceCopy: Record<Locale, EvidenceCopy> = {
     notes: [
       ["FLUXO DA ENCOMENDA", "O primeiro pagamento cobre o artigo; o envio internacional é escolhido e pago após a inspeção no armazém.", "Separe produto e envio no orçamento. Um preço baixo não é o custo final.", "Guia para iniciantes"],
       ["QC + DEVOLUÇÕES", "As fotos mostram o estado visível. Uma devolução elegível tem 120 horas desde a hora seguinte a «Warehoused».", "Verifique cedo variante, danos e medidas decisivas antes de alterar embalagem ou etiquetas.", "Devoluções e trocas"],
-      ["ALFÂNDEGA 2026", "A Pikobuy indica que direitos e impostos de destino podem ficar a cargo do comprador. UE, Reino Unido, EUA e Canadá têm regras diferentes.", "Guarde valores reais e confirme a regra do destino antes do envio; não reutilize um limite antigo de outro país.", "Termos + fontes aduaneiras oficiais"],
+      ["ARTIGOS RESTRITOS", "A Pikobuy distingue bens proibidos de produtos sensíveis como baterias, líquidos, pós, alimentos e medicamentos.", "Confirme a especificação exata, rota e destino antes da compra; a entrada no armazém não comprova que o artigo pode ser enviado.", "Acordo do utilizador + autoridades fronteiriças"],
     ],
   },
 };
@@ -610,23 +610,26 @@ export function HomePage({ locale = "en" }: { locale?: Locale }) {
       <section className="updates-section" id="research-notes">
         <div className="updates-heading">
           <div className="updates-title"><p className="eyebrow"><span /> {home.updatesEyebrow}</p><h2>{home.updatesTitle}</h2></div>
-          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>12 Aug 2026</span></div></div>
+          <div className="updates-summary"><p>{evidence.updatesIntro}</p><div className="fact-stamp"><b>{research.officialFact}</b><span>14 Aug 2026</span></div></div>
         </div>
         <div className="research-note-list">
           {evidence.notes.map(([topic, fact, implication, source], index) => {
             const destinations = [
               `${routeFor(locale, "guides")}/${sectionItemSlugs.guides[0]}`,
               `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[6]}`,
-              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[8]}`,
+              `${routeFor(locale, "articles")}/${sectionItemSlugs.articles[9]}`,
             ];
             const verifiedDate = index === 1
               ? { dateTime: "2026-08-06", label: "06.08.2026" }
               : index === 2
-                ? { dateTime: "2026-08-12", label: "12.08.2026" }
+                ? { dateTime: "2026-08-14", label: "14.08.2026" }
                 : { dateTime: "2026-07-29", label: "29.07.2026" };
             return <a className="research-note" href={destinations[index]} key={topic}><div className="research-note-top"><span>{topic}</span><time dateTime={verifiedDate.dateTime}>{verifiedDate.label}</time></div><h3>{evidence.verifiedLabel}</h3><p>{fact}</p><div className="research-impact"><b>{evidence.implicationLabel}</b><p>{implication}</p></div><div className="research-note-footer"><span>{source}</span><b>{evidence.readMore} →</b></div></a>;
           })}
         </div>
+        <a className="text-link" href={`${routeFor(locale, "articles")}/${sectionItemSlugs.articles[8]}`}>
+          {articleTitles[8]} <time dateTime="2026-08-12">12.08.2026</time> <span>→</span>
+        </a>
         <a className="text-link" href={`${routeFor(locale, "articles")}/${sectionItemSlugs.articles[7]}`}>
           {articleTitles[7]} <time dateTime="2026-08-10">10.08.2026</time> <span>→</span>
         </a>

@@ -228,6 +228,74 @@ const customsSources = {
   },
 };
 
+const restrictionSources = {
+  iata: {
+    label: "IATA battery and dangerous-goods guidance",
+    url: "https://www.iata.org/lithiumbatteries",
+    note: "IATA explains why battery configuration, energy rating, packaging, marking and operator variations can change whether a battery shipment is accepted by air.",
+    verifiedFacts: [
+      "Lithium batteries are regulated dangerous goods rather than ordinary accessories.",
+      "Acceptance can depend on whether a battery is shipped alone, packed with equipment or installed in equipment.",
+      "Airlines and states may impose requirements that are stricter than the general IATA framework.",
+    ],
+    buyerAction: "Identify the exact battery type, configuration and rating before asking whether a Pikobuy route can carry the product.",
+    mainUrl: "https://findspreadsheet.com/electronics/",
+    mainLabel: "Research current electronics listings",
+  },
+  eu: {
+    label: "European Commission prohibitions and restrictions",
+    url: "https://taxation-customs.ec.europa.eu/customs/prohibitions-restrictions_en",
+    note: "The Commission explains that EU border controls enforce health, safety, environmental, product-compliance and intellectual-property restrictions in addition to tax rules.",
+    verifiedFacts: [
+      "EU prohibitions and restrictions protect public security, health, animals, plants, the environment and intellectual property.",
+      "Product-safety and market-surveillance rules can be enforced before imported goods are released.",
+      "The Commission's integrated list is useful but expressly non-exhaustive, so product-specific and national rules still need checking.",
+    ],
+    buyerAction: "Check both EU-level controls and the destination member state's product-specific requirements before dispatch.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Review the intended product",
+  },
+  uk: {
+    label: "GOV.UK banned and restricted goods guidance",
+    url: "https://www.gov.uk/bringing-goods-into-uk-personal-use/banned-and-restricted-goods",
+    note: "GOV.UK distinguishes goods that cannot enter from goods that require a licence, permit or compliance with special conditions.",
+    verifiedFacts: [
+      "Banned goods can be seized by customs, while restricted goods may require a licence or permit.",
+      "Food, animal and plant products can have destination-specific restrictions.",
+      "Goods suspected of infringing intellectual-property rights may be seized and can lead to prosecution.",
+    ],
+    buyerAction: "Do not treat availability on a marketplace or a Pikobuy route as confirmation that the product may legally enter the UK.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Check the planned product",
+  },
+  us: {
+    label: "U.S. Customs and Border Protection shipment-hold guidance",
+    url: "https://www.help.cbp.gov/s/article/Article-1171",
+    note: "CBP identifies restricted or prohibited goods, suspected counterfeits, illegal goods and incorrect declarations as reasons a shipment may be held for further review.",
+    verifiedFacts: [
+      "Restricted or prohibited items can be held for investigation.",
+      "Suspected counterfeiting, illegal goods or incorrect declarations can trigger additional inspection.",
+      "A recipient may need to correct paperwork or provide information requested by CBP.",
+    ],
+    buyerAction: "Keep accurate product and payment evidence and check the responsible U.S. agency when the item is food, medicine, agriculture or another regulated category.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Review product records",
+  },
+  canada: {
+    label: "Canada Border Services Agency importing-by-mail guidance",
+    url: "https://www.cbsa-asfc.gc.ca/import/personal-personnel/postal-postale-eng.html",
+    note: "CBSA explains that international mail may be referred for secondary inspection or to another Canadian regulator when an item may be prohibited, high risk or incorrectly labelled.",
+    verifiedFacts: [
+      "Mail can be delayed when CBSA refers it for additional processing.",
+      "Health Canada or the Canadian Food Inspection Agency may review goods within their mandates.",
+      "CBSA can take enforcement action when prohibited goods are detected.",
+    ],
+    buyerAction: "Check the applicable Canadian regulator as well as CBSA before sending food, medicine, plants, animal products or other controlled goods.",
+    mainUrl: "https://findspreadsheet.com/AllProducts/",
+    mainLabel: "Check the planned parcel contents",
+  },
+};
+
 const researchStandard: EditorialSection = {
   heading: "How we separate fact from advice",
   paragraphs: [
@@ -1274,6 +1342,151 @@ export const articleEntries: Record<string, EditorialEntry> = {
       customsSources.uk,
       customsSources.us,
       customsSources.canada,
+    ],
+  },
+  "pikobuy-restricted-items-guide": {
+    dek: "Check Pikobuy restricted items before ordering: batteries, liquids, food, medicine, fragile goods and destination controls explained with current sources.",
+    reviewed: "Fact-checked Aug 14, 2026",
+    readingTime: "12 min read",
+    seoTitle: "Pikobuy Restricted Items Guide: Batteries & Liquids",
+    published: "2026-08-14",
+    modified: "2026-08-14",
+    relatedLinks: [
+      {
+        label: "Pikobuy Spreadsheet 2026",
+        url: "/pikobuy-spreadsheet/",
+        note: "Record the exact listing, material, model and seller before deciding whether a product is suitable for international forwarding.",
+      },
+      {
+        label: "Pikobuy QC Photo Guide",
+        url: "/articles/pikobuy-qc-photo-guide/",
+        note: "Use warehouse photos to confirm visible product details without treating appearance as proof of transport eligibility.",
+      },
+      {
+        label: "Pikobuy Shipping Cost Guide",
+        url: "/articles/pikobuy-shipping-cost/",
+        note: "Compare only routes that actually accept the item; a cheap quote is irrelevant when the product cannot use that route.",
+      },
+      {
+        label: "Pikobuy Customs and Taxes Guide",
+        url: "/articles/pikobuy-customs-taxes-guide/",
+        note: "After checking item eligibility, estimate the separate destination tax, declaration and customs-document risks.",
+      },
+      {
+        label: "Pikobuy Return Policy Guide",
+        url: "/articles/pikobuy-return-policy-guide/",
+        note: "If an item cannot use a lawful route, act while an eligible domestic return may still be available.",
+      },
+    ],
+    keyFacts: [
+      "Pikobuy requires users to understand internationally prohibited items and says sensitive goods such as batteries, glue and some liquids may be removed.",
+      "A restricted item is not automatically prohibited, but acceptance depends on the exact product, packaging, route, carrier and destination law.",
+      "Parcel insurance does not make a prohibited item eligible and can exclude losses connected to prohibited contents or specified causes.",
+      "Marketplace availability and a warehouse check-in do not prove that an item may legally or safely cross the destination border.",
+    ],
+    sections: [
+      {
+        heading: "The short answer: check the item before you check the price",
+        paragraphs: [
+          "Pikobuy restricted items are not covered by one permanent list of products that always ship or never ship. Eligibility can change with the item specification, packaging, carrier, route, destination and rules in force on the dispatch date. Pikobuy's current User Agreement tells users to understand internationally prohibited items. It also identifies batteries, glue, liquids, powders, food, medicine and other sensitive goods as categories that can create transport or customs risk.",
+          "The useful question is therefore not simply, “Can Pikobuy ship this?” Ask four narrower questions: is possession or export prohibited; is the product regulated as dangerous goods; does the selected route accept its exact configuration; and may it enter the destination country? A listing can pass one test and fail another. This guide provides a pre-order and pre-dispatch workflow based on Pikobuy's public terms and current EU, UK, US, Canadian and air-transport guidance checked on August 14, 2026.",
+        ],
+      },
+      {
+        heading: "Separate prohibited, restricted, sensitive and fragile goods",
+        paragraphs: [
+          "These labels describe different problems. Prohibited goods cannot lawfully use the service or enter the relevant transport or destination system. Pikobuy's agreement includes explosives, flammable, corrosive, radioactive, toxic and other dangerous items in its prohibited mailing examples. It also lists firearms, ammunition, narcotics, live animals, currency and goods barred by destination authorities. Do not order an item merely to see whether the warehouse accepts it; warehouse receipt is not legal approval.",
+          "Restricted goods may be carried only under specific conditions, licences, documentation, packaging or route rules. Sensitive is an operational label: an item such as a battery, liquid, powder or glue may need a specialist route, may be removed, or may have no available route for a destination. Fragile goods such as ceramics or glass can be legal but more exposed to breakage and compensation exclusions.",
+        ],
+        bullets: [
+          "Prohibited: do not purchase for international forwarding",
+          "Restricted: verify conditions, documents, carrier and destination",
+          "Sensitive: confirm the exact live route before paying",
+          "Fragile or specialist: understand inspection and compensation limits",
+        ],
+      },
+      {
+        heading: "Batteries and electronics need exact specifications",
+        paragraphs: [
+          "A battery inside a watch is not the same transport case as a loose power bank, replacement phone battery or battery-powered vehicle. Pikobuy's agreement identifies batteries as sensitive and warns that some sensitive components may be removed to support delivery. IATA classifies lithium batteries as dangerous goods and explains that acceptance can depend on chemistry, energy rating and whether cells are installed in equipment, packed with equipment or shipped alone.",
+          "Before ordering electronics, save the model, battery chemistry, watt-hour rating, number of cells and whether the battery is removable. Do not rely on a photograph or seller nickname such as “small battery.” Ask Pikobuy support whether the exact configuration has an available route to the destination, then confirm again on the real parcel page. Never conceal a battery or describe an electronic device as battery-free when it is not; inaccurate information can create a safety risk, rejected handoff, return or claim problem.",
+        ],
+      },
+      {
+        heading: "Liquids, powders, glue and cosmetics are route-dependent",
+        paragraphs: [
+          "Pikobuy specifically names essential oils, care solutions, lubricants and glue as sensitive items that may be removed. Its customs-risk clause also mentions products containing large amounts of liquid or powder. Perfume, nail products, aerosols, skincare, paint, cleaning products and adhesives can involve flammability, pressure, leakage, chemical-composition or labelling questions even when the retail product seems ordinary.",
+          "Record the product name, net volume, ingredient or safety information available from the seller, container type and number of units. Ask whether the route requires original retail packaging, leak protection or a product document. Do not remove a meaningful hazard label or give the warehouse an invented description. If no route is shown after check-in, compare a lawful specialist route or return the item while eligible. Splitting a parcel can separate incompatible lawful goods, but it cannot turn a prohibited substance into an acceptable shipment.",
+        ],
+      },
+      {
+        heading: "Food, medicine, plants and animal products face two rulebooks",
+        paragraphs: [
+          "These goods must pass both transport rules and destination controls. Pikobuy warns that food and medicine can carry customs risk, but that statement is only the platform boundary. The European Commission explains that sanitary, plant-health, medicine and product-compliance controls operate at the EU border. GOV.UK lists controlled drugs among banned goods and treats some food, animal, plant and protected-species products as restricted. Requirements may involve authorisation, certificates, quantity limits or an outright ban for the particular origin and product.",
+          "The United States can involve CBP together with agencies such as FDA or USDA, depending on the goods. CBP says restricted, prohibited, suspected counterfeit or incorrectly declared shipments may be held. Canada similarly explains that CBSA can refer mail to Health Canada or the Canadian Food Inspection Agency for additional review and can take enforcement action when prohibited goods are detected.",
+        ],
+      },
+      {
+        heading: "Replicas and intellectual-property risk are not a shipping feature",
+        paragraphs: [
+          "Pikobuy's agreement says replicas are subject to customs policy and may carry delivery risk; it does not guarantee clearance or legality. EU border controls include enforcement of intellectual-property rights. GOV.UK warns that suspected infringing goods may be seized and prosecution is possible, while US CBP identifies suspected counterfeiting as a reason a shipment can be held.",
+          "Do not ask the warehouse to hide branding, falsify the description or misstate value to reduce attention. Those actions create a second problem—an inaccurate declaration—without removing the underlying product risk. If authenticity, trademark status or import legality is uncertain, choose a clearly lawful product or obtain destination-specific professional advice before purchase. Pikobuyy is an independent research directory and cannot certify that a branded marketplace listing is authentic or lawful to import.",
+        ],
+      },
+      {
+        heading: "Fragile, custom and sealed collectibles need a different decision",
+        paragraphs: [
+          "Ceramics, glass and irregularly shaped parts may be permitted yet remain vulnerable across seller delivery, warehouse handling and international transport. Pikobuy says fragile items can be damaged during repeated transportation and that loss may remain with the user when the logistics provider classifies the item as fragile. Reinforced or minimal packaging can change parcel dimensions and risk, but no packaging choice eliminates breakage. Review the measured parcel and the protection terms before paying freight.",
+          "Custom-made goods, sealed figures, cards, discs and specialist electronics also have inspection limits. Pikobuy says professional inspection may not be possible for certain products and sealed packaging may not be opened. Warehouse photos can confirm visible condition, model markings and accessories that can be seen; they cannot prove internal operation, authenticity or completeness behind a seal. Decide whether that evidence is sufficient before the domestic return window closes, not after international dispatch.",
+        ],
+      },
+      {
+        heading: "Insurance does not override eligibility or destination law",
+        paragraphs: [
+          "Pikobuy's User Agreement says a buyer who purchased parcel insurance may receive compensation from the insurer based on the insured amount when a parcel is lost. It also says prohibited contents and specified causes can leave the user responsible, and claims against third-party logistics providers follow that provider's standards. This means insurance is a contract with conditions—not permission to send any item and not a universal promise to repay product price, freight and consequential loss.",
+          "Read the actual insurance terms shown for the selected parcel. Check eligible item categories, declared or insured value, exclusions, evidence requirements, claim window and whether damage, loss, delay and customs action are treated differently. Save the product order, warehouse photos, parcel contents, packing request, measured weight, route, payment and tracking. If the platform does not show the full terms clearly enough for the risk you are taking, ask support before payment or choose not to dispatch that item.",
+        ],
+      },
+      {
+        heading: "A practical Pikobuy restricted-items workflow",
+        paragraphs: [
+          "Start before checkout. Identify the exact product rather than the broad category, then check whether it contains a battery, liquid, powder, pressurised container, magnet, chemical, food, medicine, plant or animal material. Look for a material, ingredient, volume, battery or model specification on the current seller page. Next, check the Pikobuy agreement and ask support about current route eligibility for the destination. A support answer should identify the product and country; a generic “should be fine” is weak evidence.",
+          "Repeat the check after the warehouse records the real item and before consolidation. Confirm that the parcel page offers a suitable route and that the route conditions match what support described. Then check the destination authority rather than transferring an EU answer to the UK, US or Canada. Use accurate descriptions and values. If the answer is uncertain, leave the item out of the parcel while you verify it. The cheapest risk control is often deciding before international freight is paid.",
+        ],
+        bullets: [
+          "Save the exact listing, specification, quantity and value",
+          "Identify battery, liquid, powder, food, medicine and fragile features",
+          "Ask about the exact product, route and destination",
+          "Check the destination regulator and any licence or permit requirement",
+          "Confirm the live parcel route after warehouse measurement",
+          "Keep declarations accurate and retain the evidence privately",
+        ],
+      },
+      {
+        heading: "What to do when no suitable route appears",
+        paragraphs: [
+          "Do not force the item into a route intended for ordinary goods or submit a false description. First verify that the missing route is caused by the item rather than parcel dimensions, destination or a temporary route change. Send one focused support ticket with the order number, product specification, warehouse status and destination. Ask whether a compliant route exists and what packaging or documentation it requires. Keep the written response with the parcel record.",
+          "If there is no compliant route, review domestic return eligibility immediately. Pikobuy's return page uses a 120-hour request window counted from the next hour after the order becomes Warehoused, while seller eligibility and resale condition still apply. A return may include domestic shipping and service costs, but that can be less damaging than paying for indefinite storage or an unlawful shipment. If the item was self-forwarded, Pikobuy says after-sales service remains with the sender or seller and Pikobuy can only assist with forwarding it back.",
+        ],
+      },
+      {
+        heading: "Conclusion: route eligibility is product-specific",
+        paragraphs: [
+          "Pikobuy restricted items require a chain of checks, not a memorised blacklist. Prohibited goods should not enter the forwarding workflow. Batteries, liquids, powders and other sensitive goods need exact specifications and a compatible current route. Food, medicine, plants, animal products and suspected counterfeits can trigger separate destination controls. Fragile or specialist goods may be legal but remain difficult to inspect, protect or claim for.",
+          "This guide was fact-checked on August 14, 2026 against Pikobuy's User Agreement, Shipping Policy, Returns & Exchanges page and current IATA, European Commission, GOV.UK, CBP and CBSA guidance. Routes, carrier rules and laws can change. Recheck the real item and destination immediately before purchase and dispatch. Accurate product information and a lawful route are more useful than any unsupported promise that a category “always ships.”",
+        ],
+      },
+    ],
+    sources: [
+      officialSources.userAgreement,
+      officialSources.shipping,
+      officialSources.returns,
+      officialSources.contact,
+      restrictionSources.iata,
+      restrictionSources.eu,
+      restrictionSources.uk,
+      restrictionSources.us,
+      restrictionSources.canada,
     ],
   },
 };

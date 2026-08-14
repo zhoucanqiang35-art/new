@@ -306,6 +306,48 @@ test("customs comparison visual and related cards remain mobile-safe", async () 
   assert.ok(customsSvg.includes('viewBox="0 0 1200 630"'));
   assert.ok(customsSvg.includes("Pikobuy customs and taxes planning map for 2026"));
 });
+
+test("restricted-items article is source-bounded, indexable and internally linked", async () => {
+  const route = "articles/pikobuy-restricted-items-guide";
+  const html = await htmlFor(route);
+  const sitemap = await readFile(path.join(out, "sitemap.xml"), "utf8");
+  assert.ok(sitemap.includes("https://pikobuyy.com/articles/pikobuy-restricted-items-guide/"));
+  assert.equal(canonicalFrom(html), "https://pikobuyy.com/articles/pikobuy-restricted-items-guide/");
+  assert.ok(html.includes("Pikobuy Restricted Items Guide: Batteries &amp; Liquids") || html.includes("Pikobuy Restricted Items Guide: Batteries & Liquids"));
+  assert.ok(html.includes('"@type":"Article"'));
+  assert.ok(html.includes('"@type":"BreadcrumbList"'));
+  assert.ok(!html.includes('"@type":"FAQPage"'));
+  assert.ok(html.includes("Fact-checked Aug 14, 2026"));
+  assert.ok(html.includes("Lithium batteries are regulated dangerous goods"));
+  assert.ok(html.includes("batteries, glue, liquids, powders, food, medicine and other sensitive goods"));
+  assert.ok(html.includes("Insurance does not override eligibility"));
+  assert.ok(html.includes('href="/pikobuy-spreadsheet/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-qc-photo-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-shipping-cost/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-customs-taxes-guide/"'));
+  assert.ok(html.includes('href="/articles/pikobuy-return-policy-guide/"'));
+  const home = await readFile(path.join(out, "index.html"), "utf8");
+  const archive = await htmlFor("articles");
+  assert.ok(home.includes('href="/articles/pikobuy-restricted-items-guide"'));
+  assert.ok(home.includes('dateTime="2026-08-14"'));
+  assert.ok(home.includes('href="/articles/pikobuy-customs-taxes-guide"'));
+  assert.ok(archive.includes("Pikobuy Restricted Items Guide"));
+});
+
+test("restricted-items article body stays within the requested editorial length", async () => {
+  const html = await htmlFor("articles/pikobuy-restricted-items-guide");
+  const sections = [...html.matchAll(/<section class="article-section"[\s\S]*?<\/section>/g)].map((match) => match[0]).join(" ");
+  const words = sections.replace(/<[^>]+>/g, " ").replace(/&(?:amp|quot|#x27|#39);/g, " ").split(/\s+/).filter(Boolean);
+  assert.ok(words.length >= 1200, `article body should contain at least 1,200 words, found ${words.length}`);
+  assert.ok(words.length <= 1800, `article body should contain at most 1,800 words, found ${words.length}`);
+});
+
+test("restricted-items article remains mobile-safe", async () => {
+  const css = await readFile(path.resolve("app/globals.css"), "utf8");
+  assert.match(css, /html\s*\{[^}]*max-width:\s*100%[^}]*overflow-x:\s*clip/s);
+  assert.match(css, /body\s*\{[^}]*max-width:\s*100%[^}]*overflow-x:\s*clip/s);
+  assert.match(css, /@media \(max-width: 580px\)[\s\S]*\.article-related > div\s*\{\s*grid-template-columns:\s*1fr;/);
+});
 test("representative multilingual and product routes use self canonicals", async () => {
   const checks = [
     ["guides", "https://pikobuyy.com/guides/"],
