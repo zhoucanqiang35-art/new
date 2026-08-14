@@ -28,8 +28,8 @@ export default function UpdatesPage() {
       <p>Published the category directory, product-link ordering guide, warehouse workflow, parcel-submission guide, QC checklist, concise weight guide, FAQ, method and three long-form English research articles. Every page was written as an independent answer rather than a placeholder card.</p>
 
       <h2>Current review status</h2>
-      <ul><li>The public inspection URL remains intentionally excluded from search indexing.</li><li>The formal canonical domain, XML sitemap and 24-language URL map are not activated in this review copy.</li><li>Those technical launch controls will be enabled only after the final domain and complete translated routes are ready.</li><li>Future entries will record new evidence, link changes, material corrections and genuinely new articles—not routine date changes.</li></ul>
-      <div className="article-note">The noindex setting is intentional for this inspection deployment. It must be removed, together with the all-site robots block, only when the formal domain has canonical, sitemap and hreflang coverage ready.</div>
+      <ul><li>The production site permits search-engine crawling and uses index/follow directives.</li><li>The formal domain is listed in the XML sitemap and robots discovery record.</li><li>The current English route set is included in the sitemap; separately reviewed language editions will be added only when their dedicated URLs and corresponding hreflang coverage are ready.</li><li>Future entries will record new evidence, link changes, material corrections and genuinely new articles—not routine date changes.</li></ul>
+      <div className="article-note">Search launch controls are active for the formal domain. New routes must be added to the XML sitemap when they are published.</div>
     </ArticleShell>
   );
 }

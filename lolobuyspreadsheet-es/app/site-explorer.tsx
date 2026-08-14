@@ -191,7 +191,7 @@ export default function SiteExplorer() {
           <details><summary>Does “QC photo available” guarantee product quality?</summary><p>No. A photo can help you inspect visible details, but lighting, angle, compression and hidden construction limit what it can prove. Use a category-specific checklist and request clarification where available.</p></details>
           <details><summary>Where do the category links go?</summary><p>Each category opens its matching FindSpreadsheet category page, where you can compare current product rows and open individual details.</p></details>
           <details><summary>Will all 24 languages use separate URLs?</summary><p>Yes. The production structure is planned around dedicated language routes, self-referencing canonical tags and corresponding hreflang links. Full translation follows the selected design so discarded concepts are not translated unnecessarily.</p></details>
-          <details><summary>Why is this public review marked noindex?</summary><p>The review URL is for visual and structural approval. It is intentionally excluded from search indexing so it does not compete with the future canonical domain.</p></details>
+          <details><summary>Can search engines index this site?</summary><p>Yes. The formal production domain permits crawling, uses index/follow directives and publishes an XML sitemap covering every current English content route.</p></details>
         </div>
       </section>
 

@@ -8,13 +8,20 @@ const newsreader = Newsreader({ variable: "--font-newsreader", subsets: ["latin"
 const spaceGrotesk = Space_Grotesk({ variable: "--font-space", subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://lolobuyspreadsheet.es"),
   title: "LoloBuy Spreadsheet Research Hub",
   description:
     "An independent research-led guide to LoloBuy spreadsheet discovery, QC checks, shipping weight and source verification.",
-  robots: { index: false, follow: false },
-  other: {
-    "codex-preview": "development",
-    "googlebot": "noindex, nofollow",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
