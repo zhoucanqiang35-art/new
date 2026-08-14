@@ -30,6 +30,18 @@ The command fails instead of re-dating old data when it cannot retrieve eight va
 
 Other languages remain available for layout review but are excluded from the sitemap and hreflang set until each locale passes human translation QA. Add a locale to both `INDEXABLE_LOCALES` and `QA_APPROVED_LOCALES` only after that review is documented.
 
+## Cloudflare Pages
+
+The repository keeps the original Sites build (`npm run build`) and adds a separate Cloudflare Pages Advanced Mode build:
+
+- Root directory: `pikobuyspreadsheet-cc`
+- Production branch: `main`
+- Build command: `npm run build:pages`
+- Build output directory: `dist/pages`
+- Node.js: `22.13.0` or newer
+
+`npm run build:pages` packages the existing Vinext server as `dist/pages/_worker.js`, copies every client and public asset, validates the Worker export, and enables indexing only for the English locale that has passed the existing QA gate. The other 23 locale routes remain available without being added to sitemap or hreflang until their review is approved.
+
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
 Drizzle support.
