@@ -57,7 +57,7 @@ for page in "${required_pages[@]}"; do
   fi
 done
 
-expected_file_count=292
+expected_file_count=301
 for output_dir in "dist/client" "dist/pages"; do
   actual_file_count="$(find "${SITES_PROJECT_ROOT}/${output_dir}" -type f | wc -l)"
   if [[ "${actual_file_count}" -ne "${expected_file_count}" ]]; then

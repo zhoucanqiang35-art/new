@@ -161,7 +161,7 @@ export default function SiteExplorer() {
       <section className="seo-spotlight" aria-labelledby="seo-spotlight-title">
         <div className="seo-spotlight-inner">
           <div><span className="eyebrow">04 / Long-form research</span><h2 id="seo-spotlight-title">SEO articles written to answer the full question.</h2></div>
-          <div><p>The article library uses dated sources, category-specific examples and explicit evidence limits. The first complete 1,200–1,800 word guide explains how to use a LoloBuy spreadsheet without treating a row as a guarantee.</p><a className="primary-cta" href="/seo-articles/">Open SEO Articles →</a></div>
+          <div><p>The article library uses dated sources, category-specific examples and explicit evidence limits. Four complete 1,200–1,800 word guides now cover spreadsheet use, link integrity, QC photography and size-chart decisions.</p><a className="primary-cta" href="/seo-articles/">Open SEO Articles →</a></div>
         </div>
       </section>
 

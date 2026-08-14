@@ -6,7 +6,7 @@ const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "
 const outputRoot = path.join(projectRoot, "out");
 const sitemapPath = path.join(outputRoot, "sitemap.xml");
 const productionOrigin = "https://lolobuyspreadsheet.es";
-const expectedPageCount = 27;
+const expectedPageCount = 28;
 
 const sitemap = await readFile(sitemapPath, "utf8");
 const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);

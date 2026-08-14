@@ -5,7 +5,7 @@ export default function ArticleShell({ eyebrow, title, lead, children, ctaTitle 
   const ctaIsExternal = ctaHref.startsWith("http");
   return (
     <main className="article-page" data-design="archive">
-      <div className="review-bar"><span className="review-dot" /><strong>C DIRECTION SELECTED</strong><span>Public inspection copy · Search indexing is disabled</span></div>
+      <div className="review-bar"><span className="review-dot" /><strong>PRODUCTION RESEARCH HUB</strong><span>Public edition · Search index/follow enabled</span></div>
       <header className="article-top">
         <a className="brand" href="/" aria-label="LoloBuy Spreadsheet home"><span className="brand-mark brand-logo"><img src="/lolobuy.webp" alt="LoloBuy Spreadsheet cat bag logo" width="52" height="52" /></span><span className="brand-text">LoloBuy Spreadsheet</span></a>
         <nav className="article-nav" aria-label="Primary navigation">

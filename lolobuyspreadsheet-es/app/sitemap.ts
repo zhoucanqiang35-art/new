@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export const dynamic = "force-static";
 
 const baseUrl = "https://lolobuyspreadsheet.es";
-const lastMaterialUpdate = "2026-08-13";
+const lastMaterialUpdate = "2026-08-14";
 
 const routes = [
   { path: "/", changeFrequency: "weekly", priority: 1 },
@@ -23,6 +23,7 @@ const routes = [
   { path: "/seo-articles/", changeFrequency: "weekly", priority: 0.9 },
   { path: "/seo-articles/how-to-check-lolobuy-product-links/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/seo-articles/lolobuy-qc-photo-guide/", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/seo-articles/lolobuy-size-chart-guide/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/seo-articles/what-is-a-lolobuy-spreadsheet/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/faq/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/sources/", changeFrequency: "monthly", priority: 0.8 },
