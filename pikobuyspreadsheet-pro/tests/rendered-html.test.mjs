@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+const robotsIndexMeta =
+  /<meta(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["'][^"']*\bindex\b[^"']*\bfollow\b[^"']*["'])[^>]*>/i;
+const canonicalLink =
+  /<link(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/pikobuyspreadsheet\.pro\/["'])[^>]*>/i;
 
-test("renders development preview metadata", async () => {
+test("renders production SEO metadata", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -29,5 +32,27 @@ test("renders development preview metadata", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), developmentPreviewMeta);
+  const html = await response.text();
+  assert.match(html, robotsIndexMeta);
+  assert.match(html, canonicalLink);
+  assert.doesNotMatch(html, /\bnoindex\b|\bnofollow\b/i);
+});
+
+test("publishes crawlable robots and the production sitemap", async () => {
+  const [robots, sitemap] = await Promise.all([
+    readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
+    readFile(new URL("../public/sitemap.xml", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(robots, /^User-agent: \*\nAllow: \/\n/m);
+  assert.match(
+    robots,
+    /Sitemap: https:\/\/pikobuyspreadsheet\.pro\/sitemap\.xml/,
+  );
+  assert.doesNotMatch(robots, /^Disallow: \/$/m);
+
+  const locations = sitemap.match(/<loc>/g) ?? [];
+  assert.equal(locations.length, 792);
+  assert.doesNotMatch(sitemap, /chatgpt\.site/i);
+  assert.doesNotMatch(sitemap, /<loc>https:\/\/(?!pikobuyspreadsheet\.pro(?:\/|<))/i);
 });

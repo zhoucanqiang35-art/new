@@ -14,8 +14,7 @@ export const metadata: Metadata = {
   title: "PikoBuy Spreadsheet Pro",
   description:
     "Independent PikoBuy product-link research, QC guides, shipping context and source-backed buyer information.",
-  robots: { index: false, follow: false },
-  other: { "codex-preview": "development" },
+  robots: { index: true, follow: true },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   alternates: { canonical: absoluteSiteUrl("/") },
   openGraph: {

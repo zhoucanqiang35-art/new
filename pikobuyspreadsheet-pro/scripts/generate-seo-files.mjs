@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const siteUrl = "https://pikobuyspreadsheet-pro.canqiangzhou32.chatgpt.site";
+const siteUrl = "https://pikobuyspreadsheet.pro";
 const locales = ["en","es","de","fr","it","pt","nl","pl","cs","sv","da","nb","fi","el","ro","hu","tr","ar","ru","uk","ja","hi","id","vi"];
 const paths = [
   "/", "/about", "/articles", "/categories", "/editorial-policy", "/faq", "/guides", "/method", "/official-sources", "/privacy",
@@ -21,5 +21,5 @@ const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.s
 const publicDir = path.join(process.cwd(),"public");
 fs.mkdirSync(publicDir,{recursive:true});
 fs.writeFileSync(path.join(publicDir,"sitemap.xml"),xml);
-fs.writeFileSync(path.join(publicDir,"robots.txt"),`User-agent: *\nDisallow: /\nSitemap: ${siteUrl}/sitemap.xml\n`);
+fs.writeFileSync(path.join(publicDir,"robots.txt"),`User-agent: *\nAllow: /\nSitemap: ${siteUrl}/sitemap.xml\n`);
 console.log(`Generated robots.txt and sitemap.xml with ${urls.length} localized URLs.`);
