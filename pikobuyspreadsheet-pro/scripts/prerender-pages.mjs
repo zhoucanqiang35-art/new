@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -85,5 +85,14 @@ await Promise.all(
     }
   }),
 );
+
+// Vinext emits a Wrangler deployment redirect for the Worker artifact. Cloudflare
+// Pages follows that redirect after the build and then rejects the Worker-only
+// `main`, `assets`, and `rules` fields. The static Pages output is already
+// complete, so remove only the redirect and keep the Worker artifact intact for
+// the original Sites runtime.
+await rm(join(projectRoot, ".wrangler", "deploy", "config.json"), {
+  force: true,
+});
 
 console.log(`Cloudflare Pages output is ready in ${outputRoot}.`);
