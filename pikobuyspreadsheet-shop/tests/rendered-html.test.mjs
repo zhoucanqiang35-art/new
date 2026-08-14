@@ -58,7 +58,7 @@ test("homepage and long-form pages expose the intended schema and H1", async () 
   assert.match(home, /organization-logo\.png/);
   assert.match(home, /"width":512/);
   assert.match(home, /href="\/categories"[^>]*>View all 10 category guides</);
-  assert.match(home, /href="\/seo-articles\/pikobuy-warehouse-consolidation-guide"/);
+  assert.match(home, /href="\/seo-articles\/pikobuy-tracking-status-guide"/);
   assert.match(home, /href="\/updates"[^>]*>View all updates/);
 
   for (const article of pageRegistry.filter((page) => page.kind === "article")) {
@@ -77,33 +77,33 @@ test("homepage and long-form pages expose the intended schema and H1", async () 
   assert.equal((faq.match(/"@type":"Question"/g) ?? []).length, 10);
 });
 
-test("new warehouse article owns one distinct intent and exposes complete publication signals", async () => {
+test("article registry owns distinct intents and latest article exposes complete publication signals", async () => {
   const worker = await loadApplication();
-  const pathname = "/seo-articles/pikobuy-warehouse-consolidation-guide";
+  const pathname = "/seo-articles/pikobuy-tracking-status-guide";
   const article = pageRegistry.find((page) => page.path === pathname);
   assert.ok(article);
-  assert.equal(article.primaryKeyword, "PikoBuy warehouse consolidation");
-  assert.equal(article.wordCount, 1599);
+  assert.equal(article.primaryKeyword, "PikoBuy tracking status");
+  assert.equal(article.wordCount, 1693);
   const articles = pageRegistry.filter((page) => page.kind === "article");
-  assert.equal(new Set(articles.map((page) => page.path)).size, 4);
-  assert.equal(new Set(articles.map((page) => page.headline.toLowerCase())).size, 4);
-  assert.equal(new Set(articles.map((page) => page.primaryKeyword.toLowerCase())).size, 4);
-  assert.equal(new Set(articles.map((page) => page.searchIntent.toLowerCase())).size, 4);
+  assert.equal(new Set(articles.map((page) => page.path)).size, 5);
+  assert.equal(new Set(articles.map((page) => page.headline.toLowerCase())).size, 5);
+  assert.equal(new Set(articles.map((page) => page.primaryKeyword.toLowerCase())).size, 5);
+  assert.equal(new Set(articles.map((page) => page.searchIntent.toLowerCase())).size, 5);
 
   const html = (await render(worker, pathname)).html;
-  assert.match(html, /PikoBuy Warehouse Consolidation &amp; Packing Guide 2026/);
-  assert.match(html, /rel="canonical" href="https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-warehouse-consolidation-guide"/);
+  assert.match(html, /PikoBuy Tracking Status and Delivery Exception Guide/);
+  assert.match(html, /rel="canonical" href="https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-tracking-status-guide"/);
   assert.match(html, /property="og:type" content="article"/);
-  assert.match(html, /"datePublished":"2026-08-11"/);
-  assert.match(html, /"dateModified":"2026-08-11"/);
-  assert.match(html, /All checked 11 August 2026/);
+  assert.match(html, /"datePublished":"2026-08-13"/);
+  assert.match(html, /"dateModified":"2026-08-13"/);
+  assert.match(html, /All checked 13 August 2026/);
   assert.match(html, /href="\/seo-articles\/pikobuy-shipping-cost-fees-2026"/);
   assert.match(html, /Article archive/);
   assert.doesNotMatch(html, /noindex|ChatGPT|prompt|token|\/workspace\//i);
 
   const updates = (await render(worker, "/updates")).html;
-  assert.match(updates, /PikoBuy Warehouse Consolidation/);
-  assert.match(updates, /11 August 2026/);
+  assert.match(updates, /PikoBuy Tracking Statuses/);
+  assert.match(updates, /13 August 2026/);
 });
 
 test("archived design previews are excluded from indexing", async () => {

@@ -85,8 +85,9 @@ test("generates a canonical sitemap for every public route", async () => {
   assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/faq<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/categories\/other-stuff<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/editorial-policy<\/loc>/);
-  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/updates<\/loc><lastmod>2026-08-11<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/updates<\/loc><lastmod>2026-08-13<\/lastmod>/);
   assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-warehouse-consolidation-guide<\/loc><lastmod>2026-08-11<\/lastmod>/);
+  assert.match(sitemap, /<loc>https:\/\/pikobuyspreadsheet\.shop\/seo-articles\/pikobuy-tracking-status-guide<\/loc><lastmod>2026-08-13<\/lastmod>/);
   assert.doesNotMatch(sitemap, /pages\.dev|\/preview\//);
   for (const page of pageRegistry) {
     const entry = `<loc>https://pikobuyspreadsheet.shop${page.path === "/" ? "/" : page.path}</loc><lastmod>${page.lastModified}</lastmod>`;

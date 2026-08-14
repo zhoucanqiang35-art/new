@@ -234,10 +234,10 @@ export default function PreviewPage({ variant, standalone = false, language = "e
         </section>
 
         <section className="latest-update-section" aria-labelledby="latest-update-title">
-          <div><span>04 / LATEST UPDATE</span><small>Published · 11 August 2026</small></div>
-          <h2 id="latest-update-title">PikoBuy warehouse consolidation, without the one-box shortcut.</h2>
-          <p>The new source-checked guide shows how to finish QC, protect eligible returns, compare consolidated and split parcel plans, choose packing by failure risk and use credible packed inputs.</p>
-          <footer><a href={`/seo-articles/pikobuy-warehouse-consolidation-guide${language === "en" ? "" : `?lang=${language}`}`}>Read the new guide ↗</a><a href={`/updates${language === "en" ? "" : `?lang=${language}`}`}>View all updates ↗</a></footer>
+          <div><span>04 / LATEST UPDATE</span><small>Published · 13 August 2026</small></div>
+          <h2 id="latest-update-title">Read PikoBuy tracking events as evidence, not promises.</h2>
+          <p>The new source-checked guide separates first tracking data from delivery time, follows carrier handoffs and turns customs, address, damage or stalled-scan exceptions into a support-ready record.</p>
+          <footer><a href={`/seo-articles/pikobuy-tracking-status-guide${language === "en" ? "" : `?lang=${language}`}`}>Read the new guide ↗</a><a href={`/updates${language === "en" ? "" : `?lang=${language}`}`}>View all updates ↗</a></footer>
         </section>
 
         <section className="source-section" id="sources">
