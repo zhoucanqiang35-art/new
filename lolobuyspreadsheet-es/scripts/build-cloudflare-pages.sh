@@ -23,6 +23,8 @@ done
 echo "Building static Cloudflare Pages output..."
 CLOUDFLARE_PAGES_EXPORT=1 "${next_bin}" build
 
+node "${script_dir}/apply-self-canonicals.mjs"
+
 # Next emits both /404.html and /404/index.html when trailingSlash is enabled.
 # Cloudflare Pages uses the root 404.html fallback, so keep that canonical copy.
 rm -f "${SITES_PROJECT_ROOT}/out/404/index.html"
