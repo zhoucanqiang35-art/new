@@ -56,3 +56,37 @@ test("publishes crawlable robots and the production sitemap", async () => {
   assert.doesNotMatch(sitemap, /chatgpt\.site/i);
   assert.doesNotMatch(sitemap, /<loc>https:\/\/(?!pikobuyspreadsheet\.pro(?:\/|<))/i);
 });
+
+test("prerenders Cloudflare Pages HTML for the complete route set", async () => {
+  const sitemap = await readFile(
+    new URL("../public/sitemap.xml", import.meta.url),
+    "utf8",
+  );
+  const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+    (match) => new URL(match[1]),
+  );
+
+  assert.equal(locations.length, 792);
+
+  const samples = [
+    "/",
+    "/categories",
+    "/guides/shipping",
+    "/articles/how-to-use-a-pikobuy-spreadsheet",
+    "/es/guides/shipping",
+  ];
+
+  for (const pathname of samples) {
+    const segments = pathname.split("/").filter(Boolean);
+    const html = await readFile(
+      new URL(
+        `../dist/client/${segments.length ? `${segments.join("/")}/` : ""}index.html`,
+        import.meta.url,
+      ),
+      "utf8",
+    );
+
+    assert.match(html, /<!DOCTYPE html>/i);
+    assert.doesNotMatch(html, /\bnoindex\b|\bnofollow\b/i);
+  }
+});

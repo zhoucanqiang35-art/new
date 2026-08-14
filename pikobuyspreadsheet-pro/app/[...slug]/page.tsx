@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import type { ComponentProps } from "react";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { getSeoArticle, seoArticles, type SeoArticle } from "../seo-articles";
 import { getGuideArticle, guideArticles } from "../guide-articles";
 import { categoryArticles, getCategoryArticle } from "../category-articles";
@@ -16,6 +16,11 @@ import {
 } from "../i18n-config";
 import { LanguageSwitcher } from "../language-switcher";
 import { absoluteSiteUrl } from "../site-config";
+
+function Link(props: ComponentProps<"a">) {
+  return <a {...props} />;
+}
+
 export const dynamic = "force-dynamic";
 type Page = {
   label: string;

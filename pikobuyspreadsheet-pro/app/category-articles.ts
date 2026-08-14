@@ -84,7 +84,7 @@ export const categoryArticles: SeoArticle[] = [
     sources: [sourceGuide, sourceReturns, sourceUser, sourceTerms, sourceEstimate],
   },
   {
-    slug: "tshirts",
+    slug: "t-shirts",
     label: "T-SHIRTS RESEARCH GUIDE",
     title: "PikoBuy T-Shirts: Fabric, Print, Measurement and QC Research That Actually Helps",
     dek: "A practical long-form guide to separating listing claims from measurable evidence when researching T-shirts and deciding whether a warehouse arrival is worth shipping.",

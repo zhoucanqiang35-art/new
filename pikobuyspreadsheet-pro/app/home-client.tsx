@@ -1,10 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import type { ComponentProps } from "react";
 import { seoArticles } from "./seo-articles";
 import { categoryArticles } from "./category-articles";
 import { LanguageSwitcher } from "./language-switcher";
 import { localizedPath, translateText, type Locale, type TranslationDictionary } from "./i18n-config";
+
+function Link(props: ComponentProps<"a">) {
+  return <a {...props} />;
+}
 
 const categories = [
   { name:"Shoes", note:"Outsole, insole and size-tag checks", number:"01", url:"https://findspreadsheet.com/shoes/", sourceTitle:"NIKE Phantom GX Elite AG-PRO", image:"https://findspreadsheet.com/uploads/allimg/20260126/1-26012614320C94.webp" },
