@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /
+Sitemap: https://pikobuyspreadsheet-pro.canqiangzhou32.chatgpt.site/sitemap.xml
