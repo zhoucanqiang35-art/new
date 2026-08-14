@@ -1,0 +1,100 @@
+{
+  "checkedAt": "2026-08-13",
+  "sourceUrl": "https://findspreadsheet.com/",
+  "exchangeRate": {
+    "cnyPerUsd": 6.7499,
+    "date": "2026-08-13",
+    "kind": "configured reference rate"
+  },
+  "method": "Automated snapshot of the first eight cards in the FindSpreadsheet Latest Products section; links and prices remain subject to the live source.",
+  "products": [
+    {
+      "name": "Gallery Short",
+      "category": "Pants / Shorts",
+      "badge": "Recently verified",
+      "cny": 145,
+      "usd": 21.48,
+      "id": "7711437541",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319153159600.webp",
+      "url": "https://findspreadsheet.com/pants-shorts/gallery-short-3003.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "High quality Burberry Jacket",
+      "category": "Jackets",
+      "badge": "Recently verified",
+      "cny": 148,
+      "usd": 21.93,
+      "id": "7714490692",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260401/1-260401093931395.webp",
+      "url": "https://findspreadsheet.com/jackets/high-quality-burberry-jacket-3131.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "sock(37 colores TOP)",
+      "category": "Other Stuff",
+      "badge": "Recently verified",
+      "cny": 20,
+      "usd": 2.96,
+      "id": "7714498572",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319152Z2T0.webp",
+      "url": "https://findspreadsheet.com/other-stuff/sock-37-colores-top-3001.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "Dior T-shirtHoodie（39 style TOP",
+      "category": "Hoodies / Sweaters",
+      "badge": "Recently verified",
+      "cny": 85,
+      "usd": 12.59,
+      "id": "7711391539",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319152I0Q1.webp",
+      "url": "https://findspreadsheet.com/hoodies-sweaters/dior-t-shirthoodie-39-style-top-3000.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "cp company t-shirt",
+      "category": "T-Shirts",
+      "badge": "Recently verified",
+      "cny": 118,
+      "usd": 17.48,
+      "id": "7714478764",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-26031915254QX.webp",
+      "url": "https://findspreadsheet.com/t-shirts/cp-company-t-shirt-2999.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "The North Face Outdoorjacket",
+      "category": "Jackets",
+      "badge": "Recently verified",
+      "cny": 145,
+      "usd": 21.48,
+      "id": "7711524403",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319152350518.webp",
+      "url": "https://findspreadsheet.com/jackets/the-north-face-outdoorjacket-2998.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "Prada hatFendi hatStone Island hatBalenciaga hatG",
+      "category": "Headwear",
+      "badge": "Recently verified",
+      "cny": 50,
+      "usd": 7.41,
+      "id": "7711557651",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-26031915214B17.webp",
+      "url": "https://findspreadsheet.com/headwear/prada-hatfendi-hatstone-island-hatbalenciaga-hatgucci-hat-2997.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "Lacoste Swim Shorts",
+      "category": "Pants / Shorts",
+      "badge": "Recently verified",
+      "cny": 121,
+      "usd": 17.93,
+      "id": "7714520304",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319152004134.webp",
+      "url": "https://findspreadsheet.com/pants-shorts/lacoste-swim-shorts-2996.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    }
+  ]
+}
