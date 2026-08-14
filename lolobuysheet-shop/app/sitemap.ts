@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     : `https://lolobuysheet.shop${lang === "en" ? "" : `/${lang}`}${path}`;
   const baseEntries = localeCodes.flatMap((lang) => paths.map((path) => ({
     url: localizedUrl(lang, path),
-    lastModified: new Date(path === "/" || path === "/updates" || path === "/seo-articles" ? "2026-08-13" : "2026-08-04"),
+    lastModified: new Date(path === "/" || path === "/updates" || path === "/seo-articles" ? "2026-08-14" : "2026-08-04"),
     changeFrequency: path === "/" ? "weekly" as const : path.startsWith("/seo-articles") ? "weekly" as const : "monthly" as const,
     priority: path === "/" ? 1 : path.startsWith("/seo-articles/") ? .8 : .7,
     alternates: { languages: Object.fromEntries([...localeCodes.map((code) => [code, localizedUrl(code, path)]), ["x-default", localizedUrl("en", path)]]) },

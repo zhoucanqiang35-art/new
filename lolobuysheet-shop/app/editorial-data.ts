@@ -824,6 +824,115 @@ export const editorialArticles: EditorialArticle[] = [
       },
     ],
   },
+  {
+    slug: "lolobuy-payment-methods-account-balance",
+    title: "LoloBuy Payment Methods: Checkout, Balance and Refund Decisions",
+    description: "Compare LoloBuy payment methods, live checkout fees, currencies, account-balance credits, cancellation flow, and records before paying.",
+    keyword: "LoloBuy payment methods",
+    readTime: "12 min read",
+    checked: "Fact-checked 14 Aug 2026",
+    published: "2026-08-14",
+    modified: "2026-08-14",
+    locales: "en",
+    processSteps: ["Identify the bill", "Check live channels", "Compare final debit", "Save payment evidence", "Reconcile the balance"],
+    processAlt: "LoloBuy payment decision workflow: identify the bill, check live payment channels, compare the final debit, save evidence, and reconcile any account-balance credit",
+    relatedLinks: [
+      { label: "LoloBuy spreadsheet product-discovery hub", href: "/", context: "Verify the item source first" },
+      { label: "LoloBuy two-payment total-cost worksheet", href: "/seo-articles/lolobuy-total-cost-fees-checklist", context: "Budget every payment stage" },
+      { label: "LoloBuy cancellation and refund status guide", href: "/seo-articles/lolobuy-return-refund-process", context: "Resolve the seller-side case" },
+      { label: "LoloBuy parcel submission and shipping guide", href: "/seo-articles/lolobuy-shipping-rehearsal-weight-routes", context: "Prepare for the second checkout" },
+    ],
+    sources: [
+      { label: "How to purchase on LoloBuy", url: "https://www.lolobuy.com/helpCenter/1242296499766165", checked: "14 Aug 2026" },
+      { label: "Bank card and credit card (Stripe) announcement", url: "https://www.lolobuy.com/noticeDetail?id=679635137462928", checked: "14 Aug 2026" },
+      { label: "PayPal and PIX payment announcement", url: "https://www.lolobuy.com/noticeDetail?id=1242596425270255", checked: "14 Aug 2026" },
+      { label: "USDT and Bitcoin payment announcement", url: "https://www.lolobuy.com/noticeDetail?id=679680486868749", checked: "14 Aug 2026" },
+      { label: "MyBank payment announcement for Italy", url: "https://www.lolobuy.com/noticeDetail?id=679826937547894", checked: "14 Aug 2026" },
+      { label: "CenturyPay time-limited fee announcement", url: "https://www.lolobuy.com/noticeDetail?id=1242736391175068", checked: "14 Aug 2026" },
+      { label: "Can shopping-agent orders be cancelled or refunded?", url: "https://www.lolobuy.com/helpCenter/1242297000395937", checked: "14 Aug 2026" },
+      { label: "Account bill and balance interface (sign-in required)", url: "https://www.lolobuy.com/player/bill", checked: "14 Aug 2026" },
+      { label: "Balance withdrawal interface (sign-in required)", url: "https://www.lolobuy.com/player/bill/withdraw", checked: "14 Aug 2026" },
+      { label: "LoloBuy Terms of Service", url: "https://www.lolobuy.com/helpCenter/1242336378552801", checked: "14 Aug 2026" },
+    ],
+    sections: [
+      {
+        heading: "Start with the live checkout, not a permanent payment list",
+        paragraphs: [
+          "A useful answer to ‘Which LoloBuy payment methods can I use?’ begins with a limitation: the method visible to one buyer may not be offered to another. LoloBuy's current checkout interface builds its channel list from the bill, destination country and selected payment currency. It can mark a channel unavailable, show a channel-specific description and fee, and require a billing address for a method that needs verification. That live result controls the transaction.",
+          "Official announcements still help establish what LoloBuy has introduced. Its purchase guide names credit cards, WeChat, Alipay, Chinese debit cards and bank tele transfer. Later notices announced Stripe card payments, PayPal, PIX, USDT, Bitcoin and MyBank. Those pages are dated evidence of a launch, not a guarantee that every channel remains available in every country, currency, account or payment stage on August 14, 2026.",
+          "The practical rule is simple: choose the country and currency honestly, then compare only the channels the checkout currently marks as valid. Do not fund an account, acquire cryptocurrency or move money because an old announcement or another buyer's screenshot shows a method. Open the actual bill first and preserve the screen that shows availability, fee, currency and total payable.",
+        ],
+      },
+      {
+        heading: "Identify which bill you are paying",
+        paragraphs: [
+          "LoloBuy's official purchase flow has at least two main checkout moments. The item order covers the selected goods and Chinese local delivery. Later, after acceptable warehouse items are submitted as a parcel, the buyer pays an international-shipping deposit and the customs-related amount displayed for that parcel. A seller-price change, domestic-freight difference or final parcel reconciliation can also create a supplemental bill.",
+          "That distinction matters because a successful item payment does not pay international delivery, while money added to the account balance is not evidence that a particular order or parcel has been settled. Before authorising anything, match the bill number to its subject, item order or parcel, and amount. If the page says replenishment, compare the reason with the corresponding order record instead of treating it as a new service charge.",
+          "Use the separate LoloBuy total-cost worksheet when you need to estimate the whole delivered cost. For payment selection, the narrower question is whether this channel is appropriate for this bill: Is it valid now? Which currency will settle? What fee does LoloBuy display? What will the external provider or bank debit? What record will identify the payment later?",
+        ],
+      },
+      {
+        heading: "Read official payment announcements with their limits attached",
+        paragraphs: [
+          "The June 3 Stripe announcement listed Visa, Mastercard, American Express, JCB and China UnionPay cards and described the channel as available worldwide. The June 5 notice added PayPal with USD and EUR settlement and PIX for Brazilian users, also showing USD and EUR. A June 11 notice added USDT and Bitcoin with USD and EUR settlement. These are platform statements about announced channels; they do not establish card acceptance by every issuer, local legality, buyer protection, exchange spreads or a permanent zero-fee rate.",
+          "The July 7 MyBank notice is more narrowly scoped. It says MyBank is for users in Italy, supports EUR, and at launch carried a 1.65% transaction fee plus a fixed CNY 1.71 processing fee. That is useful precisely because the country, currency, percentage, fixed amount and publication date are explicit. It should not be copied into a general fee table for other methods or countries, and the live checkout must still be checked for today's charge.",
+          "A CenturyPay notice illustrates why dates matter. LoloBuy advertised a reduction from 4% to 3.5% for eligible CenturyPay credit-card payments, but the stated promotion ran from June 30 through July 30, 2026. It had ended before this article's August 14 review. Quoting 3.5% today without that expiry would turn accurate historical evidence into inaccurate current advice.",
+        ],
+        bullets: [
+          "Method availability: use the valid channels on the current bill, not the longest historical list.",
+          "Settlement currency: confirm it on both LoloBuy and the provider before approval.",
+          "Platform fee: record the displayed fixed and percentage components, if any.",
+          "External cost: check issuer, bank, network or wallet conversion and funding charges separately.",
+        ],
+      },
+      {
+        heading: "Compare the final debit, not the payment logo",
+        paragraphs: [
+          "A familiar logo can be convenient, but it does not answer the cost question. Compare the base bill, the LoloBuy handling fee shown for the selected channel, settlement currency, exchange rate offered by the payment provider, and the amount expected on your statement. If a card or wallet offers its own currency conversion, compare that result with paying in the bill currency; neither option is automatically cheaper in every account or country.",
+          "Also compare operational fit. A card channel may ask for the billing address held by the issuer. A bank method may be limited by country. A cryptocurrency payment can add transfer, network, volatility, address and finality risks that do not appear in the LoloBuy bill amount. PayPal, card and bank providers have their own authentication and dispute rules. LoloBuy's launch notices do not promise a particular protection outcome, so read the provider's current terms before relying on one.",
+          "Never send payment to an address, QR code or account supplied through an unsolicited message merely because it uses a method LoloBuy has announced. Begin from the signed-in order or parcel bill on the official `lolobuy.com` domain. If the bill, amount or recipient changes unexpectedly, stop and contact support through the official site before paying.",
+        ],
+      },
+      {
+        heading: "Understand what the LoloBuy account balance represents",
+        paragraphs: [
+          "The LoloBuy account balance is an internal ledger, not automatically the same thing as cash returned to the original funding source. The purchase guide says that a difference between an international-shipping deposit and the final shipping fee is returned to the LoloBuy account after shipment. The cancellation guide likewise says eligible cancellations and seller refunds are credited to the account balance at several order stages.",
+          "That credit may be useful for another LoloBuy bill, but do not describe it as a card reversal, PayPal refund or bank refund unless the transaction record shows that movement. Reconcile three facts: the original payment, the order or parcel event that created the credit, and the new balance entry. Record the credited amount and date, then retain the source bill so a future use of the balance does not make the original refund impossible to trace.",
+          "LoloBuy's signed-in interface currently presents balance details, recharge and withdrawal screens, but the public help centre does not publish a single universal withdrawal minimum, fee, timing or eligibility rule. Those variables can be returned by the account for a specific balance entry. Check the live rule shown for the eligible entry or ask official support before assuming that every credit is withdrawable on identical terms. The Terms of Service also tells users to contact customer service when moving a balance between an old and new account, which is another reason not to improvise an account transfer.",
+        ],
+      },
+      {
+        heading: "Keep cancellation, refund and payment disputes separate",
+        paragraphs: [
+          "If an order is still in a cancellable LoloBuy status, use the matching order action first. The official cancellation page says a Verifying order can be cancelled in My Orders with payment immediately credited to the LoloBuy balance. For Processing, Purchased, domestic Shipped or warehouse-stocked stages, the action and timing change and may depend on whether the seller has purchased, shipped, accepted a return or issued a refund.",
+          "That workflow is different from reporting an unauthorised payment to a card issuer, bank, wallet or exchange. A seller-side disagreement is not proof that the payment itself was unauthorised, and starting overlapping cases without clear records can make reconciliation harder. Use the LoloBuy return-and-refund guide for eligibility and status decisions, and reserve provider security channels for the circumstances covered by that provider's current terms.",
+          "When a checkout attempt fails, do not immediately repeat it several times. Check whether a bill was created, whether the provider shows a pending authorisation, and whether the LoloBuy balance or bill history changed. Save the failure message and transaction identifier. If the status remains ambiguous, send those records to official support before trying a different channel.",
+        ],
+      },
+      {
+        heading: "Create a payment record that survives an exception",
+        paragraphs: [
+          "For every payment, save the LoloBuy bill or order number, subject, amount before fees, selected channel, displayed fee, settlement currency, final payable amount, provider transaction identifier, time and result. Add a screenshot before approval and the provider receipt after approval. Mask full card numbers, wallet secrets, recovery phrases and unnecessary personal information in any support copy; retain the original securely for yourself.",
+          "For balance movements, add the source event: order cancellation, seller refund, parcel-freight adjustment, manual recharge or another clearly labelled reason. Then record where that balance is used or whether a live withdrawal rule applies. This small ledger distinguishes ‘LoloBuy says refunded’ from ‘money reached the place I expected,’ without assuming those events happen at the same time.",
+          "Finally, recheck the official notice centre and the live bill when you pay. Payment channels and fees changed several times between June and July 2026, and the dated announcements reviewed here show how quickly a static comparison can expire. The safest choice is not a universal winner; it is the valid channel whose complete debit, currency, verification requirements and record trail you understand for this transaction.",
+        ],
+        bullets: [
+          "Confirm the official domain, signed-in bill and exact order or parcel subject.",
+          "Choose only a channel marked valid for the current country and currency.",
+          "Record the displayed LoloBuy fee and the provider's final debit separately.",
+          "Keep receipts, bill numbers and balance entries until the item and parcel are closed.",
+          "Pause on duplicate, pending or unexpected charges and contact official support with evidence.",
+        ],
+      },
+      {
+        heading: "The practical payment decision",
+        paragraphs: [
+          "LoloBuy payment methods should be compared at the point of a real bill, not ranked from old logos. Official pages verify that the platform has announced cards through Stripe, PayPal, PIX, USDT, Bitcoin, MyBank and methods named in its purchase guide. They also demonstrate country limits, settlement currencies, fixed and percentage fees, and expired promotions. Together, that evidence supports a verification method—not a promise of universal availability.",
+          "Identify the bill, select the correct country and currency, compare the complete debit, understand whether a refund goes to the LoloBuy account balance, and keep enough evidence to reconcile the result. If a method, fee, withdrawal rule or protection is not shown for your transaction, treat it as unknown and ask through the official site. That is more reliable than choosing a channel because it was cheapest or available to someone else last month.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function findEditorialArticle(slug: string) {
