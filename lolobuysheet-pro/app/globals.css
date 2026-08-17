@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #fffaf3;
+  color: #211a16;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+}
+
+.fallback-shell {
+  display: grid;
+  width: min(760px, calc(100% - 40px));
+  min-height: 100vh;
+  margin: 0 auto;
+  place-content: center;
+  gap: 18px;
+}
+
+.fallback-shell p,
+.fallback-shell h1 {
+  margin: 0;
+}
+
+.fallback-shell h1 {
+  max-width: 700px;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.98;
+}
+
+.fallback-shell a {
+  width: fit-content;
+  border-radius: 999px;
+  background: #ef6266;
+  padding: 13px 20px;
+  color: white;
+  font-weight: 750;
+  text-decoration: none;
+}
