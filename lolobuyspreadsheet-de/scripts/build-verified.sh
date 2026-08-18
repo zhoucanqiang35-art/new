@@ -26,3 +26,7 @@ timeout \
   "${vinext}" build
 
 "${script_dir}/validate-artifact.sh"
+
+if [[ "${CF_PAGES:-}" == "1" ]]; then
+  "${script_dir}/package-pages.sh"
+fi
