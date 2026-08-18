@@ -4,6 +4,14 @@ A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
 Drizzle support.
 
+## LoloBuySheet.pro Static Publication
+
+The production site is generated from the files under `public/`. Run
+`npm test` to rebuild and validate the static pages, then publish the generated
+`dist/` directory from Cloudflare Pages. Long-form English article source lives
+in `public/seo-article-copy.mjs`; the build updates article pages, the SEO article
+hub, structured data and `sitemap.xml` together.
+
 ## Prerequisites
 
 - Node.js `>=22.13.0`
