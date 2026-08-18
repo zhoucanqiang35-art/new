@@ -1,16 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-
-test("renders development preview metadata", async () => {
+async function request(pathname) {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
+  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
   const { default: worker } = await import(workerUrl.href);
 
-  const response = await worker.fetch(
-    new Request("http://localhost/", {
+  return worker.fetch(
+    new Request(`http://localhost${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -23,11 +20,33 @@ test("renders development preview metadata", async () => {
       passThroughOnException() {},
     },
   );
+}
+
+test("renders production SEO metadata", async () => {
+  const response = await request("/");
 
   assert.equal(response.status, 200);
   assert.match(
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), developmentPreviewMeta);
+  const html = await response.text();
+  assert.match(html, /<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*index[^"']*follow/i);
+  assert.doesNotMatch(html, /noindex/i);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/["']/i);
+});
+
+test("serves crawlable robots and a complete multilingual sitemap", async () => {
+  const robotsResponse = await request("/robots.txt");
+  assert.equal(robotsResponse.status, 200);
+  const robots = await robotsResponse.text();
+  assert.match(robots, /Allow:\s*\//i);
+  assert.match(robots, /Sitemap:\s*https:\/\/lolobuyspreadsheet\.de\/sitemap\.xml/i);
+
+  const sitemapResponse = await request("/sitemap.xml");
+  assert.equal(sitemapResponse.status, 200);
+  assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
+  const sitemap = await sitemapResponse.text();
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 360);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
 });

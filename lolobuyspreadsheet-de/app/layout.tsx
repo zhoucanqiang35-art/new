@@ -7,11 +7,8 @@ export const metadata: Metadata = {
   description: "Independent LoloBuy spreadsheet, QC, warehouse, shipping and product-discovery guide for Germany, Europe, the US, UK, Canada and Australia.",
   metadataBase: new URL("https://lolobuyspreadsheet.de"),
   alternates: { canonical: "/", languages: { ...Object.fromEntries(localeCodes.map(code => [code, localePath(code)])), "x-default": "/" } },
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   openGraph: { title: "LoloBuy Spreadsheet DE", description: "A source-led LoloBuy QC and shipping guide.", type: "website" },
-  other: {
-    "codex-preview": "development",
-  },
 };
 
 export default function RootLayout({
