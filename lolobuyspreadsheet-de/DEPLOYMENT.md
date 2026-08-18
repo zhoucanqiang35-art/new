@@ -35,23 +35,23 @@ npm run validate:artifact
 
 ## Cloudflare Pages
 
-本项目在 Cloudflare Pages 构建环境中会自动识别 `CF_PAGES=1`，同时生成 `dist-pages/`：
+本项目在 Cloudflare Pages 构建环境中会自动识别 `CF_PAGES=1`，并把最终 Pages 产物直接生成到 `dist/`：
 
-- `dist-pages/` 根目录：浏览器静态资源
-- `dist-pages/_worker.js/index.js`：Pages 高级模式 Worker 入口
+- `dist/` 根目录：浏览器静态资源
+- `dist/_worker.js/index.js`：Pages 高级模式 Worker 入口
 - `wrangler.jsonc`：Pages 输出目录与 `nodejs_compat` 配置
 
 Cloudflare Pages 项目设置：
 
 - Root directory：`lolobuyspreadsheet-de`
 - Build command：`npm run build`
-- Build output directory：留空（由 `wrangler.jsonc` 的 `pages_build_output_dir` 提供）
+- Build output directory：`dist`
 
 本地验证 Pages 产物可运行：
 
 ```bash
 npm run build:pages
-npx wrangler pages dev dist-pages
+npx wrangler pages dev dist
 ```
 
 部署前请保留以下内容，不要删除：
