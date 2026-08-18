@@ -12,6 +12,7 @@ server_dir="${SITES_PROJECT_ROOT}/dist/server"
 pages_dir="${SITES_PROJECT_ROOT}/dist"
 staging_dir="$(mktemp -d "${SITES_PROJECT_ROOT}/.dist-pages.XXXXXX")"
 esbuild="${SITES_PROJECT_ROOT}/node_modules/.bin/esbuild"
+deploy_redirect="${SITES_PROJECT_ROOT}/.wrangler/deploy/config.json"
 
 cleanup() {
   if [[ -d "${staging_dir}" ]]; then
@@ -64,6 +65,16 @@ mv \
   "${staging_dir}/_worker.js" \
   "/tmp/lolobuyspreadsheet-de-worker-modules-${$}"
 mv "${staging_dir}/_worker.bundle.js" "${staging_dir}/_worker.js"
+
+# The Cloudflare Vite plugin writes a Wrangler deployment redirect that points
+# to dist/server/wrangler.json. Pages advanced mode replaces that generated
+# server directory with a single dist/_worker.js file, so keeping the redirect
+# would make Cloudflare's post-build configuration check follow a stale path.
+if [[ -f "${deploy_redirect}" ]]; then
+  mv \
+    "${deploy_redirect}" \
+    "/tmp/lolobuyspreadsheet-de-wrangler-deploy-redirect-${$}.json"
+fi
 
 backup_dir="/tmp/lolobuyspreadsheet-de-vinext-dist-${$}"
 mv "${pages_dir}" "${backup_dir}"
