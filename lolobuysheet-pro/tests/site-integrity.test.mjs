@@ -216,13 +216,13 @@ test("independent FAQ page mirrors the homepage ten-card FAQ source", () => {
   assert.doesNotMatch(faqPage, /Order through your chosen shopping agent/);
 });
 
-test("SEO article hub publishes three fact-checked long-form English guides", () => {
+test("SEO article hub publishes fact-checked long-form English guides", () => {
   const hub = read("seo-articles/index.html");
   const sitemap = read("sitemap.xml");
 
-  assert.equal(seoArticles.length, 3);
+  assert.ok(seoArticles.length >= 4);
   assert.match(hub, /Detailed English guides written for real buying decisions/);
-  assert.equal([...hub.matchAll(/class="seo-article-card"/g)].length, 3);
+  assert.equal([...hub.matchAll(/class="seo-article-card"/g)].length, seoArticles.length);
 
   for (const article of seoArticles) {
     const file = `seo-articles/${article.slug}/index.html`;
@@ -239,6 +239,10 @@ test("SEO article hub publishes three fact-checked long-form English guides", ()
     assert.match(html, /class="article-sources"/);
     assert.match(html, /"@type":"Article"/);
     assert.match(html, /"@type":"FAQPage"/);
+    assert.match(html, /"datePublished":"2026-/);
+    assert.match(html, /"dateModified":"2026-/);
+    assert.match(html, /"author":\{"@type":"Organization","name":"LoloBuySheet Editorial Team"\}/);
+    assert.match(html, /By LoloBuySheet Editorial Team/);
     assert.doesNotMatch(html, /href="https:\/\/www\.lolobuy\.com/i);
     assert.match(sitemap, new RegExp(`https://lolobuysheet\\.pro/seo-articles/${article.slug}/`));
   }

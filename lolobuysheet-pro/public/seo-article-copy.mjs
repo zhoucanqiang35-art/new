@@ -300,4 +300,106 @@ export const seoArticles = [
 
 <p>The most honest shipping answer is sometimes “the final cost is not known yet.” That is not useless. It tells you which inputs are missing: final carton, dimensions, route and carrier charge. By replacing one guessed price-per-kilogram number with those real inputs, you get a much more reliable decision and avoid promising yourself a delivered cost the warehouse has not yet measured.</p>`,
   },
+  {
+    slug: "lolobuy-order-status-guide",
+    title: "LoloBuy Order Status Explained: From Payment to Delivery",
+    description: "Understand every important LoloBuy order status, warehouse stage and parcel status, including what it means, what to do next and when a delay needs action.",
+    excerpt: "Decode the full status trail from Payment Pending and Purchased to Stored in warehouse, international dispatch, returns and confirmed receipt.",
+    readTime: "12 min read",
+    section: "Order and parcel tracking",
+    author: "LoloBuySheet Editorial Team",
+    publishedDate: "2026-08-18",
+    modifiedDate: "2026-08-18",
+    reviewedDate: "August 18, 2026",
+    primaryKeyword: "LoloBuy order status",
+    secondaryKeywords: ["LoloBuy order pending", "LoloBuy purchased status", "LoloBuy stored in warehouse", "LoloBuy confirmation pending", "LoloBuy parcel status", "LoloBuy refunding status", "LoloBuy tracking"],
+    faq: [
+      ["What does Confirmation pending mean on LoloBuy?", "LoloBuy says some information about the item needs to be verified. Open the order detail, read the instruction and reply there so processing can continue."],
+      ["Is Delivered the same as Stored in warehouse?", "No. Delivered means the seller's parcel has reached the warehouse and is waiting for inspection. Stored in warehouse means inspection and weighing are complete and the item can be selected for an international parcel."],
+      ["What should I do if a LoloBuy status has not changed?", "Check order messages and timestamps first. Compare the wait with the platform's published stage estimates, then contact support with the order number and screenshots if the stage is clearly outside the normal range or requests action."],
+    ],
+    sources: [
+      "LoloBuy help: Status of the Shopping Agent Orders",
+      "LoloBuy help: What does Pending for confirmation mean and what do I do?",
+      "LoloBuy help: What do I do after items status is Stored in warehouse?",
+      "LoloBuy help: Process duration for each stages",
+      "LoloBuy help: Can the Shopping Agent orders be cancelled or refunded?",
+      "LoloBuy help: How to apply for parcel after-sales",
+    ],
+    content: `<p class="article-intro">A LoloBuy order status is more useful when you read it as a location in a workflow, not as a delivery promise. “Purchased” does not mean the product has reached the warehouse. “Delivered” does not mean it is ready to ship overseas. “Stored in warehouse” does not mean international shipping has started. Each label answers a narrower question: who currently has the item, what work remains, and whether the buyer needs to act.</p>
+
+<p>This guide translates LoloBuy's published order and parcel labels into practical decisions. The official help pages were checked on August 18, 2026. Status wording, operating hours and account tools can change, so the live instruction beside your own order controls whenever it differs from a general guide.</p>
+
+<h2>First separate the shopping order from the international parcel</h2>
+
+<p>LoloBuy shows two related but different records. The shopping-agent order covers the purchase from the Chinese seller and movement to the LoloBuy warehouse. The parcel record begins after stored items are selected, packed and submitted for international delivery. A buyer who searches only the parcel page while an item is still with the seller will not find meaningful overseas tracking.</p>
+
+<p>The simplest status map is:</p>
+
+<div class="article-formula"><strong>Shopping order</strong><code>Payment Pending → Order Pending / Processing → Purchased → Shipped (Local) → Delivered → Stock arrived → Stored in warehouse</code><strong>International parcel</strong><code>Unpaid → Verifying → Verified → Leaving Warehouse / Packaging → Packaging Completed → Shipped → Confirmed Receipt</code></div>
+
+<p>Not every order follows that clean line. A price difference may create “Clear Balance.” Missing information may create “Confirmation pending.” A cancellation, seller dispute or failed delivery introduces return and refund labels. The value of the status page is recognizing those branches early.</p>
+
+<h2>Payment Pending, Unprocessed and Order Pending</h2>
+
+<p><strong>Payment Pending</strong> means the shopping order has been created but not paid. LoloBuy's status guide says payment should be completed within 72 hours. If you no longer want the order, do not assume an unpaid draft reserves stock or price. Seller availability can change while it waits.</p>
+
+<p><strong>Unprocessed</strong> means payment has been received, while <strong>Order Pending</strong> means the submitted order is waiting for an agent to verify it. At this stage, check that the link, colour, size, quantity and buyer note are correct. A status that is waiting for verification is not evidence that the seller has accepted or dispatched the purchase.</p>
+
+<p><strong>Order Processing</strong> means the order is being handled by the system or has been assigned to a purchaser. LoloBuy publishes general purchasing windows tied to Beijing time, but those are operating estimates rather than guarantees. An unclear option, changed price, unavailable seller or abnormal listing can extend the stage.</p>
+
+<h2>Purchased and Shipped (Local): the seller still controls the pace</h2>
+
+<p><strong>Purchased</strong> means the agent has placed the order with the seller. The item is not yet at LoloBuy. The next important event is the seller's domestic dispatch. LoloBuy's process-duration page says sellers generally dispatch in three to seven days, while customized and pre-order products can take longer. That is a reference range, not a deadline the agent can enforce.</p>
+
+<p><strong>Shipped (Local)</strong> means the seller has sent the item toward the LoloBuy warehouse. Domestic tracking is relevant here; international tracking is not. LoloBuy's published estimate describes one to two business days from the Pearl River Delta and three to five from the Yangtze River Delta to its Huizhou warehouse. Other origins, holidays, carrier scans and seller handoff delays can produce a different result.</p>
+
+<p>If Purchased appears unchanged, first check order messages and the original seller's dispatch information shown in the account. A late seller is different from a lost international parcel. Escalate with the LO order number, purchase time and a screenshot of the last update rather than opening several vague requests.</p>
+
+<h2>Delivered, Stock arrived and Stored in warehouse are three stages</h2>
+
+<p>This is the most common point of confusion. <strong>Delivered</strong> means the domestic package has reached the warehouse and is waiting for inspection. It does not mean the item has passed inspection or can already be added to an overseas parcel.</p>
+
+<p><strong>Stock arrived</strong> means inspection and weighing have been completed and warehouse staff are preparing the stock-in record. LoloBuy's timing page describes inspection and stock-in targets around 24 hours depending on arrival time. A large intake, unusual product or problem found during inspection may take longer.</p>
+
+<p><strong>Stored in warehouse</strong> is the actionable endpoint of the purchase stage. The item should appear in My Warehouse, where it can be reviewed and selected for international delivery during the applicable free-storage period. It is not automatically shipped. Before parcel submission, open the available QC photographs, compare the variant and visible condition, and resolve any problem that could require a seller return. Our <a href="/seo-articles/lolobuy-qc-photos-guide/">LoloBuy QC photos guide</a> explains that decision in detail.</p>
+
+<h2>Statuses that require a buyer decision</h2>
+
+<p><strong>Confirmation pending</strong> means LoloBuy needs the buyer to verify item information. The official help page instructs users to open the order page, read the displayed instruction and reply there. Waiting without answering can stop the order even though payment was made.</p>
+
+<p><strong>Clear Balance</strong> appears when the actual purchase cost is greater than the amount initially paid. Review the reason and pay the difference if you still want the order. A seller price change or domestic-freight adjustment should be judged against the live order, not an old spreadsheet price.</p>
+
+<p><strong>Invalid</strong> can indicate a listing mismatch, missing product image or description, a virtual product, a prohibited item or another order that the agent cannot process. Read the account-specific explanation before resubmitting. Repeating the same incomplete link or prohibited product will not solve the underlying issue.</p>
+
+<p><strong>Separated to ship</strong> indicates that goods from an order were divided for shipment. Check item quantities and the resulting order records instead of assuming a part is missing. <strong>Expired</strong> indicates that an available action or order window has ended; the live order page should show what can still be done.</p>
+
+<h2>How to read cancellation, return and refund statuses</h2>
+
+<p><strong>Order withdrawn</strong> means the order was cancelled and the refund was returned to the LoloBuy account balance. <strong>Refunding</strong>, <strong>Returning</strong>, <strong>Returned</strong> and <strong>Exchanging</strong> describe different points in an after-sales path. They do not all mean money is already available.</p>
+
+<p>LoloBuy's cancellation guide distinguishes stages. An order waiting for verification can be cancelled from the order area with an immediate balance refund. During processing, cancellation depends on whether the agent has completed the purchase; if it has not been purchased, the guide says the refund is handled within one working day. Once purchased or domestically shipped, the seller's approval and return process become relevant. After warehouse arrival, seller rules, product condition and domestic return freight can affect the outcome.</p>
+
+<p>The practical lesson is to act before packaging or international dispatch. Save the original selection, QC images, order messages and requested resolution. A status label documents progress, but it does not override the seller's return terms.</p>
+
+<h2>Parcel status begins only after warehouse submission</h2>
+
+<p>When stored items are selected for overseas delivery, the parcel can show <strong>Unpaid</strong>. LoloBuy's parcel-status guide says parcel payment should be made within 10 days. <strong>Verifying</strong> and <strong>Verified</strong> refer to the platform's parcel review. <strong>Leaving Warehouse</strong>, <strong>Packaging</strong> and <strong>Packaging Completed</strong> describe warehouse preparation; they do not yet prove that the international carrier has accepted the parcel.</p>
+
+<p><strong>Shipped</strong> is the point to follow the international tracking number and route. A carrier can take time to post its first scan after electronic information is created. Compare the latest event with the route estimate and the parcel's dispatch timestamp. Our <a href="/seo-articles/lolobuy-shipping-cost-guide/">LoloBuy shipping cost guide</a> explains why packed weight, dimensions and the selected route matter before this step.</p>
+
+<p><strong>Order Return</strong>, <strong>Domestic Return</strong> and <strong>Overseas Return</strong> identify different return paths. An overseas return after failed delivery is not the same as sending an unwanted warehouse item back to a Chinese seller. Read the route's return, redelivery and disposal terms because recovery options and costs differ.</p>
+
+<p><strong>Confirmed Receipt</strong> closes the delivery record. Before confirming, inspect the parcel, retain the outer package and labels, and record the opening if damage or missing contents would need evidence.</p>
+
+<h2>What to do when a status seems stuck</h2>
+
+<ol class="article-steps"><li><strong>Identify the record:</strong> decide whether you are looking at the seller order, warehouse item or international parcel.</li><li><strong>Read the exact label and timestamp:</strong> “Purchased for five days” is actionable information; “tracking is bad” is not.</li><li><strong>Check for a request:</strong> Confirmation pending, Clear Balance and Unpaid require the buyer, not more waiting.</li><li><strong>Compare with the correct estimate:</strong> purchasing time, seller dispatch, domestic transit, warehouse intake and international transit are separate clocks.</li><li><strong>Collect one evidence set:</strong> order or parcel number, screenshot, last scan, product details and desired resolution.</li><li><strong>Contact support once with specifics:</strong> duplicate tickets can split the history without making the seller or carrier move faster.</li></ol>
+
+<p>For parcel damage or missing contents, LoloBuy's after-sales page directs users to My LoloBuy, Parcels and Apply After-sales, with a description plus parcel and product photos. That official page currently contains overlapping timing language: it mentions seven days after signing or 45 days from shipment, while a reminder on the same page says cases delivered for more than three days may not be accepted. Because those statements do not form one clear universal deadline, the safest factual advice is to apply immediately after discovering the issue and follow the live account instructions. Do not wait for the longest number.</p>
+
+<h2>The status is a prompt for the next decision</h2>
+
+<p>A good status check ends with an action: pay within the stated window, correct missing information, wait for the seller, review QC, submit stored goods, follow international tracking or document an after-sales case. It should not end with guessing from a single label. Keep the shopping order, warehouse item and parcel timelines separate, and the LoloBuy order status page becomes a practical control panel instead of a list of unexplained words.</p>`,
+  },
 ];

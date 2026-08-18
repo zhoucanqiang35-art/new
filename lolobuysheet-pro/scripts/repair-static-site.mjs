@@ -10,6 +10,7 @@ const projectRoot = path.resolve(
 );
 const publicRoot = path.join(projectRoot, "public");
 const reviewedDate = "August 17, 2026";
+const seoReviewedDate = "August 18, 2026";
 
 const categories = [
   ["shoes", "Shoes", "shoes.webp", "Sneakers, casual shoes and seasonal footwear", "https://findspreadsheet.com/shoes/"],
@@ -250,6 +251,9 @@ function pageShell({
   body,
   schemaType = "Article",
   faq = [],
+  datePublished = "2026-07-16",
+  dateModified = "2026-08-17",
+  author = "LoloBuySheet Editorial Team",
 }) {
   const canonicalPath = withTrailingSlash(canonical);
   const schema = {
@@ -260,7 +264,11 @@ function pageShell({
         headline: title,
         description,
         url: `https://lolobuysheet.pro${canonicalPath}`,
-        dateModified: "2026-08-17",
+        datePublished,
+        dateModified,
+        ...(schemaType === "Article"
+          ? { author: { "@type": "Organization", name: author } }
+          : {}),
         publisher: { "@type": "Organization", name: "LoloBuySheet.pro" },
       },
       ...(faq.length
@@ -327,7 +335,9 @@ writePage("seo-articles", pageShell({
   description: "Long-form English LoloBuy guides based on official purchase, warehouse, QC, storage, packaging and international-shipping information.",
   canonical: "/seo-articles/",
   schemaType: "CollectionPage",
-  body: `<article class="seo-page seo-article-hub"><nav class="breadcrumbs"><a href="/">Home</a> / SEO Articles</nav><p class="eyebrow">Official platform research, independently explained</p><h1>LoloBuy SEO Articles</h1><p class="lead">Detailed English guides written for real buying decisions—not keyword filler. Every article separates official platform rules from practical interpretation and avoids invented prices, guaranteed delivery times or unsupported claims.</p><div class="research-standard"><strong>Editorial standard</strong><p>Research reviewed ${reviewedDate} against LoloBuy's published purchase tutorial, help-centre rules and service notices. Official source titles are listed without outbound links so this site sends visitors only to FindSpreadsheet.</p></div><div class="seo-article-grid">${seoArticleCards}</div></article>`,
+  datePublished: "2026-08-17",
+  dateModified: "2026-08-18",
+  body: `<article class="seo-page seo-article-hub"><nav class="breadcrumbs"><a href="/">Home</a> / SEO Articles</nav><p class="eyebrow">Official platform research, independently explained</p><h1>LoloBuy SEO Articles</h1><p class="lead">Detailed English guides written for real buying decisions—not keyword filler. Every article separates official platform rules from practical interpretation and avoids invented prices, guaranteed delivery times or unsupported claims.</p><div class="research-standard"><strong>Editorial standard</strong><p>Research reviewed ${seoReviewedDate} against LoloBuy's published purchase tutorial, help-centre rules and service notices. Official source titles are listed without outbound links so this site sends visitors only to FindSpreadsheet.</p></div><div class="seo-article-grid">${seoArticleCards}</div></article>`,
 }));
 
 for (const article of seoArticles) {
@@ -343,7 +353,10 @@ for (const article of seoArticles) {
     canonical: `/seo-articles/${article.slug}/`,
     schemaType: "Article",
     faq: article.faq,
-    body: `<article class="seo-page long-form-article"><nav class="breadcrumbs"><a href="/">Home</a> / <a href="/seo-articles/">SEO Articles</a> / ${escapeHtml(article.title)}</nav><p class="eyebrow">${escapeHtml(article.section)} · independently researched</p><h1>${escapeHtml(article.title)}</h1><p class="lead">${escapeHtml(article.description)}</p><div class="article-meta"><span>Reviewed ${reviewedDate}</span><span>${escapeHtml(article.readTime)}</span><span>English long-form guide</span></div><div class="article-research-note"><strong>Fact-checking note</strong><p>This article explains LoloBuy's published process in original editorial language. Live seller terms, warehouse options, routes and prices can change; confirm them inside your account before paying.</p></div>${article.content}<section class="article-sources" aria-labelledby="article-sources-title"><p class="eyebrow">Research record</p><h2 id="article-sources-title">Official LoloBuy information reviewed</h2><p>These official source titles were checked on ${reviewedDate}. They are shown as plain text to preserve this site's policy of not sending visitors to third-party websites.</p><ul>${sourceItems}</ul></section><section class="article-related"><h2>Continue reading</h2>${relatedItems}</section><p><a class="primary-action" href="https://findspreadsheet.com/" target="_blank" rel="noopener noreferrer">Browse FindSpreadsheet →</a></p></article>`,
+    datePublished: article.publishedDate ?? "2026-08-17",
+    dateModified: article.modifiedDate ?? "2026-08-17",
+    author: article.author ?? "LoloBuySheet Editorial Team",
+    body: `<article class="seo-page long-form-article"><nav class="breadcrumbs"><a href="/">Home</a> / <a href="/seo-articles/">SEO Articles</a> / ${escapeHtml(article.title)}</nav><p class="eyebrow">${escapeHtml(article.section)} · independently researched</p><h1>${escapeHtml(article.title)}</h1><p class="lead">${escapeHtml(article.description)}</p><div class="article-meta"><span>By ${escapeHtml(article.author ?? "LoloBuySheet Editorial Team")}</span><span>Reviewed ${escapeHtml(article.reviewedDate ?? reviewedDate)}</span><span>${escapeHtml(article.readTime)}</span><span>English long-form guide</span></div><div class="article-research-note"><strong>Fact-checking note</strong><p>This article explains LoloBuy's published process in original editorial language. Live seller terms, warehouse options, routes and prices can change; confirm them inside your account before paying.</p></div>${article.content}<section class="article-sources" aria-labelledby="article-sources-title"><p class="eyebrow">Research record</p><h2 id="article-sources-title">Official LoloBuy information reviewed</h2><p>These official source titles were checked on ${escapeHtml(article.reviewedDate ?? reviewedDate)}. They are shown as plain text to preserve this site's policy of not sending visitors to third-party websites.</p><ul>${sourceItems}</ul></section><section class="article-related"><h2>Continue reading</h2>${relatedItems}</section><p><a class="primary-action" href="https://findspreadsheet.com/" target="_blank" rel="noopener noreferrer">Browse FindSpreadsheet →</a></p></article>`,
   }));
 }
 
@@ -361,7 +374,7 @@ const editorialPages = [
   ]],
   ["is-lolobuy-safe", "Is LoloBuy Safe? Platform, Product and Shipping Checks", "Understand the difference between platform process, seller risk, product quality, payment, shipping and intellectual-property concerns.", `<h2>No single “safe” label covers every risk</h2><p>A working platform process does not guarantee every marketplace seller, product claim or shipping outcome. Evaluate each layer separately.</p><div class="risk-grid"><article><h3>Platform</h3><p>Use the current official terms, payment flow and warehouse records.</p></article><article><h3>Product</h3><p>Review seller information, options and warehouse QC photos.</p></article><article><h3>Shipping</h3><p>Check restrictions, tracking, tax handling and compensation limits.</p></article><article><h3>Legal</h3><p>Avoid counterfeit or restricted goods and follow destination-country rules.</p></article></div>`],
   ["about", "Editorial Method & Corrections", "Learn who this independent LoloBuy spreadsheet is for, what listing checks mean, how updates work and how corrections are handled.", `<h2>Independent scope</h2><p>LoloBuySheet.pro is an independent product discovery and educational resource. It is not operated by or officially affiliated with LoloBuy, Taobao, Weidian or 1688.</p><h2>What we check</h2><p>We check whether a destination is reachable, whether its category label is consistent and whether review dates and limitations are visible. We do not claim product authenticity or quality without sufficient evidence.</p><h2>Update and correction policy</h2><p>Changed pages receive their own modification date. Broken links, material price changes and misleading descriptions are corrected or removed. Readers can report a problem through the contact channel published on our main site.</p><h2>Affiliate disclosure</h2><p>Some outbound links may support the operation of the site. This does not change our published checking standard, and external merchants control their own prices and terms.</p>`],
-  ["updates", "LoloBuy Spreadsheet Updates", "Review dated changes to product links, guides, categories and official platform information.", `<div class="update-log"><article><time datetime="2026-08-17">August 17, 2026</time><h2>Fact-checked FAQ and long-form article update</h2><ul><li>Rewrote the ten shared FAQ answers from the official purchase, payment, warehouse, storage, shipping and packaging rules.</li><li>Added three original English buyer guides of 1,200–1,800 words with plain-text official research records.</li><li>Added a dedicated SEO Articles hub without introducing clickable links to other websites.</li></ul></article><article><time datetime="2026-07-16">July 16, 2026</time><h2>Directory review</h2><p>Reviewed the initial ten-category directory and standardized USD reference-price labels.</p></article></div>`],
+  ["updates", "LoloBuy Spreadsheet Updates", "Review dated changes to product links, guides, categories and official platform information.", `<div class="update-log"><article><time datetime="2026-08-18">August 18, 2026</time><h2>LoloBuy order-status guide</h2><ul><li>Added an original 1,200–1,800 word English guide to shopping-order, warehouse and international-parcel statuses.</li><li>Checked status definitions, process-duration estimates, cancellation stages and parcel after-sales instructions against current official help pages.</li><li>Added the guide to the SEO article hub, related-reading links, structured data and sitemap without adding third-party outbound links.</li></ul></article><article><time datetime="2026-08-17">August 17, 2026</time><h2>Fact-checked FAQ and long-form article update</h2><ul><li>Rewrote the ten shared FAQ answers from the official purchase, payment, warehouse, storage, shipping and packaging rules.</li><li>Added three original English buyer guides of 1,200–1,800 words with plain-text official research records.</li><li>Added a dedicated SEO Articles hub without introducing clickable links to other websites.</li></ul></article><article><time datetime="2026-07-16">July 16, 2026</time><h2>Directory review</h2><p>Reviewed the initial ten-category directory and standardized USD reference-price labels.</p></article></div>`],
   ["lolobuy-qc-finder", "LoloBuy QC Check Planner", "Use a practical QC checklist generator before accepting a warehouse item.", `<div class="qc-tool"><h2>Create your QC checklist</h2><label>Product category<select id="qc-category"><option>Shoes</option><option>Clothing</option><option>Accessories</option><option>Electronics</option></select></label><label>Important detail<input id="qc-detail" placeholder="e.g. size 42, black, EU plug"></label><button class="primary-action" id="qc-generate" type="button">Generate checklist</button><div id="qc-result" aria-live="polite"><p>Select a category and add the option you ordered.</p></div></div><script src="/assets/qc-planner.js" defer></script>`],
 ];
 
@@ -371,7 +384,8 @@ for (const [slug, title, description, content, faq = []] of editorialPages) {
     description,
     canonical: `/${slug}/`,
     faq,
-    body: `<article class="seo-page"><nav class="breadcrumbs"><a href="/">Home</a> / ${title}</nav><p class="eyebrow">Independent LoloBuy resource</p><h1>${title}</h1><p class="lead">${description}</p><p class="reviewed-label">Reviewed ${reviewedDate}</p>${content}</article>`,
+    dateModified: slug === "updates" ? "2026-08-18" : "2026-08-17",
+    body: `<article class="seo-page"><nav class="breadcrumbs"><a href="/">Home</a> / ${title}</nav><p class="eyebrow">Independent LoloBuy resource</p><h1>${title}</h1><p class="lead">${description}</p><p class="reviewed-label">Reviewed ${slug === "updates" ? seoReviewedDate : reviewedDate}</p>${content}</article>`,
   }));
 }
 
@@ -383,8 +397,17 @@ const sitemapRoutes = [
   "de", "fr", "es", "it", "pt", "pl", "nl", "sv", "da", "no", "fi", "cs",
   "ro", "hu", "el", "uk", "tr", "ru", "bg", "ja", "ko", "ar", "zh",
 ];
-const recentlyUpdatedRoutes = new Set(["", "updates", "faq", "seo-articles", ...seoArticles.map((article) => `seo-articles/${article.slug}`)]);
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => `  <url><loc>https://lolobuysheet.pro/${route}${route ? "/" : ""}</loc><lastmod>${recentlyUpdatedRoutes.has(route) ? "2026-08-17" : "2026-07-16"}</lastmod></url>`).join("\n")}\n</urlset>\n`;
+const sitemapLastModified = new Map([
+  ["", "2026-08-17"],
+  ["faq", "2026-08-17"],
+  ["seo-articles", "2026-08-18"],
+  ["updates", "2026-08-18"],
+  ...seoArticles.map((article) => [
+    `seo-articles/${article.slug}`,
+    article.modifiedDate ?? "2026-08-17",
+  ]),
+]);
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemapRoutes.map((route) => `  <url><loc>https://lolobuysheet.pro/${route}${route ? "/" : ""}</loc><lastmod>${sitemapLastModified.get(route) ?? "2026-07-16"}</lastmod></url>`).join("\n")}\n</urlset>\n`;
 fs.writeFileSync(path.join(publicRoot, "sitemap.xml"), sitemap);
 
 // Keep every indexable URL signal on the same final, trailing-slash URL.
