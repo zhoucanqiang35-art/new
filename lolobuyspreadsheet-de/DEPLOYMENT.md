@@ -38,7 +38,7 @@ npm run validate:artifact
 本项目在 Cloudflare Pages 构建环境中会自动识别 `CF_PAGES=1`，并把最终 Pages 产物直接生成到 `dist/`：
 
 - `dist/` 根目录：浏览器静态资源
-- `dist/_worker.js/index.js`：Pages 高级模式 Worker 入口
+- `dist/_worker.js`：Pages Git 集成可直接识别的单文件高级模式 Worker 入口
 - `wrangler.jsonc`：Pages 输出目录与 `nodejs_compat` 配置
 
 Cloudflare Pages 项目设置：
