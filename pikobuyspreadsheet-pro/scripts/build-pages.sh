@@ -15,7 +15,7 @@ cp -R "${project_root}/dist/client/." "${pages_dir}/"
 # output directory. Bundle Vinext's emitted server graph while leaving the
 # Cloudflare-provided Node compatibility modules external.
 "${project_root}/node_modules/esbuild/bin/esbuild" \
-  "${project_root}/dist/server/index.js" \
+  "${project_root}/worker/pages-entry.mjs" \
   --bundle \
   --format=esm \
   --platform=neutral \
