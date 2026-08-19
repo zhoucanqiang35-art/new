@@ -7,7 +7,7 @@ import PageFrame from "../../components/PageFrame";
 import { getUi } from "../../../lib/i18n";
 
 export function generateStaticParams(){return locales.map(({code})=>({locale:code}));}
-export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{const {locale:code}=await params;const locale=getLocale(code);if(!locale)return{};return{title:`${getFeatureLabel(code,"seoArticles")} — PikoBuy Research`,description:locale.intro,robots:{index:false,follow:false},alternates:{canonical:`/${code}/seo-articles/`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/seo-articles/`]))}};}
+export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{const {locale:code}=await params;const locale=getLocale(code);if(!locale)return{};return{title:`${getFeatureLabel(code,"seoArticles")} — PikoBuy Research`,description:locale.intro,robots:{index:true,follow:true},alternates:{canonical:`/${code}/seo-articles`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/seo-articles`]))}};}
 
 export default async function SeoArticlesPage({params}:{params:Promise<{locale:string}>}){
   const {locale:code}=await params;const locale=getLocale(code);if(!locale)notFound();

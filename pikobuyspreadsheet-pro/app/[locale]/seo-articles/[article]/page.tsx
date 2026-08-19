@@ -7,7 +7,7 @@ import PageFrame from "../../../components/PageFrame";
 import { getUi } from "../../../../lib/i18n";
 
 export function generateStaticParams(){return locales.flatMap(({code})=>seoArticles.map(item=>({locale:code,article:item.slug})));}
-export async function generateMetadata({params}:{params:Promise<{locale:string;article:string}>}):Promise<Metadata>{const {locale:code,article}=await params;const locale=getLocale(code);const item=getSeoArticle(article);if(!locale||!item)return{};const localized=getLocalizedSeoArticle(code,item);return{title:localized.title,description:localized.deck,robots:{index:false,follow:false},alternates:{canonical:`/${code}/seo-articles/${article}/`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/seo-articles/${article}/`]))}};}
+export async function generateMetadata({params}:{params:Promise<{locale:string;article:string}>}):Promise<Metadata>{const {locale:code,article}=await params;const locale=getLocale(code);const item=getSeoArticle(article);if(!locale||!item)return{};const localized=getLocalizedSeoArticle(code,item);return{title:localized.title,description:localized.deck,robots:{index:true,follow:true},alternates:{canonical:`/${code}/seo-articles/${article}`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/seo-articles/${article}`]))}};}
 
 export default async function SeoArticlePage({params}:{params:Promise<{locale:string;article:string}>}){
   const {locale:code,article}=await params;const locale=getLocale(code);const item=getSeoArticle(article);if(!locale||!item)notFound();

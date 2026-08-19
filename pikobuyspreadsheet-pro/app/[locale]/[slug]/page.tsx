@@ -12,7 +12,7 @@ export function generateStaticParams(){return locales.flatMap(({code})=>guideDef
 
 export async function generateMetadata({params}:{params:Promise<{locale:string;slug:string}>}):Promise<Metadata>{
   const {locale:code,slug}=await params; const locale=getLocale(code); const guide=getGuide(slug); if(!locale||!guide)return{};
-  return{title:`${getLocalizedGuideTitle(code,slug)} — ${locale.name}`,description:locale.intro,robots:{index:false,follow:false},alternates:{canonical:`/${code}/${slug}/`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/${slug}/`]))}};
+  return{title:`${getLocalizedGuideTitle(code,slug)} — ${locale.name}`,description:locale.intro,robots:{index:true,follow:true},alternates:{canonical:`/${code}/${slug}`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/${slug}`]))}};
 }
 
 const articleBlocks:Record<string,{heading:string;body:string;checks:string[]}>={
@@ -32,7 +32,7 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
   const {locale:code,slug}=await params; const locale=getLocale(code); const guide=getGuide(slug); const article=articleBlocks[slug]; if(!locale||!guide||!article)notFound();
   const ui=getUi(locale.code);
   if(slug==="faq")return <main className="v3 v3-faq-page" lang={locale.lang}>
-    <div className="v3-review">{locale.independent.toUpperCase()} · {ui.review.toUpperCase()} · NOINDEX</div>
+    <div className="v3-review">{locale.independent.toUpperCase()} · {ui.review.toUpperCase()} · PIKOBUY 2026</div>
     <header className="v3-header v3-wrap"><Brand href={`/${locale.code}/`} /><HeaderNav localeCode={locale.code} currentSlug={slug}/><LanguageSwitcher current={locale.code} /></header>
     <FaqArticle locale={locale}/>
     <footer className="v3-footer"><div className="v3-wrap"><Brand href={`/${locale.code}/`} /><p>{locale.independent}. {locale.intro}</p><div><a href={`/${locale.code}/`}>{locale.name}</a><a href={`/${locale.code}/sources/`}>{locale.sourcesLabel}</a></div></div></footer>
@@ -42,7 +42,7 @@ export default async function GuidePage({params}:{params:Promise<{locale:string;
   const localizedChecks=locale.code==="en"?article.checks:["search","qc-photos","shipping","sources"].map(item=>getLocalizedGuideTitle(locale.code,item));
   const localizedBody=locale.code==="en"?article.body:`${locale.intro} ${locale.independent}.`;
   return <main className="v3 v3-article-page" lang={locale.lang}>
-    <div className="v3-review">{locale.independent.toUpperCase()} · {ui.review.toUpperCase()} · NOINDEX</div>
+    <div className="v3-review">{locale.independent.toUpperCase()} · {ui.review.toUpperCase()} · PIKOBUY 2026</div>
     <header className="v3-header v3-wrap"><Brand href={`/${locale.code}/`} /><HeaderNav localeCode={locale.code} currentSlug={slug}/><LanguageSwitcher current={locale.code} /></header>
     <article className="article-shell wrap">
       <aside><a href={`/${locale.code}/`}>← {locale.name}</a><p>{locale.guidesLabel}</p>{guideDefs.filter(item=>["search","guides","faq","sources"].includes(item.slug)).map(item=>{const index=guideDefs.findIndex(entry=>entry.slug===item.slug);return <a className={item.slug===slug?"current":""} href={`/${locale.code}/${item.slug}/`} key={item.slug}><span>{String(index+1).padStart(2,"0")}</span>{getLocalizedGuideTitle(locale.code,item.slug)}</a>})}</aside>

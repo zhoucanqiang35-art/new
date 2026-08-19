@@ -40,7 +40,7 @@ const faqs = [
 export default function Home() {
   return <main className="v3" id="top">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@graph": [{ "@type": "WebSite", "@id": "https://pikobuyspreadsheet.pro/#website", url: "https://pikobuyspreadsheet.pro/", name: "PikoBuy Spreadsheet Pro", potentialAction: { "@type": "SearchAction", target: "https://findspreadsheet.com/search.html?channelid=2&method=1&keywords={search_term_string}", "query-input": "required name=search_term_string" } }, { "@type": "FAQPage", mainEntity: faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) }] }) }} />
-    <div className="v3-review">REVIEW EDITION · PUBLIC LINK · NOINDEX UNTIL FORMAL LAUNCH</div>
+    <div className="v3-review">PUBLIC EDITION · INDEPENDENT GUIDE · PIKOBUY 2026</div>
     <header className="v3-header v3-wrap">
       <Brand />
       <HeaderNav />

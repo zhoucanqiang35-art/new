@@ -6,7 +6,7 @@ import { getLocalizedCategoryName, getUi } from "../../../lib/i18n";
 import PageFrame from "../../components/PageFrame";
 
 export function generateStaticParams(){return locales.map(({code})=>({locale:code}));}
-export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{const {locale:code}=await params;const locale=getLocale(code);if(!locale)return{};return{title:`${getFeatureLabel(code,"productCategories")} — PikoBuy Spreadsheet`,description:locale.intro,robots:{index:false,follow:false},alternates:{canonical:`/${code}/product-categories/`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/product-categories/`]))}};}
+export async function generateMetadata({params}:{params:Promise<{locale:string}>}):Promise<Metadata>{const {locale:code}=await params;const locale=getLocale(code);if(!locale)return{};return{title:`${getFeatureLabel(code,"productCategories")} — PikoBuy Spreadsheet`,description:locale.intro,robots:{index:true,follow:true},alternates:{canonical:`/${code}/product-categories`,languages:Object.fromEntries(locales.map(item=>[item.lang,`/${item.code}/product-categories`]))}};}
 
 export default async function ProductCategoriesPage({params}:{params:Promise<{locale:string}>}){
   const {locale:code}=await params;const locale=getLocale(code);if(!locale)notFound();

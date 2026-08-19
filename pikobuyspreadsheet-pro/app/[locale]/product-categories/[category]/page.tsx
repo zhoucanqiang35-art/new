@@ -6,7 +6,7 @@ import { getLocalizedCategoryName, getUi } from "../../../../lib/i18n";
 import PageFrame from "../../../components/PageFrame";
 
 export function generateStaticParams(){return locales.flatMap(({code})=>categoryRecords.map(item=>({locale:code,category:item.slug})));}
-export async function generateMetadata({params}:{params:Promise<{locale:string;category:string}>}):Promise<Metadata>{const {locale:code,category}=await params;const locale=getLocale(code);const item=getCategoryRecord(category);if(!locale||!item)return{};return{title:`${item.name} PikoBuy Spreadsheet Checklist`,description:item.note,robots:{index:false,follow:false},alternates:{canonical:`/${code}/product-categories/${category}/`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/product-categories/${category}/`]))}};}
+export async function generateMetadata({params}:{params:Promise<{locale:string;category:string}>}):Promise<Metadata>{const {locale:code,category}=await params;const locale=getLocale(code);const item=getCategoryRecord(category);if(!locale||!item)return{};return{title:`${item.name} PikoBuy Spreadsheet Checklist`,description:item.note,robots:{index:true,follow:true},alternates:{canonical:`/${code}/product-categories/${category}`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/product-categories/${category}`]))}};}
 
 export default async function ProductCategoryPage({params}:{params:Promise<{locale:string;category:string}>}){
   const {locale:code,category}=await params;const locale=getLocale(code);const item=getCategoryRecord(category);if(!locale||!item)notFound();

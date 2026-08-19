@@ -6,7 +6,7 @@ import { getUi } from "../../../../lib/i18n";
 import PageFrame from "../../../components/PageFrame";
 
 export function generateStaticParams(){return locales.flatMap(({code})=>productRecords.map(item=>({locale:code,product:item.slug})));}
-export async function generateMetadata({params}:{params:Promise<{locale:string;product:string}>}):Promise<Metadata>{const {locale:code,product}=await params;const locale=getLocale(code);const item=getProductRecord(product);if(!locale||!item)return{};return{title:`${item.name} — Product Detail`,description:item.summary,robots:{index:false,follow:false},alternates:{canonical:`/${code}/product-details/${product}/`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/product-details/${product}/`]))}};}
+export async function generateMetadata({params}:{params:Promise<{locale:string;product:string}>}):Promise<Metadata>{const {locale:code,product}=await params;const locale=getLocale(code);const item=getProductRecord(product);if(!locale||!item)return{};return{title:`${item.name} — Product Detail`,description:item.summary,robots:{index:true,follow:true},alternates:{canonical:`/${code}/product-details/${product}`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/product-details/${product}`]))}};}
 
 export default async function ProductDetailPage({params}:{params:Promise<{locale:string;product:string}>}){
   const {locale:code,product}=await params;const locale=getLocale(code);const item=getProductRecord(product);if(!locale||!item)notFound();
