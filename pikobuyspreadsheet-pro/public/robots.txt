@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://pikobuyspreadsheet.pro/sitemap.xml

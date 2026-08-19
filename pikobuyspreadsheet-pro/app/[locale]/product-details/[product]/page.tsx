@@ -1,0 +1,15 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { getProductRecord, productRecords } from "../../../../lib/content-data";
+import { getFeatureLabel, getLocale, getLocalizedGuideTitle, locales } from "../../../../lib/site-data";
+import { getUi } from "../../../../lib/i18n";
+import PageFrame from "../../../components/PageFrame";
+
+export function generateStaticParams(){return locales.flatMap(({code})=>productRecords.map(item=>({locale:code,product:item.slug})));}
+export async function generateMetadata({params}:{params:Promise<{locale:string;product:string}>}):Promise<Metadata>{const {locale:code,product}=await params;const locale=getLocale(code);const item=getProductRecord(product);if(!locale||!item)return{};return{title:`${item.name} — Product Detail`,description:item.summary,robots:{index:false,follow:false},alternates:{canonical:`/${code}/product-details/${product}/`,languages:Object.fromEntries(locales.map(entry=>[entry.lang,`/${entry.code}/product-details/${product}/`]))}};}
+
+export default async function ProductDetailPage({params}:{params:Promise<{locale:string;product:string}>}){
+  const {locale:code,product}=await params;const locale=getLocale(code);const item=getProductRecord(product);if(!locale||!item)notFound();
+  const ui=getUi(code);const visibleEvidence=code==="en"?item.evidence:[getLocalizedGuideTitle(code,"qc-photos"),getLocalizedGuideTitle(code,"shipping"),getLocalizedGuideTitle(code,"sources")];
+  return <PageFrame locale={locale} currentSlug="product-details"><article className="detail-article product-detail-article v3-wrap"><a className="detail-back" href={`/${code}/product-details/`}>← {getFeatureLabel(code,"productDetails")}</a><div className="product-detail-visual"><img src={item.image} alt={item.name}/><span>{getFeatureLabel(code,"productDetails")}</span></div><div className="product-detail-head"><div><p className="detail-kicker">{getFeatureLabel(code,"productDetails").toUpperCase()} · {locale.name.toUpperCase()}</p><h1>{item.name}</h1><p className="detail-deck">{code==="en"?item.summary:locale.intro}</p><small>{code==="en"?item.observed:ui.usdNote}</small></div><div className="price-stamp"><span>{getFeatureLabel(code,"productDetails").toUpperCase()} · USD</span><b>{item.recordedPrice}</b><small>{item.sourcePriceCny} · 1 USD = 6.74 CNY</small></div></div><div className="detail-two-col"><section><h2>{ui.evidence}</h2>{visibleEvidence.map((check,index)=><div className="numbered-check" key={check}><span>{String(index+1).padStart(2,"0")}</span><p>{check}</p></div>)}</section><aside><small>{ui.mainRecord.toUpperCase()}</small><h2>{ui.recheck}</h2><p>{locale.intro} {ui.usdNote}</p><a href={item.mainUrl} target="_blank" rel="noreferrer">{ui.open} FindSpreadsheet ↗</a></aside></div>{code!=="en"&&<details className="original-research"><summary>{ui.originalEnglish}</summary><p lang="en">{item.summary}</p><ul lang="en">{item.evidence.map(check=><li key={check}>{check}</li>)}</ul><small lang="en">{item.observed}</small></details>}</article></PageFrame>;
+}
