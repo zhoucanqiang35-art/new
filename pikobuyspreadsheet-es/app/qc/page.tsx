@@ -1,4 +1,7 @@
 import { ArticleShell, SourcesBlock } from "../site-components";
+import { pageMetadata } from "../seo";
+
+export const metadata=pageMetadata("en-US","qc","PikoBuy Warehouse QC Checklist","Use warehouse photos to verify variations, measurements and visible condition.");
 
 const checks = [
   ["Shoes", "Selected size and colour, size label, outsole, profile, stitching and visible glue."],
