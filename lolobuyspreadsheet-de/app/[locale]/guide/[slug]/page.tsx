@@ -19,9 +19,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: `${tr(locale, guide.title)} | LoloBuy Spreadsheet`,
     description: tr(locale, guide.deck),
+    keywords: guide.keywords,
+    authors: [{ name: "FindSpreadsheet Editorial" }],
     alternates: {
       canonical: localizedPath(locale, `guide/${slug}`),
-      languages: Object.fromEntries(localeCodes.map(code => [code, localizedPath(code, `guide/${slug}`)])),
+      languages: {
+        ...Object.fromEntries(localeCodes.map(code => [code, localizedPath(code, `guide/${slug}`)])),
+        "x-default": localizedPath("en", `guide/${slug}`),
+      },
+    },
+    openGraph: {
+      type: "article",
+      title: tr(locale, guide.title),
+      description: tr(locale, guide.deck),
+      publishedTime: guide.published,
+      modifiedTime: guide.published,
     },
   };
 }
