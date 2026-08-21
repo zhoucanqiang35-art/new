@@ -32,6 +32,13 @@ export const productRecords: ProductRecord[] = [
 export type SeoArticle = {
   slug: string; title: string; deck: string; readTime: string; wordTarget: string;
   sources: string[]; sections: {heading:string; paragraphs:string[]}[];
+  availableLocales?: string[];
+  publishedAt?: string;
+  updatedAt?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
+  sourceLinks?: {label:string;url:string}[];
+  internalLinks?: {label:string;url:string}[];
 };
 
 export const seoArticles: SeoArticle[] = [
@@ -157,12 +164,72 @@ export const seoArticles: SeoArticle[] = [
         "Finally, keep estimates and outcomes separate. Record what you expected, what the submitted parcel measured, what the platform charged and when tracking became available. Over time, that history improves future spreadsheet planning without pretending that one past parcel predicts every new one. A strong PikoBuy shipping guide does not advertise a secret cheapest route. It teaches readers to use measured inputs, current eligibility and a visible risk decision so that the delivered-cost estimate becomes more honest at every stage."
       ]}
     ]
+  },
+  {
+    slug:"pikobuy-returns-120-hour-guide",
+    title:"PikoBuy Returns: A Practical Guide to the 120-Hour Warehouse Window",
+    deck:"Use this PikoBuy returns guide to check eligibility, inspect warehouse evidence, calculate costs and decide before the published 120-hour window closes.",
+    readTime:"12 min read",wordTarget:"1,200–1,800 words",
+    availableLocales:["en"],
+    publishedAt:"2026-08-21",
+    updatedAt:"2026-08-21",
+    primaryKeyword:"PikoBuy returns",
+    secondaryKeywords:["PikoBuy 5-day return","PikoBuy return fee","PikoBuy warehouse return","PikoBuy return policy","PikoBuy refund","return to seller"],
+    sources:["PikoBuy Returns & Exchanges","PikoBuy Beginner's Guide","PikoBuy Shipping Estimate","PikoBuy Shipping Terms"],
+    sourceLinks:[
+      {label:"PikoBuy Returns & Exchanges",url:"https://www.pikobuy.com/protocol/returns"},
+      {label:"PikoBuy Beginner's Guide",url:"https://www.pikobuy.com/guide"},
+      {label:"PikoBuy Shipping Estimate",url:"https://www.pikobuy.com/shipping-cost"},
+      {label:"PikoBuy Shipping Terms",url:"https://www.pikobuy.com/protocol/shipping"}
+    ],
+    internalLinks:[
+      {label:"Use the complete PikoBuy spreadsheet workflow",url:"/en/seo-articles/pikobuy-spreadsheet-guide"},
+      {label:"Read warehouse QC photos category by category",url:"/en/seo-articles/pikobuy-qc-photo-guide"},
+      {label:"Estimate weight, dimensions and route cost",url:"/en/seo-articles/pikobuy-shipping-cost-guide"},
+      {label:"Browse product categories before shortlisting",url:"/en/product-categories"},
+      {label:"Open the searchable FindSpreadsheet database",url:"https://findspreadsheet.com/AllProducts/"}
+    ],
+    sections:[
+      {heading:"PikoBuy returns begin with a clock, not a complaint",paragraphs:[
+        "PikoBuy returns are easiest to manage when the decision starts as soon as an item reaches the warehouse. PikoBuy's current Returns & Exchanges page says an application can be made within five days after the order status changes to In Warehouse. The platform defines those five days as 120 hours, counted from the next hour after that status change, and warns that applications may not be accepted after the period. That makes the warehouse timestamp an operational deadline, not a date to remember loosely. Record it, calculate the end of the window, and leave time for questions or extra photographs before the final hour.",
+        "This window is not a blanket promise that every item can be returned. PikoBuy describes the service as dependent on third-party seller rules, and its eligibility table distinguishes returnable goods from products that are not returnable or need negotiation. A useful plan therefore asks two questions immediately: when does the 120-hour window end, and what rule applies to this exact item? Treating the deadline and eligibility as separate checks prevents a common failure: discovering a visible problem quickly but assuming the seller must accept the return regardless of product category, condition or packaging."
+      ]},
+      {heading:"Check return eligibility before you place the order",paragraphs:[
+        "The official policy says a returnable item must meet all three conditions: the seller offers a return guarantee, the item remains in the resalable condition the seller requires, and it has been in the warehouse for no more than five days. Check the seller's live listing and the selected variant before payment rather than relying on a spreadsheet title. Save the seller or item information, the exact size, colour and bundle, and any return language shown at purchase. PikoBuy's Beginner's Guide separately recommends confirming specifications and saving item or store information; those records become useful if the received option does not match the order.",
+        "Category matters. PikoBuy's policy lists customized goods, products whose labels or accessories were removed at the user's request, second-hand items, intimate apparel, some food, goods purchased outside mainland China and other seller-specified goods among examples that may not receive the standard service. Some opened products must satisfy special packaging standards. Do not reduce that long list to a badge that says returnable. Add three fields to the buying record: seller guarantee confirmed, category exception checked and packaging requirements saved. If any answer is uncertain, price the purchase as if a change-of-mind return might not be available."
+      ]},
+      {heading:"Inspect warehouse evidence on arrival, in a fixed order",paragraphs:[
+        "PikoBuy's Beginner's Guide says the warehouse stage includes check-in, photo confirmation and a defect check. Use those images to compare what arrived with what was ordered, beginning with facts that can be seen: item count, selected colour, visible size label, model or style, major components and obvious damage. Then perform category-specific checks. Clothing needs seams, measurements and print placement; shoes need both profiles, heels, outsoles, size labels and box condition; electronics need exact model markings and included parts. A photograph can document visible condition, but it cannot prove authenticity, internal performance or long-term durability.",
+        "Work from the highest-impact mismatch to smaller cosmetic questions. If the wrong size arrived, there is little value in spending a day debating a minor stitch before reporting the option error. When an angle is missing, ask a question that a photograph can answer and request detail early enough to review it. Preserve the original images and the source listing rather than editing them into a collage that hides context. Your written note should state what was ordered, what is visible, what differs and which image shows it. That format is more useful to support and the seller than a general statement such as the item looks bad."
+      ]},
+      {heading:"Calculate the PikoBuy return fee before deciding",paragraphs:[
+        "For an unconditional return, PikoBuy currently publishes this formula: shipping back to the seller, plus the seller's original shipping fee, plus an RMB 5 service fee. The same page says an item advertised with free shipping can still require payment of the first-delivery shipping fee when it is returned. In other words, a refund is not automatically equal to every amount associated with the order. The policy also says the total refund is based on the actual product price paid. Use the official order interface for the case-specific total because the formula does not reveal the domestic shipping amounts for an individual order.",
+        "A sensible decision compares the recoverable product amount with the stated return costs and the cost of keeping the item. Write the calculation as a range until support or the order page supplies the actual figures. Do not invent a domestic courier rate or convert RMB with an undated exchange rate merely to make the choice look precise. Also keep enough account balance to cover return shipping and service charges; PikoBuy explicitly asks users to do this after applying. For a low-value item, the economics may be unattractive even while a return remains procedurally possible. That is a decision, not evidence that the fee was hidden."
+      ]},
+      {heading:"Choose the accurate reason and preserve responsibility evidence",paragraphs:[
+        "PikoBuy separates customer-responsibility situations from seller or other-party situations. Its examples place change of mind, ordering the wrong item or quantity, unexpectedly high international shipping and a seller-confirmed no-quality-issue dispute on the customer side. Wrong product, wrong colour or size and quality issues appear on the seller side. Damage during domestic shipping is listed separately. Select the reason that matches the evidence. A convenient category is not necessarily the correct one, and an exaggerated defect claim can weaken an otherwise straightforward request.",
+        "When the seller shipped the wrong option or there is a visible quality issue, keep the order selection, source description, warehouse images and support messages together. The official page says customers normally do not bear costs for returns not caused by them, while also noting a seller may insist the customer pay shipping. Its FAQ says the seller bears shipping for a quality issue after the request is submitted. Those statements describe the usual rule, not a guaranteed outcome for an undocumented case. PikoBuy also says it can only return the item with the seller's consent, so the final resolution still depends on verification and communication."
+      ]},
+      {heading:"Protect labels, seals, accessories and the shipping box",paragraphs:[
+        "Resalable condition is practical, not abstract. Until the keep-or-return decision is final, do not request removal of labels, anti-theft devices, accessories or protective seals. Avoid optional handling that changes the retail package unless it is essential. PikoBuy's special standards say, for example, that new sneakers must retain functional anti-theft buckles and tamper-proof stickers when present; personal-care goods may need disposable sealed packaging intact; figures and similar collectibles may need tape and plastic seals untouched; and books must remain free of creases, water marks, stains, ink or signs of reading.",
+        "The table contains category-specific conditions for cameras, appliances, electronic components, games, pet products and other goods. Read the current row for the exact category instead of borrowing a rule from a similar product. If the warehouse photographs show a seal already broken when the item arrived, document that before asking for any handling. Packaging preservation can conflict with inspection depth: opening a sealed item might answer one question while removing return eligibility. Make that trade-off consciously and ask support how the published standard applies before authorizing an irreversible step."
+      ]},
+      {heading:"Use shipping estimates as an early return decision trigger",paragraphs:[
+        "PikoBuy's policy explicitly lists international shipping far above budget as a customer-responsibility return example. That is why freight planning belongs inside the 120-hour review, not after it. The public Shipping Estimate page asks for destination, product type, weight, length, width and height. Once warehouse measurements are available, enter the actual data and compare eligible routes. If dimensions are missing, request them or label the result as an estimate. A product price can look attractive until bulky packaging, route restrictions or chargeable weight changes the delivered-cost picture.",
+        "Do not confuse the estimator with a guaranteed final bill. PikoBuy's Beginner's Guide says routes differ in delivery time and billing methods, while the Shipping Terms describe third-party logistics and risks including customs action, damage, loss and peak-season delay. Use the estimate to answer a narrower question: is the likely shipping range still compatible with the reason you bought the item? If not, compare the customer-responsibility return costs while the application window remains open. Waiting for perfect certainty can be expensive when the only certain number is the deadline."
+      ]},
+      {heading:"A 120-hour warehouse return checklist",paragraphs:[
+        "Hour zero is the status change. Record the In Warehouse time and calculate the policy deadline from the next hour. During the first review, confirm seller return eligibility, category exceptions and the exact ordered option. Save the live listing and warehouse evidence. Compare visible count, colour, size, model, components and condition. Request only decision-relevant photographs or measurements. Keep labels, seals, accessories and packaging unchanged. If a problem exists, write a factual reason and attach the image or order detail that supports it. If freight is the concern, run the current shipping estimate with measured inputs before waiting for parcel submission.",
+        "Before applying, compare the product amount with return shipping, the seller's original shipping fee and the RMB 5 service charge where the unconditional-return formula applies. Confirm sufficient account balance, submit through the official page and keep the case record. Do not promise yourself a refund before seller consent and platform verification. If the deadline has passed or the item is excluded, contact official support with the evidence, but do not describe negotiation as a guaranteed return right. The goal is a timely, explainable decision: keep the item because the evidence and delivered cost still work, or request a return while the published option is genuinely available."
+      ]}
+    ]
   }
 ];
 
 export function getCategoryRecord(slug:string){return categoryRecords.find(item=>item.slug===slug);}
 export function getProductRecord(slug:string){return productRecords.find(item=>item.slug===slug);}
 export function getSeoArticle(slug:string){return seoArticles.find(item=>item.slug===slug);}
+export function isSeoArticleAvailable(article:SeoArticle,code:string){return !article.availableLocales||article.availableLocales.includes(code);}
 
 const localizedArticleTitles: Record<string,string[]> = {
   en:["How to Use a PikoBuy Spreadsheet Without Treating It as Proof","PikoBuy QC Photos: A Category-by-Category Warehouse Inspection Guide","PikoBuy Shipping Cost: How Weight, Dimensions, Routes and Risk Change the Total"],
