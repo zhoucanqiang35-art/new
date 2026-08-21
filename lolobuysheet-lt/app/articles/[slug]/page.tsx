@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { researchArticles } from "../../articleData";
+import { PageHero, PageShell, SourceNote } from "../../components";
+import { languages } from "../../data";
+import { ResponsiveArticleSection } from "../../ResponsiveDetails";
+
+export function generateStaticParams(){return researchArticles.map(article=>({slug:article.slug}));}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const article=researchArticles.find(item=>item.slug===slug);if(!article)return{};return{title:article.title,description:article.description,alternates:{canonical:`/articles/${article.slug}`,languages:Object.fromEntries([["x-default",`/articles/${article.slug}`],...languages.map(language=>[language.code,`/languages/${language.code}/articles/${article.slug}`])])},openGraph:{title:article.title,description:article.description,images:[]},twitter:{title:article.title,description:article.description,images:[]}}}
+
+export default async function ArticleDetail({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const article=researchArticles.find(item=>item.slug===slug);if(!article)notFound();return <PageShell><div className="article-wrap"><PageHero eyebrow={`${article.tag} · ${article.readTime}`} title={article.title} intro={article.description}/><div className="article-layout"><article className="prose long-form">{article.sections.map((section,index)=><ResponsiveArticleSection title={section.heading} key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph,paragraphIndex)=><p key={paragraphIndex}>{paragraph}</p>)}{index===1&&<SourceNote>Official LoloBuy public material was checked on 20 Aug 2026. It confirms the general buying, inspection-photo, consolidation and international-shipping workflow. Variable account rules and transaction details must be checked live.</SourceNote>}</ResponsiveArticleSection>)}</article><aside className="article-side"><strong>Evidence-first reading</strong><ol><li>Separate platform facts</li><li>Mark editorial checks</li><li>Recheck live variables</li><li>Save order evidence</li></ol><a href="/sources">Open evidence ledger →</a><a className="side-secondary" href="/articles">All SEO articles →</a></aside></div></div></PageShell>}

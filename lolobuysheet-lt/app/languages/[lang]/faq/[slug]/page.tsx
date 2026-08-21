@@ -1,0 +1,11 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { PageHero, PageShell, SourceNote } from "../../../../components";
+import { languages } from "../../../../data";
+import { localeCopy } from "../../../../localeCopy";
+import { localizedContent } from "../../../../localizedContent";
+
+export function generateStaticParams(){return languages.flatMap(language=>localizedContent.en.faqs.map(faq=>({lang:language.code,slug:faq.slug})));}
+export async function generateMetadata({params}:{params:Promise<{lang:string;slug:string}>}):Promise<Metadata>{const {lang,slug}=await params;const faq=localizedContent[lang]?.faqs.find(item=>item.slug===slug);const copy=localeCopy[lang];if(!faq||!copy)return{};return{title:`${faq.question} · ${copy.faqTitle}`,description:faq.short,alternates:{canonical:`/languages/${lang}/faq/${slug}`,languages:Object.fromEntries([["x-default",`/faq/${slug}`],...languages.map(language=>[language.code,`/languages/${language.code}/faq/${slug}`])])}}}
+
+export default async function LocalizedFaqDetail({params}:{params:Promise<{lang:string;slug:string}>}){const {lang,slug}=await params;const language=languages.find(item=>item.code===lang);const copy=localeCopy[lang];const bundle=localizedContent[lang];const faq=bundle?.faqs.find(item=>item.slug===slug);if(!language||!copy||!bundle||!faq)notFound();return <PageShell lang={lang}><div className="article-wrap faq-detail"><PageHero lang={lang} eyebrow={`${language.name} · FAQ`} title={faq.question} intro={faq.short}/><section className="localized-summary"><strong>{bundle.ui.translatedEdition}</strong><p>{language.intro}</p><p>{bundle.ui.preserved}</p></section><div className="article-layout"><article className="prose"><h2>{faq.question}</h2><p>{faq.answer}</p><h2>{copy.verifiedLabel}</h2><p>{copy.faqIntro}</p><SourceNote lang={lang}>{bundle.ui.sourceNote}</SourceNote></article><aside className="article-side"><strong>{copy.faqTitle}</strong><ol><li>{copy.verifiedLabel}</li><li>{bundle.ui.checked}</li><li>{bundle.ui.verifyLive}</li></ol><a href={`/languages/${lang}/faq`}>{bundle.ui.allFaqs} →</a><a className="side-secondary" href={`/languages/${lang}/articles`}>{bundle.ui.allArticles} →</a></aside></div></div></PageShell>}
