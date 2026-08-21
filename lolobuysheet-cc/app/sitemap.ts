@@ -1,0 +1,4 @@
+import type { MetadataRoute } from "next";
+import { categories, guides, markets, products } from "./data";
+import { languageOptions, withLocale } from "./locales";
+export default function sitemap(): MetadataRoute.Sitemap { const base="https://lolobuysheet.cc"; const core=["/","/spreadsheet","/categories","/products","/seo-articles","/faq","/markets","/sources",...categories.map(c=>`/categories/${c.slug}`),...products.map(p=>`/products/${p.slug}`),...guides.map(g=>`/seo-articles/${g.slug}`),...markets.map(m=>`/markets/${m.slug}`)]; const localized=languageOptions.flatMap((language)=>core.map((path)=>withLocale(language.code,path))); return [...new Set(localized)].map((path)=>({url:`${base}${path==="/"?"":path}`,lastModified:new Date("2026-08-21"),changeFrequency:"weekly" as const,priority:path==="/"?1:0.8})); }
