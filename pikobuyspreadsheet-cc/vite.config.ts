@@ -44,6 +44,16 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    // SEO launch gates are build-time settings. Cloudflare Pages does not
+    // automatically expose dashboard build variables to the deployed Worker
+    // through process.env, so compile the four public SEO values into the
+    // server bundle instead of re-reading them at request time.
+    define: {
+      "process.env.FORMAL_DOMAIN_CONFIRMED": JSON.stringify(process.env.FORMAL_DOMAIN_CONFIRMED ?? ""),
+      "process.env.SITE_INDEXABLE": JSON.stringify(process.env.SITE_INDEXABLE ?? ""),
+      "process.env.INDEXABLE_LOCALES": JSON.stringify(process.env.INDEXABLE_LOCALES ?? ""),
+      "process.env.QA_APPROVED_LOCALES": JSON.stringify(process.env.QA_APPROVED_LOCALES ?? ""),
+    },
     server: {
       host: "127.0.0.1",
       allowedHosts: ["terminal.local"],

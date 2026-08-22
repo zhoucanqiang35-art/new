@@ -24,6 +24,14 @@ await Promise.all(requiredFiles.map((file) => access(path.join(outputDirectory, 
 const workerPath = path.join(outputDirectory, "_worker.js");
 if ((await stat(workerPath)).size === 0) throw new Error("dist/pages/_worker.js is empty");
 
+// Reproduce the deployed Cloudflare Worker runtime, where Pages build
+// variables are not available through process.env. The bundle must retain the
+// production SEO settings that were present when Vite compiled it.
+delete process.env.FORMAL_DOMAIN_CONFIRMED;
+delete process.env.SITE_INDEXABLE;
+delete process.env.INDEXABLE_LOCALES;
+delete process.env.QA_APPROVED_LOCALES;
+
 const workerUrl = pathToFileURL(workerPath);
 workerUrl.searchParams.set("pages-validation", `${process.pid}-${Date.now()}`);
 const worker = await import(workerUrl.href);
