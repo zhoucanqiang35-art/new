@@ -4,6 +4,11 @@ export type ResearchArticle = {
   title: string;
   description: string;
   readTime: string;
+  published?: string;
+  updated?: string;
+  keywords?: string[];
+  sources?: { label: string; url: string; accessed: string }[];
+  relatedLinks?: { label: string; url: string }[];
   sections: { heading: string; paragraphs: string[] }[];
 };
 
@@ -164,6 +169,93 @@ export const researchArticles: ResearchArticle[] = [
       { heading: "Review the result after delivery", paragraphs: [
         "When the parcel arrives, compare the delivered contents with the warehouse images and saved packing record. Note the actual delivery timeline, condition of the outer carton, effectiveness of selected protection and any destination-side fee. This turns one order into useful evidence for the next rather than a vague memory of whether shipping felt expensive or slow.",
         "Do not generalize a single result into a permanent promise for every buyer. Routes, seasons, customs processing and parcel contents differ. Use the result to improve your own estimates and to ask better questions on the next order."
+      ]}
+    ]
+  },
+  {
+    slug: "lolobuy-warehouse-storage-planning",
+    tag: "WAREHOUSE",
+    title: "LoloBuy Warehouse Storage Planning: Verify the Deadline Before You Wait",
+    description: "A source-checked method for managing stored items when LoloBuy's current public materials show different storage periods.",
+    readTime: "12 min read",
+    published: "2026-08-22",
+    updated: "2026-08-22",
+    keywords: [
+      "LoloBuy warehouse storage",
+      "LoloBuy storage period",
+      "LoloBuy warehouse deadline",
+      "LoloBuy stored in warehouse",
+      "LoloBuy parcel consolidation"
+    ],
+    sources: [
+      {
+        label: "LoloBuy public application copy, including the current homepage warehouse statement",
+        url: "https://www.lolobuy.com/assets/index-49c06916.js",
+        accessed: "22 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Free Storage Period",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300757049499",
+        accessed: "22 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — What to do after an item is stored",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296871158912",
+        accessed: "22 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Product weight and warehouse stocking",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300744204423",
+        accessed: "22 August 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Browse the FindSpreadsheet product database", url: "https://findspreadsheet.com/" }
+    ],
+    sections: [
+      { heading: "Why a storage guide must begin with verification", paragraphs: [
+        "Warehouse storage sounds simple: wait until the products you want have arrived, then combine them into an international parcel. The difficult part is that waiting is not neutral. Seller after-sales windows can close, packaging choices can change the eventual parcel size, and an item can approach its warehouse deadline while another order is still moving through domestic delivery. A useful LoloBuy warehouse storage plan therefore needs dates, statuses and decisions rather than a vague intention to ship everything later.",
+        "There is also a current source conflict that responsible guides should not hide. On 22 August 2026, English copy in LoloBuy's public application bundle said the warehouse provides 90 days of free storage. On the same date, the official Help Center article titled “Free Storage Period” said the free period for ordinary items is 180 days and described a reminder after 150 days. Because both statements are published by LoloBuy, neither number should be treated as a universal promise without checking the actual warehouse record."
+      ]},
+      { heading: "What the official pages currently agree on", paragraphs: [
+        "Despite the different headline periods, the official material agrees on the operational point: storage is limited and the buyer must act. The Help Center says fees or disposal rules may apply after the relevant period, while the public interface tells buyers to pay attention to My Warehouse and submit qualifying goods for cross-border transport to avoid unnecessary expense or loss. That shared message is more dependable than copying one number into a permanent countdown.",
+        "LoloBuy also defines “Stored in warehouse” as the stage at which the item has arrived at its warehouse and the buyer should visit My Warehouse to submit delivery to an overseas address. In other words, stored is not a passive final status. It is the beginning of the buyer's warehouse decision: accept the visible condition, resolve a problem, request a supported service, wait for compatible items or prepare a parcel."
+      ]},
+      { heading: "Use the item record as the controlling deadline", paragraphs: [
+        "Open every stored item and record the arrival or stock-in date, the displayed storage countdown, the current item status and any warning shown in the account. If the Help Center, homepage and item record disagree, use the item-specific account information as the immediate operational signal and ask support for written clarification before relying on extra time. A screenshot with the date visible is far more useful than an old blog post if a deadline later becomes disputed.",
+        "Do not calculate the last safe day by adding a remembered number to the seller's dispatch date. Storage normally begins only after the warehouse receives and processes the item, and an unmatched or unusual parcel may follow a different rule. The official storage article currently distinguishes ordinary items from unusual parcels that cannot be matched to an order, giving the latter a much shorter period. This is another reason to verify that every domestic tracking number and warehouse entry has been matched correctly."
+      ]},
+      { heading: "Create three warehouse groups instead of one waiting list", paragraphs: [
+        "A single list of stored products hides risk. Divide the warehouse into three working groups. The first is ready: the item matches the order, visible checks are complete and it is eligible for the intended parcel. The second is unresolved: a measurement, missing component, wrong option, damage concern or after-sales request still needs action. The third is route-sensitive: batteries, liquids, magnets, fragile pieces, unusually large packaging or another characteristic may affect which shipping lines can accept the parcel.",
+        "Only the ready group should be treated as a consolidation candidate. An unresolved item should not be added merely because the other products are approaching a preferred shipping date. A route-sensitive item deserves a separate live estimate before it is allowed to narrow the choices for everything else. This grouping turns the warehouse from a collection of thumbnails into a decision board."
+      ]},
+      { heading: "Keep the seller deadline separate from the storage deadline", paragraphs: [
+        "Warehouse time and seller after-sales time answer different questions. The storage deadline concerns how long LoloBuy will hold the received item under the current account rules. A return or exchange depends on the seller, the order state, the reason, the available evidence and the current after-sales process. A long warehouse allowance does not mean a buyer can wait until the end of that allowance before reporting the wrong colour, missing piece or visible defect.",
+        "Review QC evidence soon after stock-in. Compare the saved listing, selected option, quantity and warehouse photographs. If something objective is wrong, preserve the order selection and the specific image that shows the difference, then use the current after-sales channel promptly. If the concern cannot be proved visually, state exactly what additional evidence would resolve it. Storage planning should protect decision time, not consume it."
+      ]},
+      { heading: "Understand what was measured and how it was packed", paragraphs: [
+        "The official warehouse-stocking article says the recorded dimensions refer to the outside length, width and height after the product is packaged, along with its weight before storage. It also explains that original express packaging is not always retained and lists situations in which an item cannot remain stocked in its original box. These details matter because the warehouse thumbnail may not represent the exact packaging that will later form the international parcel.",
+        "Record whether retail packaging, domestic express packaging or protective material matters to you. Removing packaging can reduce volume, but it can also reduce protection or remove something that has product value. Keeping every box can increase chargeable volume. Make the choice deliberately and verify the available service wording in My Warehouse or during parcel submission rather than assuming that the seller's original carton will automatically be preserved."
+      ]},
+      { heading: "Choose a personal ship-by date with a safety margin", paragraphs: [
+        "Your personal ship-by date should be earlier than the account's final deadline. Work backward from the earliest verified warehouse expiry, then allow time for a focused photo request, after-sales communication, packaging changes, rehearsal or pre-packing where available, and payment problems. Buyers in the United States or Europe should also consider weekends, holidays and the possibility that a preferred route is unavailable when the parcel is finally assembled.",
+        "A practical rule is to set two reminders rather than one. The review reminder asks whether every item is ready, unresolved or route-sensitive. The submission reminder is the last planned day to finalize the parcel while a meaningful safety margin remains. These are editorial planning tools, not LoloBuy policy. Their purpose is to prevent the entire decision from depending on a single final-day login."
+      ]},
+      { heading: "Consolidate by compatibility, not by maximum quantity", paragraphs: [
+        "LoloBuy's public interface describes selecting products, submitting a parcel, combining the packaging, weighing it and shipping it with tracking. That confirms consolidation as part of the workflow, but it does not prove that one large parcel is always cheapest. A larger box can be billed by volume, cross a route limit or expose every item to the restriction created by one sensitive product.",
+        "Compare a sensible combined parcel with one or two split alternatives when the contents differ materially. Group ordinary clothing together if the live estimate supports it, while checking bulky shoe boxes, fragile decor or restricted electronics separately. Use warehouse weights and dimensions as planning inputs, but remember that final packed measurements can change after removal or reinforcement. The live parcel screen controls the real comparison."
+      ]},
+      { heading: "Run a five-minute warehouse review each week", paragraphs: [
+        "Start with the oldest verified stock-in date. Check the displayed countdown and warnings, then scan for unresolved messages or services. Confirm that every item is attached to the correct order and that domestic tracking has not produced an unmatched parcel. Review the ready group against the likely destination and contents. Finally, update the two reminders and save a dated screenshot if the deadline or policy appears different from the previous review.",
+        "This routine is intentionally short. Storage problems usually grow from missing small signals: an unread warehouse notice, a QC question postponed for several weeks, a parcel that was never matched, or an assumption that another item will arrive before the deadline. A brief regular review catches those signals while there is still room to act."
+      ]},
+      { heading: "Keep a compact evidence file", paragraphs: [
+        "For each item, retain the source URL, selected option, order number, domestic tracking number, stock-in date, warehouse status, visible countdown and QC images. For the planned parcel, save the selected items, packaging choices, estimated and final measurements, route, quote and submission date. The file does not need to be elaborate; a small spreadsheet and dated screenshots are enough when the fields are consistent.",
+        "This record helps with more than deadlines. It makes a support request specific, reveals which packaging choices affected volume and prevents a stale LoloBuy spreadsheet price from being confused with the final landed cost. It also provides evidence for improving the next order without turning one personal experience into a claim about every buyer."
+      ]},
+      { heading: "The safe conclusion when official numbers conflict", paragraphs: [
+        "As of 22 August 2026, LoloBuy's own public materials do not present one consistent storage period across every page we checked. The responsible response is not to choose the larger number because it is more convenient or the smaller number because it sounds safer. Confirm the countdown and rule attached to the actual warehouse item, keep evidence of what the account shows, and obtain current support clarification when the deadline affects an important decision.",
+        "Use the warehouse as an active checkpoint: review visible condition promptly, separate unresolved and route-sensitive items, plan compatible parcels and submit with time to spare. That approach remains useful even if LoloBuy later updates the public copy, because it is built around current account evidence rather than a number copied from a guide."
       ]}
     ]
   }

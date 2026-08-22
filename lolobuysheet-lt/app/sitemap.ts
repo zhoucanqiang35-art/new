@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { categories, faqs, languages, products } from "./data";
 import { researchArticles } from "./articleData";
+import { localizedContent } from "./localizedContent";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base="https://lolobuysheet.lt";
@@ -24,9 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       `/languages/${language.code}/about`,
       `/languages/${language.code}/articles`,
       `/languages/${language.code}/faq`,
-      ...researchArticles.map(item=>`/languages/${language.code}/articles/${item.slug}`),
+      ...(localizedContent[language.code]?.articles ?? []).map(item=>`/languages/${language.code}/articles/${item.slug}`),
       ...faqs.map(item=>`/languages/${language.code}/faq/${item.slug}`),
     ]),
   ];
-  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date("2026-08-20"),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
+  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date("2026-08-22"),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
 }
