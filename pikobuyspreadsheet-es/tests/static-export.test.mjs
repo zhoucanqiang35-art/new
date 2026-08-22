@@ -9,6 +9,7 @@ test("exports the English and representative localized routes", async () => {
     "shipping",
     "faq",
     "seo-articles/how-pikobuy-works",
+    "seo-articles/pikobuy-return-policy-guide",
     "de-DE/shipping",
     "fr-FR/faq",
     "es-ES/seo-articles/how-pikobuy-works",
@@ -22,6 +23,7 @@ test("exports indexable robots and the complete sitemap", async () => {
   assert.match(robots, /Sitemap: https:\/\/pikobuyspreadsheet\.es\/sitemap\.xml/);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/de-DE\/shipping\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/how-pikobuy-works\//);
+  assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-return-policy-guide\//);
 });
 
 test("keeps long articles, FAQ and shipping content in static HTML", async () => {
@@ -32,4 +34,14 @@ test("keeps long articles, FAQ and shipping content in static HTML", async () =>
   assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
   assert.equal((faq.match(/class="section-index"/g) || []).length >= 15, true);
   assert.match(shipping, /data-content-template="shipping-v1"/);
+});
+
+test("exports the complete English return-policy article with SEO metadata", async () => {
+  const article = await readFile(page("seo-articles/pikobuy-return-policy-guide"), "utf8");
+  assert.equal((article.match(/data-content-slot=/g) || []).length, 7);
+  assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
+  assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-return-policy-guide\/"/);
+  assert.match(article, /hrefLang="en-US"/);
+  assert.match(article, /PikoBuy Return Policy: A Practical Warehouse Return Guide/);
+  assert.doesNotMatch(article, /noindex/);
 });
