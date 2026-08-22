@@ -23,6 +23,33 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    // Serve sitemaps through a small, deterministic response layer instead of
+    // exposing the App Router/RSC response headers to search-engine crawlers.
+    // Keep /sitemap.xml for compatibility and provide /sitemap-search.xml as a
+    // fresh URL for Search Console when it has cached an earlier failed fetch.
+    if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap-search.xml") {
+      const sitemapUrl = new URL("/sitemap.xml", request.url);
+      const sitemapRequest = new Request(sitemapUrl, {
+        method: "GET",
+        headers: request.headers,
+      });
+      const sitemapResponse = await handler.fetch(sitemapRequest, env, ctx);
+
+      if (!sitemapResponse.ok) {
+        return sitemapResponse;
+      }
+
+      const xml = await sitemapResponse.arrayBuffer();
+      return new Response(request.method === "HEAD" ? null : xml, {
+        status: 200,
+        headers: {
+          "Content-Type": "application/xml; charset=utf-8",
+          "Content-Length": String(xml.byteLength),
+          "Cache-Control": "public, max-age=3600, must-revalidate",
+        },
+      });
+    }
+
     // Pages advanced mode gives this Worker control of every request. Forward
     // compiled client files and public media to the built-in asset service so
     // CSS, JavaScript, fonts and images are served instead of reaching Vinext.
