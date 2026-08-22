@@ -26,6 +26,10 @@ const worker = {
     // Serve the Search Console sitemap as a real Pages static asset. This keeps
     // it completely outside the App Router/RSC runtime and gives Google the
     // same byte-for-byte file on GET and HEAD requests.
+    if (url.pathname === "/sitemap.txt") {
+      return env.ASSETS.fetch(request);
+    }
+
     if (url.pathname === "/sitemap-priority.xml" || url.pathname === "/sitemap-search.xml") {
       const assetUrl = new URL("/sitemap-priority.xml", request.url);
       return env.ASSETS.fetch(new Request(assetUrl, {
