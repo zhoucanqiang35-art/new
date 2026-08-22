@@ -10,4 +10,4 @@ Cloudflare Pages production settings:
 
 The Pages build bundles the Vinext server into a single `dist/_worker.js` Module Worker, copies all client assets into `dist/`, and enables the `nodejs_compat` compatibility flag through `wrangler.jsonc`.
 
-Deployment trigger: 2026-08-21 permission-safe build scripts.
+Deployment trigger: 2026-08-22 after restoring the Sites plugin, hosting metadata, and Worker entry. The verified local Cloudflare Pages build completed successfully.
