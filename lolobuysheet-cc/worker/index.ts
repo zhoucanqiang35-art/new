@@ -23,11 +23,19 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
-    // Serve sitemaps through a small, deterministic response layer instead of
-    // exposing the App Router/RSC response headers to search-engine crawlers.
-    // Keep /sitemap.xml for compatibility and provide /sitemap-search.xml as a
-    // fresh URL for Search Console when it has cached an earlier failed fetch.
-    if (url.pathname === "/sitemap.xml" || url.pathname === "/sitemap-search.xml") {
+    // Serve the Search Console sitemap as a real Pages static asset. This keeps
+    // it completely outside the App Router/RSC runtime and gives Google the
+    // same byte-for-byte file on GET and HEAD requests.
+    if (url.pathname === "/sitemap-priority.xml" || url.pathname === "/sitemap-search.xml") {
+      const assetUrl = new URL("/sitemap-priority.xml", request.url);
+      return env.ASSETS.fetch(new Request(assetUrl, {
+        method: request.method,
+        headers: request.headers,
+      }));
+    }
+
+    // Keep the original comprehensive sitemap endpoint for compatibility.
+    if (url.pathname === "/sitemap.xml") {
       const sitemapUrl = new URL("/sitemap.xml", request.url);
       const sitemapRequest = new Request(sitemapUrl, {
         method: "GET",
