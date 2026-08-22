@@ -23,6 +23,18 @@ const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
+    // Pages advanced mode gives this Worker control of every request. Forward
+    // compiled client files and public media to the built-in asset service so
+    // CSS, JavaScript, fonts and images are served instead of reaching Vinext.
+    if (
+      url.pathname.startsWith("/assets/") ||
+      /\.(?:css|js|mjs|png|jpe?g|gif|webp|avif|svg|ico|woff2?|ttf|otf)$/i.test(
+        url.pathname,
+      )
+    ) {
+      return env.ASSETS.fetch(request);
+    }
+
     if (url.pathname === "/_vinext/image") {
       const allowedWidths = [...DEFAULT_DEVICE_SIZES, ...DEFAULT_IMAGE_SIZES];
       return handleImageOptimization(request, {
