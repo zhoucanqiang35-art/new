@@ -9,6 +9,7 @@ cd "${project_root}"
 # The Cloudflare Pages production build is the formal-domain release. Keep the
 # existing human-QA gate: English is indexable while the other 23 locales stay
 # available for review without being added to sitemap/hreflang yet.
+# This script is also the watched deployment entry point for the Pages project.
 export FORMAL_DOMAIN_CONFIRMED="${FORMAL_DOMAIN_CONFIRMED:-pikobuyspreadsheet.cc}"
 export SITE_INDEXABLE="${SITE_INDEXABLE:-true}"
 export INDEXABLE_LOCALES="${INDEXABLE_LOCALES:-en}"
