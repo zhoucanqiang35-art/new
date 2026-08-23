@@ -3,7 +3,7 @@ import { guideDefs, locales } from "../lib/site-data";
 import { categoryRecords, isSeoArticleAvailable, productRecords, seoArticles } from "../lib/content-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base="https://pikobuyspreadsheet.pro";const now=new Date("2026-08-21T00:00:00Z");
+  const base="https://pikobuyspreadsheet.pro";const now=new Date("2026-08-23T00:00:00Z");
   const entry=(path:string,changeFrequency:MetadataRoute.Sitemap[number]["changeFrequency"],priority:number):MetadataRoute.Sitemap[number]=>({url:`${base}${path}`,lastModified:now,changeFrequency,priority});
   return [entry("/","weekly",1),...locales.flatMap((locale)=>[
     entry(`/${locale.code}`,"weekly",0.9),
