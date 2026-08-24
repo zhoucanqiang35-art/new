@@ -5,6 +5,8 @@ import { pathToFileURL } from "node:url";
 const outputDirectory = path.resolve(process.argv[2] ?? "dist/pages");
 const requiredFiles = [
   "_worker.js",
+  "robots.txt",
+  "sitemap.xml",
   "favicon.svg",
   "pikobuy-logo.png",
   "categories/shoes.webp",
@@ -50,8 +52,10 @@ const contentTypes = new Map([
   [".json", "application/json"],
   [".png", "image/png"],
   [".svg", "image/svg+xml"],
+  [".txt", "text/plain; charset=utf-8"],
   [".webp", "image/webp"],
   [".woff2", "font/woff2"],
+  [".xml", "application/xml"],
 ]);
 const env = {
   ASSETS: {
@@ -63,7 +67,11 @@ const env = {
         const body = await readFile(assetPath);
         return new Response(body, {
           status: 200,
-          headers: { "content-type": contentTypes.get(path.extname(assetPath)) ?? "application/octet-stream" },
+          headers: {
+            "cache-control": "public, max-age=0, must-revalidate",
+            "content-type": contentTypes.get(path.extname(assetPath)) ?? "application/octet-stream",
+            "x-test-static-asset": "true",
+          },
         });
       } catch {
         return new Response("Not found", { status: 404 });
@@ -72,8 +80,8 @@ const env = {
   },
 };
 const ctx = { waitUntil() {}, passThroughOnException() {} };
-const get = (pathname, hostname = "pikobuyspreadsheet.cc") =>
-  worker.default.fetch(new Request(`https://${hostname}${pathname}`, { headers: { accept: "text/html" } }), env, ctx);
+const get = (pathname, hostname = "pikobuyspreadsheet.cc", headers = {}) =>
+  worker.default.fetch(new Request(`https://${hostname}${pathname}`, { headers: { accept: "text/html", ...headers } }), env, ctx);
 
 const home = await get("/");
 const homeHtml = await home.text();
@@ -92,16 +100,35 @@ if (article.status !== 200 || !(await article.text()).includes("What a PikoBuy S
   throw new Error("Pages Worker did not render a representative guide");
 }
 
-const sitemap = await get("/sitemap.xml");
+const sitemap = await get("/sitemap.xml", "pikobuyspreadsheet.cc", {
+  accept: "application/xml",
+  "user-agent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+});
 const sitemapXml = await sitemap.text();
-if (sitemap.status !== 200 || (sitemapXml.match(/<loc>/g) ?? []).length !== 41) {
-  throw new Error("Pages Worker sitemap must contain the 41 reviewed English URLs");
+if (
+  sitemap.status !== 200 ||
+  !/^application\/xml\b/i.test(sitemap.headers.get("content-type") ?? "") ||
+  sitemap.headers.get("x-test-static-asset") !== "true" ||
+  sitemap.headers.get("cache-control")?.includes("no-store") ||
+  (sitemapXml.match(/<loc>/g) ?? []).length !== 41
+) {
+  throw new Error("Pages Worker must serve the 41 reviewed URLs from static sitemap.xml");
 }
 
-const robots = await get("/robots.txt");
+const robots = await get("/robots.txt", "pikobuyspreadsheet.cc", {
+  accept: "text/plain",
+  "user-agent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+});
 const robotsText = await robots.text();
-if (robots.status !== 200 || !robotsText.includes("Allow: /") || !robotsText.includes("https://pikobuyspreadsheet.cc/sitemap.xml")) {
-  throw new Error("Pages Worker robots.txt is missing production crawl rules");
+if (
+  robots.status !== 200 ||
+  !/^text\/plain\b/i.test(robots.headers.get("content-type") ?? "") ||
+  robots.headers.get("x-test-static-asset") !== "true" ||
+  robots.headers.get("cache-control")?.includes("no-store") ||
+  !robotsText.includes("Allow: /") ||
+  !robotsText.includes("https://pikobuyspreadsheet.cc/sitemap.xml")
+) {
+  throw new Error("Pages Worker must serve production crawl rules from static robots.txt");
 }
 
 if ((await get("/missing-page")).status !== 404) throw new Error("Pages Worker must preserve real 404 responses");
@@ -117,4 +144,4 @@ if (www.status !== 301 || www.headers.get("location") !== "https://pikobuyspread
   throw new Error("www must redirect to the canonical non-www route");
 }
 
-console.log(`Validated Pages artifact: ${requiredFiles.length} required files, Worker runtime, 41 sitemap URLs, robots, assets, 404 and canonical redirects passed.`);
+console.log(`Validated Pages artifact: ${requiredFiles.length} required files, Worker runtime, static sitemap and robots, assets, 404 and canonical redirects passed.`);

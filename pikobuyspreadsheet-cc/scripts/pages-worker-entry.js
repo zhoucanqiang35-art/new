@@ -2,6 +2,7 @@ import application from "../dist/server/index.js";
 
 const CANONICAL_HOST = "pikobuyspreadsheet.cc";
 const PUBLIC_ASSET = /\.(?:avif|css|gif|ico|jpe?g|js|json|png|svg|webp|woff2?)$/i;
+const SEARCH_ASSET_PATHS = new Set(["/robots.txt", "/sitemap.xml"]);
 
 function withHeaders(response, additions = {}) {
   const headers = new Headers(response.headers);
@@ -35,6 +36,20 @@ const pagesWorker = {
 
     if (url.hostname === `www.${CANONICAL_HOST}` || (url.hostname === CANONICAL_HOST && url.protocol === "http:")) {
       return canonicalRedirect(url);
+    }
+
+    // Pages Advanced Mode gives this Worker control over every request. Serve
+    // generated search files through the static ASSETS binding so crawlers get
+    // stable file semantics instead of framework/RSC response headers. During
+    // an incomplete deployment, fall back to the application metadata route.
+    if (SEARCH_ASSET_PATHS.has(pathname)) {
+      const assetResponse = await env.ASSETS.fetch(request);
+      if (assetResponse.status !== 404) {
+        return withHeaders(assetResponse, {
+          "Cache-Control": "public, max-age=0, must-revalidate",
+          ...(isPagesPreview ? { "X-Robots-Tag": "noindex, nofollow" } : {}),
+        });
+      }
     }
 
     if (isPublicAsset(pathname)) {

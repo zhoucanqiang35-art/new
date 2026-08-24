@@ -37,6 +37,7 @@ cp -R "${project_root}/dist/client/." "${pages_output}/"
   --external:node:* \
   --outfile="${pages_output}/_worker.js"
 
+node "${project_root}/scripts/generate-search-assets.mjs" "${pages_output}"
 node "${project_root}/scripts/validate-pages-artifact.mjs" "${pages_output}"
 
 rm -f "${project_root}/.wrangler/deploy/config.json"
