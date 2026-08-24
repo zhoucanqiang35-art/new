@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { primaryLinks } from "../content";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
+import { indexableRobots, pageAlternates } from "../seo";
 
 export const metadata: Metadata = {
   title: "Sources & Editorial Policy | PikoBuy Spreadsheet Europe",
   description: "The official pages, verification rules and editorial boundaries used by PikoBuy Spreadsheet Europe.",
-  robots: { index: false, follow: false },
+  robots: indexableRobots,
+  alternates: pageAlternates("/sources"),
 };
 
 const sourceGroups = [
@@ -27,7 +29,7 @@ const sourceGroups = [
 
 export default function SourcesPage() {
   return <main className="article-page sources-page">
-    <div className="preview-bar">Independent public review build · formal domain and Google indexing are not active</div>
+    <div className="preview-bar">Independent research hub · 2026</div>
     <SiteHeader />
     <section className="article-hero shell"><div className="breadcrumbs"><a href="/">Home</a><span>/</span><b>Sources</b></div><p className="eyebrow"><span /> Transparency</p><h1>Sources, limits and editorial policy.</h1><p className="article-deck">A clear record of what we verify, how we describe changing information, and what this independent site never claims.</p></section>
     <section className="source-policy shell"><div className="policy-grid"><article><span>01</span><h2>Official first</h2><p>Platform procedures, deadlines and fees are checked against the most relevant PikoBuy page, not copied from an unrelated guide.</p></article><article><span>02</span><h2>No invented country data</h2><p>PikoBuy does not publish public country-level user shares. Market priorities are labelled as a localisation plan, not official usage statistics.</p></article><article><span>03</span><h2>Changing data stays qualified</h2><p>Prices, routes, promotions, availability and seller decisions are described with verification dates and a reminder to confirm the current page.</p></article></div>

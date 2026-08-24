@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getGuide, guides, primaryLinks } from "../content";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
+import { indexableRobots, pageAlternates } from "../seo";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -17,7 +18,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${guide.title} | PikoBuy Spreadsheet Europe`,
     description: guide.description,
-    robots: { index: false, follow: false },
+    robots: indexableRobots,
+    alternates: pageAlternates(`/${guide.slug}`),
     openGraph: { title: guide.title, description: guide.description, type: "article", images: [] },
     twitter: { card: "summary", title: guide.title, description: guide.description, images: [] },
   };
@@ -41,7 +43,7 @@ export default async function GuidePage({ params }: PageProps) {
 
   return (
     <main className="article-page">
-      <div className="preview-bar">Independent public review build · formal domain and Google indexing are not active</div>
+      <div className="preview-bar">Independent research hub · 2026</div>
       <SiteHeader />
 
       <article>

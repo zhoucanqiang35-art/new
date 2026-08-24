@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LocaleTranslator from "../../../locale-translator";
 import GuidePage from "../../../[slug]/page";
@@ -9,9 +10,18 @@ import SeoArticlesPage from "../../../seo-articles/page";
 import SourcesPage from "../../../sources/page";
 import { guides } from "../../../content";
 import { faqItems } from "../../../faq-content";
+import { indexableRobots, pageAlternates, supportedLocales } from "../../../seo";
 
-const locales = ["de", "fr", "es", "it", "nl", "pt", "pl"];
+const locales: readonly string[] = supportedLocales;
 const staticRoutes = ["product-categories", "product-details", "seo-articles", "faq", "sources"];
+
+const staticMetadata: Record<string, { title: string; description: string }> = {
+  "product-categories": { title: "PikoBuy Product Categories | Spreadsheet Europe", description: "Browse focused PikoBuy spreadsheet categories and open the matching live collection." },
+  "product-details": { title: "PikoBuy Product Detail Research | Spreadsheet Europe", description: "Open focused product searches and use practical pre-order and warehouse QC checks." },
+  "seo-articles": { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy articles covering spreadsheet use, QC photos, European shipping and returns." },
+  faq: { title: "PikoBuy Spreadsheet FAQ | Six Practical Answers", description: "Six independent FAQ pages covering product links, QC photos, European shipping, returns and site independence." },
+  sources: { title: "Sources & Editorial Policy | PikoBuy Spreadsheet Europe", description: "The source pages, verification rules and editorial boundaries used by PikoBuy Spreadsheet Europe." },
+};
 
 export function generateStaticParams() {
   return locales.flatMap((locale) => [
@@ -19,6 +29,25 @@ export function generateStaticParams() {
     ...guides.map((guide) => ({ locale, path: [guide.slug] })),
     ...faqItems.map((item) => ({ locale, path: ["faq", item.slug] })),
   ]);
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; path: string[] }> }): Promise<Metadata> {
+  const { locale, path } = await params;
+  if (!locales.includes(locale)) return {};
+  const pathname = `/${path.join("/")}`;
+  const guide = path.length === 1 ? guides.find((item) => item.slug === path[0]) : undefined;
+  const faq = path.length === 2 && path[0] === "faq" ? faqItems.find((item) => item.slug === path[1]) : undefined;
+  const copy = guide
+    ? { title: `${guide.title} | PikoBuy Spreadsheet Europe`, description: guide.description }
+    : faq
+      ? { title: `${faq.question} | PikoBuy Spreadsheet FAQ`, description: faq.description }
+      : staticMetadata[path[0]];
+  if (!copy) return {};
+  return {
+    ...copy,
+    robots: indexableRobots,
+    alternates: pageAlternates(pathname, locale),
+  };
 }
 
 export default async function LocalisedPage({ params }: { params: Promise<{ locale: string; path: string[] }> }) {

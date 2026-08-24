@@ -6,6 +6,7 @@ const outputDirectory = path.resolve(process.argv[2] ?? "dist/pages");
 const requiredFiles = [
   "_worker.js",
   "robots.txt",
+  "sitemap.xml",
   "pikobuy-logo.png",
   "pikobuy-hero.png",
 ];
@@ -36,6 +37,8 @@ const contentTypes = new Map([
   [".json", "application/json"],
   [".png", "image/png"],
   [".svg", "image/svg+xml"],
+  [".txt", "text/plain"],
+  [".xml", "application/xml"],
 ]);
 const env = {
   ASSETS: {
@@ -62,7 +65,7 @@ const env = {
 };
 const ctx = { waitUntil() {}, passThroughOnException() {} };
 
-async function assertPage(pathname, expectedText) {
+async function assertPage(pathname, expectedText, canonicalPath = pathname) {
   const response = await worker.default.fetch(
     new Request(`https://pikobuyspreadsheet-pl.pages.dev${pathname}`, {
       headers: { accept: "text/html" },
@@ -74,9 +77,27 @@ async function assertPage(pathname, expectedText) {
   if (
     response.status !== 200 ||
     !/^text\/html\b/i.test(response.headers.get("content-type") ?? "") ||
-    !html.includes(expectedText)
+    !html.includes(expectedText) ||
+    /<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html) ||
+    !html.includes(`rel="canonical" href="https://pikobuyspreadsheet.pl${canonicalPath === "/" ? "/" : canonicalPath}"`)
   ) {
     throw new Error(`Pages artifact failed route validation: ${pathname}`);
+  }
+}
+
+async function assertPublicAsset(pathname, expectedContentType, expectedText) {
+  const response = await worker.default.fetch(
+    new Request(`https://pikobuyspreadsheet-pl.pages.dev${pathname}`),
+    env,
+    ctx,
+  );
+  const body = await response.text();
+  if (
+    response.status !== 200 ||
+    !response.headers.get("content-type")?.startsWith(expectedContentType) ||
+    !body.includes(expectedText)
+  ) {
+    throw new Error(`Pages artifact failed public asset validation: ${pathname}`);
   }
 }
 
@@ -97,10 +118,23 @@ async function assertAsset(filename, expectedContentType) {
 
 await assertPage("/", "PikoBuy Spreadsheet");
 await assertPage("/faq", "Six useful answers before you order");
-await assertPage("/language/pl", "PikoBuy Spreadsheet");
+await assertPage("/language/pl", "PikoBuy Spreadsheet", "/language/pl");
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
+await assertPublicAsset("/robots.txt", "text/plain", "Allow: /");
+await assertPublicAsset("/sitemap.xml", "application/xml", "<loc>https://pikobuyspreadsheet.pl/</loc>");
+
+const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
+if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
+  throw new Error("robots.txt blocks indexing or omits the canonical sitemap URL");
+}
+
+const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
+const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
+if (sitemapUrls !== 128 || !sitemap.includes('hreflang="x-default"')) {
+  throw new Error(`Expected 128 sitemap URLs with hreflang alternates, found ${sitemapUrls}`);
+}
 
 console.log(
-  "Validated Cloudflare Pages homepage, FAQ, Polish route, CSS, JavaScript and public assets.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 128-URL sitemap, CSS and JavaScript.",
 );

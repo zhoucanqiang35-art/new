@@ -13,7 +13,7 @@ const facts = [
 export default function Home() {
   return (
     <main>
-      <div className="preview-bar">Independent public review build · formal domain and Google indexing are not active</div>
+      <div className="preview-bar">Independent research hub · 2026</div>
       <SiteHeader />
 
       <section className="hero shell" id="top">

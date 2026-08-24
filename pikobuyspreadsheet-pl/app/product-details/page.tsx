@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
+import { indexableRobots, pageAlternates } from "../seo";
 
-export const metadata: Metadata = { title: "PikoBuy Product Detail Research | Spreadsheet Europe", description: "Open focused product searches and use practical pre-order and warehouse QC checks.", robots: { index: false, follow: false } };
+export const metadata: Metadata = { title: "PikoBuy Product Detail Research | Spreadsheet Europe", description: "Open focused product searches and use practical pre-order and warehouse QC checks.", robots: indexableRobots, alternates: pageAlternates("/product-details") };
 
 const products = [
   { category: "Accessories", name: "C.P. Company B Crossbody Rucksack", note: "Inspect lens, strap hardware, internal label and usable dimensions.", href: "https://findspreadsheet.com/accessories/c-p-company-b-crossbody-rucksack-26-styles-2127.html" },
@@ -15,7 +16,7 @@ const products = [
 
 export default function ProductDetailsPage() {
   return <main className="listing-page">
-    <div className="preview-bar">Independent public review build · formal domain and Google indexing are not active</div><SiteHeader />
+    <div className="preview-bar">Independent research hub · 2026</div><SiteHeader />
     <section className="listing-hero shell"><p className="eyebrow"><span /> Product details</p><h1>Research cards before you open an agent route.</h1><p>Every card now opens its exact product-detail page on FindSpreadsheet—not a generic search result. Price, stock, seller options and PikoBuy eligibility must still be confirmed on the current listing.</p></section>
     <section className="section shell"><div className="product-card-grid">{products.map((product) => <a className="product-research-card" href={product.href} key={product.name}><p>{product.category}</p><h2>{product.name}</h2><span className="product-placeholder">QC</span><div><b>What to check</b><span>{product.note}</span></div><strong>Open exact product page ↗</strong></a>)}</div></section>
     <SiteFooter />

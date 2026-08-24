@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# Public review build only. Replace with indexable rules at formal-domain launch.
+Sitemap: https://pikobuyspreadsheet.pl/sitemap.xml
