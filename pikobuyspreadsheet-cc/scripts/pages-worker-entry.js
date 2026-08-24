@@ -25,7 +25,10 @@ function canonicalRedirect(url) {
 }
 
 function isPublicAsset(pathname) {
-  return pathname.startsWith("/assets/") || pathname.startsWith("/categories/") || PUBLIC_ASSET.test(pathname);
+  // Category research pages also live below /categories/. Their image files
+  // are still recognized by PUBLIC_ASSET, while extensionless page routes
+  // must reach the application renderer.
+  return pathname.startsWith("/assets/") || PUBLIC_ASSET.test(pathname);
 }
 
 const pagesWorker = {

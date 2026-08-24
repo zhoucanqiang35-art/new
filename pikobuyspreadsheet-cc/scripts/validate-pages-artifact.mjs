@@ -105,14 +105,34 @@ const sitemap = await get("/sitemap.xml", "pikobuyspreadsheet.cc", {
   "user-agent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
 });
 const sitemapXml = await sitemap.text();
+const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]));
 if (
   sitemap.status !== 200 ||
   !/^application\/xml\b/i.test(sitemap.headers.get("content-type") ?? "") ||
   sitemap.headers.get("x-test-static-asset") !== "true" ||
   sitemap.headers.get("cache-control")?.includes("no-store") ||
-  (sitemapXml.match(/<loc>/g) ?? []).length !== 41
+  sitemapUrls.length !== 41 ||
+  new Set(sitemapUrls.map(String)).size !== sitemapUrls.length
 ) {
   throw new Error("Pages Worker must serve the 41 reviewed URLs from static sitemap.xml");
+}
+
+for (const url of sitemapUrls) {
+  if (url.protocol !== "https:" || url.hostname !== "pikobuyspreadsheet.cc" || url.search || url.hash) {
+    throw new Error(`Sitemap URL is not canonical: ${url}`);
+  }
+  const page = await get(url.pathname, url.hostname, {
+    "user-agent": "Googlebot/2.1 (+http://www.google.com/bot.html)",
+  });
+  const html = await page.text();
+  if (
+    page.status !== 200 ||
+    !/^text\/html\b/i.test(page.headers.get("content-type") ?? "") ||
+    /\bnoindex\b/i.test(page.headers.get("x-robots-tag") ?? "") ||
+    /<meta[^>]+name=["']robots["'][^>]+content=["'][^"']*noindex/i.test(html)
+  ) {
+    throw new Error(`Sitemap URL is not a crawlable HTML page: ${url} (${page.status})`);
+  }
 }
 
 const robots = await get("/robots.txt", "pikobuyspreadsheet.cc", {
@@ -144,4 +164,4 @@ if (www.status !== 301 || www.headers.get("location") !== "https://pikobuyspread
   throw new Error("www must redirect to the canonical non-www route");
 }
 
-console.log(`Validated Pages artifact: ${requiredFiles.length} required files, Worker runtime, static sitemap and robots, assets, 404 and canonical redirects passed.`);
+console.log(`Validated Pages artifact: ${requiredFiles.length} required files, Worker runtime, all ${sitemapUrls.length} sitemap URLs, static robots, assets, 404 and canonical redirects passed.`);
