@@ -1,5 +1,6 @@
 import application from "../dist/server/index.js";
 
+// Generated bundles and public files must bypass the application router on Pages.
 const PUBLIC_ASSET =
   /\.(?:avif|css|gif|ico|jpe?g|js|json|png|svg|txt|webmanifest|webp|woff2?|xml)$/i;
 
