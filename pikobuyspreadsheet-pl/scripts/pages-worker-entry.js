@@ -1,5 +1,8 @@
 import application from "../dist/server/index.js";
 
+const PUBLIC_ASSET =
+  /\.(?:avif|css|gif|ico|jpe?g|js|json|png|svg|txt|webmanifest|webp|woff2?|xml)$/i;
+
 function withSecurityHeaders(response) {
   const headers = new Headers(response.headers);
   headers.set("X-Content-Type-Options", "nosniff");
@@ -16,6 +19,11 @@ function withSecurityHeaders(response) {
 
 export default {
   async fetch(request, env, ctx) {
+    const pathname = new URL(request.url).pathname;
+    if (pathname.startsWith("/assets/") || PUBLIC_ASSET.test(pathname)) {
+      return withSecurityHeaders(await env.ASSETS.fetch(request));
+    }
+
     return withSecurityHeaders(await application.fetch(request, env, ctx));
   },
 };

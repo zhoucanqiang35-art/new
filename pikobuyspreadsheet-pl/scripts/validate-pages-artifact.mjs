@@ -13,10 +13,12 @@ const requiredFiles = [
 await Promise.all(requiredFiles.map((file) => access(path.join(outputDirectory, file))));
 
 const assets = await readdir(path.join(outputDirectory, "assets"));
-if (!assets.some((file) => file.endsWith(".css"))) {
+const cssAsset = assets.find((file) => file.endsWith(".css"));
+const jsAsset = assets.find((file) => file.endsWith(".js"));
+if (!cssAsset) {
   throw new Error("Missing generated CSS in the Pages artifact");
 }
-if (!assets.some((file) => file.endsWith(".js"))) {
+if (!jsAsset) {
   throw new Error("Missing generated JavaScript in the Pages artifact");
 }
 
@@ -78,8 +80,27 @@ async function assertPage(pathname, expectedText) {
   }
 }
 
+async function assertAsset(filename, expectedContentType) {
+  const response = await worker.default.fetch(
+    new Request(`https://pikobuyspreadsheet-pl.pages.dev/assets/${filename}`),
+    env,
+    ctx,
+  );
+  if (
+    response.status !== 200 ||
+    !response.headers.get("content-type")?.startsWith(expectedContentType) ||
+    (await response.arrayBuffer()).byteLength === 0
+  ) {
+    throw new Error(`Pages artifact failed asset validation: ${filename}`);
+  }
+}
+
 await assertPage("/", "PikoBuy Spreadsheet");
 await assertPage("/faq", "Six useful answers before you order");
 await assertPage("/language/pl", "PikoBuy Spreadsheet");
+await assertAsset(cssAsset, "text/css");
+await assertAsset(jsAsset, "text/javascript");
 
-console.log("Validated Cloudflare Pages homepage, FAQ, Polish route and assets.");
+console.log(
+  "Validated Cloudflare Pages homepage, FAQ, Polish route, CSS, JavaScript and public assets.",
+);
