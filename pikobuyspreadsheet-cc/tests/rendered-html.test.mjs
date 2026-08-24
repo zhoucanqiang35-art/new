@@ -23,6 +23,8 @@ test("serves the formal home route with preview-safe SEO metadata", async () => 
   assert.match(html, /hrefLang="en" href="https:\/\/pikobuyspreadsheet\.cc\/"/);
   assert.match(html, /hrefLang="x-default" href="https:\/\/pikobuyspreadsheet\.cc\/"/);
   assert.match(html, /name="robots" content="noindex, follow"/);
+  assert.match(html, /<title>PikoBuy Spreadsheet Research, QC &amp; Shipping Guide<\/title>/);
+  assert.doesNotMatch(html, /<title>[^<]+ \| PikoBuy Spreadsheet Research Hub<\/title>/);
   assert.doesNotMatch(html, /codex-preview|\/preview\/workbench/);
 });
 

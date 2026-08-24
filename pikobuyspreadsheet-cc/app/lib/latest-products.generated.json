@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-08-13",
+  "checkedAt": "2026-08-24",
   "sourceUrl": "https://findspreadsheet.com/",
   "exchangeRate": {
     "cnyPerUsd": 6.7499,
-    "date": "2026-08-13",
+    "date": "2026-08-24",
     "kind": "configured reference rate"
   },
   "method": "Automated snapshot of the first eight cards in the FindSpreadsheet Latest Products section; links and prices remain subject to the live source.",
@@ -17,17 +17,6 @@
       "id": "7711437541",
       "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319153159600.webp",
       "url": "https://findspreadsheet.com/pants-shorts/gallery-short-3003.html",
-      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
-    },
-    {
-      "name": "High quality Burberry Jacket",
-      "category": "Jackets",
-      "badge": "Recently verified",
-      "cny": 148,
-      "usd": 21.93,
-      "id": "7714490692",
-      "image": "https://findspreadsheet.com/uploads/allimg/20260401/1-260401093931395.webp",
-      "url": "https://findspreadsheet.com/jackets/high-quality-burberry-jacket-3131.html",
       "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
     },
     {
@@ -94,6 +83,17 @@
       "id": "7714520304",
       "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319152004134.webp",
       "url": "https://findspreadsheet.com/pants-shorts/lacoste-swim-shorts-2996.html",
+      "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
+    },
+    {
+      "name": "Supreme Wallet",
+      "category": "Accessories",
+      "badge": "Recently verified",
+      "cny": 52.8,
+      "usd": 7.82,
+      "id": "7714549654",
+      "image": "https://findspreadsheet.com/uploads/allimg/20260319/1-260319151R0937.webp",
+      "url": "https://findspreadsheet.com/accessories/supreme-wallet-2995.html",
       "note": "Open the current record and confirm images, option, size, source price and outgoing destination before purchase."
     }
   ]

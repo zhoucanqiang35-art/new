@@ -17,6 +17,15 @@ export const reviewedLocales = new Set(
   [...requestedIndexableLocales].filter((locale) => humanQaApprovedLocales.has(locale)),
 );
 
+const englishSeoTitles: Record<string, string> = {
+  home: "PikoBuy Spreadsheet Research, QC & Shipping Guide",
+  "shipping-cost-guide": "PikoBuy Shipping Cost: Weight, Size & Route Variables",
+  "payment-process": "PikoBuy Payments: Product Cost and Freight Stages",
+  "packaging-guide": "PikoBuy Parcel Packaging: Protection by Product Type",
+  faq: "PikoBuy Spreadsheet FAQ: Links, QC, Shipping & Returns",
+  "seo-articles": "PikoBuy Guides: QC, Shipping, Links & Spreadsheet Research",
+};
+
 export function absoluteSiteUrl(locale = "en", slug?: string) {
   return new URL(sitePath(locale, slug), productionOrigin).toString();
 }
@@ -24,6 +33,7 @@ export function absoluteSiteUrl(locale = "en", slug?: string) {
 export function pageMetadata(locale: string, dictionary: LocaleDictionary, article?: Article): Metadata {
   const copy = getCopy(locale, dictionary);
   const title = article ? translate(dictionary, article.title) : copy.title;
+  const seoTitle = locale === "en" ? englishSeoTitles[article?.slug || "home"] || title : title;
   const description = article ? translate(dictionary, article.summary) : copy.description;
   const slug = article?.slug;
   const canonical = absoluteSiteUrl(locale, slug);
@@ -36,18 +46,20 @@ export function pageMetadata(locale: string, dictionary: LocaleDictionary, artic
   const mayIndex = siteIndexable && reviewedLocales.has(locale);
 
   return {
-    title,
+    // Use an absolute title so the root layout does not repeat the long site
+    // name on every route. Descriptive H1 text remains unchanged in the page.
+    title: { absolute: seoTitle },
     description,
     alternates: { canonical, languages: languageAlternates },
     robots: { index: mayIndex, follow: true },
     openGraph: {
       type: article ? "article" : "website",
       url: canonical,
-      title,
+      title: seoTitle,
       description,
       siteName: "PikoBuy Spreadsheet Research Hub",
       locale,
     },
-    twitter: { card: "summary_large_image", title, description },
+    twitter: { card: "summary_large_image", title: seoTitle, description },
   };
 }

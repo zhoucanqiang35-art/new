@@ -7,6 +7,5 @@ export default function robots(): MetadataRoute.Robots {
       ? { userAgent: "*", allow: "/" }
       : { userAgent: "*", disallow: "/" },
     sitemap: `${productionOrigin}/sitemap.xml`,
-    host: productionOrigin,
   };
 }

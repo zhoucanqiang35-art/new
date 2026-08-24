@@ -77,17 +77,30 @@ const pagesWorker = {
 
     const appResponse = await application.fetch(request, env, ctx);
     const contentType = appResponse.headers.get("content-type") ?? "";
+    const isHtml = /^text\/html\b/i.test(contentType);
+    const productionIndexableHtml = !isPagesPreview && url.hostname === CANONICAL_HOST && appResponse.status === 200 && isHtml;
+    const robotsHeader = isPagesPreview
+      ? "noindex, nofollow"
+      : productionIndexableHtml
+        ? "index, follow"
+        : isHtml
+          ? "noindex, nofollow"
+          : undefined;
     const responseHeaders = {
-      ...(isPagesPreview ? { "X-Robots-Tag": "noindex, nofollow" } : {}),
-      "Cache-Control": "no-store",
+      ...(robotsHeader ? { "X-Robots-Tag": robotsHeader } : {}),
+      // Cloudflare Email Address Obfuscation otherwise turns plain-text source
+      // citations into /cdn-cgi/l/email-protection links that crawlers see as
+      // broken internal URLs. no-transform keeps the server HTML canonical.
+      "Cache-Control": isHtml ? "no-store, no-transform" : "no-store",
     };
 
-    if (!cacheable || !/^text\/html\b/i.test(contentType) || appResponse.status !== 200) {
+    if (!cacheable || !isHtml || appResponse.status !== 200) {
       return withHeaders(appResponse, responseHeaders);
     }
 
     const response = withHeaders(appResponse, {
-      "Cache-Control": "public, max-age=0, s-maxage=3600",
+      "Cache-Control": "public, max-age=0, s-maxage=3600, no-transform",
+      "X-Robots-Tag": "index, follow",
       "X-Edge-Cache": "MISS",
     });
     response.headers.delete("Set-Cookie");

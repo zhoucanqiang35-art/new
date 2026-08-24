@@ -94,6 +94,12 @@ if (!/rel="canonical" href="https:\/\/pikobuyspreadsheet\.cc\/"/.test(homeHtml))
 if (!/name="robots" content="index, follow"/.test(homeHtml)) {
   throw new Error("Production homepage is not indexable");
 }
+if (home.headers.get("x-robots-tag") !== "index, follow") {
+  throw new Error("Production homepage is missing the indexable X-Robots-Tag header");
+}
+if (!home.headers.get("cache-control")?.includes("no-transform")) {
+  throw new Error("Production HTML must prevent CDN transformations that create crawler-only links");
+}
 
 const article = await get("/guides/pikobuy-spreadsheet");
 if (article.status !== 200 || !(await article.text()).includes("What a PikoBuy Spreadsheet Is")) {
@@ -117,6 +123,7 @@ if (
   throw new Error("Pages Worker must serve the 41 reviewed URLs from static sitemap.xml");
 }
 
+const titles = new Set();
 for (const url of sitemapUrls) {
   if (url.protocol !== "https:" || url.hostname !== "pikobuyspreadsheet.cc" || url.search || url.hash) {
     throw new Error(`Sitemap URL is not canonical: ${url}`);
@@ -133,6 +140,26 @@ for (const url of sitemapUrls) {
   ) {
     throw new Error(`Sitemap URL is not a crawlable HTML page: ${url} (${page.status})`);
   }
+  if (page.headers.get("x-robots-tag") !== "index, follow") {
+    throw new Error(`Sitemap URL is missing an indexable X-Robots-Tag header: ${url}`);
+  }
+  if (!page.headers.get("cache-control")?.includes("no-transform")) {
+    throw new Error(`Sitemap URL allows CDN HTML transformations: ${url}`);
+  }
+  const title = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]?.replace(/\s+/g, " ").trim();
+  const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1]?.trim();
+  const canonical = html.match(/<link[^>]+rel=["']canonical["'][^>]+href=["']([^"']+)["']/i)?.[1];
+  const h1Count = (html.match(/<h1\b/gi) || []).length;
+  if (!title || title.length < 10 || title.length > 65) {
+    throw new Error(`Sitemap URL title is missing or too long (${title?.length ?? 0}): ${url}`);
+  }
+  if (titles.has(title)) throw new Error(`Duplicate title found in Sitemap pages: ${title}`);
+  titles.add(title);
+  if (!description || description.length < 70 || description.length > 170) {
+    throw new Error(`Sitemap URL description length is invalid (${description?.length ?? 0}): ${url}`);
+  }
+  if (canonical !== url.toString()) throw new Error(`Sitemap URL canonical mismatch: ${url} -> ${canonical}`);
+  if (h1Count !== 1) throw new Error(`Sitemap URL must have one H1 (${h1Count}): ${url}`);
 }
 
 const robots = await get("/robots.txt", "pikobuyspreadsheet.cc", {
@@ -151,7 +178,11 @@ if (
   throw new Error("Pages Worker must serve production crawl rules from static robots.txt");
 }
 
-if ((await get("/missing-page")).status !== 404) throw new Error("Pages Worker must preserve real 404 responses");
+const missing = await get("/missing-page");
+if (missing.status !== 404) throw new Error("Pages Worker must preserve real 404 responses");
+if (missing.headers.get("x-robots-tag") !== "noindex, nofollow") {
+  throw new Error("404 pages must be explicitly excluded from indexing");
+}
 if ((await get("/pikobuy-logo.png")).status !== 200) throw new Error("Pages Worker could not serve a public asset");
 
 const preview = await get("/", "pikobuyspreadsheet-cc.pages.dev");
