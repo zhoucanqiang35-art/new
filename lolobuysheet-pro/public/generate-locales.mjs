@@ -222,6 +222,16 @@ const productExplorerCopy = {
     ru: "Поиск категорий", bg: "Търсене на категории", ja: "カテゴリーを検索",
     ko: "카테고리 검색", ar: "البحث في الفئات", zh: "搜索分类",
   },
+  searchButton: {
+    en: "Search products", de: "Produkte suchen", fr: "Rechercher des produits",
+    es: "Buscar productos", it: "Cerca prodotti", pt: "Pesquisar produtos",
+    pl: "Szukaj produktów", nl: "Producten zoeken", sv: "Sök produkter",
+    da: "Søg efter produkter", no: "Søk etter produkter", fi: "Hae tuotteita",
+    cs: "Hledat produkty", ro: "Caută produse", hu: "Termékek keresése",
+    el: "Αναζήτηση προϊόντων", uk: "Пошук товарів", tr: "Ürün ara",
+    ru: "Найти товары", bg: "Търсене на продукти", ja: "商品を検索",
+    ko: "상품 검색", ar: "البحث عن المنتجات", zh: "搜索商品",
+  },
 };
 
 const buildLocalizedProductExplorer = (locale, t) => {
@@ -236,7 +246,7 @@ const buildLocalizedProductExplorer = (locale, t) => {
     .map((target, index) => `<button type="button" data-filter="${target.toLowerCase()}">${esc(categoryNames[locale][index])}</button>`)
     .join("");
 
-  return `<section class="product-explorer" id="spreadsheet" aria-labelledby="product-explorer-title"><div class="section-heading"><p class="eyebrow">LoloBuy Spreadsheet</p><h2 id="product-explorer-title">${esc(t.categories[0])} · ${esc(t.nav[0])}</h2><p>${esc(t.description)}</p></div><div class="product-tools"><label>${esc(productExplorerCopy.search[locale])}<input type="search" id="product-search" placeholder="${esc(categoryNames[locale].slice(0, 3).join(", "))}…"/></label><div class="product-filters"><button type="button" class="active" data-filter="all">${esc(productExplorerCopy.all[locale])}</button>${filters}</div></div><div class="verified-product-grid">${items}</div><p class="method-note">${esc(t.disclaimer)}</p></section><script src="/assets/product-explorer.js" defer></script>`;
+  return `<section class="product-explorer" id="spreadsheet" aria-labelledby="product-explorer-title"><div class="section-heading"><p class="eyebrow">LoloBuy Spreadsheet</p><h2 id="product-explorer-title">${esc(t.categories[0])} · ${esc(t.nav[0])}</h2><p>${esc(t.description)}</p></div><div class="product-tools"><form class="product-main-search" id="product-main-search" action="https://findspreadsheet.com/search.html" method="get" target="_blank"><label for="product-search">${esc(productExplorerCopy.search[locale])}</label><div class="product-main-search__row"><input type="search" id="product-search" name="keywords" placeholder="${esc(categoryNames[locale].slice(0, 3).join(", "))}…" autocomplete="off" required/><input type="hidden" name="channelid" value="2"/><button type="submit">${esc(productExplorerCopy.searchButton[locale])} ↗</button></div></form><div class="product-filters"><button type="button" class="active" data-filter="all">${esc(productExplorerCopy.all[locale])}</button>${filters}</div></div><div class="verified-product-grid">${items}</div><p class="method-note">${esc(t.disclaimer)}</p></section><script src="/assets/product-explorer.js" defer></script>`;
 };
 
 const tryOnCards = (t) =>

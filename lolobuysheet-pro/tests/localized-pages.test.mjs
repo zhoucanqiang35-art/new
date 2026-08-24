@@ -193,6 +193,20 @@ test("localized homepages preserve the shared layout and English includes the se
   }
 });
 
+test("every language homepage searches matching products on FindSpreadsheet", () => {
+  for (const locale of locales) {
+    const html = read(locale);
+    const form = html.match(/<form class="product-main-search"[\s\S]*?<\/form>/i)?.[0] ?? "";
+
+    assert.match(form, /action="https:\/\/findspreadsheet\.com\/search\.html"/i, locale);
+    assert.match(form, /method="get"/i, locale);
+    assert.match(form, /target="_blank"/i, locale);
+    assert.match(form, /<input[^>]+name="keywords"[^>]+required/i, locale);
+    assert.match(form, /<input[^>]+name="channelid"[^>]+value="2"/i, locale);
+    assert.match(form, /<button type="submit">[^<]+↗<\/button>/i, locale);
+  }
+});
+
 test("Arabic uses right-to-left layout and sitemap lists all routes", () => {
   assert.match(read("ar"), /<html[^>]+dir="rtl"/i);
   const sitemap = fs.readFileSync(

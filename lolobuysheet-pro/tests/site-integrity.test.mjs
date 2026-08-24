@@ -121,7 +121,28 @@ test("all clickable off-site links point only to FindSpreadsheet", () => {
         `${path.relative(publicRoot, file)} links to ${host}`,
       );
     }
+    for (const match of html.matchAll(/<form\b[^>]*action="(https?:\/\/[^\"]+)"[^>]*>/gi)) {
+      const host = new URL(match[1].replaceAll("&amp;", "&")).hostname.replace(/^www\./, "");
+      assert.equal(
+        host,
+        "findspreadsheet.com",
+        `${path.relative(publicRoot, file)} form submits to ${host}`,
+      );
+    }
   }
+});
+
+test("homepage search submits product keywords to the verified main-site endpoint", () => {
+  const home = read("index.html");
+  const script = read("assets/product-explorer.js");
+  const form = home.match(/<form class="product-main-search"[\s\S]*?<\/form>/i)?.[0] ?? "";
+
+  assert.match(form, /action="https:\/\/findspreadsheet\.com\/search\.html"/i);
+  assert.match(form, /name="keywords"/i);
+  assert.match(form, /name="channelid" value="2"/i);
+  assert.match(form, /type="submit"/i);
+  assert.match(script, /searchForm\?\.addEventListener\("submit"/);
+  assert.match(script, /\.trim\(\)/);
 });
 
 test("every homepage uses the uploaded logo and independent FAQ navigation", () => {
