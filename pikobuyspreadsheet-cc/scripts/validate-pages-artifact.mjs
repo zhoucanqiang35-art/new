@@ -41,6 +41,17 @@ if (!worker.default || typeof worker.default.fetch !== "function") {
   throw new Error("dist/pages/_worker.js must export a default object with fetch(request, env, ctx)");
 }
 
+const cacheLookups = [];
+globalThis.caches = {
+  default: {
+    async match(request) {
+      cacheLookups.push(new URL(request.url));
+      return undefined;
+    },
+    async put() {},
+  },
+};
+
 const assetsDirectory = path.join(outputDirectory, "assets");
 const assets = await readdir(assetsDirectory);
 if (!assets.some((file) => file.endsWith(".css"))) throw new Error("Missing generated CSS in dist/pages/assets");
@@ -102,6 +113,9 @@ if (!home.headers.get("cache-control")?.includes("no-transform")) {
 }
 if (/\/workspace\/|\/tmp\//i.test(`${home.headers.get("link") || ""}\n${homeHtml}`)) {
   throw new Error("Production HTML or preload headers expose an internal build path");
+}
+if (!cacheLookups.some((url) => url.searchParams.get("__pikobuy_cache"))) {
+  throw new Error("Production HTML cache key is not isolated by deployment version");
 }
 
 const article = await get("/guides/pikobuy-spreadsheet");

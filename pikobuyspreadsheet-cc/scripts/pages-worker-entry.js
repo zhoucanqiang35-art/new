@@ -1,6 +1,9 @@
 import application from "../dist/server/index.js";
 
+/* global PIKOBUY_EDGE_CACHE_VERSION */
+
 const CANONICAL_HOST = "pikobuyspreadsheet.cc";
+const EDGE_CACHE_VERSION = PIKOBUY_EDGE_CACHE_VERSION;
 const PUBLIC_ASSET = /\.(?:avif|css|gif|ico|jpe?g|js|json|png|svg|webp|woff2?)$/i;
 const SEARCH_ASSET_PATHS = new Set(["/robots.txt", "/sitemap.xml"]);
 
@@ -66,9 +69,11 @@ const pagesWorker = {
 
     const cacheable = request.method === "GET" && url.hostname === CANONICAL_HOST && url.search === "";
     const edgeCache = globalThis.caches?.default;
-    const cacheKey = cacheable
-      ? new Request(`${url.origin}${pathname}`, { headers: { accept: "text/html" } })
-      : null;
+    const cacheKeyUrl = new URL(`${url.origin}${pathname}`);
+    // Cache API entries survive Worker deployments. Version the internal key
+    // so a new Git commit never serves stale HTML from the previous release.
+    cacheKeyUrl.searchParams.set("__pikobuy_cache", EDGE_CACHE_VERSION);
+    const cacheKey = cacheable ? new Request(cacheKeyUrl, { headers: { accept: "text/html" } }) : null;
 
     if (edgeCache && cacheKey) {
       const cached = await edgeCache.match(cacheKey);

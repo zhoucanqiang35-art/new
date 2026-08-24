@@ -28,6 +28,12 @@ rm -rf -- "${pages_output}"
 mkdir -p "${pages_output}"
 cp -R "${project_root}/dist/client/." "${pages_output}/"
 
+# Cloudflare Cache API entries persist across deployments. Prefer the Pages
+# commit SHA and fall back to the built server digest for deterministic local
+# validation so every release receives an isolated HTML cache namespace.
+cache_version="${CF_PAGES_COMMIT_SHA:-$(sha256sum "${project_root}/dist/server/index.js" | awk '{print $1}')}"
+cache_version_json="$(node -p 'JSON.stringify(process.argv[1])' "${cache_version}")"
+
 "${project_root}/node_modules/.bin/esbuild" \
   "${project_root}/scripts/pages-worker-entry.js" \
   --bundle \
@@ -35,6 +41,7 @@ cp -R "${project_root}/dist/client/." "${pages_output}/"
   --platform=neutral \
   --target=es2022 \
   --external:node:* \
+  --define:PIKOBUY_EDGE_CACHE_VERSION="${cache_version_json}" \
   --outfile="${pages_output}/_worker.js"
 
 node "${project_root}/scripts/generate-search-assets.mjs" "${pages_output}"
