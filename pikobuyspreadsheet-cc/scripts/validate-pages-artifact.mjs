@@ -100,6 +100,9 @@ if (home.headers.get("x-robots-tag") !== "index, follow") {
 if (!home.headers.get("cache-control")?.includes("no-transform")) {
   throw new Error("Production HTML must prevent CDN transformations that create crawler-only links");
 }
+if (/\/workspace\/|\/tmp\//i.test(`${home.headers.get("link") || ""}\n${homeHtml}`)) {
+  throw new Error("Production HTML or preload headers expose an internal build path");
+}
 
 const article = await get("/guides/pikobuy-spreadsheet");
 if (article.status !== 200 || !(await article.text()).includes("What a PikoBuy Spreadsheet Is")) {
