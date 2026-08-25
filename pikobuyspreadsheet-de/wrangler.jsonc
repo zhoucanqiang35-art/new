@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pikobuyspreadsheet-de",
-  // Git-connected Cloudflare Pages configuration.
+  // Git-connected Pages configuration; the build supplies a Pages asset-forwarding entry.
   "pages_build_output_dir": "./dist/pages",
   "compatibility_date": "2026-08-25",
   "compatibility_flags": ["nodejs_compat"]
