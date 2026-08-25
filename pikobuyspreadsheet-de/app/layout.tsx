@@ -10,14 +10,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PikoBuy Spreadsheet — Product Research & Buying Guide",
     description: "Research smarter. Compare product finds, QC signals, sizing and parcel context before opening the live database.",
-    images: [{ url: "/og.png", width: 1792, height: 922, alt: "PikoBuy Spreadsheet research guide" }],
+    images: [{ url: "/og-hero.jpg", width: 1400, height: 735, alt: "PikoBuy Spreadsheet research guide" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "PikoBuy Spreadsheet — Product Research & Buying Guide",
     description: "Research smarter. Compare clearly.",
-    images: ["/og.png"],
+    images: ["/og-hero.jpg"],
   },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
