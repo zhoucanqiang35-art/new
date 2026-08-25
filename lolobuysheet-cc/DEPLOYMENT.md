@@ -13,3 +13,5 @@ The Pages build bundles the Vinext server into a single `dist/_worker.js` Module
 Deployment trigger: 2026-08-22 after restoring the Sites plugin, hosting metadata, and Worker entry. The verified local Cloudflare Pages build completed successfully.
 
 SEO deployment trigger: 2026-08-24 after validating 492 sitemap URLs, canonical URLs, hreflang alternates, robots discovery, redirects, and the production build.
+
+Static Google sitemap deployment trigger: 2026-08-25 after validating the 12-URL XML, direct asset route, GET/HEAD parity, and production Pages build.
