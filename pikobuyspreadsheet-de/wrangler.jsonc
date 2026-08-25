@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pikobuyspreadsheet-de",
-  // Git-connected Pages configuration; the build supplies a Pages asset-forwarding entry.
+  // Git-connected Pages configuration with asset forwarding and packaged hero media.
   "pages_build_output_dir": "./dist/pages",
   "compatibility_date": "2026-08-25",
   "compatibility_flags": ["nodejs_compat"]
