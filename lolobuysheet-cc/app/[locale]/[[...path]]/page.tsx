@@ -1,24 +1,46 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
-import { Header, Footer, SearchBox, ArticleSection, MobileModule } from "../../components";
+import { Header, Footer, SearchBox, ArticleSection, MobileModule, ProductImage } from "../../components";
 import { categories as baseCategories, products as baseProducts, guides as baseGuides, markets as baseMarkets, sources as baseSources } from "../../data";
-import { languageOptions, localeCodes, localeCopy, type LocaleCode, withLocale } from "../../locales";
+import { localeCodes, localeCopy, type LocaleCode, withLocale } from "../../locales";
 import { localizedPageCopy } from "../../localized-content";
 import { getLocalizedFaq } from "../../faq-localized";
 import { localizeCollections } from "../../collection-localized";
+import { localizedAlternates } from "../../seo";
 
 type Params={locale:string;path?:string[]};
 
 export async function generateMetadata({params}:{params:Promise<Params>}):Promise<Metadata>{
   const {locale,path=[]}=await params;
-  if(!localeCodes.includes(locale as LocaleCode))return {title:"Page not found"};
+  if(!localeCodes.includes(locale as LocaleCode))return {title:"Page not found",robots:{index:false,follow:false}};
   const code=locale as LocaleCode;
   const copy=localeCopy[code];
+  const ui=localizedPageCopy[code];
   const route=path.length?`/${path.join("/")}`:"/";
-  const canonical=`https://lolobuysheet.cc${withLocale(code,route)}`;
-  const languages=Object.fromEntries(languageOptions.map((item)=>[item.code,`https://lolobuysheet.cc${withLocale(item.code,route)}`]));
-  return {title:`${copy.heroTitle} ${copy.heroAccent} | LoloBuy Sheet`,description:copy.heroText,alternates:{canonical,languages:{...languages,"x-default":`https://lolobuysheet.cc${route}`}}};
+  const [section,slug]=path;
+  const {categories,products,guides}=localizeCollections(code,baseCategories,baseProducts,baseGuides);
+  const category=section==="categories"?categories.find((item)=>item.slug===slug):undefined;
+  const product=section==="products"?products.find((item)=>item.slug===slug):undefined;
+  const guide=(section==="guides"||section==="seo-articles")?guides.find((item)=>item.slug===slug):undefined;
+  const market=section==="markets"?baseMarkets.find((item)=>item.slug===slug):undefined;
+  let title=`${copy.heroTitle} ${copy.heroAccent} | LoloBuy Sheet`;
+  let description=copy.heroText;
+
+  if(category){title=`${category.name} | ${copy.categories}`;description=`${category.note}. ${copy.verify}`;}
+  else if(product){title=`${product.name} | ${copy.products}`;description=product.summary;}
+  else if(guide){title=`${guide.title} | ${copy.nav[5]}`;description=guide.dek;}
+  else if(market){title=`${ui.markets[0]}: ${market.name} | LoloBuy Sheet`;description=ui.markets[2];}
+  else if(section==="spreadsheet"){title=`${ui.spreadsheet[1]} | LoloBuy Sheet`;description=ui.spreadsheet[2];}
+  else if(section==="categories"){title=`${copy.categories} | LoloBuy Sheet`;description=copy.verify;}
+  else if(section==="products"){title=`${copy.products} | LoloBuy Sheet`;description=copy.verify;}
+  else if(section==="seo-articles"||section==="guides"){title=`${ui.seo[1]} | LoloBuy Sheet`;description=ui.seo[2];}
+  else if(section==="faq"){title=`${ui.faq[1]} | LoloBuy Sheet`;description=ui.faq[2];}
+  else if(section==="markets"){title=`${ui.markets[1]} | LoloBuy Sheet`;description=ui.markets[2];}
+  else if(section==="sources"){title=`${ui.sources[1]} | LoloBuy Sheet`;description=ui.sources[2];}
+
+  const canonicalRoute=section==="guides"?`/seo-articles${slug?`/${slug}`:""}`:route;
+  return {title:{absolute:title},description,alternates:localizedAlternates(code,canonicalRoute)};
 }
 
 export default async function LocalizedPage({params}:{params:Promise<Params>}){
@@ -42,12 +64,12 @@ export default async function LocalizedPage({params}:{params:Promise<Params>}){
 
   if(category){
     const matches=products.filter((item)=>item.category===category.slug);
-    return <><Header/><main><header className="category-hero shell"><Link href={withLocale(code,"/categories")}>← {copy.categories}</Link><span className="category-index">{category.glyph}</span><p className="eyebrow"><span></span>{copy.openCategory}</p><h1>{category.name}</h1><p>{category.note}. {copy.verify}</p></header><section className="section shell"><div className="product-grid">{matches.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><img src={item.image} alt={item.name}/><span>{item.label}</span></div><h2>{item.name}</h2><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div><div className="category-actions"><p>{copy.verify}</p><a className="database-cta" href={category.href}>{copy.liveDatabase} ↗</a></div></section></main><Footer/></>;
+    return <><Header/><main><header className="category-hero shell"><Link href={withLocale(code,"/categories")}>← {copy.categories}</Link><span className="category-index">{category.glyph}</span><p className="eyebrow"><span></span>{copy.openCategory}</p><h1>{category.name}</h1><p>{category.note}. {copy.verify}</p></header><section className="section shell"><div className="product-grid">{matches.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><ProductImage src={item.image} alt={item.name}/><span>{item.label}</span></div><h2>{item.name}</h2><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div><div className="category-actions"><p>{copy.verify}</p><a className="database-cta" href={category.href}>{copy.liveDatabase} ↗</a></div></section></main><Footer/></>;
   }
 
   if(product){
     const productCategory=categories.find((item)=>item.slug===product.category)!;
-    return <><Header/><main><header className="product-detail-hero shell"><div><Link href={withLocale(code,`/categories/${productCategory.slug}`)}>← {productCategory.name}</Link><p className="eyebrow"><span></span>{product.label}</p><h1>{product.name}</h1><p>{copy.verify}</p></div><div className="product-visual detail product-photo"><img src={product.image} alt={product.name}/><span>{productCategory.name}</span><small>{copy.openProduct}</small></div></header><section className="product-detail-body shell"><article><small>01 / {copy.nav[2]}</small><h2>{ui.details}</h2><ol>{product.checks.map((check)=><li key={check}>{check}</li>)}</ol></article><article><small>02 / {copy.nav[3]}</small><h2>{copy.heroAccent}</h2><p>{product.shipping}</p></article><aside><p>{copy.verify}</p><a className="database-cta" href={product.live}>{copy.liveDatabase} ↗</a></aside></section></main><Footer/></>;
+    return <><Header/><main><header className="product-detail-hero shell"><div><Link href={withLocale(code,`/categories/${productCategory.slug}`)}>← {productCategory.name}</Link><p className="eyebrow"><span></span>{product.label}</p><h1>{product.name}</h1><p>{copy.verify}</p></div><div className="product-visual detail product-photo"><ProductImage src={product.image} alt={product.name}/><span>{productCategory.name}</span><small>{copy.openProduct}</small></div></header><section className="product-detail-body shell"><article><small>01 / {copy.nav[2]}</small><h2>{ui.details}</h2><ol>{product.checks.map((check)=><li key={check}>{check}</li>)}</ol></article><article><small>02 / {copy.nav[3]}</small><h2>{copy.heroAccent}</h2><p>{product.shipping}</p></article><aside><p>{copy.verify}</p><a className="database-cta" href={product.live}>{copy.liveDatabase} ↗</a></aside></section></main><Footer/></>;
   }
 
   if(guide&&section==="guides"){
@@ -67,7 +89,7 @@ export default async function LocalizedPage({params}:{params:Promise<Params>}){
   }
 
   if(section==="products"){
-    return <><Header/><main className="inner-page shell"><div className="page-hero"><p className="eyebrow"><span></span>{copy.products}</p><h1>{copy.heroTitle}<br/><em>{copy.products}</em></h1><p>{copy.verify}</p><SearchBox/></div><MobileModule title={copy.products}><div className="product-grid">{products.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><img src={item.image} alt={item.name}/><span>{item.label}</span></div><h2>{item.name}</h2><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div></MobileModule></main><Footer/></>;
+    return <><Header/><main className="inner-page shell"><div className="page-hero"><p className="eyebrow"><span></span>{copy.products}</p><h1>{copy.heroTitle}<br/><em>{copy.products}</em></h1><p>{copy.verify}</p><SearchBox/></div><MobileModule title={copy.products}><div className="product-grid">{products.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><ProductImage src={item.image} alt={item.name}/><span>{item.label}</span></div><h2>{item.name}</h2><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div></MobileModule></main><Footer/></>;
   }
 
   if(section==="spreadsheet"){
@@ -100,7 +122,7 @@ export default async function LocalizedPage({params}:{params:Promise<Params>}){
       <section className="hero shell"><div className="hero-copy"><p className="eyebrow"><span></span>{copy.heroKicker}</p><h1>{copy.heroTitle}<br/><em>{copy.heroAccent}</em></h1><p className="hero-text">{copy.heroText}</p><SearchBox/><div className="microproof"><span>{ui.evidence}</span><span>{ui.sourceLibrary}</span><span>{ui.marketEvidence}</span></div></div><aside className="research-card"><p className="card-label">{ui.guides[0]}</p><div className="signal"><span className="pulse"></span><div><b>{ui.evidence}</b><p>{ui.sources[2]}</p></div></div><div className="signal"><span>06</span><div><b>{ui.markets[0]}</b><p>{ui.markets[2]}</p></div></div><div className="signal"><span>10</span><div><b>{copy.categories}</b><p>{ui.spreadsheet[2]}</p></div></div></aside></section>
       <section className="ticker" aria-label={ui.steps.join(", ")}><div>{ui.steps.map((step,i)=><span key={step}>{step}{i<ui.steps.length-1?<i> ◆ </i>:null}</span>)}</div></section>
       <MobileModule title={copy.categories} defaultOpen><section className="section shell"><div className="section-head"><div><p className="eyebrow"><span></span>{copy.categories}</p><h2>{ui.spreadsheet[1]}<br/><em>{copy.heroAccent}</em></h2></div><Link className="text-link" href={withLocale(code,"/spreadsheet")}>{copy.nav[1]} →</Link></div><div className="category-grid">{categories.map((item)=><Link className="category-card" href={withLocale(code,`/categories/${item.slug}`)} key={item.slug}><span className="category-no">{item.glyph}</span><div><h3>{item.name}</h3><p>{item.note}</p></div><b>→</b></Link>)}</div></section></MobileModule>
-      <MobileModule title={copy.products}><section className="section product-showcase"><div className="shell"><div className="section-head"><div><p className="eyebrow"><span></span>{copy.products}</p><h2>{copy.products}<br/><em>{ui.details}</em></h2></div><Link className="text-link" href={withLocale(code,"/products")}>{copy.openProduct} →</Link></div><div className="product-grid home-products">{products.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><img src={item.image} alt={item.name}/><span>{item.label}</span></div><small>{categories.find((c)=>c.slug===item.category)?.name}</small><h3>{item.name}</h3><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div></div></section></MobileModule>
+      <MobileModule title={copy.products}><section className="section product-showcase"><div className="shell"><div className="section-head"><div><p className="eyebrow"><span></span>{copy.products}</p><h2>{copy.products}<br/><em>{ui.details}</em></h2></div><Link className="text-link" href={withLocale(code,"/products")}>{copy.openProduct} →</Link></div><div className="product-grid home-products">{products.map((item)=><a className="product-card" href={item.live} key={item.slug}><div className="product-visual product-photo"><ProductImage src={item.image} alt={item.name}/><span>{item.label}</span></div><small>{categories.find((c)=>c.slug===item.category)?.name}</small><h3>{item.name}</h3><p>{item.summary}</p><strong>{copy.liveDatabase} ↗</strong></a>)}</div></div></section></MobileModule>
       <MobileModule title={ui.spreadsheet[0]}><section className="dark-section"><div className="shell"><div className="section-head inverse"><div><p className="eyebrow"><span></span>{ui.spreadsheet[0]}</p><h2>{ui.details}</h2></div><p className="section-intro">{ui.stepText}</p></div><div className="steps">{ui.steps.map((step,i)=><article key={step}><small>{String(i+1).padStart(2,"0")}</small><span>{["⌕","◎","▣","↗"][i]}</span><h3>{step}</h3><p>{ui.stepText}</p></article>)}</div></div></section></MobileModule>
       <MobileModule title={ui.marketEvidence}><section className="section shell"><div className="section-head"><div><p className="eyebrow"><span></span>{ui.marketEvidence}</p><h2>{ui.markets[1]}<br/><em>{ui.evidence}</em></h2></div><p className="section-intro dark">{ui.markets[2]}</p></div><div className="market-list">{markets.map((item)=><Link className="market-row" href={withLocale(code,`/markets/${item.slug}`)} key={item.slug}><span className="country-code">{item.flag}</span><div><small>{item.tier}</small><h3>{item.name}</h3></div><p>{item.summary}</p><span className="confidence">{ui.details}</span><b>→</b></Link>)}</div></section></MobileModule>
       <MobileModule title={ui.guides[0]}><section className="section guides-section"><div className="shell"><div className="section-head"><div><p className="eyebrow"><span></span>{ui.guides[0]}</p><h2>{ui.guides[1]}<br/><em>{copy.heroAccent}</em></h2></div><Link className="text-link" href={withLocale(code,"/seo-articles")}>{ui.read} →</Link></div><div className="guide-grid">{guides.map((item,i)=><Link className={i===0?"guide-card featured":"guide-card"} href={withLocale(code,`/seo-articles/${item.slug}`)} key={item.slug}><small>{item.kicker} · {item.read}</small><h3>{item.title}</h3><p>{item.dek}</p><span>{ui.read} →</span></Link>)}</div></div></section></MobileModule>

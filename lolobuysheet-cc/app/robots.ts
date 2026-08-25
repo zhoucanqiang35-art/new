@@ -3,7 +3,8 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" },
-    // Google-compatible plain text sitemap, served as a static Pages asset.
-    sitemap: "https://lolobuysheet.cc/sitemap.txt",
+    // Keep one canonical discovery endpoint. The XML sitemap contains every
+    // indexable English and localized URL and is served with an XML MIME type.
+    sitemap: "https://lolobuysheet.cc/sitemap.xml",
   };
 }

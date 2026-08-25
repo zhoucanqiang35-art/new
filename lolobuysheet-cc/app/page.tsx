@@ -1,6 +1,14 @@
 import Link from "next/link";
-import { Header, Footer, MobileModule, SearchBox } from "./components";
+import type { Metadata } from "next";
+import { Header, Footer, MobileModule, ProductImage, SearchBox } from "./components";
 import { categories, faq, guides, markets, products } from "./data";
+import { pageMetadata } from "./seo";
+
+export const metadata: Metadata = pageMetadata({
+  title: "LoloBuy Spreadsheet Guide for Global Buyers",
+  description: "Independent LoloBuy spreadsheet research for product discovery, QC photos, warehouse planning, shipping and tracking.",
+  path: "/",
+});
 
 export default function Home() {
   const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", name: "LoloBuy Sheet", url: "https://lolobuysheet.cc/", description: "Independent LoloBuy spreadsheet research for product discovery, QC, warehouse planning and shipping." };
@@ -43,7 +51,7 @@ export default function Home() {
         <MobileModule title="Product detail hub"><section className="section product-showcase">
           <div className="shell">
             <div className="section-head"><div><p className="eyebrow"><span></span>Product detail hub</p><h2>Open the card.<br/><em>Check the details.</em></h2></div><Link className="text-link" href="/products">View all product cards →</Link></div>
-            <div className="product-grid home-products">{products.map((product)=><a className="product-card" href={product.live} key={product.slug}><div className="product-visual product-photo"><img src={product.image} alt={product.name}/><span>{product.label}</span></div><small>{categories.find((category)=>category.slug===product.category)?.name}</small><h3>{product.name}</h3><p>{product.summary}</p><strong>View on FindSpreadsheet ↗</strong></a>)}</div>
+            <div className="product-grid home-products">{products.map((product)=><a className="product-card" href={product.live} key={product.slug}><div className="product-visual product-photo"><ProductImage src={product.image} alt={product.name}/><span>{product.label}</span></div><small>{categories.find((category)=>category.slug===product.category)?.name}</small><h3>{product.name}</h3><p>{product.summary}</p><strong>View on FindSpreadsheet ↗</strong></a>)}</div>
           </div>
         </section></MobileModule>
 

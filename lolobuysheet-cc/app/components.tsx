@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, type ReactNode, useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { markets } from "./data";
@@ -22,6 +23,10 @@ const accessibility:Record<LocaleCode,{home:string;menu:string;nav:string;langua
   da:{home:"LoloBuy Sheet forside",menu:"Åbn navigation",nav:"Hovednavigation",language:"Webstedets sprog",search:"Søg efter FindSpreadsheet-produkter",market:"Markedsoversigt",choose:"Vælg et land"},
   fi:{home:"LoloBuy Sheet -etusivu",menu:"Avaa navigointi",nav:"Päänavigointi",language:"Sivuston kieli",search:"Hae FindSpreadsheet-tuotteita",market:"Markkinakatsaus",choose:"Valitse maa"}
 };
+
+export function ProductImage({src,alt}:{src:string;alt:string}) {
+  return <Image src={src} alt={alt} fill sizes="(max-width: 600px) 100vw, (max-width: 1180px) 50vw, 33vw" />;
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -54,7 +59,7 @@ export function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link className="brand" href={withLocale(currentLocale, "/")} aria-label={accessibility[currentLocale].home}>
-          <img className="brand-logo" src="/lolobuy-logo.png" width="220" height="100" alt="LoloBuy" />
+          <Image className="brand-logo" src="/lolobuy-logo.png" width={220} height={100} alt="LoloBuy" priority />
           <small>{copy.heroKicker}</small>
         </Link>
         <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={accessibility[currentLocale].menu}>{menuLabel[currentLocale]}</button>
@@ -173,7 +178,7 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="footer-grid">
-        <div><img className="footer-logo" src="/lolobuy-logo.png" width="220" height="100" alt="LoloBuy" /><h2>{copy.heroTitle}<br/>{copy.heroAccent}</h2></div>
+        <div><Image className="footer-logo" src="/lolobuy-logo.png" width={220} height={100} alt="LoloBuy" /><h2>{copy.heroTitle}<br/>{copy.heroAccent}</h2></div>
         <div><h3>{ui.explore}</h3><Link href={withLocale(currentLocale,"/spreadsheet")}>{copy.nav[1]}</Link><Link href={withLocale(currentLocale,"/categories")}>{copy.categories}</Link><Link href={withLocale(currentLocale,"/products")}>{copy.products}</Link><Link href={withLocale(currentLocale,"/seo-articles")}>{ui.seo[0]}</Link></div>
         <div><h3>{ui.trust}</h3><Link href={withLocale(currentLocale,"/sources")}>{ui.sourceLibrary}</Link><Link href={withLocale(currentLocale,"/markets")}>{ui.marketEvidence}</Link><a href="https://findspreadsheet.com/">FindSpreadsheet ↗</a></div>
       </div>

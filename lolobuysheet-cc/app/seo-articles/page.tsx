@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { Header, Footer, MobileModule } from "../components";
 import { guides } from "../data";
+import { pageMetadata } from "../seo";
 
-export const metadata = { title: "LoloBuy SEO Articles | Independent Research Library", description: "Read evidence-led LoloBuy articles on product discovery, QC photos, shipping, warehouse consolidation, tracking and safety." };
+export const metadata = pageMetadata({ title: "LoloBuy SEO Articles | Independent Research Library", description: "Read evidence-led LoloBuy articles on product discovery, QC photos, shipping, warehouse consolidation, tracking and safety.", path: "/seo-articles" });
 
 const series=[
   ["Beginner intent","What is a LoloBuy spreadsheet, how product-link buying works and which records to save."],

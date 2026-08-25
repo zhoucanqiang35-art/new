@@ -19,9 +19,19 @@ interface ExecutionContext {
   passThroughOnException(): void;
 }
 
+const LOCALIZED_CODES = new Set(["es", "de", "fr", "it", "pt", "nl", "pl", "sv", "no", "da", "fi"]);
+
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Consolidate every public request onto the canonical apex hostname.
+    // Cloudflare can route both hostnames to this Worker, so the redirect must
+    // happen before assets or application routes are resolved.
+    if (url.hostname.toLowerCase() === "www.lolobuysheet.cc") {
+      url.hostname = "lolobuysheet.cc";
+      return Response.redirect(url.toString(), 308);
+    }
 
     // Serve the Search Console sitemap as a real Pages static asset. This keeps
     // it completely outside the App Router/RSC runtime and gives Google the
@@ -85,7 +95,20 @@ const worker = {
       }, allowedWidths);
     }
 
-    return handler.fetch(request, env, ctx);
+    const response = await handler.fetch(request, env, ctx);
+    const locale = url.pathname.split("/").filter(Boolean)[0];
+
+    if (locale && LOCALIZED_CODES.has(locale) && response.headers.get("content-type")?.includes("text/html")) {
+      const headers = new Headers(response.headers);
+      headers.set("Content-Language", locale);
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers,
+      });
+    }
+
+    return response;
   },
 };
 

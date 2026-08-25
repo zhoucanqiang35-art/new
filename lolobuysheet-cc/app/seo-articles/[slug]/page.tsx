@@ -3,13 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header, Footer, ArticleSection } from "../../components";
 import { guides } from "../../data";
+import { pageMetadata } from "../../seo";
 
 export function generateStaticParams(){return guides.map((guide)=>({slug:guide.slug}));}
 
 export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{
   const {slug}=await params;
   const guide=guides.find((item)=>item.slug===slug);
-  return guide?{title:`${guide.title} | LoloBuy SEO Articles`,description:guide.dek}:{title:"Article not found"};
+  return guide?pageMetadata({title:`${guide.title} | LoloBuy SEO Articles`,description:guide.dek,path:`/seo-articles/${guide.slug}`}):{title:"Article not found",robots:{index:false,follow:false}};
 }
 
 export default async function SeoArticlePage({params}:{params:Promise<{slug:string}>}){
