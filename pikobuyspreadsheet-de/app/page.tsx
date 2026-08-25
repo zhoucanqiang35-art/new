@@ -62,7 +62,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual">
-            <img src="/og.png" alt="PikoBuy Spreadsheet research board with parcels, product cards and quality check marks" />
+            <img src="/og-hero.jpg" alt="PikoBuy Spreadsheet research board with parcels, product cards and quality check marks" />
             <div className="visual-note">
               <span className="status-dot" />
               <div><b>Built for comparison</b><small>Product data stays on the live main database.</small></div>
