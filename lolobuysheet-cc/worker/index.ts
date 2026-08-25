@@ -52,6 +52,33 @@ const worker = {
       return Response.redirect(url.toString(), 308);
     }
 
+    // Serve a small, static Search Console sitemap directly from the asset
+    // binding. This avoids App Router, RSC, database, and image bindings, while
+    // preserving identical GET and HEAD behavior for Google's sitemap fetcher.
+    if (url.pathname === "/sitemap-google.xml") {
+      const assetUrl = new URL("/sitemap-google.xml", request.url);
+      const assetResponse = await env.ASSETS.fetch(
+        new Request(assetUrl, {
+          method: request.method === "HEAD" ? "HEAD" : "GET",
+          headers: request.headers,
+        }),
+      );
+
+      if (!assetResponse.ok) {
+        return assetResponse;
+      }
+
+      const headers = new Headers(assetResponse.headers);
+      headers.set("Content-Type", "application/xml; charset=utf-8");
+      headers.set("Cache-Control", "no-store");
+      headers.set("X-Content-Type-Options", "nosniff");
+
+      return new Response(request.method === "HEAD" ? null : assetResponse.body, {
+        status: 200,
+        headers,
+      });
+    }
+
     // Keep the original comprehensive sitemap endpoint for compatibility.
     if (url.pathname === "/sitemap.xml") {
       const sitemapUrl = new URL("/sitemap.xml", request.url);
