@@ -33,19 +33,23 @@ const worker = {
       return Response.redirect(url.toString(), 308);
     }
 
-    // Serve the Search Console sitemap as a real Pages static asset. This keeps
-    // it completely outside the App Router/RSC runtime and gives Google the
-    // same byte-for-byte file on GET and HEAD requests.
-    if (url.pathname === "/sitemap.txt") {
-      return env.ASSETS.fetch(request);
+    // Keep one authoritative sitemap URL. Historical Search Console entries
+    // continue to work, but are consolidated onto the generated XML sitemap.
+    if (
+      url.pathname === "/sitemap.txt" ||
+      url.pathname === "/sitemap-priority.xml" ||
+      url.pathname === "/sitemap-search.xml"
+    ) {
+      url.pathname = "/sitemap.xml";
+      url.search = "";
+      return Response.redirect(url.toString(), 308);
     }
 
-    if (url.pathname === "/sitemap-priority.xml" || url.pathname === "/sitemap-search.xml") {
-      const assetUrl = new URL("/sitemap-priority.xml", request.url);
-      return env.ASSETS.fetch(new Request(assetUrl, {
-        method: request.method,
-        headers: request.headers,
-      }));
+    // English is the unprefixed default locale. Redirect accidental /en URLs
+    // so crawlers cannot discover a duplicate English URL space.
+    if (url.pathname === "/en" || url.pathname.startsWith("/en/")) {
+      url.pathname = url.pathname.slice(3) || "/";
+      return Response.redirect(url.toString(), 308);
     }
 
     // Keep the original comprehensive sitemap endpoint for compatibility.
@@ -98,9 +102,11 @@ const worker = {
     const response = await handler.fetch(request, env, ctx);
     const locale = url.pathname.split("/").filter(Boolean)[0];
 
-    if (locale && LOCALIZED_CODES.has(locale) && response.headers.get("content-type")?.includes("text/html")) {
+    if (response.headers.get("content-type")?.includes("text/html")) {
       const headers = new Headers(response.headers);
-      headers.set("Content-Language", locale);
+      headers.set("Content-Language", locale && LOCALIZED_CODES.has(locale) ? locale : "en");
+      headers.set("X-Content-Type-Options", "nosniff");
+      headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
       return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
