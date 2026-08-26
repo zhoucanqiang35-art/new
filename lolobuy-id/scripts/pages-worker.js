@@ -2,7 +2,13 @@ import worker from "./_server/index.js";
 
 export default {
   async fetch(request, env, context) {
-    const url = new URL(request.url);\n    const { pathname } = url;\n\n    if (url.hostname === "www.lolobuy.id") {\n      url.hostname = "lolobuy.id";\n      return Response.redirect(url.toString(), 301);\n    }
+    const url = new URL(request.url);
+    const { pathname } = url;
+
+    if (url.hostname === "www.lolobuy.id") {
+      url.hostname = "lolobuy.id";
+      return Response.redirect(url.toString(), 301);
+    }
 
     // In Pages advanced mode `_worker.js` receives every request before the
     // static asset layer. Vinext renders CSS and browser bundles under
