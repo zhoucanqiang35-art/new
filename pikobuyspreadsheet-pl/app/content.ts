@@ -39,15 +39,133 @@ export type Guide = {
   slug: string;
   eyebrow: string;
   title: string;
+  seoTitle?: string;
   description: string;
   readTime: string;
   updated: string;
+  publishedDate?: string;
+  modifiedDate?: string;
+  editorialNote?: string;
+  visual?: { src: string; alt: string; caption: string };
   intro: string[];
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
+  faq?: { question: string; answer: string }[];
   sources: { label: string; href: string }[];
 };
 
 export const guides: Guide[] = [
+  {
+    slug: "pikobuy-fees-total-cost",
+    eyebrow: "Cost planning",
+    title: "PikoBuy Fees Explained: Estimate Your Total Cost Before Ordering",
+    seoTitle: "PikoBuy Fees Explained: Total Cost Guide",
+    description: "A fact-checked way to separate product cost, China delivery, international freight, PikoBuy's published freight fee and possible import charges before ordering.",
+    readTime: "12 min read",
+    updated: "Verified 26 August 2026",
+    publishedDate: "2026-08-26",
+    modifiedDate: "2026-08-26",
+    editorialNote: "Independently researched from PikoBuy's public guide, estimator and agreements. This page is not a quote, calculator or guarantee from PikoBuy.",
+    visual: {
+      src: "/pikobuy-total-cost-stack.svg",
+      alt: "Diagram showing the PikoBuy cost stack from product payment through warehouse, international freight, platform fee and possible destination charges",
+      caption: "Original cost-planning diagram. Add only charges shown for your order; a blank category is not evidence that its value is zero.",
+    },
+    intro: [
+      "A low product price is not the same as a low delivered price. With a purchasing agent, the final amount is assembled in stages: the seller's product price, delivery inside China, the measured international parcel, platform charges shown at payment, and any duties, taxes or brokerage collected for the destination. The honest answer to \"How much will PikoBuy cost?\" is therefore a worksheet, not a universal price-per-kilogram claim.",
+      "PikoBuy's current beginner guide describes two payments. The first is made when the product order is submitted. The second comes after warehouse inspection, when the shopper chooses a shipping route and pays international freight. Its User Registration Agreement adds an important dated fact: the platform service fee for parcel forwarding is currently calculated at 8% of the shipping fee, subject to possible small differences from exchange rates and settlement timing.",
+      "This guide turns those published rules into a practical pre-order estimate. It shows what you can know before buying, what remains a range until the warehouse measures the parcel, and what must be checked outside PikoBuy because destination-country charges are not determined by a product card.",
+    ],
+    sections: [
+      {
+        heading: "Start with the official two-payment structure",
+        paragraphs: [
+          "The first payment belongs to the purchase stage. PikoBuy's guide says the shopper selects the exact colour, size and quantity, submits the purchasing order and pays. It also warns that the actual purchase price controls and that an out-of-stock order may be refunded. A spreadsheet price is useful for discovery, but the live order confirmation is the figure to record.",
+          "PikoBuy's User Registration Agreement says the purchasing-stage amount includes the price of the selected products and related logistics costs, with small differences possible because of exchange-rate movement and settlement timing. The same agreement says PikoBuy may add a necessary service fee when the product payment is confirmed, but the public clause does not give one universal percentage for that product-stage fee. Do not fill that box with a number borrowed from another agent; copy the amount shown on your own confirmation screen.",
+          "The second payment is for the international parcel. After the warehouse checks in and photographs the products, the shopper chooses an available route, submits the parcel and pays freight. That separation is useful: you can estimate early, then replace assumed weight, dimensions and packing choices with warehouse information before committing to international shipping.",
+        ],
+        bullets: [
+          "Payment one: product, seller-to-warehouse delivery and any charge displayed at checkout",
+          "Warehouse checkpoint: identity, condition, measured item information and packing decision",
+          "Payment two: selected international route, freight and the displayed forwarding platform fee",
+          "Possible later collection: destination duties, taxes, brokerage or other official charges",
+        ],
+      },
+      {
+        heading: "Build the estimate from six separate cost buckets",
+        paragraphs: [
+          "Use six rows rather than one total: product price; domestic seller-to-warehouse delivery; product-stage service or payment charges shown at checkout; optional warehouse services and packing; international freight plus its platform fee; and destination charges. Keeping the rows separate prevents a known cost from being hidden inside an attractive estimate and makes it obvious which values still need evidence.",
+          "For the product and domestic-delivery rows, use the selected variant rather than the lowest headline price. A listing may group several sizes, bundles or models under one page. Save the exact option text and current order breakdown. If you are comparing several products, record each seller's domestic delivery separately before assuming that consolidation removes it; consolidation happens after items have travelled to the warehouse.",
+          "For optional services, enter only what the live warehouse or parcel screen offers and what you intend to request. Extra photographs, reinforced packing, insurance or other handling may affect cost, but the public pages reviewed for this article do not establish one permanent menu of prices. A good worksheet leaves the amount pending until it is shown instead of inventing a standard charge.",
+        ],
+      },
+      {
+        heading: "Estimate freight with parcel inputs, not hope",
+        paragraphs: [
+          "PikoBuy's public shipping estimator asks for destination country or region, product type, weight in kilograms, and parcel length, width and height in centimetres. Those fields explain why a stranger's screenshot is not your quote. A light shoebox can cost more than expected when its outside dimensions produce a higher chargeable size, while a dense parcel may be driven mainly by scale weight.",
+          "Before warehouse arrival, run a low and high scenario. The low scenario can assume efficient consolidation and removal of packaging you genuinely do not need. The high scenario should allow for the outer carton, protective material and measurement uncertainty. Do not sacrifice necessary protection merely to force the smaller result; a damaged fragile item can be more expensive than a slightly larger parcel.",
+          "After warehouse intake, rerun the estimate with the best available measurements and honest product type. PikoBuy's guide says routes differ in delivery time and billing method, so compare the live options rather than applying one formula to every line. Route availability, restrictions and prices can change. The final parcel page is the decision point, not the number saved before purchase.",
+        ],
+      },
+      {
+        heading: "Apply the published 8% freight platform fee correctly",
+        paragraphs: [
+          "PikoBuy's User Registration Agreement currently states that the platform service fee for parcel forwarding is 8% of the shipping fee. It also says the shopper pays freight to the independently selected third-party logistics provider and pays the platform fee to PikoBuy. The shipping order is not generated or confirmed if the required payment is not completed.",
+          "For planning, the arithmetic is simple: estimated forwarding payment equals the live freight quote plus 0.08 multiplied by that freight quote. If a hypothetical parcel shows freight of CNY 200, the published formula produces a CNY 16 platform fee and CNY 216 before insurance, optional handling or destination charges. This is an illustration, not a current route quote.",
+          "Treat 8% as a dated policy fact, not an eternal promise. The agreement notes that exchange-rate fluctuation and settlement timing can produce small differences, and PikoBuy reserves the ability to update its terms. Check the fee line again when paying. Also keep the freight fee separate from any service or payment charge shown during the first product payment; the public agreement does not justify assuming they are the same fee.",
+        ],
+      },
+      {
+        heading: "Keep customs, tax and brokerage outside the shipping quote",
+        paragraphs: [
+          "PikoBuy's Terms of Service says cross-border transactions may incur duties, taxes, brokerage fees or other charges and makes the user responsible for them. Its shipping terms also state that parcels are carried by third-party logistics providers and that customs action, confiscation, damage, loss and peak-season delays cannot be eliminated.",
+          "That means an international shipping estimate is not automatically a delivered-duty-paid total. Check the destination country's current customs authority guidance and the exact route wording before paying. Do not rely on an old community post, and do not describe a route as tax-free or customs-safe unless the current official route terms for the actual parcel expressly establish that treatment.",
+          "In the worksheet, mark duties, import tax and brokerage as either confirmed, estimated from an official destination rule, or unknown. Unknown does not mean zero. If the classification, value threshold or recipient obligation is unclear, keep a contingency rather than forcing the spreadsheet to produce a falsely precise delivered price.",
+        ],
+      },
+      {
+        heading: "Include the cost of changing your mind",
+        paragraphs: [
+          "Returns matter to cost planning because international freight is selected after warehouse inspection. PikoBuy's Returns & Exchanges page even lists an international shipping quote that exceeds the buyer's budget as a customer-responsibility reason for returning an item. Estimating freight before the first payment reduces the risk of paying domestic delivery only to discover that the parcel no longer makes financial sense.",
+          "For an eligible unconditional return after warehouse arrival, the published formula is shipping back to the seller, the seller's original delivery charge and an RMB 5 service fee. The page warns that the original delivery charge can still be payable even when the seller advertised free shipping. Eligibility also depends on timing, seller support, resale condition, packaging and category rules.",
+          "Do not automatically add the full return formula to every order total. Use it as a risk row when size, condition, option accuracy or seller policy makes a return reasonably possible. Preserve labels, seals and packaging until the warehouse decision is complete, and review photos promptly because the published application window for eligible products is 120 hours from the next hour after the status changes to In Warehouse.",
+        ],
+      },
+      {
+        heading: "Use one worksheet and three checkpoints",
+        paragraphs: [
+          "Checkpoint one is before the product order: record the exact variant, live product total, domestic delivery and a low-to-high parcel estimate. If the high scenario already breaks the budget, stop before paying. Checkpoint two is after warehouse intake: confirm the received item, update weight and dimensions, decide on packaging and compare the currently available routes.",
+          "Checkpoint three is the final parcel screen. Copy the freight, the displayed platform fee, optional services, insurance choice and any route-specific statement. Then add only destination charges supported by current official information. Keep screenshots with the order because live prices and route names can change after payment.",
+          "The final decision is not simply whether the total is affordable. Compare delivered cost with the quality of evidence you have: seller information, exact option, warehouse photos, measurements, route eligibility and return position. A product that is slightly cheaper but poorly documented can carry more financial risk than a better-recorded alternative.",
+          "A disciplined estimate stays editable. Replace assumptions as evidence arrives, label every unconfirmed amount, and never present the result as a PikoBuy quotation. That is the difference between a useful cost plan and a number designed only to persuade someone to click Buy.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "What is PikoBuy's international shipping platform fee?",
+        answer: "PikoBuy's User Registration Agreement, reviewed on 26 August 2026, states that the parcel-forwarding platform service fee is calculated at 8% of the shipping fee. Verify the current amount on the live parcel payment screen because terms, exchange rates and settlement details can change.",
+      },
+      {
+        question: "Does the PikoBuy shipping estimate include customs and tax?",
+        answer: "Do not assume it does. PikoBuy's Terms of Service lists duties, taxes, brokerage and other cross-border charges as possible costs for which the user is responsible. Check the exact route terms and current destination-country rules.",
+      },
+      {
+        question: "Can I know the full PikoBuy cost before buying?",
+        answer: "You can build a planning range, but the final parcel cost is not known until warehouse measurements, packing choices and live routes are available. Record product-stage charges first, then replace estimated freight inputs after warehouse intake.",
+      },
+      {
+        question: "What should I put in a PikoBuy cost worksheet?",
+        answer: "Use separate rows for the selected product, domestic delivery, checkout charges, optional warehouse services, international freight, the displayed freight platform fee, insurance if chosen, and possible destination duties, tax or brokerage.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy official shipping estimator", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Returns & Exchanges", href: "/sources#pikobuy-sources" },
+    ],
+  },
   {
     slug: "how-to-use-pikobuy-spreadsheet",
     eyebrow: "Beginner guide",

@@ -119,6 +119,7 @@ async function assertAsset(filename, expectedContentType) {
 await assertPage("/", "PikoBuy Spreadsheet");
 await assertPage("/faq", "Six useful answers before you order");
 await assertPage("/language/pl", "PikoBuy Spreadsheet", "/language/pl");
+await assertPage("/pikobuy-fees-total-cost", "PikoBuy Fees Explained");
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
 await assertPublicAsset("/robots.txt", "text/plain", "Allow: /");
@@ -131,10 +132,10 @@ if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreads
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 128 || !sitemap.includes('hreflang="x-default"')) {
-  throw new Error(`Expected 128 sitemap URLs with hreflang alternates, found ${sitemapUrls}`);
+if (sitemapUrls !== 136 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-fees-total-cost")) {
+  throw new Error(`Expected 136 sitemap URLs with hreflang alternates and the new cost guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 128-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 136-URL sitemap, CSS and JavaScript.",
 );

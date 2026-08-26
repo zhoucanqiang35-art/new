@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getGuide, guides, primaryLinks } from "../content";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
-import { indexableRobots, pageAlternates } from "../seo";
+import { indexableRobots, pageAlternates, SITE_URL } from "../seo";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -16,11 +17,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const guide = getGuide(slug);
   if (!guide) return {};
   return {
-    title: `${guide.title} | PikoBuy Spreadsheet Europe`,
+    title: `${guide.seoTitle ?? guide.title} | PikoBuy Spreadsheet Europe`,
     description: guide.description,
     robots: indexableRobots,
     alternates: pageAlternates(`/${guide.slug}`),
-    openGraph: { title: guide.title, description: guide.description, type: "article", images: [] },
+    openGraph: { title: guide.title, description: guide.description, type: "article", url: `${SITE_URL}/${guide.slug}`, images: [] },
     twitter: { card: "summary", title: guide.title, description: guide.description, images: [] },
   };
 }
@@ -36,10 +37,31 @@ export default async function GuidePage({ params }: PageProps) {
     "@type": "Article",
     headline: guide.title,
     description: guide.description,
-    dateModified: "2026-08-21",
+    mainEntityOfPage: `${SITE_URL}/${guide.slug}`,
+    datePublished: guide.publishedDate ?? "2026-08-21",
+    dateModified: guide.modifiedDate ?? "2026-08-22",
     author: { "@type": "Organization", name: "PikoBuy Spreadsheet Europe" },
     publisher: { "@type": "Organization", name: "PikoBuy Spreadsheet Europe" },
+    ...(guide.visual ? { image: `${SITE_URL}${guide.visual.src}` } : {}),
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "SEO articles", item: `${SITE_URL}/seo-articles` },
+      { "@type": "ListItem", position: 3, name: guide.title, item: `${SITE_URL}/${guide.slug}` },
+    ],
+  };
+  const faqSchema = guide.faq ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: guide.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  } : null;
 
   return (
     <main className="article-page">
@@ -53,16 +75,19 @@ export default async function GuidePage({ params }: PageProps) {
           <h1>{guide.title}</h1>
           <p className="article-deck">{guide.description}</p>
           <div className="article-meta"><span>{guide.readTime}</span><span>{guide.updated}</span><span>Independent guide</span></div>
+          {guide.editorialNote && <p className="editorial-note"><b>Editorial note:</b> {guide.editorialNote}</p>}
         </header>
 
         <div className="article-layout shell">
           <aside>
             <b>On this page</b>
             {guide.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}><span>0{index + 1}</span>{section.heading}</a>)}
+            {guide.faq && <a href="#article-faq"><span>?</span>Cost FAQ</a>}
             <a href="#sources"><span>→</span>Sources</a>
           </aside>
           <div className="article-body">
             <div className="article-intro">{guide.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+            {guide.visual && <figure className="article-visual"><Image src={guide.visual.src} alt={guide.visual.alt} width={1200} height={675} unoptimized /><figcaption>{guide.visual.caption}</figcaption></figure>}
             {guide.sections.map((section, index) => (
               <section id={`section-${index + 1}`} key={section.heading}>
                 <p className="section-index">0{index + 1}</p>
@@ -71,6 +96,10 @@ export default async function GuidePage({ params }: PageProps) {
                 {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
               </section>
             ))}
+            {guide.faq && <section className="article-faq" id="article-faq">
+              <p className="section-index">Practical FAQ</p><h2>Questions buyers ask about PikoBuy costs</h2>
+              {guide.faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+            </section>}
             <section className="article-sources" id="sources">
               <p className="section-index">Source record</p><h2>What this guide relies on</h2>
               <p>Platform functions and policies can change. Open the current source before relying on a route, deadline, fee or account decision.</p>
@@ -86,6 +115,8 @@ export default async function GuidePage({ params }: PageProps) {
       <section className="cta"><div className="shell"><div><p>Ready to research a product?</p><h2>Open the live database and keep this checklist nearby.</h2></div><a className="button button-invert" href={primaryLinks.products}>Browse all products <span>↗</span></a></div></section>
       <SiteFooter />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
     </main>
   );
 }

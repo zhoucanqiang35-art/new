@@ -18,7 +18,7 @@ const staticRoutes = ["product-categories", "product-details", "seo-articles", "
 const staticMetadata: Record<string, { title: string; description: string }> = {
   "product-categories": { title: "PikoBuy Product Categories | Spreadsheet Europe", description: "Browse focused PikoBuy spreadsheet categories and open the matching live collection." },
   "product-details": { title: "PikoBuy Product Detail Research | Spreadsheet Europe", description: "Open focused product searches and use practical pre-order and warehouse QC checks." },
-  "seo-articles": { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy articles covering spreadsheet use, QC photos, European shipping and returns." },
+  "seo-articles": { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy guides covering fees, total cost, spreadsheet use, QC photos, European shipping and returns." },
   faq: { title: "PikoBuy Spreadsheet FAQ | Six Practical Answers", description: "Six independent FAQ pages covering product links, QC photos, European shipping, returns and site independence." },
   sources: { title: "Sources & Editorial Policy | PikoBuy Spreadsheet Europe", description: "The source pages, verification rules and editorial boundaries used by PikoBuy Spreadsheet Europe." },
 };
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const guide = path.length === 1 ? guides.find((item) => item.slug === path[0]) : undefined;
   const faq = path.length === 2 && path[0] === "faq" ? faqItems.find((item) => item.slug === path[1]) : undefined;
   const copy = guide
-    ? { title: `${guide.title} | PikoBuy Spreadsheet Europe`, description: guide.description }
+    ? { title: `${guide.seoTitle ?? guide.title} | PikoBuy Spreadsheet Europe`, description: guide.description }
     : faq
       ? { title: `${faq.question} | PikoBuy Spreadsheet FAQ`, description: faq.description }
       : staticMetadata[path[0]];

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy total cost planning stack</title>
+  <desc id="desc">A six-part diagram separating product price, China delivery, checkout charges, warehouse choices, international freight and platform fee, and possible destination charges.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9fbfb"/>
+      <stop offset="1" stop-color="#f3edff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#61ddea"/>
+      <stop offset="1" stop-color="#7b3ff2"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" rx="40" fill="url(#bg)"/>
+  <text x="72" y="84" fill="#202532" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Build the cost in layers</text>
+  <text x="72" y="122" fill="#5e6677" font-family="Arial, Helvetica, sans-serif" font-size="18">Known now → measured at the warehouse → confirmed at checkout or destination</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <g transform="translate(72 168)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#cfe8eb" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#dff8f6"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">01</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">Selected product</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Use the live variant total</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">—not the lowest card price.</text>
+    </g>
+    <g transform="translate(439 168)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#d8d4f0" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#eee7ff"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">02</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">China delivery</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Seller-to-warehouse cost</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">shown for the order.</text>
+    </g>
+    <g transform="translate(806 168)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#cfe8eb" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#dff8f6"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">03</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">Checkout charges</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Copy what your payment</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">screen actually displays.</text>
+    </g>
+    <g transform="translate(72 324)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#d8d4f0" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#eee7ff"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">04</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">Warehouse choices</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Photos, packing, insurance</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">or other selected services.</text>
+    </g>
+    <g transform="translate(439 324)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#cfe8eb" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#dff8f6"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">05</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">Freight + fee</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Live route freight plus the</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">displayed platform fee.</text>
+    </g>
+    <g transform="translate(806 324)">
+      <rect width="322" height="118" rx="24" fill="#fff" stroke="#d8d4f0" stroke-width="2"/>
+      <circle cx="46" cy="43" r="20" fill="#eee7ff"/>
+      <text x="46" y="50" text-anchor="middle" fill="#202532" font-size="17" font-weight="700">06</text>
+      <text x="82" y="43" fill="#202532" font-size="20" font-weight="700">Destination charges</text>
+      <text x="82" y="72" fill="#5e6677" font-size="15">Possible duty, tax, brokerage</text>
+      <text x="82" y="96" fill="#5e6677" font-size="15">or official collection.</text>
+    </g>
+  </g>
+  <rect x="72" y="486" width="1056" height="120" rx="28" fill="#202532"/>
+  <rect x="96" y="510" width="8" height="72" rx="4" fill="url(#accent)"/>
+  <text x="132" y="539" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700">Planning rule</text>
+  <text x="132" y="570" fill="#d8e0e8" font-family="Arial, Helvetica, sans-serif" font-size="17">Label each amount as confirmed, estimated or unknown. Unknown is not zero.</text>
+  <text x="1072" y="562" text-anchor="end" fill="#7de5ec" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700">Independent research graphic</text>
+</svg>

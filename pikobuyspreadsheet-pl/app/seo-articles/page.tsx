@@ -4,7 +4,7 @@ import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
 import { indexableRobots, pageAlternates } from "../seo";
 
-export const metadata: Metadata = { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy articles covering spreadsheet use, QC photos, European shipping and returns.", robots: indexableRobots, alternates: pageAlternates("/seo-articles") };
+export const metadata: Metadata = { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy guides covering fees, total cost, spreadsheet use, QC photos, European shipping and returns.", robots: indexableRobots, alternates: pageAlternates("/seo-articles") };
 
 export default function SeoArticlesPage() {
   return <main className="listing-page">
