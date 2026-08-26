@@ -12,6 +12,7 @@ const files = [
   "app/data/guides-part-two.ts",
   "app/data/guides-part-three.ts",
   "app/data/guides-part-four.ts",
+  "app/data/guides-part-five.ts",
   "app/data/faq.ts",
 ];
 

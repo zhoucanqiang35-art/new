@@ -47,10 +47,27 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 408);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 432);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-canada-guide/);
+});
+
+test("publishes the Canada guide with crawlable article metadata", async () => {
+  const response = await request("/guide/lolobuy-canada-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /LoloBuy Canada guide 2026/);
+  assert.match(html, /https:\/\/schema\.org/);
+  assert.match(html, /Article/);
+  assert.match(html, /datePublished/);
+  assert.match(html, /name=["']keywords["'][^>]+LoloBuy Canada/i);
+  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-canada-guide/i);
+  assert.match(html, /Canada Border Services Agency/);
+  assert.match(html, /Browse the product database/);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-canada-guide["']/i);
+  assert.doesNotMatch(html, /noindex/i);
 });
 
 test("publishes the UK guide with crawlable article metadata", async () => {
