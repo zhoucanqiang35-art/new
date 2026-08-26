@@ -79,26 +79,32 @@ const worker = {
       });
     }
 
-    // Keep the original comprehensive sitemap endpoint for compatibility.
+    // Serve the canonical sitemap directly from the static asset binding.
+    // This keeps Google's sitemap fetcher away from App Router, RSC, D1 and
+    // cache variants, and makes GET and HEAD return identical metadata.
     if (url.pathname === "/sitemap.xml") {
-      const sitemapUrl = new URL("/sitemap.xml", request.url);
-      const sitemapRequest = new Request(sitemapUrl, {
-        method: "GET",
-        headers: request.headers,
-      });
-      const sitemapResponse = await handler.fetch(sitemapRequest, env, ctx);
+      const assetUrl = new URL("/sitemap.xml", request.url);
+      const assetResponse = await env.ASSETS.fetch(
+        new Request(assetUrl, {
+          method: "GET",
+          headers: {
+            Accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
+          },
+        }),
+      );
 
-      if (!sitemapResponse.ok) {
-        return sitemapResponse;
+      if (!assetResponse.ok) {
+        return assetResponse;
       }
 
-      const xml = await sitemapResponse.arrayBuffer();
+      const xml = await assetResponse.arrayBuffer();
       return new Response(request.method === "HEAD" ? null : xml, {
         status: 200,
         headers: {
           "Content-Type": "application/xml; charset=utf-8",
           "Content-Length": String(xml.byteLength),
-          "Cache-Control": "public, max-age=3600, must-revalidate",
+          "Cache-Control": "no-store, max-age=0",
+          "X-Content-Type-Options": "nosniff",
         },
       });
     }
