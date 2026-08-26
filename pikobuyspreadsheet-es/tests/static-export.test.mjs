@@ -10,6 +10,7 @@ test("exports the English and representative localized routes", async () => {
     "faq",
     "seo-articles/how-pikobuy-works",
     "seo-articles/pikobuy-return-policy-guide",
+    "seo-articles/pikobuy-tracking-customs-guide",
     "de-DE/shipping",
     "fr-FR/faq",
     "es-ES/seo-articles/how-pikobuy-works",
@@ -24,6 +25,7 @@ test("exports indexable robots and the complete sitemap", async () => {
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/de-DE\/shipping\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/how-pikobuy-works\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-return-policy-guide\//);
+  assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-tracking-customs-guide\//);
 });
 
 test("keeps long articles, FAQ and shipping content in static HTML", async () => {
@@ -43,5 +45,16 @@ test("exports the complete English return-policy article with SEO metadata", asy
   assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-return-policy-guide\/"/);
   assert.match(article, /hrefLang="en-US"/);
   assert.match(article, /PikoBuy Return Policy: A Practical Warehouse Return Guide/);
+  assert.doesNotMatch(article, /noindex/);
+});
+
+test("exports the complete English tracking article with SEO metadata", async () => {
+  const article = await readFile(page("seo-articles/pikobuy-tracking-customs-guide"), "utf8");
+  assert.equal((article.match(/data-content-slot=/g) || []).length, 7);
+  assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
+  assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-tracking-customs-guide\/"/);
+  assert.match(article, /hrefLang="en-US"/);
+  assert.match(article, /PikoBuy Tracking Guide: Parcel Status, Customs and Carrier Handoffs/);
+  assert.match(article, /<meta name="robots" content="index, follow"/);
   assert.doesNotMatch(article, /noindex/);
 });
