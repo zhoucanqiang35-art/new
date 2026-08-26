@@ -44,3 +44,11 @@ footer{display:grid;grid-template-columns:1.1fr 2fr 1fr;gap:40px;align-items:sta
   .article-body p{max-width:1280px;font-size:16px;line-height:1.72}
   .article-checklist{margin-top:22px;padding:22px 26px}
 }
+
+/* Keep photographic assets self-hosted and deploy-safe on Cloudflare Pages. */
+.hero-visual{
+  background:url('/hero-warehouse.jpg') center/cover no-repeat;
+  border-radius:46% 54% 49% 51%/60% 38% 62% 40%;
+}
+.hero-visual::before,.hero-visual>img{display:none}
+.category-photo{background-image:url('/category-contact-sheet.jpg')}
