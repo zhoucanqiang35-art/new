@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+# Primary XML sitemap
 Sitemap: https://lolobuysheet.cc/sitemap.xml
