@@ -29,5 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...faqs.map(item=>`/languages/${language.code}/faq/${item.slug}`),
     ]),
   ];
-  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date("2026-08-22"),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
+  const articleDates=new Map(researchArticles.map(item=>[`/articles/${item.slug}`,item.updated??item.published??"2026-08-22"]));
+  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date(articleDates.get(path)??"2026-08-22"),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
 }

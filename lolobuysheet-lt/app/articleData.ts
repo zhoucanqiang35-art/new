@@ -258,5 +258,102 @@ export const researchArticles: ResearchArticle[] = [
         "Use the warehouse as an active checkpoint: review visible condition promptly, separate unresolved and route-sensitive items, plan compatible parcels and submit with time to spare. That approach remains useful even if LoloBuy later updates the public copy, because it is built around current account evidence rather than a number copied from a guide."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-parcel-consolidation-guide",
+    tag: "PARCEL",
+    title: "LoloBuy Parcel Consolidation Guide: When to Combine or Split Items",
+    description: "A source-checked method for deciding which LoloBuy warehouse items belong together and when a split parcel is the safer comparison.",
+    readTime: "13 min read",
+    published: "2026-08-26",
+    updated: "2026-08-26",
+    keywords: [
+      "LoloBuy parcel consolidation",
+      "combine LoloBuy warehouse items",
+      "LoloBuy split parcel",
+      "LoloBuy rehearsal parcel",
+      "LoloBuy package weight"
+    ],
+    sources: [
+      {
+        label: "LoloBuy public application interface and rehearsal guidance",
+        url: "https://www.lolobuy.com/assets/index-3e5642b9.js",
+        accessed: "26 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Stored in warehouse status",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296871158912",
+        accessed: "26 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Combining forwarded and purchased products",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300464365569",
+        accessed: "26 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Packaging methods",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300751675537",
+        accessed: "26 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Estimated weight and real weight",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300798075086",
+        accessed: "26 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Domestic delivery fee for several items",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296838456383",
+        accessed: "26 August 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare current product listings on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    sections: [
+      { heading: "Consolidation begins after warehouse intake", paragraphs: [
+        "Parcel consolidation is the decision to place two or more stored items into one international shipment. It is not the same as adding products to one shopping cart, and it is not completed when a seller dispatches an order inside China. LoloBuy's Help Center defines “Stored in warehouse” as the point at which an item has reached its warehouse and the buyer can visit My Warehouse to submit delivery to an overseas address. That warehouse record is the starting point for a real consolidation decision.",
+        "The useful question is not simply, “Can these items fit in one box?” A buyer needs to decide whether the items are ready at the same time, compatible with the same route, sensible under the same packaging choice and still economical after the packed dimensions are known. Combining everything by default can hide an unresolved QC problem or allow one restricted item to reduce the shipping choices for otherwise ordinary goods."
+      ]},
+      { heading: "Do not confuse domestic delivery with international consolidation", paragraphs: [
+        "One official LoloBuy answer says that several items from one seller may incur one Chinese domestic delivery fee when they are submitted and checked out together, while an overweight domestic package may require a balance payment. That statement concerns the seller-to-warehouse stage. It does not prove that the later international shipment will have one fixed fee, or that combining items from several sellers will always lower the final cross-border cost.",
+        "Keep the two stages in separate spreadsheet columns. Record seller price and Chinese domestic freight under the purchase order, then record warehouse services, packaging and international transport under the parcel. This prevents a domestic shipping saving from being counted twice. It also makes the comparison honest when products from different sellers arrive on different days or require different decisions before they are eligible for international submission."
+      ]},
+      { heading: "Create ready, unresolved and route-sensitive groups", paragraphs: [
+        "Before selecting a parcel, divide stored items into three groups. Ready items match the order, have sufficient visible evidence and need no open after-sales action. Unresolved items have a missing component, wrong option, damage concern, unanswered measurement or pending service. Route-sensitive items may contain batteries, liquids, magnets, fragile construction, oversized packaging or another characteristic that could affect acceptance by a shipping line. The labels are an editorial planning method, not official LoloBuy statuses.",
+        "Only the ready group should enter the first consolidation comparison. Combining an unresolved item can make it harder to pursue a return or obtain focused evidence. Combining a route-sensitive item can cause the system to remove routes available to the rest of the goods. A good parcel plan therefore starts with eligibility and evidence, not with the maximum number of thumbnails a buyer can select in My Warehouse."
+      ]},
+      { heading: "Check whether the items are actually compatible", paragraphs: [
+        "LoloBuy's public Help Center says a stocked forwarding item may be shipped together with or separately from a purchased product, provided the items do not exceed the applicable maximum weight. It also says the system will notify the buyer when goods cannot be shipped together because of security-inspection or customs-policy issues. The article does not publish one universal maximum, so the current warehouse and parcel screens must control the decision.",
+        "Use that same compatibility test for ordinary purchases. Select the proposed group and inspect the routes that remain available for the actual destination and contents. If adding one item removes suitable options, compare that item separately instead of assuming customer service can override the system later. A purchasable product is not automatically compatible with every international route or with every other product in the warehouse."
+      ]},
+      { heading: "Compare one combined parcel with a realistic split", paragraphs: [
+        "Build two scenarios before payment. Scenario A places all compatible ready items into one parcel. Scenario B separates the item most likely to change volume, fragility or route eligibility. Record the selected products, estimated packed weight, dimensions, available lines, packaging choices and total live quote for each scenario. The split should be realistic: two coherent parcels are more useful to compare than a separate shipment for every small item.",
+        "A combined parcel can reduce repeated base costs, but it can also cross a size or weight threshold, become chargeable by volume or require stronger packaging. A split can cost more in repeated charges while preserving a better route for ordinary goods. There is no permanent winning structure. The better option is the one supported by the current screens for the exact products and destination, with acceptable protection and restrictions."
+      ]},
+      { heading: "Packaging can change the answer", paragraphs: [
+        "LoloBuy's packaging article separates parcels billed by actual weight from parcels billed by volumetric weight. It describes right-sized bags and cartons, filling gaps for protection in some actual-weight cartons, and reducing excess carton space for volume-billed parcels. It also acknowledges a trade-off: cutting a carton can make it less secure even when it helps reduce volume. That is why “remove every box” is not a responsible universal rule.",
+        "Decide which packaging has product value and which is merely domestic transport material. A shoe box, structured retail box or fragile product carton may provide protection or be part of what the buyer wants to keep. Soft clothing may tolerate compression more easily. Record the instruction before comparing parcels, because a quote based on boxes you later remove—or protection you later add—is not a like-for-like estimate."
+      ]},
+      { heading: "Treat estimated weight as a planning number", paragraphs: [
+        "The official weight article distinguishes estimated weight from real weight. It describes the estimate as a warehouse-stage calculation using recorded item weight and planned packaging, while real weight is measured after parcel submission and packing. It also explains that removing original packaging can create a difference. The current public article contains route examples and formulas, but those examples should not be reused as present-day quotes without checking the live line rules.",
+        "For consolidation, this means the first comparison is provisional. Save the estimate, selected packaging and chargeable-weight method, then check the parcel detail after packing. If the final amount changes, compare the real packed weight and dimensions with the earlier record before drawing a conclusion. A difference is not automatically an error; it may reflect removed packaging, added protection, the final carton or the route's current billing rule."
+      ]},
+      { heading: "Use rehearsal as a comparison tool, not a shipment", paragraphs: [
+        "The current LoloBuy interface describes rehearsal or pre-submit as a simulation for pre-packing and freight estimation, not a real shipment. It says the buyer must still submit an actual parcel afterward. The interface also warns that rehearsal weight and volume are estimates and may fluctuate because of packaging materials and measurement differences. Those limits make rehearsal useful for a difficult comparison, but not a final delivery guarantee.",
+        "Consider rehearsal when bulky packaging, mixed shapes or a volumetric route makes the ordinary estimate too uncertain to support a decision. Save the selected items, intended line, packaging service and rehearsal result. Then use the result to compare a combined and split plan, while recognising that the actual parcel still needs a live route, final packing and payment. Do not present a rehearsal number as the final billed weight."
+      ]},
+      { heading: "Plan for the United States or Europe without copying routes", paragraphs: [
+        "Buyers in the United States and Europe should use the destination entered in their own account when comparing parcels. Route availability, product restrictions, customs treatment and carrier terms can differ by country and can change over time. A route screenshot from another buyer does not establish what is available for a different address, parcel size or product classification. This guide therefore does not name a permanent cheapest or fastest line.",
+        "Check the destination address, accepted contents, chargeable-weight method, published service estimate, tracking, compensation terms and customs notices shown for each current option. Use truthful product descriptions and follow local import requirements. If one sensitive product narrows the choices for the whole parcel, test it separately. The purpose of consolidation is to improve the complete shipment decision, not merely to produce the fewest tracking numbers."
+      ]},
+      { heading: "Preserve evidence before clicking submit", paragraphs: [
+        "Save a compact parcel record containing each order number, selected item, warehouse weight, visible dimensions, QC decision and packaging instruction. Add screenshots of the combined estimate and the most reasonable split alternative. At final submission, record the selected route, declared contents, estimate, services and payment. After packing, add the final weight, dimensions, freight adjustment and tracking number shown in the official parcel detail.",
+        "This evidence is useful even when nothing goes wrong. It reveals whether a box, fragile item or route-sensitive product drove the result and improves the next consolidation decision. If support is needed, dated screens and exact order numbers are more useful than saying a parcel “became expensive.” Keep advice separate from evidence: the spreadsheet can organise the comparison, but the live LoloBuy record controls the transaction."
+      ]},
+      { heading: "A repeatable combine-or-split checklist", paragraphs: [
+        "Combine only items that are stored, correctly matched, visibly reviewed, free of unresolved after-sales questions and accepted by an appropriate common route. Compare their packed-size risk, packaging needs and warehouse deadlines. Then price at least one sensible split if the parcel is bulky, fragile or mixed with a route-sensitive product. Recheck every live variable before payment rather than relying on an earlier screenshot, calculator or third-party recommendation.",
+        "Split when one item removes useful routes, needs materially different protection, creates uncertain volume or should not wait for the rest. Consolidate when the goods are compatible and the current combined result is better for the buyer's cost, protection and tracking priorities. This method does not promise that one box is cheaper. It gives US and European buyers a defensible way to decide using current warehouse evidence instead of a slogan."
+      ]}
+    ]
   }
 ];
