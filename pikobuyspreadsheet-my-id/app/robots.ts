@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://pikobuyspreadsheet-my-id.pages.dev";
+const baseUrl = "https://pikobuyspreadsheet.my.id";
 
 export const dynamic = "force-static";
 

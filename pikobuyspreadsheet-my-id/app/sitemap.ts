@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { localizedArticleRecords } from "@/components/full-locales";
 
-const baseUrl = "https://pikobuyspreadsheet-my-id.pages.dev";
+const baseUrl = "https://pikobuyspreadsheet.my.id";
 const languages = ["en", "es", "de", "fr", "it", "pt", "nl", "pl", "sv"] as const;
 const pages = ["categories", "products", "guides", "shipping", "articles", "faq", "sources"] as const;
 
