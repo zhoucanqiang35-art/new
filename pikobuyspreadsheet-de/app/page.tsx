@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { categories, products } from "./catalog";
 import CategoryIcon from "./components/CategoryIcon";
 import LanguageSwitcher from "./components/LanguageSwitcher";
@@ -72,7 +73,7 @@ export default function Home() {
 
         <section className="trust-strip" aria-label="Official fact checks">
           <p><b>Official workflow checked</b><span>PikoBuy documents link search, first payment, warehouse inspection, parcel submission and a separate international shipping payment.</span></p>
-          <a href="#method">See the research method ↓</a>
+          <Link href="/articles/first-vs-second-payment">Understand both payments →</Link>
         </section>
 
         <section className="section page-card-section" aria-labelledby="page-card-title">

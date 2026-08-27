@@ -12,6 +12,7 @@ import QCArticlePage from "../../articles/qc-photo-checklist/page";
 import RecheckLinksPage from "../../articles/recheck-product-links/page";
 import ReturnWindowPage from "../../articles/warehouse-return-window/page";
 import WesternMarketsPage from "../../articles/western-market-search-intent/page";
+import FirstVsSecondPaymentArticle from "../../articles/first-vs-second-payment/page";
 import SearchPage from "../../search/page";
 
 const localizedLanguages = ["de", "fr", "es", "it", "nl", "pl", "pt", "sv"] as const;
@@ -68,6 +69,7 @@ export default async function LocalizedPage({ params, searchParams }: LocalizedP
   if (route === "articles/recheck-product-links") return <RecheckLinksPage />;
   if (route === "articles/warehouse-return-window") return <ReturnWindowPage />;
   if (route === "articles/western-market-search-intent") return <WesternMarketsPage />;
+  if (route === "articles/first-vs-second-payment") return <FirstVsSecondPaymentArticle />;
   if (route === "search") return <SearchPage searchParams={searchParams} />;
   notFound();
 }

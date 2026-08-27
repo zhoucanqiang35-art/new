@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleShell from "../components/ArticleShell";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function GuidesPage() {
 
       <h2>Step 3 — understand the first payment</h2>
       <p>The public PikoBuy guide describes the purchasing-order stage as selecting colour, size and quantity, submitting the order and completing the first payment. It also notes that prices are subject to the actual purchase and that an out-of-stock item is refunded. This first payment is connected to obtaining the product; it is not the final international freight payment.</p>
+      <p>For a line-by-line budget and decision checklist, read the <Link href="/articles/first-vs-second-payment">PikoBuy first and second payment guide</Link>.</p>
       <p>Before paying, record the selected variant and the amount displayed. A screenshot or written note is useful when the listing contains many options. Make sure the option name, quantity and size are not hidden behind a default selection. If the product matters enough to order, it matters enough to document.</p>
 
       <h2>Step 4 — use warehouse inspection as a decision point</h2>
@@ -49,6 +51,7 @@ export default function GuidesPage() {
 
       <h2>Step 7 — second payment, dispatch and tracking</h2>
       <p>The official guide says the buyer selects a suitable shipping route, submits the parcel and pays the international shipping fee. PikoBuy then arranges dispatch. It states that tracking information should generally become available within three days after shipment, while international delivery itself takes longer and route timing varies.</p>
+      <p>The <Link href="/articles/first-vs-second-payment">two-payment explainer</Link> separates product-side costs, parcel inputs and possible destination charges without inventing a final price.</p>
       <p>PikoBuy’s shipping terms state that international parcels are carried by third-party logistics providers and that logistics risks must be evaluated by the user. Keep the parcel number, route, payment record and item list together. If tracking does not appear within the expected window, contact the official support channel with specific information rather than relying on a general spreadsheet page.</p>
 
       <h2>A five-minute spreadsheet review</h2>

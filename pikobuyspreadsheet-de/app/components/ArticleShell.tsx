@@ -7,10 +7,11 @@ type ArticleShellProps = {
   intro: string;
   updated?: string;
   asideAction?: ReactNode;
+  footerDatabaseLink?: boolean;
   children: ReactNode;
 };
 
-export default function ArticleShell({ eyebrow, title, intro, updated = "24 August 2026", asideAction, children }: ArticleShellProps) {
+export default function ArticleShell({ eyebrow, title, intro, updated = "24 August 2026", asideAction, footerDatabaseLink = true, children }: ArticleShellProps) {
   return (
     <div className="article-shell">
       <header className="topbar article-topbar">
@@ -61,7 +62,7 @@ export default function ArticleShell({ eyebrow, title, intro, updated = "24 Augu
 
       <footer>
         <div className="footer-brand"><img className="brand-logo footer-logo" src="/pikobuy-logo.png" alt="PikoBuy" width="204" height="48" /></div>
-        <p>Product discovery continues on <a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">findspreadsheet.com ↗</a>. No checkout, payment or order processing happens here.</p>
+        <p>{footerDatabaseLink ? <>Product discovery continues on <a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">findspreadsheet.com ↗</a>. No checkout, payment or order processing happens here.</> : <>Use the live product database linked in the article when you are ready to recheck a record. No checkout, payment or order processing happens here.</>}</p>
         <div className="footer-links"><a href="/">Home</a><a href="/products">Product details</a><a href="/categories">Categories</a><a href="/guides">Guides</a><a href="/shipping">Shipping</a><a href="/faq">FAQ</a><a href="/articles">SEO articles</a></div>
         <small>© 2026 PikoBuy Spreadsheet Research Desk · Independent and not affiliated with PikoBuy.</small>
       </footer>
