@@ -24,3 +24,10 @@ timeout \
   --kill-after="${SITES_BUILD_KILL_AFTER:-10s}" \
   "${SITES_BUILD_TIMEOUT:-3m}" \
   "${vinext}" build
+
+# Cloudflare Pages publishes dist/client. Vinext's client directory contains
+# browser assets but no route HTML, so add a complete static export for Pages
+# while retaining the Worker build above for the Sites deployment.
+next="${SITES_PROJECT_ROOT}/node_modules/.bin/next"
+"${next}" build
+cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/client/"
