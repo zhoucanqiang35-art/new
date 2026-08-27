@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://pikobuyspreadsheet-me.pages.dev";
+const baseUrl = "https://pikobuyspreadsheet.me";
 const locales = ["de", "fr", "es", "it", "pt", "nl", "pl"];
 const routes = ["", "/product-details", "/how-pikobuy-works", "/qc-guide", "/shipping-guide", "/buyer-checklist", "/faq", "/seo-articles"];
 
