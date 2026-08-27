@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "PikoBuy Spreadsheet Guide",
   description: "An independent PikoBuy spreadsheet research guide for product links, QC photos, sizing, source checks and shipping planning.",
-  robots: { index: false, follow: false },
+  robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
