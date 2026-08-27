@@ -4,7 +4,9 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ "${SITES_ENV_READY:-}" != "1" ]]; then
-  exec "${script_dir}/sites-env.sh" -- "$0" "$@"
+  # Invoke through Bash so cloud build environments do not depend on Git's
+  # executable-bit preservation for this repository subdirectory.
+  exec "${script_dir}/sites-env.sh" -- bash "$0" "$@"
 fi
 
 command -v timeout || {
