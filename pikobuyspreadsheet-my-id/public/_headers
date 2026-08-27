@@ -2,6 +2,12 @@
   Content-Type: application/xml; charset=UTF-8
   Cache-Control: public, max-age=600, s-maxage=600, no-transform
 
+/sitemap-direct.xml
+  Content-Type: application/xml; charset=UTF-8
+  Cache-Control: no-cache, no-store, must-revalidate, no-transform
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+
 /robots.txt
   Content-Type: text/plain; charset=UTF-8
   Cache-Control: public, max-age=600, s-maxage=600, no-transform
