@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://lolobuyspreadsheet-pl.pages.dev/sitemap.xml",
+    sitemap: "https://lolobuyspreadsheet.pl/sitemap.xml",
   };
 }
