@@ -1,15 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "pikobuyspreadsheet-my-id",
-  "main": "./dist/server/index.js",
+  "pages_build_output_dir": "./dist/client",
   "compatibility_date": "2026-08-27",
   "compatibility_flags": ["nodejs_compat"],
-  "workers_dev": true,
-  "assets": {
-    "binding": "ASSETS",
-    "directory": "./dist/client"
-  },
-  "observability": {
-    "enabled": true
-  }
+  "observability": { "enabled": true }
 }
