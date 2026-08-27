@@ -1,7 +1,26 @@
+import type { Metadata } from "next";
 import { SiteExperience } from "@/components/site-experience";
 import { localizedArticleRecords } from "@/components/full-locales";
-const langs=["en","es","de","fr","it","pt","nl","pl","sv"];
-const pages=["home","categories","products","guides","shipping","articles","faq","sources"];
+
+const baseUrl = "https://pikobuyspreadsheet.my.id";
+const langs = ["en", "es", "de", "fr", "it", "pt", "nl", "pl", "sv"] as const;
+const pages = ["home", "categories", "products", "guides", "shipping", "articles", "faq", "sources"] as const;
+
+type PageParams = { params: Promise<{ segments: string[] }> };
+
+function routeParts(segments: string[]) {
+  const first = segments[0] || "";
+  const hasLanguagePrefix = (langs as readonly string[]).includes(first);
+  const lang = hasLanguagePrefix ? first : "en";
+  const contentSegments = hasLanguagePrefix ? segments.slice(1) : segments;
+  return { lang, contentSegments };
+}
+
+function localizedUrl(language: string, contentSegments: string[]) {
+  const prefix = language === "en" ? "" : `/${language}`;
+  const suffix = contentSegments.length ? `/${contentSegments.join("/")}` : "";
+  return `${baseUrl}${prefix}${suffix}/`;
+}
 
 export const dynamicParams=false;
 
@@ -17,9 +36,33 @@ export function generateStaticParams(){
  return routes;
 }
 
-export default async function RoutedPage({params}:{params:Promise<{segments:string[]}>}){
- const {segments=[]}=await params; const first=segments[0]||"";
- const lang=langs.includes(first)?first:"en"; const page=langs.includes(first)?(segments[1]||"home"):(first||"home");
- const articleSlug=page==="articles"?(langs.includes(first)?segments[2]:segments[1]):undefined;
- return <SiteExperience lang={lang} page={pages.includes(page)?page:"home"} articleSlug={articleSlug}/>;
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const { segments = [] } = await params;
+  const { lang, contentSegments } = routeParts(segments);
+  const canonical = localizedUrl(lang, contentSegments);
+  const englishUrl = localizedUrl("en", contentSegments);
+  const languages = Object.fromEntries(
+    langs.map((language) => [language, localizedUrl(language, contentSegments)]),
+  );
+
+  return {
+    alternates: {
+      canonical,
+      languages: { ...languages, "x-default": englishUrl },
+    },
+  };
+}
+
+export default async function RoutedPage({ params }: PageParams) {
+  const { segments = [] } = await params;
+  const { lang, contentSegments } = routeParts(segments);
+  const page = contentSegments[0] || "home";
+  const articleSlug = page === "articles" ? contentSegments[1] : undefined;
+  return (
+    <SiteExperience
+      lang={lang}
+      page={(pages as readonly string[]).includes(page) ? page : "home"}
+      articleSlug={articleSlug}
+    />
+  );
 }

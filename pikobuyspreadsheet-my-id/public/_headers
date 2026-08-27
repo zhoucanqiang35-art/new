@@ -1,17 +1,5 @@
-/priority-sitemap.xml
-  Content-Type: application/xml; charset=UTF-8
-  Cache-Control: public, max-age=3600, s-maxage=3600, no-transform
-
-/google-sitemap.xml
-  Content-Type: application/xml; charset=UTF-8
-  Cache-Control: public, max-age=600, s-maxage=600, no-transform
-
 /sitemap.xml
   Content-Type: application/xml; charset=UTF-8
-  Cache-Control: public, max-age=600, s-maxage=600, no-transform
-
-/sitemap.txt
-  Content-Type: text/plain; charset=UTF-8
   Cache-Control: public, max-age=600, s-maxage=600, no-transform
 
 /robots.txt
