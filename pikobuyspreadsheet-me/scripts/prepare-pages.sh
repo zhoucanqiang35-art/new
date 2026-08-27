@@ -20,6 +20,12 @@ test -f dist/pages/_worker.js/app.js
 test -f dist/pages/_worker.js/__vite_rsc_assets_manifest.js
 test -d dist/pages/assets
 
+# Force browsers to request the corrected asset route instead of reusing a
+# cached response from the first broken deployment.
+asset_version="20260827-2"
+sed -i -E "s#(/assets/[^\"?]+\.(css|js))#\1?v=${asset_version}#g" \
+  dist/pages/_worker.js/__vite_rsc_assets_manifest.js
+
 # The Vite Cloudflare plugin emits a temporary Worker deployment redirect.
 # Pages must use the root wrangler.jsonc instead, which defines
 # pages_build_output_dir without Worker-only main/assets fields.
