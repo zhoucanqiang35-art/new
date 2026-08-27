@@ -21,6 +21,9 @@ interface ExecutionContext {
 
 const LOCALIZED_CODES = new Set(["es", "de", "fr", "it", "pt", "nl", "pl", "sv", "no", "da", "fi"]);
 
+const CANONICAL_SITEMAP = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://lolobuysheet.cc/</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/spreadsheet</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/categories</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/products</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/faq</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/markets</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/sources</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/how-lolobuy-works</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/qc-photo-checklist</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/shipping-guide</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/tracking-guide</loc><lastmod>2026-08-25</lastmod></url>\n</urlset>\n";
+const CANONICAL_SITEMAP_BYTES = new TextEncoder().encode(CANONICAL_SITEMAP);
+
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
@@ -79,32 +82,26 @@ const worker = {
       });
     }
 
-    // Serve the canonical sitemap directly from the static asset binding.
-    // This keeps Google's sitemap fetcher away from App Router, RSC, D1 and
-    // cache variants, and makes GET and HEAD return identical metadata.
+    // Serve the canonical sitemap entirely in-memory. This removes every
+    // dependency on App Router, D1, the static asset binding, cache variants,
+    // and content negotiation for Google's dedicated sitemap fetcher.
     if (url.pathname === "/sitemap.xml") {
-      const assetUrl = new URL("/sitemap.xml", request.url);
-      const assetResponse = await env.ASSETS.fetch(
-        new Request(assetUrl, {
-          method: "GET",
-          headers: {
-            Accept: "application/xml,text/xml;q=0.9,*/*;q=0.8",
-          },
-        }),
-      );
-
-      if (!assetResponse.ok) {
-        return assetResponse;
+      if (request.method !== "GET" && request.method !== "HEAD") {
+        return new Response("Method Not Allowed", {
+          status: 405,
+          headers: { Allow: "GET, HEAD" },
+        });
       }
 
-      const xml = await assetResponse.arrayBuffer();
-      return new Response(request.method === "HEAD" ? null : xml, {
+      return new Response(request.method === "HEAD" ? null : CANONICAL_SITEMAP_BYTES, {
         status: 200,
         headers: {
           "Content-Type": "application/xml; charset=utf-8",
-          "Content-Length": String(xml.byteLength),
-          "Cache-Control": "no-store, max-age=0",
+          "Content-Length": String(CANONICAL_SITEMAP_BYTES.byteLength),
+          "Cache-Control": "public, max-age=300, s-maxage=300",
+          "Access-Control-Allow-Origin": "*",
           "X-Content-Type-Options": "nosniff",
+          "X-Sitemap-Revision": "2026-08-27-direct-v1",
         },
       });
     }
