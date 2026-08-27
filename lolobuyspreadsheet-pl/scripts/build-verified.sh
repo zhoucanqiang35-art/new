@@ -33,3 +33,4 @@ timeout \
 next="${SITES_PROJECT_ROOT}/node_modules/.bin/next"
 "${next}" build
 cp -a "${SITES_PROJECT_ROOT}/out/." "${SITES_PROJECT_ROOT}/dist/client/"
+# Cloudflare Pages publishes the generated static routes from dist/client.
