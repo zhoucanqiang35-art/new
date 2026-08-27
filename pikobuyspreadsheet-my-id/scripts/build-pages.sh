@@ -4,26 +4,18 @@ set -euo pipefail
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "${project_root}"
 
-vinext="${project_root}/node_modules/.bin/vinext"
-esbuild="${project_root}/node_modules/.bin/esbuild"
+next="${project_root}/node_modules/.bin/next"
 
-if [[ ! -x "${vinext}" || ! -x "${esbuild}" ]]; then
+if [[ ! -x "${next}" ]]; then
   echo "Missing build dependencies. Run npm ci before building." >&2
   exit 69
 fi
 
-echo "Building the Vinext application for Cloudflare Pages..."
-"${vinext}" build
+echo "Generating static HTML for every page and language..."
+"${next}" build
 
-echo "Packaging the server renderer as a Pages advanced-mode Worker..."
-"${esbuild}" \
-  "${project_root}/dist/server/index.js" \
-  --bundle \
-  --format=esm \
-  --platform=browser \
-  --target=es2022 \
-  --external:node:* \
-  --outfile="${project_root}/dist/client/_worker.js"
-
-test -s "${project_root}/dist/client/_worker.js"
-echo "Cloudflare Pages output ready in dist/client."
+test -s "${project_root}/out/index.html"
+test -s "${project_root}/out/en/index.html"
+test -s "${project_root}/out/en/categories/index.html"
+test -s "${project_root}/out/en/articles/read-pikobuy-qc-photos/index.html"
+echo "Cloudflare Pages output ready in out/."
