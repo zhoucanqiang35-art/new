@@ -1,0 +1,11 @@
+/sitemap.xml
+  Content-Type: application/xml; charset=UTF-8
+  Cache-Control: no-store, no-cache, must-revalidate
+
+/sitemap.txt
+  Content-Type: text/plain; charset=UTF-8
+  Cache-Control: no-store, no-cache, must-revalidate
+
+/robots.txt
+  Content-Type: text/plain; charset=UTF-8
+  Cache-Control: no-store, no-cache, must-revalidate

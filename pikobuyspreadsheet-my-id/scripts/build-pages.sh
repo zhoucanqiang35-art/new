@@ -12,6 +12,7 @@ if [[ ! -x "${next}" ]]; then
 fi
 
 echo "Generating static HTML for every page and language..."
+node "${project_root}/scripts/generate-sitemap-text.mjs"
 "${next}" build
 
 test -s "${project_root}/out/index.html"
@@ -19,5 +20,6 @@ test -s "${project_root}/out/en/index.html"
 test -s "${project_root}/out/en/categories/index.html"
 test -s "${project_root}/out/en/articles/read-pikobuy-qc-photos/index.html"
 test -s "${project_root}/out/sitemap.xml"
+test -s "${project_root}/out/sitemap.txt"
 test -s "${project_root}/out/robots.txt"
 echo "Cloudflare Pages output ready in out/."
