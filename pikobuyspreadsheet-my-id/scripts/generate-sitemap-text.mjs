@@ -18,5 +18,16 @@ for (const language of languages) {
   for (const article of articles) urls.push(`${baseUrl}${prefix}/articles/${article}/`);
 }
 
-await writeFile(resolve("public/sitemap.txt"), `${urls.join("\n")}\n`, "utf8");
-console.log(`Generated public/sitemap.txt with ${urls.length} URLs.`);
+const xml = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...urls.map((url) => `  <url><loc>${url}</loc></url>`),
+  '</urlset>',
+  '',
+].join("\n");
+
+await Promise.all([
+  writeFile(resolve("public/sitemap.txt"), `${urls.join("\n")}\n`, "utf8"),
+  writeFile(resolve("public/google-sitemap.xml"), xml, "utf8"),
+]);
+console.log(`Generated text and Google XML sitemaps with ${urls.length} URLs.`);
