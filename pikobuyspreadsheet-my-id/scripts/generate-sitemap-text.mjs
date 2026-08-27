@@ -10,6 +10,16 @@ const articles = [
   "pikobuy-spreadsheet-checklist",
 ];
 const urls = [];
+const priorityUrls = [
+  `${baseUrl}/`,
+  `${baseUrl}/categories/`,
+  `${baseUrl}/products/`,
+  `${baseUrl}/guides/`,
+  `${baseUrl}/shipping/`,
+  `${baseUrl}/articles/`,
+  `${baseUrl}/faq/`,
+  `${baseUrl}/articles/pikobuy-spreadsheet-checklist/`,
+];
 
 for (const language of languages) {
   const prefix = language === "en" ? "" : `/${language}`;
@@ -26,8 +36,17 @@ const xml = [
   '',
 ].join("\n");
 
+const priorityXml = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...priorityUrls.map((url) => `  <url><loc>${url}</loc></url>`),
+  '</urlset>',
+  '',
+].join("\n");
+
 await Promise.all([
   writeFile(resolve("public/sitemap.txt"), `${urls.join("\n")}\n`, "utf8"),
   writeFile(resolve("public/google-sitemap.xml"), xml, "utf8"),
+  writeFile(resolve("public/priority-sitemap.xml"), priorityXml, "utf8"),
 ]);
-console.log(`Generated text and Google XML sitemaps with ${urls.length} URLs.`);
+console.log(`Generated priority sitemap with ${priorityUrls.length} URLs and full sitemaps with ${urls.length} URLs.`);
