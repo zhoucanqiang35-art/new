@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://pikobuyspreadsheet-me.pages.dev/sitemap.xml",
-    host: "https://pikobuyspreadsheet-me.pages.dev",
+    sitemap: "https://pikobuyspreadsheet.me/sitemap.xml",
+    host: "https://pikobuyspreadsheet.me",
   };
 }
