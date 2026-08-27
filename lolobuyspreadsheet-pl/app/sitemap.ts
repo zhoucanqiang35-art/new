@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const siteUrl = "https://lolobuyspreadsheet-pl.pages.dev";
+const siteUrl = "https://lolobuyspreadsheet.pl";
 const languages = ["de", "fr", "es", "it", "nl", "pl", "pt", "sv"] as const;
 const sections = [
   "products",
