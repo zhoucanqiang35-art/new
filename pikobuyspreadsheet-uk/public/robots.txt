@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pikobuyspreadsheet.uk/sitemap.xml
+Host: https://pikobuyspreadsheet.uk
