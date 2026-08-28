@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy order and warehouse status flow</title>
+  <desc id="desc">A three-stage flow from buyer payment through purchasing and domestic shipping to warehouse inspection, buyer review and parcel submission.</desc>
+  <rect width="1200" height="620" rx="36" fill="#f6f0e5"/>
+  <text x="70" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1e293b">Read the status, then identify the next owner</text>
+  <text x="70" y="116" font-family="Arial, sans-serif" font-size="20" fill="#52606d">A planning map based on LoloBuy's public English labels · checked 28 Aug 2026</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="70" y="166" width="300" height="294" rx="26" fill="#fff" stroke="#d8c8aa" stroke-width="3"/>
+    <text x="100" y="208" font-size="17" font-weight="700" fill="#9a6c22">01 · BUYER AND AGENT</text>
+    <text x="100" y="256" font-size="25" font-weight="700" fill="#1e293b">Awaiting Payment</text>
+    <path d="M220 274v32" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <path d="m211 298 9 10 9-10" fill="none" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <text x="100" y="342" font-size="25" font-weight="700" fill="#1e293b">Processing</text>
+    <path d="M220 360v32" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <path d="m211 384 9 10 9-10" fill="none" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <text x="100" y="428" font-size="25" font-weight="700" fill="#1e293b">Ordered</text>
+    <path d="M370 313h78" stroke="#b88938" stroke-width="5" stroke-linecap="round"/>
+    <path d="m436 301 14 12-14 12" fill="none" stroke="#b88938" stroke-width="5" stroke-linecap="round"/>
+    <rect x="450" y="166" width="300" height="294" rx="26" fill="#fff" stroke="#d8c8aa" stroke-width="3"/>
+    <text x="480" y="208" font-size="17" font-weight="700" fill="#9a6c22">02 · SELLER AND WAREHOUSE</text>
+    <text x="480" y="268" font-size="25" font-weight="700" fill="#1e293b">Shipped by Seller</text>
+    <text x="480" y="300" font-size="18" fill="#52606d">Domestic movement in China</text>
+    <path d="M600 326v36" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <path d="m591 354 9 10 9-10" fill="none" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <text x="480" y="402" font-size="25" font-weight="700" fill="#1e293b">Received</text>
+    <text x="480" y="434" font-size="18" fill="#52606d">Signed for; intake and QC pending</text>
+    <path d="M750 313h78" stroke="#b88938" stroke-width="5" stroke-linecap="round"/>
+    <path d="m816 301 14 12-14 12" fill="none" stroke="#b88938" stroke-width="5" stroke-linecap="round"/>
+    <rect x="830" y="166" width="300" height="294" rx="26" fill="#fff" stroke="#d8c8aa" stroke-width="3"/>
+    <text x="860" y="208" font-size="17" font-weight="700" fill="#9a6c22">03 · BUYER DECISION</text>
+    <text x="860" y="256" font-size="25" font-weight="700" fill="#1e293b">Stored / In Stock</text>
+    <text x="860" y="288" font-size="18" fill="#52606d">Review in My Warehouse</text>
+    <path d="M980 312v36" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <path d="m971 340 9 10 9-10" fill="none" stroke="#b88938" stroke-width="4" stroke-linecap="round"/>
+    <text x="860" y="388" font-size="25" font-weight="700" fill="#1e293b">Submit package</text>
+    <text x="860" y="420" font-size="18" fill="#52606d">Continue in the parcel record</text>
+    <rect x="70" y="500" width="1060" height="72" rx="18" fill="#243044"/>
+    <text x="100" y="533" font-size="18" font-weight="700" fill="#f6d58e">SIDE BRANCH</text>
+    <text x="100" y="558" font-size="18" fill="#fff">To be confirmed → read the exact request and respond · Returning / Returned / Canceled → check after-sales and billing separately</text>
+  </g>
+</svg>

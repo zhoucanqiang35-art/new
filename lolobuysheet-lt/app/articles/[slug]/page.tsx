@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { researchArticles } from "../../articleData";
@@ -100,6 +101,17 @@ export default async function ArticleDetail({
         />
         <div className="article-layout">
           <article className="prose long-form">
+            {article.illustration && (
+              <figure>
+                <Image
+                  src={article.illustration.src}
+                  alt={article.illustration.alt}
+                  width={article.illustration.width}
+                  height={article.illustration.height}
+                />
+                <figcaption>{article.illustration.caption}</figcaption>
+              </figure>
+            )}
             {article.sections.map((section, index) => (
               <ResponsiveArticleSection title={section.heading} key={section.heading}>
                 <h2>{section.heading}</h2>
