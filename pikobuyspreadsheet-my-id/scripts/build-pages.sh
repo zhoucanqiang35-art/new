@@ -13,15 +13,15 @@ fi
 
 echo "Generating static HTML for every page and language..."
 "${next}" build
-node "${project_root}/scripts/generate-sitemap-text.mjs"
+rm -f "${project_root}/out/sitemap-google.txt"
 
 test -s "${project_root}/out/index.html"
 test -s "${project_root}/out/en/index.html"
 test -s "${project_root}/out/en/categories/index.html"
 test -s "${project_root}/out/en/articles/read-pikobuy-qc-photos/index.html"
 test -s "${project_root}/out/sitemap.xml"
-test -s "${project_root}/out/sitemap-google.txt"
 test -s "${project_root}/out/robots.txt"
+test ! -e "${project_root}/out/sitemap-google.txt"
 test ! -e "${project_root}/out/sitemap-direct.xml"
 test ! -e "${project_root}/out/priority-sitemap.xml"
 test ! -e "${project_root}/out/google-sitemap.xml"
