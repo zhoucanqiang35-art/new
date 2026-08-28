@@ -20,7 +20,10 @@ export function ArticleLayout({ article, locale="en", chrome=englishChrome }: { 
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    dateModified: "2026-08-26",
+    datePublished: article.published,
+    dateModified: article.modified ?? "2026-08-26",
+    inLanguage: article.englishOnly ? "en" : locale,
+    mainEntityOfPage: `https://lolobuy.fr/articles/${article.slug}/`,
     author: { "@type": "Organization", name: "FindSpreadsheet Research" },
     publisher: { "@type": "Organization", name: "FindSpreadsheet" },
   };
@@ -53,9 +56,10 @@ export function ArticleLayout({ article, locale="en", chrome=englishChrome }: { 
       <aside className="source-note">
         <strong>{chrome.checkedTitle}</strong>
         <p>{chrome.checkedText}</p>
+        {article.sources&&<ul>{article.sources.map(source=><li key={source}>{source}</li>)}</ul>}
       </aside>
 
-      <div className="article-body">
+      <div className="article-body" lang={article.englishOnly?"en":locale}>
         {article.sections.map((section,index)=><section key={section.heading}>
           <span className="article-section-number">{String(index+1).padStart(2,"0")}</span>
           <h2>{section.heading}</h2>

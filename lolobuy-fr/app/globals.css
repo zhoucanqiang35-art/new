@@ -52,3 +52,8 @@ footer{display:grid;grid-template-columns:1.1fr 2fr 1fr;gap:40px;align-items:sta
 }
 .hero-visual::before,.hero-visual>img{display:none}
 .category-photo{background-image:url('/category-contact-sheet.jpg')}
+
+/* Four research entries stay in one compact row; source citations use the existing note card. */
+.article-grid{grid-template-columns:repeat(4,1fr)}
+.source-note ul{display:grid;gap:5px;margin:12px 0 0;padding-left:18px;color:#52615a;font-size:11px;line-height:1.45}
+@media(max-width:640px){.article-grid{grid-template-columns:repeat(4,1fr)}}

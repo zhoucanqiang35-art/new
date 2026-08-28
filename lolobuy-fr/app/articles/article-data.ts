@@ -7,6 +7,10 @@ export type Article = {
   eyebrow: string;
   readTime: string;
   reviewed: string;
+  published?: string;
+  modified?: string;
+  sources?: string[];
+  englishOnly?: boolean;
   intro: string;
   sections: ArticleSection[];
   takeaway: string;
@@ -220,5 +224,99 @@ export const articles: Record<string, Article> = {
       }
     ],
     takeaway: "Plan with the real packed parcel. Destination, content category, actual weight, dimensions and current route eligibility matter more than an old screenshot or a product-only estimate."
+  },
+
+  "lolobuy-fees-exchange-rate-ledger": {
+    slug: "lolobuy-fees-exchange-rate-ledger",
+    title: "LoloBuy Fees and Exchange Rates: Build a Cost Ledger Before You Ship",
+    description: "A practical method for recording LoloBuy product cost, China domestic freight, payment conversion, warehouse extras and international parcel charges without treating a changing quote as a fixed fee.",
+    eyebrow: "LOLOBUY COST CONTROL",
+    readTime: "About 12 minutes",
+    reviewed: "Official public pages and Help Center reviewed 28 August 2026",
+    published: "2026-08-28",
+    modified: "2026-08-28",
+    englishOnly: true,
+    sources: [
+      "LoloBuy public homepage and live English interface, checked 28 August 2026",
+      "LoloBuy Help Center: “How to Purchase on LoloBuy?”, checked 28 August 2026",
+      "LoloBuy Help Center: “Shopping Agent Service”, checked 28 August 2026",
+      "LoloBuy Help Center: “Status of the Shopping Agent Orders”, checked 28 August 2026",
+      "LoloBuy Help Center: “Details on products’ weight and warehouse stocking”, checked 28 August 2026"
+    ],
+    intro: "A cheap product can become an expensive purchase when its costs are recorded as one vague total. LoloBuy’s public workflow separates the item, delivery inside China, warehouse decisions and international parcel. Your records should do the same. This guide gives you a simple cost ledger that works even when prices, exchange rates, payment methods and routes change.",
+    sections: [
+      {
+        heading: "Begin with a cost map, not a single ‘LoloBuy fee’",
+        paragraphs: [
+          "People searching for LoloBuy fees often want one percentage. The public process is more useful when read as several cost events. LoloBuy’s Help Center says the buyer pays for the item and Chinese local delivery before a purchasing agent places the order. After the seller ships to the warehouse, the user reviews the stored item and later submits a separate international parcel. The international shipping deposit is based on estimated weight, route and destination, while the final amount can change after the carrier verifies the packed size and weight.",
+          "That means the first product payment is not a landed-cost quote. It may cover the merchandise and delivery to the China warehouse, but it does not tell you the final cost to receive the goods in France, Germany, the United States or another destination. Optional warehouse work, packaging choices, payment conversion and destination charges may occur at different times. Combining them too early makes it difficult to see which decision changed the result.",
+          "Use one row for each charge or adjustment. Give every row a date, currency, reason, order or parcel reference, and evidence such as an account receipt or card statement. A ledger is more reliable than memory because it preserves both the platform-side figure and what your payment provider actually settled. It also lets you compare two orders without pretending that they had identical products, packaging or shipping routes."
+        ]
+      },
+      {
+        heading: "Record the product and China domestic freight separately",
+        paragraphs: [
+          "Before payment, save the exact product option, quantity, seller price and the date checked. Then record delivery from the seller to LoloBuy’s China warehouse as its own line. The official purchase guide treats the product price and Chinese local delivery fee as separate inputs, even when the checkout displays them together. Keeping both figures prevents a common comparison error: calling one seller more expensive when the difference is actually domestic freight.",
+          "Seller-side discounts can complicate the record. A headline price may apply to another size, colour, minimum quantity, deposit or campaign. Do not enter it until the selected option and checkout agree. If a manual shopping-agent order is required, preserve the filled product link, specification, quantity, commodity price and freight-to-warehouse figure. The current interface warns that certain third-party or manual-order products may involve extra service conditions, so review the live confirmation rather than assuming the standard flow applies.",
+          "For a multi-item seller order, decide how you will allocate one domestic freight amount. The simplest method is to keep it on a separate seller-order row. If you need item-level landed cost, allocate it consistently—by quantity, merchandise value or measured weight—and name the method. Do not switch methods between products simply to make one item look cheaper."
+        ],
+        checklist: [
+          "Exact product option, quantity and seller price",
+          "China domestic freight as a separate line",
+          "Seller discount and date actually applied",
+          "Order reference and payment confirmation",
+          "Any manual-order or special-service notice"
+        ]
+      },
+      {
+        heading: "Separate a platform claim from the charge on your order",
+        paragraphs: [
+          "LoloBuy’s current ‘Shopping Agent Service’ Help Center page advertises a standard purchasing service with a zero service fee. That is a dated public statement checked on 28 August 2026, not permission to label every future order ‘fee-free.’ The same public interface distinguishes standard purchasing, express purchasing and value-added services, and its manual-order warning says some third-party platform products may have additional service fees. The only figure that belongs in your ledger is the one shown for the specific order you are about to approve.",
+          "Use a three-column check: published description, live order charge and final settled charge. The first column records what the public help page said on the review date. The second records the account’s checkout or confirmation screen. The third records the amount actually deducted or refunded. If all three match, the record is clear. If they differ, you have a precise question for support instead of the vague claim that ‘the fee changed.’",
+          "Optional services should never be hidden inside the merchandise price. Custom photographs, special packaging, rehearsal or preview services, reinforcement, package removal, insurance or extended storage may be useful, but each answers a different problem. Record the service name, why it was selected, quoted amount and result. This helps you learn whether the service saved cost, reduced uncertainty or simply added expense."
+        ]
+      },
+      {
+        heading: "Capture exchange rates without inventing a universal rate",
+        paragraphs: [
+          "LoloBuy’s purchase guide says multiple currencies and several payment methods are available. It does not follow that every user receives the same conversion. Your total may be affected by the display currency, the platform’s conversion at that moment, the payment channel, the card network and the card issuer. A public currency selector is not the same thing as the final rate applied to your statement.",
+          "For every payment, save five values: the original RMB-based amount if shown, the platform display currency, the platform total, the amount settled by your bank or wallet, and the transaction date. If your bank adds a foreign-transaction charge, keep that on a separate line. Then calculate an effective rate only for your own transaction: settled home-currency amount divided by the underlying RMB amount. Label it ‘effective order rate,’ not ‘the LoloBuy exchange rate.’",
+          "Refunds need the same discipline. A refund may be credited on a different date from the purchase, when currency values or payment-provider treatment differ. Compare the original settled amount with the actual returned amount and record any unrecovered difference separately. Do not state that the platform kept an exchange-rate difference unless the account record and payment statement support that conclusion."
+        ]
+      },
+      {
+        heading: "Pause the ledger at the warehouse decision gate",
+        paragraphs: [
+          "When an order reaches the warehouse, it becomes a new decision rather than an automatic instruction to ship. Confirm that the order status, received quantity, selected variation and visible condition match the source record. LoloBuy’s published standard inspection scope includes visible appearance information such as style, quantity, colour, size, model, damage and defects, but it also lists limits for sealed goods, electronics and details that cannot be verified. Inspection photos reduce some uncertainty; they do not convert every seller claim into a fact.",
+          "At this point, add the measured warehouse weight and dimensions if the account provides them, but do not call them final parcel figures. The official warehouse help material describes measurement after the individual product is packaged for storage. International shipping is calculated on the later packed parcel, which may combine items, remove packaging or add protection. Product weight, warehouse stock-in weight and parcel chargeable weight are three different fields.",
+          "If the item is wrong or visibly defective, record the return decision before building a parcel. Shipping a disputed item internationally usually makes the problem harder to resolve. Save the order reference, relevant QC image, date and support outcome. A clean decision trail is more valuable than a long narrative: approved, clarification requested, return requested, or excluded from parcel."
+        ]
+      },
+      {
+        heading: "Estimate the parcel twice: before and after packing",
+        paragraphs: [
+          "The first parcel estimate is for planning. Use the destination, honest product category, expected packed weight and dimensions. Its job is to reveal whether the basket still makes economic sense and whether one bulky or restricted item changes the available routes. Record the quote date and inputs. Never copy another shopper’s shipping price into your ledger because their destination, contents, packaging and chargeable weight may be different.",
+          "The second estimate is the decision figure. Build it after selecting the actual warehouse items and packaging choices. Save the route, packed actual weight, dimensions, any displayed volumetric or chargeable weight, shipping deposit, discounts and optional parcel services. LoloBuy’s purchase guide states that the final shipping fee is calculated after the carrier verifies package size and weight and that a difference from the deposit may be returned to the user’s account. The current order-status help also tells users to watch for added charges or refunds caused by final-weight differences.",
+          "Do not erase the estimate when an adjustment arrives. Add a new ledger line. Keeping both numbers shows whether the change came from packaging, verified weight, route pricing or another named adjustment. It also improves future estimates because you can compare estimated and final data from your own parcels rather than relying on an anonymous screenshot."
+        ],
+        checklist: [
+          "Destination and honest content category",
+          "Items included in the submitted parcel",
+          "Packed actual dimensions and weight",
+          "Displayed volumetric or chargeable weight",
+          "Route, deposit, adjustment and quote dates",
+          "Optional packaging or protection services"
+        ]
+      },
+      {
+        heading: "Calculate landed cost only when the evidence is complete",
+        paragraphs: [
+          "Your working total can include merchandise, China domestic freight, confirmed purchasing or payment charges, optional warehouse services, allocated international shipping, payment-provider conversion costs and any destination charge you actually paid. Keep taxes or customs amounts separate until an official assessment or carrier invoice exists. Destination rules can change, and this guide does not estimate legal liability from a product title.",
+          "For a consolidated parcel, choose and document how international shipping is allocated. Weight is easy but may understate the cost of bulky light products. Chargeable weight is better when you can trace it to an item or sub-package. Merchandise value may suit insurance analysis but not space consumption. If exact allocation is impossible, label the result an estimate and keep the whole parcel total beside it.",
+          "A useful comparison ends with two numbers: item-level landed cost and unreconciled parcel-level cost. The second should approach zero as refunds, surcharges and destination invoices arrive. If it does not, investigate the named entries rather than forcing the spreadsheet to balance. This is the practical purpose of a LoloBuy fee ledger: not to promise the cheapest purchase, but to show where the money went and which next decision can still be changed."
+        ]
+      }
+    ],
+    takeaway: "Treat LoloBuy cost as a timeline: product, China freight, payment conversion, warehouse choices, packed parcel and final adjustments. Record each event in its original currency and reconcile it only when the evidence arrives."
   }
 };
