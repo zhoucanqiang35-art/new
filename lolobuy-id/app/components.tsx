@@ -1,5 +1,6 @@
 import { LanguageSwitcher } from "./language-switcher";
 import { common, type Locale } from "./translations";
+import type { EditorialLink } from "./data";
 
 const localPath=(locale:Locale,path="")=>`/${locale}${path}`;
 const accessibilityCopy={
@@ -27,4 +28,5 @@ export function Footer({locale="en"}:{locale?:Locale}) {
 }
 export function PageShell({ eyebrow, title, intro, children, locale="en" }: { eyebrow: string; title: string; intro: string; children: React.ReactNode; locale?:Locale }) { return <><Header locale={locale}/><main><section className="inner-hero"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="lede">{intro}</p><SearchBox compact locale={locale}/></section>{children}</main><Footer locale={locale}/></>; }
 export function ArticleSections({ sections }: { sections: readonly (readonly string[])[] }) { return <section className="article-grid">{sections.map(([title,text],i)=><article key={title}><span>0{i+1}</span><h2>{title}</h2><p>{text}</p></article>)}</section>; }
+export function ArticleLinks({links}:{links:readonly EditorialLink[]}){return <section className="article-related" aria-labelledby="article-related-title"><div><p className="eyebrow">CONTINUE RESEARCH</p><h2 id="article-related-title">Use the next page that matches your decision.</h2></div><div className="article-related-grid">{links.map(link=>{const external=link.href.startsWith("http");return <a key={link.href} href={link.href} target={external?"_blank":undefined} rel={external?"noopener":undefined}><b>{link.label}</b><span>{link.note}</span></a>})}</div></section>}
 export function CategoryVisualCard({slug,icon,name,note,href,action}:{slug:string;icon:string;name:string;note:string;href:string;action:string}){const external=href.startsWith("http");return <a className={`category-card category-card-${slug}`} href={href} target={external?"_blank":undefined} rel={external?"noopener":undefined}><i className="category-media" aria-hidden="true"></i><div className="category-copy"><span>{icon}</span><h3>{name}</h3><p>{note}</p><b>{action}</b></div></a>;}

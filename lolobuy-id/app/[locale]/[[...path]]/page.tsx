@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ArticleSections, CategoryVisualCard, PageShell } from "../../components";
+import { ArticleLinks, ArticleSections, CategoryVisualCard, PageShell } from "../../components";
 import { categories } from "../../data";
 import { LocaleHome } from "../../locale-home";
 import { common, getArticles, getPage, localizedCategories, localizedProducts, locales, type Locale } from "../../translations";
@@ -23,11 +23,13 @@ export async function generateMetadata({params}:{params:Promise<Params>}):Promis
   const page=route.length?getPage(locale,route[0]):undefined;
   const article=route[0]==="article"?getArticles(locale).find(a=>a.slug===route[1]):undefined;
   const category=route[0]==="category"?categories.find(c=>c.slug===route[1]):undefined;
-  const title=article?.title??page?.title??(category?`${localizedCategories(locale)[categories.indexOf(category)].name} spreadsheet finds`:"LoloBuy spreadsheet research");
-  const description=article?.excerpt??page?.intro??(category?localizedCategories(locale)[categories.indexOf(category)].note:homeDescription(locale));
+  const title=article?.metaTitle??article?.title??page?.title??(category?`${localizedCategories(locale)[categories.indexOf(category)].name} spreadsheet finds`:"LoloBuy spreadsheet research");
+  const description=article?.metaDescription??article?.excerpt??page?.intro??(category?localizedCategories(locale)[categories.indexOf(category)].note:homeDescription(locale));
   const suffix=route.length?`/${route.join("/")}`:"";
-  const languages=Object.fromEntries(locales.map(code=>[code,prefix(code,suffix)]));
-  return {title:`${title} | FindSpreadsheet Agent Guide`,description,alternates:{canonical:prefix(locale,suffix),languages:{...languages,"x-default":prefix("en",suffix)}}};
+  const alternateLocales=article?.englishOnly?["en" as const]:locales;
+  const languages=Object.fromEntries(alternateLocales.map(code=>[code,prefix(code,suffix)]));
+  const resolvedTitle=article?.metaTitle?title:`${title} | FindSpreadsheet Agent Guide`;
+  return {title:resolvedTitle,description,keywords:article?[article.primaryKeyword,...(article.secondaryKeywords??[])].filter(Boolean) as string[]:undefined,alternates:{canonical:prefix(locale,suffix),languages:{...languages,"x-default":prefix("en",suffix)}},openGraph:article?{title:resolvedTitle,description,type:"article",url:prefix(locale,suffix),publishedTime:article.published,modifiedTime:article.modified}:undefined,twitter:article?{card:"summary_large_image",title:resolvedTitle,description}:undefined};
 }
 function homeDescription(locale:Locale){return {en:"Independent LoloBuy spreadsheet research for Europe and North America.",de:"Unabhängige LoloBuy-Spreadsheet-Recherche für Europa und Nordamerika.",fr:"Recherche indépendante du spreadsheet LoloBuy pour l’Europe et l’Amérique du Nord.",es:"Investigación independiente del spreadsheet LoloBuy para Europa y Norteamérica.",it:"Ricerca indipendente sullo spreadsheet LoloBuy per Europa e Nord America.",pt:"Pesquisa independente do spreadsheet LoloBuy para a Europa e América do Norte."}[locale];}
 
@@ -35,7 +37,7 @@ export default async function LocalizedRoute({params}:{params:Promise<Params>}){
   const {locale,route}=resolve(await params), copy=ui[locale], cats=localizedCategories(locale), nav=common[locale], products=localizedProducts(locale);
   if(!route.length)return <LocaleHome locale={locale}/>;
   if(route[0]==="category"&&route[1]){const index=categories.findIndex(c=>c.slug===route[1]);if(index<0)notFound();const base=categories[index],cat=cats[index];return <PageShell locale={locale} eyebrow={`${nav.categories.toUpperCase()} ${base.icon}`} title={`${cat.name} — ${copy.verify.toLowerCase()}.`} intro={cat.note}><section className="category-detail"><div><h2>{copy.verify}</h2><p>{copy.verifyText}</p></div><div><h2>{copy.parcel}</h2><p>{copy.parcelText}</p></div><div><h2>{copy.directory}</h2><p>{copy.directoryText}</p></div></section><section className="category-cta"><p className="eyebrow">{copy.continue}</p><h2>{copy.browse}</h2><p>{copy.browseText}</p><a href={base.href} target="_blank" rel="noopener">{common[locale].database}</a></section></PageShell>;}
-  if(route[0]==="article"&&route[1]){const article=getArticles(locale).find(a=>a.slug===route[1]);if(!article)notFound();return <PageShell locale={locale} eyebrow={`${article.label} • ${article.date} • ${article.read}`} title={article.title} intro={article.excerpt}><ArticleSections sections={article.sections}/><section className="article-action"><div><p className="eyebrow">{copy.next}</p><h2>{copy.continueResearch}</h2><p>{copy.articleText}</p></div><a href="https://findspreadsheet.com/" target="_blank" rel="noopener">{nav.database}</a></section></PageShell>;}
+  if(route[0]==="article"&&route[1]){const article=getArticles(locale).find(a=>a.slug===route[1]);if(!article)notFound();const articleSchema=article.published?{"@context":"https://schema.org","@type":"Article",headline:article.title,description:article.excerpt,datePublished:article.published,dateModified:article.modified??article.published,inLanguage:locale,mainEntityOfPage:`https://lolobuy.id/${locale}/article/${article.slug}`,author:{"@type":"Organization",name:"FindSpreadsheet Agent Guide"},publisher:{"@type":"Organization",name:"FindSpreadsheet Agent Guide",url:"https://lolobuy.id/en"}}:null;return <>{articleSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema)}}/>}<PageShell locale={locale} eyebrow={`${article.label} • ${article.date} • ${article.read}`} title={article.title} intro={article.excerpt}><ArticleSections sections={article.sections}/>{article.relatedLinks?.length?<ArticleLinks links={article.relatedLinks}/>:<section className="article-action"><div><p className="eyebrow">{copy.next}</p><h2>{copy.continueResearch}</h2><p>{copy.articleText}</p></div><a href="https://findspreadsheet.com/" target="_blank" rel="noopener">{nav.database}</a></section>}</PageShell></>;}
   const slug=route[0],page=getPage(locale,slug);if(!page)notFound();const showProducts=slug==="products"||slug==="product-details";
   const faqSchema=slug==="faq"?{"@context":"https://schema.org","@type":"FAQPage",mainEntity:page.sections.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))}:null;
   return <>{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<PageShell locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro}>

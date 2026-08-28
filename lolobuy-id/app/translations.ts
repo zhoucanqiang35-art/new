@@ -1,4 +1,4 @@
-import { articles as baseArticles, categories as baseCategories, markets as baseMarkets, pages as basePages, products as baseProducts } from "./data";
+import { articles as baseArticles, categories as baseCategories, markets as baseMarkets, pages as basePages, products as baseProducts, type EditorialArticle } from "./data";
 import { fullTranslatedArticleSections } from "./article-localizations";
 import { fullTranslatedFaq } from "./faq-localizations";
 import { fullGuidePages } from "./guide-localizations";
@@ -123,7 +123,7 @@ pt:[["Porque são separados produto e envio internacional?","A LoloBuy descreve 
 
 export function getPage(locale:Locale,slug:string):LocalPage|undefined{if(slug==="guide")return fullGuidePages[locale];const page=locale==="en"?(basePages as Record<string,LocalPage>)[slug]:translatedPages[locale][slug];if(!page||slug!=="faq"||locale==="en")return page;return {...page,sections:fullTranslatedFaq[locale]??[...page.sections,...extraFaq[locale]]};}
 
-type LocalArticle={slug:string;label:string;date:string;read:string;title:string;excerpt:string;sections:readonly (readonly string[])[]};
+type LocalArticle=EditorialArticle;
 const translatedArticles:Record<Exclude<Locale,"en">,LocalArticle[]>={
 de:[
  {slug:"how-to-use-lolobuy-spreadsheet",label:"EINSTEIGERLEITFADEN",date:"25. Aug. 2026",read:"12 Min.",title:"Ein LoloBuy Spreadsheet nutzen, ohne jeden Link für verifiziert zu halten",excerpt:"Ein praktischer Ablauf von der Produktsuche über das Live-Angebot und Lagerbelege bis zur Paketentscheidung.",sections:[["Mit einer kurzen Liste beginnen","Ein Spreadsheet ist ein Index. Vergleiche wenige ähnliche Artikel und speichere die Originalquelle; Titel und Bild beweisen weder Bestand noch Verkäuferqualität."],["Live-Angebot erneut prüfen","Kontrolliere Verkäufer, Variante, Menge, Preis und chinesischen Inlandsversand vor der Bestellung."],["QC mit der Bestellung verbinden","Prüfe Fotos gegen genau die bestellte Variante: Identität, Maße, Verarbeitung, Schäden und Zubehör."],["Paket getrennt planen","Vergleiche Gewicht, Volumen, Verpackung, Route, Zielland und Schutzbedingungen."]]},
@@ -206,6 +206,7 @@ function requireCompleteText(value:unknown,context:string){
 export function assertLocaleContentParity(){
   const pageSlugs=Object.keys(basePages);
   const englishArticles=getArticles("en");
+  const translatedEnglishArticles=englishArticles.filter(article=>!article.englishOnly);
   for(const locale of locales){
     const copy=common[locale];
     Object.entries(copy).forEach(([key,value])=>requireCompleteText(value,`${locale}.common.${key}`));
@@ -225,8 +226,9 @@ export function assertLocaleContentParity(){
     }
 
     const localArticles=getArticles(locale);
-    if(localArticles.length!==englishArticles.length)throw new Error(`${locale}: SEO article count changed`);
-    englishArticles.forEach((englishArticle,index)=>{
+    const expectedArticles=locale==="en"?englishArticles:translatedEnglishArticles;
+    if(localArticles.length!==expectedArticles.length)throw new Error(`${locale}: SEO article count changed`);
+    expectedArticles.forEach((englishArticle,index)=>{
       const localArticle=localArticles.find(article=>article.slug===englishArticle.slug);
       if(!localArticle)throw new Error(`${locale}: missing SEO article ${englishArticle.slug}`);
       [localArticle.label,localArticle.date,localArticle.read,localArticle.title,localArticle.excerpt].forEach((value,part)=>requireCompleteText(value,`${locale}.article.${index}.${part}`));
