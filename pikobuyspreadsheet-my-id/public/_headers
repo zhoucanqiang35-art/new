@@ -3,6 +3,11 @@
   Cache-Control: public, max-age=600, s-maxage=600, no-transform
   X-Content-Type-Options: nosniff
 
+/sitemap-google.txt
+  Content-Type: text/plain; charset=UTF-8
+  Cache-Control: public, max-age=600, s-maxage=600, no-transform
+  X-Content-Type-Options: nosniff
+
 /robots.txt
   Content-Type: text/plain; charset=UTF-8
   Cache-Control: public, max-age=600, s-maxage=600, no-transform
