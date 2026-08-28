@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-# Primary Google-compatible plain-text sitemap
-Sitemap: https://lolobuysheet.cc/sitemap-google.txt
+# Primary XML sitemap
+Sitemap: https://lolobuysheet.cc/sitemap.xml
