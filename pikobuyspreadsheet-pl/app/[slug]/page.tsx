@@ -82,7 +82,8 @@ export default async function GuidePage({ params }: PageProps) {
           <aside>
             <b>On this page</b>
             {guide.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.heading}><span>0{index + 1}</span>{section.heading}</a>)}
-            {guide.faq && <a href="#article-faq"><span>?</span>Cost FAQ</a>}
+            {guide.internalLinks && <a href="#related-reading"><span>+</span>Related checks</a>}
+            {guide.faq && <a href="#article-faq"><span>?</span>Practical FAQ</a>}
             <a href="#sources"><span>→</span>Sources</a>
           </aside>
           <div className="article-body">
@@ -96,8 +97,12 @@ export default async function GuidePage({ params }: PageProps) {
                 {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
               </section>
             ))}
+            {guide.internalLinks && <section className="article-links" id="related-reading">
+              <p className="section-index">Related reading</p><h2>Continue the verification workflow</h2>
+              {guide.internalLinks.map((link) => <a href={link.href} key={link.href}><div><b>{link.label}</b><p>{link.note}</p></div><span>Open guide ↗</span></a>)}
+            </section>}
             {guide.faq && <section className="article-faq" id="article-faq">
-              <p className="section-index">Practical FAQ</p><h2>Questions buyers ask about PikoBuy costs</h2>
+              <p className="section-index">Practical FAQ</p><h2>{guide.faqHeading ?? "Questions buyers ask before ordering"}</h2>
               {guide.faq.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
             </section>}
             <section className="article-sources" id="sources">

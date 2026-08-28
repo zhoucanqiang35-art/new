@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
-    ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 26 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking. Verified 26 August 2026."],
+    ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 28 August 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking. Verified 28 August 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres. Verified 26 August 2026."],
     ["Shipping terms", "", "Forwarding process, inspection boundaries, third-party logistics and cross-border risks. Verified 26 August 2026."],
     ["Returns & Exchanges", "", "Five-day/120-hour application window, eligibility, exclusions, responsibility and published fee formula. Verified 26 August 2026."],
-    ["User Registration Agreement", "", "Purchasing-stage cost language, third-party logistics selection and the published freight platform-fee calculation. Verified 26 August 2026."],
-    ["Terms of Service", "", "Platform scope, orders, duties and taxes, service limitations, prohibited items and policy-change clauses. Verified 26 August 2026."],
+    ["User Registration Agreement", "", "Product-link and seller boundaries, purchasing-stage cost language, platform fees, inspection limits and special-order warnings. Verified 28 August 2026."],
+    ["Terms of Service", "", "Platform scope, order acceptance, seller-of-record limitation, prohibited items and policy-change clauses. Verified 28 August 2026."],
   ]},
   { id: "findspreadsheet-sources", title: "FindSpreadsheet product sources", external: true, links: [
     ["FindSpreadsheet home", "https://findspreadsheet.com/", "Main database context, product count claim and categories."],

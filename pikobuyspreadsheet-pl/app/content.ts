@@ -49,6 +49,8 @@ export type Guide = {
   visual?: { src: string; alt: string; caption: string };
   intro: string[];
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
+  internalLinks?: { label: string; href: string; note: string }[];
+  faqHeading?: string;
   faq?: { question: string; answer: string }[];
   sources: { label: string; href: string }[];
 };
@@ -164,6 +166,123 @@ export const guides: Guide[] = [
       { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
       { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
       { label: "PikoBuy Returns & Exchanges", href: "/sources#pikobuy-sources" },
+    ],
+  },
+  {
+    slug: "pikobuy-seller-listing-verification",
+    eyebrow: "Pre-order checks",
+    title: "PikoBuy Seller and Listing Verification Checklist Before You Pay",
+    seoTitle: "PikoBuy Seller Verification Checklist",
+    description: "A practical PikoBuy seller verification checklist for checking the source link, exact variant, price, stock evidence and seller signals before payment.",
+    readTime: "11 min read",
+    updated: "Published 28 August 2026",
+    publishedDate: "2026-08-28",
+    modifiedDate: "2026-08-28",
+    editorialNote: "Independent editorial guidance based on PikoBuy's public beginner guide, Terms of Service and User Registration Agreement as observed on 28 August 2026. It is not an authenticity service, seller endorsement or guarantee.",
+    visual: {
+      src: "/pikobuy-listing-verification-flow.svg",
+      alt: "Five-step PikoBuy listing verification flow covering source link, item identity, variant, seller evidence and final decision",
+      caption: "Original pre-payment decision flow. A listing passes only when the link, item, selected option and seller evidence agree; uncertainty should be resolved before payment.",
+    },
+    intro: [
+      "A product link that opens in PikoBuy is not automatically a verified product. It proves that the platform can search or display information from the submitted address; it does not prove that the seller has stock, that the cheapest visible price belongs to your option, or that the goods are authentic, legal and suitable for international shipping.",
+      "PikoBuy's current beginner guide tells shoppers to find an item on Taobao, Tmall, 1688, Weidian, Yupoo or another platform, confirm its specifications, colour and size, save the item or store information, and then paste the product link or keywords into PikoBuy. Its User Registration Agreement draws an equally important boundary: PikoBuy displays links and helps facilitate purchasing, but is not the seller and says it cannot check every platform, merchant, product or service for quality, safety, legality, authenticity or accuracy.",
+      "The useful response is a repeatable check before the first payment: preserve the source, match the exact item and variant, assess seller signals without treating them as guarantees, and decide whether to proceed, clarify or reject the listing.",
+    ],
+    sections: [
+      {
+        heading: "Understand what a successful link import does—and does not—prove",
+        paragraphs: [
+          "PikoBuy's public flow says a shopper can paste a product link or keywords into its search box and receive purchasing assistance. The homepage also presents product-link submission as one way to discover items. These statements support a narrow conclusion: the platform is designed to accept or find source listings. They do not establish that every address will import perfectly or that the resulting page independently verifies the seller's claims.",
+          "Treat the imported PikoBuy page as a working copy of a live seller listing. If the source has disappeared, redirects to a different item, or shows materially different options, do not rely on an old spreadsheet title or thumbnail.",
+          "Keep the complete source URL and the PikoBuy page generated from it, with the date checked. Shortened links, screenshots and copied titles are supporting evidence, not substitutes for the original address.",
+        ],
+        bullets: [
+          "Pass: the source opens and the imported page represents the same product.",
+          "Clarify: the source is accessible but key option text or seller information is missing.",
+          "Reject: the link redirects to another item, is no longer available, or cannot be matched reliably.",
+        ],
+      },
+      {
+        heading: "Match listing identity before comparing price",
+        paragraphs: [
+          "Start with identity, not the headline price. Compare the source title, main images, item identifier where visible, category and distinctive features with the PikoBuy display. For clothing, that might be the print, pocket layout or fabric version. For shoes, compare the model, colourway, sole and option labels. For electronics, match the exact model, connector, capacity and included accessories rather than assuming that one product page contains only one specification.",
+          "A seller may group several products or bundles under one address. The lowest displayed amount can belong to a small accessory, deposit, replacement part or basic configuration rather than the product shown in the hero image. Open the option selector and write down the exact combination you plan to buy. Then confirm that the quantity and price on PikoBuy correspond to that combination, not merely to the listing's starting price.",
+          "Save one screenshot showing the source page and seller, one showing the selected option and price, and one showing any size chart or specification table you relied on. A compact record is easier to use at the warehouse than dozens of decorative images.",
+        ],
+      },
+      {
+        heading: "Confirm the exact variant in plain language",
+        paragraphs: [
+          "Translate the selected option into a short order sentence: product, colour, size or model, quantity, and any bundle or custom instruction. For example, 'navy jacket, seller size XL, one piece, no custom text' is more useful than 'the blue one.' Compare each part of that sentence with both the source page and the PikoBuy checkout selection.",
+          "Measurements deserve their own line because familiar size letters are not interchangeable across sellers. Save the current chart and compare like-for-like measurements with an item you own. Ask about any critical missing dimension before ordering.",
+          "PikoBuy's guide explicitly says to confirm specifications, colour and size before submitting the purchasing order. The first payment occurs after those options and quantity are selected. Once payment is made, the agent buys according to that submitted information; a vague private expectation is not stronger evidence than the actual order record.",
+        ],
+      },
+      {
+        heading: "Use seller signals as filters, not guarantees",
+        paragraphs: [
+          "PikoBuy's User Registration Agreement recommends choosing Taobao shops with credibility of three stars or above that have paid the Taobao deposit. It warns that low-credibility shops without a deposit can create risks involving non-shipment, false shipment and after-sales disputes. This is a published caution, not proof that every shop above the threshold is reliable or that a lower-rated seller will fail.",
+          "Record the platform, shop name, visible credibility level and deposit indicator only when you can observe them. Add the seller's stated return position if displayed, but remember that ratings and sales counts do not authenticate a product.",
+          "For 1688, PikoBuy's agreement is especially cautious: it says PikoBuy does not guarantee product quality or provide precise inventory services for the standard purchasing-agent service, and describes sample and after-sales support as limited. That makes specification clarity and seller communication more important, particularly for minimum quantities, mixed variants, wholesale descriptions or products whose material cannot be judged from images.",
+        ],
+      },
+      {
+        heading: "Resolve price, stock and deposit warnings before payment",
+        paragraphs: [
+          "PikoBuy's beginner guide says prices are subject to the actual purchase and that an out-of-stock order may be refunded. Therefore, the number visible on a spreadsheet or imported page is not a permanent quotation. Compare the selected-option price immediately before payment and keep enough budget flexibility for a changed seller price or domestic delivery charge. If the live amount differs materially, reassess the purchase instead of treating the earlier card as binding.",
+          "A selectable option can still be unavailable when the purchaser contacts the seller, and a generic inventory number may not refer to your exact colour or size. Mark stock as 'shown available,' not 'guaranteed,' and retain any current confirmation.",
+          "Deposit listings require extra care. PikoBuy's agreement states that, under Taobao seller rules, an order with a paid deposit cannot be cancelled and that the balance must be paid within the seller's stated time or the deposit will not be refunded. Before placing such an order, identify the deposit amount, total price, balance deadline, release schedule and cancellation position. Reject the listing if you cannot explain those terms in your own worksheet.",
+        ],
+      },
+      {
+        heading: "Do a legality, authenticity and shipping-suitability screen",
+        paragraphs: [
+          "Link verification is not authenticity verification. PikoBuy's User Registration Agreement says it cannot examine every merchant and product for authenticity, legality, safety or accuracy. Its Terms of Service prohibit counterfeit goods and products that infringe intellectual-property rights and say the platform may cancel orders, refuse service, return or dispose of prohibited items. Do not use the platform's ability to display a listing as evidence that the item is permitted or genuine.",
+          "Batteries, liquids, powders, fragile goods, electrical appliances and customised products can require extra checks or face route limits. PikoBuy says professional inspection may be unavailable for some products and may cover only external condition and accessories. A warehouse photo cannot close gaps about internal performance, materials or authenticity.",
+          "Also check whether the product can legally be bought, exported and imported at the destination. A seller's willingness to list an item is not permission to ship it. When the legal position or route eligibility is unclear, stop before the first payment and use the current official rules or support channel. Losing a small discount is safer than paying for goods that cannot enter a usable shipping route.",
+        ],
+      },
+      {
+        heading: "Make a documented proceed, clarify or reject decision",
+        paragraphs: [
+          "Proceed only when the source link and imported page match, the exact option is recorded, the selected price is acceptable, the seller evidence meets your risk threshold and no unresolved legal or shipping warning remains. 'Proceed' means the evidence is sufficient for the next stage; it is not a promise of quality, authenticity, stock or delivery.",
+          "Choose 'clarify' for an ambiguous size chart, bundle, model number, deposit term or return condition. Write one precise question and preserve the response instead of hoping warehouse QC will resolve it.",
+          "Reject the listing when identity cannot be matched, essential terms remain hidden, the price belongs to another option, seller evidence is materially weak, or the product appears prohibited or unsuitable for transport. Record the reason.",
+          "The final file can remain small: complete source URL, platform and seller, item ID if shown, selected variant sentence, price and domestic delivery, seller signals, return or deposit notes, risk flags, screenshots and decision date. That record turns product-link checking from a vague impression into a repeatable pre-payment control.",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Browse PikoBuy product categories", href: "/product-categories", note: "Start with a focused category, then apply the checklist to the live seller listing." },
+      { label: "Open the product-link FAQ", href: "/faq/how-to-check-a-product-link-before-ordering", note: "Use the concise answer when you need a quick reminder of the matching steps." },
+      { label: "Estimate total PikoBuy cost", href: "/pikobuy-fees-total-cost", note: "After the listing passes, place the selected price into a complete landed-cost worksheet." },
+      { label: "Prepare for warehouse QC", href: "/pikobuy-qc-photo-guide", note: "Turn the saved option evidence into a category-specific inspection plan." },
+    ],
+    faqHeading: "Questions about PikoBuy listing and seller checks",
+    faq: [
+      {
+        question: "Does a PikoBuy product link prove that a seller is reliable?",
+        answer: "No. A working link shows that PikoBuy can search or display the source listing. PikoBuy's agreement says it cannot verify every merchant or product for quality, safety, legality, authenticity or accuracy.",
+      },
+      {
+        question: "What should I save before paying for a PikoBuy order?",
+        answer: "Save the complete source URL, seller or shop name, item ID when visible, exact selected variant, current price, relevant size or specification evidence, seller signals and the date checked.",
+      },
+      {
+        question: "What seller credibility does PikoBuy recommend for Taobao?",
+        answer: "PikoBuy's User Registration Agreement recommends Taobao shops with three stars or above that have paid the Taobao deposit. Treat this as a filter, not a guarantee of product quality or successful after-sales service.",
+      },
+      {
+        question: "Can warehouse QC fix a poorly checked listing?",
+        answer: "Not completely. Warehouse photos can help compare visible identity, option and condition, but PikoBuy says professional inspection may be unavailable for some products and does not guarantee authenticity, internal quality or performance.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy official homepage", href: "/sources#pikobuy-sources" },
     ],
   },
   {
