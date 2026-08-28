@@ -5,6 +5,18 @@ import localized from "../localized.generated.json";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 const supported = new Set(["en", "fr", "de", "es", "it", "pt", "nl", "pl", "ro"]);
+const staticRoutes = ["categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
+
+export function generateStaticParams() {
+  const articleRoutes = seoArticles.map((article) => article.slug);
+  return [
+    { slug: [] },
+    ...Array.from(supported).flatMap((lang) => [
+      { slug: [lang] },
+      ...[...staticRoutes, ...articleRoutes].map((route) => ({ slug: [lang, route] })),
+    ]),
+  ];
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parts = (await params).slug ?? [];
