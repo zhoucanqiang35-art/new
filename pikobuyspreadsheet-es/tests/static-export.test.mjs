@@ -11,6 +11,7 @@ test("exports the English and representative localized routes", async () => {
     "seo-articles/how-pikobuy-works",
     "seo-articles/pikobuy-return-policy-guide",
     "seo-articles/pikobuy-tracking-customs-guide",
+    "seo-articles/pikobuy-restricted-items-guide",
     "de-DE/shipping",
     "fr-FR/faq",
     "es-ES/seo-articles/how-pikobuy-works",
@@ -26,6 +27,7 @@ test("exports indexable robots and the complete sitemap", async () => {
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/how-pikobuy-works\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-return-policy-guide\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-tracking-customs-guide\//);
+  assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-restricted-items-guide\//);
 });
 
 test("keeps long articles, FAQ and shipping content in static HTML", async () => {
@@ -55,6 +57,19 @@ test("exports the complete English tracking article with SEO metadata", async ()
   assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-tracking-customs-guide\/"/);
   assert.match(article, /hrefLang="en-US"/);
   assert.match(article, /PikoBuy Tracking Guide: Parcel Status, Customs and Carrier Handoffs/);
+  assert.match(article, /<meta name="robots" content="index, follow"/);
+  assert.doesNotMatch(article, /noindex/);
+});
+
+test("exports the complete restricted-items article with unique SEO metadata", async () => {
+  const article = await readFile(page("seo-articles/pikobuy-restricted-items-guide"), "utf8");
+  assert.equal((article.match(/data-content-slot=/g) || []).length, 7);
+  assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
+  assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-restricted-items-guide\/"/);
+  assert.match(article, /hrefLang="en-US"/);
+  assert.match(article, /PikoBuy Restricted Items Guide: Batteries, Liquids and Route Eligibility/);
+  assert.match(article, /<meta name="keywords" content="PikoBuy restricted items,PikoBuy sensitive goods,PikoBuy battery shipping,PikoBuy prohibited items,PikoBuy shipping restrictions"/);
+  assert.match(article, /href="\/seo-articles\/pikobuy-shipping-cost-guide\/"/);
   assert.match(article, /<meta name="robots" content="index, follow"/);
   assert.doesNotMatch(article, /noindex/);
 });

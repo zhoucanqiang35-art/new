@@ -156,6 +156,15 @@ const articleSectionPlans: Record<string, readonly ArticleSectionPlan[]> = {
     {heading:9,facts:[9,10,11]},
     {heading:13,facts:[13,8,7]},
   ],
+  "pikobuy-restricted-items-guide":[
+    {heading:7,facts:[7,3,13]},
+    {heading:7,facts:[7,13,3]},
+    {heading:6,facts:[6,4,7]},
+    {heading:13,facts:[13,7,3]},
+    {heading:13,facts:[13,6,5]},
+    {heading:7,facts:[7,13,3]},
+    {heading:4,facts:[4,7,9]},
+  ],
 };
 
 export type LocalizedSeoSection = {
@@ -179,6 +188,7 @@ export function getLocalizedSeoSections(locale: string, slug: string, fallbackTe
     "how-pikobuy-works":[items[1].question,items[2].question,items[4].question,items[9].question,shipping.inputsTitle,shipping.riskTitle,items[8].question],
     "pikobuy-shipping-cost-guide":[shipping.title,shipping.inputsTitle,shipping.calloutTitle,`${shipping.inputs[1].label}: ${shipping.inputs[1].description}`,shipping.riskTitle,items[9].question,`${shipping.inputs[4].label}: ${shipping.calloutBody}`],
     "pikobuy-qc-photo-checklist":[items[4].question,`${items[0].question} ${items[4].question}`,`${localized.categories.join(" · ")}`,items[6].question,items[5].question,items[9].question,`${items[13].question} ${items[8].question}`],
+    "pikobuy-restricted-items-guide":[shipping.riskTitle,shipping.inputsTitle,`${localized.categories[10]} · ${shipping.inputs[1].label}`,shipping.calloutTitle,items[13].question,shipping.title,`${items[4].question} ${items[9].question}`],
   };
   const sectionHeadings=headings[slug]||headings["how-pikobuy-works"];
   return plans.map((plan,position)=>{
