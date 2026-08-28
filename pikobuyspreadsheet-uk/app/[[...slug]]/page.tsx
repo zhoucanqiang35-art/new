@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${article?.title ?? localizedTitle ?? names[route] ?? names.home} | FindSpreadsheet`,
     description: article?.description ?? languageBundle?.copy.intro ?? "An independent, evidence-led PikoBuy spreadsheet guide for product discovery, QC checks, parcel planning and safer use of FindSpreadsheet.",
-    robots: { index: false, follow: false },
+    robots: { index: true, follow: true },
     alternates: { canonical: `/${lang}${route === "home" ? "" : `/${route}`}` },
   };
 }
