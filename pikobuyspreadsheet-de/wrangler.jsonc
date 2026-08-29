@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "pikobuyspreadsheet-de",
-  // Production release with explicit CSS, browser-module, and hero-image forwarding.
+  // Production release with explicit assets and the verified Google sitemap route.
   "pages_build_output_dir": "./dist/pages",
   "compatibility_date": "2026-08-25",
   "compatibility_flags": ["nodejs_compat"]
