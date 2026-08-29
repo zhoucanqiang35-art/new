@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect } from "react";
-import { generatedTranslations } from "../i18n/generated-translations";
+import { loadGeneratedTranslations } from "../i18n/generated-translations";
 
 const languageStorageKey = "pikobuy-site-language";
 export const supportedLanguageCodes = ["en", "de", "fr", "es", "it", "nl", "pl", "pt", "sv"] as const;
@@ -40,32 +40,30 @@ function localizeInternalLinks(language: SupportedLanguage) {
   });
 }
 
-function translateValue(value: string, language: SupportedLanguage) {
-  if (language === "en") return value;
+function translateValue(value: string, dictionary: Record<string, string>) {
   const leading = value.match(/^\s*/)?.[0] ?? "";
   const trailing = value.match(/\s*$/)?.[0] ?? "";
   const source = value.trim().replace(/\s+/g, " ");
   if (!source) return value;
-  const translated = generatedTranslations[language]?.[source];
+  const translated = dictionary[source];
   return translated ? `${leading}${translated}${trailing}` : value;
 }
 
-function translateTree(root: ParentNode, language: SupportedLanguage) {
-  if (language === "en") return;
+function translateTree(root: ParentNode, dictionary: Record<string, string>) {
   const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   let node = walker.nextNode();
   while (node) {
     const parent = node.parentElement;
     const excluded = !parent || ["SCRIPT", "STYLE", "NOSCRIPT", "TEXTAREA"].includes(parent.tagName)
       || Boolean(parent.closest(".notranslate,[translate='no']"));
-    if (!excluded && node.textContent?.trim()) node.textContent = translateValue(node.textContent, language);
+    if (!excluded && node.textContent?.trim()) node.textContent = translateValue(node.textContent, dictionary);
     node = walker.nextNode();
   }
   root.querySelectorAll<HTMLElement>("[placeholder],[title],[aria-label],img[alt]").forEach((element) => {
     if (element.closest(".notranslate,[translate='no']")) return;
     ["placeholder", "title", "aria-label", "alt"].forEach((attribute) => {
       const value = element.getAttribute(attribute);
-      if (value) element.setAttribute(attribute, translateValue(value, language));
+      if (value) element.setAttribute(attribute, translateValue(value, dictionary));
     });
   });
 }
@@ -82,27 +80,36 @@ export function selectSiteLanguage(language: string) {
 export default function TranslationEngine() {
   useLayoutEffect(() => {
     const language = readSelectedLanguage();
+    let cancelled = false;
     window.localStorage.setItem(languageStorageKey, language);
     document.documentElement.lang = language;
     document.documentElement.dataset.siteLanguage = language;
-    translateTree(document.body, language);
     localizeInternalLinks(language);
-    document.documentElement.dataset.translationComplete = "true";
 
-    const observer = new MutationObserver((records) => {
-      for (const record of records) {
-        record.addedNodes.forEach((added) => {
-          if (added.nodeType === Node.TEXT_NODE && added.textContent) {
-            added.textContent = translateValue(added.textContent, language);
-          } else if (added instanceof HTMLElement) {
-            translateTree(added, language);
-          }
-        });
-      }
+    let observer: MutationObserver | undefined;
+    void loadGeneratedTranslations(language).then((dictionary) => {
+      if (cancelled) return;
+      translateTree(document.body, dictionary);
       localizeInternalLinks(language);
+      document.documentElement.dataset.translationComplete = "true";
+      observer = new MutationObserver((records) => {
+        for (const record of records) {
+          record.addedNodes.forEach((added) => {
+            if (added.nodeType === Node.TEXT_NODE && added.textContent) {
+              added.textContent = translateValue(added.textContent, dictionary);
+            } else if (added instanceof HTMLElement) {
+              translateTree(added, dictionary);
+            }
+          });
+        }
+        localizeInternalLinks(language);
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
     });
-    observer.observe(document.body, { childList: true, subtree: true });
-    return () => observer.disconnect();
+    return () => {
+      cancelled = true;
+      observer?.disconnect();
+    };
   }, []);
   return null;
 }

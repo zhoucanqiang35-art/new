@@ -211,6 +211,10 @@ footer>small { grid-column:1/-1; padding-top:28px; border-top:1px solid #234147;
 .product-detail-price span { color:var(--muted); font-size:9px; }
 .product-detail-price strong { margin-top:22px; color:var(--teal); font-size:11px; }
 .back-link { margin-top:32px !important; font-weight:800; }
+.category-profile-heading { display:flex; align-items:center; gap:16px; margin:8px 0 22px; }
+.category-profile-heading .category-icon-box { flex:0 0 auto; }
+.category-profile-heading h2 { margin:6px 0 0; }
+.category-profile-table { margin-bottom:42px; }
 .search-page-form { max-width:none; margin:0 0 42px; }
 .search-summary { margin:-22px 0 40px !important; padding:13px 16px; border-radius:12px; background:#e9fbf7; color:var(--muted); font-size:12px !important; }
 .search-empty { margin:34px 0; padding:30px; border:1px solid var(--line); border-radius:20px; background:#fff; }

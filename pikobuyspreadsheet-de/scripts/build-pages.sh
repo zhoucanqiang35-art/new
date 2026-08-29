@@ -11,6 +11,8 @@ mkdir -p dist/pages/_worker.js
 cp -R dist/client/. dist/pages/
 cp -R dist/server/. dist/pages/_worker.js/
 base64 --decode assets/og-hero.jpg.base64 > dist/pages/og-hero.jpg
+mkdir -p dist/pages/i18n/translations
+cp app/i18n/translations/*.json dist/pages/i18n/translations/
 
 # Pages Advanced Mode gives the Worker full control of every request. Keep the
 # framework server intact, but put a small Pages entry in front of it so built
@@ -28,6 +30,7 @@ rm -f .wrangler/deploy/config.json
 test -f dist/pages/_worker.js/index.js
 test -f dist/pages/_worker.js/server.js
 test -s dist/pages/og-hero.jpg
+test -s dist/pages/i18n/translations/de.json
 test -f dist/pages/assets/index-BW_uc0sp.css || find dist/pages/assets -maxdepth 1 -name '*.css' -print -quit | grep -q .
 
 echo "Cloudflare Pages bundle ready in dist/pages"

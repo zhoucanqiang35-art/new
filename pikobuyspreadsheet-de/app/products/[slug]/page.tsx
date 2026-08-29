@@ -24,6 +24,15 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductPage({ params }: ProductPageProps) {
   const product = productBySlug((await params).slug);
   if (!product) notFound();
+  const breadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://pikobuyspreadsheet.de/" },
+      { "@type": "ListItem", position: 2, name: "Product details", item: "https://pikobuyspreadsheet.de/products" },
+      { "@type": "ListItem", position: 3, name: product.title, item: `https://pikobuyspreadsheet.de/products/${product.slug}` },
+    ],
+  };
 
   return (
     <ArticleShell
@@ -40,6 +49,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         </div>
       )}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       <p className="lead">The displayed comparison price is <strong>{product.price}</strong>, converted from the recorded <strong>{product.cny}</strong> source value. Treat it as a research snapshot and verify the live record before continuing.</p>
       <h2>What to check first</h2>
       <ol>
@@ -49,6 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div><b>Product category</b><span>{product.category}</span></div>
         <div><b>Comparison price</b><span>{product.price} · source value {product.cny}</span></div>
         <div><b>Research status</b><span>Representative lead; not a purchase recommendation</span></div>
+        <div><b>Snapshot date</b><span>{product.snapshotDate} · availability not assumed</span></div>
         <div><b>Next destination</b><span>Live {product.category} category on FindSpreadsheet</span></div>
       </div>
     </ArticleShell>

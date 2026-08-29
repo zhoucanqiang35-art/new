@@ -18,6 +18,17 @@ export default function Home() {
     () => activeCategory === "All" ? products : products.filter((item) => item.category === activeCategory),
     [activeCategory],
   );
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "PikoBuy Spreadsheet Research Guide",
+    url: "https://pikobuyspreadsheet.de/",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://pikobuyspreadsheet.de/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
 
   return (
     <div className="site-shell">
@@ -40,6 +51,7 @@ export default function Home() {
       </header>
 
       <main id="top">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
         <section className="hero">
           <div className="hero-copy">
             <div className="eyebrow"><span>Independent research guide</span><span>Updated 24 Aug 2026</span></div>
@@ -94,10 +106,10 @@ export default function Home() {
           </div>
           <div className="category-grid">
             {categories.map((category) => (
-              <a className="category-card" key={category.name} href={category.href} target="_blank" rel="noreferrer">
+              <a className="category-card" key={category.name} href={`/categories/${category.slug}`}>
                 <span className="category-icon-box"><CategoryIcon name={category.name} /></span>
                 <div className="category-copy"><b>{category.name}</b><small>{category.note}</small></div>
-                <span className="category-open" aria-hidden="true">↗</span>
+                <span className="category-open" aria-hidden="true">→</span>
               </a>
             ))}
           </div>

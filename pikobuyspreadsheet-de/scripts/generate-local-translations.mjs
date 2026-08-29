@@ -120,7 +120,9 @@ async function translateLocale([locale, target]) {
 }
 await Promise.all(Object.entries(languages).map(translateLocale));
 
-const imports = Object.keys(languages).map((locale, index) => `import locale${index} from "./translations/${locale}.json";`).join("\n");
-const members = Object.keys(languages).map((locale, index) => `  ${JSON.stringify(locale)}: locale${index},`).join("\n");
-await fs.writeFile(new URL("../app/i18n/generated-translations.ts", import.meta.url), `${imports}\n\nexport const generatedTranslations: Record<string, Record<string, string>> = {\n${members}\n};\n`);
+const loaderMembers = Object.keys(languages).map((locale) => `  ${locale}: () => import("./translations/${locale}.json"),`).join("\n");
+await fs.writeFile(new URL("../app/i18n/generated-translations.ts", import.meta.url), `const loaders: Record<string, () => Promise<{ default: Record<string, string> }>> = {\n${loaderMembers}\n};\n\nexport async function loadGeneratedTranslations(locale: string) {\n  return loaders[locale] ? (await loaders[locale]()).default : {};\n}\n`);
+const serverImports = Object.keys(languages).map((locale) => `import ${locale} from "./translations/${locale}.json";`).join("\n");
+const serverMembers = Object.keys(languages).join(", ");
+await fs.writeFile(new URL("../app/i18n/server-translations.ts", import.meta.url), `${serverImports}\n\nexport const serverTranslations: Record<string, Record<string, string>> = { ${serverMembers} };\n`);
 console.log(`complete: ${sourcePhrases.length} source phrases`);
