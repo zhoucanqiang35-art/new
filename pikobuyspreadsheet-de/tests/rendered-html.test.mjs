@@ -64,3 +64,16 @@ test("sitemap contains the new English and German category pages", async () => {
   assert.doesNotMatch(xml, /https:\/\/pikobuyspreadsheet\.de\/fr\/shoes/);
   assert.equal((xml.match(/<url>/g) || []).length, 164);
 });
+
+test("Google sitemap alias and robots declaration stay in sync", async () => {
+  const [sitemapResponse, robotsResponse] = await Promise.all([
+    render("/sitemap-google.xml"),
+    render("/robots.txt"),
+  ]);
+  const [xml, robots] = await Promise.all([sitemapResponse.text(), robotsResponse.text()]);
+  assert.equal(sitemapResponse.status, 200);
+  assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml\b/i);
+  assert.equal((xml.match(/<url>/g) || []).length, 164);
+  assert.equal(robotsResponse.status, 200);
+  assert.match(robots, /Sitemap: https:\/\/pikobuyspreadsheet\.de\/sitemap-google\.xml/);
+});
