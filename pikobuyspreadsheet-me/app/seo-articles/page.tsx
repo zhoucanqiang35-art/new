@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Camera, PackageSearch, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BookOpen, Camera, ListChecks, PackageSearch, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
 
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 };
 
 const articles = [
+  { icon: ListChecks, tag: "SPREADSHEET GUIDE", title: "How to Use a PikoBuy Spreadsheet Without Buying Blind", description: "A new 1,500-word workflow for verifying source links, variants, live prices, warehouse evidence and parcel impact before each decision.", href: "/how-to-use-pikobuy-spreadsheet", time: "10 min read" },
   { icon: PackageSearch, tag: "BEGINNER GUIDE", title: "How PikoBuy Works: From Product Link to International Parcel", description: "A 1,300-word, fact-checked explanation of link search, first payment, warehouse photos, parcel submission and international shipping.", href: "/how-pikobuy-works", time: "9 min read" },
   { icon: Camera, tag: "QUALITY CONTROL", title: "PikoBuy QC Photos: What to Inspect Before Parcel Submission", description: "A 1,300-word guide to order matching, measurements, category-specific photo checks, extra images and the return clock.", href: "/qc-guide", time: "9 min read" },
   { icon: Truck, tag: "SHIPPING", title: "PikoBuy Shipping Planning for the US, UK, Canada and Europe", description: "A 1,300-word guide to weight, dimensions, packaging, estimates, route comparison, forwarding and tracking.", href: "/shipping-guide", time: "9 min read" },
@@ -22,7 +23,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">START HERE</p><h2>A structured research path for first-time spreadsheet users.</h2><p>Begin with the platform workflow, then move through product details, QC evidence, parcel planning and the buyer checklist.</p></div><Link href="/how-pikobuy-works">Read the beginner guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 29 AUGUST 2026</p><h2>Use a PikoBuy spreadsheet as a research tool, not a promise.</h2><p>Learn how to recheck source links, choose the exact variant, review warehouse evidence and replace early shipping guesses with current parcel data.</p></div><Link href="/how-to-use-pikobuy-spreadsheet">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>
