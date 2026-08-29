@@ -33,6 +33,26 @@ rm -rf "${pages_worker}"
 mkdir -p "${pages_worker}"
 cp -a "${SITES_PROJECT_ROOT}/dist/server/." "${pages_worker}/"
 
+# Pages Advanced Mode sends every request through `_worker.js` unless a
+# `_routes.json` file excludes static files. The generated vinext Worker only
+# renders application routes; without this exclusion, CSS/JS requests are
+# rendered as HTML and the deployed site appears completely unstyled.
+cat > "${SITES_PROJECT_ROOT}/dist/client/_routes.json" <<'EOF'
+{
+  "version": 1,
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/favicon.svg",
+    "/file.svg",
+    "/globe.svg",
+    "/window.svg",
+    "/pikobuy-logo.png",
+    "/pikobuy-spreadsheet-us-hero.png"
+  ]
+}
+EOF
+
 # Vinext redirects Wrangler to its Workers deployment configuration. Pages
 # must instead read the repository's Pages configuration below.
 rm -f "${SITES_PROJECT_ROOT}/.wrangler/deploy/config.json"
