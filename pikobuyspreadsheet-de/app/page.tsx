@@ -75,7 +75,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-visual">
-            <img src="/og-hero.jpg?v=e29abf0" alt="PikoBuy Spreadsheet research board with parcels, product cards and quality check marks" />
+            <img src="/og-hero.jpg?v=e29abf0" alt="PikoBuy Spreadsheet research board with parcels, product cards and quality check marks" fetchPriority="high" decoding="async" />
             <div className="visual-note">
               <span className="status-dot" />
               <div><b>Built for comparison</b><small>Product data stays on the live main database.</small></div>
@@ -106,7 +106,7 @@ export default function Home() {
           </div>
           <div className="category-grid">
             {categories.map((category) => (
-              <a className="category-card" key={category.name} href={`/categories/${category.slug}`}>
+              <a className="category-card" key={category.name} href={`/${category.slug}`}>
                 <span className="category-icon-box"><CategoryIcon name={category.name} /></span>
                 <div className="category-copy"><b>{category.name}</b><small>{category.note}</small></div>
                 <span className="category-open" aria-hidden="true">→</span>

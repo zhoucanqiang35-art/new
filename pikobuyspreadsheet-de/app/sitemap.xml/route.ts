@@ -18,7 +18,7 @@ const urls = [
   "/articles/recheck-product-links",
   "/articles/western-market-search-intent",
 ];
-const categoryUrls = categories.map((category) => `/categories/${category.slug}`);
+const categoryUrls = categories.map((category) => `/${category.slug}`);
 const languages = ["", "/de", "/fr", "/es", "/it", "/nl", "/pl", "/pt", "/sv"];
 
 export async function GET() {

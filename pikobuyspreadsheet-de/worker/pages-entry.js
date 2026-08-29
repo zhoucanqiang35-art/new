@@ -1,6 +1,7 @@
 import app from "./server.js";
 
 const localeCodes = ["de", "fr", "es", "it", "nl", "pl", "pt", "sv"];
+const categoryCodes = ["shoes", "hoodies", "t-shirts", "jackets", "pants-shorts", "headwear", "accessories", "jerseys", "electronics", "other-finds"];
 const textSelectors = "title,h1,h2,h3,p,a,span,b,strong,small,label,button,option,summary,li,dt,dd,td,th";
 
 function localeFromPath(pathname) {
@@ -64,10 +65,11 @@ class EnglishAlternates {
   constructor(pathname, origin) { this.pathname = pathname; this.origin = origin; }
   element(element) {
     const base = localizedPath(this.pathname, null);
+    const languages = categoryCodes.includes(base.slice(1)) ? ["de"] : localeCodes;
     const links = [
       `<link rel="alternate" hreflang="en" href="${this.origin}${base}">`,
       `<link rel="alternate" hreflang="x-default" href="${this.origin}${base}">`,
-      ...localeCodes.map((locale) => `<link rel="alternate" hreflang="${locale}" href="${this.origin}${localizedPath(base, locale)}">`),
+      ...languages.map((locale) => `<link rel="alternate" hreflang="${locale}" href="${this.origin}${localizedPath(base, locale)}">`),
     ].join("");
     element.append(links, { html: true });
   }
@@ -90,6 +92,12 @@ async function translateHtml(response, request, env, locale) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    const legacyCategory = url.pathname.match(new RegExp(`^/(?:(?:${localeCodes.join("|")})/)?categories/(${categoryCodes.join("|")})/?$`));
+    if (legacyCategory) {
+      const locale = localeFromPath(url.pathname);
+      const destination = new URL(localizedPath(`/${legacyCategory[1]}`, locale), url.origin);
+      return Response.redirect(destination.toString(), 301);
+    }
 
     if (
       url.pathname.startsWith("/assets/") ||

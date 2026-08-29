@@ -4,18 +4,18 @@ import TranslationEngine from "./components/TranslationEngine";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pikobuyspreadsheet.de"),
-  title: "PikoBuy Spreadsheet — Product Research & Buying Guide",
+  title: "PikoBuy Spreadsheet 2026 | Searchable Product Links & EU Guide",
   description: "An independent PikoBuy spreadsheet research guide for category-first product discovery, QC checks, shipping context and live FindSpreadsheet records.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "PikoBuy Spreadsheet — Product Research & Buying Guide",
+    title: "PikoBuy Spreadsheet 2026 | Searchable Product Links & EU Guide",
     description: "Research smarter. Compare product finds, QC signals, sizing and parcel context before opening the live database.",
     images: [{ url: "/og-hero.jpg", width: 1400, height: 735, alt: "PikoBuy Spreadsheet research guide" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PikoBuy Spreadsheet — Product Research & Buying Guide",
+    title: "PikoBuy Spreadsheet 2026 | Searchable Product Links & EU Guide",
     description: "Research smarter. Compare clearly.",
     images: ["/og-hero.jpg"],
   },

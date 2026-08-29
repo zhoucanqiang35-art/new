@@ -22,10 +22,12 @@ test("homepage is indexable and exposes website search schema", async () => {
 });
 
 test("category detail is a real crawlable page", async () => {
-  const response = await render("/categories/shoes");
+  const response = await render("/shoes");
   const html = await response.text();
   assert.equal(response.status, 200);
-  assert.match(html, /<title>Shoes PikoBuy Spreadsheet Research<\/title>/);
+  assert.match(html, /<title>PikoBuy Shoes Spreadsheet \| QC &amp; Sizing Research<\/title>/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.de\/shoes"/i);
+  assert.match(html, /hrefLang="de" href="https:\/\/pikobuyspreadsheet\.de\/de\/shoes"/i);
   assert.match(html, /Check outsole shape, stitching, bonding and pair symmetry/);
   assert.match(html, /"@type":"BreadcrumbList"/);
   assert.match(html, /https:\/\/findspreadsheet\.com\/shoes\//);
@@ -38,6 +40,18 @@ test("product detail discloses snapshot status and breadcrumb data", async () =>
   assert.match(html, /Snapshot date/);
   assert.match(html, /availability not assumed/);
   assert.match(html, /"@type":"BreadcrumbList"/);
+  assert.match(html, /"@type":"ItemPage"/);
+  assert.doesNotMatch(html, /"@type":"Offer"/);
+});
+
+test("FAQ content exposes matching FAQPage structured data", async () => {
+  const response = await render("/faq");
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /"@type":"FAQPage"/);
+  assert.match(html, /"@type":"Question"/);
+  assert.match(html, /What is a PikoBuy spreadsheet\?/);
+  assert.match(html, /It is an independent product-discovery format/);
 });
 
 test("sitemap contains the new English and German category pages", async () => {
@@ -45,8 +59,8 @@ test("sitemap contains the new English and German category pages", async () => {
   const xml = await response.text();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^application\/xml\b/i);
-  assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/categories\/shoes/);
-  assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/de\/categories\/shoes/);
-  assert.doesNotMatch(xml, /https:\/\/pikobuyspreadsheet\.de\/fr\/categories\/shoes/);
+  assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/shoes/);
+  assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/de\/shoes/);
+  assert.doesNotMatch(xml, /https:\/\/pikobuyspreadsheet\.de\/fr\/shoes/);
   assert.equal((xml.match(/<url>/g) || []).length, 164);
 });

@@ -19,7 +19,7 @@ export default function CategoriesPage() {
       <p className="lead">A category page is more useful than one mixed product list when sizing, inspection evidence and parcel impact differ. Use the ten routes below to narrow the research task before opening the live main database.</p>
       <div className="category-grid category-page-grid">
         {categories.map((category) => (
-          <a className="category-card" key={category.name} href={`/categories/${category.slug}`}>
+          <a className="category-card" key={category.name} href={`/${category.slug}`}>
             <span className="category-icon-box"><CategoryIcon name={category.name} /></span>
             <div className="category-copy"><b>{category.name}</b><small>{category.note}</small></div>
             <span className="category-open" aria-hidden="true">→</span>

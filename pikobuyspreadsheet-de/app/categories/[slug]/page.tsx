@@ -3,8 +3,9 @@ import { notFound } from "next/navigation";
 import ArticleShell from "../../components/ArticleShell";
 import CategoryIcon from "../../components/CategoryIcon";
 import { categories, categoryBySlug, products } from "../../catalog";
+import { serverTranslations } from "../../i18n/server-translations";
 
-type CategoryPageProps = { params: Promise<{ slug: string }> };
+type CategoryPageProps = { params: Promise<{ slug: string }>; locale?: string };
 
 export function generateStaticParams() {
   return categories.map((category) => ({ slug: category.slug }));
@@ -14,23 +15,24 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const category = categoryBySlug((await params).slug);
   if (!category) return {};
   return {
-    title: `${category.name} PikoBuy Spreadsheet Research`,
+    title: `PikoBuy ${category.name} Spreadsheet | QC & Sizing Research`,
     description: `Research ${category.note.toLowerCase()} with category-specific inspection, sizing and parcel checks before opening the live database.`,
-    alternates: { canonical: `/categories/${category.slug}` },
+    alternates: { canonical: `/${category.slug}` },
   };
 }
 
-export default async function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params, locale = "en" }: CategoryPageProps) {
   const category = categoryBySlug((await params).slug);
   if (!category) notFound();
+  const dictionary = serverTranslations[locale] || {};
+  const translate = (value: string) => dictionary[value] || value;
   const matchingProducts = products.filter((product) => product.category === category.name);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://pikobuyspreadsheet.de/" },
-      { "@type": "ListItem", position: 2, name: "Categories", item: "https://pikobuyspreadsheet.de/categories" },
-      { "@type": "ListItem", position: 3, name: category.name, item: `https://pikobuyspreadsheet.de/categories/${category.slug}` },
+      { "@type": "ListItem", position: 1, name: translate("Home"), item: "https://pikobuyspreadsheet.de/" },
+      { "@type": "ListItem", position: 2, name: translate(category.name), item: `https://pikobuyspreadsheet.de/${category.slug}` },
     ],
   };
 
@@ -72,6 +74,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       ) : (
         <div className="callout"><b>No invented records</b><span>This category page does not create placeholder products. Use the live destination for current records while verified research pages are added.</span></div>
       )}
+      <h2>Continue with the right guide</h2>
+      <div className="page-card-grid category-guide-links">
+        <a className="page-card" href="/guides"><span>01</span><div><b>Buying workflow</b><p>Follow the product, warehouse and parcel decisions in order.</p></div><strong>Open guide →</strong></a>
+        <a className="page-card" href="/articles/qc-photo-checklist"><span>02</span><div><b>QC photo checklist</b><p>Review the photo evidence that matters for each product type.</p></div><strong>Open checklist →</strong></a>
+        <a className="page-card" href="/shipping"><span>03</span><div><b>Parcel planning</b><p>Compare weight, dimensions and route constraints before shipping.</p></div><strong>Open shipping guide →</strong></a>
+      </div>
     </ArticleShell>
   );
 }

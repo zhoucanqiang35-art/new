@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ArticleShell from "../components/ArticleShell";
+import { serverTranslations } from "../i18n/server-translations";
 
 export const metadata: Metadata = {
   title: "PikoBuy Spreadsheet FAQ: Products, QC, Returns & Shipping",
@@ -23,13 +24,25 @@ const faqs = [
   ["Does PikoBuy guarantee customs clearance or delivery?", "No such guarantee appears in the official materials reviewed. PikoBuy’s shipping terms state that third-party logistics risks are unavoidable and specifically mention customs policy, confiscation, damage, loss and peak-season delay as risks outside its control. Buyers should review the live route conditions, lawful item restrictions, insurance terms and destination rules before paying international freight."],
 ];
 
-export default function FAQPage() {
+export default function FAQPage({ locale = "en" }: { locale?: string } = {}) {
+  const dictionary = serverTranslations[locale] || {};
+  const translate = (value: string) => dictionary[value] || value;
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(([question, answer]) => ({
+      "@type": "Question",
+      name: translate(question),
+      acceptedAnswer: { "@type": "Answer", text: translate(answer) },
+    })),
+  };
   return (
     <ArticleShell
       eyebrow="Frequently asked questions"
       title="Direct answers, with the boundaries left visible."
       intro="Thirteen practical answers for readers moving from product discovery to the current PikoBuy purchasing, warehouse and parcel workflow."
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <p className="lead">These answers separate spreadsheet research from platform operations. Use FindSpreadsheet to discover and compare live product records. Use the current PikoBuy account and support process for purchases, payments, warehouse actions, returns, parcel submission and tracking.</p>
       <div className="callout"><b>Fact-check basis · reviewed 24 August 2026</b><span>PikoBuy Beginner&apos;s Guide, Shipping Estimate, Shipping Terms, Returns &amp; Exchanges and Terms of Service. Policies can change, so the live account and current official policy control any transaction.</span></div>
       <div className="long-faq">

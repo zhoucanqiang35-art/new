@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ArticleShell from "../../components/ArticleShell";
 import { productBySlug, products } from "../../catalog";
+import { serverTranslations } from "../../i18n/server-translations";
 
-type ProductPageProps = { params: Promise<{ slug: string }> };
+type ProductPageProps = { params: Promise<{ slug: string }>; locale?: string };
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -21,17 +22,28 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   };
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params, locale = "en" }: ProductPageProps) {
   const product = productBySlug((await params).slug);
   if (!product) notFound();
+  const dictionary = serverTranslations[locale] || {};
+  const translate = (value: string) => dictionary[value] || value;
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://pikobuyspreadsheet.de/" },
-      { "@type": "ListItem", position: 2, name: "Product details", item: "https://pikobuyspreadsheet.de/products" },
-      { "@type": "ListItem", position: 3, name: product.title, item: `https://pikobuyspreadsheet.de/products/${product.slug}` },
+      { "@type": "ListItem", position: 1, name: translate("Home"), item: "https://pikobuyspreadsheet.de/" },
+      { "@type": "ListItem", position: 2, name: translate("Product details"), item: "https://pikobuyspreadsheet.de/products" },
+      { "@type": "ListItem", position: 3, name: translate(product.title), item: `https://pikobuyspreadsheet.de/products/${product.slug}` },
     ],
+  };
+  const itemPage = {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    name: translate(product.title),
+    description: translate(product.summary),
+    url: `https://pikobuyspreadsheet.de/products/${product.slug}`,
+    dateModified: product.snapshotDate,
+    isPartOf: { "@type": "WebSite", name: "PikoBuy Spreadsheet Research Guide", url: "https://pikobuyspreadsheet.de/" },
   };
 
   return (
@@ -50,6 +62,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       )}
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemPage) }} />
       <p className="lead">The displayed comparison price is <strong>{product.price}</strong>, converted from the recorded <strong>{product.cny}</strong> source value. Treat it as a research snapshot and verify the live record before continuing.</p>
       <h2>What to check first</h2>
       <ol>
@@ -61,6 +74,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div><b>Research status</b><span>Representative lead; not a purchase recommendation</span></div>
         <div><b>Snapshot date</b><span>{product.snapshotDate} · availability not assumed</span></div>
         <div><b>Next destination</b><span>Live {product.category} category on FindSpreadsheet</span></div>
+      </div>
+      <h2>Related research</h2>
+      <div className="page-card-grid category-guide-links">
+        <a className="page-card" href={`/${product.category.toLowerCase().replaceAll(" / ", "-").replaceAll(" ", "-")}`}><span>01</span><div><b>Compare the category</b><p>Review the same inspection, sizing and parcel questions across similar finds.</p></div><strong>Open category →</strong></a>
+        <a className="page-card" href="/articles/qc-photo-checklist"><span>02</span><div><b>QC photo checklist</b><p>Use a repeatable photo-review process before accepting a warehouse item.</p></div><strong>Open checklist →</strong></a>
+        <a className="page-card" href="/shipping"><span>03</span><div><b>Shipping context</b><p>Plan weight and dimensions after the product evidence makes sense.</p></div><strong>Open guide →</strong></a>
       </div>
     </ArticleShell>
   );
