@@ -1,0 +1,28 @@
+{
+  "categories": ["Sneakers", "Shirts", "Hoodies", "Jackets", "Pants", "Bags", "Shorts", "Accessories", "Jewelry", "Watches", "Sweaters"],
+  "heroRail": [["Find", "Product / category / ID"], ["Check", "Listing / options / photos"], ["Plan", "Warehouse QC / parcel"]],
+  "guides": [
+    ["How to use a PikoBuy spreadsheet", "Search by product or ID, narrow by category, compare the source record and confirm the current listing before ordering."],
+    ["Warehouse QC: what photos can show", "Use photos for visible identity, colour, labels, measurements and damage—not for guarantees about material or long-term durability."],
+    ["Plan shipping without a fake flat rate", "Destination, actual weight, dimensions, route and product restrictions can all change the estimate. Confirm the live calculator."],
+    ["Check a product link before paying", "Match the title, item ID, selected option, quantity, price and seller images. Treat the spreadsheet as research."]
+  ],
+  "pages": {
+    "categories": ["01 / CATEGORIES", "Browse PikoBuy spreadsheet categories", "Eleven focused routes into the FindSpreadsheet catalog, arranged for fast product discovery.", "Start with the product type", "Each card opens the matching FindSpreadsheet collection—not another directory."],
+    "products": ["02 / PRODUCT RESEARCH", "Product research, not a random link wall", "Use representative records to understand what to check, then continue to the current product page for images, options and price.", "Record identity", "Title · item ID · category", "Visible evidence", "Images · options · measurements", "Current amount", "Confirm before ordering"],
+    "guides": ["03 / BUYER GUIDES", "From product link to parcel submission", "Practical guides follow the public PikoBuy flow: product selection, ordering, warehouse inspection, parcel choice and tracking.", "Public PikoBuy workflow"],
+    "articles": ["04 / SEO ARTICLES", "Evidence-led PikoBuy articles", "Full practical guides based on current public PikoBuy workflow, shipping, inspection and return information.", "Editorial standard", "Every article separates platform-confirmed facts, practical checks and uncertain outcomes. We do not invent user numbers, fixed rates, guaranteed delivery times or customs results.", "Fact-checked August 2026"],
+    "faq": ["05 / FAQ", "Straight answers before you order", "Concise answers checked against PikoBuy’s current public guide, shipping terms, estimator and return policy.", "Fact-checked August 29, 2026. Time-sensitive fees, routes and policies must still be confirmed in the current platform flow."]
+  },
+  "workflow": [
+    ["Select products", "Confirm the current platform step and account details before continuing."],
+    ["Search the item", "Confirm the current platform step and account details before continuing."],
+    ["Submit and pay", "Confirm the current platform step and account details before continuing."],
+    ["Warehouse inspection", "Check visible identity, quantity, size, colour, measurements and damage."],
+    ["Choose and pay shipping", "Compare the live estimate using destination, weight, dimensions and restrictions."],
+    ["Track the parcel", "Confirm the current platform step and account details before continuing."]
+  ],
+  "articleUi": ["SEO ARTICLE", "Independent research · No delivery or customs guarantees", "Continue with current product data", "Use the article as a checklist, then confirm current listings, options and prices on the main database.", "View all products", "Back to SEO articles"],
+  "productLabels": ["Check live price", "Product record", "Reference price"],
+  "sourceLabels": ["Official-source checks", "Independent resource. Not affiliated with or endorsed by PikoBuy."]
+}
