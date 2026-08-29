@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://pikobuyspreadsheet.me"),
   title: "PikoBuy Spreadsheet Guide",
   description: "An independent PikoBuy spreadsheet research guide for product links, QC photos, sizing, source checks and shipping planning.",
   robots: { index: true, follow: true },

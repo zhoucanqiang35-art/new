@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import GuidePage from "../guide-page";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy Shipping Guide 2026 | Cost, Weight and Routes",
   description: "A fact-checked PikoBuy shipping guide for parcel weight, dimensions, packaging, route comparison and delivery risks.",
+  alternates: localizedAlternates("shipping-guide"),
 };
 
 export default function Page(){return <GuidePage pageId="shipping-guide" kicker="SHIPPING GUIDE" title="PikoBuy shipping planning for the US, UK, Canada and Europe" intro="PikoBuy lets customers submit warehouse items as a parcel and choose an available international route. The useful comparison starts with the actual parcel: destination, goods type, weight, dimensions and packaging." sections={[

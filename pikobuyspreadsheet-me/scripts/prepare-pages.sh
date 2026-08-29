@@ -12,7 +12,7 @@ cp -R dist/server/. dist/pages/_worker.js/
 # Vinext does not always copy Next public metadata files into dist/client.
 # Copy the SEO crawl files into the exact Cloudflare Pages output root so
 # /sitemap.xml and /robots.txt are served as static assets before the SSR app.
-cp public/sitemap.xml dist/pages/sitemap.xml
+node scripts/generate-sitemap.mjs dist/pages/sitemap.xml
 cp public/robots.txt dist/pages/robots.txt
 
 # Pages advanced mode gives _worker.js control of every request. Keep the

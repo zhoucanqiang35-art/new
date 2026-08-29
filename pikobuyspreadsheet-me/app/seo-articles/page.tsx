@@ -3,10 +3,12 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Camera, ListChecks, PackageSearch, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
   description: "Read independent PikoBuy spreadsheet articles about product research, QC photos, shipping, source links and buyer checks.",
+  alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [

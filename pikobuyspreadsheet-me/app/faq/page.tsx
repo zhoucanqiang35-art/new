@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import GuidePage from "../guide-page";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy FAQ 2026 | Orders, QC, Returns and Shipping",
   description: "Plain-English answers based on PikoBuy's public beginner guide, shipping terms, estimate form and returns policy.",
+  alternates: localizedAlternates("faq"),
 };
 
 export default function Page(){return <GuidePage pageId="faq" kicker="PLAIN ANSWERS" title="PikoBuy spreadsheet FAQ" intro="These answers use PikoBuy’s public platform pages reviewed on 26 August 2026. They explain the published process in simple language. Live orders, payments and parcels must still be handled through the official account." sections={[

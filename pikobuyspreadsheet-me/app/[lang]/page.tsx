@@ -13,5 +13,5 @@ const meta:Record<string,{title:string;description:string}>={
  pl:{title:"Poradnik PikoBuy Spreadsheet",description:"Niezależne wyszukiwanie produktów oraz kontrola QC, wymiarów i wysyłki dla arkuszy PikoBuy."}
 };
 export function generateStaticParams(){return locales.map(lang=>({lang}));}
-export async function generateMetadata({params}:{params:Promise<{lang:string}>}):Promise<Metadata>{const {lang}=await params;return meta[lang]||{};}
+export async function generateMetadata({params}:{params:Promise<{lang:string}>}):Promise<Metadata>{const {lang}=await params;const data=meta[lang];if(!data)return {};return {...data,alternates:{canonical:`https://pikobuyspreadsheet.me/${lang}`,languages:{en:"https://pikobuyspreadsheet.me/",de:"https://pikobuyspreadsheet.me/de",fr:"https://pikobuyspreadsheet.me/fr",es:"https://pikobuyspreadsheet.me/es",it:"https://pikobuyspreadsheet.me/it",pt:"https://pikobuyspreadsheet.me/pt",nl:"https://pikobuyspreadsheet.me/nl",pl:"https://pikobuyspreadsheet.me/pl"}}};}
 export default async function Page({params}:{params:Promise<{lang:string}>}){const {lang}=await params;if(!locales.includes(lang))notFound();if(expandedLocales.includes(lang))return <ExpandedLocalizedHome lang={lang as ExtendedLocale}/>;return <LocalizedHome lang={lang as Locale}/>;}

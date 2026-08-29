@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import GuidePage from "../guide-page";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "How PikoBuy Works in 2026 | Product Link to Parcel",
   description: "A plain-English, fact-checked guide to PikoBuy product search, purchasing, warehouse inspection, parcel submission and international shipping.",
+  alternates: localizedAlternates("how-pikobuy-works"),
 };
 
 export default function Page(){return <GuidePage pageId="how-pikobuy-works" kicker="BEGINNER GUIDE" title="How PikoBuy works: from product link to international parcel" intro="PikoBuy is a China purchasing and forwarding platform. Its public guide explains a six-step route from finding an item to receiving a parcel. This independent article translates that process into simple decisions and shows what you still need to check yourself." sections={[

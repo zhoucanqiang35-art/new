@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import GuidePage from "../guide-page";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy QC Photo Guide 2026 | What to Check",
   description: "A practical 2026 guide to PikoBuy warehouse inspection photos, measurements, category checks and return decisions.",
+  alternates: localizedAlternates("qc-guide"),
 };
 
 export default function Page(){return <GuidePage pageId="qc-guide" kicker="QUALITY CONTROL" title="PikoBuy QC photos: what to inspect before parcel submission" intro="PikoBuy says items are checked in, photographed and inspected after they reach its China warehouse. These images are useful, but they are limited evidence. A good QC review starts with the order and asks clear, category-specific questions." sections={[

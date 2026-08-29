@@ -4,6 +4,12 @@ import SearchBox from "./search-box";
 import CategoryCards from "./category-cards";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 
+export const metadata = {
+  title: "PikoBuy Spreadsheet Guide | Product Research & QC Checks",
+  description: "Independent PikoBuy spreadsheet research for source links, QC photos, sizing and parcel planning without invented stock or seller claims.",
+  alternates: { canonical: "https://pikobuyspreadsheet.me/", languages: { en:"https://pikobuyspreadsheet.me/",de:"https://pikobuyspreadsheet.me/de",fr:"https://pikobuyspreadsheet.me/fr",es:"https://pikobuyspreadsheet.me/es",it:"https://pikobuyspreadsheet.me/it",pt:"https://pikobuyspreadsheet.me/pt",nl:"https://pikobuyspreadsheet.me/nl",pl:"https://pikobuyspreadsheet.me/pl" } },
+};
+
 const guides = [
   { icon: PackageCheck, title: "How PikoBuy works", text: "A fact-checked walk-through from product discovery and buy-for-me ordering to warehouse handling.", href: "/how-pikobuy-works" },
   { icon: Camera, title: "QC photo guide", text: "Category-specific photo checks that help you spot missing evidence before approving a parcel.", href: "/qc-guide" },
@@ -12,8 +18,10 @@ const guides = [
 ];
 
 export default function Home() {
+  const websiteData = {"@context":"https://schema.org","@type":"WebSite",name:"PikoBuy Spreadsheet Guide",url:"https://pikobuyspreadsheet.me/",description:"Independent PikoBuy spreadsheet research for source links, QC photos, sizing and parcel planning.",inLanguage:["en","de","fr","es","it","pt","nl","pl"]};
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(websiteData)}}/>
       <SiteHeader />
 
       <section className="hero">

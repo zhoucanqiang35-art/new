@@ -18,7 +18,7 @@ const categoryData = [
   { route: "hoodies-sweaters", icon: Shirt },
   { route: "jackets", icon: Layers3 },
   { route: "pants-shorts", icon: PanelTop },
-  { route: "accessories", icon: ShoppingBag },
+  { route: "bags", icon: ShoppingBag },
   { route: "pants-shorts", icon: PanelTop },
   { route: "accessories", icon: Glasses },
   { route: "accessories", icon: Gem },
@@ -27,12 +27,11 @@ const categoryData = [
 ] as const;
 
 export default function CategoryCards({ lang = "en" }: { lang?: keyof typeof labels }) {
+  const prefix = lang === "en" ? "" : `/${lang}`;
   return <div className="category-icon-grid">
     {categoryData.map(({ route, icon: Icon }, index) => <a
       className="category-icon-card"
-      href={`https://findspreadsheet.com/${route}/`}
-      target="_blank"
-      rel="noopener noreferrer"
+      href={`${prefix}/categories/${route}`}
       key={`${route}-${index}`}
     >
       <span className="category-icon"><Icon size={29} strokeWidth={1.8}/></span>

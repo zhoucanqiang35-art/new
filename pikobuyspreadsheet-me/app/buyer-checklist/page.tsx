@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import GuidePage from "../guide-page";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy Spreadsheet Buyer Checklist 2026 | 7 Checks",
   description: "Use seven clear checks for source links, options, QC photos, sizing, price, parcel weight and return timing before saving a PikoBuy find.",
+  alternates: localizedAlternates("buyer-checklist"),
 };
 
 export default function Page(){return <GuidePage pageId="buyer-checklist" kicker="BUYER CHECKLIST" title="The seven-point PikoBuy spreadsheet buyer checklist" intro="A useful spreadsheet is a shortlist, not a promise. Give a row one point for each check that has visible evidence. The result helps you decide what deserves more research before you place an order." sections={[

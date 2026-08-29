@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { ArrowRight, Camera, ExternalLink, Ruler, Scale, ShieldCheck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import ProductDetailCards from "../product-detail-cards";
+import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy Product Details | Links, QC, Size & Weight",
   description: "Understand the product details to verify before opening or saving a PikoBuy spreadsheet find.",
+  alternates: localizedAlternates("product-details"),
 };
 
 const productTypes = [
