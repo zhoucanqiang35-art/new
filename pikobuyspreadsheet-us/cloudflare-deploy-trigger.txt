@@ -1,3 +1,4 @@
 Cloudflare Pages deployment trigger for pikobuyspreadsheet-us.
 This file does not change the website content.
 Created: 2026-08-29.
+Static asset routing fix: 2026-08-29T07:15:00Z.
