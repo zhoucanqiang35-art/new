@@ -1,0 +1,11 @@
+import { ArrowRight } from "lucide-react";
+import { SiteHeader } from "@/app/components/SiteHeader";
+
+const products = [
+  { name:"Nike Phantom GX Elite AG-PRO", category:"Shoes", price:"$40.48", cny:"¥272", image:"https://findspreadsheet.com/uploads/allimg/20260126/1-26012614320C94.webp", url:"/shoes/nike-phantom-gx-elite-ag-pro-271.html", check:"Compare sole pattern, upper shape and size label." },
+  { name:"GCDS Logo Band Hoodie", category:"Hoodies", price:"$36.90", cny:"¥248", image:"https://findspreadsheet.com/uploads/allimg/20260211/1-2602110U444610.webp", url:"/hoodies-sweaters/gcds-logo-band-hoodiessweaters-40-styles-1523.html", check:"Check fabric weight, logo alignment and measurements." },
+  { name:"New Balance 550 Sneakers", category:"Shoes", price:"$38.69", cny:"¥260", image:"https://findspreadsheet.com/uploads/allimg/20260304/1-260304103211127.webp", url:"/shoes/new-balance-550-sneakers-13-styles-1753.html", check:"Review toe shape, panel stitching and heel profile." },
+  { name:"Ralph Lauren Polo Set", category:"Short Sets", price:"$20.54", cny:"¥138", image:"https://findspreadsheet.com/uploads/allimg/20260307/1-26030G10924620.webp", url:"/ShortSets/ralph-lauren-polo-short-sleeve-shirt-amp-shorts-set-5-styles-2008.html", check:"Confirm shirt and shorts sizing separately." },
+];
+
+export default function ProductsPage(){return <main><SiteHeader /><div className="article-header"><p className="section-label">Current catalog examples</p><h1>PikoBuy Spreadsheet Products</h1><p>Browse FindSpreadsheet examples with approximate USD references and category-specific checks. Every product opens its matching FindSpreadsheet detail page.</p></div><section className="standalone-grid product-grid">{products.map(product=><article className="product-card" key={product.name}><a href={`https://findspreadsheet.com${product.url}`} className="product-image"><img src={product.image} alt={product.name}/><span>{product.category}</span></a><div className="product-body"><p className="price"><strong>{product.price}</strong><span>{product.cny}</span></p><h2>{product.name}</h2><p>{product.check}</p><a href={`https://findspreadsheet.com${product.url}`}>View details <ArrowRight size={15}/></a></div></article>)}</section></main>}
