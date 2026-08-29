@@ -14,6 +14,7 @@ import RecheckLinksPage from "../../articles/recheck-product-links/page";
 import ReturnWindowPage from "../../articles/warehouse-return-window/page";
 import WesternMarketsPage from "../../articles/western-market-search-intent/page";
 import FirstVsSecondPaymentArticle from "../../articles/first-vs-second-payment/page";
+import ShippingEstimateVolumetricWeightArticle from "../../articles/shipping-estimate-volumetric-weight/page";
 import SearchPage from "../../search/page";
 import { categories, categoryBySlug, productBySlug } from "../../catalog";
 import { serverTranslations } from "../../i18n/server-translations";
@@ -36,6 +37,7 @@ const routeSeo: Record<string, { title: string; description: string }> = {
   faq: { title: "PikoBuy Spreadsheet FAQ: Products, QC, Returns & Shipping", description: "Direct answers about PikoBuy spreadsheet research, product links, warehouse inspection, return timing, shipping estimates, tracking and site independence." },
   articles: { title: "PikoBuy SEO Articles: Buying, QC, Shipping & Research", description: "Fact-checked English PikoBuy research articles covering first orders, QC photos, shipping planning, warehouse returns and spreadsheet link checks." },
   "articles/first-vs-second-payment": { title: "PikoBuy First and Second Payment Explained: A Buyer’s Budget Guide", description: "Understand what PikoBuy’s first payment and second international shipping payment cover, when each happens, and what to verify before paying." },
+  "articles/shipping-estimate-volumetric-weight": { title: "PikoBuy Shipping Estimate and Volumetric Weight: A Practical Guide", description: "Learn how to use a PikoBuy shipping estimate, compare actual and volumetric weight, check packed dimensions, and decide whether a parcel is ready." },
   "articles/qc-photo-checklist": { title: "PikoBuy QC Photo Checklist for Spreadsheet Finds", description: "A category-by-category QC photo checklist for PikoBuy spreadsheet finds, covering shoes, clothing, bags, accessories and electronics." },
   "articles/recheck-product-links": { title: "How to Recheck a PikoBuy Spreadsheet Product Link", description: "A defensive link-check process for PikoBuy spreadsheet records, covering redirects, changed variants, images, prices, seller details and stale availability." },
   "articles/warehouse-return-window": { title: "PikoBuy Five-Day Warehouse Return Window: Practical Checklist", description: "A practical guide to PikoBuy's published warehouse return timing, eligibility checks, evidence, seller rules and decision order." },
@@ -127,6 +129,7 @@ export default async function LocalizedPage({ params, searchParams }: LocalizedP
   if (route === "articles/warehouse-return-window") return <ReturnWindowPage />;
   if (route === "articles/western-market-search-intent") return <WesternMarketsPage />;
   if (route === "articles/first-vs-second-payment") return <FirstVsSecondPaymentArticle />;
+  if (route === "articles/shipping-estimate-volumetric-weight") return <ShippingEstimateVolumetricWeightArticle />;
   if (route === "search") return <SearchPage searchParams={searchParams} />;
   notFound();
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ArticleShell from "../components/ArticleShell";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "PikoBuy Shipping Cost, Warehouse & Parcel Planning Guide",
@@ -38,6 +39,7 @@ export default function ShippingPage() {
       <h2>Actual weight and parcel size both matter</h2>
       <p>Spreadsheet rows often show a product price without a reliable packed weight. Use the row as a warning system: shoes with boxes, thick jackets, bags, fragile goods and electronics deserve extra margin. Clothing that appears light can still become bulky after protective packing. The estimate should be refreshed once warehouse measurements are available.</p>
       <p>Do not publish or rely on a fixed “PikoBuy cost per kilogram” without a current route quote. The official public page is structured around destination, category, weight and dimensions precisely because those details affect the result. Route pricing and availability can change.</p>
+      <p>For a worked estimation method, read the <Link href="/articles/shipping-estimate-volumetric-weight">PikoBuy shipping estimate and volumetric weight guide</Link>. It shows how to replace pre-order assumptions with packed measurements without inventing a universal billing divisor.</p>
 
       <h2>A simple landed-cost worksheet</h2>
       <p>For research, keep product value, China-side costs, international freight, optional services, possible insurance and destination charges on separate lines. The spreadsheet’s approximate USD conversion is useful for comparing finds, but it is not an invoice and may not include the platform’s current checkout charges.</p>

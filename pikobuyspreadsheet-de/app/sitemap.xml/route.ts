@@ -13,6 +13,7 @@ const urls = [
   "/faq",
   "/articles",
   "/articles/first-vs-second-payment",
+  "/articles/shipping-estimate-volumetric-weight",
   "/articles/qc-photo-checklist",
   "/articles/warehouse-return-window",
   "/articles/recheck-product-links",
@@ -29,7 +30,7 @@ ${[
   ...["", "/de"].flatMap((language) => categoryUrls.map((path, index) => ({ language, path, index: index + 1 }))),
 ].map(({ language, path, index }) => `  <url>
     <loc>https://pikobuyspreadsheet.de${language}${path}</loc>
-    <lastmod>${path.startsWith("/categories/") ? "2026-08-29" : path === "/articles/first-vs-second-payment" || path === "/articles" ? "2026-08-27" : "2026-08-24"}</lastmod>
+    <lastmod>${path.startsWith("/categories/") || path === "/articles/shipping-estimate-volumetric-weight" || path === "/articles" ? "2026-08-29" : path === "/articles/first-vs-second-payment" ? "2026-08-27" : "2026-08-24"}</lastmod>
     <changefreq>${index === 0 ? "daily" : "weekly"}</changefreq>
     <priority>${index === 0 ? "1.0" : path === "/products" || path === "/guides" || path === "/shipping" ? "0.9" : "0.8"}</priority>
   </url>`).join("\n")}

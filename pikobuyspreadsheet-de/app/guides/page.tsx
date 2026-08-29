@@ -47,6 +47,7 @@ export default function GuidesPage() {
 
       <h2>Step 6 — estimate before parcel submission</h2>
       <p>PikoBuy provides a public shipping-estimate form that asks for destination country or region, product type, weight, length, width and height. Those inputs show why product price alone is not enough. A light but bulky item can create a different route or cost result from a compact item with the same actual weight.</p>
+      <p>The <Link href="/articles/shipping-estimate-volumetric-weight">shipping estimate and volumetric weight guide</Link> gives a repeatable pre-order and post-warehouse calculation workflow.</p>
       <p>Compare the estimate with the warehouse-packed information before paying international freight. Consider whether boxes can safely be removed, whether fragile goods need protection and whether one restricted or unusually bulky item affects the rest of the parcel. The cheapest visible route is not automatically the best route; review the route description, supported item types, tracking, insurance information and destination requirements shown at the time.</p>
 
       <h2>Step 7 — second payment, dispatch and tracking</h2>

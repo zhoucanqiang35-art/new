@@ -62,7 +62,8 @@ test("sitemap contains the new English and German category pages", async () => {
   assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/shoes/);
   assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/de\/shoes/);
   assert.doesNotMatch(xml, /https:\/\/pikobuyspreadsheet\.de\/fr\/shoes/);
-  assert.equal((xml.match(/<url>/g) || []).length, 164);
+  assert.match(xml, /https:\/\/pikobuyspreadsheet\.de\/articles\/shipping-estimate-volumetric-weight/);
+  assert.equal((xml.match(/<url>/g) || []).length, 173);
 });
 
 test("Google sitemap alias and robots declaration stay in sync", async () => {
@@ -73,7 +74,25 @@ test("Google sitemap alias and robots declaration stay in sync", async () => {
   const [xml, robots] = await Promise.all([sitemapResponse.text(), robotsResponse.text()]);
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /^application\/xml\b/i);
-  assert.equal((xml.match(/<url>/g) || []).length, 164);
+  assert.equal((xml.match(/<url>/g) || []).length, 173);
   assert.equal(robotsResponse.status, 200);
   assert.match(robots, /Sitemap: https:\/\/pikobuyspreadsheet\.de\/sitemap-google\.xml/);
+});
+
+test("shipping estimate article is canonical, sourced, linked and available in every locale route", async () => {
+  const articlePath = "/articles/shipping-estimate-volumetric-weight";
+  const response = await render(articlePath);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+  assert.match(html, /<title>PikoBuy Shipping Estimate and Volumetric Weight: A Practical Guide<\/title>/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.de\/articles\/shipping-estimate-volumetric-weight"/i);
+  assert.match(html, /Official sources checked · 29 August 2026/);
+  assert.match(html, /Five-stage diagram for preparing a PikoBuy shipping estimate/);
+  assert.match(html, /href="https:\/\/findspreadsheet\.com\/AllProducts\/"/);
+  assert.doesNotMatch(html, /href="https:\/\/(?!pikobuyspreadsheet\.de|findspreadsheet\.com)/i);
+
+  for (const locale of ["de", "fr", "es", "it", "nl", "pl", "pt", "sv"]) {
+    const localizedResponse = await render(`/${locale}${articlePath}`);
+    assert.equal(localizedResponse.status, 200, `${locale} article route should return 200`);
+  }
 });
