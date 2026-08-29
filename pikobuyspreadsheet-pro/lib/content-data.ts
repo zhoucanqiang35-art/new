@@ -346,6 +346,74 @@ export const seoArticles: SeoArticle[] = [
         "Before the published return window closes, classify every material discrepancy, confirm current eligibility and calculate applicable costs without assuming seller approval. Decide whether the shoe box or added protection is worth the volume, then rerun the shipping estimate with measured weight and dimensions. Compare eligible routes by billing, time range, protection and restrictions—not price alone. Save the final parcel inputs and dispatch record. This process will not make every PikoBuy shoe purchase certain, but it makes uncertainty visible and actionable: each fact has a source, each gap has an owner, and each stage ends with a documented next step."
       ]}
     ]
+  },
+  {
+    slug:"pikobuy-clothing-size-guide",
+    title:"PikoBuy Clothing Size Guide: Measurements, QC and Returns",
+    deck:"A practical PikoBuy clothing size guide for reading seller charts, requesting useful warehouse evidence and making a timely keep-or-return decision.",
+    readTime:"12 min read",wordTarget:"1,200–1,800 words",
+    availableLocales:["en"],
+    publishedAt:"2026-08-29",
+    updatedAt:"2026-08-29",
+    primaryKeyword:"PikoBuy clothing size guide",
+    secondaryKeywords:["PikoBuy clothing measurements","PikoBuy size chart","PikoBuy hoodie size","PikoBuy T-shirt size","warehouse measurement photos","buy clothes from China"],
+    sources:["PikoBuy Beginner's Guide","PikoBuy Returns & Exchanges","PikoBuy Shipping Estimate","PikoBuy Shipping Terms","PikoBuy homepage"],
+    sourceLinks:[
+      {label:"PikoBuy Beginner's Guide",url:"https://www.pikobuy.com/guide"},
+      {label:"PikoBuy Returns & Exchanges",url:"https://www.pikobuy.com/protocol/returns"},
+      {label:"PikoBuy Shipping Estimate",url:"https://www.pikobuy.com/shipping-cost"},
+      {label:"PikoBuy Shipping Terms",url:"https://www.pikobuy.com/protocol/shipping"},
+      {label:"PikoBuy homepage",url:"https://www.pikobuy.com/home"}
+    ],
+    internalLinks:[
+      {label:"Open the PikoBuy T-shirt category checklist",url:"/en/product-categories/t-shirts"},
+      {label:"Review hoodies and sweaters",url:"/en/product-categories/hoodies"},
+      {label:"Check jackets and structured outerwear",url:"/en/product-categories/jackets"},
+      {label:"Read the warehouse QC photo guide",url:"/en/seo-articles/pikobuy-qc-photo-guide"},
+      {label:"Use the 120-hour return decision guide",url:"/en/seo-articles/pikobuy-returns-120-hour-guide"}
+    ],
+    sections:[
+      {heading:"A PikoBuy clothing size guide should begin with definitions",paragraphs:[
+        "A PikoBuy clothing size guide cannot turn S, M or XL into a universal fit promise. PikoBuy's Beginner's Guide tells buyers to confirm specifications, colour and size on the source platform before submitting the purchasing order. That official step is the foundation. The measurement framework in this article is editorial guidance for making the step more precise; it is not a PikoBuy guarantee that an item will fit.",
+        "Treat size selection as a record with four parts: the seller's label, the chart definition, a known-garment comparison and the intended fit. A label without the other three is weak evidence. Two sellers can attach the same label to different dimensions, and a loose hoodie should not be evaluated like a fitted T-shirt. If a chart is missing or unclear about measurement endpoints, ask through the live seller or official purchasing channel rather than copying an unrelated conversion."
+      ]},
+      {heading:"Read the seller chart before converting anything",paragraphs:[
+        "First determine whether the chart shows body measurements or finished-garment measurements. A chest value can mean full circumference, a flat half-chest width or a recommended body range. Length can begin at the highest shoulder point, the back neckline or another point. Sleeve length may run from the shoulder seam or from the centre back. These are different measurements even when the column headings look similar. Save the chart image or text with the listing date, record the units and write down the definition you can actually verify.",
+        "Do not convert centimetres to inches until the measurement type is clear. Arithmetic cannot repair an ambiguous endpoint. If the chart provides a flat garment width, compare it with a garment laid flat; do not compare it directly with a body circumference. If only a height-and-weight table is available, label it as a seller recommendation rather than a measured specification."
+      ]},
+      {heading:"Create a known-garment baseline",paragraphs:[
+        "Choose one garment that already fits the way the new item should fit. Lay it on a flat surface without stretching it, smooth obvious folds and measure the same endpoints used by the seller. For a T-shirt, useful comparisons often include chest width, body length, shoulder width and sleeve length. For a hoodie, add hem width and consider whether the hood or thick ribbing changes the feel. For trousers or shorts, the waistband method, rise, inseam and leg opening need clear endpoints. The goal is comparison, not a universal sizing formula.",
+        "Record how the reference garment was measured and the fit it provides. A favourite oversized top is a poor baseline for a fitted result unless that difference is intentional. Use a small table: seller measurement, reference measurement, difference and acceptable outcome. Do not invent one tolerance for every fabric or construction. If composition or shrinkage matters, use the live seller's documented information; warehouse photographs cannot prove fibre content or future washing behaviour."
+      ]},
+      {heading:"Preserve the exact PikoBuy size option before payment",paragraphs:[
+        "The official guide says to select colour, size and quantity, submit the order and complete the first payment. Before that step, save the live source link, item identifier where available, selected colour, labelled size, chart version and any variant-specific price. Some listings place several garments, bundles or adult and children's options under one page. A spreadsheet title such as black hoodie, size L is not enough when the listing has multiple black designs or size systems. Write the complete option in a way another careful reader could match to the purchase screen.",
+        "Recheck the selection immediately before payment. PikoBuy notes that prices are subject to the actual purchase and that an out-of-stock order will be refunded; this reinforces that a saved row is time-sensitive. If the source changed, update the record instead of treating the old chart as current. The record should show what was requested, which chart supported the decision and when the live option was last checked."
+      ]},
+      {heading:"Request warehouse evidence that answers one fit question",paragraphs:[
+        "PikoBuy's published workflow describes check-in, photo confirmation and a defect check after warehouse arrival. Its Shipping Terms say inspection photos can be reviewed and additional detailed photos can be purchased, while professional inspection is unavailable for some special or professional products. These statements define an evidence boundary, not a promise of a tailoring service. If the account interface or official support offers a measurement photograph, request one only when it can resolve a material question and specify the endpoints clearly.",
+        "A useful request might identify one flat chest width from seam to seam or one back length from a named neckline point to the hem. Compare the image with the ordered chart and confirm that the tape begins and ends where expected. If the endpoints are hidden, the tape is curved or the garment is stretched, mark the result inconclusive. Precision belongs to the method, not merely to the number on the tape."
+      ]},
+      {heading:"Use category-specific checks without repeating generic QC",paragraphs:[
+        "For a PikoBuy T-shirt size decision, focus on the labelled option, chest width, body length and whether the intended cut is fitted, regular or oversized. Then inspect visible collar shape, seams, print placement and surface marks as separate QC questions. For a hoodie, distinguish a thin sweatshirt from a lined or heavy garment because thickness can affect drape and parcel volume even when the flat measurements are similar. Check cuffs, hem, hood, closures and visible lining, but do not infer fabric weight or composition from appearance alone.",
+        "Jackets and structured outerwear need another layer. Chest and length matter, yet lining, padding and shoulder construction can influence comfort. For trousers, state whether the waistband is relaxed, stretched or measured around, and define the rise and inseam endpoints. Keep visible quality observations separate from the fit decision: a garment can match the ordered label while remaining unsuitable for the intended fit."
+      ]},
+      {heading:"Turn differences into a keep, clarify or return decision",paragraphs:[
+        "Build a discrepancy row with the ordered fact, warehouse observation, evidence source and next action. If size M was ordered and the sewn label shows M, record that match, but do not call fit verified. If the warehouse measurement differs from the saved chart, first confirm that both used the same endpoints and units. Then decide whether the difference changes the intended fit. Classify the action as keep, request one clarification or review return eligibility. This is more useful than a vague 8/10 score because it preserves the reason behind the decision.",
+        "Do not postpone a material size problem while collecting decorative photographs. PikoBuy's current Returns & Exchanges page states that an application can be made within five days after the status changes to In Warehouse, counted from the next hour, with five days equal to 120 hours. Record the warehouse timestamp as soon as it appears and calculate the deadline. The policy still requires eligibility, seller consent and resale condition. A measurement difference is evidence to review; it is not an automatic promise that the platform or seller will approve a return."
+      ]},
+      {heading:"Protect clothing return eligibility while inspecting",paragraphs:[
+        "The returns page lists products whose packaging, labels or accessories were removed at the user's request as not returnable and gives clothes with cut tags as an example. It also lists customised products and intimate apparel such as underwear, socks and leggings among categories that may not qualify for the free five-day service. Keep labels, accessories and packaging intact while fit evidence is being reviewed. Do not request an irreversible alteration, remove a tag or authorise customisation before the size decision is settled.",
+        "If the wrong colour or size was sent, preserve the order option and the warehouse image that shows the mismatch. The policy identifies a wrong product, including a different colour or size, as a seller-responsibility situation, while customer preference or buying the wrong item is treated differently. Choose the reason based on the actual facts. For an unconditional return, the published formula includes shipping back to the seller, the seller's original shipping fee and an RMB 5 service fee. Calculate the possible cost, but wait for the actual case outcome before describing any refund as certain."
+      ]},
+      {heading:"Add shipping only after the size decision",paragraphs:[
+        "International freight is the second cost decision. The official shipping estimator asks for destination, product type, weight, length, width and height, while the Beginner's Guide says routes differ in delivery time and billing methods. Clothing may be compressible, but minimal packaging is not automatically the best instruction for every garment. PikoBuy says buyers can add requests such as minimal or reinforced packaging. Consider whether a structured jacket, decoration or hardware needs protection, then use the measured parcel inputs rather than a generic per-item shipping assumption.",
+        "PikoBuy's Shipping Terms state that third-party providers carry international parcels and describe risks including customs action, damage, loss and peak-season delay. A size record cannot remove those risks, and a displayed time range is not a guaranteed arrival date. Save the selected packaging, submitted weight, dimensions, route and freight payment with the order record. That separation keeps the article's logic clean: source charts and warehouse evidence support the fit decision; measured parcel data supports the shipping decision; neither should be used to promise what the other cannot establish."
+      ]},
+      {heading:"A practical PikoBuy clothing size checklist",paragraphs:[
+        "Before payment, reopen the live listing and identify whether the chart shows body or finished-garment measurements. Record units, endpoints, labelled size, colour, quantity, chart date and the exact variant. Measure a known garment using the same method and write the intended fit. At warehouse arrival, record the status timestamp, preserve labels and packaging, compare the sewn label with the order and inspect the visible category details. If a measurement photo is available and genuinely necessary, request one defined measurement and verify the tape placement before using the result.",
+        "Before the published return window closes, separate a label match from a fit conclusion, classify each meaningful discrepancy and confirm current eligibility without assuming seller approval. Keep irreversible requests on hold until the decision is complete. If the item remains suitable, choose packaging according to its structure and value, then estimate shipping with measured weight and dimensions. This PikoBuy clothing size guide cannot guarantee fit, but it can make the decision auditable: every number has a definition, every comparison uses a known baseline, every policy claim has a current source and every unresolved question has a next action."
+      ]}
+    ]
   }
 ];
 
