@@ -33,6 +33,13 @@ rm -rf "${pages_worker}"
 mkdir -p "${pages_worker}"
 cp -a "${SITES_PROJECT_ROOT}/dist/server/." "${pages_worker}/"
 
+# Generate crawler files after the framework build so Pages serves them as
+# real static files instead of routing these paths through the app shell.
+(
+  cd "${SITES_PROJECT_ROOT}"
+  node scripts/generate-seo-files.mjs
+)
+
 # Pages Advanced Mode sends every request through `_worker.js` unless a
 # `_routes.json` file excludes static files. The generated vinext Worker only
 # renders application routes; without this exclusion, CSS/JS requests are
@@ -48,7 +55,10 @@ cat > "${SITES_PROJECT_ROOT}/dist/client/_routes.json" <<'EOF'
     "/globe.svg",
     "/window.svg",
     "/pikobuy-logo.png",
-    "/pikobuy-spreadsheet-us-hero.png"
+    "/pikobuy-spreadsheet-us-hero.png",
+    "/robots.txt",
+    "/sitemap.xml",
+    "/sitemap-google.txt"
   ]
 }
 EOF
