@@ -1,6 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "pikobuyspreadsheet-us",
+  // Production release with real static sitemap and robots responses.
   "compatibility_date": "2026-08-29",
   "compatibility_flags": ["nodejs_compat"],
   "pages_build_output_dir": "./dist/client"
