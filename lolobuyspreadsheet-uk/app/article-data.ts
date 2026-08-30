@@ -4,6 +4,12 @@ export type SeoArticle = {
   description: string;
   readTime: string;
   checked: string;
+  sourceNote?: string;
+  primaryKeyword?: string;
+  relatedKeywords?: string[];
+  datePublished?: string;
+  dateModified?: string;
+  faq?: { question: string; answer: string }[];
   sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
 };
 
@@ -67,7 +73,7 @@ export const seoArticles: SeoArticle[] = [
         heading: "Do not submit the parcel too early",
         paragraphs: [
           "LoloBuy states that ordered items are not automatically sent to your overseas address; after warehouse arrival, you must submit a parcel. Before doing that, decide which items belong together. Check whether every item has completed the warehouse stage, whether any issue is still open, and whether the combination creates unnecessary weight or size.",
-          "The platform advertises 90 days of free storage in its public service description. That is useful planning time, but it should not become a reason to ignore the warehouse. Storage rules, extended-storage options and item eligibility can change, so the live warehouse page remains the controlling source. A simple habit works well: review each arrival, mark it keep/return/question, and submit only when the group is settled."
+          "The platform advertises 180 days of free storage in its public service description as checked on 30 August 2026. That is useful planning time, but it should not become a reason to ignore the warehouse. Storage rules, extended-storage options and item eligibility can change, so the live warehouse page remains the controlling source. A simple habit works well: review each arrival, mark it keep/return/question, and submit only when the group is settled."
         ]
       },
       {
@@ -261,6 +267,143 @@ export const seoArticles: SeoArticle[] = [
         paragraphs: [
           "Use five lines: item and domestic delivery; optional warehouse services; expected packaging; estimated international freight; and a buffer for payment, tax or customs differences. Make a low and high estimate. If the purchase only makes sense at the low number, it may not be a good candidate.",
           "The aim is not to predict every fee exactly. It is to avoid being surprised by the basic structure. Check the live product, warehouse and parcel screens at each stage. Use FindSpreadsheet for organized discovery, but let current LoloBuy data control the operational decision. That is how a cheap find stays a considered purchase instead of becoming an unexpectedly expensive parcel."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "lolobuy-warehouse-consolidation-guide",
+    title: "LoloBuy Warehouse and Parcel Consolidation: A Practical Buyer’s Guide",
+    description: "A practical LoloBuy warehouse guide for reviewing arrivals, planning storage, combining accepted items and estimating a parcel before international shipping.",
+    readTime: "11–13 min read",
+    checked: "Official platform information checked 30 August 2026",
+    sourceNote: "This guide was checked against LoloBuy’s public homepage, freight estimator and help centre on 30 August 2026. Storage offers, warehouse status, route availability, freight, seller terms and customs requirements can change, so the active account flow remains the controlling source.",
+    primaryKeyword: "LoloBuy warehouse guide",
+    relatedKeywords: [
+      "LoloBuy parcel consolidation",
+      "combine LoloBuy warehouse items",
+      "LoloBuy free storage period",
+      "LoloBuy warehouse QC",
+      "LoloBuy international parcel",
+    ],
+    datePublished: "2026-08-30",
+    dateModified: "2026-08-30",
+    faq: [
+      {
+        question: "Can I combine LoloBuy items from different sellers?",
+        answer: "LoloBuy’s public service page says orders from different sellers are integrated at its China warehouse and that stored products can be selected and submitted as one parcel. Only combine items that have arrived, passed your review and are eligible for the same live shipping route.",
+      },
+      {
+        question: "How long is LoloBuy warehouse storage free?",
+        answer: "The public LoloBuy homepage advertised 180 days free of storage charge when checked on 30 August 2026. Check the live warehouse record for each item because policies, start dates, eligibility and later charges can change.",
+      },
+      {
+        question: "Does parcel consolidation always reduce shipping cost?",
+        answer: "No. Consolidation may reduce repeated starting charges, but a larger parcel can become heavier, bulkier or ineligible for a preferred route. Compare realistic parcel groups with the current freight estimator and the final warehouse data.",
+      },
+      {
+        question: "Should I submit a parcel as soon as every item arrives?",
+        answer: "Not automatically. First resolve QC questions, return decisions, category restrictions, packaging choices and the recipient address. Submit only the items you have accepted and can support with a current route and cost estimate.",
+      },
+    ],
+    sections: [
+      {
+        heading: "What the LoloBuy warehouse stage actually changes",
+        paragraphs: [
+          "A buying-agent order has two journeys. The seller first sends the item within China; only later does the buyer create an international parcel. LoloBuy’s public homepage describes this sequence clearly: the shopper pays the product price and mainland-China freight, goods from different sellers are sent to the LoloBuy China warehouse, and the platform carries out warehouse inspection before the buyer chooses stored products for global shipping.",
+          "That middle stage is not dead time. It is the point where a product link becomes a physical item with a warehouse status, images and more useful weight information. Treat it as a decision checkpoint. You can accept the item, question a visible mismatch, start an eligible return process, keep it stored while another order arrives, or exclude it from the next parcel. The safest consolidation starts with good item-level decisions, not with selecting everything on screen."
+        ]
+      },
+      {
+        heading: "Create a warehouse register before anything piles up",
+        paragraphs: [
+          "As soon as an order appears in the warehouse, record five details: order number, short product name, selected variation, arrival date and current decision. Use only three decision labels—keep, question or return. If several similar shirts or shoes arrive together, add the colour, size and seller so one item cannot be mistaken for another. A small register prevents an accepted item from being mixed with one that still has an unresolved issue.",
+          "The record does not need special software. A note or simple table is enough, provided it matches the numbers in the active LoloBuy account. Add the last free-storage date shown by the live warehouse record when available. LoloBuy’s public page advertised 180 days free of storage charge on 30 August 2026, but the account’s item dates and current terms should control your action because public offers and eligibility can change."
+        ],
+        bullets: [
+          "Order number and warehouse item name",
+          "Selected colour, size, style and quantity",
+          "Arrival date and any storage deadline shown live",
+          "Decision: keep, question or return",
+          "Planned parcel group and destination"
+        ]
+      },
+      {
+        heading: "Review each arrival before planning consolidation",
+        paragraphs: [
+          "LoloBuy’s public service description says warehouse staff inspect items and provide inspection feedback. Use the available QC images to compare the received item with the variation you ordered. Start with identity: product type, colour, size label, quantity and included parts. Then check visible condition, major measurements where provided and packaging. An item should not enter a parcel plan merely because its status says stored.",
+          "Keep the limits of inspection in view. Photos can reveal a wrong colour, missing component, obvious stain or damaged box; they cannot prove authenticity, fabric composition, battery condition or long-term durability. When one missing view would change the keep-or-return decision, check whether a focused additional photo or measurement service is currently offered. Do not pay for vague extra pictures that will not change what you do."
+        ]
+      },
+      {
+        heading: "Build parcel groups by compatibility, not arrival order",
+        paragraphs: [
+          "The official homepage says shoppers may select products stored in the warehouse and submit them as a single parcel. That makes consolidation possible, but it does not mean every stored item belongs together. Group products by destination, route eligibility, fragility, value and packaging needs. Soft clothing may tolerate compression; a structured shoe, glass accessory or boxed collectible may need protection that adds weight and space.",
+          "Separate items when one could damage another. Metal hardware can scratch soft surfaces, liquids can leak, strong odours can transfer, and a heavy box can crush clothing. Restricted or sensitive categories can also reduce the routes offered to the whole parcel. If the live system treats one product differently, price a separate group before assuming the entire haul should follow it. Consolidation is useful only when the combination remains shippable and reasonably protected."
+        ]
+      },
+      {
+        heading: "Decide what packaging can safely change",
+        paragraphs: [
+          "Packaging is the main connection between warehouse planning and freight. Removing a large retail box can reduce parcel dimensions, while reinforcement, corner protection and moisture barriers can add weight. Before requesting a change, decide what the packaging must do. A decorative box may be expendable for an everyday purchase but important for a collector. A shoe box may be bulky, yet removing it without shape protection can create a different problem.",
+          "Write instructions that can be followed and verified. ‘Remove outer shoe boxes but keep internal shape support’ is clearer than ‘make it lighter’. Avoid contradictory requests such as removing all packaging while expecting the retail box to arrive perfectly. If the account offers a packing or rehearsal service, make the packaging choice before that estimate so the reported dimensions represent the parcel you actually intend to submit."
+        ]
+      },
+      {
+        heading: "Estimate realistic groups before pressing submit",
+        paragraphs: [
+          "LoloBuy’s public freight-estimate page asks for destination, weight in grams, item category, length, width and height. It then displays routes available for that destination and parcel description. Those fields show why a product total alone cannot answer whether consolidation saves money. International freight depends on the physical parcel and the route’s current rules, not on how many spreadsheet rows it contains.",
+          "Run at least two comparisons: the proposed consolidated parcel and a sensible split. Use a range before final packing because warehouse item weights do not always equal packed parcel weight. Compare the total cost, route availability, delivery features shown live and the risk concentrated in one box. A single parcel may avoid paying a starting charge twice, but a larger parcel can cross a weight or dimension threshold or lose a preferred route."
+        ],
+        bullets: [
+          "One parcel containing all compatible accepted items",
+          "Two parcels split by category, fragility or size",
+          "A version with optional retail packaging removed",
+          "A version with the protection the products actually need"
+        ]
+      },
+      {
+        heading: "Use storage as planning time, not a reason to wait blindly",
+        paragraphs: [
+          "Free storage can help several domestic orders arrive before international shipping. It can also hide unfinished work. Review each arrival within a day or two if possible, even when you plan to wait for other sellers. Mark a decision, save the relevant evidence and resolve questions early. A late review can leave less time to deal with a seller or change the parcel plan.",
+          "Do not hold an accepted parcel group indefinitely for one uncertain order. Compare the likely benefit of adding that item with the cost of delay, storage exposure and a possible route change. If an item has no reliable dispatch timing, set a personal cut-off date before the live storage limit. When the date arrives, submit the ready group or deliberately revise the plan instead of waiting by default."
+        ]
+      },
+      {
+        heading: "Resolve returns and questions before international shipping",
+        paragraphs: [
+          "International parcel submission should be the end of the warehouse decision, not the beginning. If an item is the wrong option, has a visible defect or lacks a critical component, use the current order help process before selecting it for global shipping. Keep the request factual: quote the order number, state the selected option, identify the visible mismatch and attach the clearest image available.",
+          "Eligibility, deadlines and domestic return costs depend on the seller and current platform rules. Do not describe a return as guaranteed or free unless the live case says so. More importantly, do not ship an item internationally while expecting the warehouse team to resolve it later. Once it leaves the warehouse, the practical and financial options are usually different, and overseas return service may not be available on every route."
+        ]
+      },
+      {
+        heading: "Run a final parcel submission checklist",
+        paragraphs: [
+          "Before payment, compare the parcel screen with the warehouse register. Every selected item should be marked keep, and no open photo, measurement or return request should remain. Recheck the recipient’s full name, address, postcode and contact details. Then review the current route, declared product categories, packed or estimated weight, dimensions, packaging instructions and any protection terms presented in the live flow.",
+          "Use accurate descriptions for parcel contents and follow the destination country’s current customs rules. Combining products can change parcel value, category mix and customs exposure, so do not copy another buyer’s declaration. Keep a screenshot or record of the final item list, parcel number, payment and tracking. This will not prevent every delay, but it gives support a precise reference if the parcel status later needs investigation."
+        ],
+        bullets: [
+          "All selected items are accepted and free of open cases",
+          "Recipient details match the deliverable postal format",
+          "The live route accepts the parcel’s categories and dimensions",
+          "Packaging instructions are clear and non-contradictory",
+          "Declaration and records match the actual contents"
+        ]
+      },
+      {
+        heading: "The practical consolidation rule",
+        paragraphs: [
+          "Combine items when they are all accepted, compatible, eligible for a suitable route and cheaper or simpler to ship together after realistic packing. Split them when one item creates a restriction, needs very different protection, pushes the parcel beyond a useful threshold or concentrates more value than you are comfortable placing in one shipment. There is no universal best number of items per parcel.",
+          "A LoloBuy spreadsheet can help you discover and organise products, but the warehouse record and current freight tools should control the operational choice. Review first, group second, estimate third and submit last. That order turns parcel consolidation from a vague promise of cheaper shipping into a repeatable decision based on the actual items in front of you."
+        ]
+      },
+      {
+        heading: "FAQ: LoloBuy warehouse and parcel consolidation",
+        paragraphs: [
+          "Can I combine items from different sellers? LoloBuy’s public service page says purchases from different sellers are integrated at its China warehouse and stored products can be selected for one parcel. Combine only accepted items that the live system allows on a suitable route.",
+          "How long is storage free? LoloBuy advertised 180 days free of storage charge when checked on 30 August 2026. Verify the date and current terms for each item in your account instead of treating a public headline as a permanent guarantee.",
+          "Does consolidation always save money? No. It can reduce repeated starting charges, but added weight, volume, packaging or category restrictions can remove that saving. Compare a combined quote with a sensible split.",
+          "Should I submit as soon as the last item arrives? Only after QC questions, returns, packaging, route eligibility, the address and the delivered-cost range are settled. Arrival completes the domestic stage; it does not replace the final parcel review."
         ]
       }
     ]

@@ -27,6 +27,7 @@ type Route = "home" | "categories" | "product-details" | "guides" | "articles" |
 const supported: Lang[] = ["en", "de", "fr", "es", "it", "nl", "pl", "pt", "sv"];
 const routes: Route[] = ["home", "categories", "product-details", "guides", "articles", "faq"];
 const mainSite = "https://findspreadsheet.com/";
+const siteUrl = "https://lolobuyspreadsheet.uk";
 
 const uiCopy: Record<Lang, {
   languages: string; sameStructure: string; factBoundary: string; buyerNotes: string;
@@ -95,10 +96,28 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
   const articleIndex = article ? seoArticles.findIndex(item => item.slug === article.slug) : -1;
   const articleSummaries = [c.proofText, c.answers[3], c.answers[4]];
   const pagePath = `/${lang}${raw[1] ? `/${raw[1]}` : ""}${raw[2] ? `/${raw[2]}` : ""}`;
+  const articleTitle = article ? c.articleCards[articleIndex] ?? article.title : undefined;
+  const description = article ? articleSummaries[articleIndex] ?? article.description : c.intro;
   return {
-    title: article ? `${c.articleCards[articleIndex]} | LoloBuy Spreadsheet` : `${c.nav[0]} | LoloBuy Spreadsheet 2026`,
-    description: article ? articleSummaries[articleIndex] : c.intro,
-    alternates: { canonical: pagePath, languages: Object.fromEntries(supported.map(l => [l, `/${l}${raw[1] ? `/${raw[1]}` : ""}${raw[2] ? `/${raw[2]}` : ""}`])) },
+    title: article ? `${articleTitle} | LoloBuy Spreadsheet` : `${c.nav[0]} | LoloBuy Spreadsheet 2026`,
+    description,
+    keywords: article ? [article.primaryKeyword, ...(article.relatedKeywords ?? [])].filter(Boolean) as string[] : undefined,
+    robots: { index: true, follow: true },
+    alternates: {
+      canonical: pagePath,
+      languages: {
+        ...Object.fromEntries(supported.map(l => [l, `/${l}${raw[1] ? `/${raw[1]}` : ""}${raw[2] ? `/${raw[2]}` : ""}`])),
+        "x-default": `/en${raw[1] ? `/${raw[1]}` : ""}${raw[2] ? `/${raw[2]}` : ""}`,
+      },
+    },
+    openGraph: {
+      title: articleTitle ?? `${c.nav[0]} | LoloBuy Spreadsheet 2026`,
+      description,
+      url: pagePath,
+      type: article ? "article" : "website",
+      publishedTime: article?.datePublished,
+      modifiedTime: article?.dateModified,
+    },
   };
 }
 
@@ -148,12 +167,45 @@ function Articles({ lang, slug }: { lang: Lang; slug?: string }) {
   const summaries=[c.proofText,c.answers[3],c.answers[4]];
   const articleIndex=article?seoArticles.findIndex(item=>item.slug===article.slug):-1;
   const localizedBody=article&&lang!=="en"?localizedArticleBodies[lang]?.find(item=>item.slug===article.slug):article;
-  if(article) return <article className="article-page">
-    <header className="article-hero"><Link className="article-back" href={`/${lang}/articles`}><ChevronRight/> {c.nav[4]}</Link><span className="kicker">{ui.buyerGuide}</span><h1>{c.articleCards[articleIndex]}</h1><p>{summaries[articleIndex]}</p><div className="article-facts"><span>{article.readTime.replace("min read",ui.readTime)}</span><span>{ui.checked}</span></div></header>
+  if(article) {
+    const articleTitle=c.articleCards[articleIndex]??article.title;
+    const articleSummary=summaries[articleIndex]??article.description;
+    const canonical=`${siteUrl}/${lang}/articles/${article.slug}`;
+    const schemaLanguage=lang==="en"||localizedBody?lang:"en";
+    const related=seoArticles.filter(item=>item.slug!==article.slug).slice(-3);
+    const articleSchema={
+      "@context":"https://schema.org",
+      "@type":"Article",
+      headline:articleTitle,
+      description:articleSummary,
+      datePublished:article.datePublished,
+      dateModified:article.dateModified,
+      inLanguage:schemaLanguage,
+      mainEntityOfPage:canonical,
+      url:canonical,
+      author:{"@type":"Organization",name:"LoloBuy Spreadsheet UK",url:siteUrl},
+      publisher:{"@type":"Organization",name:"LoloBuy Spreadsheet UK",url:siteUrl},
+      keywords:[article.primaryKeyword,...(article.relatedKeywords??[])].filter(Boolean).join(", "),
+    };
+    const faqSchema=article.faq?.length?{
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      mainEntity:article.faq.map(item=>({
+        "@type":"Question",
+        name:item.question,
+        acceptedAnswer:{"@type":"Answer",text:item.answer},
+      })),
+    }:undefined;
+    return <article className="article-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema).replace(/</g,"\\u003c")}}/>
+    {faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema).replace(/</g,"\\u003c")}}/>}
+    <header className="article-hero"><Link className="article-back" href={`/${lang}/articles`}><ChevronRight/> {c.nav[4]}</Link><span className="kicker">{ui.buyerGuide}</span><h1>{articleTitle}</h1><p>{articleSummary}</p><div className="article-facts"><span>{article.readTime.replace("min read",ui.readTime)}</span><span>{article.checked}</span></div></header>
     <div className="article-body">{(localizedBody?.sections??article.sections).map((section,i)=><section className="article-section" key={`${article.slug}-${i}`}><span className="article-section-no">{String(i+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((p,j)=><p key={`${article.slug}-${i}-${j}`}>{p}</p>)}{section.bullets&&<ul className="article-bullets">{section.bullets.map((item,j)=><li key={`${article.slug}-${i}-bullet-${j}`}><CheckCircle2/>{item}</li>)}</ul>}</div></section>)}</div>
-    <aside className="article-source-note"><ShieldCheck/><div><strong>{ui.factBoundary}</strong><p>{ui.factNote}</p></div></aside>
+    <nav className="article-related" aria-label="Related LoloBuy guides"><strong>Related guides</strong>{related.map(item=>{const index=seoArticles.findIndex(candidate=>candidate.slug===item.slug);return <Link href={`/${lang}/articles/${item.slug}`} key={item.slug}>{c.articleCards[index]??item.title}<ArrowUpRight/></Link>})}</nav>
+    <aside className="article-source-note"><ShieldCheck/><div><strong>{ui.factBoundary}</strong><p>{article.sourceNote??ui.factNote}</p></div></aside>
   </article>;
-  return <><section className="subhero"><span className="kicker">{ui.editorialResearch}</span><h1>{c.articlesTitle}</h1><p>{c.articlesIntro}</p></section><section className="section article-grid">{c.articleCards.map((x,i)=><article key={x}><div className="article-top"><span>{ui.guideLabel} 0{i+1}</span><span>{seoArticles[i].readTime.replace("min read",ui.readTime).toUpperCase()}</span></div><h2>{x}</h2><p>{summaries[i]}</p><Link href={`/${lang}/articles/${seoArticles[i].slug}`}>{c.read}<ArrowUpRight/></Link></article>)}</section><aside className="market-note"><Globe2/><p>{c.note}</p></aside></>;
+  }
+  return <><section className="subhero"><span className="kicker">{ui.editorialResearch}</span><h1>{c.articlesTitle}</h1><p>{c.articlesIntro}</p></section><section className="section article-grid">{seoArticles.map((item,i)=>{const title=c.articleCards[i]??item.title;return <article key={item.slug}><div className="article-top"><span>{ui.guideLabel} 0{i+1}</span><span>{item.readTime.replace("min read",ui.readTime).toUpperCase()}</span></div><h2>{title}</h2><p>{summaries[i]??item.description}</p><Link href={`/${lang}/articles/${item.slug}`}>{c.read}<ArrowUpRight/></Link></article>})}</section><aside className="market-note"><Globe2/><p>{c.note}</p></aside></>;
 }
 
 function Faq({ lang, compact=false }: { lang: Lang; compact?: boolean }) { const c=copy[lang]; const entries=compact?faqContent[lang].slice(0,4):faqContent[lang]; return <section className={`section faq ${compact?"compact":""}`}><div className="section-head"><div><span className="kicker">FAQ</span><h2>{c.faqTitle}</h2></div>{compact&&<Link href={`/${lang}/faq`}>{c.nav[5]}<ArrowUpRight/></Link>}</div><div className="faq-list">{entries.map((entry,i)=><details key={entry.question}><summary><span>{String(i+1).padStart(2,"0")}</span>{entry.question}<ChevronRight/></summary><p>{entry.answer}</p></details>)}</div></section> }

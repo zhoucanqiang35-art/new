@@ -59,7 +59,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Senden Sie das Paket nicht zu früh",
           "paragraphs": [
             "LoloBuy gibt an, dass bestellte Artikel nicht automatisch an Ihre Auslandsadresse gesendet werden; nach Ankunft im Lager müssen Sie ein Paket einreichen. Bevor Sie dies tun, entscheiden Sie, welche Elemente zusammengehören. Überprüfen Sie, ob jeder Artikel die Lagerphase abgeschlossen hat, ob ein Problem noch offen ist und ob die Kombination unnötiges Gewicht oder Größe erzeugt.",
-            "Die Plattform bewirbt 90 Tage kostenlose Lagerung in ihrer Beschreibung des öffentlichen Dienstes. Das ist nützliche Planungszeit, aber es sollte kein Grund sein, das Lager zu ignorieren. Speicherregeln, erweiterte Speicheroptionen und Artikelberechtigung können sich ändern, so dass die Live-Warehouse-Seite die kontrollierende Quelle bleibt. Eine einfache Gewohnheit funktioniert gut: Überprüfen Sie jede Ankunft, markieren Sie sie behalten / zurück / Frage und senden Sie nur, wenn die Gruppe angesiedelt ist."
+            "Die Plattform bewirbt 180 Tage kostenlose Lagerung in ihrer Beschreibung des öffentlichen Dienstes. Das ist nützliche Planungszeit, aber es sollte kein Grund sein, das Lager zu ignorieren. Speicherregeln, erweiterte Speicheroptionen und Artikelberechtigung können sich ändern, so dass die Live-Warehouse-Seite die kontrollierende Quelle bleibt. Eine einfache Gewohnheit funktioniert gut: Überprüfen Sie jede Ankunft, markieren Sie sie behalten / zurück / Frage und senden Sie nur, wenn die Gruppe angesiedelt ist."
           ]
         },
         {
@@ -306,7 +306,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Ne pas soumettre le colis trop tôt",
           "paragraphs": [
             "LoloBuy déclare que les articles commandés ne sont pas automatiquement envoyés à votre adresse outre-mer; après l'arrivée de l'entrepôt, vous devez soumettre un colis. Avant de faire cela, décidez quels articles appartiennent ensemble. Vérifiez si chaque article a terminé l'étape de l'entrepôt, si un problème est encore ouvert, et si la combinaison crée un poids ou une taille inutiles.",
-            "La plateforme annonce 90 jours de stockage gratuit dans sa description de service public. C'est un temps de planification utile, mais il ne devrait pas devenir une raison d'ignorer l'entrepôt. Les règles d'entreposage, les options de stockage prolongé et l'admissibilité des articles peuvent changer, de sorte que la page d'entrepôt en direct demeure la source de contrôle. Une simple habitude fonctionne bien : examiner chaque arrivée, noter qu'elle garde/retour/question et ne soumettre que lorsque le groupe est réglé."
+            "La plateforme annonce 180 jours de stockage gratuit dans sa description de service public. C'est un temps de planification utile, mais il ne devrait pas devenir une raison d'ignorer l'entrepôt. Les règles d'entreposage, les options de stockage prolongé et l'admissibilité des articles peuvent changer, de sorte que la page d'entrepôt en direct demeure la source de contrôle. Une simple habitude fonctionne bien : examiner chaque arrivée, noter qu'elle garde/retour/question et ne soumettre que lorsque le groupe est réglé."
           ]
         },
         {
@@ -553,7 +553,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "No envíe el paquete demasiado pronto",
           "paragraphs": [
             "LoloBuy afirma que los artículos pedidos no se envían automáticamente a su dirección en el extranjero; después de la llegada del almacén, debe enviar un paquete. Antes de hacer eso, decidir qué elementos pertenecen juntos. Compruebe si cada artículo ha completado la etapa del almacén, si cualquier problema sigue abierto, y si la combinación crea peso o tamaño innecesario.",
-            "La plataforma anuncia 90 días de almacenamiento gratuito en su descripción del servicio público. Eso es tiempo de planificación útil, pero no debe convertirse en una razón para ignorar el almacén. Las reglas de almacenamiento, opciones de almacenamiento ampliado y elegibilidad de elementos pueden cambiar, por lo que la página de almacén en vivo sigue siendo la fuente controladora. Un hábito simple funciona bien: revisar cada llegada, marcar que mantiene/retorno/pregunta, y someter sólo cuando el grupo se resuelve."
+            "La plataforma anuncia 180 días de almacenamiento gratuito en su descripción del servicio público. Eso es tiempo de planificación útil, pero no debe convertirse en una razón para ignorar el almacén. Las reglas de almacenamiento, opciones de almacenamiento ampliado y elegibilidad de elementos pueden cambiar, por lo que la página de almacén en vivo sigue siendo la fuente controladora. Un hábito simple funciona bien: revisar cada llegada, marcar que mantiene/retorno/pregunta, y someter sólo cuando el grupo se resuelve."
           ]
         },
         {
@@ -800,7 +800,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Non inviare il pacco troppo presto",
           "paragraphs": [
             "LoloBuy afferma che gli articoli ordinati non vengono inviati automaticamente al tuo indirizzo d'oltremare; dopo l'arrivo del magazzino, è necessario inviare un pacco. Prima di farlo, decidere quali elementi appartengono insieme. Controllare se ogni elemento ha completato la fase del magazzino, se qualsiasi problema è ancora aperto, e se la combinazione crea peso o dimensione inutili.",
-            "La piattaforma pubblicizza 90 giorni di deposito gratuito nella sua descrizione del servizio pubblico. Questo è tempo di pianificazione utile, ma non dovrebbe diventare un motivo per ignorare il magazzino. Le regole di stoccaggio, le opzioni di conservazione estesa e l'ammissibilità del prodotto possono cambiare, in modo che la pagina del magazzino live rimanga la fonte di controllo. Una semplice abitudine funziona bene: rivedere ogni arrivo, contrassegnare la tenuta / ritorno / richiesta, e presentare solo quando il gruppo è stabilito."
+            "La piattaforma pubblicizza 180 giorni di deposito gratuito nella sua descrizione del servizio pubblico. Questo è tempo di pianificazione utile, ma non dovrebbe diventare un motivo per ignorare il magazzino. Le regole di stoccaggio, le opzioni di conservazione estesa e l'ammissibilità del prodotto possono cambiare, in modo che la pagina del magazzino live rimanga la fonte di controllo. Una semplice abitudine funziona bene: rivedere ogni arrivo, contrassegnare la tenuta / ritorno / richiesta, e presentare solo quando il gruppo è stabilito."
           ]
         },
         {
@@ -1047,7 +1047,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Het pakket niet te vroeg insturen",
           "paragraphs": [
             "LoloBuy stelt dat bestelde items niet automatisch worden verzonden naar uw overzeese adres; na aankomst magazijn, moet u een pakket indienen. Voor je dat doet, bepaal welke items bij elkaar horen. Controleer of elk item het magazijnstadium heeft voltooid, of er nog een probleem is en of de combinatie onnodig gewicht of grootte creëert.",
-            "Het platform adverteert 90 dagen gratis opslag in de openbare dienst beschrijving. Dat is nuttige planningstijd, maar het mag geen reden worden om het magazijn te negeren. Opslagregels, opties voor uitgebreide opslag en het in aanmerking komen van items kunnen veranderen, zodat de live magazijnpagina de controlerende bron blijft. Een eenvoudige gewoonte werkt goed: bekijk elke aankomst, markeer het houden / terug / vraag, en alleen indienen als de groep is geregeld."
+            "Het platform adverteert 180 dagen gratis opslag in de openbare dienst beschrijving. Dat is nuttige planningstijd, maar het mag geen reden worden om het magazijn te negeren. Opslagregels, opties voor uitgebreide opslag en het in aanmerking komen van items kunnen veranderen, zodat de live magazijnpagina de controlerende bron blijft. Een eenvoudige gewoonte werkt goed: bekijk elke aankomst, markeer het houden / terug / vraag, en alleen indienen als de groep is geregeld."
           ]
         },
         {
@@ -1294,7 +1294,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Nie przedłóż działki zbyt wcześnie",
           "paragraphs": [
             "LoloBuy stwierdza, że zamówione przedmioty nie są automatycznie wysyłane na Twój adres zagraniczny; po przybyciu magazynu, należy złożyć paczkę. Zanim to zrobisz, zdecyduj, które elementy należą do siebie. Sprawdzić, czy każdy element ukończył etap magazynu, czy jakaś kwestia jest nadal otwarta, i czy połączenie tworzy zbędną wagę lub rozmiar.",
-            "Platforma reklamuje 90 dni wolnego przechowywania w opisie usługi publicznej. Jest to przydatny czas planowania, ale nie powinno stać się powodem do ignorowania magazynu. Zasady przechowywania, rozszerzone opcje przechowywania i kwalifikowanie pozycji mogą się zmienić, więc strona na żywo magazyn pozostaje źródłem kontroli. Prosty nawyk działa dobrze: przegląd każdego przyjazdu, oznaczyć go zachować / zwrócić / pytanie, i złożyć tylko wtedy, gdy grupa jest rozliczona."
+            "Platforma reklamuje 180 dni wolnego przechowywania w opisie usługi publicznej. Jest to przydatny czas planowania, ale nie powinno stać się powodem do ignorowania magazynu. Zasady przechowywania, rozszerzone opcje przechowywania i kwalifikowanie pozycji mogą się zmienić, więc strona na żywo magazyn pozostaje źródłem kontroli. Prosty nawyk działa dobrze: przegląd każdego przyjazdu, oznaczyć go zachować / zwrócić / pytanie, i złożyć tylko wtedy, gdy grupa jest rozliczona."
           ]
         },
         {
@@ -1541,7 +1541,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Não enviar a encomenda demasiado cedo",
           "paragraphs": [
             "LoloBuy afirma que itens encomendados não são automaticamente enviados para o seu endereço no exterior; após a chegada do armazém, você deve enviar uma encomenda. Antes de fazer isso, decida quais itens pertencem juntos. Verifique se cada item completou o estágio do armazém, se qualquer problema ainda está aberto, e se a combinação cria peso ou tamanho desnecessários.",
-            "A plataforma anuncia 90 dias de armazenamento gratuito em sua descrição de serviço público. Este é um tempo útil de planeamento, mas não deve tornar-se uma razão para ignorar o armazém. Regras de armazenamento, opções de armazenamento estendido e elegibilidade de itens podem mudar, então a página de armazenamento ao vivo continua sendo a fonte controladora. Um hábito simples funciona bem: revisar cada chegada, marcá-la manter/retornar/questionar, e submeter-se apenas quando o grupo é resolvido."
+            "A plataforma anuncia 180 dias de armazenamento gratuito em sua descrição de serviço público. Este é um tempo útil de planeamento, mas não deve tornar-se uma razão para ignorar o armazém. Regras de armazenamento, opções de armazenamento estendido e elegibilidade de itens podem mudar, então a página de armazenamento ao vivo continua sendo a fonte controladora. Um hábito simples funciona bem: revisar cada chegada, marcá-la manter/retornar/questionar, e submeter-se apenas quando o grupo é resolvido."
           ]
         },
         {
@@ -1788,7 +1788,7 @@ export const localizedArticleBodies: Record<string, LocalizedArticleBody[]> = {
           "heading": "Inge inte paketet för tidigt",
           "paragraphs": [
             "LoloBuy säger att beställda objekt inte automatiskt skickas till din utomeuropeiska adress; efter lager ankomst måste du skicka in ett paket. Innan du gör det bestämmer du vilka objekt som hör ihop. Kontrollera om varje objekt har slutfört lagerstadiet, oavsett om något problem fortfarande är öppet, och om kombinationen skapar onödig vikt eller storlek.",
-            "Plattformen annonserar 90 dagars gratis lagring i sin offentliga servicebeskrivning. Det är användbar planeringstid, men det bör inte bli en anledning att ignorera lagret. Lagringsregler, utökade lagringsalternativ och objektberättigande kan ändras, så den levande lagersidan förblir den kontrollerande källan. En enkel vana fungerar bra: granska varje ankomst, markera den hålla / återgå / fråga, och lämna endast när gruppen är avgjord."
+            "Plattformen annonserar 180 dagars gratis lagring i sin offentliga servicebeskrivning. Det är användbar planeringstid, men det bör inte bli en anledning att ignorera lagret. Lagringsregler, utökade lagringsalternativ och objektberättigande kan ändras, så den levande lagersidan förblir den kontrollerande källan. En enkel vana fungerar bra: granska varje ankomst, markera den hålla / återgå / fråga, och lämna endast när gruppen är avgjord."
           ]
         },
         {
