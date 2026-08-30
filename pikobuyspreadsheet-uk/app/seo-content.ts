@@ -3,6 +3,10 @@ export type SeoArticle = {
   title: string;
   description: string;
   updated: string;
+  published?: string;
+  author?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string[];
   sections: { heading: string; paragraphs: string[] }[];
 };
 
@@ -315,6 +319,101 @@ export const seoArticles: SeoArticle[] = [
         paragraphs: [
           "Before approving shipment, answer five questions: Is this the correct product and option? Is the quantity complete? Do the visible condition and construction match the order closely enough? Are the essential measurements or details confirmed? Has any return deadline or packaging condition been considered? If one answer is unclear, request evidence or support before submitting the parcel.",
           "QC works best as a disciplined comparison, not as a hunt for reassurance. Save the order facts, review the standard images, request only the missing details and act within the live return rules. This approach uses what PikoBuy publicly provides while respecting the limits of warehouse photography. It gives you a defensible decision without claiming that a few images can guarantee everything about a product."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "pikobuy-product-search-submit-links-images",
+    title: "PikoBuy Product Search: How to Submit Links, Images and Check Listings",
+    description: "A practical guide to PikoBuy product search, link and image submission, option checks, seller-listing evidence and safer shortlisting before payment.",
+    published: "30 August 2026",
+    updated: "30 August 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy product search",
+    secondaryKeywords: [
+      "how to search on PikoBuy",
+      "submit product link to PikoBuy",
+      "PikoBuy image search",
+      "PikoBuy product listing",
+      "PikoBuy spreadsheet links"
+    ],
+    sections: [
+      {
+        heading: "Choose the strongest search input",
+        paragraphs: [
+          "PikoBuy product search supports more than one starting point. PikoBuy's current home page says shoppers can search directly or submit product links, images or sourcing requests. Its beginner guide is more specific: it tells users to paste a product link or keywords into the search box. These routes solve different problems. Use a direct source link when you already know the exact listing; use keywords when you know the product type but still need candidates; use an image or sourcing request when the source is unknown.",
+          "A direct link usually preserves the clearest connection to the seller's current offer, but it still requires verification after import. Keywords provide a wider result set, so they need tighter filtering. An image can communicate shape or appearance, but it cannot reliably specify material, size, included parts or authenticity. Choose the input that carries the most decision-critical information, then treat the result as the beginning of your checks rather than proof that the product is suitable."
+        ]
+      },
+      {
+        heading: "Start from a category and a written requirement",
+        paragraphs: [
+          "Before searching, write one sentence describing the item you need. Include the product type, intended use, required specification and a budget that leaves room for domestic and international shipping. For a shirt, the key specification may be chest width and length; for footwear, it may be insole length; for an accessory, it may be dimensions, material and included fittings. A written requirement prevents attractive but irrelevant results from filling the shortlist.",
+          "Use a PikoBuy spreadsheet or category page to discover possible listings, but compare like with like. Two items with similar photographs may represent different weights, materials, quantities or option bundles. A category label is useful for narrowing the field, not for certifying every row. Open the live candidate and record the source, current title and intended option. If a spreadsheet summary conflicts with the live listing, the current seller page is the evidence to investigate."
+        ]
+      },
+      {
+        heading: "Use a source link when exactness matters",
+        paragraphs: [
+          "PikoBuy's beginner guide names Taobao, Tmall, 1688, Weidian and Yupoo among the places where users may find items. It then tells users to confirm specifications, colour and size before pasting the link or relevant keywords into PikoBuy. This sequence matters: inspect the source first, then use PikoBuy as the purchasing hand-off. Saving the item or shop information, another tip in the official guide, gives you a reference if the page changes later.",
+          "After PikoBuy opens the imported product, compare it with the source rather than assuming the import is exact. Check the seller or shop name when visible, the main image, complete title, selectable options and any domestic shipping charge. PikoBuy's live product pages can display seller identity, source images, price in CNY with a currency conversion, seller-to-warehouse shipping, colour or style choices, sizes, quantity and a message field. The exact fields can vary by product, so missing information should trigger a question, not a guess."
+        ]
+      },
+      {
+        heading: "Search with keywords that describe the product",
+        paragraphs: [
+          "Keyword search works best when the phrase describes the item rather than a trend alone. Combine a product noun with a measurable or selectable feature: heavyweight cotton T-shirt, zip hoodie, stainless-steel pendant, wide-leg trousers or canvas shoulder bag. Add a model number, material or functional feature only when it is genuinely required. Very broad phrases create more work; very long phrases can reproduce seller marketing language without improving accuracy.",
+          "Review several candidates with the same requirement. Compare option structure, size information, shop identity, domestic shipping and what the listing says is included. Do not sort by headline price alone. A low displayed figure can belong to the cheapest option, a small accessory, a deposit or a different quantity. PikoBuy's guide states that prices are subject to the actual purchase and that an out-of-stock order will be refunded, so the number shown during discovery is not a permanent availability or price guarantee."
+        ]
+      },
+      {
+        heading: "Treat image submission as a sourcing clue",
+        paragraphs: [
+          "PikoBuy publicly says users may submit images or sourcing requests, but it does not publish a promise that an image will identify one exact seller or prove that two visually similar items are the same. Use the image to communicate silhouette, colour placement, hardware or another visible characteristic. Add a short written note explaining the non-visual requirements, such as material, dimensions, quantity or compatible model. That reduces the chance that appearance becomes the only matching criterion.",
+          "Once a candidate is returned, apply the same listing checks used for a direct link. A photograph cannot tell you which option controls the displayed price, whether a size chart is garment-based or body-based, what accessories are included, or whether a restricted component affects shipping. If the candidate lacks a verifiable source or clear option data, keep looking. The right outcome of image search is a listing you can assess, not merely a familiar-looking picture."
+        ]
+      },
+      {
+        heading: "Read the option matrix before the price",
+        paragraphs: [
+          "On a live PikoBuy product page reviewed for this guide, the page showed a shop, multiple source images, a converted price, seller-to-warehouse shipping, colour or style choices, sizes, quantity and a message box. That is an example of the current interface, not a promise that every listing will show the same data. Start with the options because they define what the price buys. Select a style or colour, then a size and quantity, and check whether the price or availability changes.",
+          "Translate option labels cautiously. A machine-readable English name can still hide an ambiguous seller term. Numbered styles require image-to-number matching; a phrase such as premium, upgraded or heavyweight is a seller description unless supported by a measurable specification. Save the selected option text and a reference image before ordering. This record will be more useful during warehouse QC than the generic product title, especially when one listing contains many designs."
+        ]
+      },
+      {
+        heading: "Assess what the listing proves—and what it does not",
+        paragraphs: [
+          "A listing can show the offer, seller-provided images, selectable variants and current displayed costs. It cannot prove that the seller will ship the correct option, that construction will match every photograph or that the item will fit. PikoBuy's Terms say the platform provides information and transaction facilitation and is not the manufacturer or, unless expressly stated, the seller of record. The Terms also say PikoBuy does not bear direct responsibility for product quality or suitability, although it will make reasonable efforts to provide inspection and after-sales support.",
+          "Separate four evidence levels: spreadsheet summary, current source listing, order record and warehouse evidence. The spreadsheet helps discovery. The source listing describes what the seller offers. The order record captures what you selected. Warehouse photos show visible aspects of the item that arrived. When these disagree, do not average them into a reassuring story. Identify the mismatch and ask for clarification while a remedy may still be available."
+        ]
+      },
+      {
+        heading: "Run a five-point listing risk check",
+        paragraphs: [
+          "First, confirm identity: source, seller or shop, title and main images should describe the same product. Second, confirm scope: identify exactly what is included and whether the price belongs to the main item or an option. Third, confirm specification: check colour, size, dimensions, material claims and quantity. Fourth, confirm transaction context: note domestic shipping, current price and any seller condition. Fifth, confirm legality and route suitability before ordering, particularly for batteries, liquids, restricted goods or products with intellectual-property concerns.",
+          "PikoBuy's Terms prohibit illegal, infringing, fraudulent or improper activity and say users must not request or purchase products that violate its prohibited-items policy, including goods without lawful intellectual-property rights or authorization. A spreadsheet appearance or successful search result does not override those rules. If the product's legality, contents or shipping category is uncertain, pause before payment and use the support channel available in the account."
+        ]
+      },
+      {
+        heading: "Send a purchasing note that can be checked",
+        paragraphs: [
+          "When a message field is available, write instructions that a purchaser or warehouse reviewer can verify. Good notes name the chosen option and one objective requirement: style 7 in black, size L, two pieces, include the listed strap, or do not substitute another colour. Avoid vague requests such as best quality, exactly like the photo or make sure it fits. Those phrases do not define an observable acceptance test and may conflict with the seller's actual options.",
+          "Keep the note short enough to survive translation and handling. If a requirement is essential, make sure it also appears in the selected option rather than relying only on free text. PikoBuy's beginner guide tells users to select colour, size and quantity when submitting the purchasing order and completing the first payment. The note should clarify the structured selection, not replace it. Save the final order details so the warehouse photos can be compared with the same facts."
+        ]
+      },
+      {
+        heading: "Build a shortlist that supports a decision",
+        paragraphs: [
+          "A useful shortlist contains three to five comparable candidates, not dozens of bookmarks. For each one, record the source link, seller or shop, exact option, current item price, domestic shipping, essential measurement and one unresolved question. Remove candidates with unclear scope, missing critical specifications or a price tied to the wrong option. The result should show why one item fits your requirement better, even if it is not the cheapest headline result.",
+          "Before paying, reopen the candidate and check that the option remains available. Confirm the current amount because PikoBuy states that actual purchase conditions control. Then plan the later parcel decision: product price is separate from international shipping, and bulky packaging or restricted contents can change the available routes. Search quality is not measured by how many links you collect. It is measured by whether the final order is specific enough to inspect, compare and approve."
+        ]
+      },
+      {
+        heading: "The practical search-to-order checklist",
+        paragraphs: [
+          "Define the item; choose link, keyword or image input; verify the current source; compare equivalent listings; select the exact option; record price and domestic shipping; write one checkable note; and save the order evidence. If any essential point is unknown, contact support before payment. PikoBuy's beginner guide says customer service can help when an item cannot be found, but the current account and live listing remain the right places to confirm transaction-specific details.",
+          "FindSpreadsheet can help you explore categories and organise PikoBuy spreadsheet links, but it is an independent discovery site, not PikoBuy or a seller. Use it to reach a manageable shortlist, then verify every live listing before ordering. A careful PikoBuy product search does not promise a perfect item. It gives you a clear chain of evidence from discovery to option selection, making later QC and return decisions far easier to handle."
         ]
       }
     ]

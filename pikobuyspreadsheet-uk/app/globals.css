@@ -147,6 +147,9 @@
 .long-copy section>span{font-size:11px;font-weight:900;color:var(--coral);padding-top:5px}
 .long-copy h2{font-size:29px;line-height:1.1;margin:0 0 16px;letter-spacing:-.025em}
 .long-copy p{font-size:15px;line-height:1.8;color:var(--muted);margin:0 0 14px}.long-copy p:last-child{margin-bottom:0}
+.article-breadcrumbs{display:flex;justify-content:flex-start;gap:9px;font-size:11px;color:var(--muted);padding:0;border:0}.article-breadcrumbs a{font-weight:800;color:#3b6d65}.article-breadcrumbs a:hover{text-decoration:underline}.article-breadcrumbs span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.decision-path{margin:0 0 22px;padding:20px;background:var(--cream);border:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:1px}.decision-path>div{min-height:125px;padding:15px;background:var(--paper);display:flex;flex-direction:column}.decision-path span{font-size:10px;font-weight:900;color:var(--coral)}.decision-path b{font-size:18px;margin:18px 0 7px}.decision-path small{font-size:11px;line-height:1.5;color:var(--muted)}.decision-path figcaption{grid-column:1/-1;padding-top:13px;font-size:11px;color:var(--muted)}
+.related-guides{margin-top:34px;padding:25px;background:var(--mint2);border:1px solid var(--line);border-radius:4px 22px 4px 4px}.related-guides h2{font-size:22px;margin:0 0 17px}.related-guides>div{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.related-guides a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);padding:13px 15px;font-size:12px;font-weight:800}.related-guides a:hover{border-color:#79cabb}.related-guides svg{width:14px;flex:none}
 
 /* Denser editorial pages: retain every word while removing unused vertical space. */
 .inner.long-article{padding-top:32px;padding-bottom:26px}
@@ -170,15 +173,18 @@
  .seo-card h2{font-size:11px;margin:10px 0 5px}.seo-card p{font-size:6.8px;line-height:1.35;margin-bottom:6px}
  .seo-card small{font-size:5.8px;padding-top:5px}.seo-card b{font-size:6.5px;margin-top:7px}
  .long-article>article{max-width:none}.long-article .inner-hero{padding-bottom:10px}
- .article-meta{gap:3px;margin-top:7px}.article-meta span{font-size:5.8px;padding:3px 5px}
- .article-source{gap:5px;padding:6px 7px;margin-bottom:10px;border-left-width:2px}.article-source>svg{width:12px}
- .article-source h2{font-size:8px;margin-bottom:2px}.article-source p{font-size:6px;line-height:1.25}
- .long-copy section{grid-template-columns:18px 1fr;gap:4px;padding:8px 0}
- .long-copy section>span{font-size:6px;padding-top:2px}.long-copy h2{font-size:11px;margin-bottom:4px}
- .long-copy p{font-size:7px;line-height:1.35;margin-bottom:5px}
- .inner.long-article{padding-top:10px;padding-bottom:8px}
- .long-article .inner-hero{padding-top:10px;padding-bottom:8px}
- .long-article .inner-hero h1{font-size:23px;margin-bottom:6px}
- .long-article .inner-hero>p:last-of-type{font-size:8px;line-height:1.35}
+ .article-breadcrumbs{display:flex;gap:6px;font-size:11px;line-height:1.4;overflow:hidden}
+ .article-meta{gap:6px;margin-top:14px}.article-meta span{font-size:9px;padding:5px 7px}
+ .article-source{gap:9px;padding:13px 14px;margin-bottom:16px;border-left-width:3px}.article-source>svg{width:18px}
+ .article-source h2{font-size:15px;margin-bottom:5px}.article-source p{font-size:12px;line-height:1.55}
+ .decision-path{padding:8px;grid-template-columns:repeat(2,1fr);gap:5px;margin-bottom:18px}.decision-path>div{min-height:112px;padding:11px}.decision-path span{font-size:9px}.decision-path b{font-size:16px;margin:14px 0 5px}.decision-path small,.decision-path figcaption{font-size:11px;line-height:1.45}
+ .long-copy section{grid-template-columns:28px 1fr;gap:9px;padding:24px 0}
+ .long-copy section>span{font-size:9px;padding-top:3px}.long-copy h2{font-size:22px;line-height:1.15;margin-bottom:11px}
+ .long-copy p{font-size:15px;line-height:1.68;margin-bottom:12px}
+ .related-guides{margin-top:25px;padding:16px}.related-guides h2{font-size:19px}.related-guides>div{grid-template-columns:1fr}.related-guides a{font-size:12px;padding:12px}
+ .inner.long-article{padding:18px 14px 10px}
+ .long-article .inner-hero{padding-top:18px;padding-bottom:15px}
+ .long-article .inner-hero h1{font-size:34px;line-height:1.02;margin-bottom:12px}
+ .long-article .inner-hero>p:last-of-type{font-size:15px;line-height:1.55}
  .long-article>.cta{margin-top:10px;margin-bottom:4px}
 }
