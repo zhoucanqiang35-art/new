@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy EU customs preparation flow</title>
+  <desc id="desc">Five steps: record exact items, keep truthful values, verify VAT evidence, save documents, and budget duties and carrier charges.</desc>
+  <rect width="1200" height="675" rx="36" fill="#f3f0e8"/>
+  <path d="M0 0h1200v136H0z" fill="#112d29"/>
+  <text x="64" y="58" fill="#a9d6c9" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">EU PARCEL PREPARATION · 2026</text>
+  <text x="64" y="101" fill="#fff" font-family="Arial, sans-serif" font-size="34" font-weight="700">Keep the declaration evidence before dispatch</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(56 188)">
+      <rect width="198" height="330" rx="22" fill="#fff" stroke="#d7d1c4"/>
+      <circle cx="34" cy="36" r="18" fill="#d75b3d"/><text x="34" y="43" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">1</text>
+      <text x="24" y="88" fill="#102925" font-size="22" font-weight="700">Exact items</text>
+      <path d="M24 115h150" stroke="#e3ded3"/>
+      <text x="24" y="150" fill="#42534f" font-size="17"><tspan x="24" dy="0">Match product,</tspan><tspan x="24" dy="28">variant, material</tspan><tspan x="24" dy="28">and quantity.</tspan></text>
+      <text x="24" y="275" fill="#d75b3d" font-size="15" font-weight="700">NOT “GIFT”</text>
+    </g>
+    <g transform="translate(278 188)">
+      <rect width="198" height="330" rx="22" fill="#fff" stroke="#d7d1c4"/>
+      <circle cx="34" cy="36" r="18" fill="#d75b3d"/><text x="34" y="43" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">2</text>
+      <text x="24" y="88" fill="#102925" font-size="22" font-weight="700">True value</text>
+      <path d="M24 115h150" stroke="#e3ded3"/>
+      <text x="24" y="150" fill="#42534f" font-size="17"><tspan x="24" dy="0">Keep order and</tspan><tspan x="24" dy="28">payment records.</tspan><tspan x="24" dy="28">Never under-declare.</tspan></text>
+      <text x="24" y="275" fill="#d75b3d" font-size="15" font-weight="700">EVIDENCE FIRST</text>
+    </g>
+    <g transform="translate(500 188)">
+      <rect width="198" height="330" rx="22" fill="#fff" stroke="#d7d1c4"/>
+      <circle cx="34" cy="36" r="18" fill="#d75b3d"/><text x="34" y="43" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">3</text>
+      <text x="24" y="88" fill="#102925" font-size="22" font-weight="700">VAT check</text>
+      <path d="M24 115h150" stroke="#e3ded3"/>
+      <text x="24" y="150" fill="#42534f" font-size="17"><tspan x="24" dy="0">Confirm what the</tspan><tspan x="24" dy="28">live route and</tspan><tspan x="24" dy="28">invoice actually say.</tspan></text>
+      <text x="24" y="275" fill="#d75b3d" font-size="15" font-weight="700">DON’T ASSUME IOSS</text>
+    </g>
+    <g transform="translate(722 188)">
+      <rect width="198" height="330" rx="22" fill="#fff" stroke="#d7d1c4"/>
+      <circle cx="34" cy="36" r="18" fill="#d75b3d"/><text x="34" y="43" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">4</text>
+      <text x="24" y="88" fill="#102925" font-size="22" font-weight="700">Document pack</text>
+      <path d="M24 115h150" stroke="#e3ded3"/>
+      <text x="24" y="150" fill="#42534f" font-size="17"><tspan x="24" dy="0">Save invoice,</tspan><tspan x="24" dy="28">parcel, route and</tspan><tspan x="24" dy="28">tracking records.</tspan></text>
+      <text x="24" y="275" fill="#d75b3d" font-size="15" font-weight="700">READY TO RESPOND</text>
+    </g>
+    <g transform="translate(944 188)">
+      <rect width="198" height="330" rx="22" fill="#fff" stroke="#d7d1c4"/>
+      <circle cx="34" cy="36" r="18" fill="#d75b3d"/><text x="34" y="43" text-anchor="middle" fill="#fff" font-size="19" font-weight="700">5</text>
+      <text x="24" y="88" fill="#102925" font-size="22" font-weight="700">Cost reserve</text>
+      <path d="M24 115h150" stroke="#e3ded3"/>
+      <text x="24" y="150" fill="#42534f" font-size="17"><tspan x="24" dy="0">Separate VAT,</tspan><tspan x="24" dy="28">duty and possible</tspan><tspan x="24" dy="28">carrier charges.</tspan></text>
+      <text x="24" y="275" fill="#d75b3d" font-size="15" font-weight="700">UNKNOWN ≠ ZERO</text>
+    </g>
+    <path d="M160 557h880" stroke="#d7d1c4" stroke-width="2"/>
+    <text x="600" y="601" text-anchor="middle" fill="#102925" font-size="19" font-weight="700">€3 temporary duty: per tariff-classification item in qualifying ≤ €150 distance-sale consignments</text>
+    <text x="600" y="634" text-anchor="middle" fill="#5c6b67" font-size="16">Effective 1 July 2026 · verify the actual declaration and destination-country instructions</text>
+  </g>
+</svg>

@@ -495,6 +495,123 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "pikobuy-eu-vat-customs-preparation",
+    eyebrow: "EU customs planning",
+    title: "PikoBuy EU VAT and Customs Preparation Guide for 2026",
+    seoTitle: "PikoBuy EU VAT & Customs Guide",
+    description: "Prepare a PikoBuy parcel for EU VAT and customs with truthful records, a document checklist, cost scenarios and the new low-value import duty from July 2026.",
+    readTime: "12 min read",
+    updated: "Published 30 August 2026",
+    publishedDate: "2026-08-30",
+    modifiedDate: "2026-08-30",
+    editorialNote: "Independent educational guidance based on PikoBuy's public terms and European Commission customs material checked on 30 August 2026. It is not tax, customs or legal advice, and it does not confirm the treatment of any particular parcel.",
+    visual: {
+      src: "/pikobuy-eu-customs-preparation-flow.svg",
+      alt: "Five-step preparation flow for a PikoBuy parcel entering the European Union, from item records to customs documents and a landed-cost reserve",
+      caption: "Original EU parcel-preparation flow. The exact route, destination authority and customs declaration remain controlling; this diagram is a record-keeping checklist, not a clearance promise.",
+    },
+    intro: [
+      "Preparing a PikoBuy parcel for Europe is no longer as simple as asking whether it is below €150. Import VAT has applied to low-value commercial goods since July 2021, and the European Commission confirms that a temporary €3 customs duty began on 1 July 2026 for items in distance-sale consignments worth no more than €150. The €3 is calculated per tariff-classification item, not automatically once per parcel or once per physical unit.",
+      "PikoBuy's Terms of Service separately warns that cross-border transactions may create duties, taxes, brokerage fees and other charges, with the user responsible for those costs. Its User Registration Agreement says a recipient may be asked for invoices or customs-clearance documents and that PikoBuy does not guarantee customs clearance. Those statements make preparation a buyer task rather than a promise attached to a route name.",
+      "This guide focuses on the work that can be done before dispatch: preserve an accurate product and payment record, understand which value is being discussed, confirm how VAT is handled for the chosen route, and keep a reserve for costs that the international freight quote does not prove are included.",
+    ],
+    sections: [
+      {
+        heading: "Separate VAT, customs duty and carrier charges",
+        paragraphs: [
+          "Three different amounts are often collapsed into the word customs. Import VAT is a consumption tax. Customs duty is a tariff charge governed by the nature, origin and value of the goods, including the temporary low-value rule described below. A postal operator or courier may also charge a presentation, brokerage or handling fee for completing or advancing the import process. One amount does not automatically include the others.",
+          "PikoBuy's public terms do not establish one universal tax-inclusive service for every European route. They say duties, taxes, brokerage and other cross-border charges may occur. Therefore, do not treat a shipping quote as a delivered-duty-paid total unless the live route terms and payment breakdown for your parcel clearly state what is included. A route nickname or an old community screenshot is not enough evidence.",
+          "Before paying for shipping, create four separate rows: international freight and PikoBuy charges; VAT already collected or still potentially due; customs duty; and carrier or customs-handling costs. Label an amount as zero only when current evidence supports zero. Otherwise mark it pending and keep a reserve.",
+        ],
+      },
+      {
+        heading: "Apply the July 2026 low-value rule accurately",
+        paragraphs: [
+          "The European Commission's guidance, last updated on 20 July 2026, says a temporary €3 customs duty applies from 1 July 2026 until 1 July 2028 to distance-sale goods in consignments valued up to €150, regardless of whether VAT is handled through IOSS, special arrangements or standard VAT. It replaced the earlier customs-duty relief that many older guides still describe.",
+          "The charge is per item based on tariff classification, not simply per parcel and not necessarily per physical piece. The Commission's example treats five T-shirts as one tariff item and charges €3, while a T-shirt and a watch are two tariff items and attract €6. Classification matters, so a mixed parcel can produce a different result from a parcel containing several identical products.",
+          "The declarant—such as the seller, importer, IOSS holder, special-arrangements user or representative—is generally responsible for paying this duty. That does not prove that the cost is invisible to the shopper or included in a PikoBuy payment. Check the actual route breakdown, carrier notice and import documents. The Commission also distinguishes this duty from a proposed EU handling fee whose amount and application date were still to be determined in its published guidance; do not add an invented handling-fee number to a budget.",
+          "For consignments above €150, do not extend the temporary flat-duty example. The normal tariff framework may apply, and the rate depends on classification and origin. Use the destination customs authority or EU tariff resources for the actual goods rather than guessing a percentage.",
+        ],
+      },
+      {
+        heading: "Understand the VAT base before estimating",
+        paragraphs: [
+          "EU guidance says import VAT is calculated on the customs value plus duties, taxes and other charges, as well as incidental expenses not already included in the customs value. Those incidental expenses can include commission, packing, transport and insurance up to the first destination in the EU country of importation. Multiplying the product-card price alone by a VAT rate can therefore understate the taxable amount.",
+          "The VAT rate is destination-specific and can also depend on the product. Avoid putting one Europe-wide percentage in a PikoBuy worksheet. Confirm the current rate and any special treatment with the destination country's official tax or customs authority. The transaction value—the total paid or payable for the imported goods—is the main customs-valuation method, subject to additions and deductions under customs rules.",
+        ],
+      },
+      {
+        heading: "Do not assume PikoBuy uses IOSS for your parcel",
+        paragraphs: [
+          "The Import One Stop Shop is an EU mechanism through which eligible sellers or platforms can declare and pay VAT on distance sales of imported goods in consignments not exceeding €150. EU customs guidance also describes special arrangements and standard import VAT collection. These are alternative compliance routes, not a coupon that the shopper can attach after dispatch.",
+          "The PikoBuy pages reviewed for this article do not publicly prove that every European route uses IOSS, name an IOSS intermediary, or state that VAT is universally collected at checkout. Accordingly, this guide does not claim that PikoBuy is IOSS-registered or that a particular line is tax prepaid. Look for an explicit VAT line on the live payment breakdown and retain the invoice or electronic record that identifies how VAT was handled.",
+        ],
+      },
+      {
+        heading: "Build a truthful customs document pack",
+        paragraphs: [
+          "PikoBuy says customs may contact the recipient for invoices or clearance documents, particularly when a parcel is considered unusual, oversized, overweight or sensitive. Prepare the file before dispatch rather than searching after a deadline. Keep the product order, seller page or item description, selected variants and quantities, payment confirmation, domestic and international shipping records, warehouse or parcel number, carrier tracking number and any VAT evidence.",
+          "Descriptions should be specific enough to identify the goods: for example, 'two cotton T-shirts' is more useful than 'gift' or 'accessories.' Keep the genuine price, quantity, material and intended use when known. Do not ask for a false value, misleading gift label, split description or incorrect category to reduce charges. Under-declaration can delay a parcel, trigger evidence requests and create legal or financial consequences.",
+          "Check names and addresses across the order, parcel and identity document before shipment. If the destination authority or carrier asks for an identification or tax number, use the current official instructions and a secure submission channel. Do not send sensitive documents to an address copied from an unsolicited message without verifying the carrier or authority.",
+        ],
+        bullets: [
+          "Exact item description, material or model where relevant, quantity and true purchase value",
+          "Order confirmation, payment evidence and seller or source record",
+          "PikoBuy parcel number, route record, shipping payment and tracking number",
+          "Evidence of VAT collection only when it is actually shown",
+          "Destination contact details and any document request from a verified authority or carrier",
+        ],
+      },
+      {
+        heading: "Screen product compliance before submitting the parcel",
+        paragraphs: [
+          "Paying VAT and duty does not make prohibited, unsafe or non-compliant goods importable. PikoBuy's terms prohibit counterfeit and intellectual-property-infringing products. Its agreement also warns about customs risks for goods such as liquids, powders, batteries, food and medicine and says shoppers are responsible for understanding prohibited items and destination laws.",
+          "Check the destination rules for the actual product, not only the shipping route's ability to accept it at origin. Cosmetics, electronics, toys, protective equipment, food products, medicines and goods using protected marks can require licences, safety evidence, labelling or other compliance. A seller listing, warehouse photo or available route does not certify EU product compliance.",
+        ],
+      },
+      {
+        heading: "Use a final pre-dispatch decision checklist",
+        paragraphs: [
+          "First, confirm that every item in the parcel matches the order and is lawful to export and import. Second, save the true value, quantity, description and payment evidence. Third, review the live route—not a remembered route name—for its accepted product types, billing method and any explicit VAT or duty statement. Fourth, calculate a landed-cost range with separate VAT, duty and possible carrier-fee rows.",
+          "Proceed only if the high scenario remains affordable and the document pack is complete. Clarify before dispatch if the payment page and route wording disagree, the VAT treatment is not understandable, or the product needs compliance evidence you do not have. Reject or return the item when import legality is doubtful or a truthful declaration cannot be made.",
+          "After dispatch, keep the customs file until delivery and any appeal or return period has ended. If contacted, respond with consistent documents and describe what is observable rather than speculating. Customs decisions belong to the destination authority, so no independent guide, agent or carrier can guarantee clearance.",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Estimate the complete PikoBuy cost", href: "/pikobuy-fees-total-cost", note: "Add VAT, duty and carrier charges as separate rows in the broader landed-cost worksheet." },
+      { label: "Compare PikoBuy shipping inputs for Europe", href: "/pikobuy-shipping-europe", note: "Build the freight estimate from destination, product type, weight and outside parcel dimensions." },
+      { label: "Review the warehouse QC guide", href: "/pikobuy-qc-photo-guide", note: "Confirm item identity and visible condition before paying for international dispatch." },
+      { label: "Check returns before international shipping", href: "/pikobuy-return-policy", note: "Understand the published warehouse window and limitations if an item should not be shipped." },
+    ],
+    faqHeading: "PikoBuy VAT and customs questions for Europe",
+    faq: [
+      {
+        question: "Are PikoBuy parcels under €150 customs-duty free in the EU?",
+        answer: "Not as a general rule after 1 July 2026. European Commission guidance says a temporary €3 customs duty applies per tariff-classification item to distance-sale consignments up to €150 until 1 July 2028, with limited exceptions. Check the actual declaration and current destination guidance.",
+      },
+      {
+        question: "Does PikoBuy collect EU VAT through IOSS?",
+        answer: "The public PikoBuy pages reviewed on 30 August 2026 did not establish universal IOSS use for European routes. Check the live payment breakdown and retain explicit VAT or import documentation rather than assuming that VAT is prepaid.",
+      },
+      {
+        question: "What documents should I keep for PikoBuy customs clearance?",
+        answer: "Keep the exact item description, quantity and genuine value, order and payment evidence, source listing, parcel and shipping records, tracking number, and any explicit VAT record. Follow verified requests from the destination authority or carrier for additional documents.",
+      },
+      {
+        question: "Can PikoBuy guarantee that a parcel clears EU customs?",
+        answer: "No. PikoBuy's User Registration Agreement says it makes no customs-clearance promise or guarantee. The destination authority applies the law to the actual goods and declaration.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "European Commission low-value import guidance", href: "/sources#eu-customs-sources" },
+      { label: "European Commission VAT and customs guidance", href: "/sources#eu-customs-sources" },
+    ],
+  },
+  {
     slug: "pikobuy-return-policy",
     eyebrow: "Returns explained",
     title: "PikoBuy 5-Day Return Policy: Timing, Eligibility and Fees",

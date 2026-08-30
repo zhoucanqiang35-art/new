@@ -121,6 +121,7 @@ await assertPage("/faq", "Six useful answers before you order");
 await assertPage("/language/pl", "PikoBuy Spreadsheet", "/language/pl");
 await assertPage("/pikobuy-fees-total-cost", "PikoBuy Fees Explained");
 await assertPage("/pikobuy-seller-listing-verification", "PikoBuy Seller and Listing Verification Checklist");
+await assertPage("/pikobuy-eu-vat-customs-preparation", "PikoBuy EU VAT and Customs Preparation Guide for 2026");
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
 await assertPublicAsset("/robots.txt", "text/plain", "Allow: /");
@@ -133,10 +134,10 @@ if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreads
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 144 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-seller-listing-verification")) {
-  throw new Error(`Expected 144 sitemap URLs with hreflang alternates and the new seller-listing guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 152 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-eu-vat-customs-preparation")) {
+  throw new Error(`Expected 152 sitemap URLs with hreflang alternates and the new EU customs guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 144-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 152-URL sitemap, CSS and JavaScript.",
 );

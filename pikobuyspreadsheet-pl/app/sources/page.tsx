@@ -13,13 +13,19 @@ export const metadata: Metadata = {
 
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
-    ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 28 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking. Verified 28 August 2026."],
+    ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 30 August 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking. Verified 30 August 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres. Verified 26 August 2026."],
     ["Shipping terms", "", "Forwarding process, inspection boundaries, third-party logistics and cross-border risks. Verified 26 August 2026."],
     ["Returns & Exchanges", "", "Five-day/120-hour application window, eligibility, exclusions, responsibility and published fee formula. Verified 26 August 2026."],
-    ["User Registration Agreement", "", "Product-link and seller boundaries, purchasing-stage cost language, platform fees, inspection limits and special-order warnings. Verified 28 August 2026."],
-    ["Terms of Service", "", "Platform scope, order acceptance, seller-of-record limitation, prohibited items and policy-change clauses. Verified 28 August 2026."],
+    ["User Registration Agreement", "", "Product-link and seller boundaries, customs document requests, customs-clearance limits, platform fees and inspection boundaries. Verified 30 August 2026."],
+    ["Terms of Service", "", "Platform scope, cross-border duties, taxes and brokerage, seller-of-record limitation, prohibited items and policy changes. Verified 30 August 2026."],
+  ]},
+  { id: "eu-customs-sources", title: "European Union VAT and customs source record", external: false, links: [
+    ["Temporary low-value customs duty guidance", "", "European Commission explanation of the €3-per-tariff-item duty applying to qualifying distance-sale consignments up to €150 from 1 July 2026 until 1 July 2028. Last updated 20 July 2026; verified 30 August 2026."],
+    ["Customs formalities for low-value consignments", "", "European Commission record of the end of the €22 import VAT exemption, customs declarations for all imported goods and the IOSS and special-arrangements mechanisms. Verified 30 August 2026."],
+    ["VAT taxable amount for imported goods", "", "European Commission explanation that the import VAT base can include customs value, duties, charges and incidental costs such as packing, transport and insurance. Verified 30 August 2026."],
+    ["Calculation of customs duties", "", "European Commission overview of tariff classification, origin and customs value, including transaction value as the main valuation method. Verified 30 August 2026."],
   ]},
   { id: "findspreadsheet-sources", title: "FindSpreadsheet product sources", external: true, links: [
     ["FindSpreadsheet home", "https://findspreadsheet.com/", "Main database context, product count claim and categories."],
