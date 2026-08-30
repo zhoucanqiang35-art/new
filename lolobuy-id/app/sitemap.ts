@@ -4,7 +4,7 @@ import { locales } from "./translations";
 
 // Canonical production origin for Google Search Console.
 export default function sitemap():MetadataRoute.Sitemap{
-  const base="https://lolobuy.id",updated=new Date("2026-08-28");
+  const base="https://lolobuy.id",updated=new Date("2026-08-30");
   const sharedPaths=["",...Object.keys(pages),...categories.map(c=>`category/${c.slug}`)];
   return locales.flatMap(locale=>{
     const articlePaths=articles.filter(article=>locale==="en"||!article.englishOnly).map(article=>`article/${article.slug}`);
