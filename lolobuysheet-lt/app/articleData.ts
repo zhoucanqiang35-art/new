@@ -457,5 +457,107 @@ export const researchArticles: ResearchArticle[] = [
         "Send one concise evidence set: order or parcel number, exact status text, date and time of the last change, domestic or international tracking number where relevant, screenshot of the mismatch, and the action requested. Avoid unsupported claims about loss, guarantees or universal processing times. The status label tells you where to investigate; the dated account record and response from LoloBuy establish what is happening to the actual transaction."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-return-refund-evidence-guide",
+    tag: "AFTER-SALES",
+    title: "LoloBuy Return and Refund Evidence Guide: What to Save Before You Apply",
+    description: "A source-checked evidence checklist for LoloBuy cancellations, warehouse returns, refunds and delivered-parcel after-sales requests.",
+    readTime: "13 min read",
+    published: "2026-08-30",
+    updated: "2026-08-30",
+    keywords: [
+      "LoloBuy return refund evidence",
+      "LoloBuy return exchange",
+      "LoloBuy after-sales photos",
+      "LoloBuy refund timeline",
+      "LoloBuy warehouse return",
+      "LoloBuy damaged parcel claim"
+    ],
+    sources: [
+      {
+        label: "LoloBuy Help Center — Return the Product",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296772133891",
+        accessed: "30 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Terms of Promised Returns with no reasons",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296939447441",
+        accessed: "30 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Can Shopping Agent orders be cancelled or refunded?",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242297000395937",
+        accessed: "30 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Problems found after receiving goods",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242301324591491",
+        accessed: "30 August 2026"
+      },
+      {
+        label: "LoloBuy Help Center — How to apply for parcel after-sales",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242301393535401",
+        accessed: "30 August 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Interpret the current order and warehouse status", url: "/articles/lolobuy-order-warehouse-status-guide" },
+      { label: "Review warehouse QC photos before deciding", url: "/articles/lolobuy-qc-photos-guide" },
+      { label: "Compare current product listings on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-return-refund-evidence-checklist.svg",
+      alt: "Four-part LoloBuy return and refund evidence checklist covering the order record, warehouse issue, delivered parcel and refund ledger",
+      caption: "Editorial evidence checklist based on LoloBuy's public after-sales pages checked on 30 August 2026. The live account and seller decision control each case.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Start by identifying the type of request", paragraphs: [
+        "A cancellation, warehouse return, exchange, refund and delivered-parcel claim are not interchangeable. A cancellation tries to stop a purchase before the seller-to-warehouse process is complete. A warehouse return sends an item back to the seller after it has been bought or received. A refund records money returned after a cancellation or return is accepted. A parcel after-sales request concerns a problem discovered during or after international delivery. The evidence and controlling screen change with each stage.",
+        "Before uploading anything, write one sentence that defines the requested outcome: cancel an unpurchased order, return the wrong warehouse item, exchange a size, obtain a refund after seller approval, or report a damaged international parcel. Then record the exact status, order or parcel number and time shown in LoloBuy. This first step prevents evidence for one transaction stage from being submitted through the wrong workflow."
+      ]},
+      { heading: "What LoloBuy currently confirms about cancellations", paragraphs: [
+        "Verified platform fact: LoloBuy's public cancellation guidance separates orders by status. Its pages direct buyers to cancel eligible early-stage orders from My Orders, while a purchased order uses Return/Refund and may require negotiation with the seller. The current Return the Product article gives different handling estimates for early, processing, ordered and already-shipped stages. These are platform guidance values, not guarantees that a seller will approve every request.",
+        "Editorial advice: save the submitted listing, chosen option, amount paid, order status and cancellation screen before acting. If the order is still being processed, state that you want the purchase stopped; do not frame the request as a product defect that nobody has inspected. If the seller has already shipped, include domestic tracking because the practical question has changed from stopping purchase to handling goods already moving toward the warehouse."
+      ]},
+      { heading: "Warehouse returns depend on eligibility and condition", paragraphs: [
+        "Verified platform fact: LoloBuy's current return article tells buyers with shipped, delivered, warehouse-arrived or stored items to check the purchased product link for unconditional return or exchange support. It also says the item must remain in a condition that does not affect the seller's ability to resell it. The separate return-guarantee page says the seller must agree and describes the request window as five days, or 120 hours, after the status changes to stocked in.",
+        "Do not convert that wording into a promise that every item has a five-day return right. Eligibility can depend on the seller, source platform, product condition and listing. LoloBuy's current article also says second-hand purchasing and warehouse-sale orders do not support returns. Open the live return screen immediately after QC, confirm what the actual order offers and preserve the displayed deadline before relying on a third-party summary."
+      ]},
+      { heading: "Build evidence around one objective mismatch", paragraphs: [
+        "A strong request connects three records: what was ordered, what LoloBuy received and what is wrong. For an incorrect colour, size or model, save the seller listing and selected option beside the warehouse image that shows the received label or product. For a damaged or stained item, include an overall view for identity and a close view that shows the affected area. For a missing component, show the expected set and every component visible in the warehouse record.",
+        "Avoid sending ten unrelated photos with a message that only says the item is bad. Name the observable mismatch and the remedy requested. Examples include: the size label differs from the paid option; one item from the listed set is absent; the overall product style differs from the saved listing; or visible damage appears in the warehouse image. Do not claim authenticity, internal performance or material composition when photographs cannot prove it."
+      ]},
+      { heading: "Preserve packaging before a return decision", paragraphs: [
+        "The current return-guarantee page says some products have packaging requirements and a return or exchange can be refused when those requirements are not met. It also states that the product should remain new and suitable for resale. That makes packaging evidence part of the decision. If a return is possible, do not request box removal, tag removal, destructive inspection or parcel submission until the live return terms and support response are clear.",
+        "Save photos showing tags, seals, accessories, retail packaging and the complete item as it exists at the warehouse. If packaging was already removed during normal intake, record what the warehouse photos and notes show rather than accusing a party without evidence. Ask support whether the remaining condition meets the current seller requirement. A return case is stronger when it documents the actual condition before any further service changes it."
+      ]},
+      { heading: "Separate return costs from the product refund", paragraphs: [
+        "Verified platform fact: LoloBuy's return-guarantee page says the refund or exchange amount is based on the product price actually paid. For an unconditional return or exchange, it describes the cost as shipping to the seller, the seller's original shipping cost and a return or exchange service fee. It also tells buyers to keep enough account balance for applicable return shipping and service charges. The page does not establish one universal current cash amount.",
+        "Create separate spreadsheet columns for product refund, domestic outbound freight, domestic return freight, service charge and any amount still pending. Before confirming, capture the live fee screen and ask which party is responsible. The official page says a buyer normally bears shipping when there is no quality problem, while seller responsibility for a verified quality problem depends on the request outcome. Never subtract an estimated fee from the expected refund and present the result as final."
+      ]},
+      { heading: "A return approval is not yet a completed refund", paragraphs: [
+        "LoloBuy's current Return the Product article says that, after an accepted return request for a paid order, the refund is credited to the user's available LoloBuy balance. For shipped, warehouse-arrived or stored orders, it gives an approximate seller-dependent refund period of seven to fifteen days. A different help article likewise explains that money returns after the seller receives the item and refunds LoloBuy. These are current estimates, not delivery guarantees for funds.",
+        "Track four events separately: request submitted, seller approved, return parcel delivered and refund credited. Save the after-sales number, seller decision, domestic return tracking and balance-ledger entry. If the product status changes to Returned but the balance has not changed, ask about the refund transaction rather than reopening the evidence about the product. Physical movement and financial settlement can complete on different dates."
+      ]},
+      { heading: "Delivered-parcel claims need a different evidence set", paragraphs: [
+        "After international delivery, use the parcel record rather than the warehouse item screen. LoloBuy's public parcel after-sales article directs buyers to My LoloBuy, then Parcels, and the Apply After-sales action for the relevant parcel. It asks for a detailed problem description and parcel and product photos when goods are wrong or damaged. This branch concerns the delivered shipment; it is not a late substitute for an unresolved warehouse QC return.",
+        "For visible external damage, photograph every side of the unopened parcel, the shipping label, crushed or opened areas and any courier remark before changing the packaging. If possible, check obvious damage in front of the courier and preserve any refusal or signed-damage record. Keep the original packaging. An unboxing sequence or continuous video can add context, but it should support clear still images and item identifiers rather than replace them."
+      ]},
+      { heading: "Match evidence to the delivered problem", paragraphs: [
+        "LoloBuy's current received-goods guidance lists problem-specific evidence. Damage or large stains need photographs of the affected area. A size mismatch needs the received size label; without an identifying size mark, the page says the claim cannot be verified that way. A wrong style needs an overall product image. Missing goods require the missing order number plus images of the item list, opened packaging, received goods and parcel weighing evidence.",
+        "For a weight dispute, the same page tells buyers to weigh the parcel before opening it and upload a photograph of that measurement. Add the scale display, complete unopened parcel and visible shipping label in the same evidence sequence. For missing items, identify at least one received item and map every expected order number to what is present. This gives support a reproducible comparison instead of a quantity claim without parcel context."
+      ]},
+      { heading: "Current public deadline wording is inconsistent", paragraphs: [
+        "LoloBuy's public pages checked on 30 August 2026 do not state one consistent after-delivery evidence window. One article asks for packaging, invoice and photographs within two working days when damage is found after delivery. The same page says missing, damaged or defective-goods issues should reach customer service within 72 hours. The parcel after-sales article mentions seven days after signature or 45 days from shipment, yet also warns that an application may not be accepted when delivery was more than three days earlier.",
+        "Because those statements conflict, this guide does not select the longest period as a buyer entitlement. Inspect the parcel immediately, preserve the unopened condition and submit through the live after-sales button as soon as a problem is found. Save the deadline or eligibility message shown for the actual parcel and request written clarification if the interface differs from a Help Center page. Destination law may provide separate rights, but this article does not give legal advice."
+      ]},
+      { heading: "Use a compact return-and-refund record", paragraphs: [
+        "Keep one evidence folder per order or parcel. Name files by date and purpose: paid option, order status, warehouse overview, defect close-up, size label, packaging, parcel label, pre-opening weight, unboxing, return approval, return tracking and refund ledger. In a spreadsheet, record the item ID, parcel ID, request type, exact reason selected, deadline shown, requested remedy, responsible party, fees quoted and the next expected event.",
+        "Before submitting, check that the evidence proves identity, timing and the specific mismatch. After submitting, do not alter packaging or send the item in another parcel unless the instructions allow it. Record each support response without rewriting it as a platform-wide policy. This evidence-first method cannot guarantee seller approval, but it reduces avoidable ambiguity and makes a delayed return, missing refund or parcel claim easier to audit."
+      ]}
+    ]
   }
 ];

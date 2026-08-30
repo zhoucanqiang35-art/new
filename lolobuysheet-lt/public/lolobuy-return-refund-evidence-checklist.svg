@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy return and refund evidence checklist</title>
+  <desc id="desc">A four-part checklist for saving order, warehouse, delivered parcel and refund records before an after-sales request.</desc>
+  <rect width="1200" height="650" rx="34" fill="#f6f0e5"/>
+  <text x="64" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#1e293b">Save evidence by transaction stage</text>
+  <text x="64" y="108" font-family="Arial, sans-serif" font-size="19" fill="#5b6673">A compact checklist for returns, exchanges, refunds and parcel claims</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="64" y="150" width="510" height="190" rx="24" fill="#fff" stroke="#d7c5a3" stroke-width="3"/>
+    <circle cx="112" cy="199" r="25" fill="#b88938"/><text x="104" y="207" font-size="22" font-weight="700" fill="#fff">1</text>
+    <text x="154" y="205" font-size="24" font-weight="700" fill="#1e293b">Order record</text>
+    <text x="96" y="246" font-size="18" fill="#52606d">✓ Paid option and live listing</text>
+    <text x="96" y="278" font-size="18" fill="#52606d">✓ Order ID, exact status and timestamp</text>
+    <text x="96" y="310" font-size="18" fill="#52606d">✓ Requested outcome and deadline shown</text>
+    <rect x="626" y="150" width="510" height="190" rx="24" fill="#fff" stroke="#d7c5a3" stroke-width="3"/>
+    <circle cx="674" cy="199" r="25" fill="#b88938"/><text x="666" y="207" font-size="22" font-weight="700" fill="#fff">2</text>
+    <text x="716" y="205" font-size="24" font-weight="700" fill="#1e293b">Warehouse issue</text>
+    <text x="658" y="246" font-size="18" fill="#52606d">✓ Overall identity and defect close-up</text>
+    <text x="658" y="278" font-size="18" fill="#52606d">✓ Size/model label, set contents and QC</text>
+    <text x="658" y="310" font-size="18" fill="#52606d">✓ Tags, seals, accessories and packaging</text>
+    <rect x="64" y="374" width="510" height="190" rx="24" fill="#fff" stroke="#d7c5a3" stroke-width="3"/>
+    <circle cx="112" cy="423" r="25" fill="#b88938"/><text x="104" y="431" font-size="22" font-weight="700" fill="#fff">3</text>
+    <text x="154" y="429" font-size="24" font-weight="700" fill="#1e293b">Delivered parcel</text>
+    <text x="96" y="470" font-size="18" fill="#52606d">✓ Unopened parcel, label and damage</text>
+    <text x="96" y="502" font-size="18" fill="#52606d">✓ Weight before opening and item list</text>
+    <text x="96" y="534" font-size="18" fill="#52606d">✓ Unboxing evidence and received item IDs</text>
+    <rect x="626" y="374" width="510" height="190" rx="24" fill="#fff" stroke="#d7c5a3" stroke-width="3"/>
+    <circle cx="674" cy="423" r="25" fill="#b88938"/><text x="666" y="431" font-size="22" font-weight="700" fill="#fff">4</text>
+    <text x="716" y="429" font-size="24" font-weight="700" fill="#1e293b">Return and refund ledger</text>
+    <text x="658" y="470" font-size="18" fill="#52606d">✓ After-sales ID and seller decision</text>
+    <text x="658" y="502" font-size="18" fill="#52606d">✓ Return tracking and live fees</text>
+    <text x="658" y="534" font-size="18" fill="#52606d">✓ Refund date, amount and destination</text>
+    <rect x="64" y="594" width="1072" height="34" rx="17" fill="#243044"/>
+    <text x="600" y="617" text-anchor="middle" font-size="17" fill="#fff">Submit promptly · preserve original packaging · use the live account record</text>
+  </g>
+</svg>
