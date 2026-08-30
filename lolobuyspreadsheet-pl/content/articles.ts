@@ -5,7 +5,13 @@ export type Article = {
   updated: string;
   readingTime: string;
   factNote: string;
-  sections: { heading: string; paragraphs: string[]; bullets?: string[] }[];
+  sections: {
+    heading: string;
+    paragraphs: string[];
+    bullets?: string[];
+    subsections?: { heading: string; paragraphs: string[]; bullets?: string[] }[];
+  }[];
+  relatedLinks?: { title: string; description: string; href: string }[];
 };
 
 export const articles: Article[] = [
@@ -20,13 +26,130 @@ export const articles: Article[] = [
       {heading:"Start with the real service model",paragraphs:["LoloBuy presents itself as a shopping and forwarding service for products sourced from China. Its public homepage describes a sequence rather than a normal retail checkout: a buyer submits or searches for a product, pays for the item and mainland-China freight, waits for the item to reach a China warehouse, reviews inspection feedback, and later submits selected warehouse items as an international parcel. That distinction matters. LoloBuy is not saying that every item shown on a spreadsheet is held in its own stock. The original seller, selected option, domestic delivery and current availability still need to be checked before payment.","A useful product database is therefore a discovery tool, not a promise. Use it to compare ideas and reach a live product page more quickly. Before ordering, verify the current title, images, size or colour option, seller information, item price and any domestic shipping charge. If a product page has changed or disappeared, search again instead of assuming an old screenshot is still accurate."]},
       {heading:"Step 1: choose the item carefully",paragraphs:["The official homepage says buyers can paste a product link to place an order and that the service can assist with purchases from online and offline channels in China. In practice, the quality of the final result begins with the quality of the source listing. A clear listing should show the exact variant, useful photographs, size information and enough seller detail to identify what is being purchased. A vague title or a single promotional image creates uncertainty that warehouse photos may not fully resolve later.","Write down the selected option before paying. For clothing, record the size and colour. For shoes, record the labelled size and any version name. For accessories or electronics, record the model and included pieces. Compare the live listing with the order summary one more time. This short check is more valuable than trying to remember the product after several orders have accumulated."]},
       {heading:"Step 2: understand the first payment",paragraphs:["LoloBuy’s public three-step summary says the order-payment stage covers the product price and freight within mainland China. That is not the same as the final international shipping bill. The seller first sends the item to LoloBuy’s China warehouse. International transport is selected later, after warehouse items are available and parcel details can be considered.","This separation explains why a low item price does not automatically mean a low delivered cost. Domestic freight, optional services, packing choices, international shipping, insurance or protection, destination taxes and carrier charges may all affect the total. Do not compare two products only by the displayed item price. Compare what is included, likely packed size, weight, seller terms and the route options that may be available for the destination."]},
-      {heading:"Step 3: warehouse intake and consolidation",paragraphs:["The official homepage says purchases from different sellers are sent to the LoloBuy China warehouse and can be integrated for the buyer’s convenience. It also advertises 180 days free of storage charge. Treat that public number as a current platform statement, not an invitation to ignore account deadlines. Always check the live warehouse page for the arrival date, current storage policy and any item-specific warning.","Consolidation can simplify shipping because several warehouse items may be submitted together. It also creates a planning decision. A large combined parcel can be efficient, but bulky packaging or restricted products may limit route choices. Decide which items genuinely belong together. Keep fragile items, batteries, liquids, branded goods and other sensitive categories in mind because route restrictions can differ."]},
+      {heading:"Step 3: warehouse intake and consolidation",paragraphs:["The official homepage says purchases from different sellers are sent to the LoloBuy China warehouse and can be integrated for the buyer’s convenience. LoloBuy’s current public purchase guide says 90 days of free storage, while a separate official storage article says 180 days. Because those statements conflict, always check the live warehouse page for the arrival date, current countdown, price and any item-specific warning.","Consolidation can simplify shipping because several warehouse items may be submitted together. It also creates a planning decision. A large combined parcel can be efficient, but bulky packaging or restricted products may limit route choices. Decide which items genuinely belong together. Keep fragile items, batteries, liquids, branded goods and other sensitive categories in mind because route restrictions can differ."]},
       {heading:"Step 4: use quality inspection correctly",paragraphs:["LoloBuy states that its team checks items for defects and whether details such as size and colour are correct, then sends inspection feedback. The homepage also promotes free quality-inspection pictures. These photographs are useful evidence, but only for what is visible. A photo cannot prove long-term durability, internal construction, exact material composition, seller reliability or how an item will fit a particular person.","Review the complete image set in a consistent order. Start with overall shape and colour. Confirm the selected variant and size label. Check measurements when a ruler image is available. Then zoom into seams, prints, logos, hardware, soles, zips, edges and visible marks. If a critical angle is missing, use the account’s available service options or customer support rather than approving from an assumption."]},
       {heading:"Step 5: decide whether to keep, return or clarify",paragraphs:["A QC decision should be based on the order you placed, not on an idealised product photo. Compare warehouse evidence with the live listing and your recorded selection. Separate obvious mismatches from minor variation caused by lighting, angle or manufacturing tolerance. If the colour name is correct but the photograph looks different, ask whether lighting or white balance may be responsible. If the size label or model is wrong, document the mismatch clearly.","Return and after-sales options depend on the seller, timing, item condition and platform rules. Do not promise yourself that every problem can be returned. Check the account page before the deadline and preserve screenshots of the order, listing and warehouse feedback. Clear evidence makes support conversations easier."]},
       {heading:"Step 6: build the parcel, not just the basket",paragraphs:["The public homepage says buyers can select products stored in the warehouse and submit them as one parcel. It also states that around 100 logistics routes are available. Route count alone does not identify the best line. Availability can depend on country, product category, packed weight, parcel dimensions, declared value and current carrier rules.","When comparing routes, look beyond the cheapest estimate. Check the accepted product types, tracking level, expected transit range, size and weight limits, compensation or protection terms, customs handling notes and last-mile carrier. Rehearsal or repacking options may help reveal a more realistic parcel size where offered. The final route shown in the account at submission time is more relevant than an old example from a forum or spreadsheet."]},
       {heading:"Step 7: read estimates as estimates",paragraphs:["International freight can be based on actual weight, volumetric weight or a route-specific charging rule. A light parcel can still be expensive when it occupies a large amount of space. Shoe boxes, thick jackets and protective packing are common examples. Ask whether removing unnecessary packaging would reduce volume without creating unacceptable damage risk.","A freight calculator is useful for planning, but it cannot guarantee the final bill before the parcel is packed and measured. Currency conversion can also change. Keep a margin rather than spending the entire budget on products. If taxes or duties may apply in the destination country, research the local rules separately and never treat a shipping quote as a tax guarantee."]},
       {heading:"Step 8: consider protection without assuming unlimited cover",paragraphs:["LoloBuy’s August 2026 ShipCare announcement describes an optional paid protection service with loss, damage or partial-loss, customs-seizure and delivery-delay coverages. The announcement says the fee rate ranges from 5% to 6% and is calculated from merchandise value plus international shipping, multiplied by the applicable rate. Coverage and compensation can vary by shipping line, so the exact promise shown for the chosen line must be read before purchase.","The same announcement lists exclusions, non-insurable categories, evidence requirements and claim deadlines. Protection is not a replacement for correct recipient information, lawful goods, sensible packing or prompt delivery acceptance. Save the parcel number, value evidence and tracking records. For damage or partial-loss claims, the announcement requires a complete, unedited, continuous unboxing video beginning before the parcel is opened."]},
       {heading:"A simple buyer checklist",paragraphs:["A good workflow is deliberately repetitive. Verify the live listing before payment. Record the exact option. Review warehouse images against the order. Resolve obvious mismatches before parcel submission. Compare routes using the packed parcel, not only the product price. Read current restrictions and protection terms. Save evidence until delivery is complete.","This process does not remove every risk, but it prevents many avoidable mistakes. The most useful habit is to separate confirmed facts from estimates. A live title, selected option, warehouse photograph, measured parcel and written route rule are facts for a specific moment. A remembered price, old screenshot, promotional image or community estimate is not. Build decisions around the first group and use the second only as a prompt to verify."],bullets:["Recheck the live product page and selected variant","Save order and seller evidence","Inspect every warehouse photo","Compare packed weight, dimensions and route restrictions","Keep tracking, payment and unboxing evidence until the case is closed"]}
+    ]
+  },
+  {
+    slug: "lolobuy-fees-budget-guide",
+    title: "LoloBuy Fees and Budget Guide: Calculate Your Real Buying Cost",
+    description: "A practical cost breakdown for product orders, China delivery, warehouse choices, international freight, payment differences and destination charges.",
+    updated: "Fact-checked 30 August 2026",
+    readingTime: "About 10 minutes",
+    factNote: "Source basis: LoloBuy’s public purchase guide, shipping-weight guidance, parcel supplemental-payment rules, packaging guidance, storage rules and discount rules, checked on 30 August 2026. Two official pages currently conflict on whether free storage is 90 or 180 days; use the countdown and price shown in your live account. All payment methods, fees, exchange rates, routes, taxes and campaign terms can change.",
+    sections: [
+      {
+        heading: "Why the displayed product price is not the delivered cost",
+        paragraphs: [
+          "A realistic LoloBuy budget has at least two payment moments. LoloBuy’s public purchase guide says the first payment covers the item and Chinese local delivery. After the seller sends the order to the China warehouse, the buyer reviews the item, selects warehouse goods, chooses a route and pays an international shipping deposit. Treating the listing price as the total therefore leaves out the part that is most difficult to estimate before the parcel exists.",
+          "The useful question is not simply “What are the LoloBuy fees?” It is “What will this exact basket cost after domestic delivery, packing, chargeable weight, the selected route, optional services, payment conversion and destination charges?” Build the answer in layers. Confirmed charges belong in the core budget. Estimates belong in a separate column. Taxes, customs decisions and optional protection belong in a contingency section rather than being silently assumed to be included."
+        ]
+      },
+      {
+        heading: "Build a six-part LoloBuy cost worksheet",
+        paragraphs: [
+          "Use one row for each product and one summary for the future parcel. Record the live item price, quantity and selected variant; the seller’s domestic freight to the warehouse; any service selected during ordering or storage; the international freight estimate; payment or currency-conversion differences visible at checkout; and destination tax, duty or carrier charges when applicable. Keep discounts on their own line so a temporary promotion does not hide the normal cost.",
+          "Do not force every number into US dollars or euros too early. The official help guide says LoloBuy supports multiple currencies, but the amount displayed by the platform and the amount finally charged by a card issuer can differ because of the payment channel or issuer’s conversion. Save the checkout currency, quoted total and final statement amount. That makes later comparisons accurate."
+        ],
+        bullets: [
+          "Products and quantities at the live checkout price",
+          "Seller-to-warehouse delivery inside China",
+          "Optional warehouse, photo, packing or protection services",
+          "International freight deposit and later adjustment",
+          "Payment-channel or currency-conversion difference",
+          "Destination tax, duty, customs or last-mile charges where applicable"
+        ]
+      },
+      {
+        heading: "First payment: product price and China domestic freight",
+        paragraphs: [
+          "The official “How to Purchase on LoloBuy” page says buyers pay for the items and Chinese local delivery at the order stage. Domestic freight is controlled by the seller or source marketplace, so it may be zero, fixed or different for separate sellers. A basket assembled from five stores can therefore contain several domestic delivery charges even when all items later enter one international parcel.",
+          "Before paying, review the order summary rather than relying on the product card. Check quantity, colour, size and remarks because a corrected order or return may create additional domestic movement. The same official guide currently lists credit cards, WeChat, Alipay, Chinese debit cards and bank telegraphic transfer, but availability can depend on account, country and current checkout configuration. Use only the methods actually offered on your payment screen and read any handling amount before confirming."
+        ]
+      },
+      {
+        heading: "Warehouse cost: useful time, but conflicting official limits",
+        paragraphs: [
+          "LoloBuy’s public information is currently inconsistent about free storage. The purchase tutorial, refreshed in the current site interface, says 90 days. A separate official “Free Storage Period” article says 180 days and describes a CN¥1 per line item per day fee after that period, plus reminder and disposal rules. Because both pages are public at the same time, it would be misleading to present either number as universally controlling.",
+          "Use the item-level countdown in My Warehouse as the operational source. Take a screenshot when the item arrives and plan the parcel well before the displayed deadline. Do not buy months of items based on the longer public number. Unmatched or abnormal incoming parcels can also follow different rules, so a forwarding parcel without complete order or tracking information needs faster attention."
+        ],
+        subsections: [
+          {
+            heading: "A simple storage decision",
+            paragraphs: [
+              "Consolidation can reduce repeated international shipments, and LoloBuy’s purchase guide recommends stocking and combining items to save freight. Waiting only helps while the additional purchase genuinely improves the parcel economics and remains within the live storage rule. If one delayed seller pushes other items toward a deadline, compare the cost and risk of shipping the ready group separately."
+            ]
+          }
+        ]
+      },
+      {
+        heading: "International shipping: estimate first, final charge later",
+        paragraphs: [
+          "At parcel submission, LoloBuy’s purchase guide says the international shipping deposit is estimated from product weight, selected shipping method and destination. The final freight is then based on the package size and weight verified after packing. The guide says a difference can be returned to the LoloBuy account after shipment. A separate official supplemental-payment article explains that a deficiency may instead generate an additional payment and that the platform’s response depends on how many route-specific added-weight units separate the estimate from the final charge.",
+          "This means the first freight number is a planning figure, not a guaranteed bill. Save both the estimate and the final parcel detail. If the final charge is higher, identify whether the difference came from packaging, dimensions, a route billing increment or another fee line. If it is lower, check where the credit was returned and whether it is platform balance rather than a refund to the original payment method."
+        ]
+      },
+      {
+        heading: "Actual weight, volumetric weight and billing increments",
+        paragraphs: [
+          "LoloBuy’s official weight guide distinguishes estimated weight from the real packed weight and also explains volumetric weight. A route may charge according to the greater of actual and volumetric weight. That matters for light but bulky goods such as shoe boxes, padded jackets or large gift packaging. The same page publishes different volumetric formulas for named routes, which is a warning not to apply one divisor to every line.",
+          "Shipping can also be rounded to a first-weight and added-weight unit. A parcel just above a threshold may cost the next full increment. For budgeting, record actual grams, packed dimensions, the route’s divisor or chargeable-weight rule and its billing increment exactly as shown in the live freight estimator. Old examples are useful for understanding the method, not for predicting today’s price."
+        ],
+        subsections: [
+          {
+            heading: "When rehearsal or pre-packing may help",
+            paragraphs: [
+              "The current interface describes rehearsal as a paid simulation that pre-packs selected warehouse items and reports weight and dimensions; it is not a real shipment. It may reduce uncertainty for a bulky or mixed parcel, but its displayed fee and processing terms must be checked before purchase. Include that fee in the budget instead of treating it as free freight savings."
+            ]
+          }
+        ]
+      },
+      {
+        heading: "Packaging can save space or protect the product",
+        paragraphs: [
+          "Official packaging guidance says parcels billed by volumetric weight are packed to minimise space, while actual-weight parcels may tolerate some empty space and lightweight filling. The warehouse rules also describe packaging-removal choices. Removing a shoe box or excess seller packaging can reduce dimensions, but the same guidance acknowledges that cutting a carton can make it less secure.",
+          "Make the choice item by item. Keep protective packaging when damage risk or collector value matters more than volume. Consider removal for durable goods when the live route uses volumetric billing and the packaging adds little protection. Any paid reinforcement, packaging material, package removal or custom-photo option should appear as a separate worksheet line. Never claim a saving until the packed dimensions and final chargeable weight confirm it."
+        ]
+      },
+      {
+        heading: "Discounts reduce cost only when the live order qualifies",
+        paragraphs: [
+          "LoloBuy’s public discount rules describe product-level, store-level and platform-level discounts. They also describe an international shipping discount linked to the actual payment for eligible discounted products. The rule page says the shipping reduction can be combined with coupons and promo codes, while the combined reduction is capped at 20% of the original shipping fee. Eligibility depends on a visible discount tag and the campaign’s order and parcel-submission windows.",
+          "These are campaign rules, not a permanent price promise. Verify the tag on the product, cart, checkout and warehouse page; note the expiry; and confirm the reduction again at parcel submission. Base the budget on the amount actually shown after validation. A coupon that may arrive later, an expired code or a promotion seen in somebody else’s account has a budget value of zero until the platform accepts it."
+        ]
+      },
+      {
+        heading: "Taxes, customs and optional protection are separate decisions",
+        paragraphs: [
+          "Destination authorities decide whether tax, duty, documentation or inspection applies. A LoloBuy freight estimate does not by itself prove that these charges are included. Read the tax method and declaration fields shown for the selected route, then check current destination-country rules using an official customs or tax source. Do not ask a spreadsheet, seller or community post to guarantee clearance.",
+          "Optional parcel protection is another separate line. Coverage, exclusions, evidence, deadlines and price can depend on the route and current terms. Paying for protection does not remove the need for lawful goods, accurate recipient details, sensible packaging or delivery evidence. If you select it, save the exact coverage screen with the parcel record and include its displayed charge in the delivered-cost calculation."
+        ]
+      },
+      {
+        heading: "A practical pre-payment budget check",
+        paragraphs: [
+          "Before the product order, confirm the live item total, domestic freight, selected options and payment screen. Before the international parcel, confirm the warehouse deadline, item list, packed or estimated weight, dimensions, chargeable-weight rule, route restrictions, optional services, tax handling and refund or supplemental-payment mechanism. Keep a cash buffer that you can afford rather than spending the entire budget on products.",
+          "The best LoloBuy budget is a record, not a guess. Update the worksheet at each payment stage and compare the final delivered total with the first estimate. After several parcels, your own records will show which product types create unexpected volume, which sellers charge domestic delivery and which optional services were useful. That evidence is more valuable than a universal fee table because LoloBuy shipping cost depends on a specific parcel, route, destination and date."
+        ],
+        bullets: [
+          "Verify the current checkout rather than copying an old fee list",
+          "Keep product payment and international parcel payment separate",
+          "Use the live warehouse countdown because official storage pages conflict",
+          "Record packed dimensions as well as scale weight",
+          "Treat promotions, protection and taxes as separate lines",
+          "Save estimate, final charge and any account-balance adjustment"
+        ]
+      }
+    ],
+    relatedLinks: [
+      { title: "How LoloBuy works", description: "Follow the complete order-to-parcel workflow.", href: "/articles/how-lolobuy-works" },
+      { title: "LoloBuy shipping guide", description: "Compare route rules, chargeable weight and parcel evidence.", href: "/articles/lolobuy-shipping-guide" },
+      { title: "LoloBuy QC photo checklist", description: "Inspect warehouse evidence before paying to ship.", href: "/articles/lolobuy-qc-photo-checklist" }
     ]
   },
   {
@@ -59,7 +182,7 @@ export const articles: Article[] = [
     factNote: "Source basis: LoloBuy’s public homepage and the ShipCare service introduction published and updated in August 2026. The route and protection terms displayed for a specific parcel take priority.",
     sections: [
       {heading:"Shipping begins before parcel submission",paragraphs:["LoloBuy’s public homepage says items from different sellers are sent to its China warehouse and that buyers may select stored products to submit together as a parcel. Good shipping decisions therefore begin while choosing products. Item dimensions, fragile construction, retail packaging and restricted materials can affect the available routes and the final charge.","A cheap product can become an expensive parcel when it is bulky. Shoes with boxes, thick jackets and protective packaging occupy space even when their scale weight is low. Keep an estimated delivered budget from the beginning. Product cost, mainland-China freight, optional services, international freight, protection and destination charges are separate parts of the decision."]},
-      {heading:"Decide what should travel together",paragraphs:["Consolidation can reduce repeated handling and combine several warehouse items into one shipment. It is not automatically best to place everything in one parcel. Product restrictions, size limits, fragility and declared value can make separate parcels more practical. A battery product may have different route options from ordinary clothing. A fragile item may need protection that increases volume.","Group items with compatible shipping needs. Review each warehouse entry and remove products you do not intend to ship. Check storage dates. LoloBuy’s homepage currently advertises 180 days free of storage charge, but the live warehouse page should be treated as the final rule for a specific account and item."]},
+      {heading:"Decide what should travel together",paragraphs:["Consolidation can reduce repeated handling and combine several warehouse items into one shipment. It is not automatically best to place everything in one parcel. Product restrictions, size limits, fragility and declared value can make separate parcels more practical. A battery product may have different route options from ordinary clothing. A fragile item may need protection that increases volume.","Group items with compatible shipping needs. Review each warehouse entry and remove products you do not intend to ship. Check storage dates. LoloBuy’s current public pages conflict between 90 and 180 free-storage days, so the live warehouse countdown should be treated as the final rule for a specific account and item."]},
       {heading:"Actual weight and volumetric weight",paragraphs:["Carriers need to price both mass and aircraft or vehicle space. Depending on the route, the chargeable figure may be actual scale weight, volumetric weight or another line-specific rule. Volumetric weight is calculated from parcel dimensions using a carrier divisor. Because divisors vary, do not copy a formula from an unrelated route and assume it applies.","The practical lesson is simple: measure both weight and space. Removing an unnecessary shoe box may reduce volume, but it can also reduce protection. Vacuum packing may compress suitable clothing but should not be assumed safe for every item. Repacking or rehearsal services, where offered, can provide a better estimate of the packed parcel before the final route decision."]},
       {heading:"Compare routes on more than price",paragraphs:["LoloBuy’s homepage says around 100 logistics routes are available. The useful question is not how many exist, but which routes accept the parcel and destination today. Compare permitted product categories, chargeable-weight rule, size limits, estimated transit range, tracking, last-mile delivery, compensation terms and customs notes.","A lower estimate may involve stricter limits or less suitable tracking. A faster-looking line may not accept the item category. Route names and availability can change, so use the options displayed for the packed parcel. Save a screenshot of the selected route and its terms before payment. That record is more reliable than a recommendation written for another country or month."]},
       {heading:"Use delivery estimates carefully",paragraphs:["Transit ranges are planning information, not guaranteed arrival dates unless a written service term explicitly says otherwise. Parcels can be affected by warehouse processing, flight capacity, security checks, customs, weather, local holidays and last-mile delivery. Track milestones rather than refreshing the page without context.","If timing matters, leave a margin. Do not order close to a fixed event and assume the shortest estimate will occur. Confirm the delivery address, recipient name and telephone number. LoloBuy’s ShipCare exclusions say loss or damage caused by incorrect consignee information leading to failed customs clearance or delivery is not covered, so accuracy is both practical and relevant to protection."]},

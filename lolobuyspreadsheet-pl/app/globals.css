@@ -759,6 +759,15 @@ footer > p:nth-child(2) {
   font-size: 38px;
   margin-bottom: 22px;
 }
+.articleSubsection {
+  margin: 32px 0 8px;
+  padding-left: 22px;
+  border-left: 2px solid #d7c29f;
+}
+.longArticle section .articleSubsection h3 {
+  font: 400 25px/1.25 Georgia, serif;
+  margin: 0 0 14px;
+}
 .longArticle section p,
 .longArticle section li {
   font: 400 17px/1.82 Georgia, serif;
@@ -775,6 +784,40 @@ footer > p:nth-child(2) {
 }
 .longArticle section li {
   margin-bottom: 10px;
+}
+.articleRelated {
+  max-width: 1080px;
+  margin: 38px auto 0;
+  padding: 34px;
+  background: var(--cream);
+  border: 1px solid var(--line);
+}
+.articleRelated h2 {
+  font-size: 32px;
+  margin: 8px 0 24px;
+}
+.articleRelated > div {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.articleRelated a {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+.articleRelated a:hover {
+  border-color: var(--gold);
+}
+.articleRelated a b {
+  font: 400 19px/1.25 Georgia, serif;
+}
+.articleRelated a span {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 .articleCta {
   margin-top: 55px;
@@ -895,6 +938,9 @@ footer > p:nth-child(2) {
     font-size: 24px;
     margin-bottom: 12px;
   }
+  .longArticle section .articleSubsection h3 {
+    font-size: 19px;
+  }
   .longArticle section p,
   .longArticle section li {
     font-size: 13px;
@@ -905,6 +951,16 @@ footer > p:nth-child(2) {
   }
   .longArticle section ul {
     padding: 15px 15px 8px 32px;
+  }
+  .articleRelated {
+    margin-top: 24px;
+    padding: 20px 16px;
+  }
+  .articleRelated h2 {
+    font-size: 24px;
+  }
+  .articleRelated > div {
+    grid-template-columns: 1fr;
   }
   .articleCta {
     padding: 24px 18px;

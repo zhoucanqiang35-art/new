@@ -20,8 +20,9 @@ export default function ArticlePage({article,initialLang="en"}:{article:Article;
       </div>
       {article.sections.map((section,index)=><section key={section.heading} id={`section-${index+1}`}>
         <span className="articleNumber">{String(index+1).padStart(2,"0")}</span>
-        <div><h2>{tr(lang,section.heading)}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{tr(lang,paragraph)}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{tr(lang,item)}</li>)}</ul>}</div>
+        <div><h2>{tr(lang,section.heading)}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{tr(lang,paragraph)}</p>)}{section.bullets&&<ul>{section.bullets.map(item=><li key={item}>{tr(lang,item)}</li>)}</ul>}{section.subsections?.map(subsection=><div className="articleSubsection" key={subsection.heading}><h3>{tr(lang,subsection.heading)}</h3>{subsection.paragraphs.map(paragraph=><p key={paragraph}>{tr(lang,paragraph)}</p>)}{subsection.bullets&&<ul>{subsection.bullets.map(item=><li key={item}>{tr(lang,item)}</li>)}</ul>}</div>)}</div>
       </section>)}
+      {article.relatedLinks&&<aside className="articleRelated" aria-labelledby="related-guides"><p className="kicker">{tr(lang,"RELATED LOLOBUY GUIDES")}</p><h2 id="related-guides">{tr(lang,"Continue the buyer workflow")}</h2><div>{article.relatedLinks.map(link=><a key={link.href} href={localizedPath(lang,link.href)}><b>{tr(lang,link.title)}</b><span>{tr(lang,link.description)}</span></a>)}</div></aside>}
       <div className="articleCta"><div><p className="kicker">{tr(lang,"CONTINUE RESEARCH")}</p><h2>{tr(lang,"Compare current product pages")}</h2><p>{tr(lang,"Use the live FindSpreadsheet database to review product details before making a decision.")}</p></div><a href="https://findspreadsheet.com/">{tr(lang,"Open database")} ↗</a></div>
     </article>
     <footer className="articleFooter"><img src="/lolobuy-logo.png" alt="LoloBuy"/><p>{tr(lang,"Independent guide · No checkout or payment collection")}</p><a href={localizedPath(lang,"/")}>{tr(lang,"Back to home")}</a></footer>

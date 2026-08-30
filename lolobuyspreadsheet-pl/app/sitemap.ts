@@ -15,6 +15,7 @@ const sections = [
 ] as const;
 const articleSlugs = [
   "how-lolobuy-works",
+  "lolobuy-fees-budget-guide",
   "lolobuy-qc-photo-checklist",
   "lolobuy-shipping-guide",
 ] as const;
@@ -22,7 +23,7 @@ const articleSlugs = [
 function entry(path: string, priority: number): MetadataRoute.Sitemap[number] {
   return {
     url: `${siteUrl}${path}`,
-    lastModified: new Date("2026-08-27"),
+    lastModified: new Date("2026-08-30"),
     changeFrequency: "weekly",
     priority,
   };
