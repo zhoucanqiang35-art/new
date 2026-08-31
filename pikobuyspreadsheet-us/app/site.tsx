@@ -17,7 +17,13 @@ type Section = "home"|"categories"|"products"|"guides"|"articles"|"faq";
 type LocalizedPack={researchArticles:ResearchArticle[];factualFaqs:[string,string][]};
 type UiContent=typeof uiEnglish;
 
-function localizedPack(lang:Lang):LocalizedPack{return lang==="en"?{researchArticles,factualFaqs:[...factualFaqs] as [string,string][]}:((contentTranslations as unknown as Record<string,LocalizedPack>)[lang]||{researchArticles,factualFaqs:[...factualFaqs] as [string,string][]})}
+function localizedPack(lang:Lang):LocalizedPack{
+  if(lang==="en")return{researchArticles,factualFaqs:[...factualFaqs] as [string,string][]};
+  const translated=(contentTranslations as unknown as Record<string,LocalizedPack>)[lang];
+  if(!translated)return{researchArticles,factualFaqs:[...factualFaqs] as [string,string][]};
+  const bySlug=new Map(translated.researchArticles.map(article=>[article.slug,article]));
+  return{...translated,researchArticles:researchArticles.map(article=>bySlug.get(article.slug)||article)};
+}
 function localizedUi(lang:Lang):UiContent{return lang==="en"?uiEnglish:((uiTranslations as unknown as Record<string,UiContent>)[lang]||uiEnglish)}
 
 const languageNames:Record<Lang,string>={en:"English",de:"Deutsch",fr:"Français",es:"Español",it:"Italiano",pt:"Português",nl:"Nederlands",pl:"Polski",sv:"Svenska"};
@@ -77,7 +83,48 @@ function Home({lang,t}:{lang:Lang;t:string[]}){const ui=localizedUi(lang);return
 function SectionHead({no,title,sub,link,label,light=false}:{no:string;title:string;sub:string;link:string;label:string;light?:boolean}){return <div className={`section-head ${light?"light":""}`}><div><span>{no}</span><h2>{title}</h2><p>{sub}</p></div><a href={link}>{label}<ArrowUpRight/></a></div>}
 function PageHero({label,title,sub}:{label:string;title:string;sub:string}){return <section className="page-hero"><div className="shell"><span>{label}</span><h1>{title}</h1><p>{sub}</p></div></section>}
 
-function ArticleDetail({slug,lang}:{slug:string;lang:Lang}){const article=localizedPack(lang).researchArticles.find(item=>item.slug===slug),ui=localizedUi(lang);if(!article)return null;return <><PageHero label={`${ui.articleUi[0]} / ${article.tag.toUpperCase()}`} title={article.title} sub={article.description}/><main className="article-reading shell"><div className="article-meta"><BadgeCheck/><span>{article.reviewed}</span><b>{ui.articleUi[1]}</b></div><article>{article.intro.map((paragraph,i)=><p className="article-lead" key={i}>{paragraph}</p>)}{article.sections.map(section=><section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph,i)=><p key={i}>{paragraph}</p>)}{section.checklist&&<ul>{section.checklist.map(item=><li key={item}><CheckCircle2/>{item}</li>)}</ul>}</section>)}</article><div className="article-end"><div><h2>{ui.articleUi[2]}</h2><p>{ui.articleUi[3]}</p></div><Button asChild><a href="https://findspreadsheet.com/">{ui.articleUi[4]}<ArrowUpRight/></a></Button><Link href={route(lang,"articles")}>{ui.articleUi[5]}</Link></div></main></>}
+function ArticleDetail({slug,lang}:{slug:string;lang:Lang}){
+  const article=localizedPack(lang).researchArticles.find(item=>item.slug===slug),ui=localizedUi(lang);
+  if(!article)return null;
+  const canonical=`https://pikobuyspreadsheet.us${route(lang,"articles",article.slug)}`;
+  const structuredData={
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"Article",
+        headline:article.title,
+        description:article.description,
+        datePublished:article.published,
+        dateModified:article.published,
+        mainEntityOfPage:canonical,
+        inLanguage:lang,
+        keywords:article.keywords?.join(", "),
+        citation:article.sources?.map(source=>source.href),
+        author:{"@type":"Organization",name:"PikoBuy Spreadsheet US Editorial"},
+        publisher:{"@type":"Organization",name:"PikoBuy Spreadsheet US",url:"https://pikobuyspreadsheet.us/"}
+      },
+      ...(article.faq?[{
+        "@type":"FAQPage",
+        mainEntity:article.faq.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))
+      }]:[])
+    ]
+  };
+  return <>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(structuredData)}}/>
+    <PageHero label={`${ui.articleUi[0]} / ${article.tag.toUpperCase()}`} title={article.title} sub={article.description}/>
+    <main className="article-reading shell">
+      <div className="article-meta"><BadgeCheck/><span>{article.reviewed}</span><b>{ui.articleUi[1]}</b></div>
+      <article>
+        {article.intro.map((paragraph,i)=><p className="article-lead" key={i}>{paragraph}</p>)}
+        {article.sections.map(section=><section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs.map((paragraph,i)=><p key={i}>{paragraph}</p>)}{section.checklist&&<ul>{section.checklist.map(item=><li key={item}><CheckCircle2/>{item}</li>)}</ul>}</section>)}
+        {article.faq&&<section className="article-faq"><h2>Frequently asked questions</h2>{article.faq.map(([question,answer])=><div key={question}><h3>{question}</h3><p>{answer}</p></div>)}</section>}
+        {article.related&&<section className="article-related"><h2>Continue your research</h2><ul>{article.related.map(link=><li key={link.href}><Link href={lang==="en"?link.href:`/${lang}${link.href}`}>{link.label}<ArrowUpRight/></Link></li>)}</ul></section>}
+        {article.sources&&<section className="article-sources"><h2>Sources checked</h2><p>Platform features and policies can change. These first-party pages were checked on the date shown above.</p><ol>{article.sources.map(source=><li key={source.href}><a href={source.href} target="_blank" rel="noopener noreferrer">{source.label}<ArrowUpRight/></a></li>)}</ol></section>}
+      </article>
+      <div className="article-end"><div><h2>{ui.articleUi[2]}</h2><p>{ui.articleUi[3]}</p></div><Button asChild><a href="https://findspreadsheet.com/">{ui.articleUi[4]}<ArrowUpRight/></a></Button><Link href={route(lang,"articles")}>{ui.articleUi[5]}</Link></div>
+    </main>
+  </>
+}
 
 function Inner({section,t,lang,articleSlug}:{section:Exclude<Section,"home">;t:string[];lang:Lang;articleSlug?:string}){
   const ui=localizedUi(lang),pack=localizedPack(lang);

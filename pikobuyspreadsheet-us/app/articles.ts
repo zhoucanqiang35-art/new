@@ -1,12 +1,19 @@
 export type ArticleSection = { heading: string; paragraphs: string[]; checklist?: string[] };
+export type ArticleLink = { label: string; href: string };
 export type ResearchArticle = {
   slug: string;
   title: string;
+  seoTitle?: string;
   tag: string;
   description: string;
   reviewed: string;
+  published?: string;
+  keywords?: string[];
   intro: string[];
   sections: ArticleSection[];
+  faq?: [string, string][];
+  sources?: ArticleLink[];
+  related?: ArticleLink[];
 };
 
 export const researchArticles: ResearchArticle[] = [
@@ -188,6 +195,105 @@ export const researchArticles: ResearchArticle[] = [
         "A strong workflow is simple: discover the item, open the current record, confirm the exact variant and live amount, save the order facts, review warehouse photos promptly, resolve any return question, record final parcel measurements, compare current routes and retain tracking evidence. Each step answers one question before the next payment is made.",
         "The spreadsheet remains valuable because it keeps those answers together. Its role is organisation and research, not replacing PikoBuy’s current order pages or the seller’s rules. When a fact can change—price, stock, route, fee or policy—add a checked date. When a result cannot be guaranteed—fit, authenticity, customs or delivery—say so clearly. That produces useful guidance without turning uncertainty into marketing copy."
       ], checklist: ["Open the current product record", "Confirm variant and live amount", "Save order and warehouse dates", "Review QC within the return window", "Use final parcel measurements", "Compare current routes", "Keep tracking evidence"] }
+    ]
+  },
+  {
+    slug: "how-to-find-pikobuy-product-links",
+    title: "How to Find and Check PikoBuy Product Links",
+    seoTitle: "How to Find PikoBuy Product Links (2026 Guide)",
+    tag: "Product search",
+    description: "Learn how to find PikoBuy product links, search by URL or keyword, verify the exact variant and avoid stale spreadsheet records before ordering.",
+    reviewed: "Fact-checked against PikoBuy public pages on August 31, 2026",
+    published: "2026-08-31",
+    keywords: [
+      "how to find PikoBuy product links",
+      "PikoBuy product search",
+      "PikoBuy Taobao links",
+      "PikoBuy Weidian links",
+      "PikoBuy 1688 links",
+      "PikoBuy spreadsheet"
+    ],
+    intro: [
+      "Finding a product is not the same as confirming that it is still orderable. A PikoBuy spreadsheet, a seller URL and a keyword search can all lead you toward an item, but the current PikoBuy purchase page is where you must recheck the actual option, quantity and amount before paying. This matters for US and European shoppers because an old price, an unavailable colour or the wrong size can create a problem long before international shipping begins.",
+      "PikoBuy’s public pages support several discovery methods. The home page says users can search directly or submit product links, images or sourcing requests. The beginner guide says shoppers may start with products from Taobao, Tmall, 1688, Weidian, Yupoo and other platforms, then paste a product link or keywords into the PikoBuy search box. The workflow below turns those public statements into a repeatable link-checking process without claiming that every seller, item or option will always be available."
+    ],
+    sections: [
+      {
+        heading: "1. Start with the most specific product record you have",
+        paragraphs: [
+          "Use a direct seller URL when it still opens and clearly identifies the intended item. A direct link usually preserves more evidence than a short product name: the seller page may show available variants, measurements, images and a product identifier. Copy the complete URL rather than a shortened or cropped version. Also save the product name, source platform and the date you checked it. If the listing changes later, those notes help explain what you originally intended to buy.",
+          "A spreadsheet entry is useful when it helps you discover a category or recover a product record, but it should be treated as a dated reference. Open the linked record and compare it with the spreadsheet title, image and visible reference price. Do not assume that a familiar thumbnail proves the seller page is unchanged. A seller can replace images, edit options or reuse a listing. Your goal at this stage is identity: confirm that the live page still describes the product you actually want."
+        ],
+        checklist: ["Complete source URL", "Source platform", "Product name or ID", "Date checked", "Live page matches the intended item"]
+      },
+      {
+        heading: "2. Paste the link into PikoBuy and read the result",
+        paragraphs: [
+          "PikoBuy’s beginner guide instructs users to paste a product link or keywords into its search box. When a direct URL resolves, inspect the result rather than moving immediately to payment. Compare the title, main images, seller information if displayed, variant list and quantity controls with the source record. A successful import only shows that the platform parsed a record; it does not prove that every option is in stock or that a spreadsheet price is current.",
+          "If the page displays an unexpected item, stop. Recopy the original address from the seller page, removing any accidental text before or after the URL. Check whether the source listing itself redirects or has been removed. Do not choose a visually similar item simply because the original link fails. A substitute can differ in material, dimensions, version or seller. If the exact product matters, keep the failed URL and item details for a sourcing request instead of quietly changing the order."
+        ]
+      },
+      {
+        heading: "3. Use keyword and image search when a link is unavailable",
+        paragraphs: [
+          "PikoBuy’s home page says users can search directly and can submit images or sourcing requests; its guide also permits keyword search. Build a precise query from stable details: product type, model or design name, colour, material, dimensions and any visible item number. Remove promotional adjectives that do not identify the item. For example, a query built from a jacket type, colour and model code is more useful than a long translated title filled with words such as premium, fashionable or new.",
+          "Image search can help locate visually similar records, but similarity is only a lead. Compare construction, labels, dimensions, included parts and seller images before treating a result as the same product. A close visual match may be a different version or a different seller’s listing. When the result cannot be verified, label it as an alternative in your notes. Do not overwrite the original product record, because keeping both records makes the difference visible before payment."
+        ]
+      },
+      {
+        heading: "4. Confirm the exact option before the first payment",
+        paragraphs: [
+          "PikoBuy’s public beginner guide says the purchasing order stage requires the user to select specifications, colour, size and quantity, submit the order and complete the first payment. Check every one of those fields. For clothing, compare the seller’s centimetre measurements with a garment that fits; a letter size alone is not enough. For shoes, confirm the sizing system and an internal or insole measurement when available. For electronics or accessories, check model, connector, region and compatibility.",
+          "Record the selected text exactly as it appears in the live flow. This prevents a vague spreadsheet note such as black medium from becoming attached to the wrong option. Confirm the displayed amount and any seller-to-warehouse delivery charge. PikoBuy’s guide says prices are subject to the actual purchase and states that an out-of-stock order will be refunded. That is why an old spreadsheet amount should remain a reference, not a promise or final invoice."
+        ],
+        checklist: ["Specification", "Colour", "Size or measurements", "Quantity", "Current amount", "Seller-side delivery charge if shown"]
+      },
+      {
+        heading: "5. Save enough evidence to resolve a mismatch",
+        paragraphs: [
+          "Before paying, save the source URL, PikoBuy result, selected options and visible amount. A dated screenshot can supplement the written record, but keep searchable text as well. Give each item one row in your tracking sheet with the product ID, selected variant, quantity, first-payment amount and order number when issued. This is especially useful when several nearly identical products arrive at the warehouse on different days.",
+          "Good records make support questions specific. Instead of saying that the item looks wrong, you can identify the order, requested option and visible difference. They also help you distinguish a seller-side change from a mistaken selection. Do not store payment-card details or account passwords in the sheet. The record should document the purchase decision without creating a new security risk."
+        ]
+      },
+      {
+        heading: "6. Recheck identity at the warehouse",
+        paragraphs: [
+          "Link verification continues after purchase. PikoBuy’s public workflow says that after an item reaches its China warehouse, it is checked in, photographed for confirmation and checked for visible defects. Compare those warehouse photos with the source record and the options you saved. Confirm the product, colour, visible size label, quantity and included parts before judging smaller quality details. If the wrong variant arrived, a beautiful photo does not make it the correct order.",
+          "Ask for a focused additional image when a decision-changing detail is missing and that service is available. The forwarding terms say users can view inspection photos or purchase additional detailed photos, while noting that professional inspection is not available for special and professional products. Use photos for visible facts, not claims they cannot prove. An image may show a label or measurement; it cannot guarantee authenticity, fibre composition, battery health, fit or long-term durability."
+        ]
+      },
+      {
+        heading: "7. Act quickly if the live item and received item differ",
+        paragraphs: [
+          "Do not wait until every item in a large order reaches the warehouse before reviewing the first arrival. PikoBuy’s public return policy describes a five-day application period for qualifying goods after the status changes to In Warehouse, measured as 120 hours from the next hour. Eligibility also depends on the seller’s return service, the product remaining resalable and category-specific exclusions. The seller must agree to the return.",
+          "Use the accurate reason when requesting help. The policy distinguishes a seller sending the wrong product or an item with a quality problem from a buyer changing their mind or choosing incorrectly. Costs and responsibility can differ. Keep packaging, labels and seals intact until you decide, because altering them can affect eligibility for some categories. A clear source link, option record and warehouse image give the request a traceable chain of evidence."
+        ]
+      },
+      {
+        heading: "8. Use a simple link-verification workflow every time",
+        paragraphs: [
+          "The repeatable process is short: save the complete source record, paste the URL into PikoBuy, compare the imported result, verify the exact option and current amount, record the first payment, then match the warehouse photos to the saved order. If a direct link fails, search with specific keywords or an image and keep any alternative separate until its identity is confirmed. This sequence reduces silent substitutions and makes each decision reviewable.",
+          "No product-link method can guarantee stock, seller behaviour or final quality. The useful standard is narrower: each link should lead to a current record, each selected option should be written down, and each warehouse item should be compared with that record before international shipping. For the next stage, use the warehouse QC checklist to inspect category-specific details, then the shipping guides to plan a parcel using actual weight, dimensions and live route information."
+        ],
+        checklist: ["Verify the current source", "Compare the PikoBuy result", "Confirm every option", "Record the live amount", "Match warehouse photos", "Resolve differences before parcel submission"]
+      }
+    ],
+    faq: [
+      ["Can I search PikoBuy without a product link?", "Yes. PikoBuy’s public home page says users can search directly or submit product links, images or sourcing requests, and its beginner guide says the search box accepts links or keywords."],
+      ["Which seller platforms does PikoBuy’s guide mention?", "The public beginner guide names Taobao, Tmall, 1688, Weidian and Yupoo, while also referring to other platforms. Availability of a particular listing or option still needs to be checked in the current purchase flow."],
+      ["Is a PikoBuy spreadsheet price final?", "No. Treat it as a reference. PikoBuy’s guide says prices are subject to the actual purchase, so confirm the current amount, selected option and any seller-side delivery charge before paying."],
+      ["What should I do if the warehouse item does not match the link?", "Compare the source record, selected option and warehouse photos, then contact support promptly with the order details. PikoBuy’s return policy sets a limited application window for qualifying warehouse items and requires seller consent."]
+    ],
+    sources: [
+      { label: "PikoBuy home page — discovery and purchasing overview (accessed August 31, 2026)", href: "https://www.pikobuy.com/home" },
+      { label: "PikoBuy Beginner's Guide — search, order and warehouse workflow (accessed August 31, 2026)", href: "https://www.pikobuy.com/guide" },
+      { label: "PikoBuy Returns & Exchanges — eligibility and application window (accessed August 31, 2026)", href: "https://www.pikobuy.com/protocol/returns" },
+      { label: "PikoBuy Shipping Terms — inspection scope for forwarded goods (accessed August 31, 2026)", href: "https://www.pikobuy.com/protocol/shipping" }
+    ],
+    related: [
+      { label: "How to Use a PikoBuy Spreadsheet Without Guessing", href: "/articles/how-to-use-pikobuy-spreadsheet" },
+      { label: "PikoBuy QC Photos: A Category-by-Category Checklist", href: "/articles/pikobuy-qc-photos-category-checklist" },
+      { label: "Browse PikoBuy spreadsheet categories", href: "/categories" }
     ]
   }
 ];

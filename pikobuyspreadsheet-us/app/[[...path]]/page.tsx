@@ -25,14 +25,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     articles:"PikoBuy Research Articles | Practical Buyer Guides",
     faq:"PikoBuy Spreadsheet FAQ | Independent Answers",
   };
-  const localizedArticles = lang === "en" ? researchArticles : ((contentTranslations as unknown as Record<string,{researchArticles:typeof researchArticles}>)[lang]?.researchArticles || researchArticles);
-  const article = localizedArticles.find(item=>item.slug===articleSlug);
+  const localizedArticles = lang === "en" ? researchArticles : ((contentTranslations as unknown as Record<string,{researchArticles:typeof researchArticles}>)[lang]?.researchArticles || []);
+  const article = localizedArticles.find(item=>item.slug===articleSlug) || researchArticles.find(item=>item.slug===articleSlug);
   const current = section === "home" ? "" : article ? `articles/${article.slug}` : section;
+  const canonical=lang === "en" ? `/${current}` : `/${lang}/${current}`;
+  const languageAlternates=Object.fromEntries([
+    ["en",`/${current}`],
+    ...["de","fr","es","it","pt","nl","pl","sv"].map(code=>[code,`/${code}/${current}`]),
+    ["x-default",`/${current}`]
+  ]);
   return {
-    title: article ? `${article.title} | PikoBuy Spreadsheet` : title[section],
+    title: article ? (article.seoTitle || `${article.title} | PikoBuy Spreadsheet`) : title[section],
     description:article?.description || "Independent PikoBuy spreadsheet research for US and European shoppers. Search FindSpreadsheet products, check listings and plan warehouse QC and shipping.",
+    keywords:article?.keywords,
     robots:{index:true,follow:true},
-    alternates:{canonical:lang === "en" ? `/${current}` : `/${lang}/${current}`},
+    alternates:{canonical,languages:languageAlternates},
   };
 }
 

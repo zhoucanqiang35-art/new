@@ -10,6 +10,7 @@ const articles = [
   "pikobuy-shipping-europe-vat-routes",
   "pikobuy-qc-photos-category-checklist",
   "how-to-use-pikobuy-spreadsheet",
+  "how-to-find-pikobuy-product-links",
 ];
 
 const urls = languages.flatMap((language) => {
