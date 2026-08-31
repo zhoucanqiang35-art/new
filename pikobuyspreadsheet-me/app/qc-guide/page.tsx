@@ -56,4 +56,8 @@ export default function Page(){return <GuidePage pageId="qc-guide" kicker="QUALI
     "Stop: the item, option, quantity or visible condition does not match the order; use the official after-sales process promptly.",
     "Remember: passing a photo review means the visible evidence is acceptable. It is not a guarantee of authenticity, hidden condition or future performance."
   ]}
+]} relatedLinks={[
+  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"},
+  {href:"/buyer-checklist",label:"Seven-point buyer checklist"},
+  {href:"/shipping-guide",label:"PikoBuy shipping planning"}
 ]} />}
