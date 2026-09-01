@@ -612,6 +612,123 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "pikobuy-tracking-delay-diagnosis",
+    eyebrow: "Parcel tracking",
+    title: "PikoBuy Tracking Status After Shipping: Diagnose Parcel Delays",
+    seoTitle: "PikoBuy Tracking Status & Delay Guide",
+    description: "Read a PikoBuy tracking status after shipping, separate normal handoffs from real exceptions, and build an evidence-led escalation for a delayed parcel.",
+    readTime: "12 min read",
+    updated: "Published 1 September 2026",
+    publishedDate: "2026-09-01",
+    modifiedDate: "2026-09-01",
+    editorialNote: "Independent guidance based on PikoBuy's public beginner guide, shipping terms, Terms of Service and User Registration Agreement checked on 1 September 2026. Carrier wording and route terms vary, so the status families below are diagnostic categories, not an official PikoBuy status glossary.",
+    visual: {
+      src: "/pikobuy-tracking-diagnosis-flow.svg",
+      alt: "Decision flow for diagnosing a PikoBuy parcel after shipping using dispatch time, first scan, last movement, customs requests and delivery exceptions",
+      caption: "Original tracking decision flow. Use the live parcel record and named carrier as evidence; an isolated status label is not enough to prove loss, customs seizure or a delivery date.",
+    },
+    intro: [
+      "A PikoBuy tracking page can look inactive even when a parcel is moving between systems. The useful question is not simply, 'Has the status changed today?' It is which event has been confirmed, how long the parcel has been in that stage, and whether the live route terms establish a deadline or action.",
+      "PikoBuy's current beginner guide says tracking information will be available within three days after a parcel is shipped. Its shipping terms say parcels are carried by third-party logistics providers, while its User Registration Agreement defines an insured delay by reference to the transit time published for the insured route and the date the parcel was handed to the carrier. These are three different clocks: dispatch, first scan and route transit.",
+      "This guide turns those boundaries into a practical PikoBuy tracking status workflow. It avoids invented delivery times and explains what evidence to collect before contacting support, a carrier or customs.",
+    ],
+    sections: [
+      {
+        heading: "Start with three timestamps, not one status label",
+        paragraphs: [
+          "Record the PikoBuy dispatch date and time, the first carrier event, and the most recent physical-movement event. A label-created or electronic-information event may show that shipment data entered a carrier system without proving that the carrier physically accepted the parcel. By contrast, an acceptance, departure, arrival or processing scan usually provides stronger evidence of custody or movement. The exact wording depends on the carrier and is not standardised by the public PikoBuy pages.",
+          "The first clock begins when PikoBuy marks the parcel shipped. PikoBuy's guide says tracking should become available within three days, so a blank record inside that window is not by itself proof of loss. Save the shipped timestamp and check whether a tracking number and carrier name have been assigned before escalating.",
+          "The second clock begins with the first carrier scan. The third resets whenever a later movement event appears. Write the elapsed time beside each timestamp. This simple timeline distinguishes 'no first scan yet' from 'accepted but unchanged for an unusually long period' and stops repeated refreshes from replacing evidence.",
+        ],
+        bullets: [
+          "Dispatch clock: when PikoBuy marked the parcel shipped",
+          "Acceptance clock: when the carrier first confirmed custody or processing",
+          "Movement clock: time since the last location or transport event",
+          "Route clock: the published transit basis saved when the parcel was submitted",
+        ],
+      },
+      {
+        heading: "Read tracking events as status families",
+        paragraphs: [
+          "PikoBuy does not publish a complete public dictionary mapping every carrier phrase to one platform status. A safer method is to group events by function. 'Electronic information received,' 'label created' or similar wording normally belongs to pre-advice: data exists, but physical acceptance still needs evidence. 'Accepted,' 'collected,' 'origin processing' or a facility scan belongs to carrier intake. These examples are common logistics language, not guaranteed PikoBuy labels.",
+          "Departure, airline handover, linehaul, transit-hub and arrival events belong to international movement. A gap between export departure and destination arrival can reflect transport or a handoff between systems; the tracking page may not publish every internal movement. Do not invent a location during the gap. Record only the last confirmed event and its date.",
+          "Customs presentation, clearance processing, information requested and release events belong to the import stage. Destination sorting, local-carrier receipt, out-for-delivery and delivered events belong to last-mile delivery. An exception, failed delivery, address problem, refusal, return or detention status requires the exact carrier explanation rather than a generic guess.",
+        ],
+      },
+      {
+        heading: "Use a four-level delay test",
+        paragraphs: [
+          "Level one is normal first-scan waiting: the parcel was marked shipped less than three days ago and no contradictory exception appears. Keep the parcel number, route and tracking number, then wait through the public guide's stated window. Level two is a handoff gap: a carrier accepted the parcel, but the next system has not produced a new event. Compare elapsed time with the live route information saved at payment; do not use a different route's estimate.",
+          "Level three is an actionable exception. Examples include a document request, incomplete address, failed delivery, restricted item notice or explicit return event. Verify the message on the carrier page named in the parcel record and use its official contact path. PikoBuy's agreement says an international return caused by failed security inspection, no recipient, an incorrect or incomplete address, or delivery failure can leave the user responsible for reshipping costs.",
+          "Level four is a possible insured delay: the parcel has exceeded the transit time published for the insured route, counted from handover to the third-party carrier. That is PikoBuy's published definition for its delayed-delivery insurance wording. It is not a universal declaration that every late-looking parcel qualifies, and it does not replace the insurer or logistics provider's current claim standard.",
+        ],
+      },
+      {
+        heading: "Treat customs silence differently from carrier delay",
+        paragraphs: [
+          "A customs event is not automatically a seizure, and a quiet customs period is not automatically carrier loss. PikoBuy's agreement says customs inspections may be conducted by sampling and that a recipient may be contacted for invoices or clearance documents when a parcel is considered unusual, oversized, overweight or sensitive. PikoBuy does not promise customs clearance.",
+          "If tracking explicitly requests information, confirm the request through the destination authority or named carrier before sending personal documents. Prepare the genuine order, payment record, item descriptions and quantities, parcel number and shipping evidence. Do not change values or descriptions to force release. The destination authority controls the decision, and inconsistent documents can make diagnosis harder.",
+          "PikoBuy's delayed-delivery language excludes compensation for delays caused by government or judicial action such as customs, as well as weather, traffic control, strikes, regulatory changes and other listed force-majeure events. An insured route therefore does not mean every delay is compensable. Preserve the exact event history so the cause can be assessed against the live terms.",
+        ],
+      },
+      {
+        heading: "Build an escalation pack that support can use",
+        paragraphs: [
+          "A useful enquiry contains the PikoBuy parcel number, tracking number, exact route name, dispatch timestamp, first carrier scan, latest event and elapsed time since that event. Add screenshots of the parcel record and carrier history, plus any exception or document request. State what you want checked: carrier acceptance, missing handoff, customs-document transmission, failed-delivery action or claim eligibility.",
+          "Use neutral language. 'The last confirmed event was origin processing at 14:10 on 24 August, with no later movement for eight days' is more actionable than 'the parcel is lost.' Ask which party currently has custody and what evidence supports that answer. If PikoBuy contacts the logistics provider as a communication agent, its agreement says compensation remains subject to the third-party provider's standards.",
+          "Keep a dated contact log with ticket numbers and responses. Do not open several contradictory requests for the same parcel. If the carrier or customs authority gives a deadline, record the timezone and respond through a verified channel before it expires.",
+        ],
+      },
+      {
+        heading: "Do not confuse delay, loss and insurance",
+        paragraphs: [
+          "No movement is a symptom, not a finding of loss. A parcel can remain between scans, await a handoff, undergo customs processing or face a delivery exception. Loss normally requires confirmation under the relevant carrier or insurer process. Do not promise compensation merely because a tracking page has been static.",
+          "PikoBuy's agreement says that if a parcel is lost and parcel insurance was purchased at submission, the insurance company may compensate according to the insured amount, subject to its terms. It also warns that prohibited contents and specified causes can leave the user responsible. Save the insurance selection, insured amount and terms visible when the parcel was submitted; a later marketing page may not reproduce the same contract.",
+          "For delayed-delivery protection, confirm that the chosen route was insured, identify its published transit basis and check exclusions. For damage or shortage, inspect the outer packaging before signing where possible. PikoBuy advises users to check the packaging at receipt and contact customer service immediately if a problem arises after signing.",
+        ],
+      },
+      {
+        heading: "Use a clear wait, verify or escalate decision",
+        paragraphs: [
+          "Wait when the parcel is inside the three-day first-tracking window or when a recent movement scan and the saved route information provide no exception. Verify when a status is ambiguous, two tracking systems disagree, or customs or delivery information is requested. Use the carrier identified in the parcel record and the current PikoBuy record as primary evidence.",
+          "Escalate when the first tracking window has passed with no usable number, an explicit exception needs action, the address is wrong, or the parcel has exceeded the relevant saved route basis. For an insured delay or possible loss, ask for the exact claim rule, required documents, deadline and decision-maker before assuming eligibility.",
+          "The goal is not to predict a delivery date from one phrase. It is to maintain a defensible timeline, respond quickly to genuine exceptions and avoid turning an ordinary data handoff into an unsupported claim. Tracking becomes useful when each conclusion is tied to a timestamp and source.",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Compare PikoBuy shipping inputs for Europe", href: "/pikobuy-shipping-europe", note: "Review the route, product type, weight and parcel dimensions that were considered before dispatch." },
+      { label: "Prepare EU customs evidence", href: "/pikobuy-eu-vat-customs-preparation", note: "Build the truthful invoice, value and parcel record needed when customs requests information." },
+      { label: "Review PikoBuy fees and landed cost", href: "/pikobuy-fees-total-cost", note: "Keep possible reshipping, brokerage and destination charges separate from the original freight payment." },
+      { label: "Understand PikoBuy returns and after-sales", href: "/pikobuy-return-policy", note: "Separate warehouse return rules from an international parcel claim after dispatch." },
+    ],
+    faqHeading: "PikoBuy tracking and delay questions",
+    faq: [
+      {
+        question: "How long can PikoBuy tracking take to appear after shipping?",
+        answer: "PikoBuy's beginner guide, checked on 1 September 2026, says tracking information will be available within three days after shipment. A blank record inside that window is not by itself proof of loss.",
+      },
+      {
+        question: "Does a PikoBuy tracking status with no update mean the parcel is lost?",
+        answer: "No. A static status can reflect pre-advice, transport between scans, a carrier handoff, customs processing or an exception. Record the last confirmed event and compare it with the actual route terms before escalating.",
+      },
+      {
+        question: "When does PikoBuy define an insured parcel as delayed?",
+        answer: "Its User Registration Agreement says a parcel is delayed when it exceeds the transit time published for the insured route, counted from handover to the third-party carrier. Eligibility and compensation remain subject to current route, provider and exclusion terms.",
+      },
+      {
+        question: "What should I send when reporting a PikoBuy parcel delay?",
+        answer: "Send the parcel and tracking numbers, exact route, dispatch time, first scan, last confirmed event, elapsed time, screenshots, any exception message and the specific action you want checked.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy shipping terms", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
+    ],
+  },
+  {
     slug: "pikobuy-return-policy",
     eyebrow: "Returns explained",
     title: "PikoBuy 5-Day Return Policy: Timing, Eligibility and Fees",

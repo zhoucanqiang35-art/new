@@ -14,12 +14,12 @@ export const metadata: Metadata = {
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
     ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 30 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking. Verified 30 August 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking availability within three days after shipment. Verified 1 September 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres. Verified 26 August 2026."],
-    ["Shipping terms", "", "Forwarding process, inspection boundaries, third-party logistics and cross-border risks. Verified 26 August 2026."],
+    ["Shipping terms", "", "Forwarding process, inspection boundaries, third-party logistics and cross-border risks including loss, damage and peak-season delays. Verified 1 September 2026."],
     ["Returns & Exchanges", "", "Five-day/120-hour application window, eligibility, exclusions, responsibility and published fee formula. Verified 26 August 2026."],
-    ["User Registration Agreement", "", "Product-link and seller boundaries, customs document requests, customs-clearance limits, platform fees and inspection boundaries. Verified 30 August 2026."],
-    ["Terms of Service", "", "Platform scope, cross-border duties, taxes and brokerage, seller-of-record limitation, prohibited items and policy changes. Verified 30 August 2026."],
+    ["User Registration Agreement", "", "Third-party logistics boundaries, insured-delay definition, compensation exclusions, international returns, parcel insurance and customs document requests. Verified 1 September 2026."],
+    ["Terms of Service", "", "Platform scope, logistics tracking support, force-majeure limits, cross-border charges, seller-of-record limitation and policy changes. Verified 1 September 2026."],
   ]},
   { id: "eu-customs-sources", title: "European Union VAT and customs source record", external: false, links: [
     ["Temporary low-value customs duty guidance", "", "European Commission explanation of the €3-per-tariff-item duty applying to qualifying distance-sale consignments up to €150 from 1 July 2026 until 1 July 2028. Last updated 20 July 2026; verified 30 August 2026."],

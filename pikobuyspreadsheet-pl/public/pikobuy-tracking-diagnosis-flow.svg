@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy tracking delay diagnosis flow</title>
+  <desc id="desc">A decision flow from dispatch through first scan, movement, customs or delivery exceptions, and evidence-led escalation.</desc>
+  <rect width="1200" height="675" rx="36" fill="#eefafa"/>
+  <path d="M0 0h1200v140H0z" fill="#222b3c"/>
+  <text x="60" y="58" fill="#73e4eb" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">TRACKING DIAGNOSIS · EVIDENCE BEFORE ASSUMPTIONS</text>
+  <text x="60" y="103" fill="#fff" font-family="Arial, sans-serif" font-size="35" font-weight="700">Which clock is actually waiting?</text>
+  <g font-family="Arial, sans-serif">
+    <path d="M150 295h900" stroke="#b9cbd0" stroke-width="6" stroke-linecap="round"/>
+    <path d="M1050 295l-22-14v28z" fill="#b9cbd0"/>
+    <g transform="translate(66 204)">
+      <circle cx="84" cy="91" r="72" fill="#fff" stroke="#65dfe9" stroke-width="4"/>
+      <text x="84" y="83" text-anchor="middle" fill="#222b3c" font-size="22" font-weight="700">DISPATCH</text>
+      <text x="84" y="111" text-anchor="middle" fill="#65727e" font-size="14">PikoBuy record</text>
+      <rect x="0" y="194" width="168" height="83" rx="14" fill="#fff" stroke="#d8e6e9"/>
+      <text x="84" y="226" text-anchor="middle" fill="#7038e8" font-size="15" font-weight="700">SAVE</text>
+      <text x="84" y="250" text-anchor="middle" fill="#53616d" font-size="13">route + timestamp</text>
+    </g>
+    <g transform="translate(292 204)">
+      <circle cx="84" cy="91" r="72" fill="#fff" stroke="#65dfe9" stroke-width="4"/>
+      <text x="84" y="76" text-anchor="middle" fill="#222b3c" font-size="21" font-weight="700">FIRST</text>
+      <text x="84" y="103" text-anchor="middle" fill="#222b3c" font-size="21" font-weight="700">SCAN</text>
+      <text x="84" y="129" text-anchor="middle" fill="#65727e" font-size="13">within 3 days*</text>
+      <rect x="0" y="194" width="168" height="83" rx="14" fill="#fff" stroke="#d8e6e9"/>
+      <text x="84" y="226" text-anchor="middle" fill="#7038e8" font-size="15" font-weight="700">CHECK</text>
+      <text x="84" y="250" text-anchor="middle" fill="#53616d" font-size="13">carrier acceptance</text>
+    </g>
+    <g transform="translate(518 204)">
+      <circle cx="84" cy="91" r="72" fill="#fff" stroke="#65dfe9" stroke-width="4"/>
+      <text x="84" y="83" text-anchor="middle" fill="#222b3c" font-size="21" font-weight="700">MOVEMENT</text>
+      <text x="84" y="111" text-anchor="middle" fill="#65727e" font-size="14">latest event</text>
+      <rect x="0" y="194" width="168" height="83" rx="14" fill="#fff" stroke="#d8e6e9"/>
+      <text x="84" y="226" text-anchor="middle" fill="#7038e8" font-size="15" font-weight="700">COMPARE</text>
+      <text x="84" y="250" text-anchor="middle" fill="#53616d" font-size="13">saved route basis</text>
+    </g>
+    <g transform="translate(744 204)">
+      <circle cx="84" cy="91" r="72" fill="#fff" stroke="#ff9d12" stroke-width="4"/>
+      <text x="84" y="76" text-anchor="middle" fill="#222b3c" font-size="20" font-weight="700">CUSTOMS /</text>
+      <text x="84" y="103" text-anchor="middle" fill="#222b3c" font-size="20" font-weight="700">EXCEPTION</text>
+      <text x="84" y="129" text-anchor="middle" fill="#65727e" font-size="13">verify request</text>
+      <rect x="0" y="194" width="168" height="83" rx="14" fill="#fff" stroke="#d8e6e9"/>
+      <text x="84" y="226" text-anchor="middle" fill="#7038e8" font-size="15" font-weight="700">RESPOND</text>
+      <text x="84" y="250" text-anchor="middle" fill="#53616d" font-size="13">with true evidence</text>
+    </g>
+    <g transform="translate(970 204)">
+      <circle cx="84" cy="91" r="72" fill="#fff" stroke="#7b3ff2" stroke-width="4"/>
+      <text x="84" y="76" text-anchor="middle" fill="#222b3c" font-size="20" font-weight="700">ESCALATE</text>
+      <text x="84" y="104" text-anchor="middle" fill="#65727e" font-size="13">timeline + proof</text>
+      <rect x="0" y="194" width="168" height="83" rx="14" fill="#fff" stroke="#d8e6e9"/>
+      <text x="84" y="226" text-anchor="middle" fill="#7038e8" font-size="15" font-weight="700">ASK</text>
+      <text x="84" y="250" text-anchor="middle" fill="#53616d" font-size="13">custody + next action</text>
+    </g>
+    <rect x="66" y="538" width="1068" height="83" rx="18" fill="#222b3c"/>
+    <text x="92" y="573" fill="#73e4eb" font-size="15" font-weight="700">* PIKOBUY PUBLIC GUIDE</text>
+    <text x="92" y="600" fill="#fff" font-size="17">Tracking should be available within three days after shipment. A missing scan is a symptom—not proof of loss.</text>
+  </g>
+</svg>

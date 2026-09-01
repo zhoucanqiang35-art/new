@@ -50,7 +50,7 @@ export default function Home() {
         <div className="shell signal-grid">
           <div><b>20K+</b><span>finds on the main database*</span></div>
           <div><b>10</b><span>focused product categories</span></div>
-          <div><b>7</b><span>evidence-led launch guides</span></div>
+          <div><b>8</b><span>evidence-led launch guides</span></div>
           <div><b>11</b><span>priority market targets</span></div>
         </div>
       </section>
