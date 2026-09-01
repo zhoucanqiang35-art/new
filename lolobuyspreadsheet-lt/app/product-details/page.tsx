@@ -1,0 +1,4 @@
+import { SiteHeader } from "../components/site-header";
+import { products, searchUrl } from "../lib/catalog";
+
+export default function ProductDetails() { return <main><SiteHeader /><section className="page-hero"><p className="eyebrow">PRODUCT DETAILS</p><h1>Choose a product card to open its live results.</h1><p>Each card directly opens the matching live FindSpreadsheet search result.</p></section><section className="product-section"><div className="product-grid">{products.map(product => <a className="product-card" key={product.slug} href={searchUrl(product.search)} target="_blank" rel="noreferrer"><div className={`product-art art-${product.tone}`} aria-hidden="true"><span>{product.name.slice(0,1)}</span></div><div><p>{product.price}</p><h3><span className="notranslate" translate="no">{product.name}</span></h3><small>{product.summary}</small><b>Open results ↗</b></div></a>)}</div></section></main>; }
