@@ -13,6 +13,7 @@ test("exports the English and representative localized routes", async () => {
     "seo-articles/pikobuy-tracking-customs-guide",
     "seo-articles/pikobuy-restricted-items-guide",
     "seo-articles/pikobuy-spain-guide",
+    "seo-articles/pikobuy-usa-guide",
     "de-DE/shipping",
     "fr-FR/faq",
     "es-ES/seo-articles/how-pikobuy-works",
@@ -30,6 +31,7 @@ test("exports indexable robots and the complete sitemap", async () => {
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-tracking-customs-guide\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-restricted-items-guide\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-spain-guide\//);
+  assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-usa-guide\//);
 });
 
 test("keeps long articles, FAQ and shipping content in static HTML", async () => {
@@ -88,6 +90,22 @@ test("exports the complete Spain guide with country-specific SEO metadata", asyn
   assert.match(article, /href="\/countries\/"/);
   assert.match(article, /href="\/seo-articles\/pikobuy-shipping-cost-guide\/"/);
   assert.match(countries, /href="\/seo-articles\/pikobuy-spain-guide\/"/);
+  assert.match(article, /<meta name="robots" content="index, follow"/);
+  assert.doesNotMatch(article, /noindex/);
+});
+
+test("exports the complete USA guide with current customs SEO metadata", async () => {
+  const article = await readFile(page("seo-articles/pikobuy-usa-guide"), "utf8");
+  const countries = await readFile(page("countries"), "utf8");
+  assert.equal((article.match(/data-content-slot=/g) || []).length, 7);
+  assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
+  assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-usa-guide\/"/);
+  assert.match(article, /hrefLang="en-US"/);
+  assert.match(article, /PikoBuy USA Guide: Duties, Shipping and Warehouse Checks/);
+  assert.match(article, /<meta name="keywords" content="PikoBuy USA,PikoBuy shipping to USA,PikoBuy US customs,PikoBuy USA shipping cost,how to use PikoBuy in USA,PikoBuy United States"/);
+  assert.match(article, /href="\/countries\/"/);
+  assert.match(article, /href="\/seo-articles\/pikobuy-shipping-cost-guide\/"/);
+  assert.match(countries, /href="\/seo-articles\/pikobuy-usa-guide\/"/);
   assert.match(article, /<meta name="robots" content="index, follow"/);
   assert.doesNotMatch(article, /noindex/);
 });
