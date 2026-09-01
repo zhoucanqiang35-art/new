@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       author: base.author,
       primaryKeyword: base.primaryKeyword,
       secondaryKeywords: base.secondaryKeywords,
+      methodology: base.methodology,
     } : base;
   });
   const article = articles.find(item => item.slug === route);
