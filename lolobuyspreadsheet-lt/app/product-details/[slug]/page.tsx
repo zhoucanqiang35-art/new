@@ -2,6 +2,11 @@ import { notFound } from "next/navigation";
 import { SiteHeader } from "../../components/site-header";
 import { MainLink } from "../../components/main-link";
 import { productBySlug, searchUrl } from "../../lib/catalog";
+import { products } from "../../lib/catalog";
+
+export function generateStaticParams() {
+  return products.map(({ slug }) => ({ slug }));
+}
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const product = productBySlug(slug); if (!product) notFound();
