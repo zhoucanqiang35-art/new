@@ -12,7 +12,7 @@ export default function LanguageSwitcher({ current = "en", label = "Choose langu
   function changeLanguage(event: ChangeEvent<HTMLSelectElement>) {
     const next = event.target.value;
     const suffix = window.location.pathname.replace(new RegExp(`^/(${supported.join("|")})(?=/|$)`),"") || "/";
-    const englishOnlyArticles = ["/how-to-use-pikobuy-spreadsheet", "/pikobuy-return-policy"];
+    const englishOnlyArticles = ["/how-to-use-pikobuy-spreadsheet", "/pikobuy-return-policy", "/pikobuy-product-links"];
     const destination = next === "en" ? (suffix || "/") : englishOnlyArticles.includes(suffix) ? `/${next}/seo-articles` : `/${next}${suffix}`;
     window.location.assign(`${destination.replace(/\/{2,}/g,"/")}${window.location.search}${window.location.hash}`);
   }

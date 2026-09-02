@@ -52,4 +52,9 @@ export default function Page(){return <GuidePage pageId="how-pikobuy-works" kick
     {title:"Compare live routes",text:"Choose from options available for the exact destination and goods type."},
     {title:"Keep parcel records",text:"Save the second payment, parcel data and tracking information."}
   ]}
+]} relatedLinks={[
+  {href:"/pikobuy-product-links",label:"Find and verify PikoBuy product links"},
+  {href:"/qc-guide",label:"PikoBuy QC photo guide"},
+  {href:"/shipping-guide",label:"PikoBuy shipping planning"},
+  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"}
 ]} />}

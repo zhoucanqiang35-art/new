@@ -97,5 +97,6 @@ export default function Page(){return <GuidePage kicker="PIKOBUY SPREADSHEET GUI
   {href:"/qc-guide",label:"PikoBuy QC photo guide"},
   {href:"/shipping-guide",label:"PikoBuy shipping planning"},
   {href:"/buyer-checklist",label:"Seven-point buyer checklist"},
-  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"}
+  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"},
+  {href:"/pikobuy-product-links",label:"Find and verify PikoBuy product links"}
 ]}/>}
