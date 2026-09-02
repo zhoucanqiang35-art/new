@@ -1,7 +1,7 @@
 {
   "name": "lolobuy-spreadsheet-inspection",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "mkdir -p dist && cp index.html dist/index.html && cp server.js dist/site.js && cp worker.js dist/_worker.js"
   }
