@@ -295,6 +295,108 @@ export const researchArticles: ResearchArticle[] = [
       { label: "PikoBuy QC Photos: A Category-by-Category Checklist", href: "/articles/pikobuy-qc-photos-category-checklist" },
       { label: "Browse PikoBuy spreadsheet categories", href: "/categories" }
     ]
+  },
+  {
+    slug: "pikobuy-warehouse-consolidation-guide",
+    title: "PikoBuy Warehouse Consolidation: A Pre-Shipping Guide",
+    seoTitle: "PikoBuy Warehouse Consolidation Guide (2026)",
+    tag: "Warehouse planning",
+    description: "A practical PikoBuy warehouse consolidation guide covering receipt checks, return timing, packaging choices, parcel data and shipment submission.",
+    reviewed: "Fact-checked against PikoBuy public pages on September 2, 2026",
+    published: "2026-09-02",
+    keywords: [
+      "PikoBuy warehouse consolidation",
+      "PikoBuy warehouse",
+      "combine PikoBuy orders",
+      "PikoBuy parcel submission",
+      "PikoBuy package consolidation",
+      "PikoBuy shipping from China"
+    ],
+    intro: [
+      "Warehouse consolidation is the point where separate purchases become one international-shipping decision. PikoBuy says it can centrally manage orders from different sources, and its public contact page says items from different sellers can be combined into one package. That can simplify shipment planning, but combining everything automatically is not always the best choice. A missing item, a return deadline, a restricted product or bulky packaging can change the sensible parcel plan.",
+      "This guide explains how to move from warehouse arrival to parcel submission without inventing a storage period, fixed consolidation fee, guaranteed route or delivery date. It uses PikoBuy’s current public workflow: goods arrive, the warehouse checks them in and provides photo confirmation, the buyer reviews the items and packaging choices, then selects an available route and pays the international shipping charge. The practical goal is to resolve item-level problems before they become parcel-level problems."
+    ],
+    sections: [
+      {
+        heading: "1. Separate purchased orders from forwarded goods",
+        paragraphs: [
+          "PikoBuy documents two related paths. In the buy-for-me path, it purchases items from sellers and centrally manages orders from different sources. In the forwarding path, the user obtains the PikoBuy warehouse address, gives it to the sender, completes a forwarding form and waits for the warehouse to receive the goods. Use the correct order record for each item because responsibility and after-sales handling differ between the two paths.",
+          "PikoBuy’s forwarding terms say every forwarded item must be unpacked and inspected. They also state that PikoBuy does not provide after-sales service for forwarded goods; the user must contact the sender or seller, while PikoBuy can help ship goods back. If an incoming forwarded parcel is missing items for reasons not caused by PikoBuy, the terms direct the user to verify the problem with the sender. Keep seller, sender and domestic-tracking records attached to each forwarded item."
+        ],
+        checklist: ["Order type: purchased or forwarded", "Seller or sender", "Domestic tracking number", "Expected quantity", "Warehouse order record"]
+      },
+      {
+        heading: "2. Reconcile each warehouse arrival before combining",
+        paragraphs: [
+          "PikoBuy’s beginner guide describes warehouse check-in, photo confirmation and a defect check. Start with identity rather than cosmetic details. Match the order number, product, selected colour, size or specification, quantity and visible accessories. When several similar orders arrive, compare each warehouse record with the exact saved selection instead of relying on thumbnails or memory.",
+          "Create a simple status for every item: received and matched, needs more evidence, return issue, or ready for parcel. Do not mark an entire haul ready because most items look correct. One uncertain product can delay or restrict the final shipment. If the photos do not show a decision-changing detail, PikoBuy’s forwarding terms say users can view the inspection photos or purchase additional detailed photos. Ask for a precise angle or measurement rather than a vague request to check quality."
+        ]
+      },
+      {
+        heading: "3. Review arrivals while return options still exist",
+        paragraphs: [
+          "Waiting for every seller can be convenient for consolidation, but it can conflict with return timing. PikoBuy’s public returns policy describes a five-day application period for qualifying items after the status changes to In Warehouse, calculated as 120 hours from the next hour. Eligibility also depends on the seller offering the service, the item remaining in the required resale condition and product-specific exclusions.",
+          "Review each arrival promptly even when you intend to ship everything together later. Keep packaging, labels, seals and accessories intact until the decision is complete. The policy says PikoBuy can only return an item with seller consent, and a buyer-requested unconditional return can include return shipping, the seller’s original shipping charge and a RMB 5 service fee. Do not let a possible consolidation saving erase a time-limited option to resolve a wrong item."
+        ],
+        checklist: ["Warehouse arrival time recorded", "Return eligibility checked", "QC reviewed promptly", "Packaging kept resalable", "Any issue opened before parcel submission"]
+      },
+      {
+        heading: "4. Decide which items belong in the same parcel",
+        paragraphs: [
+          "PikoBuy states that items from different sellers can be combined into one package, but that statement is not a guarantee that every product is suitable for every route. Group items only after checking their product types, fragility, dimensions and current route eligibility. A parcel containing ordinary clothing may have different options from one that also includes batteries, liquids, electronics or other restricted goods.",
+          "Consider splitting when one item makes the whole parcel unusually bulky, fragile or difficult to route. Shoe boxes, large accessories and protective cases can increase dimensions. A delicate item may need reinforcement that adds size and weight to everything around it. The cheapest-looking consolidation is not automatically the lowest-risk plan. Compare the actual parcel alternatives in the live flow instead of assuming that one large carton always costs less than two smaller ones."
+        ]
+      },
+      {
+        heading: "5. Choose packaging requests for the contents",
+        paragraphs: [
+          "PikoBuy’s beginner guide says users can add requests such as minimal packaging or reinforced packaging during the warehouse stage. Minimal packaging may reduce unnecessary bulk, while reinforcement may better protect fragile or easily crushed goods. Those choices pull in opposite directions, so choose based on the contents rather than applying one instruction to every parcel.",
+          "List any packaging requirement before the warehouse prepares the shipment. Identify which original boxes must remain, which seller packaging may be unnecessary and which items need protection from movement or pressure. Do not ask staff to remove seals, labels or packaging that still matters for a return decision. After repacking, use the resulting parcel figures rather than an earlier estimate based only on the products."
+        ],
+        checklist: ["Original boxes to keep", "Packaging that may be reduced", "Fragile items to reinforce", "Return-sensitive seals to preserve", "Final repacked data to recheck"]
+      },
+      {
+        heading: "6. Estimate with the finished parcel data",
+        paragraphs: [
+          "PikoBuy’s public shipping estimator requests the destination country or region, product type, weight, length, width and height. Enter the warehouse or packed-parcel figures when available. A product listing weight is only an early reference because seller packaging, consolidation materials and protective requests can change the international parcel.",
+          "Record all calculator inputs with the quote date. This is especially important for US and European buyers comparing more than one packing plan. Change one variable at a time: parcel contents, packaging, weight, dimensions or destination. PikoBuy does not publish one universal rate per kilogram on the estimator page, so do not turn a single quote into a permanent rate or apply another shopper’s route result to a different parcel."
+        ]
+      },
+      {
+        heading: "7. Compare the live routes before paying",
+        paragraphs: [
+          "The beginner guide says routes differ in delivery time and billing methods. Compare only the routes currently shown for the exact destination, product type and parcel. Check the live restrictions, chargeable figures, tracking information and any available protection terms. Avoid naming one permanent best route because availability and conditions can change.",
+          "PikoBuy’s shipping terms say international parcels are carried by third-party logistics providers and identify customs action, confiscation, damage, loss and peak-season delay as possible risks. Consolidation does not remove those uncertainties. Use accurate product descriptions and values, preserve purchase evidence and leave time and budget margin. If a route term is unclear, ask support before payment instead of relying on an old review or screenshot."
+        ]
+      },
+      {
+        heading: "8. Submit the parcel only after a final audit",
+        paragraphs: [
+          "Before submission, make one parcel manifest with every included item, quantity, warehouse order number and visible status. Confirm that unresolved returns and evidence requests are excluded. Match the final destination, product type, weight and dimensions to the quote you intend to use. Save the selected route terms and amount at the time of payment.",
+          "PikoBuy’s public guide places parcel submission and payment before dispatch, and says tracking information will be available within three days after shipment. Treat that as the platform’s stated tracking-update window, not a delivery promise. Save the parcel number, dispatch date and tracking record. A disciplined consolidation workflow is complete when every item has a traceable decision and the final parcel matches the data used to choose its route."
+        ],
+        checklist: ["Every included item listed", "No unresolved return issue", "Final weight and dimensions confirmed", "Correct destination and product type", "Current route terms saved", "Parcel and tracking numbers retained"]
+      }
+    ],
+    faq: [
+      ["Can PikoBuy combine items from different sellers?", "PikoBuy’s public contact page says items from different sellers can be combined into one package. The final parcel still needs to meet the current product, route, weight and dimension requirements."],
+      ["Should I wait for every order before checking warehouse photos?", "No. Review each arrival promptly. PikoBuy’s return policy describes a limited five-day application period for qualifying warehouse items, so waiting for the final seller may remove an earlier item’s return option."],
+      ["Does minimal packaging always make shipping cheaper?", "It can reduce unnecessary bulk, but no saving is guaranteed. The live quote depends on the packed parcel, destination, product type, weight, dimensions and available route. Fragile goods may justify reinforcement instead."],
+      ["What information should I save before parcel submission?", "Keep the item manifest, warehouse order numbers, QC decisions, final weight and dimensions, destination, product type, selected route terms, payment amount, parcel number and tracking record."]
+    ],
+    sources: [
+      { label: "PikoBuy home page — purchase, inspection, repacking and global shipping overview (accessed September 2, 2026)", href: "https://www.pikobuy.com/home" },
+      { label: "PikoBuy Beginner's Guide — warehouse, packaging, parcel and tracking flow (accessed September 2, 2026)", href: "https://www.pikobuy.com/guide" },
+      { label: "PikoBuy Shipping Terms — forwarding receipt, inspection and logistics risks (accessed September 2, 2026)", href: "https://www.pikobuy.com/protocol/shipping" },
+      { label: "PikoBuy Returns & Exchanges — eligibility, timing and packaging conditions (accessed September 2, 2026)", href: "https://www.pikobuy.com/protocol/returns" },
+      { label: "PikoBuy Contact page — combining items from different sellers (accessed September 2, 2026)", href: "https://www.pikobuy.com/contact" },
+      { label: "PikoBuy Shipping Estimate — destination, product type, weight and dimensions (accessed September 2, 2026)", href: "https://www.pikobuy.com/shipping-cost" }
+    ],
+    related: [
+      { label: "PikoBuy QC Photos: A Category-by-Category Checklist", href: "/articles/pikobuy-qc-photos-category-checklist" },
+      { label: "PikoBuy Shipping to the US: How to Build a Real Estimate", href: "/articles/pikobuy-shipping-to-us-real-estimate" },
+      { label: "PikoBuy Shipping to Europe: VAT, Routes and Parcel Checks", href: "/articles/pikobuy-shipping-europe-vat-routes" }
+    ]
   }
 ];
 

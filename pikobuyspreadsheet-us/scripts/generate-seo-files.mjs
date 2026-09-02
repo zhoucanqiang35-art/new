@@ -11,6 +11,7 @@ const articles = [
   "pikobuy-qc-photos-category-checklist",
   "how-to-use-pikobuy-spreadsheet",
   "how-to-find-pikobuy-product-links",
+  "pikobuy-warehouse-consolidation-guide",
 ];
 
 const urls = languages.flatMap((language) => {
