@@ -9,6 +9,7 @@ import { resolve } from "node:path";
 // files Pages knows about (CSS, client scripts, images, etc.) to ASSETS, then
 // render only routes that do not correspond to a static file. Without this
 // wrapper the HTML renders but its stylesheet and client bundles are skipped.
+// This source revision also provides the clean production build trigger.
 const root = process.cwd();
 const server = resolve(root, "dist/server");
 const client = resolve(root, "dist/client");
