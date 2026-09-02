@@ -15,7 +15,9 @@ for (const file of [
   'faq.html',
   'styles.css',
   'content.js',
-  'app.js'
+  'app.js',
+  'sitemap.xml',
+  'robots.txt'
 ]) {
   fs.copyFileSync(path.join(__dirname, file), path.join(out, file));
 }
