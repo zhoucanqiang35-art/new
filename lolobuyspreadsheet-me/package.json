@@ -1,0 +1,1 @@
+{"name":"lolobuy-spreadsheet-inspection","private":true,"version":"1.0.0","scripts":{"build":"mkdir -p dist/server && cp index.html dist/index.html && cp server.js dist/server/index.js && cp lolobuy-logo.png dist/logo.png"}}
