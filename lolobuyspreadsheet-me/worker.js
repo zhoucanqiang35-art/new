@@ -10,8 +10,8 @@ const routes = [
   "/buyer-checklist",
   "/faq",
   "/seo-articles",
-  "/seo-articles/how-to-use-lolobuy-spreadsheet",
-  "/seo-articles/lolobuy-shipcare-guide",
+  "/seo-articles/using-lolobuy-spreadsheet",
+  "/seo-articles/shipcare-parcel-evidence",
 ];
 
 function sitemap() {
