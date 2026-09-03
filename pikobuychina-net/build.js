@@ -12,6 +12,7 @@ for (const file of [
   'product-details.html',
   'guides.html',
   'articles.html',
+  'pikobuy-qc-photos.html',
   'faq.html',
   'styles.css',
   'content.js',
