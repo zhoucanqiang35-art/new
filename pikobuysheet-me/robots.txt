@@ -3,3 +3,5 @@ Allow: /
 Sitemap: https://pikobuysheet-me.pages.dev/sitemap.xml
 
 # Deployment refresh 2026-09-03
+
+# Rebuild after watch-path correction
