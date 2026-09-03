@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, ArrowUpRight, Check, ChevronDown, Globe2 } from "lucide-react";
 import { CategoryId, categoryIdsList, content, getCategory, getFaq, languages, Locale } from "./site-i18n";
 import { articleAdditions } from "./article-fullness";
+import { logoData } from "./assets";
 
 type Kind = "categories" | "products" | "articles" | "article" | "faq" | "category";
 const home="https://findspreadsheet.com/";
@@ -15,9 +16,9 @@ const openDb=(locale:Locale)=>locale==="en"?"Open database":locale==="fr"?"Ouvri
 
 function Header({locale,setLocale}:{locale:Locale;setLocale:(value:Locale)=>void}){
  const [open,setOpen]=useState(false);const t=content[locale];
- return <header className="shell nav-shell"><div className="nav-card"><a href="/" className="brand"><img src="/lolobuy-logo.png" alt="LoloBuy"/></a><nav><a href="/">{t.nav.home}</a><a href="/categories">{t.nav.categories}</a><a href="/products">{t.nav.products}</a><a href="/articles">{t.nav.articles}</a><a href="/faq">{t.nav.faq}</a></nav><div className="nav-actions"><div className="language-wrap"><button aria-label={t.nav.language} className="language-button" onClick={()=>setOpen(!open)}><Globe2 size={16}/>{languages.find(x=>x.id===locale)?.short}<ChevronDown size={14}/></button>{open&&<div className="language-menu"><p>{t.nav.language}</p>{languages.map(item=><button className={item.id===locale?"selected":""} key={item.id} onClick={()=>{setLocale(item.id);setOpen(false)}}>{item.label}{item.id===locale&&<Check size={15}/>}</button>)}</div>}</div><a className="button compact" href={home}>{openDb(locale)}<ArrowUpRight size={16}/></a></div></div></header>;
+ return <header className="shell nav-shell"><div className="nav-card"><a href="/" className="brand"><img src={logoData} alt="LoloBuy"/></a><nav><a href="/">{t.nav.home}</a><a href="/categories">{t.nav.categories}</a><a href="/products">{t.nav.products}</a><a href="/articles">{t.nav.articles}</a><a href="/faq">{t.nav.faq}</a></nav><div className="nav-actions"><div className="language-wrap"><button aria-label={t.nav.language} className="language-button" onClick={()=>setOpen(!open)}><Globe2 size={16}/>{languages.find(x=>x.id===locale)?.short}<ChevronDown size={14}/></button>{open&&<div className="language-menu"><p>{t.nav.language}</p>{languages.map(item=><button className={item.id===locale?"selected":""} key={item.id} onClick={()=>{setLocale(item.id);setOpen(false)}}>{item.label}{item.id===locale&&<Check size={15}/>}</button>)}</div>}</div><a className="button compact" href={home}>{openDb(locale)}<ArrowUpRight size={16}/></a></div></div></header>;
 }
-function Footer({locale}:{locale:Locale}){const t=content[locale];return <footer className="shell"><div className="footer-card"><a href="/" className="brand"><img src="/lolobuy-logo.png" alt="LoloBuy"/></a><p>{t.footer}</p><a className="button" href={home}>{openDb(locale)}<ArrowUpRight size={16}/></a></div></footer>}
+function Footer({locale}:{locale:Locale}){const t=content[locale];return <footer className="shell"><div className="footer-card"><a href="/" className="brand"><img src={logoData} alt="LoloBuy"/></a><p>{t.footer}</p><a className="button" href={home}>{openDb(locale)}<ArrowUpRight size={16}/></a></div></footer>}
 
 export default function RoutePage({kind,slug}:{kind:Kind;slug?:string}){
  const [locale,setLocaleState]=useState<Locale>(()=>(typeof window!=="undefined"&&(localStorage.getItem("lolobuy-locale") as Locale))||"en");
