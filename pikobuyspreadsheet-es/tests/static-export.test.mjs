@@ -14,6 +14,7 @@ test("exports the English and representative localized routes", async () => {
     "seo-articles/pikobuy-restricted-items-guide",
     "seo-articles/pikobuy-spain-guide",
     "seo-articles/pikobuy-usa-guide",
+    "seo-articles/pikobuy-uk-guide",
     "de-DE/shipping",
     "fr-FR/faq",
     "es-ES/seo-articles/how-pikobuy-works",
@@ -32,6 +33,7 @@ test("exports indexable robots and the complete sitemap", async () => {
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-restricted-items-guide\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-spain-guide\//);
   assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-usa-guide\//);
+  assert.match(sitemap, /https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-uk-guide\//);
 });
 
 test("keeps long articles, FAQ and shipping content in static HTML", async () => {
@@ -106,6 +108,22 @@ test("exports the complete USA guide with current customs SEO metadata", async (
   assert.match(article, /href="\/countries\/"/);
   assert.match(article, /href="\/seo-articles\/pikobuy-shipping-cost-guide\/"/);
   assert.match(countries, /href="\/seo-articles\/pikobuy-usa-guide\/"/);
+  assert.match(article, /<meta name="robots" content="index, follow"/);
+  assert.doesNotMatch(article, /noindex/);
+});
+
+test("exports the complete UK guide with country-specific tax SEO metadata", async () => {
+  const article = await readFile(page("seo-articles/pikobuy-uk-guide"), "utf8");
+  const countries = await readFile(page("countries"), "utf8");
+  assert.equal((article.match(/data-content-slot=/g) || []).length, 7);
+  assert.equal((article.match(/data-paragraph-slot=/g) || []).length, 21);
+  assert.match(article, /<link rel="canonical" href="https:\/\/pikobuyspreadsheet\.es\/seo-articles\/pikobuy-uk-guide\/"/);
+  assert.match(article, /hrefLang="en-US"/);
+  assert.match(article, /PikoBuy UK Guide: Shipping, VAT and the £135 Rule/);
+  assert.match(article, /<meta name="keywords" content="PikoBuy UK,PikoBuy shipping to UK,PikoBuy UK customs,PikoBuy UK VAT,PikoBuy UK shipping cost,how to use PikoBuy in UK"/);
+  assert.match(article, /href="\/countries\/"/);
+  assert.match(article, /href="\/seo-articles\/pikobuy-shipping-cost-guide\/"/);
+  assert.match(countries, /href="\/seo-articles\/pikobuy-uk-guide\/"/);
   assert.match(article, /<meta name="robots" content="index, follow"/);
   assert.doesNotMatch(article, /noindex/);
 });
