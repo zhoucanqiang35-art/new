@@ -507,5 +507,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "compare-pikobuy-spreadsheet-items",
+    title: "How to Compare PikoBuy Spreadsheet Items: A Practical Shortlist Method",
+    description: "Use a PikoBuy spreadsheet to compare product links, options, evidence and parcel impact without treating a curated row as a guarantee.",
+    published: "3 September 2026",
+    updated: "3 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy spreadsheet",
+    secondaryKeywords: [
+      "PikoBuy product comparison",
+      "PikoBuy spreadsheet categories",
+      "compare PikoBuy products",
+      "PikoBuy product links",
+      "PikoBuy buying guide"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live home page, Beginner's Guide, a current product page, Shipping Estimate, Returns & Exchanges policy, Shipping Terms and Terms of Service on 3 September 2026. PikoBuy does not publish standards for independent spreadsheets, so spreadsheet comparison methods in this guide are our editorial framework rather than platform claims. We did not invent seller ratings, verification labels, order results, prices, savings or customer experiences.",
+    sections: [
+      {
+        heading: "Use the spreadsheet to narrow the field, not certify it",
+        paragraphs: [
+          "A PikoBuy spreadsheet is most useful as a discovery and comparison tool. It can collect product names, categories, images and source links in one place, helping you reduce a large pool to a few candidates. It cannot prove current stock, seller reliability, accurate sizing or final delivered cost. PikoBuy's official pages describe product search, purchasing assistance, warehouse inspection and international shipping; they do not define, operate or guarantee independent spreadsheets such as FindSpreadsheet.",
+          "The practical method is simple: compare like with like, mark what each row actually shows, and verify the strongest candidate on the current source and PikoBuy pages. A row with less information should not receive the benefit of the doubt. It should carry more uncertainty. This distinction prevents a tidy table from creating false confidence and turns the sheet into a record of questions that can be answered before payment."
+        ]
+      },
+      {
+        heading: "Write the requirement before opening categories",
+        paragraphs: [
+          "Start with one sentence that defines the product and its non-negotiable feature. For clothing, that may be garment width and length rather than a familiar letter size. For shoes, it may be an insole measurement and intended use. For a bag, it may be internal dimensions, strap type and closure. Add a budget only after allowing for seller-to-warehouse delivery and later international shipping, because the displayed item price is not the delivered total.",
+          "Separate must-have criteria from preferences. A required connector, measurement or quantity should eliminate a candidate when it cannot be confirmed. A preferred colour or packaging style can be used as a tie-breaker. This keeps comparison rational when one listing has stronger photographs but another has clearer specifications. Without a written requirement, shoppers often compare attractive images rather than products that solve the same need."
+        ]
+      },
+      {
+        heading: "Filter by category before comparing price",
+        paragraphs: [
+          "Begin in the closest PikoBuy spreadsheet category and create a short group of genuinely comparable items. A hoodie should not be compared with a lightweight sweatshirt merely because both appear under tops. A single accessory should not be compared with a multi-piece set using headline price alone. Match product type, intended use, quantity and approximate specification first; only then does a price difference become meaningful.",
+          "PikoBuy's Beginner's Guide tells shoppers to find an item on Taobao, Tmall, 1688, Weidian, Yupoo or another platform and confirm its specifications, colour and size. It also recommends saving the item or shop information. That official sequence supports a useful spreadsheet habit: preserve the source clue beside every candidate. Category placement helps discovery, but the current seller listing remains the evidence for what is offered."
+        ]
+      },
+      {
+        heading: "Record six fields for every serious candidate",
+        paragraphs: [
+          "A workable comparison row needs six fields: source link, seller or shop when visible, exact option, current displayed price, seller-to-warehouse charge and date checked. Add the essential measurement or included part for the category. PikoBuy's current product pages can show a shop name, seller images, CNY price and currency conversion, domestic shipping, selectable colour or style, size, quantity and a message field. Fields can differ by listing, so absence is not proof of a favourable answer.",
+          "Record the selected option rather than the lowest number on the page. One listing can contain several colours, sizes, packages or accessories with different prices. PikoBuy's guide says prices are subject to the actual purchase and that an out-of-stock order will be refunded. A spreadsheet price should therefore be timestamped and treated as a reference, not a promise that the same option will be available at checkout."
+        ]
+      },
+      {
+        heading: "Compare evidence quality before product appeal",
+        paragraphs: [
+          "Give each candidate an evidence status: confirmed, unclear or missing. Confirmed means the current page visibly supports the field. Unclear means the page mentions it but the wording, translation or option mapping is ambiguous. Missing means there is no usable evidence. Do not invent a numeric quality score unless the sheet explains who produced it, what was inspected and when. PikoBuy does not publish a universal spreadsheet rating system or certify independent spreadsheet rows.",
+          "Consider an illustrative jacket shortlist. Candidate A has the required measurements and clear option names but average images. Candidate B has polished photographs but no garment measurements. Candidate C is cheaper, yet its displayed amount belongs to another option. If fit is non-negotiable, A is the defensible shortlist choice. B needs a measurement answer; C needs the correct option price. This example shows why evidence strength should outrank presentation."
+        ]
+      },
+      {
+        heading: "Apply category-specific comparison checks",
+        paragraphs: [
+          "Different categories need different evidence. For tops and jackets, compare garment measurements, fabric description, closures and included removable parts. For trousers, use waist, rise, inseam and leg opening when available. For footwear, compare size system, insole length, pair consistency and intended activity. For bags, check exterior and interior dimensions, strap adjustment, closure and visible compartments. For accessories, identify material claims, dimensions, quantity and compatibility.",
+          "Treat seller photographs as descriptions of the offer, not proof of the item that will arrive. PikoBuy's official workflow places warehouse check-in, photo confirmation and defect checking after purchase. Those warehouse images answer a later question: whether the received item visibly matches the order. A strong pre-order comparison makes that later check easier because the exact option, reference images and deal-breakers are already recorded."
+        ]
+      },
+      {
+        heading: "Move only the shortlist to the live PikoBuy search",
+        paragraphs: [
+          "Once two or three candidates survive the spreadsheet comparison, open their current sources and use the PikoBuy search workflow. PikoBuy says users can search directly or submit product links, images or sourcing requests; its guide specifically instructs users to paste a product link or keywords into the search box. A direct source link usually preserves the clearest connection to the candidate, but the imported PikoBuy page still needs to be checked against the source.",
+          "Match the shop or seller, main image, full title, selected option, quantity, domestic shipping and any purchasing note. If the source and imported page disagree, pause rather than choosing the more convenient version. PikoBuy's Terms say it provides information and transaction facilitation and is not the manufacturer or, unless stated otherwise, the seller of record. The platform also reserves the right to change service features, so live information controls the transaction."
+        ]
+      },
+      {
+        heading: "Compare parcel impact before calling one item cheaper",
+        paragraphs: [
+          "Product price is only one comparison column. PikoBuy's shipping estimator asks for destination, product type, weight, length, width and height. That makes bulky packaging, rigid boxes and heavy materials relevant before ordering, even though final parcel data will not be known until warehouse preparation. Flag candidates likely to occupy more space or need reinforcement instead of pretending to calculate an exact international charge from a spreadsheet image.",
+          "Use scenarios, not promises. Ask whether the item still makes sense if packaging is larger than expected, if a preferred route is unavailable or if it must ship separately because of its contents. PikoBuy's return policy lists international shipping exceeding the buyer's budget as a customer-responsibility example. Planning parcel impact at the comparison stage can prevent a cheap-looking product from becoming an avoidable warehouse return."
+        ]
+      },
+      {
+        heading: "Keep legal and risk checks outside the scorecard",
+        paragraphs: [
+          "A high comparison score does not make a prohibited or infringing product acceptable. PikoBuy's Terms forbid illegal, infringing, fraudulent or improper use and say users must not request, purchase or ship prohibited items, including goods without lawful intellectual-property rights or authorisation. The platform may cancel orders, refuse service, return or dispose of items and charge related costs when violations occur.",
+          "Likewise, a spreadsheet entry cannot guarantee customs clearance, safe delivery or a seller remedy. PikoBuy's Shipping Terms say third-party logistics providers carry parcels and identify customs action, damage, loss and peak-season delay as cross-border risks. Keep legal eligibility, route restrictions and risk tolerance as pass-or-stop checks. They should not be averaged away because a candidate has a low price or attractive photographs."
+        ]
+      },
+      {
+        heading: "Use a clear shortlist rule and stop at three",
+        paragraphs: [
+          "Keep a candidate only when it matches the intended category, offers the required option, provides enough evidence for the deal-breaker and leaves no obvious legal or parcel conflict. Mark one unresolved question per surviving item. Remove duplicates, listings tied to the wrong option, stale links and rows missing a non-negotiable fact. Three strong candidates are usually more useful than twenty loosely related bookmarks because each can be verified carefully.",
+          "The final sequence is category, requirement, evidence, live listing, option and parcel context. FindSpreadsheet can organise independent PikoBuy product links and categories, but it is not PikoBuy, a seller or a guarantee of product quality. Use the PikoBuy spreadsheet to make uncertainty visible, then let current source information, the exact order selection, warehouse evidence and live shipping choices determine whether to proceed."
+        ]
+      }
+    ]
   }
 ];
