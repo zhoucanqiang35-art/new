@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://pikobuysheet-me.pages.dev/sitemap.xml
+Sitemap: https://pikobuysheet.me/sitemap.xml
 
 # Deployment refresh 2026-09-03
 
