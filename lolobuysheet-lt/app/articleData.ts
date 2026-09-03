@@ -670,5 +670,137 @@ export const researchArticles: ResearchArticle[] = [
         "After packing, compare the final chargeable weight and final shipping amount with the saved estimate. This process does not promise the cheapest route or a fixed delivery date. It does something more useful: it makes every route compete on the same parcel facts, keeps variable platform data tied to a dated source and gives the buyer a clear record when the final measurement differs from the plan."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-shipping-to-usa-checklist",
+    tag: "USA",
+    title: "LoloBuy Shipping to USA: A Customs, Route and Delivery Checklist",
+    description: "A source-checked US buyer workflow for product admissibility, live LoloBuy routes, accurate declarations, customs costs and delivery evidence.",
+    readTime: "13 min read",
+    published: "2026-09-03",
+    updated: "2026-09-03",
+    keywords: [
+      "LoloBuy shipping to USA",
+      "LoloBuy USA shipping",
+      "LoloBuy US customs",
+      "LoloBuy parcel declaration",
+      "LoloBuy shipping route USA",
+      "LoloBuy spreadsheet USA"
+    ],
+    sources: [
+      {
+        label: "LoloBuy — Shipping Fee Estimation",
+        url: "https://www.lolobuy.com/estimate",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Delivery Service Agreements for Packages Via LoloBuy",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300779790518",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Product Scope in Shipping Agent Service",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296471257997",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — List of Prohibited and Restricted Items for Import and Export",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300867477741",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Customs risks associated with shopping-agent service",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300933013835",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Notices of receiving the parcel",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300896182556",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "The White House — Executive Order 14388: Continuing the Suspension of Duty-Free De Minimis Treatment for All Countries",
+        url: "https://www.whitehouse.gov/presidential-actions/2026/02/continuing-the-suspension-of-duty-free-de-minimis-treatment-for-all-countries/",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "Federal Register — CBP indefinite suspension of the de minimis exemption for non-postal modes",
+        url: "https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "U.S. Customs and Border Protection — Prohibited and Restricted Items",
+        url: "https://www.cbp.gov/travel/us-citizens/know-before-you-go/prohibited-and-restricted-items",
+        accessed: "3 September 2026"
+      },
+      {
+        label: "U.S. Customs and Border Protection — The Truth Behind Counterfeits",
+        url: "https://www.cbp.gov/trade/fakegoodsrealdangers",
+        accessed: "3 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare actual and volumetric weight by route", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Prepare evidence for returns and refunds", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Use a LoloBuy spreadsheet without buying blind", url: "/articles/how-to-use-a-lolobuy-spreadsheet" },
+      { label: "Browse current product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-usa-shipping-checklist.svg",
+      alt: "LoloBuy shipping to USA checklist from product admissibility and live route checks to declaration and delivery evidence",
+      caption: "Editorial US parcel workflow based on LoloBuy, White House and CBP material checked on 3 September 2026. Recheck live route and customs rules before submitting a parcel.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Plan the US import before you buy the item", paragraphs: [
+        "A LoloBuy spreadsheet can make Chinese marketplace products easier to discover, but it cannot answer the destination question: can this exact item lawfully and practically enter the United States through a route available today? That decision belongs before payment, not after several products have accumulated in the warehouse. A good US plan follows the item from its live seller listing through warehouse inspection, parcel declaration, customs processing and final delivery.",
+        "This guide separates verified statements from editorial planning. LoloBuy's public agreement says the buyer's products must meet both origin-country export requirements and destination-country import requirements. Its estimator produces routes from the destination, weight, dimensions and product category entered at the time of the search. US customs rules and carrier acceptance can change, so this article records sources checked on 3 September 2026 rather than promising a permanent route, rate or tax result."
+      ]},
+      { heading: "Screen the product against two sets of restrictions", paragraphs: [
+        "Verified platform fact: LoloBuy's product-scope page identifies categories that may be prohibited, restricted or sensitive in international shipping, including examples involving batteries, liquids, powders, compressed gas, imitation brands, food, seeds and certain valuables. Its prohibited-items article says warehouse items may receive a prohibited marker and suggests contacting customer service when a buyer believes a category has been marked incorrectly. A route accepting ordinary clothing does not prove that it accepts every material, battery or branded version.",
+        "Editorial check: write down the product's ordinary name, material, battery type, liquid or powder content, intended use and brand status before ordering. Then compare those facts with current LoloBuy route rules and official US agency guidance. CBP warns that some goods are prohibited and others require licenses, permits or conditions from agencies beyond CBP. If classification is unclear, pause before purchase and obtain an answer tied to the exact item; a spreadsheet category label is not an import ruling."
+      ]},
+      { heading: "Do not treat counterfeit risk as a shipping detail", paragraphs: [
+        "LoloBuy's receiving notice says the service cannot identify whether foreign-brand goods are genuine, fake or imitation and places responsibility for resulting customs problems on the buyer. That limitation matters because a warehouse photograph can show colour, size and visible condition without proving trademark authorization or authenticity. A route appearing in the estimator is also not a legal approval for a branded product.",
+        "CBP's current counterfeit-goods guidance warns about seizure and explains criminal penalties for trafficking in counterfeit goods. The practical rule is simple: do not rely on euphemisms such as replica, inspired or one-to-one. If a listing uses another company's marks and the seller cannot provide credible authorization, exclude it from the parcel. Saving money on freight cannot offset seizure exposure, and splitting or changing the declaration does not make an infringing product lawful."
+      ]},
+      { heading: "Build an address record that survives handoffs", paragraphs: [
+        "LoloBuy's delivery agreement says shipment processing can require the sender's and recipient's name, address, contact information and product information for waybills, transport, clearance and delivery. It also discusses correcting inaccurate addresses using previous waybill information. That is not a reason to submit an incomplete address. International parcels can pass from an export carrier to an import handler and then a local delivery network, so small inconsistencies can create expensive return or redelivery problems.",
+        "Copy the recipient's legal name, street line, apartment or suite, city, state abbreviation and ZIP Code from a known-good US address record. Add a reachable phone number and email wherever the live order requests them. Check that the ZIP Code and state agree and that apartment details have not been hidden in a note field. Save the final waybill screen. If the recipient or address changes before submission, treat it as a new verification rather than assuming a saved profile updated every parcel field."
+      ]},
+      { heading: "Use warehouse evidence to classify the real parcel", paragraphs: [
+        "Seller descriptions are inputs, not final parcel facts. Once an item reaches My Warehouse, compare the warehouse record and QC images with the option ordered. Confirm quantity, size, colour, visible brand marks, obvious battery or liquid features and the condition of retail packaging. If the received product is materially different, resolve the item-level problem before selecting an international route. Shipping it first moves the evidence problem across a border and narrows practical return options.",
+        "Keep a US-planning column for product category and a separate note for restriction indicators. Do not remove a warning from the spreadsheet merely because another buyer shipped a similar-looking item. LoloBuy says some shopping-agent orders receive potential-risk notices during submission or review and that warehouse staff may suggest a lower-risk method based on the item's nature. Record that message exactly, but remember that a platform suggestion cannot guarantee US admission."
+      ]},
+      { heading: "Rerun live routes for the actual US parcel", paragraphs: [
+        "LoloBuy's public Shipping Fee Estimation page currently uses the destination plus parcel weight and can accept product category and dimensions. The route result can show billing logic, parcel limits and item eligibility. LoloBuy's agreement separately says shipping rates and delivery times may be adjusted. For that reason, this guide does not publish a fixed list of USA routes, a cheapest-line claim or a delivery window that may be obsolete when the reader ships.",
+        "Enter United States as the destination, use the best warehouse or rehearsal weight available and include packed length, width and height. Select the true categories for every item. Remove routes that reject the contents or exceed a size or weight rule, then compare the remaining results on the same parcel inputs. Save the date, route name, displayed estimate, billing method, restrictions and service wording. If you split or remove packaging, create a second scenario and rerun the estimator instead of mentally adjusting the first quote."
+      ]},
+      { heading: "Declare what the parcel actually contains", paragraphs: [
+        "LoloBuy's delivery agreement recommends accurate parcel value and says it uses the value entered, along with product names, quantities and unit prices, for customs information. It also says the declared value can form the basis of a LoloBuy loss claim. Another help page says buyers can leave a note and declare value when submitting a parcel, while warning that customs outcomes can include taxation, return or confiscation. These statements do not authorize a false low-value declaration.",
+        "Use plain product descriptions that a customs reviewer can understand. Match quantity and value to the real transaction records, retain invoices or order screenshots, and avoid descriptions such as gift, sample or accessory when they are untrue. Do not copy a declaration amount from social media or an old spreadsheet. An artificially low figure can weaken a loss record as well as create customs risk. If a route offers inclusive or prepaid tax wording, save its exact current terms and distinguish that feature from a general promise that no further charge can arise."
+      ]},
+      { heading: "The old $800 de minimis shortcut is not current advice", paragraphs: [
+        "Verified US rule as checked on 3 September 2026: Executive Order 14388, issued on 20 February 2026, continued the suspension of the duty-free de minimis exemption for covered shipments regardless of value, origin, transport mode or entry method. It directs duty collection for international postal shipments and applicable duties, taxes, fees and charges for other covered shipments. A CBP interim final rule published in the Federal Register on 24 June 2026 independently implemented an indefinite suspension for merchandise arriving through non-postal modes.",
+        "Therefore, a US buyer should not budget on the old assumption that a commercial parcel under $800 automatically enters duty free. This article does not calculate a tariff: the amount and procedure can depend on product classification, origin, value, entry method and rules in force when the parcel arrives. Before payment, check the current CBP or Federal Register guidance and the live route's tax wording. Keep a separate customs-cost reserve rather than treating the shipping estimate as the complete landed cost."
+      ]},
+      { heading: "Prepare for customs questions before dispatch", paragraphs: [
+        "LoloBuy's receiving notice says customs may ask the recipient for invoices or other clearance proof and warns that an unreachable recipient or unclear address can lead to return costs. Its agreement also places losses arising from false declarations or non-compliant products on the buyer. The useful response is not to predict whether a parcel will be inspected; it is to make the ordinary transaction easy to document if a carrier or government agency asks a legitimate question.",
+        "Save the marketplace order, payment record, product page, selected options, QC images, parcel contents, declaration screen and waybill in one folder. Record the carrier and tracking number without assuming which company will perform final delivery. Watch for a genuine request sent through the carrier or official agency channel, and verify unexpected payment links independently. Respond promptly with truthful documents. Do not invent an invoice or alter a product description after a customs query."
+      ]},
+      { heading: "Treat delivery as an evidence event", paragraphs: [
+        "Before the expected handoff, confirm that someone can receive the parcel and monitor tracking for an address problem, customs request, delivery attempt or pickup instruction. LoloBuy's current receiving notice tells buyers to inspect the outer packaging, seal and any obvious weight difference before signing where practical. It advises noting or refusing visibly damaged parcels in front of the delivery worker and preserving the original package when damage is discovered later.",
+        "Because LoloBuy's public after-sales pages contain differing time-window language, inspect immediately instead of waiting for the longest number found online. Photograph all sides, label, seal and damage before opening; then record a continuous opening sequence and clear still images of each item. Compare the parcel with the warehouse list. If something is missing, wrong or damaged, submit through the live parcel after-sales path promptly and save the deadline shown for that parcel."
+      ]},
+      { heading: "A spreadsheet layout for repeat US orders", paragraphs: [
+        "Use one row per item until consolidation and one row per parcel scenario afterward. Item columns should include source URL, seller, selected option, paid value, material, brand status, battery or liquid flag, US admissibility check, warehouse status, restriction marker and QC decision. Parcel columns should include contents, destination ZIP Code, recipient verified, packed weight, dimensions, route checked, eligibility result, billing method, estimate, declaration description, declared value, customs reserve and source-check date.",
+        "Keep facts and decisions separate. A cell labelled LoloBuy status should reproduce the platform label; a cell labelled buyer action can say investigate, return, split or ship. Attach screenshots instead of rewriting changing route terms as permanent spreadsheet rules. A directory such as FindSpreadsheet can help discover candidate products, but the US admissibility decision, declaration and live route comparison belong to the buyer's parcel record."
+      ]},
+      { heading: "The final USA submission checklist", paragraphs: [
+        "First, verify that every product is lawful to export and import and that no unresolved counterfeit, battery, liquid or restricted-category issue remains. Second, confirm the complete US recipient record. Third, compare live routes using the actual contents, weight and dimensions. Fourth, record the chosen route's current eligibility, billing and tax wording. Fifth, enter truthful names, quantities and values and save the submission record.",
+        "Finally, keep funds available for customs or carrier charges that are not expressly included, monitor tracking, preserve clearance documents and inspect the parcel at delivery. This workflow cannot promise admission, a duty amount or a delivery date. Its benefit is narrower and more durable: each decision is tied to the real item, current US rule, live LoloBuy route and a dated evidence trail rather than an old threshold or another buyer's parcel."
+      ]}
+    ]
   }
 ];

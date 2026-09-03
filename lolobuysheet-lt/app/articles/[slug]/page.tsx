@@ -131,9 +131,9 @@ export default async function ArticleDetail({
               <ResponsiveArticleSection title="Sources checked">
                 <h2>Sources checked</h2>
                 <p>
-                  Material platform facts in this guide were checked against the following public LoloBuy
-                  pages. Access dates are shown so readers can distinguish the cited record from current live
-                  account rules.
+                  Material facts in this guide were checked against the following public sources. Access dates
+                  are shown so readers can distinguish the cited record from current platform, carrier and
+                  government rules.
                 </p>
                 <ul>
                   {article.sources.map((source) => (
