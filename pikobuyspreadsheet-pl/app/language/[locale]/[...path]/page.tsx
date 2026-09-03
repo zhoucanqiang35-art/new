@@ -18,7 +18,7 @@ const staticRoutes = ["product-categories", "product-details", "seo-articles", "
 const staticMetadata: Record<string, { title: string; description: string }> = {
   "product-categories": { title: "PikoBuy Product Categories | Spreadsheet Europe", description: "Browse focused PikoBuy spreadsheet categories and open the matching live collection." },
   "product-details": { title: "PikoBuy Product Detail Research | Spreadsheet Europe", description: "Open focused product searches and use practical pre-order and warehouse QC checks." },
-  "seo-articles": { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy guides covering fees, seller checks, QC photos, European shipping, EU customs, tracking delays and returns." },
+  "seo-articles": { title: "PikoBuy SEO Articles & Guides | Spreadsheet Europe", description: "Evidence-led PikoBuy guides covering fees, seller checks, QC photos, European shipping, EU customs, tracking delays, buyer safety and returns." },
   faq: { title: "PikoBuy Spreadsheet FAQ | Six Practical Answers", description: "Six independent FAQ pages covering product links, QC photos, European shipping, returns and site independence." },
   sources: { title: "Sources & Editorial Policy | PikoBuy Spreadsheet Europe", description: "The source pages, verification rules and editorial boundaries used by PikoBuy Spreadsheet Europe." },
 };

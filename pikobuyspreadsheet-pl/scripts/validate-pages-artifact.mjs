@@ -123,10 +123,12 @@ await assertPage("/pikobuy-fees-total-cost", "PikoBuy Fees Explained");
 await assertPage("/pikobuy-seller-listing-verification", "PikoBuy Seller and Listing Verification Checklist");
 await assertPage("/pikobuy-eu-vat-customs-preparation", "PikoBuy EU VAT and Customs Preparation Guide for 2026");
 await assertPage("/pikobuy-tracking-delay-diagnosis", "PikoBuy Tracking Status After Shipping: Diagnose Parcel Delays");
+await assertPage("/is-pikobuy-safe-buyer-checklist", "Is PikoBuy Safe to Use? A 12-Point Buyer Checklist");
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
 await assertPublicAsset("/robots.txt", "text/plain", "Allow: /");
 await assertPublicAsset("/sitemap.xml", "application/xml", "<loc>https://pikobuyspreadsheet.pl/</loc>");
+await assertPublicAsset("/pikobuy-buyer-safety-checklist.svg", "image/svg+xml", "Evidence before confidence");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -135,10 +137,10 @@ if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreads
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 160 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-tracking-delay-diagnosis")) {
-  throw new Error(`Expected 160 sitemap URLs with hreflang alternates and the new tracking guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 168 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/is-pikobuy-safe-buyer-checklist")) {
+  throw new Error(`Expected 168 sitemap URLs with hreflang alternates and the new buyer safety guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 160-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 168-URL sitemap, CSS and JavaScript.",
 );

@@ -729,6 +729,120 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "is-pikobuy-safe-buyer-checklist",
+    eyebrow: "Buyer safety",
+    title: "Is PikoBuy Safe to Use? A 12-Point Buyer Checklist",
+    seoTitle: "Is PikoBuy Safe? Buyer Checklist",
+    description: "Use a 12-point PikoBuy safety checklist to assess the seller, product, payment, warehouse evidence, shipping risk, privacy and exit options before paying.",
+    readTime: "12 min read",
+    updated: "Published 3 September 2026",
+    publishedDate: "2026-09-03",
+    modifiedDate: "2026-09-03",
+    editorialNote: "Independent risk guidance based on PikoBuy's public policies and a limited public-review check completed on 3 September 2026. No website, review score or checklist can guarantee a successful transaction, authentic product, customs clearance or refund.",
+    visual: {
+      src: "/pikobuy-buyer-safety-checklist.svg",
+      alt: "PikoBuy buyer safety decision diagram covering domain and account checks, seller and product evidence, payment records, warehouse QC, shipping rules and exit options",
+      caption: "Original pre-payment risk gate. Continue only when the official domain, exact order, evidence, legal route and acceptable loss limit all agree; pause or stop when a red flag remains unresolved.",
+    },
+    intro: [
+      "Is PikoBuy safe to use? Public information supports a more useful answer than either a blanket endorsement or a one-word warning. PikoBuy publishes a company name, terms, a privacy policy, a purchasing workflow, warehouse inspection steps and return rules. The same documents also say that PikoBuy is not the product seller, cannot verify every merchant or product, uses third-party logistics and does not guarantee quality, authenticity, customs clearance or every loss outcome.",
+      "Independent review evidence is too thin to settle the question. On 3 September 2026, Trustpilot displayed four reviews for pikobuy.com and warned that they might not be representative. Apple's App Store said the PikoBuy app did not have enough ratings or reviews to show an overview. Those observations neither prove fraud nor establish dependable service at scale. Automated website scores are also limited technical signals, not transaction guarantees.",
+      "The practical decision is therefore personal and order-specific: verify that you are on the correct domain, limit the money exposed, understand who is responsible at each stage, preserve evidence and retain a realistic exit route. The checklist below turns PikoBuy's published boundaries into twelve decisions you can make before paying.",
+    ],
+    sections: [
+      {
+        heading: "Define what 'safe' must mean for this order",
+        paragraphs: [
+          "Safety is not one property. Account safety asks whether you can protect credentials and personal data. Transaction safety asks whether the exact seller, variant, price and refund position are documented. Product safety includes legality, suitability and hazards that a photograph cannot prove. Shipping safety concerns route restrictions, customs, damage and loss. A platform can provide useful controls in one area while leaving material risk in another.",
+          "Use a simple decision rule. Green means the facts are documented and the remaining risk fits your limit. Amber means a seller, support agent or live policy must clarify something before payment. Red means the product appears illegal or infringing, the payment is being moved away from the recorded platform flow, the order details conflict, or the possible loss exceeds your limit. A red flag is a stop signal, not a request for a larger discount.",
+        ],
+      },
+      {
+        heading: "Checks 1–3: domain, account and privacy",
+        paragraphs: [
+          "Check 1: type or bookmark the official pikobuy.com domain and inspect the address before signing in. Treat lookalike domains, shortened links, unsolicited login pages and files sent through private messages as unverified. This site is independent and is not PikoBuy; product research here should lead to a deliberate decision, never a request for your PikoBuy password or verification code.",
+          "Check 2: use a unique password and protect access to the email account connected to the order. PikoBuy's Terms of Service makes users responsible for keeping account credentials secure and says it is not liable for losses caused by a failure to protect them. General account hygiene therefore matters: do not reuse a password, do not share one-time codes, and sign out of shared devices.",
+          "Check 3: read the current privacy policy before providing data. It lists account, transaction, payment-channel, browsing, cookie, IP and device information, and says partners may receive data needed for logistics, payment and after-sales tasks. These statements are not an independent security audit. Share only information required for the service and retain the policy version relied on.",
+        ],
+        bullets: [
+          "Correct domain and HTTPS address checked before login",
+          "Unique password; email account protected; codes never shared",
+          "Current privacy terms read before identity, address or payment data is submitted",
+        ],
+      },
+      {
+        heading: "Checks 4–6: seller, item and legal eligibility",
+        paragraphs: [
+          "Check 4: preserve the original seller link, store name, selected option, live price and screenshots. PikoBuy's beginner guide tells buyers to confirm specification, colour and size, and recommends saving item or store information. A link that imports successfully does not prove stock, quality or authenticity. Compare the PikoBuy order line with the source listing character by character before the first payment.",
+          "Check 5: assess the seller separately from PikoBuy. The User Registration Agreement says PikoBuy displays links and facilitates purchasing but is not the actual seller. It also says the platform cannot check every merchant and product for quality, safety, legality, authenticity or accuracy. Its published caution recommends Taobao shops with at least three-star credibility and a paid deposit, but that is only one seller signal, not a guarantee.",
+          "Check 6: reject illegal, infringing, dangerous or route-prohibited goods. PikoBuy's Terms of Service prohibits products without lawful intellectual-property rights or authorization and describes a zero-tolerance anti-counterfeit policy. The user agreement lists dangerous, flammable, corrosive, radioactive, toxic, narcotic and other prohibited mailing categories, and warns that batteries, liquids, powders, food, medicine and replicas can create customs or delivery risk. Do not interpret a visible listing or successful purchase request as legal clearance.",
+        ],
+      },
+      {
+        heading: "Checks 7–8: payment record and exposure cap",
+        paragraphs: [
+          "Check 7: keep payment inside the documented order flow and save the full breakdown. PikoBuy's guide describes a first payment for the purchasing order and a later payment for international shipping after warehouse inspection. The live checkout—not a spreadsheet thumbnail, private message or old screenshot—is the evidence for the amount, currency, selected option and displayed charge. If someone asks for an unrelated transfer or a different recipient outside that flow, stop and verify through the official support channel.",
+          "Check 8: begin with a small test order. A test does not prove future performance, but it limits the first exposure while you learn how order status, QC, packing, route selection and support actually work. Avoid deposits, custom goods, large quantities and products with weak return eligibility on the first attempt. PikoBuy's agreement warns that Taobao deposit orders may be non-cancellable and that missed balance deadlines may forfeit the deposit.",
+          "Calculate the downside before paying: product and domestic delivery, potential return cost, warehouse services, international freight, the published forwarding fee, destination charges and the amount not covered if a claim fails. Compare that number with your exposure cap. The safest-looking discount is irrelevant when the downside is unaffordable or the evidence is incomplete.",
+        ],
+      },
+      {
+        heading: "Checks 9–10: warehouse evidence and exit window",
+        paragraphs: [
+          "Check 9: inspect warehouse evidence promptly and within its limits. PikoBuy's beginner guide says warehouse intake includes check-in, photo confirmation and a defect check. The shipping terms say forwarded goods are unpacked and inspected, and shoppers can view inspection photos or purchase additional detailed images. Photographs can support identity, visible condition, label and measurement checks; they usually cannot prove authenticity, internal electronics, long-term durability, material composition or fit on your body.",
+          "Check 10: decide whether to keep or exit while a return may still be possible. PikoBuy's return page says eligible applications should be made within 120 hours, counted from the next hour after the status changes to In Warehouse. Seller participation, resale condition, packaging, category exclusions and fees still apply. Preserve tags, seals and packaging until the decision is complete, and use the exact order option and clearest image when documenting a mismatch.",
+        ],
+      },
+      {
+        heading: "Checks 11–12: shipping legality and evidence after dispatch",
+        paragraphs: [
+          "Check 11: choose only a live route that accepts the actual contents and destination. PikoBuy says third-party logistics providers carry parcels and that customs action, confiscation, damage, loss and peak-season delay cannot be eliminated. Its user agreement makes the customer responsible for understanding prohibited items and relevant laws, and says PikoBuy does not guarantee customs clearance. Ask about an ambiguity before submission; never disguise the contents or value to force acceptance.",
+          "Check 12: save a complete evidence pack before dispatch. Include the order page, seller link, option, payment records, warehouse photographs, measured parcel data, packaging request, exact route, insurance choice and terms, declared contents, address and tracking number. After shipment, keep carrier events and support tickets in date order. Evidence does not guarantee compensation, but it gives the seller, platform, carrier, insurer or authority a specific record to assess.",
+        ],
+      },
+      {
+        heading: "Make the final proceed, pause or stop decision",
+        paragraphs: [
+          "Stop when the order depends on counterfeit or unlawful goods, false declarations, credential sharing, off-record payment, a contradictory seller link, an unresolvable product identity or an amount you cannot afford to lose. No public review, discount code, platform badge or automated domain score overrides those red flags.",
+          "The balanced answer to 'Is PikoBuy safe to use?' is conditional. The public site shows a functioning purchasing workflow and written policies, but those policies deliberately allocate important seller, product, customs, logistics and account risks to the user or third parties. Sparse public reviews cannot close that gap. A small, legal, well-documented order with a clear exit is materially more defensible than a large order built on confidence alone.",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Verify the PikoBuy seller and listing", href: "/pikobuy-seller-listing-verification", note: "Match the source link, exact option, live price and seller signals before the first payment." },
+      { label: "Review the PikoBuy QC photo checklist", href: "/pikobuy-qc-photo-guide", note: "Separate what warehouse images can verify from quality and authenticity claims they cannot prove." },
+      { label: "Calculate total PikoBuy exposure", href: "/pikobuy-fees-total-cost", note: "Include return, shipping, fee and destination-risk rows before deciding how much to commit." },
+      { label: "Understand the PikoBuy return window", href: "/pikobuy-return-policy", note: "Check the 120-hour application timing, eligibility limits, seller role and possible fees." },
+    ],
+    faqHeading: "PikoBuy safety questions",
+    faq: [
+      {
+        question: "Is PikoBuy safe to use?",
+        answer: "No public source can guarantee every PikoBuy order. The platform publishes terms, privacy rules, inspection steps and return procedures, but also states that it is not the product seller and cannot guarantee every merchant, product, customs or logistics outcome. Use a small legal test order and the full checklist before paying.",
+      },
+      {
+        question: "Does PikoBuy guarantee product authenticity or quality?",
+        answer: "No. Its User Registration Agreement says it cannot verify every product for quality, safety, legality, authenticity or accuracy, and some products can receive only a visual inspection. Treat QC photos as limited evidence, not an authenticity certificate.",
+      },
+      {
+        question: "Are a few positive PikoBuy reviews enough to prove safety?",
+        answer: "No. On 3 September 2026, Trustpilot displayed four reviews and warned that they might not be representative, while Apple's App Store did not show a ratings overview. Small or self-selected samples can describe individual experiences but cannot establish a general success rate.",
+      },
+      {
+        question: "What is the biggest red flag before a PikoBuy payment?",
+        answer: "Stop if the payment is moved outside the documented platform order flow, the seller link or selected item conflicts with the order, the goods appear illegal or infringing, credentials are requested, or the possible loss exceeds what you can afford.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy Terms of Service", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Privacy Policy", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy Returns & Exchanges", href: "/sources#pikobuy-sources" },
+      { label: "Limited independent review records", href: "/sources#public-evidence-sources" },
+    ],
+  },
+  {
     slug: "pikobuy-return-policy",
     eyebrow: "Returns explained",
     title: "PikoBuy 5-Day Return Policy: Timing, Eligibility and Fees",

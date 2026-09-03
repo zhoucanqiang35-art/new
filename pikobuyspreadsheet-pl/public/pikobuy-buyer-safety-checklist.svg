@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy buyer safety checklist</title>
+  <desc id="desc">A five-gate decision path from official domain and account security through seller evidence, payment records, warehouse checks and legal shipping, ending in proceed, pause or stop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#081a2d"/>
+      <stop offset="1" stop-color="#123d52"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#03101c" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="675" rx="28" fill="url(#bg)"/>
+  <circle cx="1070" cy="80" r="170" fill="#20d3aa" opacity=".08"/>
+  <circle cx="70" cy="660" r="230" fill="#ffb557" opacity=".07"/>
+  <text x="72" y="76" fill="#67e8c8" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">PRE-PAYMENT RISK GATE</text>
+  <text x="72" y="125" fill="#ffffff" font-family="Arial, sans-serif" font-size="38" font-weight="800">Evidence before confidence</text>
+  <text x="72" y="158" fill="#c6d9e4" font-family="Arial, sans-serif" font-size="18">Every gate needs a documented answer. An unresolved red flag means stop.</text>
+
+  <g filter="url(#shadow)" font-family="Arial, sans-serif">
+    <g transform="translate(72 210)">
+      <rect width="190" height="240" rx="18" fill="#ffffff"/>
+      <circle cx="32" cy="34" r="18" fill="#0e8f79"/>
+      <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">1</text>
+      <text x="24" y="84" fill="#102638" font-size="21" font-weight="800">Domain &amp; account</text>
+      <text x="24" y="119" fill="#40586a" font-size="16">Correct pikobuy.com</text>
+      <text x="24" y="147" fill="#40586a" font-size="16">Unique password</text>
+      <text x="24" y="175" fill="#40586a" font-size="16">Privacy terms read</text>
+      <rect x="24" y="202" width="142" height="4" rx="2" fill="#20b996"/>
+    </g>
+    <path d="M273 330h30" stroke="#67e8c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="m296 321 10 9-10 9" fill="none" stroke="#67e8c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(316 210)">
+      <rect width="190" height="240" rx="18" fill="#ffffff"/>
+      <circle cx="32" cy="34" r="18" fill="#0e8f79"/>
+      <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">2</text>
+      <text x="24" y="84" fill="#102638" font-size="21" font-weight="800">Seller &amp; item</text>
+      <text x="24" y="119" fill="#40586a" font-size="16">Source link saved</text>
+      <text x="24" y="147" fill="#40586a" font-size="16">Exact option matched</text>
+      <text x="24" y="175" fill="#40586a" font-size="16">Legal to buy &amp; ship</text>
+      <rect x="24" y="202" width="142" height="4" rx="2" fill="#20b996"/>
+    </g>
+    <path d="M517 330h30" stroke="#67e8c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="m540 321 10 9-10 9" fill="none" stroke="#67e8c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(560 210)">
+      <rect width="190" height="240" rx="18" fill="#ffffff"/>
+      <circle cx="32" cy="34" r="18" fill="#0e8f79"/>
+      <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">3</text>
+      <text x="24" y="84" fill="#102638" font-size="21" font-weight="800">Payment</text>
+      <text x="24" y="119" fill="#40586a" font-size="16">Recorded order flow</text>
+      <text x="24" y="147" fill="#40586a" font-size="16">Full cost captured</text>
+      <text x="24" y="175" fill="#40586a" font-size="16">Exposure capped</text>
+      <rect x="24" y="202" width="142" height="4" rx="2" fill="#20b996"/>
+    </g>
+    <path d="M761 330h30" stroke="#67e8c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="m784 321 10 9-10 9" fill="none" stroke="#67e8c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(804 210)">
+      <rect width="190" height="240" rx="18" fill="#ffffff"/>
+      <circle cx="32" cy="34" r="18" fill="#0e8f79"/>
+      <text x="32" y="40" text-anchor="middle" fill="#fff" font-size="17" font-weight="800">4</text>
+      <text x="24" y="84" fill="#102638" font-size="21" font-weight="800">Warehouse</text>
+      <text x="24" y="119" fill="#40586a" font-size="16">QC limits understood</text>
+      <text x="24" y="147" fill="#40586a" font-size="16">Return clock open</text>
+      <text x="24" y="175" fill="#40586a" font-size="16">Mismatch resolved</text>
+      <rect x="24" y="202" width="142" height="4" rx="2" fill="#20b996"/>
+    </g>
+    <path d="M1005 330h30" stroke="#67e8c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="m1028 321 10 9-10 9" fill="none" stroke="#67e8c8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <g transform="translate(1048 210)">
+      <rect width="104" height="240" rx="18" fill="#dffaf3"/>
+      <circle cx="52" cy="36" r="20" fill="#0e8f79"/>
+      <path d="m43 36 7 7 13-15" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="52" y="91" text-anchor="middle" fill="#102638" font-size="18" font-weight="800">Ship</text>
+      <text x="52" y="122" text-anchor="middle" fill="#40586a" font-size="14">Live route</text>
+      <text x="52" y="145" text-anchor="middle" fill="#40586a" font-size="14">Evidence</text>
+      <text x="52" y="168" text-anchor="middle" fill="#40586a" font-size="14">saved</text>
+      <rect x="22" y="202" width="60" height="4" rx="2" fill="#20b996"/>
+    </g>
+  </g>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="72" y="500" width="328" height="105" rx="15" fill="#dffaf3"/>
+    <circle cx="108" cy="537" r="15" fill="#0e8f79"/>
+    <text x="137" y="543" fill="#0a604f" font-size="20" font-weight="800">PROCEED</text>
+    <text x="96" y="577" fill="#315b53" font-size="16">Documented and inside your risk limit</text>
+    <rect x="436" y="500" width="328" height="105" rx="15" fill="#fff0d9"/>
+    <circle cx="472" cy="537" r="15" fill="#dc7d13"/>
+    <text x="501" y="543" fill="#8b4a06" font-size="20" font-weight="800">PAUSE</text>
+    <text x="460" y="577" fill="#75542e" font-size="16">Clarify one conflict before paying</text>
+    <rect x="800" y="500" width="352" height="105" rx="15" fill="#ffe4e4"/>
+    <circle cx="836" cy="537" r="15" fill="#d43b3b"/>
+    <text x="865" y="543" fill="#8d2020" font-size="20" font-weight="800">STOP</text>
+    <text x="824" y="577" fill="#734141" font-size="16">Illegal, off-record or unaffordable risk</text>
+  </g>
+  <text x="72" y="642" fill="#9db4c3" font-family="Arial, sans-serif" font-size="14">Independent educational graphic · Policies and route rules can change · Check the live order and current terms</text>
+</svg>
