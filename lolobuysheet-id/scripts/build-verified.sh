@@ -34,3 +34,7 @@ cp "${server_dir}/index.js" "${client_dir}/_worker.js"
 cp "${server_dir}/__vite_rsc_assets_manifest.js" "${client_dir}/__vite_rsc_assets_manifest.js"
 rm -rf "${client_dir}/ssr"
 cp -R "${server_dir}/ssr" "${client_dir}/ssr"
+
+# Vinext also emits Worker-specific Wrangler files under dist/server. Pages
+# discovers those generated files and rejects them alongside pages_build_output_dir.
+rm -f "${server_dir}/wrangler.json" "${server_dir}/wrangler.config.json"
