@@ -35,10 +35,11 @@ cp "${server_dir}/__vite_rsc_assets_manifest.js" "${client_dir}/__vite_rsc_asset
 rm -rf "${client_dir}/ssr"
 cp -R "${server_dir}/ssr" "${client_dir}/ssr"
 
-# Pages is configured in the dashboard. Do not leave any Wrangler deployment
-# configuration in the build workspace: Vinext generates a Worker config under
-# dist/server, which makes Pages redirect its configuration lookup and fail.
+# Pages is configured in the dashboard. Vinext leaves temporary Wrangler
+# deployment metadata that points to its server-only config. Remove it so
+# Pages deploys only dist/client.
 rm -f "${SITES_PROJECT_ROOT}/wrangler.json" "${SITES_PROJECT_ROOT}/wrangler.toml"
+rm -rf "${SITES_PROJECT_ROOT}/.wrangler"
 find "${SITES_PROJECT_ROOT}/dist" -type f \
   \( -name "wrangler.json" -o -name "wrangler.toml" -o -name "wrangler.config.json" \) \
   -delete
