@@ -56,5 +56,6 @@ export default function Page(){return <GuidePage pageId="how-pikobuy-works" kick
   {href:"/pikobuy-product-links",label:"Find and verify PikoBuy product links"},
   {href:"/qc-guide",label:"PikoBuy QC photo guide"},
   {href:"/shipping-guide",label:"PikoBuy shipping planning"},
-  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"}
+  {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"},
+  {href:"/pikobuy-shipping-calculator",label:"Estimate a parcel with the PikoBuy shipping calculator"}
 ]} />}

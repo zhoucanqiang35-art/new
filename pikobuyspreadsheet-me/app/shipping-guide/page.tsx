@@ -64,4 +64,8 @@ export default function Page(){return <GuidePage pageId="shipping-guide" kicker=
     "A customs guarantee or fixed declaration instruction for every country.",
     "A third-party site claiming it can change or refund your live parcel."
   ]}
+]} relatedLinks={[
+  {href:"/pikobuy-shipping-calculator",label:"Use the PikoBuy shipping calculator step by step"},
+  {href:"/qc-guide",label:"Check warehouse photos before parcel submission"},
+  {href:"/how-pikobuy-works",label:"Follow the complete PikoBuy order workflow"}
 ]} />}
