@@ -13,6 +13,7 @@ for (const file of [
   'guides.html',
   'articles.html',
   'pikobuy-qc-photos.html',
+  'pikobuy-shipping-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
