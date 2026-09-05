@@ -1,0 +1,51 @@
+/* Compact mobile layout: preserves every module and all copy while reducing vertical whitespace. */
+@media (max-width:760px){
+  .shell{padding-left:16px!important;padding-right:16px!important}
+  .nav{min-height:52px!important;padding:6px 0!important;gap:8px!important}
+  .brand img{width:74px!important;height:18px!important}
+  .language{min-width:92px!important;padding:6px 8px!important}
+  .database-button{padding:6px 9px!important}
+  .links{order:3!important;width:100%!important;overflow-x:auto!important;white-space:nowrap!important;gap:13px!important;padding:2px 0 4px!important;font-size:12px!important;scrollbar-width:none!important}
+  .links::-webkit-scrollbar{display:none}
+  .hero{min-height:0!important}
+  .hero::before{height:88px!important}
+  .hero::after{inset:88px 0 0!important}
+  .hero-copy{padding:26px 0 28px!important;max-width:none!important}
+  .hero h1{font-size:clamp(2.2rem,10vw,2.75rem)!important;line-height:1!important;margin-bottom:12px!important}
+  .hero p{font-size:16px!important;line-height:1.45!important;margin-bottom:14px!important}
+  .eyebrow{margin-bottom:8px!important}
+  .actions{gap:8px!important;margin-top:16px!important}
+  .button{padding:9px 12px!important}
+  .searchbox,.search{margin-top:13px!important;padding:5px!important}
+  .proof{margin-top:18px!important;gap:12px!important}
+  .section,.content{padding:34px 0!important}
+  .intro{padding:29px 0 25px!important}
+  .intro h1{font-size:clamp(2rem,9vw,2.6rem)!important;line-height:1.02!important;margin-bottom:11px!important}
+  .intro p{font-size:16px!important;line-height:1.45!important}
+  .heading{margin-bottom:20px!important}
+  .grid,.home-cards,.category-grid,.category-directory{gap:10px!important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .card,.home-card,.category,.category-tile{padding:15px!important;border-radius:11px!important;min-height:0!important}
+  .card h2,.home-card h3{font-size:18px!important;margin:10px 0 7px!important}
+  .card p,.home-card p{font-size:14px!important;line-height:1.42!important}
+  .category,.category-tile{min-height:86px!important}
+  .category span,.category-tile span{margin-bottom:13px!important}
+  .detail-row{gap:9px!important;padding:13px 0!important}
+  .market-grid{gap:24px!important}
+  .market-row{padding:12px 0!important}
+  .route,.category-detail-copy,.category-detail-action{padding:18px!important;border-radius:12px!important}
+  .trust-grid{gap:16px!important}
+  .final{padding:38px 0!important}
+  .final-box{padding:24px!important;border-radius:14px!important}
+  .footer{padding:20px 0!important}
+  .article h2{font-size:24px!important;line-height:1.12!important;margin:27px 0 10px!important}
+  .article h3{font-size:19px!important;margin:20px 0 7px!important}
+  .article p{margin-bottom:12px!important;line-height:1.48!important}
+  .article ul,.article ol{margin-bottom:13px!important}
+  .article .callout,.article .checklist{margin:18px 0!important;padding:16px!important}
+}
+@media (max-width:420px){
+  .database-button{font-size:11px!important;padding:6px 7px!important}
+  .proof{font-size:11px!important}
+  .proof b{font-size:12px!important}
+}

@@ -1,0 +1,1 @@
+/* Language switching is loaded through database.js on every page. */
