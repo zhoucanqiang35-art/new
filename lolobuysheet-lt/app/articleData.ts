@@ -802,5 +802,142 @@ export const researchArticles: ResearchArticle[] = [
         "Finally, keep funds available for customs or carrier charges that are not expressly included, monitor tracking, preserve clearance documents and inspect the parcel at delivery. This workflow cannot promise admission, a duty amount or a delivery date. Its benefit is narrower and more durable: each decision is tied to the real item, current US rule, live LoloBuy route and a dated evidence trail rather than an old threshold or another buyer's parcel."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-shipping-to-uk-eu-vat-customs",
+    tag: "UK & EU",
+    title: "LoloBuy Shipping to the UK or EU: VAT and Customs Planning",
+    description: "A source-checked LoloBuy parcel workflow for UK and EU buyers covering live routes, VAT, customs duty, declarations and delivery evidence.",
+    readTime: "13 min read",
+    published: "2026-09-05",
+    updated: "2026-09-05",
+    keywords: [
+      "LoloBuy shipping to UK and EU",
+      "LoloBuy UK VAT",
+      "LoloBuy EU customs",
+      "LoloBuy IOSS",
+      "LoloBuy parcel declaration Europe",
+      "LoloBuy Europe shipping routes"
+    ],
+    sources: [
+      {
+        label: "LoloBuy — Shipping Fee Estimation",
+        url: "https://www.lolobuy.com/estimate",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "LoloBuy current freight-estimator application module",
+        url: "https://www.lolobuy.com/assets/Estimate-6d53a84b.js",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Delivery Service Agreements for Packages Via LoloBuy",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300779790518",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Customs risks associated with shopping-agent service",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300933013835",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — List of Prohibited and Restricted Items for Import and Export",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300867477741",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Notices of receiving the parcel",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300896182556",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "GOV.UK — Tax and customs for goods sent from abroad: Tax and duty",
+        url: "https://www.gov.uk/goods-sent-from-abroad/tax-and-duty",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "GOV.UK — Tax and customs for goods sent from abroad: Overview",
+        url: "https://www.gov.uk/goods-sent-from-abroad",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "European Commission — Customs formalities for low-value consignments",
+        url: "https://taxation-customs.ec.europa.eu/customs/customs-procedures-import-and-export/customs-operations/customs-formalities-low-value-consignments_en",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "European Commission — Guidance on the temporary €3 customs duty for low-value imports",
+        url: "https://taxation-customs.ec.europa.eu/news/guidance-and-legal-text-temporary-flat-fee-low-value-imports-which-will-apply-until-1-july-2028-2026-06-08_en",
+        accessed: "5 September 2026"
+      },
+      {
+        label: "European Union — VAT One Stop Shop and Import One Stop Shop",
+        url: "https://vat-one-stop-shop.ec.europa.eu/index_en",
+        accessed: "5 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare actual and volumetric weight by route", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Plan which warehouse items should share a parcel", url: "/articles/lolobuy-parcel-consolidation-guide" },
+      { label: "Prepare evidence for returns and refunds", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-uk-eu-vat-customs-checklist.svg",
+      alt: "LoloBuy UK and EU shipping checklist comparing VAT and customs planning before parcel submission",
+      caption: "Editorial comparison based on current LoloBuy, UK government and European Commission sources checked on 5 September 2026. Live route and destination rules control the final result.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Start with the destination, not a generic Europe label", paragraphs: [
+        "Shipping a LoloBuy parcel to Europe is not one tax or logistics workflow. Great Britain has UK import rules, Northern Ireland has additional distinctions, and each European Union member state applies the EU customs framework through its own tax and delivery systems. A quote, VAT result or clearance experience from one destination should not be copied into a plan for another. The first useful spreadsheet field is therefore the exact destination country, followed by postcode and item category.",
+        "This guide separates current public facts from editorial checks. LoloBuy's delivery agreement says buyers must ensure that products meet both origin export rules and destination import rules, while its estimator generates results from the destination, parcel facts and categories entered. The UK and EU rules below were checked on 5 September 2026. They are planning inputs, not legal advice or promises that a route will remain available."
+      ]},
+      { heading: "Screen the item before it reaches the warehouse", paragraphs: [
+        "Verified platform fact: LoloBuy's prohibited-and-restricted-items page says warehouse goods can receive a prohibited marker and that international logistics restrictions depend on item category. Its customs-risk article says potential risks may be displayed during order submission or review and that customs outcomes can include taxation, return or confiscation. A warehouse warning is useful evidence, but the absence of a warning is not a destination-country import authorization.",
+        "Editorial check: record the ordinary product name, material, brand status, battery type, liquid or powder content, food or plant content and intended use before paying. Compare that record with official destination guidance and the live route's eligibility notice. Cosmetics, food, batteries, medicines, plants, animal materials and branded goods can require checks beyond a general clothing-or-electronics label. Resolve uncertainty before consolidation, when returning one item is still easier than reopening a packed international parcel."
+      ]},
+      { heading: "Great Britain currently uses a £135 dividing line", paragraphs: [
+        "GOV.UK guidance checked on 5 September 2026 says that, for goods bought by the recipient and worth £135 or less in total, the seller includes VAT in the amount paid when the goods are not excise goods. For goods worth more than £135, VAT is generally paid to the delivery company before delivery or collection. The guidance says Customs Duty in Great Britain applies to goods from outside the UK when they are excise goods or worth more than £135.",
+        "The £135 test applies to the total consignment, not separately to each product. Do not assume that splitting a warehouse list into several lines changes the customs treatment, and do not describe a paid purchase as a gift. Northern Ireland rules can differ, including an 'at risk' determination for goods that may enter the EU, so a Northern Ireland buyer should follow the specific section of current GOV.UK guidance rather than treating a Great Britain example as universal."
+      ]},
+      { heading: "A UK rule does not prove LoloBuy collected UK VAT", paragraphs: [
+        "The government rule explains when and how VAT is meant to be collected; it does not establish what a particular LoloBuy route has collected. LoloBuy's public agreement asks buyers to enter an accurate value and says platform information is used for product names, quantities and unit prices during clearance. It does not make a permanent, site-wide promise in the cited page that every UK route includes all VAT, duty or courier charges.",
+        "Before paying for a UK parcel, save the route details and identify any tax wording actually displayed. Record whether VAT or duty is stated as collected, prepaid, included, estimated or payable on arrival. If the screen is silent, keep those amounts outside the freight estimate. A route nickname is not evidence of tax settlement. When support clarifies a route, save the dated response for that parcel instead of converting it into a rule for future orders."
+      ]},
+      { heading: "EU imports have VAT from the first euro", paragraphs: [
+        "The European Commission's low-value-consignment guidance says the import VAT exemption for goods below €22 was abolished in 2021. An import declaration is required for goods entering the EU regardless of value. The EU's Import One Stop Shop, or IOSS, is a method for declaring and paying VAT on qualifying distance sales of imported goods not exceeding €150; it is a tax mechanism used by eligible sellers or platforms, not a discount and not a general customs exemption.",
+        "For a LoloBuy buyer, the practical question is whether the actual transaction and selected route show valid IOSS or other tax handling. Do not add the letters IOSS to a parcel note yourself or reuse a number found online. If no valid pre-collection is documented, import VAT and possible carrier collection fees may be requested at arrival. VAT rates differ by destination and product, so this guide does not insert one percentage into every EU scenario."
+      ]},
+      { heading: "The EU's old €150 duty shortcut changed in July 2026", paragraphs: [
+        "Verified current change: European Commission guidance says that from 1 July 2026 the EU applies a temporary €3 customs duty per item to low-value consignments up to €150 imported from outside the EU, replacing the former customs-duty exemption. The temporary rule is scheduled to apply until 1 July 2028. The detailed guidance explains that application follows tariff classification and covers qualifying distance sales regardless of whether VAT uses IOSS, special arrangements or the standard procedure.",
+        "That means an older article saying an EU parcel below €150 is automatically customs-duty free is no longer suitable planning advice. It also does not mean every parcel simply adds €3 once: the official method refers to items and tariff subheadings, while restricted, excise or higher-value goods can follow different declaration procedures. Save the contents and classification used in the live declaration and leave room for VAT, customs duty and any carrier fee separately."
+      ]},
+      { heading: "Use one route search per country and parcel version", paragraphs: [
+        "LoloBuy's current Shipping Fee Estimation page asks for destination and weight and provides category and dimension inputs. Its current estimator module can display billing method, item eligibility, weight and size limits, fee components and route details. LoloBuy's delivery agreement says rates and delivery times may change. For those reasons, a France result should not be reused for Germany, Italy, Spain, the Netherlands or the United Kingdom.",
+        "Enter the exact destination and the best packed weight, length, width and height available. Select every relevant category, remove ineligible lines, then compare the remaining results with identical parcel inputs. Save the route name, date, estimate, billing basis, limits, tax wording and displayed service information. If you remove packaging, split the parcel or add an item, create a new scenario. Do not mentally subtract weight from an old quote or present a displayed transit estimate as a delivery guarantee."
+      ]},
+      { heading: "Write a declaration that matches the evidence", paragraphs: [
+        "LoloBuy's agreement recommends accurate parcel value and says the entered value can also be used as the basis for a platform loss claim. It says product name, quantity and unit price information is used for customs clearance and that the buyer can modify declared product names and quantities before packaging. The separate customs-risk page says the buyer can leave a note or enter a declaration during parcel submission while remaining responsible for customs-related outcomes.",
+        "Use recognisable descriptions such as cotton sweatshirt, leather wallet or USB keyboard rather than vague terms such as accessory or sample. Match quantities and values to order records and keep invoices, payment evidence and product screenshots. Never copy a low declaration from another buyer, mark a commercial purchase as a gift or hide a restricted component. An inaccurate value can create clearance problems and may also reduce the documented basis of a loss claim."
+      ]},
+      { heading: "Budget landed cost in separate columns", paragraphs: [
+        "A useful comparison does not merge every cost into one guessed total. Keep product price, Chinese domestic delivery, LoloBuy service or value-added charges actually shown, international freight, import VAT, customs duty and carrier or postal handling in separate fields. For Great Britain, flag whether the total consignment is at or below £135 and whether the live record shows VAT collection. For an EU destination, flag whether the consignment is at or below €150, whether valid IOSS handling is documented and how the temporary customs rule is shown.",
+        "Do not force an estimate where the evidence is missing. Use 'not confirmed' and reserve funds instead. A tax-inclusive-looking route can be compared only after its current terms are opened and saved. Likewise, the cheapest freight line may produce a worse landed-cost or clearance outcome if the contents are ineligible or tax handling is unclear. The comparison is strongest when every amount has a source date and every blank remains visibly unresolved."
+      ]},
+      { heading: "Prepare a clearance folder before dispatch", paragraphs: [
+        "LoloBuy's receiving notice says customs may ask the recipient for invoices or other clearance proof. It warns that an incomplete address or inability to contact the recipient can contribute to return and related costs. Prepare the evidence before the parcel leaves China: source listing, selected options, order payment, warehouse QC images, consolidated contents, accurate declaration, recipient address, route terms and final waybill.",
+        "Use the recipient's real name and a deliverable address formatted for the destination. Include apartment or unit information and a reachable contact method where the live form requires it. Monitor tracking for a legitimate customs, carrier or postal request, and verify unexpected payment links through an official channel. If an agent asks for classification or value evidence, answer with the saved transaction records rather than creating a new description that conflicts with the declaration."
+      ]},
+      { heading: "Build a UK and EU worksheet that stays current", paragraphs: [
+        "Use one item row before consolidation and one scenario row after it. Item fields should include listing URL, option, paid value, material, brand, battery or liquid flag, restriction check, warehouse status and QC decision. Parcel fields should include destination country, postcode, total contents value, packed measurements, route eligibility, billing method, freight estimate, tax wording, IOSS evidence where applicable, declaration, customs reserve, date checked and delivery evidence link.",
+        "Keep platform facts separate from editorial decisions. A route message belongs in a source field; 'ship', 'split', 'return' or 'ask support' belongs in a decision field. A product directory such as FindSpreadsheet can help shortlist products, but it cannot establish customs classification, VAT settlement or route availability for the finished parcel. Recheck those variables at submission and preserve the result that informed the decision."
+      ]},
+      { heading: "The final UK or EU parcel check", paragraphs: [
+        "First, confirm the exact destination and product admissibility. Second, resolve every warehouse restriction or QC problem. Third, rerun LoloBuy's estimator using current packed measurements and categories. Fourth, separate freight from VAT, duty and handling, and record only tax treatment shown by a reliable source. Fifth, enter truthful descriptions, quantities and values and save the parcel record before payment.",
+        "For Great Britain, verify the current £135 workflow and do not apply it automatically to Northern Ireland. For an EU country, remember that import VAT applies and that the former sub-€150 customs-duty exemption was replaced on 1 July 2026 by a temporary duty framework. Finally, monitor clearance and inspect delivery immediately. This process cannot guarantee a charge or arrival date, but it prevents the most expensive planning error: treating UK, EU and old tax rules as interchangeable."
+      ]}
+    ]
   }
 ];
