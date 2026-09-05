@@ -192,6 +192,15 @@ const articleSectionPlans: Record<string, readonly ArticleSectionPlan[]> = {
     {heading:4,facts:[4,9,10,11]},
     {heading:8,facts:[8,3,4,13]},
   ],
+  "pikobuy-germany-guide":[
+    {heading:0,facts:[0,2,3]},
+    {heading:3,facts:[3,7,13]},
+    {heading:7,facts:[7,13,3]},
+    {heading:13,facts:[13,3,7]},
+    {heading:13,facts:[13,6,7]},
+    {heading:4,facts:[4,9,10,11]},
+    {heading:8,facts:[8,3,4,13]},
+  ],
 };
 
 export type LocalizedSeoSection = {
@@ -219,6 +228,7 @@ export function getLocalizedSeoSections(locale: string, slug: string, fallbackTe
     "pikobuy-spain-guide":[`${items[0].question} · España`,shipping.title,`${shipping.inputsTitle} · España`,`${shipping.riskTitle} · España`,items[4].question,items[8].question,`${shipping.calloutTitle} · España`],
     "pikobuy-usa-guide":[`${items[0].question} · USA`,shipping.title,`${shipping.inputsTitle} · USA`,`${shipping.riskTitle} · USA`,items[13].question,items[4].question,`${shipping.calloutTitle} · USA`],
     "pikobuy-uk-guide":[`${items[0].question} · UK`,shipping.title,`${shipping.inputsTitle} · UK`,`${shipping.riskTitle} · UK`,items[13].question,items[4].question,`${shipping.calloutTitle} · UK`],
+    "pikobuy-germany-guide":[`${items[0].question} · Deutschland`,shipping.title,`${shipping.inputsTitle} · Deutschland`,`${shipping.riskTitle} · Deutschland`,items[13].question,items[4].question,`${shipping.calloutTitle} · Deutschland`],
   };
   const sectionHeadings=headings[slug]||headings["how-pikobuy-works"];
   return plans.map((plan,position)=>{

@@ -19,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const suffix = route ? `/${route}` : "";
       return {
         url: `${origin}${prefix}${suffix}/`,
-        lastModified: new Date("2026-09-03"),
+        lastModified: new Date("2026-09-05"),
         changeFrequency: route.startsWith("product/") ? "weekly" as const : "monthly" as const,
         priority: route === "" ? 1 : route.startsWith("seo-articles/") ? 0.8 : 0.7,
       };
