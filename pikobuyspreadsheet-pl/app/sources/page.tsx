@@ -14,17 +14,19 @@ export const metadata: Metadata = {
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
     ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 30 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking availability within three days after shipment. Verified 3 September 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, shipping payment and tracking availability within three days after shipment. Verified 5 September 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres. Verified 26 August 2026."],
-    ["Shipping terms", "", "Forwarding inspection boundaries, third-party logistics and cross-border risks including customs action, loss, damage and delays. Verified 3 September 2026."],
-    ["Returns & Exchanges", "", "Five-day/120-hour application window, eligibility, exclusions, responsibility and published fee formula. Verified 3 September 2026."],
-    ["User Registration Agreement", "", "Seller and product verification limits, prohibited items, inspection boundaries, customs risk, insurance and user responsibilities. Verified 3 September 2026."],
-    ["Terms of Service", "", "Company and platform scope, account responsibility, seller-of-record limitation, prohibited items, anti-counterfeiting and policy changes. Verified 3 September 2026."],
+    ["Shipping terms", "", "Forwarding inspection boundaries, third-party logistics and cross-border risks including customs action, loss, damage and delays. Verified 5 September 2026."],
+    ["Returns & Exchanges", "", "Five-day/120-hour application window, eligibility, exclusions, responsibility and published fee formula. Verified 5 September 2026."],
+    ["User Registration Agreement", "", "Seller and product verification limits, prohibited items, inspection boundaries, customs risk, insurance and user responsibilities. Verified 5 September 2026."],
+    ["Terms of Service", "", "Company and platform scope, account responsibility, seller-of-record limitation, prohibited items, anti-counterfeiting and policy changes. Verified 5 September 2026."],
     ["Privacy Policy", "", "Account, transaction, usage and device data categories; stated uses, partner sharing, deletion requests and account-security responsibilities. Verified 3 September 2026."],
   ]},
   { id: "public-evidence-sources", title: "Limited public review evidence", external: false, links: [
-    ["Trustpilot profile for pikobuy.com", "", "Four reviews were displayed, and Trustpilot warned that they might not be representative. This is a small self-selected sample, not a success-rate estimate. Verified 3 September 2026."],
-    ["Apple App Store listing", "", "The PikoBuy app listing identified Hong Kong Niuniubox Technology Co., Ltd. as developer and said there were not enough ratings or reviews to display an overview. Verified 3 September 2026."],
+    ["Trustpilot profile for pikobuy.com", "", "Four reviews were displayed in the most recent directly accessible record on 3 September, and Trustpilot warned that they might not be representative. This is a small self-selected sample, not a success-rate estimate. Availability rechecked 5 September 2026."],
+    ["Apple App Store listing", "", "The PikoBuy app listing identified Hong Kong Niuniubox Technology Co., Ltd. as developer and still said there were not enough ratings or reviews to display an overview. Verified 5 September 2026."],
+    ["PikoBuy subreddit and public posts", "", "Visible community material included a partnership post, coupon or referral language, a detailed beginner guide and unsupported one-line verdicts. These are individual or promotional records, not a representative customer survey. Verified 5 September 2026."],
+    ["Automated website-checking pages", "", "Current automated scans reported technical and domain signals, but their scores do not verify ordering, QC, shipping, support or refund outcomes. Used only to explain this methodological limit. Verified 5 September 2026."],
   ]},
   { id: "eu-customs-sources", title: "European Union VAT and customs source record", external: false, links: [
     ["Temporary low-value customs duty guidance", "", "European Commission explanation of the €3-per-tariff-item duty applying to qualifying distance-sale consignments up to €150 from 1 July 2026 until 1 July 2028. Last updated 20 July 2026; verified 30 August 2026."],

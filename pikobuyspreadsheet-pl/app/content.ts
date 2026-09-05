@@ -843,6 +843,135 @@ export const guides: Guide[] = [
     ],
   },
   {
+    slug: "pikobuy-reviews-customer-experience-evidence",
+    eyebrow: "Review evidence",
+    title: "PikoBuy Reviews and Customer Experiences: What the Evidence Shows",
+    seoTitle: "PikoBuy Reviews: Evidence Guide",
+    description: "Read PikoBuy reviews critically with a practical framework for checking QC, shipping, support and refund claims against dated order evidence.",
+    readTime: "12 min read",
+    updated: "Published 5 September 2026",
+    publishedDate: "2026-09-05",
+    modifiedDate: "2026-09-05",
+    editorialNote: "Independent evidence review completed on 5 September 2026. Public feedback was sparse and partly promotional, so this article does not estimate a satisfaction rate or treat individual experiences as typical. PikoBuy can change its services and policies after publication.",
+    visual: {
+      src: "/pikobuy-review-evidence-ladder.svg",
+      alt: "Evidence ladder for evaluating PikoBuy reviews, from order records and dated timelines down to unsupported promotional claims",
+      caption: "Original review-evidence ladder. A detailed record can verify one order; even strong evidence from one order cannot establish a platform-wide success rate.",
+    },
+    intro: [
+      "People searching for PikoBuy reviews and customer experiences usually want a simple verdict. The current public record does not justify one. On 5 September 2026, Apple's App Store still said the PikoBuy app had not received enough ratings or reviews to display an overview. Trustpilot had recently shown only four reviews and warned that such a small set might not be representative. Social posts add anecdotes, but some sit beside partnership announcements, referral links or coupon language.",
+      "That does not prove the positive stories are false, and it does not prove the service is unreliable. It means the sample is too small and too mixed to calculate a credible success rate. The useful task is to inspect what each reviewer can actually demonstrate: the seller and variant ordered, warehouse evidence, parcel route, dates, support record and outcome.",
+      "This guide shows how to do that without confusing the product seller, PikoBuy and the carrier. It also provides a compact scorecard for your own low-risk test order. The aim is not to manufacture confidence. It is to replace a vague star rating with evidence that matches the decision you need to make.",
+    ],
+    sections: [
+      {
+        heading: "Start with the limits of the current review sample",
+        paragraphs: [
+          "A platform rating becomes more informative when it represents many completed orders, different destinations, several product types and a meaningful period of time. The public PikoBuy sample observed for this review does not meet that standard. Four Trustpilot posts are self-selected accounts, while the App Store offers no aggregate overview. Neither source publishes a verified denominator showing how many total customers or parcels the reviews represent.",
+          "The absence of a large review base is uncertainty, not a negative review. Do not turn it into an invented conclusion that everyone is satisfied or that the service is fraudulent. Automated website scans are also narrow: a clean malware or phishing check cannot verify seller quality, warehouse handling, shipping or refunds.",
+          "Community evidence needs the same restraint. The visible PikoBuy subreddit includes partnership, referral or coupon language as well as unsupported verdicts. A comment may be sincere, but it carries little weight without dates, route and outcome.",
+        ],
+        bullets: [
+          "Observation: the public review sample is currently small",
+          "Unknown: the proportion of all customers who had a positive or negative outcome",
+          "Not established: a platform-wide delivery, refund or satisfaction rate",
+          "Safe conclusion: judge specific claims and limit the value exposed in a first order",
+        ],
+      },
+      {
+        heading: "Separate the three businesses inside one experience",
+        paragraphs: [
+          "A review can blame or praise PikoBuy for an outcome created elsewhere. PikoBuy's User Registration Agreement says the platform displays links and facilitates purchasing but is not the actual product seller. It also says third-party logistics providers perform international transport. The customer's journey therefore involves at least three actors: the marketplace seller, the purchasing and warehouse service, and the carrier or customs chain.",
+          "Map each claim to the responsible stage. Wrong colour, undisclosed material or a seller refusing a return begins with the merchant and listing. Missing or unclear warehouse photographs concern the inspection stage. A parcel quote concerns packed weight, dimensions, product type and the available route. A long gap after carrier handover belongs to tracking and logistics analysis. Support quality can span every stage, but it should be judged from the dated question, response and eventual action rather than adjectives alone.",
+        ],
+      },
+      {
+        heading: "Give more weight to reviews with a complete timeline",
+        paragraphs: [
+          "The strongest practical review is not necessarily the longest or most emotional. It records the original listing and selected variant, first-payment date, warehouse arrival, QC evidence, packed measurements, route and freight payment, carrier handover, tracking events, delivery condition and any after-sales resolution. Personal details and full order numbers should be redacted, but dates and stage-specific documents make the sequence testable.",
+          "PikoBuy's beginner guide provides a useful six-step skeleton: select the item, search or paste the link, submit the purchasing order and first payment, inspect it at the warehouse, choose and pay for shipping, then wait for the parcel. The same guide says tracking should become available within three days after shipment. A review stating that tracking was slow is more useful when it distinguishes the pre-shipment warehouse period from the period after dispatch and shows the first scan date.",
+          "Look for a denominator inside the review. Someone describing three parcels should state whether the problem affected one item, one parcel or every order. A single successful delivery verifies that delivery, not all routes. Likewise, one failed return does not establish that all returns fail; it should identify the request time, reason, seller response, packaging condition and policy applied.",
+        ],
+        bullets: [
+          "Exact product, option and seller link saved",
+          "Dates for payment, warehouse arrival, parcel submission and dispatch",
+          "QC photographs and packed weight or dimensions where relevant",
+          "Named route plus tracking events, not an unsupported delivery-time claim",
+          "Support request, response and final remedy shown as a sequence",
+        ],
+      },
+      {
+        heading: "Read product and QC praise within the published limits",
+        paragraphs: [
+          "Warehouse photographs can provide valuable evidence about visible condition, colour, obvious defects and whether the received item resembles the selected listing. PikoBuy's public guide describes check-in, photo confirmation and a defect check. A review that compares those images with the source listing is more useful than a statement that the QC was great.",
+          "There are important limits. The User Registration Agreement says PikoBuy cannot verify every merchant or product for quality, safety, legality, authenticity or accuracy. It also says professional inspection may be impossible for some goods, including electrical items and sealed collectibles, and that staff may only be able to check appearance and accessories. A positive QC review therefore does not establish authenticity, internal performance, material composition or long-term durability.",
+          "Evaluate the review against what photographs could reasonably show. For footwear, visible shape, stitching and outsole details may be comparable; comfort and durability are not proven before use. For electronics, the exact model and external condition may be visible while battery condition and sustained performance remain uncertain. If the review jumps from looks correct to guaranteed authentic or fully tested without supporting evidence, reduce its weight.",
+        ],
+      },
+      {
+        heading: "Test shipping and cost claims against the actual parcel",
+        paragraphs: [
+          "Shipping stories are highly specific to destination, product type, route, chargeable weight, dimensions, dispatch date and customs events. PikoBuy's beginner guide says routes differ in delivery time and billing method. Its agreement states that shoppers choose an independently operating third-party logistics provider and currently describes an 8% platform service fee calculated on the shipping fee. A review calling shipping cheap or expensive is incomplete without the parcel inputs and the total charged.",
+          "For speed claims, record the route's published estimate, carrier handover and delivery dates. Do not compare a parcel waiting for a seller with one already accepted by a carrier, or a different destination and product type. Customs, weather, strikes and policy changes can affect timing and may be excluded from delay compensation under PikoBuy's agreement.",
+          "A useful shipping review states what was known and what changed. For example, it might show that packed dimensions increased the chargeable basis, or that the parcel moved within the quoted range after the first scan. It should not promise that another buyer will receive the same route, price or transit time. Live checkout and current route terms remain the controlling evidence.",
+        ],
+      },
+      {
+        heading: "Judge support and refund stories by the requested remedy",
+        paragraphs: [
+          "Fast replies can feel reassuring, but response speed and problem resolution are different measures. For support claims, record the channel, local date and time, question, first meaningful answer, documents requested, action taken and final outcome. An automated acknowledgement is not a resolution. A refund shown in an account is stronger evidence than a promise that one will be processed.",
+          "Return stories also need stage and eligibility. PikoBuy's published Returns & Exchanges page describes a 120-hour application window after warehouse storage and says returns depend on seller consent, product condition, packaging and category restrictions. It lists customer-responsibility situations and possible domestic return freight or service charges. A reviewer who applied after international dispatch is describing a different problem from a warehouse return requested inside that window.",
+        ],
+      },
+      {
+        heading: "Use a small test order and keep your own scorecard",
+        paragraphs: [
+          "When public evidence is thin, a limited test order can answer questions that matter to you without exposing the value of a full parcel. Choose a lawful, non-fragile item whose seller listing, measurements and variant are clear. Avoid deposits, custom-made goods, batteries, liquids and anything whose authenticity or function cannot be judged through the available evidence. Set a maximum loss you can absorb before paying.",
+          "Score the transaction at each checkpoint: listing accuracy, payment clarity, seller dispatch, warehouse timing, QC usefulness, packed measurements, route disclosure, tracking visibility, delivery condition and support resolution. Save screenshots with dates. Stop before international shipping if the received item or cost no longer fits your rules; do not let money already spent force a larger second payment.",
+          "After delivery, write the review you wished you had found. State the country, product category, order month, route, parcel basis and each stage's dates, while removing personal data. Describe both what worked and what remains uncertain. That record will help another buyer more than an unqualified five-star label, and it will give you comparable evidence before any larger order.",
+        ],
+        bullets: [
+          "Set the maximum acceptable loss before the first payment",
+          "Choose one simple, lawful item with a clear variant and return position",
+          "Record ten checkpoints rather than one overall feeling",
+          "Pause at the warehouse if QC, price or shipping evidence fails",
+          "Publish dates and parcel context, but redact personal information",
+        ],
+      },
+    ],
+    internalLinks: [
+      { label: "Apply the PikoBuy buyer safety checklist", href: "/is-pikobuy-safe-buyer-checklist", note: "Turn review uncertainty into concrete domain, seller, payment, QC and shipping decisions." },
+      { label: "Verify the seller and exact listing", href: "/pikobuy-seller-listing-verification", note: "Preserve the product source, variant, seller evidence and return position before paying." },
+      { label: "Read PikoBuy QC photos critically", href: "/pikobuy-qc-photo-guide", note: "Separate visible warehouse evidence from authenticity, internal performance and durability claims." },
+      { label: "Diagnose tracking delays by stage", href: "/pikobuy-tracking-delay-diagnosis", note: "Use dispatch dates, route terms and carrier events instead of comparing vague delivery anecdotes." },
+    ],
+    faqHeading: "Questions about PikoBuy reviews",
+    faq: [
+      {
+        question: "Are current PikoBuy reviews enough to judge the platform?",
+        answer: "No. The public sample checked on 5 September 2026 was too small and mixed to estimate an overall success or satisfaction rate. Treat each review as evidence about one described order, not all customers.",
+      },
+      {
+        question: "Does a positive automated website score prove good service?",
+        answer: "No. Automated checks may identify technical or domain signals, but they do not verify product quality, warehouse handling, shipping performance, customs clearance, support or refunds.",
+      },
+      {
+        question: "What makes a PikoBuy customer review useful?",
+        answer: "A useful review identifies the product category, selected variant, destination, route and dates for payment, warehouse arrival, dispatch, tracking, delivery and any support outcome, with sensitive details redacted.",
+      },
+      {
+        question: "How can a new buyer test PikoBuy with less exposure?",
+        answer: "Use one low-value, lawful and easy-to-inspect item, set a maximum acceptable loss, document every stage and pause before international shipping if the QC or parcel cost does not meet your rules.",
+      },
+    ],
+    sources: [
+      { label: "PikoBuy official beginner guide", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy User Registration Agreement", href: "/sources#pikobuy-sources" },
+      { label: "PikoBuy shipping and return policies", href: "/sources#pikobuy-sources" },
+      { label: "Limited public review and community evidence", href: "/sources#public-evidence-sources" },
+    ],
+  },
+  {
     slug: "pikobuy-return-policy",
     eyebrow: "Returns explained",
     title: "PikoBuy 5-Day Return Policy: Timing, Eligibility and Fees",

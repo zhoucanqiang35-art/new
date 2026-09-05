@@ -50,7 +50,7 @@ export default function Home() {
         <div className="shell signal-grid">
           <div><b>20K+</b><span>finds on the main database*</span></div>
           <div><b>10</b><span>focused product categories</span></div>
-          <div><b>9</b><span>evidence-led launch guides</span></div>
+          <div><b>10</b><span>evidence-led launch guides</span></div>
           <div><b>11</b><span>priority market targets</span></div>
         </div>
       </section>
@@ -80,7 +80,7 @@ export default function Home() {
           <div className="workflow-grid">
             {facts.map(([number, title, text]) => <article key={number}><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
           </div>
-          <div className="source-note"><span>Source checked</span> PikoBuy official beginner guide · Last verified 3 September 2026 <a href="/sources#pikobuy-sources">Review source record ↗</a></div>
+          <div className="source-note"><span>Source checked</span> PikoBuy official beginner guide · Last verified 5 September 2026 <a href="/sources#pikobuy-sources">Review source record ↗</a></div>
         </div>
       </section>
 
