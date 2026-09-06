@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calculator, Camera, Link2, ListChecks, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, Camera, CreditCard, Link2, ListChecks, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
 import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about the shipping calculator, product links, QC photos, warehouse returns, shipping and buyer checks.",
+  description: "Read independent PikoBuy guides about payment methods, the shipping calculator, product links, QC photos, warehouse returns and buyer checks.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: CreditCard, tag: "PAYMENTS", title: "PikoBuy Payment Methods 2026: Two Payments Explained", description: "Understand the first product payment, later international shipping payment, displayed card logos, refunds and account-balance boundaries.", href: "/pikobuy-payment-methods", time: "10 min read" },
   { icon: Calculator, tag: "SHIPPING ESTIMATOR", title: "PikoBuy Shipping Calculator Guide 2026: Estimate a Parcel", description: "Use destination, product type, weight and dimensions correctly, then replace early guesses with current warehouse and parcel data.", href: "/pikobuy-shipping-calculator", time: "10 min read" },
   { icon: Link2, tag: "PRODUCT LINKS", title: "PikoBuy Product Links Guide 2026: Find and Verify Items", description: "A step-by-step guide to finding source links, matching exact variants, checking the live order and verifying warehouse evidence.", href: "/pikobuy-product-links", time: "10 min read" },
   { icon: RotateCcw, tag: "RETURNS & REFUNDS", title: "PikoBuy Return Policy 2026: Warehouse Returns Explained", description: "A practical guide to the five-day warehouse window, eligibility, fees, seller responsibility, packaging rules and return evidence.", href: "/pikobuy-return-policy", time: "10 min read" },
@@ -28,7 +29,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 4 SEPTEMBER 2026</p><h2>Estimate a PikoBuy parcel without turning guesses into facts.</h2><p>Learn how to enter destination, product type, weight and dimensions, then update the estimate when warehouse data arrives.</p></div><Link href="/pikobuy-shipping-calculator">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 6 SEPTEMBER 2026</p><h2>Keep PikoBuy’s two payment stages separate and checkable.</h2><p>Learn what the first payment covers, when international freight is paid, and which payment claims the public pages do not support.</p></div><Link href="/pikobuy-payment-methods">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>

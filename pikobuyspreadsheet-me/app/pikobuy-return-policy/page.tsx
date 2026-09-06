@@ -102,5 +102,6 @@ export default function Page(){return <GuidePage kicker="RETURNS & REFUNDS" titl
   {href:"/qc-guide",label:"Review PikoBuy QC photos before the return clock closes"},
   {href:"/buyer-checklist",label:"Use the seven-point buyer checklist"},
   {href:"/how-to-use-pikobuy-spreadsheet",label:"Verify a spreadsheet result before ordering"},
-  {href:"/shipping-guide",label:"Plan shipping only after warehouse issues are resolved"}
+  {href:"/shipping-guide",label:"Plan shipping only after warehouse issues are resolved"},
+  {href:"/pikobuy-payment-methods",label:"Separate product, shipping and refund records"}
 ]}/>}
