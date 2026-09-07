@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lolobuy-fi.pages.dev/sitemap.xml
