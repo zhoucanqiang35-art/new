@@ -1,6 +1,0 @@
-# Updated: 2026-09-04
-# Index policy: public pages may be crawled and indexed.
-User-agent: *
-Allow: /
-
-Sitemap: https://pikobuysheet.uk/sitemap.xml

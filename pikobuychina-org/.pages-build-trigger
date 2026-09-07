@@ -1,3 +1,0 @@
-Cloudflare Pages build trigger for the PikoBuyChina site.
-Trigger revision: 2026-09-03T12:00:00Z
-Purpose: retry the canceled deployment for sitemap.xml and robots.txt.
