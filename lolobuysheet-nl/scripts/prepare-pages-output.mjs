@@ -1,6 +1,6 @@
-import { cp, readdir, rm } from "node:fs/promises";
+import { cp, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
-import { build } from "esbuild";
+import { pathToFileURL } from "node:url";
 
 const root = process.cwd();
 const clientDirectory = resolve(root, "dist", "client");
@@ -16,14 +16,42 @@ for (const entry of await readdir(clientDirectory)) {
 }
 
 await rm(resolve(pagesDirectory, "_worker.js"), { force: true });
-await build({
-  entryPoints: [resolve(serverDirectory, "index.js")],
-  outfile: resolve(pagesDirectory, "_worker.js"),
-  bundle: true,
-  format: "esm",
-  platform: "browser",
-  target: "es2022",
-  external: ["node:*"]
-});
+const { default: worker } = await import(
+  pathToFileURL(resolve(serverDirectory, "index.js")).href,
+);
+const categorySlugs = [
+  "shoes",
+  "hoodies",
+  "t-shirts",
+  "jackets",
+  "pants",
+  "headwear",
+  "bags",
+  "watches",
+  "electronics",
+  "accessories",
+];
+const routes = [
+  "/",
+  "/articles",
+  "/categories",
+  ...categorySlugs.map((slug) => `/categories/${slug}`),
+  "/details",
+  "/faq",
+  "/guides",
+];
+const assets = { fetch: async () => new Response("Not Found", { status: 404 }) };
 
-console.log("Prepared Cloudflare Pages worker output in dist.");
+for (const route of routes) {
+  const response = await worker.fetch(
+    new Request(`https://lolobuysheet-nl.pages.dev${route}`),
+    { ASSETS: assets },
+  );
+  if (!response.ok) throw new Error(`Static render failed for ${route}`);
+
+  const directory = resolve(pagesDirectory, route === "/" ? "." : route.slice(1));
+  await mkdir(directory, { recursive: true });
+  await writeFile(resolve(directory, "index.html"), await response.text());
+}
+
+console.log("Prepared static Cloudflare Pages output in dist.");
