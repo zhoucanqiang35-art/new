@@ -47,7 +47,7 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 528);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 552);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
@@ -56,6 +56,25 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-france-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-reviews/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-vs-superbuy/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-update-september-2026/);
+});
+
+test("publishes the dated September 2026 LoloBuy update", async () => {
+  const response = await request("/guide/lolobuy-update-september-2026");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /LoloBuy update September 2026/);
+  assert.match(html, /https:\/\/schema\.org/);
+  assert.match(html, /Article/);
+  assert.match(html, /datePublished/);
+  assert.match(html, /name=["']keywords["'][^>]+LoloBuy update 2026/i);
+  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-update-september-2026/i);
+  assert.match(html, /version 1\.0\.4/);
+  assert.match(html, /26 August 2026/);
+  assert.match(html, /com\.hillian\.lolobuy/);
+  assert.match(html, /Browse the product database/);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-update-september-2026["']/i);
+  assert.doesNotMatch(html, /noindex/i);
 });
 
 test("publishes the evidence-based LoloBuy vs Superbuy guide", async () => {

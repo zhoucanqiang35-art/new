@@ -3,7 +3,7 @@ import { guideOrder } from "./data/guides";
 import { localeCodes, localizedPath, sectionKeys } from "./data/locales";
 
 const siteUrl = "https://lolobuyspreadsheet.de";
-const lastModified = new Date("2026-09-07T00:00:00.000Z");
+const lastModified = new Date("2026-09-09T00:00:00.000Z");
 const sourceRecords = ["platform-materials", "app-listing"] as const;
 
 function absolute(path: string) {
