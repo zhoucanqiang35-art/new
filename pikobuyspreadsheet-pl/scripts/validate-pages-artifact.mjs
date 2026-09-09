@@ -110,6 +110,32 @@ async function assertInsuranceArticle() {
   if (checks.some((check) => !check)) throw new Error("Parcel insurance article failed SEO, schema, FAQ or link validation");
 }
 
+async function assertVolumetricWeightArticle() {
+  const response = await worker.default.fetch(
+    new Request("https://pikobuyspreadsheet-pl.pages.dev/pikobuy-volumetric-weight-packaging", { headers: { accept: "text/html" } }),
+    env,
+    ctx,
+  );
+  const html = await response.text();
+  const checks = [
+    response.status === 200,
+    (html.match(/<h1>/g) ?? []).length === 1,
+    html.includes('content="index, follow"'),
+    html.includes('rel="canonical" href="https://pikobuyspreadsheet.pl/pikobuy-volumetric-weight-packaging"'),
+    html.includes('"@type":"Article"'),
+    html.includes('"@type":"BreadcrumbList"'),
+    html.includes('"@type":"FAQPage"'),
+    (html.match(/"@type":"Question"/g) ?? []).length === 4,
+    html.includes('/pikobuy-volumetric-weight-packaging.svg'),
+    html.includes('href="/pikobuy-shipping-europe"'),
+    html.includes('href="/pikobuy-fees-total-cost"'),
+    html.includes('href="/pikobuy-qc-photo-guide"'),
+    html.includes('href="/pikobuy-parcel-insurance-claim"'),
+    html.includes('href="https://findspreadsheet.com/AllProducts/"'),
+  ];
+  if (checks.some((check) => !check)) throw new Error("Volumetric weight article failed SEO, schema, FAQ or link validation");
+}
+
 async function assertNotFound() {
   const response = await worker.default.fetch(
     new Request("https://pikobuyspreadsheet-pl.pages.dev/this-page-does-not-exist", { headers: { accept: "text/html" } }),
@@ -160,8 +186,10 @@ await assertPage("/pikobuy-tracking-delay-diagnosis", "PikoBuy Tracking Status A
 await assertPage("/is-pikobuy-safe-buyer-checklist", "Is PikoBuy Safe to Use? A 12-Point Buyer Checklist");
 await assertPage("/pikobuy-reviews-customer-experience-evidence", "PikoBuy Reviews and Customer Experiences: What the Evidence Shows");
 await assertPage("/pikobuy-parcel-insurance-claim", "PikoBuy Parcel Insurance: Coverage, Evidence and Claim Checklist");
-await assertPage("/seo-articles", "PikoBuy Parcel Insurance: Coverage, Evidence and Claim Checklist");
+await assertPage("/pikobuy-volumetric-weight-packaging", "PikoBuy Volumetric Weight and Packaging: A Practical Calculator Guide");
+await assertPage("/seo-articles", "PikoBuy Volumetric Weight and Packaging: A Practical Calculator Guide");
 await assertInsuranceArticle();
+await assertVolumetricWeightArticle();
 await assertNotFound();
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
@@ -170,6 +198,7 @@ await assertPublicAsset("/sitemap.xml", "application/xml", "<loc>https://pikobuy
 await assertPublicAsset("/pikobuy-buyer-safety-checklist.svg", "image/svg+xml", "Evidence before confidence");
 await assertPublicAsset("/pikobuy-review-evidence-ladder.svg", "image/svg+xml", "Evidence before confidence");
 await assertPublicAsset("/pikobuy-insurance-claim-checklist.svg", "image/svg+xml", "Build the claim before the problem");
+await assertPublicAsset("/pikobuy-volumetric-weight-packaging.svg", "image/svg+xml", "Measure twice. Verify the route once.");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -183,10 +212,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 184 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-parcel-insurance-claim")) {
-  throw new Error(`Expected 184 sitemap URLs with hreflang alternates and the new parcel insurance guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 192 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-volumetric-weight-packaging")) {
+  throw new Error(`Expected 192 sitemap URLs with hreflang alternates and the new volumetric weight guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 184-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 192-URL sitemap, CSS and JavaScript.",
 );
