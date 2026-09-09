@@ -1,3 +1,2 @@
-This commit triggers the Cloudflare Pages deployment for the lolobuysheet-uk site only.
-Build root: lolobuysheet-uk
-Deployment trigger: 2026-09-09T06:30:00Z
+Cloudflare Pages deployment marker for lolobuysheet-uk.
+Static homepage verified locally with index.html at dist/client/index.html.
