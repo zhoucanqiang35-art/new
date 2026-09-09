@@ -54,4 +54,8 @@ for (const route of routes) {
   await writeFile(resolve(directory, "index.html"), await response.text());
 }
 
+await rm(resolve(pagesDirectory, "server"), { recursive: true, force: true });
+await rm(resolve(pagesDirectory, ".openai"), { recursive: true, force: true });
+await rm(resolve(root, ".wrangler"), { recursive: true, force: true });
+
 console.log("Prepared static Cloudflare Pages output in dist.");
