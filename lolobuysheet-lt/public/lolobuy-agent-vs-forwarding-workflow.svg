@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy Shopping Agent versus Forwarding workflow</title>
+  <desc id="desc">A decision diagram showing that Shopping Agent fits purchases placed through LoloBuy, while Forwarding fits goods already paid for or sent by a mainland China sender. Both paths meet at warehouse review and international parcel planning.</desc>
+  <rect width="1200" height="650" rx="36" fill="#f5f7ff"/>
+  <text x="600" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#16213e">Who will place and manage the seller order?</text>
+  <rect x="85" y="120" width="460" height="130" rx="24" fill="#ffffff" stroke="#4f46e5" stroke-width="4"/>
+  <text x="315" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#312e81">LoloBuy purchases it</text>
+  <text x="315" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#334155">Use Shopping Agent</text>
+  <text x="315" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#64748b">Save listing, option and payment record</text>
+  <rect x="655" y="120" width="460" height="130" rx="24" fill="#ffffff" stroke="#0f766e" stroke-width="4"/>
+  <text x="885" y="166" text-anchor="middle" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#115e59">You or a sender purchases it</text>
+  <text x="885" y="205" text-anchor="middle" font-family="Arial, sans-serif" font-size="21" fill="#334155">Use Forwarding</text>
+  <text x="885" y="232" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" fill="#64748b">Get approval, live address and tracking</text>
+  <path d="M315 250 V315 H505" fill="none" stroke="#4f46e5" stroke-width="4"/>
+  <path d="M885 250 V315 H695" fill="none" stroke="#0f766e" stroke-width="4"/>
+  <polygon points="505,315 487,305 487,325" fill="#4f46e5"/>
+  <polygon points="695,315 713,305 713,325" fill="#0f766e"/>
+  <rect x="390" y="285" width="420" height="120" rx="24" fill="#16213e"/>
+  <text x="600" y="332" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#ffffff">Warehouse checkpoint</text>
+  <text x="600" y="369" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#dbeafe">Confirm identity, status, inspection limits</text>
+  <path d="M600 405 V465" stroke="#16213e" stroke-width="4"/>
+  <polygon points="600,480 589,458 611,458" fill="#16213e"/>
+  <rect x="245" y="480" width="710" height="110" rx="24" fill="#ffffff" stroke="#16213e" stroke-width="4"/>
+  <text x="600" y="525" text-anchor="middle" font-family="Arial, sans-serif" font-size="25" font-weight="700" fill="#16213e">International parcel decision</text>
+  <text x="600" y="562" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#475569">Compare consolidation, eligibility, weight, packaging and live route terms</text>
+  <text x="600" y="625" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#64748b">Editorial workflow · verify account instructions before every shipment</text>
+</svg>

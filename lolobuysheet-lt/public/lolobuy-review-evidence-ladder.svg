@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy review evidence ladder</title>
+  <desc id="desc">Five levels rank public review evidence from unsupported promotional claims to completed orders with dated transaction records.</desc>
+  <rect width="1200" height="650" rx="34" fill="#f7f5ef"/>
+  <text x="70" y="75" fill="#17233d" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">How much can a LoloBuy review prove?</text>
+  <text x="70" y="115" fill="#5d687b" font-family="Arial, Helvetica, sans-serif" font-size="20">Rank the evidence, not the enthusiasm. One buyer's result is never a platform guarantee.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="70" y="495" width="300" height="82" rx="16" fill="#d9dee8"/>
+    <text x="95" y="528" fill="#17233d" font-size="16" font-weight="700">1 · CLAIM ONLY</text>
+    <text x="95" y="553" fill="#42516b" font-size="16">No order facts or supporting record</text>
+
+    <rect x="250" y="405" width="370" height="82" rx="16" fill="#cbd5e8"/>
+    <text x="275" y="438" fill="#17233d" font-size="16" font-weight="700">2 · PRODUCT-ONLY POST</text>
+    <text x="275" y="463" fill="#42516b" font-size="16">Photos or opinions, little agent detail</text>
+
+    <rect x="430" y="315" width="440" height="82" rx="16" fill="#b8c8ea"/>
+    <text x="455" y="348" fill="#17233d" font-size="16" font-weight="700">3 · PRELIMINARY EXPERIENCE</text>
+    <text x="455" y="373" fill="#42516b" font-size="16">Order or QC evidence, delivery unresolved</text>
+
+    <rect x="610" y="225" width="510" height="82" rx="16" fill="#9fd9c5"/>
+    <text x="635" y="258" fill="#173d34" font-size="16" font-weight="700">4 · COMPLETED DELIVERY REPORT</text>
+    <text x="635" y="283" fill="#2f6255" font-size="16">Destination, route, parcel facts and dates shown</text>
+
+    <rect x="790" y="135" width="330" height="82" rx="16" fill="#63c7a4"/>
+    <text x="815" y="168" fill="#12392f" font-size="16" font-weight="700">5 · AUDITABLE OUTCOME</text>
+    <text x="815" y="193" fill="#204e42" font-size="16">Order, delivery and resolution records</text>
+
+    <path d="M165 463V195c0-33 27-60 60-60h505" fill="none" stroke="#315efb" stroke-width="5" stroke-linecap="round"/>
+    <path d="m716 121 20 14-20 14" fill="none" stroke="#315efb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="85" y="325" fill="#315efb" font-size="17" font-weight="700" transform="rotate(-90 85 325)">MORE DECISION-USEFUL EVIDENCE</text>
+  </g>
+  <rect x="70" y="600" width="1050" height="1" fill="#cfd7e3"/>
+  <text x="595" y="627" text-anchor="middle" fill="#5d687b" font-family="Arial, Helvetica, sans-serif" font-size="16">Always record incentives, invitation links, missing stages and the date you checked the source.</text>
+</svg>
