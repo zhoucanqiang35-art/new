@@ -61,6 +61,6 @@
   const locale=document.getElementById("locale");locale.value=localStorage.getItem("lsfi-lang")||"en";update(locale.value);locale.addEventListener("change",e=>update(e.target.value));
   document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();const term=document.getElementById("searchInput").value.trim();const base="https://findspreadsheet.com/search.html";window.location.href=term?base+"?keywords="+encodeURIComponent(term)+"&channelid=2":"https://findspreadsheet.com/"});
   </script>
-  <script src="/locale.js"></script>
+  <script src="/locale.js?v=homepage-languages-v2"></script>
 </body>
 </html>
