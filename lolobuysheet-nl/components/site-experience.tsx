@@ -60,7 +60,7 @@ const categoryDetailCopy: Record<string,{label:string;checks:string[];on:string;
 };
 
 function Brand() {
-  return <Link className="brand logo-brand notranslate" href="/" aria-label="LoloBuy home"><span className="logo-mark" aria-hidden="true">⌂</span><span className="logo-word"><b>Lolo</b><strong>Buy</strong></span></Link>;
+  return <Link className="brand logo-brand notranslate" href="/" aria-label="LoloBuy home"><span className="reference-logo" aria-hidden="true" /></Link>;
 }
 
 export default function SiteExperience({page}:{page:Page}) {
@@ -82,7 +82,7 @@ export default function SiteExperience({page}:{page:Page}) {
     {page==="guides"&&<section className="section guides"><p className="kicker">{l.workflow}</p><h2>{t.guide}</h2><p className="wide">{t.guideBody}</p>{l.guideSteps.map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3><p>{i===2?t.source:t.faqBody}</p></article>)}</section>}
     {page==="articles"&&<section className="section articles article-page"><p className="kicker">{l.reading}</p><article className="seo-article"><span>{article.reviewed}</span><h2>{article.title}</h2><p className="article-intro">{article.intro}</p>{article.sections.map((section,index)=><section key={section.heading}><h3>{section.heading}</h3>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{articleContinuations[index]&&<p>{articleContinuations[index]} {articleDetails[index]}</p>}</section>)}<p className="article-source">{l.articleSource}</p></article></section>}
     {page==="faq"&&<section className="section faq"><p className="kicker">{l.answers}</p><h2>{t.faq}</h2>{(factualFaq[locale] ?? factualFaq.en).map((item,i)=><details key={item.question} open={i===0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>}
-    <footer><div className="footer-logo logo-brand"><span className="logo-mark" aria-hidden="true">⌂</span><span className="logo-word"><b>Lolo</b><strong>Buy</strong></span></div><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
+    <footer><Brand /><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
   </main>
 }
 function CategoryGrid({t,labels}:{t:Copy;labels:PageLabels}){return <div className="grid">{categories.map((x,i)=><Link key={x} href={`/categories/${categorySlug(x)}`}><span>0{i+1}</span><h3>{labels.categoryNames[i]}</h3><p>{t.sectionBody}</p><b>→</b></Link>)}</div>}
@@ -102,6 +102,6 @@ export function CategoryDetail({slug}:{slug:string}) {
       <article className="category-copy"><p className="kicker">{detail.label}</p><h2>{name}</h2><p>{t.faqBody}</p><ul>{detail.checks.map(check=><li key={check}>{check}</li>)}</ul></article>
       <a className="category-action" href={destination} target="_blank" rel="noopener noreferrer" aria-label={`${detail.open} ${name}`}><p>{t.explore}</p><h3>{name} {detail.on} FindSpreadsheet</h3><span className="category-open">{detail.open} {name} →</span><small>{t.independent}</small></a>
     </section>
-    <footer><div className="footer-logo logo-brand"><span className="logo-mark" aria-hidden="true">⌂</span><span className="logo-word"><b>Lolo</b><strong>Buy</strong></span></div><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
+    <footer><Brand /><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
   </main>;
 }
