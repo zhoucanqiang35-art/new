@@ -41,3 +41,6 @@ body{padding-top:72px}.topbar{position:fixed;inset:0 0 auto;z-index:100}.brand{d
 .hero-art img{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;min-height:100%!important;object-fit:cover!important;object-position:center center!important}
 @media(max-width:900px){.hero-art{height:175px;min-height:175px}}
 @media(max-width:560px){.hero-art{height:138px;min-height:138px}}
+
+/* Hero image fallback must occupy the same full card as the image element. */
+.hero-art{background-size:cover;background-position:center;background-repeat:no-repeat}
