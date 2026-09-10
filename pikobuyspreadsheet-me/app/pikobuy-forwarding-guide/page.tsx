@@ -108,6 +108,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="FORWARDING GUIDE" title={title} intro="PikoBuy forwarding lets you send goods purchased elsewhere to its China warehouse, but the original seller remains responsible for product after-sales. Follow the official address, form, receipt and parcel sequence without leaving gaps in the evidence." sections={sections} reviewedDate="Reviewed 8 September 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-tracking",label:"Track the international parcel after dispatch"},
   {href:"/shipping-guide",label:"Plan the international parcel and route"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate shipping with current parcel inputs"},
   {href:"/pikobuy-payment-methods",label:"Keep product and shipping payment records separate"},

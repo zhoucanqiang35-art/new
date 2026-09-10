@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Calculator, Camera, CreditCard, Link2, ListChecks, Package, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BookOpen, Calculator, Camera, CreditCard, Link2, ListChecks, MapPinned, Package, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
 import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about forwarding, payment methods, the shipping calculator, product links, QC photos and warehouse returns.",
+  description: "Read independent PikoBuy guides about parcel tracking, forwarding, payments, shipping estimates, product links, QC photos and warehouse returns.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: MapPinned, tag: "PARCEL TRACKING", title: "PikoBuy Tracking Guide 2026: Read Parcel Updates Without Guessing", description: "Know when tracking information should appear, how to separate parcel stages and when a missing update belongs with official support.", href: "/pikobuy-tracking", time: "10 min read" },
   { icon: Package, tag: "FORWARDING", title: "PikoBuy Forwarding Guide 2026: Send Your Own Orders to the Warehouse", description: "Follow the official address, form, warehouse receipt and parcel steps while keeping seller after-sales responsibility clear.", href: "/pikobuy-forwarding-guide", time: "10 min read" },
   { icon: CreditCard, tag: "PAYMENTS", title: "PikoBuy Payment Methods 2026: Two Payments Explained", description: "Understand the first product payment, later international shipping payment, displayed card logos, refunds and account-balance boundaries.", href: "/pikobuy-payment-methods", time: "10 min read" },
   { icon: Calculator, tag: "SHIPPING ESTIMATOR", title: "PikoBuy Shipping Calculator Guide 2026: Estimate a Parcel", description: "Use destination, product type, weight and dimensions correctly, then replace early guesses with current warehouse and parcel data.", href: "/pikobuy-shipping-calculator", time: "10 min read" },
@@ -30,7 +31,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 8 SEPTEMBER 2026</p><h2>Forward your own order without losing the evidence trail.</h2><p>Learn how to send goods to the PikoBuy warehouse, verify receipt and keep product after-sales responsibility with the correct seller.</p></div><Link href="/pikobuy-forwarding-guide">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 10 SEPTEMBER 2026</p><h2>Read parcel tracking as evidence, not a delivery promise.</h2><p>Use PikoBuy’s published tracking window, separate warehouse progress from international dispatch and know when official support needs the parcel record.</p></div><Link href="/pikobuy-tracking">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>

@@ -58,5 +58,6 @@ export default function Page(){return <GuidePage pageId="how-pikobuy-works" kick
   {href:"/shipping-guide",label:"PikoBuy shipping planning"},
   {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate a parcel with the PikoBuy shipping calculator"},
-  {href:"/pikobuy-payment-methods",label:"Understand PikoBuy's two payment stages"}
+  {href:"/pikobuy-payment-methods",label:"Understand PikoBuy's two payment stages"},
+  {href:"/pikobuy-tracking",label:"Read PikoBuy tracking updates after dispatch"}
 ]} />}
