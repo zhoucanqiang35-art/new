@@ -51,7 +51,17 @@ for (const route of routes) {
 
   const directory = resolve(pagesDirectory, route === "/" ? "." : route.slice(1));
   await mkdir(directory, { recursive: true });
-  await writeFile(resolve(directory, "index.html"), await response.text());
+  const html = await response.text();
+  await writeFile(resolve(directory, "index.html"), html);
+
+  // Cloudflare currently publishes dist/client for this project. Keep that
+  // directory complete as well, so either Pages output setting has a homepage.
+  const clientRouteDirectory = resolve(
+    clientDirectory,
+    route === "/" ? "." : route.slice(1),
+  );
+  await mkdir(clientRouteDirectory, { recursive: true });
+  await writeFile(resolve(clientRouteDirectory, "index.html"), html);
 }
 
 await rm(resolve(pagesDirectory, "server"), { recursive: true, force: true });
