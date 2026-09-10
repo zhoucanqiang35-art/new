@@ -300,37 +300,3 @@
   if(languageControl)languageControl.addEventListener('change',()=>setTimeout(refresh,0));
   refresh();
 })();
-
-/* Repair the homepage visual: do not use the source image with an empty lower half. */
-.art{
-  min-height:458px!important;
-  overflow:hidden;
-  isolation:isolate;
-  background:
-    radial-gradient(circle at 76% 27%,rgba(255,246,248,.74) 0 2.5%,transparent 2.8%),
-    radial-gradient(circle at 72% 30%,rgba(255,246,248,.22) 0 14%,transparent 14.4%),
-    linear-gradient(145deg,#c5758b 0%,#e6a9b7 49%,#d68d9e 100%)!important;
-  box-shadow:none!important;
-}
-.art::before{
-  content:'';
-  position:absolute;
-  inset:12% 11%;
-  z-index:-1;
-  border:1px solid rgba(255,241,244,.73);
-  background:
-    linear-gradient(90deg,transparent 0 47%,rgba(255,241,244,.28) 47% 47.5%,transparent 47.5%),
-    linear-gradient(0deg,transparent 0 47%,rgba(255,241,244,.28) 47% 47.5%,transparent 47.5%);
-  transform:rotate(-7deg);
-}
-.art::after{
-  right:18px!important;
-  bottom:18px!important;
-  background:#fff1f3!important;
-  color:#7c3d52!important;
-  border:1px solid #e1a2b3;
-}
-@media(max-width:780px){
-  .art{min-height:205px!important}
-  .art::before{inset:13% 14%}
-}
