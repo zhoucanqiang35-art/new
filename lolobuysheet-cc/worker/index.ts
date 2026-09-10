@@ -40,6 +40,7 @@ const worker = {
     // continue to work, but are consolidated onto the generated XML sitemap.
     if (
       url.pathname === "/sitemap.txt" ||
+      url.pathname === "/sitemap-core.xml" ||
       url.pathname === "/sitemap-priority.xml" ||
       url.pathname === "/sitemap-search.xml"
     ) {
