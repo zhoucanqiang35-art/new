@@ -26,8 +26,8 @@ main{max-width:1240px;padding-left:28px;padding-right:28px}
 .reference-actions a{padding:14px 17px;text-decoration:none;font-size:14px;font-weight:850}
 .reference-actions .primary{background:#c94f78;color:#fff;border:1px solid #c94f78}
 .reference-actions .secondary{border:1px solid #c67089;color:#32202a}
-.reference-art{min-height:457px;position:relative;background:#d3b5ae url('/hero-editorial.png') center/cover no-repeat}
-.reference-art::after{content:"INDEPENDENT RESEARCH · CLEARER DISCOVERY";position:absolute;right:18px;bottom:18px;padding:8px 11px;background:#fff;color:#251b1f;font-size:10px;font-weight:850;letter-spacing:.08em}
+.reference-art{min-height:457px;position:relative;background:#d3b5ae url('/hero-reference-v2.png') center/cover no-repeat}
+
 .reference-numbers{display:grid;grid-template-columns:repeat(3,1fr);max-width:1185px;margin:0 28px;border-top:1px solid var(--rose-line)}
 .reference-numbers div{padding:20px 18px 24px 0;min-height:90px}
 .reference-numbers div+div{padding-left:20px;border-left:1px solid var(--rose-line)}
