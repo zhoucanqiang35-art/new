@@ -60,7 +60,7 @@ const categoryDetailCopy: Record<string,{label:string;checks:string[];on:string;
 };
 
 function Brand() {
-  return <Link className="brand logo-brand" href="/"><img src="/lolobuy-logo.png" alt="LoloBuy" /></Link>;
+  return <Link className="brand logo-brand notranslate" href="/"><img src="/lolobuy-logo.png?v=nl-home-2" alt="LoloBuy" /></Link>;
 }
 
 export default function SiteExperience({page}:{page:Page}) {
@@ -73,16 +73,16 @@ export default function SiteExperience({page}:{page:Page}) {
   const navLabels=t.nav.map((label,index)=>index===4?(seoNavigation[locale] ?? seoNavigation.en):label);
   const title=page==="home"?t.title:navLabels[pageIndex]; const intro=page==="home"?t.intro:[t.sectionBody,t.guideBody,t.guideBody,t.articleBody,t.faqBody][pageIndex-1];
   const search=(event:FormEvent)=>{event.preventDefault();const term=query.trim();window.location.assign(term?`https://findspreadsheet.com/search.html?keywords=${encodeURIComponent(term)}&channelid=2`:"https://findspreadsheet.com/AllProducts/")};
-  return <main className="site-shell">
+  return <main className="site-shell" translate="no">
     <header className="nav"><Brand /><nav>{routes.map((r,i)=><a key={r} className={i===pageIndex?"active":""} href={r} aria-current={i===pageIndex?"page":undefined}>{navLabels[i]}</a>)}</nav><select aria-label="Language" value={locale} onChange={e=>setLocale(e.target.value)}>{Object.entries(copy).map(([k,v])=><option key={k} value={k}>{v.code} · {v.name}</option>)}</select></header>
-    <section className={page==="home"?"hero":"hero compact"}><div className="hero-copy"><p className="eyebrow">{t.eyebrow}</p><h1>{title}</h1><p className="lede">{intro}</p><div className="actions"><form className="hero-search" onSubmit={search}><input value={query} onChange={event=>setQuery(event.target.value)} placeholder={t.search} aria-label={t.search}/><button type="submit">{t.search} →</button></form><a className="outline" href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet</a></div><small>{t.note}</small></div>{page==="home"&&<img src="/editorial-discovery.png" alt="Unbranded fashion product discovery still life"/>}</section>
+    <section className={page==="home"?"hero":"hero compact"}><div className="hero-copy"><p className="eyebrow">{t.eyebrow}</p><h1>{title}</h1><p className="lede">{intro}</p><div className="actions"><form className="hero-search" onSubmit={search}><input value={query} onChange={event=>setQuery(event.target.value)} placeholder={t.search} aria-label={t.search}/><button type="submit">{t.search} →</button></form><a className="outline" href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet</a></div><small>{t.note}</small></div>{page==="home"&&<img className="hero-media" src="/editorial-discovery.png?v=nl-home-2" alt="Unbranded fashion product discovery still life"/>}</section>
     {page==="home"&&<><section className="signal"><div><p className="kicker">01 / {l.check}</p><h2>{t.faq}</h2></div><p>{t.faqBody}</p></section><section className="section"><div className="head"><div><p className="kicker">02 / {l.discover}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l}/></section><section className="blue"><p className="kicker">03 / {l.plan}</p><h2>{t.guide}</h2><p>{t.guideBody}</p><Link href="/guides">{t.nav[3]} →</Link></section></>}
     {page==="categories"&&<section className="section"><div className="head"><div><p className="kicker">{l.categoryCount}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l}/></section>}
     {page==="details"&&<section className="section details"><div><p className="kicker">{l.buyerCheck}</p><h2>{t.faq}</h2><p>{t.faqBody}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet →</a></div><div className="cards">{l.detailCards.map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3><p>{t.faqBody}</p></article>)}</div></section>}
     {page==="guides"&&<section className="section guides"><p className="kicker">{l.workflow}</p><h2>{t.guide}</h2><p className="wide">{t.guideBody}</p>{l.guideSteps.map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3><p>{i===2?t.source:t.faqBody}</p></article>)}</section>}
     {page==="articles"&&<section className="section articles article-page"><p className="kicker">{l.reading}</p><article className="seo-article"><span>{article.reviewed}</span><h2>{article.title}</h2><p className="article-intro">{article.intro}</p>{article.sections.map((section,index)=><section key={section.heading}><h3>{section.heading}</h3>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{articleContinuations[index]&&<p>{articleContinuations[index]} {articleDetails[index]}</p>}</section>)}<p className="article-source">{l.articleSource}</p></article></section>}
     {page==="faq"&&<section className="section faq"><p className="kicker">{l.answers}</p><h2>{t.faq}</h2>{(factualFaq[locale] ?? factualFaq.en).map((item,i)=><details key={item.question} open={i===0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>}
-    <footer><img src="/lolobuy-logo.png" alt="LoloBuy" className="footer-logo"/><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
+    <footer><img src="/lolobuy-logo.png?v=nl-home-2" alt="LoloBuy" className="footer-logo"/><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
   </main>
 }
 function CategoryGrid({t,labels}:{t:Copy;labels:PageLabels}){return <div className="grid">{categories.map((x,i)=><Link key={x} href={`/categories/${categorySlug(x)}`}><span>0{i+1}</span><h3>{labels.categoryNames[i]}</h3><p>{t.sectionBody}</p><b>→</b></Link>)}</div>}
@@ -95,13 +95,13 @@ export function CategoryDetail({slug}:{slug:string}) {
   const categoryIndex=categories.findIndex(x=>categorySlug(x)===slug);
   const name=l.categoryNames[categoryIndex] ?? t.section;
   const destination=categoryDestination[slug] ?? "https://findspreadsheet.com/AllProducts/";
-  return <main className="site-shell">
+  return <main className="site-shell" translate="no">
     <header className="nav"><Brand /><nav>{routes.map((r,i)=><a key={r} className={i===1?"active":""} href={r} aria-current={i===1?"page":undefined}>{navLabels[i]}</a>)}</nav><select aria-label="Language" value={locale} onChange={e=>setLocale(e.target.value)}>{Object.entries(copy).map(([k,v])=><option key={k} value={k}>{v.code} · {v.name}</option>)}</select></header>
     <section className="category-hero"><p className="eyebrow">{t.section}</p><h1>{name}</h1><p>{t.sectionBody}</p></section>
     <section className="category-detail">
       <article className="category-copy"><p className="kicker">{detail.label}</p><h2>{name}</h2><p>{t.faqBody}</p><ul>{detail.checks.map(check=><li key={check}>{check}</li>)}</ul></article>
       <a className="category-action" href={destination} target="_blank" rel="noopener noreferrer" aria-label={`${detail.open} ${name}`}><p>{t.explore}</p><h3>{name} {detail.on} FindSpreadsheet</h3><span className="category-open">{detail.open} {name} →</span><small>{t.independent}</small></a>
     </section>
-    <footer><img src="/lolobuy-logo.png" alt="LoloBuy" className="footer-logo"/><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
+    <footer><img src="/lolobuy-logo.png?v=nl-home-2" alt="LoloBuy" className="footer-logo"/><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
   </main>;
 }
