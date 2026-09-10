@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lolobuyspreadsheet.at/sitemap.xml
