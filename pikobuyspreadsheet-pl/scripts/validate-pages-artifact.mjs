@@ -98,13 +98,10 @@ async function assertInsuranceArticle() {
     html.includes('content="index, follow"'),
     html.includes('"@type":"Article"'),
     html.includes('"@type":"BreadcrumbList"'),
-    html.includes('"@type":"FAQPage"'),
-    (html.match(/"@type":"Question"/g) ?? []).length === 4,
-    html.includes('/pikobuy-insurance-claim-checklist.svg'),
-    html.includes('href="/pikobuy-tracking-delay-diagnosis"'),
-    html.includes('href="/pikobuy-fees-total-cost"'),
-    html.includes('href="/is-pikobuy-safe-buyer-checklist"'),
-    html.includes('href="/pikobuy-reviews-customer-experience-evidence"'),
+    !html.includes('"@type":"FAQPage"'),
+    html.includes('href="/how-to-use-pikobuy-spreadsheet"'),
+    html.includes('href="/pikobuy-qc-photo-guide"'),
+    html.includes('href="/pikobuy-shipping-europe"'),
     html.includes('href="https://findspreadsheet.com/AllProducts/"'),
   ];
   if (checks.some((check) => !check)) throw new Error("Parcel insurance article failed SEO, schema, FAQ or link validation");
@@ -124,13 +121,10 @@ async function assertVolumetricWeightArticle() {
     html.includes('rel="canonical" href="https://pikobuyspreadsheet.pl/pikobuy-volumetric-weight-packaging"'),
     html.includes('"@type":"Article"'),
     html.includes('"@type":"BreadcrumbList"'),
-    html.includes('"@type":"FAQPage"'),
-    (html.match(/"@type":"Question"/g) ?? []).length === 4,
-    html.includes('/pikobuy-volumetric-weight-packaging.svg'),
-    html.includes('href="/pikobuy-shipping-europe"'),
-    html.includes('href="/pikobuy-fees-total-cost"'),
+    !html.includes('"@type":"FAQPage"'),
+    html.includes('href="/how-to-use-pikobuy-spreadsheet"'),
     html.includes('href="/pikobuy-qc-photo-guide"'),
-    html.includes('href="/pikobuy-parcel-insurance-claim"'),
+    html.includes('href="/pikobuy-shipping-europe"'),
     html.includes('href="https://findspreadsheet.com/AllProducts/"'),
   ];
   if (checks.some((check) => !check)) throw new Error("Volumetric weight article failed SEO, schema, FAQ or link validation");
@@ -187,6 +181,9 @@ await assertPage("/is-pikobuy-safe-buyer-checklist", "Is PikoBuy Safe to Use? A 
 await assertPage("/pikobuy-reviews-customer-experience-evidence", "PikoBuy Reviews and Customer Experiences: What the Evidence Shows");
 await assertPage("/pikobuy-parcel-insurance-claim", "PikoBuy Parcel Insurance: Coverage, Evidence and Claim Checklist");
 await assertPage("/pikobuy-volumetric-weight-packaging", "PikoBuy Volumetric Weight and Packaging: A Practical Calculator Guide");
+await assertPage("/pikobuy-size-guide-measurements", "How to Choose the Correct Size on PikoBuy: Measurements Before Labels");
+await assertPage("/pikobuy-sneaker-batch-qc-context", "PikoBuy Sneaker Batch Labels and QC Context: Compare Evidence, Not Hype");
+await assertPage("/pikobuy-parcel-consolidation-shipping-cost", "PikoBuy Parcel Consolidation: Weight, Volume and Shipping Trade-Offs");
 await assertPage("/seo-articles", "PikoBuy Volumetric Weight and Packaging: A Practical Calculator Guide");
 await assertInsuranceArticle();
 await assertVolumetricWeightArticle();
@@ -212,10 +209,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 192 || !sitemap.includes('hreflang="x-default"') || !sitemap.includes("/pikobuy-volumetric-weight-packaging")) {
-  throw new Error(`Expected 192 sitemap URLs with hreflang alternates and the new volumetric weight guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 243 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-parcel-consolidation-shipping-cost")) {
+  throw new Error(`Expected 243 sitemap URLs with Swedish hreflang alternates and the consolidated-parcel guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 192-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 243-URL sitemap, CSS and JavaScript.",
 );

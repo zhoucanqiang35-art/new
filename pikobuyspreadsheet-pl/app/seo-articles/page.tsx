@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { guides } from "../content";
+import { guides } from "../content-restored";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
 import { indexableRobots, pageAlternates } from "../seo";

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getGuide, guides, primaryLinks } from "../content";
+import { getGuide, guides, primaryLinks } from "../content-restored";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
 import { indexableRobots, pageAlternates, SITE_URL } from "../seo";

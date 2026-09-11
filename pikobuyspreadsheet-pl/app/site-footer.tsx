@@ -1,4 +1,4 @@
-import { primaryLinks } from "./content";
+import { primaryLinks } from "./content-restored";
 
 export default function SiteFooter() {
   return <footer className="site-footer shell">

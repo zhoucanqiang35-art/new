@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-type Locale = "de" | "fr" | "es" | "it" | "nl" | "pt" | "pl";
+type Locale = "de" | "fr" | "es" | "it" | "nl" | "pt" | "pl" | "sv";
 type Dictionary = Record<string, string>;
 
 const loaders: Record<Locale, () => Promise<{ default: Dictionary }>> = {
@@ -13,6 +13,7 @@ const loaders: Record<Locale, () => Promise<{ default: Dictionary }>> = {
   nl: () => import("./translations/nl.json"),
   pt: () => import("./translations/pt.json"),
   pl: () => import("./translations/pl.json"),
+  sv: () => import("./translations/sv.json"),
 };
 
 export default function LocaleTranslator({ locale }: { locale: string }) {

@@ -8,7 +8,7 @@ import ProductCategoriesPage from "../../../product-categories/page";
 import ProductDetailsPage from "../../../product-details/page";
 import SeoArticlesPage from "../../../seo-articles/page";
 import SourcesPage from "../../../sources/page";
-import { guides } from "../../../content";
+import { guides } from "../../../content-restored";
 import { faqItems } from "../../../faq-content";
 import { indexableRobots, pageAlternates, supportedLocales } from "../../../seo";
 

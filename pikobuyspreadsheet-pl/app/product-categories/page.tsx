@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { categories } from "../content";
+import { categories } from "../content-restored";
 import SiteFooter from "../site-footer";
 import SiteHeader from "../site-header";
 import { indexableRobots, pageAlternates } from "../seo";

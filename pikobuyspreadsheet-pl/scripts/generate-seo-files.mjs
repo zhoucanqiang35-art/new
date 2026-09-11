@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDirectory = path.join(projectRoot, "public");
 const siteUrl = "https://pikobuyspreadsheet.pl";
-const locales = ["de", "fr", "es", "it", "nl", "pt", "pl"];
+const locales = ["de", "fr", "es", "it", "nl", "pt", "pl", "sv"];
 const routes = [
   "/",
   "/product-categories",
@@ -25,6 +25,9 @@ const routes = [
   "/pikobuy-parcel-insurance-claim",
   "/pikobuy-volumetric-weight-packaging",
   "/pikobuy-return-policy",
+  "/pikobuy-size-guide-measurements",
+  "/pikobuy-sneaker-batch-qc-context",
+  "/pikobuy-parcel-consolidation-shipping-cost",
   "/faq/is-this-the-official-pikobuy-website",
   "/faq/how-to-use-a-pikobuy-spreadsheet",
   "/faq/how-to-check-a-product-link-before-ordering",
@@ -49,7 +52,7 @@ const sitemapEntries = routes.flatMap((route) =>
           `<xhtml:link rel="alternate" hreflang="${language}" href="${urlFor(route, language)}" />`,
       ),
     ].join("\n    ");
-    return `  <url>\n    <loc>${urlFor(route, locale)}</loc>\n    <lastmod>2026-09-09</lastmod>\n    ${alternates}\n  </url>`;
+    return `  <url>\n    <loc>${urlFor(route, locale)}</loc>\n    <lastmod>2026-09-11</lastmod>\n    ${alternates}\n  </url>`;
   }),
 );
 

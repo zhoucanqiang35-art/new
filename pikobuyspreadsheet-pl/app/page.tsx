@@ -1,4 +1,4 @@
-import { categories, countryGroups, guides, primaryLinks } from "./content";
+import { categories, countryGroups, guides, primaryLinks } from "./content-restored";
 import { faqItems } from "./faq-content";
 import SiteFooter from "./site-footer";
 import SiteHeader from "./site-header";
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="shell signal-grid">
           <div><b>20K+</b><span>finds on the main database*</span></div>
           <div><b>10</b><span>focused product categories</span></div>
-          <div><b>12</b><span>evidence-led launch guides</span></div>
+          <div><b>15</b><span>evidence-led guides</span></div>
           <div><b>11</b><span>priority market targets</span></div>
         </div>
       </section>

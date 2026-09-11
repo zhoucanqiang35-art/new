@@ -1,6 +1,6 @@
 export const SITE_URL = "https://pikobuyspreadsheet.pl";
 
-export const supportedLocales = ["de", "fr", "es", "it", "nl", "pt", "pl"] as const;
+export const supportedLocales = ["de", "fr", "es", "it", "nl", "pt", "pl", "sv"] as const;
 
 export const indexableRobots = {
   index: true,
