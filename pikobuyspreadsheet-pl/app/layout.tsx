@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { indexableRobots, pageAlternates, SITE_URL } from "./seo";
 
+// Rebuild trigger for the current Cloudflare Pages project.
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "PikoBuy Spreadsheet Europe | Finds, QC & Shipping Guides",
