@@ -47,7 +47,7 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 552);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 576);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
@@ -57,6 +57,25 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-reviews/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-vs-superbuy/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-update-september-2026/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-italy-guide/);
+});
+
+test("publishes the Italy guide with crawlable article metadata", async () => {
+  const response = await request("/guide/lolobuy-italy-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /LoloBuy Italy guide 2026/);
+  assert.match(html, /https:\/\/schema\.org/);
+  assert.match(html, /Article/);
+  assert.match(html, /datePublished/);
+  assert.match(html, /name=["']keywords["'][^>]+LoloBuy Italy/i);
+  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-italy-guide/i);
+  assert.match(html, /Italian Customs and Monopolies Agency/);
+  assert.match(html, /1 July 2026/);
+  assert.match(html, /tariff classification/i);
+  assert.match(html, /Browse the product database/);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-italy-guide["']/i);
+  assert.doesNotMatch(html, /noindex/i);
 });
 
 test("publishes the dated September 2026 LoloBuy update", async () => {
