@@ -31,6 +31,45 @@ test("renders production index metadata", async () => {
   assert.match(html, /<link rel="canonical" href="https:\/\/lolobuy\.id\/"\/>/i);
 });
 
+test("publishes a canonical spreadsheet cluster and chargeable-weight tool", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("cluster-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const context = { waitUntil() {}, passThroughOnException() {} };
+
+  const hubResponse = await worker.fetch(new Request("https://lolobuy.id/spreadsheet"), env, context);
+  const hubHtml = await hubResponse.text();
+  assert.equal(hubResponse.status, 200);
+  assert.match(hubHtml, /<title>LoloBuy Spreadsheet 2026: Finds, QC &amp; Category Directory<\/title>/);
+  assert.match(hubHtml, /rel="canonical" href="https:\/\/lolobuy\.id\/spreadsheet"/);
+  assert.match(hubHtml, /"@type":"ItemList"/);
+  assert.match(hubHtml, /Search the visible finds/);
+  assert.match(hubHtml, /\/spreadsheet\/shoes/);
+
+  const categoryResponse = await worker.fetch(new Request("https://lolobuy.id/spreadsheet/shoes"), env, context);
+  const categoryHtml = await categoryResponse.text();
+  assert.equal(categoryResponse.status, 200);
+  assert.match(categoryHtml, /LoloBuy Shoe Spreadsheet: Sizing, QC and Parcel Checks/);
+  assert.match(categoryHtml, /https:\/\/findspreadsheet\.com\/shoes\//);
+
+  const oldCategory = await worker.fetch(new Request("https://lolobuy.id/en/category/shoes"), env, context);
+  assert.equal(oldCategory.status, 308);
+  assert.equal(oldCategory.headers.get("location"), "https://lolobuy.id/spreadsheet/shoes");
+
+  const calculatorResponse = await worker.fetch(new Request("https://lolobuy.id/shipping-calculator"), env, context);
+  const calculatorHtml = await calculatorResponse.text();
+  assert.equal(calculatorResponse.status, 200);
+  assert.match(calculatorHtml, /Estimate Actual vs Volumetric Parcel Weight/);
+  assert.match(calculatorHtml, /Route divisor/);
+
+  const sitemapResponse = await worker.fetch(new Request("https://lolobuy.id/sitemap.xml"), env, context);
+  const sitemapXml = await sitemapResponse.text();
+  assert.match(sitemapXml, /<loc>https:\/\/lolobuy\.id\/spreadsheet<\/loc>/);
+  assert.match(sitemapXml, /<loc>https:\/\/lolobuy\.id\/spreadsheet\/shoes<\/loc>/);
+  assert.doesNotMatch(sitemapXml, /<loc>https:\/\/lolobuy\.id\/en\/category\/shoes<\/loc>/);
+});
+
 test("publishes the tracking guide only at its English canonical URL", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("tracking-test", `${process.pid}-${Date.now()}`);

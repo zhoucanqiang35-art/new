@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ArticleLinks, ArticleSections, CategoryVisualCard, PageShell } from "../../components";
-import { categories } from "../../data";
+import { categories, products } from "../../data";
 import { LocaleHome } from "../../locale-home";
+import { ShippingCalculator } from "../../shipping-calculator";
+import { SpreadsheetDirectory } from "../../spreadsheet-directory";
+import { getSpreadsheetPage, spreadsheetFaq, spreadsheetGuideSections } from "../../spreadsheet-content";
 import { common, getArticles, getPage, localizedCategories, localizedProducts, locales, type Locale } from "../../translations";
 
 type Params={locale:string;path?:string[]};
 const prefix=(locale:Locale,path="")=>`/${locale}${path}`;
-function resolve({locale:raw,path=[]}:Params){const supported=locales.includes(raw as Locale);return {locale:(supported?raw:"en") as Locale,route:supported?path:[raw,...path]};}
+function resolve({locale:raw,path=[]}:Params){const isLocalized=locales.includes(raw as Locale);return {locale:(isLocalized?raw:"en") as Locale,route:isLocalized?path:[raw,...path],isLocalized};}
 
 const ui={
   en:{open:"Open independent page →",read:"Read full article →",sources:"PRIMARY SOURCES",sourceTitle:"Check the live source before acting.",official:"LoloBuy official homepage",database:"FindSpreadsheet product database",verify:"What to verify",parcel:"What affects the parcel",directory:"What the directory does",verifyText:"Confirm the live title, selected variant, seller price and China-side delivery. Then use evidence that answers this category’s specific questions—not a generic verified label.",parcelText:"Record dimensions, packed weight, fragile parts and route restrictions. Cost and eligibility can change with destination and packaging.",directoryText:"This page explains the research process. The live collection stays on FindSpreadsheet so one maintained source controls current records.",continue:"CONTINUE TO THE DATABASE",browse:"Browse the live collection.",browseText:"Review current details and keep only the finds that still make sense.",next:"NEXT STEP",continueResearch:"Continue with live product research.",articleText:"Use this guide to narrow the decision, then verify the current record and source listing."},
@@ -20,6 +23,16 @@ const ui={
 
 export async function generateMetadata({params}:{params:Promise<Params>}):Promise<Metadata>{
   const resolved=resolve(await params), route=resolved.route, locale=resolved.locale;
+  const spreadsheet=getSpreadsheetPage(route);
+  const shippingCalculator=route.length===1&&route[0]==="shipping-calculator";
+  if(spreadsheet||shippingCalculator){
+    const title=spreadsheet?.title??"LoloBuy Shipping Calculator: Actual vs Volumetric Weight";
+    const description=spreadsheet?.description??"Estimate parcel chargeable weight from actual weight and packed dimensions, then compare the result with the current LoloBuy route quote.";
+    const canonical=`/${route.join("/")}`;
+    const topic=spreadsheet&&spreadsheet.kind!=="hub"?spreadsheet.slug.replaceAll("-"," "):"";
+    const keywords=spreadsheet?.kind==="hub"?spreadsheet.keywords:spreadsheet?.kind==="category"?[`LoloBuy ${topic} spreadsheet`,`LoloBuy ${topic} sheet`,`LoloBuy ${topic} finds`]:spreadsheet?.kind==="brand"?[`${topic} LoloBuy spreadsheet`,`${topic} LoloBuy sheet`,`${topic} LoloBuy finds`]:shippingCalculator?["LoloBuy shipping calculator","LoloBuy volumetric weight","LoloBuy parcel weight"]:undefined;
+    return {title,description,keywords:keywords as string[]|undefined,alternates:{canonical,languages:{en:canonical,"x-default":canonical}},openGraph:{title,description,type:"website",url:canonical},twitter:{card:"summary_large_image",title,description}};
+  }
   const page=route.length?getPage(locale,route[0]):undefined;
   const article=route[0]==="article"?getArticles(locale).find(a=>a.slug===route[1]):undefined;
   const category=route[0]==="category"?categories.find(c=>c.slug===route[1]):undefined;
@@ -34,16 +47,62 @@ export async function generateMetadata({params}:{params:Promise<Params>}):Promis
 function homeDescription(locale:Locale){return {en:"Independent LoloBuy spreadsheet research for Europe and North America.",de:"Unabhängige LoloBuy-Spreadsheet-Recherche für Europa und Nordamerika.",fr:"Recherche indépendante du spreadsheet LoloBuy pour l’Europe et l’Amérique du Nord.",es:"Investigación independiente del spreadsheet LoloBuy para Europa y Norteamérica.",it:"Ricerca indipendente sullo spreadsheet LoloBuy per Europa e Nord America.",pt:"Pesquisa independente do spreadsheet LoloBuy para a Europa e América do Norte."}[locale];}
 
 export default async function LocalizedRoute({params}:{params:Promise<Params>}){
-  const {locale,route}=resolve(await params), copy=ui[locale], cats=localizedCategories(locale), nav=common[locale], products=localizedProducts(locale);
+  const {locale,route,isLocalized}=resolve(await params), copy=ui[locale], cats=localizedCategories(locale), nav=common[locale], translatedProducts=localizedProducts(locale);
   if(!route.length)return <LocaleHome locale={locale}/>;
-  if(route[0]==="category"&&route[1]){const index=categories.findIndex(c=>c.slug===route[1]);if(index<0)notFound();const base=categories[index],cat=cats[index];return <PageShell locale={locale} eyebrow={`${nav.categories.toUpperCase()} ${base.icon}`} title={`${cat.name} — ${copy.verify.toLowerCase()}.`} intro={cat.note}><section className="category-detail"><div><h2>{copy.verify}</h2><p>{copy.verifyText}</p></div><div><h2>{copy.parcel}</h2><p>{copy.parcelText}</p></div><div><h2>{copy.directory}</h2><p>{copy.directoryText}</p></div></section><section className="category-cta"><p className="eyebrow">{copy.continue}</p><h2>{copy.browse}</h2><p>{copy.browseText}</p><a href={base.href} target="_blank" rel="noopener">{common[locale].database}</a></section></PageShell>;}
+  if(route[0]==="qc-guide")permanentRedirect("/en/article/lolobuy-qc-photo-checklist");
+  if(route[0]==="shipping-calculator"&&route.length===1){if(isLocalized)permanentRedirect("/shipping-calculator");return <ShippingCalculatorPage/>;}
+  if(route[0]==="spreadsheet"){
+    if(isLocalized){if(locale!=="en")notFound();permanentRedirect(`/${route.join("/")}`);}
+    const spreadsheet=getSpreadsheetPage(route);if(!spreadsheet)notFound();
+    if(spreadsheet.kind==="hub")return <SpreadsheetHub/>;
+    if(spreadsheet.kind==="brand")return <BrandSpreadsheetPage guide={spreadsheet}/>;
+    return <CategorySpreadsheetPage guide={spreadsheet}/>;
+  }
+  if(route[0]==="category"&&route[1]){const index=categories.findIndex(c=>c.slug===route[1]);if(index<0)notFound();if(locale==="en")permanentRedirect(`/spreadsheet/${route[1]}`);const base=categories[index],cat=cats[index];return <PageShell locale={locale} eyebrow={`${nav.categories.toUpperCase()} ${base.icon}`} title={`${cat.name} — ${copy.verify.toLowerCase()}.`} intro={cat.note}><section className="category-detail"><div><h2>{copy.verify}</h2><p>{copy.verifyText}</p></div><div><h2>{copy.parcel}</h2><p>{copy.parcelText}</p></div><div><h2>{copy.directory}</h2><p>{copy.directoryText}</p></div></section><section className="category-cta"><p className="eyebrow">{copy.continue}</p><h2>{copy.browse}</h2><p>{copy.browseText}</p><a href={base.href} target="_blank" rel="noopener">{common[locale].database}</a></section></PageShell>;}
   if(route[0]==="article"&&route[1]){const article=getArticles(locale).find(a=>a.slug===route[1]);if(!article)notFound();const articleSchema=article.published?{"@context":"https://schema.org","@type":"Article",headline:article.title,description:article.excerpt,datePublished:article.published,dateModified:article.modified??article.published,inLanguage:locale,mainEntityOfPage:`https://lolobuy.id/${locale}/article/${article.slug}`,author:{"@type":"Organization",name:"FindSpreadsheet Agent Guide"},publisher:{"@type":"Organization",name:"FindSpreadsheet Agent Guide",url:"https://lolobuy.id/en"}}:null;return <>{articleSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema)}}/>}<PageShell locale={locale} eyebrow={`${article.label} • ${article.date} • ${article.read}`} title={article.title} intro={article.excerpt}><ArticleSections sections={article.sections}/>{article.relatedLinks?.length?<ArticleLinks links={article.relatedLinks}/>:<section className="article-action"><div><p className="eyebrow">{copy.next}</p><h2>{copy.continueResearch}</h2><p>{copy.articleText}</p></div><a href="https://findspreadsheet.com/" target="_blank" rel="noopener">{nav.database}</a></section>}</PageShell></>;}
   const slug=route[0],page=getPage(locale,slug);if(!page)notFound();const showProducts=slug==="products"||slug==="product-details";
-  const faqSchema=slug==="faq"?{"@context":"https://schema.org","@type":"FAQPage",mainEntity:page.sections.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))}:null;
-  return <>{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<PageShell locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
-    {slug==="categories"&&<section className="category-hub">{categories.map((c,i)=><CategoryVisualCard key={c.slug} slug={c.slug} icon={c.icon} name={cats[i].name} note={cats[i].note} href={c.href} action={nav.database}/>)}</section>}
-    {showProducts&&<section className="inner-products">{products.map(item=><a className="product-card" href={item.href} target="_blank" rel="noopener" key={item.href}><div className="image-wrap"><img src={item.image} alt={item.name}/></div><div className="product-info"><small>{item.category}</small><h3>{item.name}</h3><div><b>{item.price}</b><span>{item.source}</span></div></div></a>)}</section>}
+  return <PageShell locale={locale} eyebrow={page.eyebrow} title={page.title} intro={page.intro}>
+    {slug==="categories"&&<section className="category-hub">{categories.map((c,i)=><CategoryVisualCard key={c.slug} slug={c.slug} icon={c.icon} name={cats[i].name} note={cats[i].note} href={locale==="en"?`/spreadsheet/${c.slug}`:prefix(locale,`/category/${c.slug}`)} action={copy.open}/>)}</section>}
+    {showProducts&&<section className="inner-products">{translatedProducts.map(item=><a className="product-card" href={item.href} target="_blank" rel="noopener" key={item.href}><div className="image-wrap"><img src={item.image} alt={item.name} loading="lazy"/></div><div className="product-info"><small>{item.category}</small><h3>{item.name}</h3><div><b>{item.price}</b><span>{item.source}</span></div></div></a>)}</section>}
     {slug==="seo-articles"&&<section className="article-hub">{getArticles(locale).map((a,i)=><a href={prefix(locale,`/article/${a.slug}`)} className="article-card" key={a.slug}><span>{String(i+1).padStart(2,"0")}</span><div><small>{a.label} • {a.date}</small><h2>{a.title}</h2><p>{a.excerpt}</p><b>{copy.read}</b></div><em>{a.read}</em></a>)}</section>}
     <ArticleSections sections={page.sections}/><section className="source-panel"><div><p className="eyebrow">{copy.sources}</p><h2>{copy.sourceTitle}</h2></div><div><a href="https://findspreadsheet.com/" target="_blank" rel="noopener">{copy.database}<span>↗</span></a></div></section>
+  </PageShell>;
+}
+
+function schema(data:unknown){return <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(data)}}/>;}
+
+function SpreadsheetHub(){
+  const itemList={"@context":"https://schema.org","@type":"ItemList",name:"Current FindSpreadsheet product research leads",numberOfItems:products.length,itemListElement:products.map((item,index)=>({"@type":"ListItem",position:index+1,name:item.name,url:item.href}))};
+  const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://lolobuy.id/en"},{"@type":"ListItem",position:2,name:"LoloBuy Spreadsheet",item:"https://lolobuy.id/spreadsheet"}]};
+  return <>{schema(itemList)}{schema(breadcrumb)}<PageShell eyebrow="LOLOBUY SPREADSHEET · REVIEWED 11 SEP 2026" title="LoloBuy Spreadsheet & Product Research Directory" intro="Use a searchable directory to narrow current finds, then verify the live listing, warehouse evidence and parcel decision. The sheet is a starting point—not a promise of stock, price, quality or authenticity.">
+    <SpreadsheetDirectory/>
+    <section className="cluster-section"><div className="cluster-heading"><p className="eyebrow">CATEGORY PAGES</p><h2>Choose the checklist that matches the product</h2><p>Each page targets a distinct search intent and sends the final product search to the matching FindSpreadsheet collection.</p></div><div className="category-hub">{categories.map(category=><CategoryVisualCard key={category.slug} slug={category.slug} icon={category.icon} name={category.name} note={category.note} href={`/spreadsheet/${category.slug}`} action="Open category guide →"/>)}</div></section>
+    <ArticleSections sections={spreadsheetGuideSections}/>
+    <section className="brand-research"><div><p className="eyebrow">BRAND SEARCHES</p><h2>Keep brand discovery and verification separate</h2><p>Brand-name results need explicit limits: a keyword, listing or QC image does not establish authenticity or authorisation.</p></div><div><a href="/spreadsheet/brands/nike"><b>Nike spreadsheet research</b><span>Source, pair and authenticity limits →</span></a><a href="/spreadsheet/brands/stussy"><b>Stussy spreadsheet research</b><span>Variation, apparel QC and authenticity limits →</span></a></div></section>
+    <section className="visible-faq"><div><p className="eyebrow">PRACTICAL ANSWERS</p><h2>Questions the spreadsheet cannot answer by itself</h2></div><div>{spreadsheetFaq.map(([question,answer])=><details key={question}><summary>{question}<span>+</span></summary><p>{answer}</p></details>)}</div></section>
+    <ArticleLinks links={[{href:"/en/article/how-to-use-lolobuy-spreadsheet",label:"Read the complete spreadsheet workflow",note:"Move from discovery to a live listing, warehouse evidence and a parcel decision."},{href:"/en/article/lolobuy-qc-photo-checklist",label:"Use the warehouse QC checklist",note:"Check visible identity, measurements, condition and category-specific details."},{href:"/shipping-calculator",label:"Estimate parcel chargeable weight",note:"Compare actual and volumetric weight without inventing a shipping rate."},{href:"https://findspreadsheet.com/",label:"Open the FindSpreadsheet database ↗",note:"Search the current maintained product collection."}]}/>
   </PageShell></>;
+}
+
+function CategorySpreadsheetPage({guide}:{guide:NonNullable<ReturnType<typeof getSpreadsheetPage>> & {kind:"category"}}){
+  const category=categories.find(item=>item.slug===guide.slug)!;
+  const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"LoloBuy Spreadsheet",item:"https://lolobuy.id/spreadsheet"},{"@type":"ListItem",position:2,name:category.name,item:`https://lolobuy.id/spreadsheet/${category.slug}`}]};
+  return <>{schema(breadcrumb)}<PageShell eyebrow={`LOLOBUY SPREADSHEET · ${category.name.toUpperCase()}`} title={guide.title} intro={guide.intro}><ArticleSections sections={guide.sections}/><ArticleLinks links={[{href:"/spreadsheet",label:"Return to the LoloBuy spreadsheet",note:"Filter visible finds and open another product-specific checklist."},{href:"/en/article/lolobuy-qc-photo-checklist",label:"Review the full QC checklist",note:"Understand what warehouse photos can and cannot confirm."},{href:"/shipping-calculator",label:"Estimate chargeable parcel weight",note:"Compare actual and dimensional weight before checking the live quote."},{href:category.href,label:`Open ${category.name} on FindSpreadsheet ↗`,note:"Review the current maintained category collection and live source details."}]}/></PageShell></>;
+}
+
+function BrandSpreadsheetPage({guide}:{guide:NonNullable<ReturnType<typeof getSpreadsheetPage>> & {kind:"brand"}}){
+  const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"LoloBuy Spreadsheet",item:"https://lolobuy.id/spreadsheet"},{"@type":"ListItem",position:2,name:"Brand research",item:"https://lolobuy.id/spreadsheet"},{"@type":"ListItem",position:3,name:guide.slug,item:`https://lolobuy.id/spreadsheet/brands/${guide.slug}`}]};
+  return <>{schema(breadcrumb)}<PageShell eyebrow="BRAND SEARCH · INDEPENDENT RESEARCH" title={guide.title} intro={guide.intro}><ArticleSections sections={guide.sections}/><ArticleLinks links={[{href:"/spreadsheet",label:"Return to the LoloBuy spreadsheet",note:"Use categories and visible filters before opening a current record."},{href:"/en/article/lolobuy-qc-photo-checklist",label:"Read the QC evidence guide",note:"Keep visible-condition checks separate from authenticity claims."},{href:guide.searchUrl,label:`Search ${guide.slug} on FindSpreadsheet ↗`,note:"Open current database results; availability and source listings can change."}]}/></PageShell></>;
+}
+
+function ShippingCalculatorPage(){
+  const breadcrumb={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://lolobuy.id/en"},{"@type":"ListItem",position:2,name:"Shipping calculator",item:"https://lolobuy.id/shipping-calculator"}]};
+  const sections=[
+    ["Use packed dimensions, not product dimensions", "A seller's product measurements do not describe the final parcel. Boxes, protective material and consolidation change the length, width and height used for dimensional weight. Enter a realistic packed estimate for early planning, then replace it with warehouse or parcel measurements when they become available."],
+    ["Take the divisor from the route", "Dimensional-weight formulas vary by carrier and service. The default 6000 value is a common planning example, not a promise for every LoloBuy line. If the current route displays another divisor or billing method, enter that value and follow the live terms."],
+    ["The greater weight is still not a quote", "The calculator reports the greater of actual and volumetric weight because that is a useful comparison. A carrier can apply billing increments, minimum charges, size limits, category restrictions or route-specific adjustments. Use the result to compare parcel shapes, then obtain the current price in the live account."],
+    ["Compare sensible parcel groups", "Run the numbers for one consolidated parcel and for practical smaller groups. A large carton can create more volumetric weight, while several parcels can repeat base charges. Keep batteries, liquids, fragile goods and oversized items separate when their route eligibility differs."],
+    ["Complete QC before changing packaging", "Removing a shoe box or other retail packaging can reduce volume, but it may affect protection, labels or return eligibility. Finish the inspection and keep-or-return decision before requesting an irreversible service. Recalculate only after the packaging choice is reflected in the parcel record."],
+  ] as const;
+  return <>{schema(breadcrumb)}<PageShell eyebrow="LOLOBUY SHIPPING CALCULATOR" title="Estimate Actual vs Volumetric Parcel Weight" intro="Use packed measurements to compare actual and dimensional weight. This calculator deliberately stops before price: the current LoloBuy route quote, restrictions and billing rules control the real shipment."><ShippingCalculator/><ArticleSections sections={sections}/><ArticleLinks links={[{href:"/en/article/lolobuy-shipping-cost-guide",label:"Read the complete shipping-cost guide",note:"Plan product cost, packing, consolidation and destination charges as separate inputs."},{href:"/en/article/lolobuy-battery-electronics-shipping-guide",label:"Check batteries and electronics",note:"Identify the battery configuration before assuming a route is available."},{href:"/spreadsheet",label:"Return to the LoloBuy spreadsheet",note:"Compare product categories before building a parcel."},{href:"https://findspreadsheet.com/",label:"Open FindSpreadsheet ↗",note:"Continue product research in the maintained database."}]}/></PageShell></>;
 }
