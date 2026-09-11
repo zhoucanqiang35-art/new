@@ -184,6 +184,7 @@ await assertPage("/pikobuy-volumetric-weight-packaging", "PikoBuy Volumetric Wei
 await assertPage("/pikobuy-size-guide-measurements", "How to Choose the Correct Size on PikoBuy: Measurements Before Labels");
 await assertPage("/pikobuy-sneaker-batch-qc-context", "PikoBuy Sneaker Batch Labels and QC Context: Compare Evidence, Not Hype");
 await assertPage("/pikobuy-parcel-consolidation-shipping-cost", "PikoBuy Parcel Consolidation: Weight, Volume and Shipping Trade-Offs");
+await assertPage("/pikobuy-prohibited-items-shipping-restrictions", "PikoBuy Prohibited Items: A Pre-Shipping Route Checklist");
 await assertPage("/seo-articles", "PikoBuy Volumetric Weight and Packaging: A Practical Calculator Guide");
 await assertInsuranceArticle();
 await assertVolumetricWeightArticle();
@@ -196,6 +197,7 @@ await assertPublicAsset("/pikobuy-buyer-safety-checklist.svg", "image/svg+xml", 
 await assertPublicAsset("/pikobuy-review-evidence-ladder.svg", "image/svg+xml", "Evidence before confidence");
 await assertPublicAsset("/pikobuy-insurance-claim-checklist.svg", "image/svg+xml", "Build the claim before the problem");
 await assertPublicAsset("/pikobuy-volumetric-weight-packaging.svg", "image/svg+xml", "Measure twice. Verify the route once.");
+await assertPublicAsset("/pikobuy-restricted-items-route-check.svg", "image/svg+xml", "Classify first. Verify the live route second.");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -209,10 +211,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 243 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-parcel-consolidation-shipping-cost")) {
-  throw new Error(`Expected 243 sitemap URLs with Swedish hreflang alternates and the consolidated-parcel guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 252 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-prohibited-items-shipping-restrictions")) {
+  throw new Error(`Expected 252 sitemap URLs with Swedish hreflang alternates and the prohibited-items guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 243-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 252-URL sitemap, CSS and JavaScript.",
 );

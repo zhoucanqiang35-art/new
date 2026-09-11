@@ -4,6 +4,10 @@ export type Guide = {
   sections: Array<{ heading: string; paragraphs: string[]; bullets?: string[] }>;
   internalLinks: Array<{ href: string; label: string; note: string }>;
   sources: Array<{ href: string; label: string }>; publishedDate: string; modifiedDate: string;
+  editorialNote?: string;
+  visual?: { src: string; alt: string; caption: string };
+  faqHeading?: string;
+  faq?: Array<{ question: string; answer: string }>;
 };
 
 export const primaryLinks = { products: "https://findspreadsheet.com/AllProducts/", pikobuy: "https://findspreadsheet.com/pikobuy-spreadsheet/" };
@@ -93,5 +97,120 @@ const seeds: Seed[] = [
   { slug: "pikobuy-parcel-consolidation-shipping-cost", eyebrow: "Consolidation", title: "PikoBuy Parcel Consolidation: Weight, Volume and Shipping Trade-Offs", description: "Decide whether to combine warehouse items after comparing weight, dimensions, restrictions and shared-parcel risk.", decision: "Compare one combined parcel with a split plan using the same destination, product restrictions and protection choices.", evidence: "Consolidation can reduce repeated handling, but bulky packaging and dimensional charging can change the result; warehouse measurements are more useful than guesses.", limits: "This guide cannot guarantee that consolidation lowers cost or reduces customs, delay or damage risk for every parcel.", checklist: ["Items ready in warehouse", "Combined actual and volumetric weight", "Protection and box-removal trade-off", "Current route eligibility"] },
 ];
 
-export const guides = seeds.map(makeGuide);
+const restrictedItemsGuide: Guide = {
+  slug: "pikobuy-prohibited-items-shipping-restrictions",
+  eyebrow: "Shipping restrictions",
+  title: "PikoBuy Prohibited Items: A Pre-Shipping Route Checklist",
+  seoTitle: "PikoBuy Prohibited Items & Shipping Restrictions",
+  description: "Check PikoBuy prohibited items, sensitive-product risks and route eligibility before buying, warehousing or submitting an international parcel.",
+  readTime: "9 min read",
+  updated: "Updated 11 September 2026",
+  publishedDate: "2026-09-11",
+  modifiedDate: "2026-09-11",
+  editorialNote: "This independent guide was checked against PikoBuy’s public User Registration Agreement, Terms of Service, Shipping Terms and Beginner Guide on 11 September 2026. It is not legal, customs or carrier advice, and it does not represent or speak for PikoBuy.",
+  intro: [
+    "The useful time to investigate PikoBuy prohibited items and shipping restrictions is before you pay for a product, not after it reaches a warehouse. An item can be ordinary in daily life yet difficult to export because of its contents, packaging, intellectual-property status or the destination country’s rules.",
+    "PikoBuy’s public agreement says users are responsible for understanding internationally prohibited items and relevant laws. It also separates clearly prohibited mail from sensitive products that may face higher delivery or customs risk. That distinction matters: “not universally prohibited” is not the same as “eligible for your route.”",
+    "Use this checklist to identify the item, collect evidence and ask a narrow route question at three decision points: before purchase, after warehouse check-in and before parcel submission. The live route and destination rules remain the final operational reference.",
+  ],
+  visual: {
+    src: "/pikobuy-restricted-items-route-check.svg",
+    alt: "Decision flow for checking whether a PikoBuy item is prohibited, sensitive, route-eligible or still unconfirmed",
+    caption: "An original decision aid: classify the item first, then verify the exact route and destination before parcel submission.",
+  },
+  sections: [
+    {
+      heading: "Know the four outcomes before you research a route",
+      paragraphs: [
+        "A practical restriction check needs more than a yes-or-no label. Put the item into one of four working outcomes: clearly prohibited under the published agreement; identified as sensitive or higher-risk; apparently ordinary but still dependent on the current route and destination; or unknown because the listing does not reveal enough information. Unknown should trigger a question, not an optimistic assumption.",
+        "PikoBuy’s User Registration Agreement lists categories that must not be mailed, including items prohibited by law, explosive, flammable, corrosive, radioactive, toxic or otherwise dangerous goods, currency, perishable items and most live animals. It also covers items whose nature or packaging could harm people, other mail or postal equipment, plus anything barred by the destination or customs authorities.",
+      ],
+      bullets: [
+        "Prohibited: stop; do not order or try another declaration",
+        "Sensitive: obtain current route-specific confirmation",
+        "Ordinary: still compare destination and carrier conditions",
+        "Unknown: identify contents, power source and packaging before paying",
+      ],
+    },
+    {
+      heading: "Treat sensitive items as a route question, not a promise",
+      paragraphs: [
+        "The public agreement identifies essential oils, care solutions, lubricants, batteries and glue as sensitive items that PikoBuy may remove to support delivery. It separately warns that replicas, items containing large amounts of liquid or powder, and products containing batteries, food or medicine are subject to customs policies and can carry delivery risk. These statements are warnings, not a universal line-by-line acceptance table.",
+        "Do not convert that wording into “all batteries are banned” or “small liquids are always accepted.” Eligibility can depend on the exact product, battery configuration, amount, packaging, carrier, transit path and destination. PikoBuy’s public shipping estimator asks for destination, product type, weight and dimensions, but the public pages reviewed for this article do not publish one permanent rule covering every sensitive-item and route combination.",
+      ],
+    },
+    {
+      heading: "Run the first check before purchasing",
+      paragraphs: [
+        "Start on the live seller page. Save the source URL, full product title, selected variation, current images and any specification panel. Look for the material or substance, battery information, liquid or powder quantity, included accessories, and whether the product is pressurised, perishable, medicinal or otherwise regulated. These are research prompts, not a new official PikoBuy classification list.",
+        "Next, compare the product with PikoBuy’s current terms. If it matches a clearly prohibited category, stop. If it resembles a sensitive category or the description is incomplete, ask whether the exact item can be purchased, stored and shipped on any route to your destination. Keep the answer with the order record and note its date, because route availability and policy wording can change.",
+        "Do not rely on a seller’s international-shipping claim, an old screenshot, a spreadsheet category, or another buyer’s parcel. Those sources may describe a different version, quantity, carrier or country. PikoBuy’s Beginner Guide itself tells buyers to confirm specifications, colour and size before ordering; restriction research should use the same exact-item discipline.",
+      ],
+      bullets: [
+        "Save the exact listing and selected variant",
+        "Record contents, quantity and power source shown",
+        "Compare the item with the current published restrictions",
+        "Ask about the exact destination when eligibility is unclear",
+      ],
+    },
+    {
+      heading: "Use warehouse evidence for identity, not legal clearance",
+      paragraphs: [
+        "Warehouse arrival creates a second checkpoint. PikoBuy’s Shipping Terms say forwarded goods are unpacked and inspected and that users can review inspection photos or buy additional detailed photos. The Beginner Guide describes check-in, photo confirmation and a defect check. Use those images to confirm that the received item and visible label match the product you researched.",
+        "A warehouse photo can show a battery label, container size, warning symbol, model number or included component when the angle and resolution make it visible. It cannot prove the full chemical composition, establish legal import status or guarantee carrier acceptance. PikoBuy also says professional inspection is unavailable for some special or professional products, so visible condition and route eligibility remain different questions.",
+      ],
+    },
+    {
+      heading: "Recheck the live line before parcel submission",
+      paragraphs: [
+        "The parcel screen is the third and decisive checkpoint. Confirm the destination, product category, packed contents, actual weight and dimensions, then read the active line’s restrictions and notices. If the interface blocks a route or marks the item as sensitive, do not work around that control. Ask support for the compliant options available for the exact parcel.",
+        "PikoBuy’s agreement says products bought in China must comply with Chinese law and be permitted for export. It also warns that customs policies differ by country, that sensitive parcels may draw requests for invoices or clearance documents, and that PikoBuy does not guarantee customs clearance. Carrier acceptance at dispatch therefore cannot promise admission by a transit or destination authority.",
+        "Keep the declaration accurate and consistent with the order record. Never conceal a restricted component, choose a misleading product description or split an item merely to evade a rule. Misdeclaration can create legal, customs, insurance and delivery consequences, and prohibited contents can affect compensation under PikoBuy’s published parcel-insurance wording.",
+      ],
+      bullets: [
+        "Match parcel contents to the saved order record",
+        "Read the active route notice at the time of submission",
+        "Save eligibility wording and any support confirmation",
+        "Use an accurate description and requested documents",
+      ],
+    },
+    {
+      heading: "Decide whether to remove, return, split or stop",
+      paragraphs: [
+        "When an item cannot use your preferred route, compare only compliant alternatives. A removable sensitive component may change eligibility, but it may also reduce usefulness or value. Returning the item while it is still in the warehouse may be more reversible than paying for a route you did not plan for. A split parcel can isolate an eligible item from a sensitive one, yet it adds handling and may increase total shipping cost.",
+        "Write down the decision criteria before acting: whether the product works without the removed component, whether a compliant route exists, the updated packed weight, the additional fee exposure, and whether the destination permits the item. If one fact is missing, pause. PikoBuy’s terms can change, sellers control domestic return acceptance, and third-party logistics providers carry international parcels, so no article can approve a live shipment.",
+        "If the only proposed solution depends on hiding the item, understating it or hoping it passes inspection, stop. The useful outcome of a restriction check is not finding a loophole. It is discovering early that a product does not fit your destination, budget or risk tolerance while a safer decision may still be available.",
+      ],
+    },
+    {
+      heading: "Keep a compact evidence pack",
+      paragraphs: [
+        "Store one folder or note for the source listing, chosen variant, specification images, order details, warehouse photos, visible labels, route notice, support messages and final parcel contents. Add the date to each live-page screenshot. If a product name changes or a route disappears, you can explain what information supported the earlier decision without claiming the old state is still current.",
+        "Use the evidence pack to ask precise questions: “Does the current line to this destination accept this item with the labelled built-in battery?” is actionable; “Can you ship electronics?” is not. If support requests a document, verify what it is, who issued it and whether it accurately describes the item. Do not create or alter evidence to force eligibility.",
+        "Finally, check the official agreement again immediately before payment and dispatch. This guide records what was publicly observable on 11 September 2026, but PikoBuy expressly says its terms and services may be updated. Your live order, current route notice and destination rules take priority over any static checklist.",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/is-pikobuy-safe-buyer-checklist", label: "Use the broader buyer-safety checklist", note: "Check account, seller, payment and evidence risks that sit outside shipping eligibility." },
+    { href: "/pikobuy-seller-listing-verification", label: "Verify the seller listing first", note: "Capture the exact variation and specifications before asking a route question." },
+    { href: "/pikobuy-qc-photo-guide", label: "Plan focused warehouse photos", note: "Use visible labels and components to confirm identity without treating QC as customs clearance." },
+    { href: "/pikobuy-parcel-insurance-claim", label: "Review parcel-insurance evidence", note: "Understand why prohibited contents and saved route terms can matter to a later claim." },
+  ],
+  faqHeading: "PikoBuy restricted-item questions",
+  faq: [
+    { question: "Does warehouse acceptance mean an item can ship internationally?", answer: "No. Warehouse acceptance and inspection can confirm receipt and visible details, but international eligibility still depends on the item, current route, carrier, transit path and destination rules. PikoBuy’s agreement does not guarantee customs clearance." },
+    { question: "Can PikoBuy remove a sensitive component from a product?", answer: "PikoBuy’s User Registration Agreement says sensitive items including essential oils, care solutions, lubricants, batteries and glue may be removed. Confirm what this means for the exact order, whether the product remains usable and whether any route accepts the remaining contents." },
+    { question: "Are batteries, liquids and powders always prohibited?", answer: "The public agreement flags batteries, large amounts of liquid or powder, food and medicine as customs-sensitive, but it does not publish one universal rule for every item, route and destination. Check the live line and ask about the exact product before buying or submitting a parcel." },
+    { question: "What restriction evidence should a buyer save?", answer: "Keep the live listing, selected variant, visible contents and specifications, warehouse photos, product labels, route-eligibility wording, support messages, parcel contents and the date each record was captured. The evidence should accurately describe the item." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — prohibited mail, sensitive-item risks and customs limits" },
+    { href: "https://www.pikobuy.com/protocol/terms", label: "PikoBuy Terms of Service — prohibited items, intellectual-property rules and enforcement" },
+    { href: "https://www.pikobuy.com/protocol/shipping", label: "PikoBuy Shipping Terms — warehouse inspection and third-party logistics risks" },
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — ordering, warehouse inspection and route-selection workflow" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);

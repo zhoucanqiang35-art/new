@@ -28,6 +28,7 @@ const routes = [
   "/pikobuy-size-guide-measurements",
   "/pikobuy-sneaker-batch-qc-context",
   "/pikobuy-parcel-consolidation-shipping-cost",
+  "/pikobuy-prohibited-items-shipping-restrictions",
   "/faq/is-this-the-official-pikobuy-website",
   "/faq/how-to-use-a-pikobuy-spreadsheet",
   "/faq/how-to-check-a-product-link-before-ordering",
