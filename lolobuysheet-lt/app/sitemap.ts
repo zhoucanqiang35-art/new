@@ -30,5 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]),
   ];
   const articleDates=new Map(researchArticles.map(item=>[`/articles/${item.slug}`,item.updated??item.published??"2026-08-22"]));
-  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date(articleDates.get(path)??"2026-08-22"),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
+  const categoryPaths=new Set(["/categories",...categories.map(item=>`/categories/${item.slug}`)]);
+  return [...staticPaths,...dynamicPaths].map(path=>({url:`${base}${path}`,lastModified:new Date(articleDates.get(path)??(categoryPaths.has(path)?"2026-09-11":"2026-08-22")),changeFrequency:"monthly" as const,priority:path===""?1:path.split("/").length===2?.8:.7}));
 }
