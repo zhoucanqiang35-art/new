@@ -17,6 +17,11 @@ export const seoArticles: SeoArticle[] = [
     title: "PikoBuy Spreadsheet Beginner Guide: From Product Link to International Parcel",
     description: "A practical, evidence-led workflow for using a PikoBuy spreadsheet without confusing discovery, purchasing, warehouse inspection and shipping.",
     updated: "27 August 2026",
+    published: "27 August 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy spreadsheet beginner guide",
+    secondaryKeywords: ["how to use PikoBuy", "PikoBuy guide", "PikoBuy spreadsheet workflow"],
+    methodology: "Reviewed against PikoBuy's public platform description and beginner workflow. Independent spreadsheet guidance is clearly separated from platform-published statements, and no order outcome or delivery promise is invented.",
     sections: [
       {
         heading: "Start with the right expectation",
@@ -95,6 +100,11 @@ export const seoArticles: SeoArticle[] = [
     title: "PikoBuy Shipping Planning Guide: Estimate the Parcel Before You Commit",
     description: "A plain-language guide to PikoBuy shipping estimates, parcel data, route choices and the limits of cross-border delivery promises.",
     updated: "27 August 2026",
+    published: "27 August 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy shipping cost",
+    secondaryKeywords: ["PikoBuy shipping rates", "PikoBuy parcel weight", "PikoBuy shipping estimate"],
+    methodology: "Reviewed against PikoBuy's public shipping estimator, beginner guide, shipping terms and terms of service. Rates and route availability are treated as live variables rather than fixed promises.",
     sections: [
       {
         heading: "Product price is not delivered cost",
@@ -173,6 +183,11 @@ export const seoArticles: SeoArticle[] = [
     title: "PikoBuy Returns, Refunds and Risk: A Clear Guide Before You Order",
     description: "A fact-checked explanation of PikoBuy's warehouse return window, possible fees, forwarded-goods limits and cross-border responsibilities.",
     updated: "27 August 2026",
+    published: "27 August 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy refund",
+    secondaryKeywords: ["PikoBuy returns", "PikoBuy return policy", "PikoBuy buyer risk"],
+    methodology: "Reviewed against PikoBuy's public returns and exchanges policy, forwarding terms, shipping terms and terms of service. Eligibility, fees and outcomes are presented as conditional on the live order and seller response.",
     sections: [
       {
         heading: "Returns depend on the order, seller and timing",
@@ -251,6 +266,11 @@ export const seoArticles: SeoArticle[] = [
     title: "PikoBuy QC Photo Checklist: What Warehouse Images Can and Cannot Confirm",
     description: "A practical inspection method for comparing PikoBuy warehouse photos with the exact product option you ordered.",
     updated: "27 August 2026",
+    published: "27 August 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy QC photos",
+    secondaryKeywords: ["PikoBuy quality check", "PikoBuy warehouse photos", "PikoBuy QC checklist"],
+    methodology: "Reviewed against PikoBuy's public beginner guide, platform description and forwarding terms. The guide distinguishes visible warehouse evidence from claims that ordinary photographs cannot prove.",
     sections: [
       {
         heading: "What PikoBuy officially calls inspection",

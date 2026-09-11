@@ -150,6 +150,11 @@
 .article-breadcrumbs{display:flex;justify-content:flex-start;gap:9px;font-size:11px;color:var(--muted);padding:0;border:0}.article-breadcrumbs a{font-weight:800;color:#3b6d65}.article-breadcrumbs a:hover{text-decoration:underline}.article-breadcrumbs span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .decision-path{margin:0 0 22px;padding:20px;background:var(--cream);border:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:1px}.decision-path>div{min-height:125px;padding:15px;background:var(--paper);display:flex;flex-direction:column}.decision-path span{font-size:10px;font-weight:900;color:var(--coral)}.decision-path b{font-size:18px;margin:18px 0 7px}.decision-path small{font-size:11px;line-height:1.5;color:var(--muted)}.decision-path figcaption{grid-column:1/-1;padding-top:13px;font-size:11px;color:var(--muted)}
 .related-guides{margin-top:34px;padding:25px;background:var(--mint2);border:1px solid var(--line);border-radius:4px 22px 4px 4px}.related-guides h2{font-size:22px;margin:0 0 17px}.related-guides>div{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.related-guides a{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);padding:13px 15px;font-size:12px;font-weight:800}.related-guides a:hover{border-color:#79cabb}.related-guides svg{width:14px;flex:none}
+.direct-answer{margin:0 0 16px;padding:18px 22px;background:var(--mint2);border:1px solid #9ed9cf;border-left:4px solid #23806e;border-radius:3px 16px 3px 3px}.direct-answer b{display:block;margin-bottom:6px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#21675d}.direct-answer p{margin:0;font-size:15px;line-height:1.65;color:var(--ink)}
+.cluster-parent{margin:0 0 14px}.cluster-parent a{display:inline-flex;padding:8px 11px;border:1px solid var(--line);background:#fff;font-size:11px;font-weight:800;color:#3b6d65}.cluster-parent a:hover{background:var(--mint2)}
+.page-toc{margin:0 0 20px;padding:20px 22px;background:var(--cream);border:1px solid var(--line)}.page-toc>strong{display:block;margin-bottom:11px;font-size:14px}.page-toc ol{margin:0;padding-left:22px;columns:2;column-gap:35px}.page-toc li{padding:4px 0;break-inside:avoid;font-size:12px;line-height:1.45}.page-toc a{color:#315f58}.page-toc a:hover{text-decoration:underline}
+.long-copy section,.article-body section{scroll-margin-top:26px}
+.pillar-cluster{padding:70px 0 20px}.pillar-cluster>div:last-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pillar-cluster>div:last-child>a{display:grid;grid-template-columns:24px 1fr 18px;gap:12px;align-items:start;padding:18px;border:1px solid var(--line);background:#fff;transition:.2s}.pillar-cluster>div:last-child>a:hover{background:var(--mint2);border-color:#79cabb}.pillar-cluster svg{width:18px;color:var(--coral)}.pillar-cluster span{display:grid;gap:6px}.pillar-cluster b{font-size:14px;line-height:1.25}.pillar-cluster small{font-size:11px;line-height:1.5;color:var(--muted)}
 
 /* Denser editorial pages: retain every word while removing unused vertical space. */
 .inner.long-article{padding-top:32px;padding-bottom:26px}
@@ -182,6 +187,10 @@
  .long-copy section>span{font-size:9px;padding-top:3px}.long-copy h2{font-size:22px;line-height:1.15;margin-bottom:11px}
  .long-copy p{font-size:15px;line-height:1.68;margin-bottom:12px}
  .related-guides{margin-top:25px;padding:16px}.related-guides h2{font-size:19px}.related-guides>div{grid-template-columns:1fr}.related-guides a{font-size:12px;padding:12px}
+ .direct-answer{padding:13px 14px;margin-bottom:10px}.direct-answer b{font-size:10px}.direct-answer p{font-size:13px;line-height:1.5}
+ .cluster-parent{margin-bottom:10px}.cluster-parent a{font-size:10px;padding:7px 9px}
+ .page-toc{padding:13px 14px;margin-bottom:14px}.page-toc>strong{font-size:12px}.page-toc ol{columns:1;padding-left:18px}.page-toc li{font-size:11px;padding:3px 0}
+ .pillar-cluster{padding:26px 0 8px}.pillar-cluster>div:last-child{grid-template-columns:1fr;gap:6px}.pillar-cluster>div:last-child>a{padding:12px}.pillar-cluster b{font-size:12px}.pillar-cluster small{font-size:10px}
  .inner.long-article{padding:18px 14px 10px}
  .long-article .inner-hero{padding-top:18px;padding-bottom:15px}
  .long-article .inner-hero h1{font-size:34px;line-height:1.02;margin-bottom:12px}
