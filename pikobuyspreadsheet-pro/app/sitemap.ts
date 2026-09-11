@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { guideDefs, locales } from "../lib/site-data";
 import { categoryRecords, productRecords, seoArticles } from "../lib/content-data";
+import { findCollections } from "../lib/finds-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://pikobuyspreadsheet.pro";
@@ -18,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     entry("/", "weekly", 1),
+    entry("/en/finds", "weekly", 0.85),
+    ...findCollections.map((collection) => entry(`/en/finds/${collection.slug}`, "weekly", 0.8)),
     ...locales.flatMap((locale) => [
       entry(`/${locale.code}`, "weekly", 0.9),
       ...guideDefs.map((guide) => entry(`/${locale.code}/${guide.slug}`, "monthly", 0.75)),

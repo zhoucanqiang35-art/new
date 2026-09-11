@@ -70,6 +70,8 @@ test("renders route-specific SEO schema and direct canonical links", async () =>
     ["/en/product-details/gallery-short", "Product"],
     ["/en/seo-articles/pikobuy-spreadsheet-guide", "Article"],
     ["/en/faq", "FAQPage"],
+    ["/en/finds", "ItemList"],
+    ["/en/finds/budget-finds", "CollectionPage"],
   ];
 
   for (const [path, schemaType] of cases) {

@@ -62,6 +62,13 @@ const homeSchema = {
       },
     },
     {
+      "@type": "DataCatalog",
+      "@id": "https://pikobuyspreadsheet.pro/#catalog",
+      name: "PikoBuy Product Research Catalog",
+      url: "https://pikobuyspreadsheet.pro/",
+      dataset: { "@id": "https://pikobuyspreadsheet.pro/#dataset" },
+    },
+    {
       "@type": "Dataset",
       "@id": "https://pikobuyspreadsheet.pro/#dataset",
       name: "PikoBuy Spreadsheet Product Research Directory",
@@ -126,6 +133,8 @@ export default function Home() {
     </section>
 
     <section className="v3-answer"><div className="v3-wrap"><span>QUICK ANSWER</span><p>A useful <b>PikoBuy spreadsheet</b> should help you compare similar items, reopen the source listing, review category-specific QC photos, check sizing and think about shipping weight. Save a row only when you can explain why it deserves the shortlist.</p><Link href="/en/how-to-use">Read the complete workflow →</Link></div></section>
+
+    <section className="finds-entry v3-wrap"><div><span>SEARCH-INTENT COLLECTIONS</span><h2>Browse a focused shortlist.</h2><p>Budget, seasonal and QC-focused collections use visible rules and recorded data—never invented popularity or testing claims.</p></div><Link href="/en/finds">Explore PikoBuy finds →</Link></section>
 
     <FeatureCards locale={getLocale("en")!}/>
 
