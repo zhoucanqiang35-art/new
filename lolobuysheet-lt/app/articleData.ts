@@ -1201,5 +1201,134 @@ export const researchArticles: ResearchArticle[] = [
         "For both: preserve source and payment records, resolve mismatches before international submission, compare current consolidation and route options, enter accurate contents and destination information and save the final parcel screen. Recheck every changeable rule in the account. The best workflow is not the one with the shortest label; it is the one whose responsibilities, evidence and recovery path match the way the product is actually being purchased and sent."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-parcel-tracking-delivery-status",
+    tag: "TRACKING",
+    title: "LoloBuy Parcel Tracking: Shipping Updates and Exceptions",
+    description: "A practical LoloBuy parcel tracking workflow for reading handoffs, customs pauses, delivery exceptions and the evidence needed when progress stops.",
+    readTime: "13 min read",
+    published: "2026-09-11",
+    updated: "2026-09-11",
+    keywords: [
+      "LoloBuy parcel tracking",
+      "LoloBuy shipping status",
+      "LoloBuy package tracking",
+      "LoloBuy customs clearance",
+      "LoloBuy delivery exception",
+      "LoloBuy parcel after-sales"
+    ],
+    sources: [
+      {
+        label: "LoloBuy Help Center — Logistics Platform Introduction",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300842705117",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Delivery Service Agreements for Packages Via LoloBuy",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300779790518",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — How LoloBuy Collects Supplemental Payments for Parcels",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300801155283",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Notices of receiving the parcel",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300896182556",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Overseas & Domestic Parcel Return",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300958310756",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Compensation policy for lost or damaged packages without insurance",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=679482255081817",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — How to apply for parcel after-sales",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242301393535401",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "DHL — Customs Clearance and Customs Declaration FAQ",
+        url: "https://www.dhl.com/us-en/home/ship/customs-clearance-and-customs-declaration-faq.html",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "DHL eCommerce — Tracking and Shipment Status FAQ",
+        url: "https://www.dhl.com/us-en/home/customer-service/ecommerce-tracking-faq.html",
+        accessed: "11 September 2026"
+      },
+      {
+        label: "USPS — Official package tracking and text-scam warning",
+        url: "https://www.usps.com/",
+        accessed: "11 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare actual and volumetric weight by route", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Plan a LoloBuy parcel for the United States", url: "/articles/lolobuy-shipping-to-usa-checklist" },
+      { label: "Plan VAT and customs for the UK or EU", url: "/articles/lolobuy-shipping-to-uk-eu-vat-customs" },
+      { label: "Prepare parcel after-sales evidence", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-parcel-tracking-decision-flow.svg",
+      alt: "LoloBuy parcel tracking flow from warehouse shipment through carrier handoffs, customs and final delivery",
+      caption: "Editorial tracking decision flow based on LoloBuy and carrier guidance checked on 11 September 2026. The selected route's live record controls each parcel.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Track the parcel stage, not just the latest sentence", paragraphs: [
+        "International tracking is a chain of custody, not a continuous map. LoloBuy's current logistics overview describes the sequence as warehouse packaging, collection by a logistics provider, security processing, flight arrangement, air transport with possible transit, an airport operation center, customs clearance, a local courier and delivery. A scan is useful when it identifies which organisation last handled the parcel and what event must happen next. A short translated line without that context is much weaker evidence.",
+        "This guide covers the period after an international parcel leaves the LoloBuy warehouse; it does not repeat the purchase-to-warehouse statuses explained in the separate order-status guide. Platform facts come from public LoloBuy pages checked on 11 September 2026. The monitoring method is editorial advice. No fixed scan interval, route availability, customs time, delivery date or compensation amount is promised because those variables depend on the selected service, carrier, destination, parcel and current account record."
+      ]},
+      { heading: "Save a shipment baseline before the first scan", paragraphs: [
+        "When the parcel changes to Shipped, save the parcel number, international tracking number, selected route, contents, declared names and values, recipient details, paid freight, packed weight and dimensions, and the date shown in the account. LoloBuy says an estimated delivery time is provided after the parcel reaches Shipped status, but calls that estimate a reference and notes that weather, customs clearance and logistics-provider errors can cause delay. Preserve the original estimate rather than silently replacing it when the page changes.",
+        "Also save any outstanding payment notice. LoloBuy's current supplemental-freight page says it initially collects estimated freight, then refunds overpayment or requests additional payment when the logistics provider's actual charge is higher. The page contains detailed thresholds and response rules, but those operational terms should be read in the live notice rather than copied from an old screenshot. A parcel that appears quiet while an account message requires confirmation is a payment workflow problem, not necessarily a carrier delay."
+      ]},
+      { heading: "Use two tracking records after handoff", paragraphs: [
+        "Start with the LoloBuy parcel record because it connects the shipment to the order, route, declaration and support channel. Once the account identifies a carrier or local tracking number, open that carrier's official tracking page and save it as a second record. Do not guess the carrier from the number alone, and do not assume a multi-carrier tracker has the same claim authority as the company physically holding the parcel. If the route uses a consolidator, the first and final-mile numbers may differ.",
+        "Record each meaningful event in a small table: event time as displayed, location, carrier, original wording, your plain-English interpretation and next action. Preserve time zones where shown. Screenshots help when a scan later disappears, but copyable text is easier to search and compare. For a United States delivery, the final carrier may be USPS or another local operator; for Europe, it may be a national post or private courier. The selected route, not the destination alone, determines the real handoff."
+      ]},
+      { heading: "A quiet tracking page is not automatically a lost parcel", paragraphs: [
+        "LoloBuy's logistics overview says each handoff takes time and that customs clearance can be delayed. DHL's official customs FAQ provides a useful carrier example: milestone tracking may show no new event while a shipment is still being processed in customs. DHL eCommerce likewise explains that some services display only milestone events and that certain parcels have limited destination-country tracking. These statements apply to DHL services, not automatically to every LoloBuy route, but they show why scan silence and physical immobility are not the same fact.",
+        "Compare the quiet period with the route's current estimate and the last stage rather than inventing a universal number of safe days. A gap after an export or flight event can represent transport between scan points. A gap after a clearance request, failed delivery or return event is different because the record already names an exception. Mark three states in your worksheet: monitoring, action requested and outside the displayed estimate. Escalate based on evidence from the actual route and account, not anxiety generated by refreshing the page."
+      ]},
+      { heading: "Read customs events as document decisions", paragraphs: [
+        "A customs scan does not by itself mean seizure, tax or release. It shows that border processing is part of the current stage. LoloBuy's receiving notice says customs may ask the recipient for invoices or other proof of clearance. Its delivery agreement recommends accurate value declarations and says product names, quantities and unit prices are used for customs processing. DHL's customs FAQ similarly notes that proof of value, product details or local requirements can require recipient action and that milestone updates may pause during clearance.",
+        "Prepare a clearance folder before an alert appears: seller listing, order and payment record, warehouse photos, parcel contents, declared description and value, recipient identification where lawfully required, and the carrier's tracking page. Reply only through a verified customs, carrier or LoloBuy channel. Do not change a truthful description to make a parcel appear easier to clear, and do not copy another buyer's declaration. A request for documents should move the row to action requested; a generic arrival-at-customs milestone can remain under monitoring."
+      ]},
+      { heading: "Treat address and delivery exceptions as urgent", paragraphs: [
+        "LoloBuy's receiving notice warns that an incomplete recipient address or failure to make contact can contribute to a returned parcel and related costs. Its overseas-return article also lists unsuccessful signing, unknown addresses and other delivery problems among reasons an exported parcel may be returned, with redelivery cost assigned to the buyer in the cited policy. These are material consequences, so an address exception, attempted-delivery notice or collection request should not be handled like an ordinary transit gap.",
+        "Verify the tracking number on the official carrier site, then confirm the recipient name, postcode, apartment or unit and reachable contact details against the saved parcel record. Follow the carrier's genuine instructions for delivery or collection and keep confirmation. Do not assume LoloBuy or an upstream carrier can edit the address after dispatch. If the official page offers no correction path, contact the current holder and LoloBuy with the same concise evidence set rather than submitting contradictory address versions to several parties."
+      ]},
+      { heading: "Do not let a fake delivery message create the exception", paragraphs: [
+        "International buyers often receive convincing messages about unpaid customs charges, incomplete addresses or failed delivery. The USPS homepage currently warns that unsolicited texts or emails claiming a package is awaiting action or that delivery failed can be attempts to steal personal information. The warning is specifically from USPS, but the safe method is broader: never use an unexpected message link as the only proof that a LoloBuy parcel needs payment or personal data.",
+        "Open the saved LoloBuy parcel record and type the identified carrier's official address yourself. Match the tracking number and event before acting. A real customs or delivery request should correspond to the shipment, destination and current stage. Check the payee, currency and domain, and preserve the legitimate receipt. If the account, official carrier page and message disagree, pause and ask the carrier or LoloBuy through a known support route. Tracking is an evidence system; an unverified notification should not be allowed to overwrite it."
+      ]},
+      { heading: "Escalate with a compact investigation packet", paragraphs: [
+        "When a parcel is beyond the estimate displayed for that shipment, shows a clear exception or has conflicting carrier records, prepare one support message that can be investigated. Include the LoloBuy parcel number, all tracking numbers, selected route, destination country and postcode, shipped date, last confirmed event with timestamp and location, current estimate, screenshots of the LoloBuy and carrier records, and the exact outcome requested. State whether customs or the last-mile carrier has already contacted the recipient.",
+        "Avoid declaring the parcel lost before the responsible logistics provider does. LoloBuy's current no-insurance compensation page requires a carrier-issued loss certificate for a lost-parcel claim and lists parcel-code and ownership/value evidence among the expected documents. That does not promise that every route or situation qualifies. Ask first for a trace or investigation, save its case number, and add every response to the same record. A precise chronology is more useful than multiple messages that each omit a different fact."
+      ]},
+      { heading: "Delivery is the final evidence checkpoint", paragraphs: [
+        "LoloBuy's receiving notice tells recipients to inspect the outer packaging, seals and any obvious weight difference before signing, and to inspect a visibly damaged parcel in front of the delivery worker or sign with a remark or refuse it where appropriate. Its public after-sales and compensation pages contain different timing language, including short post-delivery periods. Because those pages are not fully consistent, do not choose the longest number. Inspect and document the parcel immediately and follow the earliest applicable live instruction.",
+        "Photograph every side, the shipping label, seals and visible damage before opening. For a damage claim, LoloBuy's current no-insurance policy says a complete, continuous and unedited opening video beginning before the package is opened is essential, alongside parcel identification, proof of value, a damage list, photos and potentially inspection records. These requirements may vary with insurance and route terms, so save the policy shown for the parcel. If the delivery is clean, retain the tracking and receipt until contents are checked."
+      ]},
+      { heading: "Build a reusable LoloBuy tracking sheet", paragraphs: [
+        "Use one row per parcel and separate facts from decisions. Fact columns should include parcel number, route, tracking numbers, carrier, shipped date, reference estimate, destination, contents, declaration, packed measurements, payment status, last event, event time and location, customs request, delivery attempt, proof link and support case. Decision columns can contain monitoring, action requested, outside estimate, trace opened, returned or delivered and checked. Never fill an unknown carrier or location with a guess.",
+        "Add two calculated reminders: a review point based on the parcel's displayed estimate and an immediate-alert flag for explicit action wording. Those are personal planning tools, not platform promises. A product directory such as FindSpreadsheet may help discover an item, but it cannot predict the finished parcel's carrier, customs treatment or delivery result. Keep the discovery URL for product context while letting the live parcel and carrier records control tracking decisions. This separation keeps the sheet useful when routes or wording change."
+      ]},
+      { heading: "A five-step response to any new tracking event", paragraphs: [
+        "First, verify the event on the LoloBuy record or identified carrier's official site. Second, place it in the real chain: warehouse handoff, export/security, international transport, customs, last mile or delivery. Third, decide whether it is a milestone, an explicit request or an exception. Fourth, save the timestamp and evidence before contacting anyone. Fifth, take the narrowest action supported by the event—monitor, provide documents, arrange delivery, request a trace or open after-sales.",
+        "This workflow does not turn every quiet period into good news, and it does not turn every customs scan into a problem. It creates a defensible record of who had the parcel, what was requested and when the buyer responded. For US and European buyers, that record bridges the LoloBuy account, international carrier, border stage and local courier without pretending that one status vocabulary fits every route. Recheck live terms, act quickly on explicit requests and preserve delivery evidence before the box is opened."
+      ]}
+    ]
   }
 ];
