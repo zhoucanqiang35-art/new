@@ -1,0 +1,1 @@
+document.querySelectorAll('.notice').forEach(el=>el.remove());document.querySelectorAll('[data-search]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();const q=form.querySelector('input').value.trim();location.href=q?'https://findspreadsheet.com/search.html?keywords='+encodeURIComponent(q)+'&channelid=2':'https://findspreadsheet.com/'}));

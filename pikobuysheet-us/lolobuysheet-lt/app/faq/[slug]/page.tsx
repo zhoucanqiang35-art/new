@@ -1,0 +1,9 @@
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { PageHero, PageShell, SourceNote } from "../../components";
+import { faqs, languages } from "../../data";
+
+export function generateStaticParams(){return faqs.map(faq=>({slug:faq.slug}));}
+export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;const faq=faqs.find(item=>item.slug===slug);if(!faq)return{};return{title:faq.question,description:faq.short,alternates:{canonical:`/faq/${faq.slug}`,languages:Object.fromEntries([["x-default",`/faq/${faq.slug}`],...languages.map(language=>[language.code,`/languages/${language.code}/faq/${faq.slug}`])])}}}
+
+export default async function FaqDetail({params}:{params:Promise<{slug:string}>}){const {slug}=await params;const faq=faqs.find(item=>item.slug===slug);if(!faq)notFound();return <PageShell><div className="article-wrap faq-detail"><PageHero eyebrow="FAQ answer" title={faq.question} intro={faq.short}/><div className="article-layout"><article className="prose"><h2>Short answer</h2><p>{faq.answer}</p><h2>How to use this information</h2><p>Use this answer as a research starting point. Recheck the live platform, seller listing and destination rules before spending money because prices, availability and service terms can change.</p><SourceNote>The supporting note is kept inside this research site. Where evidence does not provide audited traffic, product quality or delivery guarantees, this site does not infer them.</SourceNote></article><aside className="article-side"><strong>Continue checking</strong><ol><li>Read the evidence note</li><li>Confirm the checked date</li><li>Verify your exact route</li></ol><a href={faq.sourceHref}>Open evidence note →</a><a className="side-secondary" href="/faq">All FAQ questions →</a></aside></div></div></PageShell>}

@@ -1,0 +1,24 @@
+name: PikoBuy DE link health
+
+on:
+  schedule:
+    - cron: "17 4 */2 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-live-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: pikobuyspreadsheet-de
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check live database destinations
+        run: npm run check:links

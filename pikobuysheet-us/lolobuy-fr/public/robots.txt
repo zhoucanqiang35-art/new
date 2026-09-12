@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lolobuy.fr/sitemap.xml
+Host: https://lolobuy.fr
