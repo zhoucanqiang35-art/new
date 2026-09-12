@@ -19,6 +19,7 @@ const articleSlugs = [
   "lolobuy-qc-photo-checklist",
   "lolobuy-shipping-guide",
 ] as const;
+const categories = ["shoes", "clothing", "accessories"] as const;
 
 function entry(path: string, priority: number): MetadataRoute.Sitemap[number] {
   return {
@@ -34,12 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry("/", 1),
     ...sections.map((section) => entry(`/${section}/`, section === "articles" ? 0.9 : 0.8)),
     ...articleSlugs.map((slug) => entry(`/articles/${slug}/`, 0.85)),
+    ...categories.map((category) => entry(`/${category}/`, 0.85)),
   ];
 
   for (const language of languages) {
     pages.push(entry(`/${language}/`, 0.9));
     pages.push(...sections.map((section) => entry(`/${language}/${section}/`, 0.75)));
     pages.push(...articleSlugs.map((slug) => entry(`/${language}/articles/${slug}/`, 0.8)));
+    pages.push(...categories.map((category) => entry(`/${language}/${category}/`, 0.8)));
   }
 
   return pages;
