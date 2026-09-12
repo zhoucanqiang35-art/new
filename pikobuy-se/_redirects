@@ -12,3 +12,13 @@
 /:topic/details.html  /details.html  200
 /:topic/articles.html  /articles.html  200
 /:topic/faq.html  /faq.html  200
+/category/shoes/  /category-shoes.html  200
+/category/hoodies/  /category-hoodies.html  200
+/category/tshirts/  /category-tshirts.html  200
+/category/jackets/  /category-jackets.html  200
+/category/pants/  /category-pants.html  200
+/category/headwear/  /category-headwear.html  200
+/category/sets/  /category-sets.html  200
+/category/underwear/  /category-underwear.html  200
+/category/jersey/  /category-jersey.html  200
+/category/accessories/  /category-accessories.html  200

@@ -10,4 +10,14 @@
   <url><loc>https://pikobuy.se/details.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pikobuy.se/articles.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pikobuy.se/faq.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://pikobuy.se/category/shoes/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/hoodies/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/tshirts/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/jackets/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/pants/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/headwear/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/sets/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/underwear/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/jersey/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuy.se/category/accessories/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 </urlset>
