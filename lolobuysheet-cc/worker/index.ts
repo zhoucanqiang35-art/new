@@ -21,7 +21,14 @@ interface ExecutionContext {
 
 const LOCALIZED_CODES = new Set(["es", "de", "fr", "it", "pt", "nl", "pl", "sv", "no", "da", "fi"]);
 
-const CANONICAL_SITEMAP = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://lolobuysheet.cc/</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/spreadsheet</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/categories</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/products</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/faq</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/markets</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/sources</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/how-lolobuy-works</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/qc-photo-checklist</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/shipping-guide</loc><lastmod>2026-08-25</lastmod></url>\n  <url><loc>https://lolobuysheet.cc/seo-articles/tracking-guide</loc><lastmod>2026-08-25</lastmod></url>\n</urlset>\n";
+const SITEMAP_URLS = [
+  "/", "/spreadsheet", "/categories", "/products", "/seo-articles", "/faq", "/markets", "/sources", "/brand",
+  "/brand/nike", "/brand/dior", "/brand/cp-company", "/brand/the-north-face", "/brand/carhartt", "/brand/supreme",
+  "/categories/shoes", "/categories/hoodies", "/categories/t-shirts", "/categories/jackets", "/categories/pants", "/categories/sets", "/categories/jerseys", "/categories/accessories", "/categories/electronics", "/categories/other",
+  "/products/sneaker-footwear-finds", "/products/hoodie-knitwear-finds", "/products/tshirt-basics-finds", "/products/outerwear-jacket-finds", "/products/pants-cargo-denim-finds", "/products/matching-set-finds", "/products/jersey-sportswear-finds", "/products/bag-accessory-finds", "/products/electronics-device-finds", "/products/home-lifestyle-finds",
+  "/seo-articles/how-lolobuy-works", "/seo-articles/qc-photo-checklist", "/seo-articles/shipping-guide", "/seo-articles/warehouse-consolidation", "/seo-articles/tracking-guide", "/seo-articles/safety-and-sources", "/seo-articles/manual-transfer-orders",
+];
+const CANONICAL_SITEMAP = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${SITEMAP_URLS.map((path) => `  <url><loc>https://lolobuysheet.cc${path}</loc><lastmod>2026-09-12</lastmod></url>`).join("\n")}\n</urlset>\n`;
 const CANONICAL_SITEMAP_BYTES = new TextEncoder().encode(CANONICAL_SITEMAP);
 
 const worker = {
@@ -102,7 +109,7 @@ const worker = {
           "Cache-Control": "public, max-age=300, s-maxage=300",
           "Access-Control-Allow-Origin": "*",
           "X-Content-Type-Options": "nosniff",
-          "X-Sitemap-Revision": "2026-08-27-direct-v1",
+          "X-Sitemap-Revision": "2026-09-12-clusters-v2",
         },
       });
     }

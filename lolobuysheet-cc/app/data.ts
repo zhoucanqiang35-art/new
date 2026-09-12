@@ -24,6 +24,17 @@ export const products = [
   { slug:"home-lifestyle-finds", category:"other", name:"37-colour sock listing", label:"More finds · current listing", summary:"A current FindSpreadsheet other-stuff record linked directly to the matching product page and first-party gallery.", image:"https://findspreadsheet.com/uploads/allimg/20260319/1-260319152Z2T0.webp", checks:["Record dimensions, materials and included components","Match the QC request to the product's real failure points","Check fragility, liquids, magnets or other route restrictions"], shipping:"Unusual shapes and fragile items require item-specific packaging and route checks. Never assume a general clothing route applies.", accent:"mint", live:"https://findspreadsheet.com/other-stuff/sock-37-colores-top-3001.html" },
 ];
 
+// Brand hubs only group records whose visible source title already contains the
+// brand name. They do not assert brand affiliation, authenticity or inventory.
+export const brands = [
+  { slug: "nike", name: "Nike", productSlugs: ["jersey-sportswear-finds"], note: "Brand-labelled sportswear records from the live FindSpreadsheet database." },
+  { slug: "dior", name: "Dior", productSlugs: ["hoodie-knitwear-finds"], note: "Brand-labelled clothing records that should be rechecked on the live source." },
+  { slug: "cp-company", name: "C.P. Company", productSlugs: ["tshirt-basics-finds"], note: "A C.P. Company-labelled T-shirt record from the current source database." },
+  { slug: "the-north-face", name: "The North Face", productSlugs: ["outerwear-jacket-finds"], note: "A The North Face-labelled outerwear record from the current source database." },
+  { slug: "carhartt", name: "Carhartt", productSlugs: ["matching-set-finds"], note: "A Carhartt-labelled matching-set record from the current source database." },
+  { slug: "supreme", name: "Supreme", productSlugs: ["bag-accessory-finds"], note: "A Supreme-labelled accessory record from the current source database." },
+];
+
 export const markets = [
   {
     slug: "united-states", flag: "US", name: "United States", tier: "Priority 01", confidence: "Clear public signal",

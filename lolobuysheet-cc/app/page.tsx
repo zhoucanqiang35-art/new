@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Header, Footer, MobileModule, ProductImage, SearchBox } from "./components";
-import { categories, faq, guides, markets, products } from "./data";
+import { brands, categories, faq, guides, markets, products } from "./data";
 import { pageMetadata } from "./seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -48,10 +48,17 @@ export default function Home() {
           </div>
         </section></MobileModule>
 
+        <MobileModule title="Brand source labels"><section className="section shell">
+          <div className="section-head"><div><p className="eyebrow"><span></span>Brand source labels</p><h2>Find a visible label.<br/><em>Then inspect the record.</em></h2></div><Link className="text-link" href="/brand">Browse brand hubs →</Link></div>
+          <div className="category-grid">
+            {brands.map((brand, index) => <Link className="category-card" href={`/brand/${brand.slug}`} key={brand.slug}><span className="category-no">{String(index + 1).padStart(2, "0")}</span><div><h3>{brand.name}</h3><p>{brand.note}</p></div><b>↗</b></Link>)}
+          </div>
+        </section></MobileModule>
+
         <MobileModule title="Product detail hub"><section className="section product-showcase">
           <div className="shell">
             <div className="section-head"><div><p className="eyebrow"><span></span>Product detail hub</p><h2>Open the card.<br/><em>Check the details.</em></h2></div><Link className="text-link" href="/products">View all product cards →</Link></div>
-            <div className="product-grid home-products">{products.map((product)=><a className="product-card" href={product.live} key={product.slug}><div className="product-visual product-photo"><ProductImage src={product.image} alt={product.name}/><span>{product.label}</span></div><small>{categories.find((category)=>category.slug===product.category)?.name}</small><h3>{product.name}</h3><p>{product.summary}</p><strong>View on FindSpreadsheet ↗</strong></a>)}</div>
+            <div className="product-grid home-products">{products.map((product)=><Link className="product-card" href={`/products/${product.slug}`} key={product.slug}><div className="product-visual product-photo"><ProductImage src={product.image} alt={product.name}/><span>{product.label}</span></div><small>{categories.find((category)=>category.slug===product.category)?.name}</small><h3>{product.name}</h3><p>{product.summary}</p><strong>Inspect research record →</strong></Link>)}</div>
           </div>
         </section></MobileModule>
 
