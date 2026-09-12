@@ -14,6 +14,7 @@ const staticPaths = new Set([
   "/favicon.svg",
   "/file.svg",
   "/globe.svg",
+  "/hero-shopping.jpg",
   "/hero-shopping.png",
   "/lolobuy-logo.png",
   "/robots.txt",
