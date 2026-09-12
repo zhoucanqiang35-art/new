@@ -1,14 +1,17 @@
-import { cp, mkdir, rm, writeFile } from "node:fs/promises";
+import { rm } from "node:fs/promises";
 import { resolve } from "node:path";
+import { build } from "esbuild";
 
 const client = resolve("dist/client");
 const server = resolve("dist/server");
-const workerDir = resolve(client, "_worker");
 
-await rm(workerDir, { recursive: true, force: true });
-await mkdir(client, { recursive: true });
-await cp(server, workerDir, { recursive: true });
-await writeFile(
-  resolve(client, "_worker.js"),
-  'import worker from "./_worker/index.js";\n\nexport default worker;\n',
-);
+await rm(resolve(client, "_worker.js"), { force: true });
+await build({
+  entryPoints: [resolve(server, "index.js")],
+  outfile: resolve(client, "_worker.js"),
+  bundle: true,
+  format: "esm",
+  platform: "browser",
+  target: "es2022",
+  external: ["node:*"],
+});
