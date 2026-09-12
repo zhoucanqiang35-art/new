@@ -65,6 +65,7 @@ export default function Page(){return <GuidePage pageId="shipping-guide" kicker=
     "A third-party site claiming it can change or refund your live parcel."
   ]}
 ]} relatedLinks={[
+  {href:"/pikobuy-customs",label:"Prepare accurate records for customs questions"},
   {href:"/pikobuy-tracking",label:"Track a shipped PikoBuy parcel without guessing"},
   {href:"/pikobuy-shipping-calculator",label:"Use the PikoBuy shipping calculator step by step"},
   {href:"/pikobuy-forwarding-guide",label:"Forward your own order to the PikoBuy warehouse"},

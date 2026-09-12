@@ -103,6 +103,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="TRACKING GUIDE" title={title} intro="PikoBuy says international tracking information becomes available within three days after a parcel is shipped. Use that published window, keep the warehouse and shipping stages separate, and judge the parcel from actual events rather than borrowed delivery promises." sections={sections} reviewedDate="Reviewed 10 September 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-customs",label:"Prepare records for customs questions and requests"},
   {href:"/shipping-guide",label:"Compare routes and shipping risks before dispatch"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate a parcel before choosing a route"},
   {href:"/how-pikobuy-works",label:"Review the complete order-to-parcel sequence"},
