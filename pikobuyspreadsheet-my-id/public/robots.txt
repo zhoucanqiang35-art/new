@@ -1,5 +1,4 @@
 User-Agent: *
 Allow: /
 
-Host: https://pikobuyspreadsheet.my.id
-Sitemap: https://pikobuyspreadsheet.my.id/sitemap-core.xml
+Sitemap: https://pikobuyspreadsheet.my.id/sitemap.xml
