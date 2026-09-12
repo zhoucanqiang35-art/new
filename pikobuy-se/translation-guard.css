@@ -1,0 +1,12 @@
+/* Native language selector owns the page translation.  Avoid injected Google
+   Translate UI moving the layout or replacing only part of a page. */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+
+html body {
+  top: 0 !important;
+}
