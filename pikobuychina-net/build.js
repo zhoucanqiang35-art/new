@@ -17,6 +17,7 @@ for (const file of [
   'pikobuy-return-policy-guide.html',
   'pikobuy-spreadsheet-guide.html',
   'pikobuy-review-2026.html',
+  'pikobuy-product-search-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
