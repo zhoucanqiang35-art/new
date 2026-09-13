@@ -336,3 +336,37 @@ test("publishes the review evidence guide only at its English canonical URL", as
   assert.match(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/en/article/${slug}</loc>`));
   assert.doesNotMatch(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/de/article/${slug}</loc>`));
 });
+
+test("publishes the size guide only at its English canonical URL", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("size-test", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const context = { waitUntil() {}, passThroughOnException() {} };
+  const slug = "lolobuy-size-guide-clothing-shoes";
+
+  const articleResponse = await worker.fetch(new Request(`https://lolobuy.id/en/article/${slug}`), env, context);
+  const articleHtml = await articleResponse.text();
+  assert.equal(articleResponse.status, 200);
+  assert.match(articleHtml, /<title>LoloBuy Size Guide: Clothing &amp; Shoe Measurements<\/title>/);
+  assert.match(articleHtml, new RegExp(`rel="canonical" href="https://lolobuy\\.id/en/article/${slug}"`));
+  assert.match(articleHtml, new RegExp(`hrefLang="en" href="https://lolobuy\\.id/en/article/${slug}"`));
+  assert.doesNotMatch(articleHtml, new RegExp(`/fr/article/${slug}`));
+  assert.match(articleHtml, /"@type":"Article"/);
+  assert.match(articleHtml, /Treat the size label as a clue, not the answer/);
+  assert.match(articleHtml, /https:\/\/findspreadsheet\.com\/shoes\//);
+
+  const hubResponse = await worker.fetch(new Request("https://lolobuy.id/en/seo-articles"), env, context);
+  const hubHtml = await hubResponse.text();
+  assert.equal(hubResponse.status, 200);
+  assert.match(hubHtml, new RegExp(`/en/article/${slug}`));
+
+  const untranslatedResponse = await worker.fetch(new Request(`https://lolobuy.id/fr/article/${slug}`), env, context);
+  assert.equal(untranslatedResponse.status, 404);
+
+  const sitemapResponse = await worker.fetch(new Request("https://lolobuy.id/sitemap.xml"), env, context);
+  const sitemapXml = await sitemapResponse.text();
+  assert.equal(sitemapResponse.status, 200);
+  assert.match(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/en/article/${slug}</loc>`));
+  assert.doesNotMatch(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/fr/article/${slug}</loc>`));
+});
