@@ -1330,5 +1330,120 @@ export const researchArticles: ResearchArticle[] = [
         "This workflow does not turn every quiet period into good news, and it does not turn every customs scan into a problem. It creates a defensible record of who had the parcel, what was requested and when the buyer responded. For US and European buyers, that record bridges the LoloBuy account, international carrier, border stage and local courier without pretending that one status vocabulary fits every route. Recheck live terms, act quickly on explicit requests and preserve delivery evidence before the box is opened."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-china-domestic-shipping-fee",
+    tag: "ORDER COST",
+    title: "LoloBuy Chinese Domestic Shipping Fee: A Buyer’s Cost Checklist",
+    description: "A source-checked guide to LoloBuy Chinese domestic shipping fees, same-seller checkout, seller dispatch, price changes and order top-ups.",
+    readTime: "13 min read",
+    published: "2026-09-13",
+    updated: "2026-09-13",
+    keywords: [
+      "LoloBuy Chinese domestic shipping fee",
+      "LoloBuy domestic delivery fee",
+      "LoloBuy order top up",
+      "LoloBuy seller shipping",
+      "LoloBuy local delivery time",
+      "LoloBuy order total cost"
+    ],
+    sources: [
+      {
+        label: "LoloBuy Help Center — How to purchase on LoloBuy",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296499766165",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Paying one Chinese delivery fee for several items",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296838456383",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Modifying an order after submission",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296854971485",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Seller dispatch timing",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296861590636",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Chinese domestic delivery time",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296864867441",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Why a paid Shopping Agent order may require more payment",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296867095670",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Handling a seller discount or free-shipping offer",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296946132123",
+        accessed: "13 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Process duration for each stage",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296943576214",
+        accessed: "13 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Understand LoloBuy order and warehouse statuses", url: "/articles/lolobuy-order-warehouse-status-guide" },
+      { label: "Plan LoloBuy parcel consolidation", url: "/articles/lolobuy-parcel-consolidation-guide" },
+      { label: "Compare LoloBuy shipping weight and routes", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Prepare return and refund evidence", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-china-domestic-cost-flow.svg",
+      alt: "Diagram separating a LoloBuy seller price, Chinese domestic shipping fee, order adjustment and later international freight",
+      caption: "Original cost-layer diagram based on LoloBuy public purchasing guidance checked on 13 September 2026. It shows decision stages, not fixed prices or guaranteed timing.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "The first shipping charge is not international freight", paragraphs: [
+        "A low marketplace price can look like the full cost of a LoloBuy order, but the purchase reaches the buyer through separate stages. LoloBuy’s current purchasing guide says the item-payment step includes the product and Chinese local delivery fee. International shipping is paid later, after the item has reached the warehouse and the buyer submits a parcel. Confusing those two charges makes an ordinary seller-to-warehouse cost look like an unexpected duplicate shipping bill.",
+        "This guide focuses only on the China-side purchase stage: seller price, option price, seller-to-warehouse delivery, discounts and any order-level adjustment before warehouse acceptance. It does not repeat the separate route and chargeable-weight guide. Platform facts below come from public LoloBuy Help Center pages accessed on 13 September 2026. The worksheet method is editorial advice, and no fixed fee, payment method, exchange rate or delivery promise is assumed."
+      ]},
+      { heading: "Build a cost record before you submit the order", paragraphs: [
+        "Open the live seller listing and record the exact option, quantity, displayed product price and displayed domestic-delivery amount. Capture any option surcharge instead of relying on the lowest headline price. Save the listing URL and a dated screenshot because sellers can change prices, shipping terms or available options. When a spreadsheet shows a convenient reference price, use it for discovery and comparison; use the live seller page and LoloBuy checkout as the transaction record.",
+        "Create separate columns for seller price, option adjustment, Chinese domestic shipping, LoloBuy order total, later warehouse services, international freight and destination charges. A blank is better than an invented zero. For US and European buyers, also keep the payment currency and the amount that appears on the card or payment account, but do not treat a third-party currency conversion as part of the seller’s domestic freight. This structure exposes which layer actually changed."
+      ]},
+      { heading: "When several items may share one domestic delivery fee", paragraphs: [
+        "LoloBuy’s current same-seller help page says that several items from one seller can be charged one Chinese domestic delivery fee when they are submitted and checked out together. That statement has important conditions: the seller must be the same, and the items must be part of the same submitted checkout. Similar products, the same marketplace or separate orders placed hours apart do not automatically satisfy those conditions.",
+        "Group only the items you genuinely want to purchase at the same time. Before payment, compare seller identity and the domestic-freight line on the checkout screen. Save the combined order view. Do not split and resubmit merely to chase a theoretical saving if doing so risks the wrong option or misses a live promotion. The same official page warns that an unusually large quantity can make the seller’s package overweight and lead to a request to clear a delivery balance."
+      ]},
+      { heading: "Why a paid order can still ask for a top-up", paragraphs: [
+        "A paid status proves that the amount displayed at checkout was paid; it does not prove that every seller-side amount was final. LoloBuy’s Help Center says some submitted Shopping Agent orders require an outstanding balance because the seller’s price changed, with the balance mainly related to Chinese domestic delivery. The buyer is instructed to verify and pay according to the page shown for that order. This is an adjustment workflow, not evidence by itself that international shipping has started.",
+        "When a top-up appears, compare four records: the original seller listing, saved LoloBuy checkout, current seller price or freight if visible, and the exact reason shown in the account. Record the order number, requested difference and date. If the explanation is unclear, use Order Enquiry before paying rather than guessing. Do not assume every extra-payment message is valid from an email or social notification alone; open the authenticated order record and confirm that the request belongs to the correct item."
+      ]},
+      { heading: "Handle discounts and free shipping as evidence, not memory", paragraphs: [
+        "LoloBuy’s discount help page says a buyer can adjust the product price or shipping fee while placing an order when the seller offers a discount or free shipping, and should describe the specific offer in the remarks. The shopping agent then confirms it with the seller. The page also says that if the buyer records the offer in remarks but forgets to adjust the amount, the difference can be credited to the LoloBuy account after verification.",
+        "Save the promotion where it can be checked: seller page, coupon condition, sale dates, selected variation and checkout result. A chat comment saying “free shipping” without the product and validity details is weak evidence. If both the price adjustment and remark were missed, the current help page directs the buyer to My LoloBuy, Orders and Order Enquiry after the product is stocked. Treat any credit as unresolved until it appears in the account; do not subtract it from your budget in advance."
+      ]},
+      { heading: "Seller dispatch and domestic transport are two clocks", paragraphs: [
+        "The seller first has to dispatch the item; the Chinese carrier then has to move it to LoloBuy’s warehouse. LoloBuy’s stage-duration page currently says ordinary Taobao sellers generally dispatch within three to seven days, excluding customised and pre-order items, and states that actual timing depends on the seller. A separate seller-dispatch page gives different examples for self-operated and marketplace merchants. These are dated public estimates, not an SLA for an individual listing.",
+        "After dispatch, LoloBuy’s domestic-delivery page says its warehouse is in Huizhou and currently lists usual transit references of one to two business days from the Pearl River Delta, three to five from the Yangtze River Delta and seven for remote areas. Seller location, carrier collection, weekends, weather, address accuracy and an unscanned label can change the result. Record dispatch and carrier movement separately so a seller delay is not mislabelled as warehouse processing."
+      ]},
+      { heading: "Read the domestic tracking sequence without inventing progress", paragraphs: [
+        "Use the LoloBuy order status together with any Chinese tracking number shown. Ordered means the purchase stage is underway; seller dispatch should create a domestic shipment; carrier delivery to the warehouse still does not necessarily mean the item is stocked and ready. The warehouse must identify, inspect and process it. The existing status guide explains the distinction between Received and Stored in warehouse. Keep those stages separate in the same row.",
+        "Log the seller-dispatch date, first carrier scan, delivered scan, LoloBuy receipt and warehouse-ready date. If the seller has not dispatched, ask about the seller order rather than the international parcel. If the carrier says delivered but LoloBuy has not stocked the item, provide the domestic tracking number, delivery time and order number. Never fill a missing scan with an assumed location. A clean timeline makes the responsible stage visible and gives support something concrete to investigate."
+      ]},
+      { heading: "Changing an option can create avoidable domestic cost", paragraphs: [
+        "LoloBuy’s current modification page says it will try to negotiate a change when the seller has not yet delivered the item. Once the seller has delivered, the page says modification cannot be negotiated at that stage; a buyer who still wants a replacement may need to request a return after warehouse arrival and place a new order, with the buyer paying the delivery fee caused by returning the original item. Seller acceptance and current after-sales eligibility still need to be confirmed.",
+        "Prevent this branch by reading the full option name before payment. For shoes and clothing, record the seller’s size system and measurements rather than choosing only from a familiar US or EU label. For sets, list expected pieces; for electronics, record model and connector. If a mistake is found, act before dispatch and save the enquiry. Compare the cost of a supported change, return and reorder with accepting the item; do not assume that a replacement is free because the parcel has not left China."
+      ]},
+      { heading: "Reconcile the warehouse record before international shipping", paragraphs: [
+        "When the item reaches the warehouse, compare the final purchase record with your baseline: exact item and option, product amount, domestic delivery, confirmed discount, top-up or credit, and warehouse status. Check visible QC evidence before accepting the item. If the transaction contains an unresolved seller-price or freight difference, keep it open in the sheet rather than hiding it inside a future international quote. The two stages should remain auditable even if they use the same account balance.",
+        "Only then create parcel scenarios. International freight depends on the finished parcel, destination, route, actual or volumetric basis and current restrictions; it cannot be calculated from the Chinese domestic fee. Combining warehouse items may reduce repeated parcel charges, but it does not retroactively merge seller freight from separate purchases. Keep the original order number and domestic tracking linked to the later parcel number so a buyer can trace every delivered item back to its China-side cost record."
+      ]},
+      { heading: "A reusable LoloBuy domestic-cost checklist", paragraphs: [
+        "Before checkout, verify seller, live URL, exact option, quantity, item price, domestic freight and promotion evidence. At checkout, confirm whether same-seller items are genuinely combined, save the displayed total and enter a precise remark for a current discount or free-shipping offer. After payment, monitor seller dispatch and any authenticated top-up request. Record every adjustment as requested, verified, paid, credited or disputed rather than replacing the original amount.",
+        "At warehouse arrival, reconcile the final order cost and QC decision before starting the international parcel. This workflow will not guarantee one domestic fee, a discount, fast dispatch or a free return. It gives US and European buyers something more dependable: a stage-by-stage record showing whether a change came from the seller price, Chinese delivery, an order correction or the later international shipment. Recheck the live order page whenever a number changes, and let documented facts—not a spreadsheet headline—control the budget."
+      ]}
+    ]
   }
 ];
