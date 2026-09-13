@@ -212,5 +212,117 @@ const restrictedItemsGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide];
+const returnedParcelGuide: Guide = {
+  slug: "pikobuy-parcel-returned-to-warehouse",
+  eyebrow: "Returned parcels",
+  title: "PikoBuy Parcel Returned to Warehouse: Reshipment Checklist",
+  seoTitle: "PikoBuy Parcel Returned to Warehouse: What to Do",
+  description: "Diagnose why a PikoBuy parcel was returned, preserve evidence, correct the cause and compare compliant reshipment options before paying again.",
+  readTime: "9 min read",
+  updated: "Updated 13 September 2026",
+  publishedDate: "2026-09-13",
+  modifiedDate: "2026-09-13",
+  editorialNote: "This independent guide was checked against PikoBuy’s public User Registration Agreement, Shipping Terms, Returns & Exchanges policy, Terms of Service and Beginner Guide on 13 September 2026. It cannot identify an active parcel or approve a reshipment, and it does not represent PikoBuy or any carrier.",
+  intro: [
+    "A PikoBuy parcel returned to warehouse is not one single problem. A parcel can fail a security check before export, be rejected after it has entered international transit, or come back because the address, delivery attempt or collection process failed. Each path changes the next question—and potentially who pays to send it again.",
+    "PikoBuy’s public User Registration Agreement makes one important distinction. It says a parcel returned after a failed domestic security inspection may be reshipped free after it comes back, while a parcel already sent overseas and returned for specified international or delivery reasons requires the user to bear reshipment cost. The agreement does not publish one universal fee, handling time or automatic outcome.",
+    "Use this evidence-first checklist to establish where the return happened, capture the carrier’s wording, correct the cause and compare the new route before approving another payment. A returned scan is a starting fact, not proof of blame or a promise that the same parcel can simply be sent again.",
+  ],
+  visual: {
+    src: "/pikobuy-returned-parcel-checklist.svg",
+    alt: "Decision flow for diagnosing a PikoBuy parcel returned before export or after international dispatch",
+    caption: "An original returned-parcel decision aid: locate the failed hand-off, document the reason, correct it, then price a compliant reshipment.",
+  },
+  sections: [
+    {
+      heading: "First determine whether the return was domestic or international",
+      paragraphs: [
+        "Begin with timestamps, not assumptions. Save the parcel number, submitted route, payment record, dispatch date and every tracking event. Mark the last successful hand-off and the first event that mentions rejection, return, unsuccessful delivery or a security check. Ask support to confirm whether the parcel had left the sending country and whether it physically returned to a PikoBuy-controlled warehouse.",
+        "This distinction matters because PikoBuy’s agreement treats two situations differently. A parcel marked by sending-country customs as having failed a domestic security inspection may be arranged for free reshipment after it returns. If a parcel was already sent overseas and returned because of an international security failure, no recipient signature, an incorrect or incomplete address, or delivery failure, the agreement says the user bears the reshipment cost.",
+        "Do not infer the category from one translated tracking phrase. Ask for the operational return reason and recorded stage in writing. If the answer remains unclear, do not describe the return as free or chargeable.",
+      ],
+      bullets: [
+        "Parcel number, route and original shipping payment",
+        "Dispatch date and complete tracking sequence",
+        "Last successful location or carrier hand-off",
+        "Written return reason and confirmed receiving warehouse",
+      ],
+    },
+    {
+      heading: "Build one evidence pack before requesting action",
+      paragraphs: [
+        "A useful case record connects the parcel to its contents and destination. Save the submitted address exactly as shown, including recipient name, postcode, unit or apartment number, telephone number and any carrier-required tax identifier. Preserve the packed-parcel photo, weight and dimensions, contents or declaration record, route notice and support messages. Hide sensitive identifiers when sharing outside official support.",
+        "Take screenshots with visible dates, but also copy tracking events as text so they can be searched and compared. If the destination carrier offered a delivery attempt, pickup window or address-correction request, keep that notice and your response. If the parcel was rejected for a product issue, link the message to the exact item, variant, visible label and quantity instead of sending a vague product category.",
+      ],
+    },
+    {
+      heading: "Match the remedy to the actual return reason",
+      paragraphs: [
+        "For a domestic security-check return, ask whether the contents and packaging can use the same route without a repeat failure. Free reshipment wording does not remove the need to correct a product classification, packaging or route problem. Confirm whether anything must be removed, repacked or routed differently and whether that change creates a separate charge not covered by the reshipment statement.",
+        "For an address or delivery return, compare the submitted data with a destination-format checklist. Correct spelling, building number, unit, postcode, recipient name and reachable phone number. Ask whether the carrier requires the name to match an identification document. PikoBuy’s Terms of Service require accurate, complete and current shipping information; the public pages do not promise that an address can be changed after dispatch.",
+        "For a sensitive-item or customs-related return, re-run the item and route check. PikoBuy’s agreement warns that batteries, food, medicine and products containing larger amounts of liquid or powder can face customs risk, and it makes no customs-clearance guarantee. Do not resend by concealing the item or using an inaccurate description. Request a compliant route for the disclosed contents or remove the item from the plan.",
+      ],
+      bullets: [
+        "Security check: identify the exact item or packing issue",
+        "Address: correct every field and confirm destination format",
+        "Delivery failure: preserve attempts, notices and pickup deadlines",
+        "Restriction: verify the disclosed contents against a live route",
+      ],
+    },
+    {
+      heading: "Price the second shipment as a new decision",
+      paragraphs: [
+        "Do not approve reshipment until you have a current quote and a clear list of what it includes. PikoBuy’s public agreement states that third-party logistics providers perform parcel forwarding and that users choose the provider and pay its shipping fee plus PikoBuy’s platform service fee. A previous price does not establish the new amount because the route, exchange rate, weight, dimensions, packaging or service terms may have changed.",
+        "Ask for the current packed weight and dimensions if the parcel was opened, repacked or had an item removed. Compare the new route’s eligibility, tracking, insurance terms and chargeable-weight method. Keep the first shipment, return cost, repacking or storage if shown, and new shipment as separate lines; combining them into one number makes it difficult to challenge an unexplained charge later.",
+        "The official pages reviewed for this guide do not publish a universal returned-parcel fee, storage period, processing time or fixed reshipment deadline. They also do not say that every domestic return is free—only the specified failed domestic security-inspection scenario receives that wording. Ask for the live case terms before funding the account or confirming the parcel.",
+      ],
+    },
+    {
+      heading: "Inspect the returned parcel before sending it again",
+      paragraphs: [
+        "Multiple journeys add handling risk. Once the parcel is physically back, ask whether the outer packaging is intact, wet, crushed, opened or relabelled. Compare the returned weight with the previous packed weight and request focused photos when a meaningful difference or visible damage appears. PikoBuy’s Shipping Terms say forwarded goods are unpacked and inspected at the warehouse, while professional inspection is unavailable for special or professional products.",
+        "A photo can show a damaged carton, missing visible component, broken seal or changed label. It cannot prove hidden function, authenticity or every internal condition. Decide whether the parcel needs reinforcement, a smaller box or separation of a restricted item, then recalculate both protection and dimensional-weight trade-offs. Do not remove protective packaging solely to chase a lower quote when the goods have already travelled once.",
+        "If contents are missing or damaged, pause the reshipment and document the condition before altering the parcel. PikoBuy states that international parcels are carried by third-party logistics providers and that customs action, loss, damage and delay are cross-border risks. A new dispatch can make the earlier chain of custody harder to reconstruct, so obtain the case response first.",
+      ],
+    },
+    {
+      heading: "Know when not to reship",
+      paragraphs: [
+        "Stop if the original cause remains unresolved, the destination cannot accept the item, the corrected address cannot be confirmed, or the new cost makes the order uneconomic. Also stop if the proposed workaround depends on an inaccurate declaration. PikoBuy’s Terms allow orders or service to be refused for prohibited or unlawful items and say related return, storage or disposal costs can fall to the customer.",
+        "If you are considering returning individual goods to the seller instead, treat that as a separate warehouse-return process. PikoBuy’s Returns & Exchanges page applies eligibility, condition and timing rules, including a 120-hour application window for the published five-day warehouse return service. A parcel returning from international transport should not be assumed to restart that seller-return window.",
+        "Ask support what options remain for the exact returned parcel: compliant reshipment, removal of a problem item, local disposal where lawful, or another available resolution. The public terms do not guarantee that every option exists. A good decision protects the evidence, states the unresolved fact and avoids paying again merely because money was already spent once.",
+      ],
+    },
+    {
+      heading: "Send support a concise, answerable case summary",
+      paragraphs: [
+        "Use one message with the parcel number, route, destination, original dispatch date, latest return event and the exact help needed. Attach the chronology and only the most relevant evidence. Ask support to confirm the domestic-or-international classification, recorded cause, parcel condition, available corrective steps, current eligible routes and an itemised amount due before reshipment.",
+        "Keep observations separate from conclusions. Write “tracking shows a return event after the destination arrival scan” unless the carrier has confirmed a cause. Precise language makes it easier for support and the logistics provider to answer.",
+        "Finally, save the reply and the corrected parcel screen before payment. If the terms, route or quote differs from the first attempt, record the change. This guide reflects the public PikoBuy pages checked on 13 September 2026; live order information and current written case instructions take priority over a static article.",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/pikobuy-tracking-delay-diagnosis", label: "Reconstruct the tracking sequence", note: "Separate quiet scans from a confirmed return and record each carrier hand-off." },
+    { href: "/pikobuy-prohibited-items-shipping-restrictions", label: "Recheck restricted-item eligibility", note: "Classify the exact contents before selecting a replacement route." },
+    { href: "/pikobuy-volumetric-weight-packaging", label: "Recalculate weight and packaging", note: "Compare new packed dimensions after inspection, removal or reinforcement." },
+    { href: "/pikobuy-parcel-insurance-claim", label: "Preserve insurance and claim evidence", note: "Keep the first journey and return record intact before another dispatch." },
+  ],
+  faqHeading: "PikoBuy returned-parcel questions",
+  faq: [
+    { question: "Will PikoBuy reship every returned parcel for free?", answer: "No. The public User Registration Agreement says free reshipment may be arranged after a parcel returns for a failed domestic security inspection. It says the user bears reshipment cost when a parcel already sent overseas returns for reasons such as an international security failure, no signature, an incorrect or incomplete address, or delivery failure." },
+    { question: "What should I save when a PikoBuy parcel is returned?", answer: "Save the parcel number, route, payment, submitted address, complete tracking chronology, carrier notices, packed weight and dimensions, contents record, parcel photos and support messages. Ask for the recorded return reason and receiving warehouse in writing." },
+    { question: "Can I resend the parcel as soon as it reaches the warehouse?", answer: "Pause until the original cause is understood, the returned parcel is checked for visible damage or missing contents, the address or item issue is corrected, and a current compliant route and itemised quote are confirmed." },
+    { question: "Does an international return restart the five-day seller-return window?", answer: "PikoBuy’s public pages do not say that it does. The published 120-hour warehouse return window concerns eligible products after their order status first changes to In Warehouse. Ask support what resolution is available for the returned international parcel." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — domestic and international returns, reshipment costs and logistics responsibilities" },
+    { href: "https://www.pikobuy.com/protocol/shipping", label: "PikoBuy Shipping Terms — warehouse inspection boundaries and third-party logistics risks" },
+    { href: "https://www.pikobuy.com/protocol/returns", label: "PikoBuy Returns & Exchanges — separate warehouse seller-return eligibility, timing and fees" },
+    { href: "https://www.pikobuy.com/protocol/terms", label: "PikoBuy Terms of Service — shipping-information duties, cross-border charges and prohibited-item enforcement" },
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — parcel submission, route choice and tracking workflow" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy returned-parcel diagnosis and reshipment checklist</title>
+  <desc id="desc">A five-step flow that starts with locating the failed hand-off, then records the return reason, corrects the cause, checks the returned parcel, and approves only a current compliant reshipment.</desc>
+  <rect width="1200" height="675" rx="32" fill="#f5f1e8"/>
+  <path d="M0 0h1200v112H0z" fill="#142f2a"/>
+  <text x="64" y="55" fill="#fff" font-family="Arial, sans-serif" font-size="30" font-weight="700">A parcel came back. Diagnose before paying again.</text>
+  <text x="64" y="87" fill="#cfe5dc" font-family="Arial, sans-serif" font-size="16">Domestic security return and post-export return can lead to different cost questions.</text>
+
+  <g font-family="Arial, sans-serif">
+    <rect x="55" y="157" width="200" height="180" rx="22" fill="#fff" stroke="#c8c1b4" stroke-width="2"/>
+    <circle cx="91" cy="197" r="20" fill="#d66a38"/>
+    <text x="85" y="204" fill="#fff" font-size="18" font-weight="700">1</text>
+    <text x="122" y="202" fill="#142f2a" font-size="21" font-weight="700">Locate the failure</text>
+    <text x="78" y="247" fill="#3c4a46" font-size="16">Before export?</text>
+    <text x="78" y="275" fill="#3c4a46" font-size="16">After overseas dispatch?</text>
+    <text x="78" y="303" fill="#3c4a46" font-size="16">Delivery or pickup failed?</text>
+
+    <path d="M270 247h44" stroke="#d66a38" stroke-width="5" stroke-linecap="round"/>
+    <path d="m305 238 12 9-12 9" fill="none" stroke="#d66a38" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="330" y="157" width="200" height="180" rx="22" fill="#fff" stroke="#c8c1b4" stroke-width="2"/>
+    <circle cx="366" cy="197" r="20" fill="#d66a38"/>
+    <text x="360" y="204" fill="#fff" font-size="18" font-weight="700">2</text>
+    <text x="397" y="202" fill="#142f2a" font-size="21" font-weight="700">Save the record</text>
+    <text x="353" y="247" fill="#3c4a46" font-size="16">Tracking chronology</text>
+    <text x="353" y="275" fill="#3c4a46" font-size="16">Address and notices</text>
+    <text x="353" y="303" fill="#3c4a46" font-size="16">Written return reason</text>
+
+    <path d="M545 247h44" stroke="#d66a38" stroke-width="5" stroke-linecap="round"/>
+    <path d="m580 238 12 9-12 9" fill="none" stroke="#d66a38" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="605" y="157" width="200" height="180" rx="22" fill="#fff" stroke="#c8c1b4" stroke-width="2"/>
+    <circle cx="641" cy="197" r="20" fill="#d66a38"/>
+    <text x="635" y="204" fill="#fff" font-size="18" font-weight="700">3</text>
+    <text x="672" y="202" fill="#142f2a" font-size="21" font-weight="700">Correct the cause</text>
+    <text x="628" y="247" fill="#3c4a46" font-size="16">Address fields</text>
+    <text x="628" y="275" fill="#3c4a46" font-size="16">Item restriction</text>
+    <text x="628" y="303" fill="#3c4a46" font-size="16">Route or packaging</text>
+
+    <path d="M820 247h44" stroke="#d66a38" stroke-width="5" stroke-linecap="round"/>
+    <path d="m855 238 12 9-12 9" fill="none" stroke="#d66a38" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="880" y="157" width="265" height="180" rx="22" fill="#fff" stroke="#c8c1b4" stroke-width="2"/>
+    <circle cx="916" cy="197" r="20" fill="#d66a38"/>
+    <text x="910" y="204" fill="#fff" font-size="18" font-weight="700">4</text>
+    <text x="947" y="202" fill="#142f2a" font-size="21" font-weight="700">Inspect and reprice</text>
+    <text x="903" y="247" fill="#3c4a46" font-size="16">Check damage and contents</text>
+    <text x="903" y="275" fill="#3c4a46" font-size="16">Remeasure after repacking</text>
+    <text x="903" y="303" fill="#3c4a46" font-size="16">Get an itemised current quote</text>
+
+    <rect x="55" y="387" width="1090" height="185" rx="24" fill="#142f2a"/>
+    <circle cx="105" cy="437" r="24" fill="#d66a38"/>
+    <text x="98" y="445" fill="#fff" font-size="21" font-weight="700">5</text>
+    <text x="145" y="444" fill="#fff" font-size="28" font-weight="700">Approve only when the second plan is complete</text>
+    <g fill="#d9e9e3" font-size="17">
+      <text x="88" y="495">✓ Return stage and recorded cause confirmed</text>
+      <text x="88" y="530">✓ Address, contents or route issue corrected</text>
+      <text x="585" y="495">✓ Returned parcel condition documented</text>
+      <text x="585" y="530">✓ Eligible route, terms and new total saved</text>
+    </g>
+    <text x="55" y="627" fill="#142f2a" font-size="18" font-weight="700">Locate → document → correct → inspect → reprice.</text>
+    <text x="1145" y="627" fill="#5e6a66" font-size="14" text-anchor="end">Independent decision aid · verified 13 Sep 2026</text>
+  </g>
+</svg>
