@@ -972,5 +972,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-buy-for-me-vs-forwarding",
+    title: "PikoBuy Buy-for-Me vs Forwarding: Which Workflow Fits Your Order?",
+    description: "Use PikoBuy Buy-for-Me when you need the platform to place the domestic purchase; use forwarding when you or a sender already control that purchase. The warehouse steps may look similar, but responsibility before arrival and after-sales support differ.",
+    published: "13 September 2026",
+    updated: "13 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy forwarding",
+    secondaryKeywords: [
+      "PikoBuy Buy-for-Me",
+      "PikoBuy forwarding service",
+      "PikoBuy warehouse address",
+      "PikoBuy purchasing agent",
+      "PikoBuy forwarded goods"
+    ],
+    methodology: "Our editorial team compared PikoBuy's live Home page, Beginner's Guide, Shipping Terms, Returns & Exchanges, Shipping Estimate, Terms of Service and Contact page on 13 September 2026. Platform-published steps and policy boundaries are identified as official statements; the decision checks are independent editorial analysis. We did not assume that either workflow is cheaper or faster, or invent route availability, account features, fees or order results.",
+    sections: [
+      {
+        heading: "The direct choice: who is arranging the domestic purchase?",
+        paragraphs: [
+          "Choose PikoBuy Buy-for-Me when you want PikoBuy to help locate an item, submit the purchase to the Chinese seller and bring it into the platform's order workflow. Choose PikoBuy forwarding when the domestic purchase or sender relationship already exists and you mainly need a China warehouse receiving address plus the later international parcel service. Both routes can reach the same broad warehouse-to-export stage, but they do not create the same responsibilities before the item arrives.",
+          "This is more important than asking which route is universally better. A buyer who cannot pay a seller directly or translate a listing may value the purchasing workflow. Someone who already owns the item, receives a gift, or has arranged payment with a known sender may only need forwarding. Decide who should control the seller transaction first. That answer determines where the order record lives, who resolves a missing domestic shipment and who must handle a return."
+        ]
+      },
+      {
+        heading: "How the PikoBuy Buy-for-Me workflow works",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide describes a six-step purchasing flow. The user finds an item on a supported Chinese marketplace, confirms details such as specification, colour and size, then pastes a product link or searches with keywords. After choosing the exact option, the user submits a purchasing order and makes the first payment. PikoBuy states that the transaction price is subject to the actual purchase and that an out-of-stock item is refunded, so a discovery-page price should not be treated as a fixed promise.",
+          "In this route, PikoBuy is involved before warehouse arrival. Its Terms describe product search, purchasing and payment as part of the service, while also stating that PikoBuy is generally not the product manufacturer or seller. That distinction matters: the platform can facilitate the transaction and communicate within its process, but the original seller still determines the product supplied. Keep the source URL, selected option and order record together so the warehouse item can later be checked against the purchase instruction."
+        ]
+      },
+      {
+        heading: "How PikoBuy forwarding starts",
+        paragraphs: [
+          "PikoBuy's Shipping Terms publish a separate forwarding process. First, obtain the PikoBuy warehouse address through online support or the forwarding order form. Provide that address to the sender, then submit the forwarding form with the required shipment information. After the warehouse receives the goods, PikoBuy says it photographs them for confirmation and stores them. The user can then locate the forwarded goods in the order area, submit a parcel and pay for international shipping.",
+          "Forwarding therefore assumes that the user or sender already controls the domestic side. The warehouse address is operational information, not a substitute for an accurate order record. Match the recipient details, domestic tracking number, item description and forwarding form carefully. If several people send packages, label each record so the warehouse receipt can be matched without guesswork. Do not send an item until the current account shows the address and submission method you are expected to use."
+        ]
+      },
+      {
+        heading: "Compare responsibility before warehouse arrival",
+        paragraphs: [
+          "With Buy-for-Me, the PikoBuy purchasing order connects the requested item, first payment and seller-facing purchase inside one workflow. You still need to verify the option and raise a clear question when the listing is ambiguous, but the platform is involved in placing the order. That makes this route suitable when purchasing assistance is the missing step rather than merely an international address.",
+          "With forwarding, PikoBuy's Shipping Terms tell users to contact the sender when items are missing at warehouse receipt and say PikoBuy is not liable where the shortage was not caused by PikoBuy. In practice, keep the seller or sender invoice, domestic carrier number, parcel contents and delivery proof. If the sender omitted an item or supplied the wrong one, those records are what let you trace the problem. Forwarding does not transfer a private seller agreement into PikoBuy's purchasing service."
+        ]
+      },
+      {
+        heading: "Understand what warehouse inspection can and cannot prove",
+        paragraphs: [
+          "The two routes begin to look more alike after check-in. PikoBuy says forwarded goods are unpacked and inspected, and its purchasing guide describes warehouse check-in, photo confirmation and defect checking. Use those images to verify visible identity, colour, quantity, labels, accessories and obvious condition. If the important feature is outside the frame, request clearer evidence before submitting the international parcel when an appropriate detail-photo option is available.",
+          "Do not turn basic inspection into a promise of authenticity, internal function or professional testing. PikoBuy's Shipping Terms explicitly say it cannot provide professional inspection for special or professional products. A photograph can document what was visible at a point in time; it cannot confirm every hidden component, material claim or fit. Define the evidence you need before purchase or forwarding, because the warehouse may not be able to resolve a question that requires specialist tools or product expertise."
+        ]
+      },
+      {
+        heading: "After-sales support is the largest policy difference",
+        paragraphs: [
+          "For eligible Buy-for-Me purchases, PikoBuy's Returns & Exchanges policy describes applications within five days after an order changes to “In Warehouse”, counted as 120 hours from the next hour. Seller consent, item condition and category exclusions still apply. Customer-choice returns may involve domestic shipping and the published service charge. This is not an unconditional refund guarantee, so check the live order and current policy before removing packaging or waiting on a decision.",
+          "PikoBuy's Shipping Terms are direct about forwarded products: PikoBuy does not provide after-sales service for them. The user must contact the sender or seller, and PikoBuy can only assist with shipping the goods back. That means a forwarding user should know the seller's return address, deadline and acceptance conditions before dispatching to the warehouse. Do not assume the general Buy-for-Me return window applies to an item purchased independently and sent through forwarding."
+        ]
+      },
+      {
+        heading: "Map the payment points before choosing a route",
+        paragraphs: [
+          "The Buy-for-Me guide separates the first payment for the purchasing order from the later payment for international shipping. Those are different decisions: one acquires the item and moves it to the China warehouse; the other exports the prepared parcel. Record the amount and purpose of each payment rather than comparing only the seller price with a delivered budget.",
+          "In forwarding, the user handles the seller or sender payment outside the PikoBuy purchasing order, then pays PikoBuy for the outbound parcel. The Shipping Terms add a specific warning about collect-on-delivery domestic freight: if a forwarded shipment arrives with COD charges, PikoBuy says the amount is deducted from the account balance without prior confirmation, so sufficient balance is required. Confirm whether domestic postage has already been paid and tell the sender not to create an unexpected COD handoff."
+        ]
+      },
+      {
+        heading: "Neither route has a universal price or speed advantage",
+        paragraphs: [
+          "Do not choose forwarding because somebody calls it cheaper, or Buy-for-Me because a post calls it faster. PikoBuy does not publish a universal comparison that would support either claim. The actual outcome can depend on the seller price, domestic postage, any return movement, the goods that are consolidated, packaging, destination, product type, chargeable weight, parcel dimensions and routes available at submission time.",
+          "Use the current shipping estimator as an early planning tool, then recalculate when the warehouse has real item and parcel data. The public estimator asks for destination, product type, weight and dimensions, which shows why a product-price comparison alone is incomplete. Keep an uncertainty allowance rather than inventing a savings percentage. If two workflows can obtain the same item, compare the services you need and the risks you can manage, not a headline number detached from the final parcel."
+        ]
+      },
+      {
+        heading: "Plan the shared parcel and international shipping stage",
+        paragraphs: [
+          "Once accepted in the warehouse, Buy-for-Me and forwarded goods can both move toward parcel submission. Confirm that every expected item is present, resolve return questions, choose packaging for a specific reason and review the final parcel data. Consolidation may reduce duplicated outer packaging, but it can also place more value and more unresolved assumptions into one shipment. Repacking should follow inspection, not hide an item before its condition is settled.",
+          "PikoBuy's Shipping Terms say third-party logistics providers carry international parcels and identify customs inspection, confiscation, damage, loss and peak-season delay as cross-border risks. Its Terms also place applicable duties, taxes and brokerage charges on the user. Neither purchasing route removes those risks. Check the current destination routes, prohibited-item rules, declaration requirements and any route-specific compensation terms before paying. A forwarding label and a Buy-for-Me order do not create a customs guarantee."
+        ]
+      },
+      {
+        heading: "Use this checklist to make the final decision",
+        paragraphs: [
+          "Choose Buy-for-Me when you need PikoBuy to place the seller order, the source listing and option can be recorded clearly, and an eligible platform-linked after-sales process matters. Choose forwarding when the goods are already yours or a trusted sender controls the domestic purchase, you can manage seller communication and returns yourself, and you can submit accurate warehouse and tracking information. If those conditions are mixed, write down who owns each step before money or goods move.",
+          "Before proceeding, answer five questions: Who pays the Chinese seller? Who can correct a wrong domestic item? Which return rules actually apply? What proof will the warehouse photos provide? Who owns the international-shipping decision? Save the answers with the source, option and tracking records. FindSpreadsheet is independent from PikoBuy and can help you discover and compare product links; it cannot access a PikoBuy account or choose the workflow for you. The sound choice is the one with clear responsibility at every handoff."
+        ]
+      }
+    ]
   }
 ];
