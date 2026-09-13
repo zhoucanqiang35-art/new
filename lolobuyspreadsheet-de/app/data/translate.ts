@@ -7,10 +7,11 @@ import { guideEightTranslations } from "./guide-eight-translations";
 import { guideNineTranslations } from "./guide-nine-translations";
 import { guideTenTranslations } from "./guide-ten-translations";
 import { guideElevenTranslations } from "./guide-eleven-translations";
+import { guideTwelveTranslations } from "./guide-twelve-translations";
 import type { Locale } from "./locales";
 
 /** Translate editorial copy while preserving the exact page structure. */
 export function tr(locale: Locale, text: string): string {
   if (locale === "en") return text;
-  return guideElevenTranslations[locale]?.[text] ?? guideTenTranslations[locale]?.[text] ?? guideNineTranslations[locale]?.[text] ?? guideEightTranslations[locale]?.[text] ?? guideSevenTranslations[locale]?.[text] ?? guideSixTranslations[locale]?.[text] ?? guideFiveTranslations[locale]?.[text] ?? guideFourTranslations[locale]?.[text] ?? generatedTranslations[locale]?.[text] ?? text;
+  return guideTwelveTranslations[locale]?.[text] ?? guideElevenTranslations[locale]?.[text] ?? guideTenTranslations[locale]?.[text] ?? guideNineTranslations[locale]?.[text] ?? guideEightTranslations[locale]?.[text] ?? guideSevenTranslations[locale]?.[text] ?? guideSixTranslations[locale]?.[text] ?? guideFiveTranslations[locale]?.[text] ?? guideFourTranslations[locale]?.[text] ?? generatedTranslations[locale]?.[text] ?? text;
 }
