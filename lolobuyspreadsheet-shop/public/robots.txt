@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lolobuyspreadsheet-shop.pages.dev/sitemap.xml
+Sitemap: https://lolobuyspreadsheet.shop/sitemap.xml
