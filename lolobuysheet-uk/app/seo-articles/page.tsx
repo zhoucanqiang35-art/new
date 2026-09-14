@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-qc-photos-guide",
+    date: "13 September 2026",
+    title: "LoloBuy QC Photos Guide: How to Inspect a Warehouse Item Before Parcel Submission",
+    description: "An evidence-first method for checking identity, variants, measurements and visible condition before making a parcel decision.",
+  },
+  {
     href: "/seo-articles/lolobuy-product-link-research",
     date: "11 September 2026",
     title: "LoloBuy Product Link Research: How to Check a China Listing Before You Order",
