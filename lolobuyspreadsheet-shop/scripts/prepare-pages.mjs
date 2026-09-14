@@ -27,6 +27,8 @@ await writeFile(
     exclude: [
       "/_next/static/*",
       "/images/*",
+      "/sitemap.xml",
+      "/robots.txt",
       "/favicon.svg",
       "/file.svg",
       "/globe.svg",
