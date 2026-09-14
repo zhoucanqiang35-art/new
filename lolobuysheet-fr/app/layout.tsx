@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { LanguageDock } from "./components/LanguageDock";
 
 export const metadata: Metadata = {
-  title: "LoloBuy Sheet Poland | Independent Product Research",
-  description: "Independent LoloBuy spreadsheet research for European and North American shoppers: product context, QC questions and FindSpreadsheet category routes.",
+  title: "LoloFind — LoloBuy Spreadsheet Research Hub",
+  description: "Independent destination-aware research and discovery for LoloBuy-style shopping. Search the FindSpreadsheet database.",
   other: {
     "codex-preview": "development",
   },
@@ -20,9 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" translate="no">
-      <head><meta name="google" content="notranslate" /></head>
-      <body className="antialiased" translate="no">{children}<LanguageDock/></body>
+    <html lang="en">
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

@@ -24,7 +24,7 @@ command -v sha256sum || {
   exit 69
 }
 
-runtime_root="${SITES_RUNTIME_ROOT:-${SITES_PROJECT_ROOT}/.sites-runtime}"
+runtime_root="${SITES_PROJECT_ROOT}/.sites-runtime"
 expected_home="${runtime_root}/home"
 expected_cache="${runtime_root}/npm-cache"
 
@@ -33,7 +33,7 @@ if [[ "${HOME}" != "${expected_home}" ]]; then
   echo "Expected HOME=${expected_home}, got HOME=${HOME}." >&2
   exit 78
 fi
-actual_cache="$(npm --prefix "${SITES_PROJECT_ROOT}" --workspaces=false config get cache)"
+actual_cache="$(npm config get cache)"
 if [[ "${actual_cache}" != "${expected_cache}" ]]; then
   echo "Expected npm cache ${expected_cache}, got ${actual_cache}." >&2
   exit 78
@@ -65,8 +65,6 @@ done
 
 lockfile_sha256="$(sha256sum "${SITES_PROJECT_ROOT}/package-lock.json" | awk '{print $1}')"
 use_seeded_cache=0
-# Report seed selection separately from package cache hits or downloads.
-cache_seed_result=seed_unavailable
 seed_cache="${SITES_NPM_CACHE_SEED:-}"
 if [[ -n "${seed_cache}" && -d "${seed_cache}" ]]; then
   seed_lockfile_sha256="$(cat "${seed_cache}/.sites-lockfile-sha256" || true)"
@@ -74,10 +72,8 @@ if [[ -n "${seed_cache}" && -d "${seed_cache}" ]]; then
     echo "[sites] restoring image-seeded npm cache"
     cp -a "${seed_cache}/." "${expected_cache}/"
     use_seeded_cache=1
-    cache_seed_result=seed_used
     echo "[sites] image cache seed matched; registry fallback remains available"
   else
-    cache_seed_result=seed_lockfile_mismatch
     echo "[sites] image cache seed does not match this lockfile; using the network path"
   fi
 fi
@@ -107,7 +103,7 @@ locked_tarball="${locked_vinext[0]}"
 locked_integrity="${locked_vinext[1]}"
 
 if [[ "${use_seeded_cache}" == "0" ]]; then
-  registry="$(npm --prefix "${SITES_PROJECT_ROOT}" --workspaces=false config get registry)"
+  registry="$(npm config get registry)"
   preflight_url="$({ node --input-type=module - "${locked_tarball}" "${registry}" <<'NODE'
 const locked = new URL(process.argv[2]);
 const registry = new URL(process.argv[3]);
@@ -162,7 +158,7 @@ echo "[sites] running exactly one bounded npm ci"
 export NPM_CONFIG_MAXSOCKETS=1
 export NPM_CONFIG_FETCH_RETRIES=0
 export NPM_CONFIG_FETCH_TIMEOUT=30000
-npm_ci_args=(ci --prefix "${SITES_PROJECT_ROOT}" --workspaces=false --include=dev --include=optional --cache "${expected_cache}")
+npm_ci_args=(ci --cache "${expected_cache}")
 if [[ "${use_seeded_cache}" == "1" ]]; then
   npm_ci_args+=(--prefer-offline)
 fi
@@ -178,9 +174,8 @@ if [[ ! -x "${vinext}" ]]; then
   exit 69
 fi
 
-node --input-type=module - "${SITES_PROJECT_ROOT}/node_modules/.sites-install.json" "${lockfile_sha256}" "${cache_seed_result}" <<'NODE'
-import { constants } from "node:fs";
-import { open, writeFile } from "node:fs/promises";
+node --input-type=module - "${SITES_PROJECT_ROOT}/node_modules/.sites-install.json" "${lockfile_sha256}" <<'NODE'
+import { writeFile } from "node:fs/promises";
 
 await writeFile(
   process.argv[2],
@@ -190,22 +185,5 @@ await writeFile(
     platform: `${process.platform}-${process.arch}`,
   }, null, 2)}\n`,
 );
-// The measured plugin wrapper supplies an existing private file for this attempt.
-// Cache telemetry must not change the install result or create arbitrary files.
-const reportPath = process.env.SITES_INSTALL_REPORT_PATH;
-if (reportPath) {
-  let report;
-  try {
-    report = await open(reportPath, constants.O_WRONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
-    if ((await report.stat()).isFile()) {
-      await report.truncate(0);
-      await report.writeFile(`${JSON.stringify({ version: 1, cache_seed: process.argv[4] })}\n`);
-    }
-  } catch {
-    // Leave the decision unavailable rather than inventing seed use or failing setup.
-  } finally {
-    await report?.close().catch(() => {});
-  }
-}
 NODE
 echo "[sites] npm ci passed and vinext is available"
