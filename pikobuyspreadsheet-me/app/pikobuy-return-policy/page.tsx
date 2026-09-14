@@ -99,6 +99,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="RETURNS & REFUNDS" title={title} intro="A fact-checked guide to the warehouse deadline, eligibility rules, possible costs and evidence you need before submitting a PikoBuy return request." sections={sections} reviewedDate="Reviewed 31 August 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-packaging",label:"Keep return-sensitive packaging intact before parcel requests"},
   {href:"/qc-guide",label:"Review PikoBuy QC photos before the return clock closes"},
   {href:"/buyer-checklist",label:"Use the seven-point buyer checklist"},
   {href:"/how-to-use-pikobuy-spreadsheet",label:"Verify a spreadsheet result before ordering"},
