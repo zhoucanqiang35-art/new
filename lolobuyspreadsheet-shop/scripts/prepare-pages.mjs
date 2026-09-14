@@ -5,6 +5,9 @@ import { build } from "esbuild";
 const client = resolve("dist/client");
 const server = resolve("dist/server");
 
+// Vinext creates this file for a different deployment workflow. Pages would
+// honor it and omit the generated /_next CSS and JavaScript from the upload.
+await rm(resolve(client, ".assetsignore"), { force: true });
 await rm(resolve(client, "_worker.js"), { force: true });
 await build({
   entryPoints: [resolve(server, "index.js")],
