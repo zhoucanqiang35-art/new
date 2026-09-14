@@ -1,4 +1,4 @@
-import { rm } from "node:fs/promises";
+import { rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { build } from "esbuild";
 
@@ -15,3 +15,19 @@ await build({
   target: "es2022",
   external: ["node:*"],
 });
+
+await writeFile(
+  resolve(client, "_routes.json"),
+  JSON.stringify({
+    version: 1,
+    include: ["/*"],
+    exclude: [
+      "/_next/static/*",
+      "/images/*",
+      "/favicon.svg",
+      "/file.svg",
+      "/globe.svg",
+      "/window.svg",
+    ],
+  }),
+);
