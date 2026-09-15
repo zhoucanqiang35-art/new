@@ -1445,5 +1445,126 @@ export const researchArticles: ResearchArticle[] = [
         "At warehouse arrival, reconcile the final order cost and QC decision before starting the international parcel. This workflow will not guarantee one domestic fee, a discount, fast dispatch or a free return. It gives US and European buyers something more dependable: a stage-by-stage record showing whether a change came from the seller price, Chinese delivery, an order correction or the later international shipment. Recheck the live order page whenever a number changes, and let documented facts—not a spreadsheet headline—control the budget."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-restricted-items-shipping-guide",
+    tag: "RESTRICTIONS",
+    title: "LoloBuy Restricted Items Guide: Check Shipping Eligibility Before You Order",
+    description: "Learn how to check LoloBuy restricted items, warehouse flags, battery and liquid risks, live route eligibility, and US or EU import rules.",
+    readTime: "14 min read",
+    published: "2026-09-15",
+    updated: "2026-09-15",
+    keywords: [
+      "LoloBuy restricted items",
+      "LoloBuy prohibited items",
+      "LoloBuy shipping restrictions",
+      "LoloBuy battery shipping",
+      "LoloBuy liquid shipping",
+      "LoloBuy warehouse prohibited icon"
+    ],
+    sources: [
+      {
+        label: "LoloBuy Help Center — Product scope in Shopping Agent service",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242296471257997",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Prohibited and restricted items for import and export",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300867477741",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — FAQ for mail restrictions",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242306546304763",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — List of prohibited export items",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300871540978",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Scope of inspection",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300746301580",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "LoloBuy — Live shipping fee estimation",
+        url: "https://www.lolobuy.com/estimate",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "IATA — Batteries and current dangerous-goods guidance",
+        url: "https://www.iata.org/en/programs/cargo/dangerous-goods/lithium-batteries/",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "US Customs and Border Protection — Prohibited and restricted items",
+        url: "https://www.cbp.gov/travel/us-citizens/know-before-you-go/prohibited-and-restricted-items",
+        accessed: "15 September 2026"
+      },
+      {
+        label: "European Commission — Customs formalities for low-value consignments",
+        url: "https://taxation-customs.ec.europa.eu/customs/customs-procedures-import-and-export/customs-operations/customs-formalities-low-value-consignments_en",
+        accessed: "15 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare LoloBuy actual and volumetric weight", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Plan LoloBuy parcel consolidation", url: "/articles/lolobuy-parcel-consolidation-guide" },
+      { label: "Review LoloBuy QC photos", url: "/articles/lolobuy-qc-photos-guide" },
+      { label: "Prepare for LoloBuy shipping to the USA", url: "/articles/lolobuy-shipping-to-usa-checklist" },
+      { label: "Plan LoloBuy VAT and customs for the UK or EU", url: "/articles/lolobuy-shipping-to-uk-eu-vat-customs" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-restricted-items-eligibility-flow.svg",
+      alt: "Five-gate LoloBuy restricted-items workflow from product facts through warehouse flag, live route check and destination import rules",
+      caption: "Original eligibility-gate diagram based on public sources checked on 15 September 2026. Passing one gate does not guarantee that a product passes the next.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Shipping eligibility is a chain, not one yes-or-no label", paragraphs: [
+        "A product appearing on a Chinese marketplace does not prove that LoloBuy can purchase it, that every warehouse service will accept it, that an international line will carry it or that the destination country will admit it. Those are separate gates. LoloBuy’s public product-scope page names batteries, magnetic components, liquids, powders, compressed gas, plant seeds and imitation-brand clothing among categories that can create restrictions or higher customs risk. It also gives country examples, but those examples are not a complete current route table.",
+        "Use this article as a decision workflow, not a permanent whitelist. Platform facts are attributed to public pages accessed on 15 September 2026. The record-keeping and comparison method is editorial advice. No route, price, inspection result, customs outcome or delivery promise is assumed. The safest question is therefore not ‘Can LoloBuy ship this type of product?’ but ‘Can this exact product, in this configuration, use a currently displayed route to my destination under today’s rules?’"
+      ]},
+      { heading: "Create a product-characteristics record before paying", paragraphs: [
+        "Start with the physical item rather than its marketing title. Record whether it contains a battery, liquid, powder, gel, aerosol or compressed gas; whether it is magnetic; whether it contains food, medicine, seeds, wood or animal material; and whether it resembles a weapon or controlled tool. For electronics, record whether the battery is installed, removable or supplied separately. For branded goods, record the actual brand claim and seller evidence instead of replacing it with a vague label such as ‘clothes.’",
+        "Save the live listing URL, selected variation, seller description, composition or ingredient information, quantity and clear product images. If a safety data sheet, battery specification or other document is material, ask whether the seller can provide it before ordering. Do not invent a watt-hour rating, liquid volume or material from appearance. A spreadsheet can help discover candidates, but its category name cannot establish dangerous-goods classification, intellectual-property status or import eligibility for the finished parcel. Unknown characteristics should remain marked unknown until verified."
+      ]},
+      { heading: "Understand the LoloBuy prohibited icon", paragraphs: [
+        "LoloBuy’s current prohibited-and-restricted-items page says mail-restricted warehouse items are marked with a ‘prohibited’ icon. Its mail-restrictions FAQ repeats that explanation. The same public guidance says a buyer who understands the category and restriction may ask online customer service to check with the logistics provider whether a restriction can be unlocked, while the buyer bears the resulting risk. That language does not turn support review into a guarantee of carriage or customs clearance.",
+        "Treat the icon as a stop-and-verify signal. Capture the warehouse item number, icon, description and any category message. Ask which product characteristic triggered the flag, which currently displayed lines reject it, and what documentation or packaging would be required for any eligible alternative. Keep the answer with a date and destination. Do not ask staff to hide, rename or misdeclare the item. If no compliant route is available, evaluate the supported return or disposal options rather than forcing the product into a parcel."
+      ]},
+      { heading: "One restricted item can change the whole parcel", paragraphs: [
+        "LoloBuy’s FAQ says that when part of a warehouse selection is subject to mail restrictions, other items submitted in the same delivery order may also be restricted. This is why a previously visible line can disappear when a battery, liquid or other sensitive item is added. It is also why ‘combine everything’ is not a reliable consolidation rule. Parcel eligibility belongs to the full set of contents, packaging, measurements and destination—not to the easiest item in the box.",
+        "Build at least two parcel scenarios when the warehouse contains mixed characteristics. Put ordinary eligible goods in one scenario and isolate the questioned item in another. Compare only routes the live interface actually offers for each scenario, then review chargeable weight, protection and destination rules. Splitting can add base shipping cost; combining can reduce route choice or expose unrelated goods to the same delay. The correct decision balances compliance, cost and risk without assuming that one large parcel is automatically cheaper."
+      ]},
+      { heading: "Batteries and electronics require configuration-level facts", paragraphs: [
+        "Battery-powered goods cannot be classified from the word ‘electronics.’ IATA’s current battery guidance explains that air-transport requirements depend on factors including battery chemistry, configuration and rating, and that batteries shipped alone are treated differently from batteries installed in or packed with equipment. That industry guidance does not tell a LoloBuy buyer which line is available. It explains why a phone, power bank, loose replacement battery and battery-free cable can produce different route results even when found in the same shopping category.",
+        "Before purchase, record the exact model, battery type, stated capacity or watt-hour rating, quantity and whether the battery is installed or loose. At the warehouse, compare only visible labels and order identity. LoloBuy’s inspection-scope page says professional electrical appliances, digital products and electronic accessories fall outside inspection for authenticity, functionality and quality; sealed goods may not be opened. Therefore, clean QC photos do not prove battery condition, compliance testing or working performance. Use live route acceptance and required documentation as separate checks."
+      ]},
+      { heading: "Liquids, powders, gels, food and medicine need a fresh answer", paragraphs: [
+        "LoloBuy’s product-scope and mail-restrictions pages identify liquids, powders, gels, food and medicines as sensitive categories. The FAQ also contains older numerical examples and shipping suggestions. Because the page does not establish that those quantities apply to every current line and destination, this guide does not repeat them as policy. A bottle size or percentage mentioned in an old help article is not permission to use a route that the live parcel screen rejects today.",
+        "Record the exact substance, use, ingredients where available, container size, total quantity and whether the seller can supply any transport documentation requested. Cosmetics, paint, adhesive, fragrance, supplements and cleaning products should not be collapsed into a generic ‘liquid’ row if their properties differ. Ask LoloBuy to confirm current category treatment before purchase when the answer affects returnability. At parcel time, recheck the actual destination and route. Never change the description or declared contents to make a sensitive item appear ordinary."
+      ]},
+      { heading: "A warehouse check is not product or brand certification", paragraphs: [
+        "The LoloBuy inspection page says all goods receive a prohibited-items check, while also limiting standard inspection mainly to visible information such as style, quantity, colour, size and model. It explicitly excludes authenticity, functionality and quality verification for professional goods such as electrical appliances and digital accessories. A warehouse item can therefore match the order visually and still lack the evidence needed for lawful transport, safe use, technical compliance or a claim that it is genuine.",
+        "Intellectual-property risk deserves its own decision. LoloBuy’s prohibited-export list includes counterfeit and pirated goods and says the user is responsible for intellectual-property compliance; the page also warns that its list may be changed and is not guaranteed complete or timely. US buyers should check the current CBP prohibited-and-restricted-items guidance. European buyers should consult the destination member state’s customs authority. A seller logo, spreadsheet tag or unremarkable QC photo is not an import authorization."
+      ]},
+      { heading: "China-side rules, carrier rules and destination rules all apply", paragraphs: [
+        "LoloBuy’s public list says current effective laws and regulations ultimately control and warns that its compiled list is not complete or necessarily timely. Another LoloBuy page reproduces older Chinese import-and-export wording, including a 1993 effective date. That historical text may explain why the platform uses broad categories, but it should not be treated as a complete statement of law in 2026. Current platform handling and current legal sources must be checked separately.",
+        "For the United States, CBP maintains an official prohibited-and-restricted-items resource covering goods that can be barred or require another agency’s permission. For the European Union, the European Commission says the simplified low-value customs declaration applies only to qualifying consignments not subject to prohibitions or restrictions, and that an import declaration is required for goods entering the EU regardless of value. National rules can add detail. Check the country receiving the parcel, not merely ‘Europe’ as a destination label."
+      ]},
+      { heading: "Use the live estimator as a filter, not a promise", paragraphs: [
+        "Open LoloBuy’s shipping fee estimation page near the purchase decision and again after warehouse intake. Enter the real destination and the best supported weight, dimensions and product category. Remove any line that does not accept the contents. For the remaining options, record the access date, quoted amount, chargeable-weight basis, category notes, size limits and any documentation or declaration requirement. A line displayed for an estimate may still need confirmation when the real warehouse classification differs.",
+        "Do not copy a route from another buyer, even when the product looks similar. Their destination, battery configuration, quantity, packaging and date may be different. Do not preserve a price or delivery window in a long-term spreadsheet as though it were fixed. Link to the estimator and store a dated observation. If LoloBuy support confirms an exception, save the exact item, line and conditions discussed. Recheck everything at parcel submission because eligibility can change between discovery and international checkout."
+      ]},
+      { heading: "A reusable pre-order and pre-parcel checklist", paragraphs: [
+        "Before ordering, identify every sensitive characteristic, save the source listing, verify the exact variation and gather documents that may be needed. Check whether the seller accepts returns if no compliant international route appears. At warehouse intake, compare the received identity, inspect the prohibited icon and preserve the visible evidence without treating QC as technical or authenticity certification. Before consolidation, separate ordinary and sensitive items into test scenarios and compare only live eligible routes for the actual destination.",
+        "Before payment, recheck destination customs guidance, product description, declaration, packed dimensions, chargeable weight, route notes and protection terms. Save the final parcel record and support answers. If any gate remains unknown, pause rather than fill the gap with a forum claim or an old help-page number. This method cannot guarantee shipment or admission. It gives US and European buyers a documented chain from product facts to platform flag, carrier eligibility and destination rules—the evidence needed to avoid ordering an item that has no responsible route home."
+      ]}
+    ]
   }
 ];

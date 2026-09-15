@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy restricted-items eligibility workflow</title>
+  <desc id="desc">A five-gate diagram showing product facts, platform and China-side screening, warehouse flags, live route eligibility, and destination import rules.</desc>
+  <rect width="1200" height="650" rx="32" fill="#f7f8fc"/>
+  <text x="600" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#151b2b">Five gates before international parcel payment</text>
+  <text x="600" y="108" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" fill="#526078">Passing one gate does not guarantee the next</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(55 175)">
+      <rect width="190" height="250" rx="20" fill="#ffffff" stroke="#d7ddea" stroke-width="2"/>
+      <circle cx="95" cy="55" r="28" fill="#e8efff"/>
+      <text x="95" y="64" text-anchor="middle" font-size="24" font-weight="700" fill="#3157b7">1</text>
+      <text x="95" y="112" text-anchor="middle" font-size="20" font-weight="700" fill="#151b2b">Product facts</text>
+      <text x="95" y="150" text-anchor="middle" font-size="15" fill="#526078">Battery • liquid</text>
+      <text x="95" y="175" text-anchor="middle" font-size="15" fill="#526078">powder • magnet</text>
+      <text x="95" y="200" text-anchor="middle" font-size="15" fill="#526078">material • brand</text>
+    </g>
+    <path d="M255 300h30" stroke="#8da0c4" stroke-width="4" stroke-linecap="round"/>
+    <path d="m278 290 12 10-12 10" fill="none" stroke="#8da0c4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(295 175)">
+      <rect width="190" height="250" rx="20" fill="#ffffff" stroke="#d7ddea" stroke-width="2"/>
+      <circle cx="95" cy="55" r="28" fill="#eef8ed"/>
+      <text x="95" y="64" text-anchor="middle" font-size="24" font-weight="700" fill="#397443">2</text>
+      <text x="95" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#151b2b">Platform and</text>
+      <text x="95" y="134" text-anchor="middle" font-size="18" font-weight="700" fill="#151b2b">China-side rules</text>
+      <text x="95" y="178" text-anchor="middle" font-size="15" fill="#526078">Purchase scope</text>
+      <text x="95" y="203" text-anchor="middle" font-size="15" fill="#526078">Export restrictions</text>
+    </g>
+    <path d="M495 300h30" stroke="#8da0c4" stroke-width="4" stroke-linecap="round"/>
+    <path d="m518 290 12 10-12 10" fill="none" stroke="#8da0c4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(535 175)">
+      <rect width="190" height="250" rx="20" fill="#ffffff" stroke="#d7ddea" stroke-width="2"/>
+      <circle cx="95" cy="55" r="28" fill="#fff4dc"/>
+      <text x="95" y="64" text-anchor="middle" font-size="24" font-weight="700" fill="#9a6512">3</text>
+      <text x="95" y="112" text-anchor="middle" font-size="20" font-weight="700" fill="#151b2b">Warehouse flag</text>
+      <text x="95" y="157" text-anchor="middle" font-size="15" fill="#526078">Check the icon</text>
+      <text x="95" y="182" text-anchor="middle" font-size="15" fill="#526078">Save item evidence</text>
+      <text x="95" y="207" text-anchor="middle" font-size="15" fill="#526078">Ask precisely</text>
+    </g>
+    <path d="M735 300h30" stroke="#8da0c4" stroke-width="4" stroke-linecap="round"/>
+    <path d="m758 290 12 10-12 10" fill="none" stroke="#8da0c4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(775 175)">
+      <rect width="190" height="250" rx="20" fill="#ffffff" stroke="#d7ddea" stroke-width="2"/>
+      <circle cx="95" cy="55" r="28" fill="#efeaff"/>
+      <text x="95" y="64" text-anchor="middle" font-size="24" font-weight="700" fill="#6447af">4</text>
+      <text x="95" y="108" text-anchor="middle" font-size="18" font-weight="700" fill="#151b2b">Live route</text>
+      <text x="95" y="134" text-anchor="middle" font-size="18" font-weight="700" fill="#151b2b">eligibility</text>
+      <text x="95" y="178" text-anchor="middle" font-size="15" fill="#526078">Destination • date</text>
+      <text x="95" y="203" text-anchor="middle" font-size="15" fill="#526078">contents • parcel</text>
+    </g>
+    <path d="M975 300h30" stroke="#8da0c4" stroke-width="4" stroke-linecap="round"/>
+    <path d="m998 290 12 10-12 10" fill="none" stroke="#8da0c4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(1015 175)">
+      <rect width="130" height="250" rx="20" fill="#ffffff" stroke="#d7ddea" stroke-width="2"/>
+      <circle cx="65" cy="55" r="28" fill="#ffeaea"/>
+      <text x="65" y="64" text-anchor="middle" font-size="24" font-weight="700" fill="#a13d3d">5</text>
+      <text x="65" y="108" text-anchor="middle" font-size="17" font-weight="700" fill="#151b2b">Destination</text>
+      <text x="65" y="133" text-anchor="middle" font-size="17" font-weight="700" fill="#151b2b">rules</text>
+      <text x="65" y="177" text-anchor="middle" font-size="14" fill="#526078">Customs</text>
+      <text x="65" y="201" text-anchor="middle" font-size="14" fill="#526078">Permits</text>
+    </g>
+    <rect x="175" y="492" width="850" height="92" rx="18" fill="#16233c"/>
+    <text x="600" y="530" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">If a gate is unknown: pause, document, and verify</text>
+    <text x="600" y="560" text-anchor="middle" font-size="16" fill="#cdd8ee">Do not hide the item, guess a specification, or copy an old route claim</text>
+  </g>
+</svg>
