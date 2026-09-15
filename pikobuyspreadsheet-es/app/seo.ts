@@ -26,3 +26,6 @@ export function routeAlternates(locale: string, path = ""): Metadata["alternates
 export function pageMetadata(locale: string, path: string, title: string, description: string): Metadata {
   return { title, description, alternates: routeAlternates(locale, path) };
 }
+
+export const homepageTitle = "Best PikoBuy Spreadsheet 2026 – Verified QC Links & Rep Finds";
+export const homepageDescription = "Find the best PikoBuy spreadsheets with verified QC links, shipping guides to Spain & Europe, and daily updated rep finds.";
