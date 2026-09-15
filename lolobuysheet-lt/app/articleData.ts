@@ -1446,6 +1446,7 @@ export const researchArticles: ResearchArticle[] = [
       ]}
     ]
   },
+  // Sources and live route variables checked on the article update date below.
   {
     slug: "lolobuy-restricted-items-shipping-guide",
     tag: "RESTRICTIONS",
