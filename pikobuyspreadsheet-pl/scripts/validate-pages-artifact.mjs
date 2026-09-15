@@ -156,6 +156,32 @@ async function assertReturnedParcelArticle() {
   if (checks.some((check) => !check)) throw new Error("Returned parcel article failed SEO, schema, FAQ, image or link validation");
 }
 
+async function assertDamagedParcelArticle() {
+  const response = await worker.default.fetch(
+    new Request("https://pikobuyspreadsheet-pl.pages.dev/pikobuy-parcel-damaged-on-arrival", { headers: { accept: "text/html" } }),
+    env,
+    ctx,
+  );
+  const html = await response.text();
+  const checks = [
+    response.status === 200,
+    (html.match(/<h1>/g) ?? []).length === 1,
+    html.includes('content="index, follow"'),
+    html.includes('rel="canonical" href="https://pikobuyspreadsheet.pl/pikobuy-parcel-damaged-on-arrival"'),
+    html.includes('"@type":"Article"'),
+    html.includes('"@type":"BreadcrumbList"'),
+    html.includes('"@type":"FAQPage"'),
+    (html.match(/<details/g) ?? []).length === 4,
+    html.includes('href="/pikobuy-qc-photo-guide"'),
+    html.includes('href="/pikobuy-parcel-insurance-claim"'),
+    html.includes('href="/pikobuy-tracking-delay-diagnosis"'),
+    html.includes('href="/pikobuy-parcel-returned-to-warehouse"'),
+    html.includes('href="https://findspreadsheet.com/AllProducts/"'),
+    html.includes('src="/pikobuy-damaged-parcel-evidence-flow.svg"'),
+  ];
+  if (checks.some((check) => !check)) throw new Error("Damaged parcel article failed SEO, schema, FAQ, image or link validation");
+}
+
 async function assertNotFound() {
   const response = await worker.default.fetch(
     new Request("https://pikobuyspreadsheet-pl.pages.dev/this-page-does-not-exist", { headers: { accept: "text/html" } }),
@@ -212,10 +238,12 @@ await assertPage("/pikobuy-sneaker-batch-qc-context", "PikoBuy Sneaker Batch Lab
 await assertPage("/pikobuy-parcel-consolidation-shipping-cost", "PikoBuy Parcel Consolidation: Weight, Volume and Shipping Trade-Offs");
 await assertPage("/pikobuy-prohibited-items-shipping-restrictions", "PikoBuy Prohibited Items: A Pre-Shipping Route Checklist");
 await assertPage("/pikobuy-parcel-returned-to-warehouse", "PikoBuy Parcel Returned to Warehouse: Reshipment Checklist");
-await assertPage("/seo-articles", "PikoBuy Parcel Returned to Warehouse: Reshipment Checklist");
+await assertPage("/pikobuy-parcel-damaged-on-arrival", "PikoBuy Parcel Damaged on Arrival: An Unboxing Evidence Checklist");
+await assertPage("/seo-articles", "PikoBuy Parcel Damaged on Arrival: An Unboxing Evidence Checklist");
 await assertInsuranceArticle();
 await assertVolumetricWeightArticle();
 await assertReturnedParcelArticle();
+await assertDamagedParcelArticle();
 await assertNotFound();
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
@@ -227,6 +255,7 @@ await assertPublicAsset("/pikobuy-insurance-claim-checklist.svg", "image/svg+xml
 await assertPublicAsset("/pikobuy-volumetric-weight-packaging.svg", "image/svg+xml", "Measure twice. Verify the route once.");
 await assertPublicAsset("/pikobuy-restricted-items-route-check.svg", "image/svg+xml", "Classify first. Verify the live route second.");
 await assertPublicAsset("/pikobuy-returned-parcel-checklist.svg", "image/svg+xml", "Locate → document → correct → inspect → reprice.");
+await assertPublicAsset("/pikobuy-damaged-parcel-evidence-flow.svg", "image/svg+xml", "preserve the evidence chain");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -240,10 +269,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 261 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-parcel-returned-to-warehouse")) {
-  throw new Error(`Expected 261 sitemap URLs with Swedish hreflang alternates and the returned-parcel guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 270 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-parcel-damaged-on-arrival")) {
+  throw new Error(`Expected 270 sitemap URLs with Swedish hreflang alternates and the damaged-parcel guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 261-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 270-URL sitemap, CSS and JavaScript.",
 );

@@ -324,5 +324,123 @@ const returnedParcelGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide];
+const damagedParcelGuide: Guide = {
+  slug: "pikobuy-parcel-damaged-on-arrival",
+  eyebrow: "Delivery damage",
+  title: "PikoBuy Parcel Damaged on Arrival: An Unboxing Evidence Checklist",
+  seoTitle: "PikoBuy Parcel Damaged on Arrival: Evidence Guide",
+  description: "Build a clear evidence record when a PikoBuy parcel arrives crushed, wet, opened or damaged, then report the right facts without weakening a possible claim.",
+  readTime: "9 min read",
+  updated: "Updated 15 September 2026",
+  publishedDate: "2026-09-15",
+  modifiedDate: "2026-09-15",
+  editorialNote: "This independent guide was checked against PikoBuy’s public User Registration Agreement, Shipping Terms, Returns & Exchanges policy and Beginner Guide on 15 September 2026. It cannot inspect a parcel, determine liability or promise compensation, and it does not represent PikoBuy, a carrier or an insurer.",
+  intro: [
+    "When a PikoBuy parcel is damaged on arrival, the first few minutes matter more than a long complaint written later. A crushed corner, wet carton or broken item can involve several hand-offs, so the useful goal is to preserve what you can actually observe before packaging is discarded or contents are moved.",
+    "PikoBuy’s public User Registration Agreement tells recipients to check the outer packaging carefully when signing and to contact customer service immediately if an issue appears after signing. It also says third-party logistics providers carry international parcels and their standards govern compensation matters. Those statements make a dated, continuous evidence record practical—not a guarantee of a successful claim.",
+    "This checklist separates delivery-stage damage from the five-day seller-return process used while eligible goods are first in the warehouse. It shows how to record the sealed parcel, unbox methodically, compare warehouse evidence with the delivered condition and send one precise case summary.",
+  ],
+  visual: {
+    src: "/pikobuy-damaged-parcel-evidence-flow.svg",
+    alt: "Five-step evidence flow for a PikoBuy parcel damaged on arrival, from inspecting the sealed box to submitting a documented case",
+    caption: "An original evidence flow: preserve the sealed condition, document the opening, compare records, classify the issue and report promptly.",
+  },
+  sections: [
+    {
+      heading: "Inspect the sealed parcel before you change it",
+      paragraphs: [
+        "Start with the outside. If the carrier is still present and local procedure allows it, note visible damage through the carrier’s available delivery process. Do not assume that every carrier or country offers refusal, opening in front of the driver or a damage form. Ask what can be recorded, and keep any reference number or delivery notation you receive.",
+        "Photograph all six sides of the parcel before opening. Include the shipping label, tracking number, seals, tape joins and any dents, tears, water marks, punctures or areas that appear to have been reopened. Take a wide image showing the whole package and close images showing the affected area. Keep private address details inside the official case rather than posting them publicly.",
+        "If the package is wet, leaking, sharp, swollen, hot or otherwise unsafe, stop handling it and follow the carrier’s and local authority’s safety instructions. This article cannot identify a hazardous parcel. Safety comes before an unboxing video.",
+      ],
+      bullets: [
+        "Record delivery time and visible tracking event",
+        "Photograph every side while the parcel is still sealed",
+        "Capture labels, seals and damage at wide and close range",
+        "Keep the carton, filler and damaged contents together",
+      ],
+    },
+    {
+      heading: "Create a continuous unboxing record",
+      paragraphs: [
+        "A single photograph of a broken item proves its condition at that moment, but it may not show how it was packed or whether the parcel arrived sealed. When practical, make one continuous video beginning with the unopened label and all sides of the box. Show the seals before cutting them, open only what is necessary, and keep each layer of padding in frame as it is removed.",
+        "Pause to photograph anything significant: a puncture aligned with an item, compressed filler, moisture inside the carton, an empty compartment, a broken seal or a missing accessory. Do not repair, clean, test aggressively or throw packaging away before support explains what evidence is required. If a product could be electrically unsafe after impact or water exposure, do not power it on merely to create proof.",
+        "Narrate observations rather than conclusions. ‘The right side of the carton is crushed and the shoe box beneath it is creased’ is evidence. ‘The carrier destroyed it’ assigns a cause that the images alone may not establish. Precise, neutral wording gives the platform and logistics provider something they can compare.",
+      ],
+    },
+    {
+      heading: "Compare three stages of evidence",
+      paragraphs: [
+        "Build a simple timeline with three columns: warehouse condition, packed-parcel condition and delivered condition. Save the product order, warehouse inspection photos, requested detailed photos, parcel photo if available, packed weight and dimensions, route, tracking history and delivery images. Match each damaged item to its order identifier and selected variation.",
+        "PikoBuy’s Shipping Terms say forwarded goods are unpacked and inspected, warehouse photos are provided for confirmation, and professional inspection is unavailable for special or professional products. Its User Registration Agreement similarly limits some checks to visible appearance and accessories. Warehouse images can therefore help show a visible before-shipping condition, but they cannot prove hidden function, authenticity or the precise moment damage occurred.",
+        "Look for objective differences. Was the carton intact in the packed image but punctured at delivery? Did the warehouse image show an accessory that is no longer present? Does the delivered weight differ from a reliable earlier parcel weight? A difference is a useful fact; it is not automatically proof of who is liable. Keep both the matching and conflicting evidence in the case.",
+      ],
+      bullets: [
+        "Order and item identifiers",
+        "Warehouse QC and additional-photo records",
+        "Packed parcel image, weight, dimensions and route",
+        "Tracking chronology and delivery-condition evidence",
+      ],
+    },
+    {
+      heading: "Classify the problem before contacting support",
+      paragraphs: [
+        "Use one primary category for each item: outer-packaging damage, internal impact damage, water exposure, opened or resealed parcel, missing contents, or a functional problem with no visible transport damage. A parcel may have more than one category, but separating them prevents a vague ‘everything is damaged’ report.",
+        "Connect every requested remedy to evidence. For a cracked component, provide the item identifier, warehouse comparison, unboxing frame and close photograph. For missing contents, show the packing list or order record, the sealed opening sequence, all remaining contents and packaging, and any weight information. For a wet parcel, show outer and inner moisture before drying anything that can safely be documented.",
+        "Do not confuse pre-existing product quality with transport damage. PikoBuy’s Returns & Exchanges page discusses wrong products, quality issues and domestic-shipping damage found when an item reaches the warehouse. A defect first alleged after international delivery needs its own delivery evidence and case review; the published 120-hour warehouse return window should not be presented as a universal international damage-claim period.",
+      ],
+    },
+    {
+      heading: "Report promptly without inventing a deadline",
+      paragraphs: [
+        "PikoBuy’s agreement says to contact customer service immediately when an issue arises after signing. It also says after-sales service must be requested within its validity period and that the period is calculated from delivery days and receipt-confirmation time. The public page reviewed for this article does not state one fixed number of hours or days that applies to every delivered parcel.",
+        "Act promptly, preserve the time shown in tracking and ask support to confirm the deadline for the exact parcel, route and issue. Do not wait for a social-media response before opening an official case. Keep the case number, submission time, uploaded files and every reply. If support asks for a carrier damage report, inspection document or additional photograph, record the request and the date you supplied it.",
+        "Confirming receipt on a website may affect the after-sales calculation under the published wording, so check the active order screen before clicking through automatically. This does not mean withholding truthful information or ignoring an actual delivery; it means reading what the live control says and preserving its timestamp.",
+      ],
+    },
+    {
+      heading: "Understand carrier, insurance and fragile-item limits",
+      paragraphs: [
+        "The public agreement says third-party logistics providers perform international delivery. A user may authorize PikoBuy to help communicate about a claim, but compensation matters follow the logistics provider’s standards. The Shipping Terms also identify damage, loss, customs action and peak-season delays as cross-border risks. None of that tells you the outcome of a particular case.",
+        "Insurance is a separate question. PikoBuy’s public insurance wording specifically discusses possible compensation for a lost parcel when insurance was purchased and points users to the insurance terms and exclusions. It does not establish on the reviewed public page that every kind of partial damage is covered, nor does it publish one universal payout formula for damaged contents. Save the route and insurance wording shown when you paid and ask which provision applies.",
+        "Fragile items have an explicit warning. The User Registration Agreement says products such as ceramics, glass and irregularly shaped goods may break during repeated transport and states that loss may fall to the user when an item deemed fragile by the logistics provider is damaged in transit. That makes protection choices and current exclusions important before shipping, but it still does not justify guessing how an individual claim will be decided.",
+      ],
+    },
+    {
+      heading: "Send one concise evidence-led case",
+      paragraphs: [
+        "Lead with the parcel number, route, destination, delivery date and a one-sentence problem statement. Then list affected item identifiers, describe the external package, explain the opening record and attach the smallest set of files that proves each observation. Ask support to confirm the applicable after-sales period, required carrier documents, whether the parcel or item must be retained, and the next formal step.",
+        "Keep original files. Messaging apps and image editors can remove timestamps or compress detail, so preserve the camera originals alongside any annotated copies. Do not alter labels, stage damage or submit unrelated photographs. If an image is too large for the case system, retain the original and upload a clearly named copy.",
+        "A strong report does not guarantee compensation. It reduces ambiguity by connecting the delivered condition to a traceable order and shipping record. This guide reflects public PikoBuy pages checked on 15 September 2026; current order controls, route terms, insurance wording and written case instructions take priority over this static checklist.",
+      ],
+      bullets: [
+        "Parcel number, route, destination and delivery time",
+        "Neutral description of packaging and item damage",
+        "Ordered evidence from sealed parcel to affected item",
+        "A direct question about deadline, documents and next action",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/pikobuy-qc-photo-guide", label: "Compare the warehouse QC record", note: "Use the relevant pre-shipping angles without claiming that photos prove hidden condition." },
+    { href: "/pikobuy-parcel-insurance-claim", label: "Review insurance and claim evidence", note: "Check the saved route terms, coverage wording and exclusions for the exact parcel." },
+    { href: "/pikobuy-tracking-delay-diagnosis", label: "Reconstruct the carrier timeline", note: "Place dispatch, hand-offs and delivery in chronological order before reporting damage." },
+    { href: "/pikobuy-parcel-returned-to-warehouse", label: "Handle a parcel returned instead of delivered", note: "Use the separate reshipment checklist when tracking confirms a return path." },
+  ],
+  faqHeading: "PikoBuy delivery-damage questions",
+  faq: [
+    { question: "What should I photograph if a PikoBuy parcel arrives damaged?", answer: "Before opening, photograph all sides, the shipping label, tracking number, seals and every dent, tear, puncture or wet area. Then record the opening, internal packaging, all contents and close views of each affected item. Preserve originals and the physical packaging until the case instructions say otherwise." },
+    { question: "How quickly should I report damage after delivery?", answer: "PikoBuy’s User Registration Agreement says to contact customer service immediately if an issue appears after signing. It describes a validity period calculated from delivery days and receipt-confirmation time but does not publish one universal fixed deadline on the reviewed page. Open the official case promptly and ask for the deadline that applies to the exact parcel." },
+    { question: "Does PikoBuy parcel insurance automatically cover damaged items?", answer: "The reviewed public insurance wording discusses possible compensation for loss when insurance was purchased, but it does not prove that every partial-damage case is covered. Check the insurance and route terms saved at payment, exclusions and the third-party logistics provider’s standards for the exact case." },
+    { question: "Is delivery damage handled by the five-day warehouse return policy?", answer: "Not automatically. The published five-day or 120-hour process concerns eligible products after they first enter the warehouse and includes seller-return rules. Damage identified after international delivery needs prompt delivery-stage evidence and an after-sales review under the current parcel terms." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — signing checks, after-sales timing, logistics responsibility and compensation limits" },
+    { href: "https://www.pikobuy.com/protocol/shipping", label: "PikoBuy Shipping Terms — inspection boundaries and third-party cross-border damage risks" },
+    { href: "https://www.pikobuy.com/protocol/returns", label: "PikoBuy Returns & Exchanges — separate warehouse return timing, eligibility and responsibility" },
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — warehouse inspection, packing and international shipping workflow" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);
