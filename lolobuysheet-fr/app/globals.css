@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* The research photo is a hero background so it always fills the complete
+   first screen; a normal image element can otherwise collapse to its ratio. */
+.hero{background-image:url("/research-hero.png")!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important}
+.hero>img{display:none!important}
 /* A definite hero height makes the cover image fill the full research scene,
    rather than resolving to its shallow intrinsic image height. */
 @media (min-width:801px){.hero{height:748px!important;min-height:748px!important}}
