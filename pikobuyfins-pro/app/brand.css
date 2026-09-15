@@ -1,0 +1,73 @@
+.brand > span,
+.brand > strong {
+  display: none;
+}
+
+/* Keep the site scope in its metadata, without repeating the removed disclaimer on pages. */
+.trust,
+.image-note,
+footer > div > p,
+.research-footer {
+  display: none;
+}
+
+.brand::before {
+  content: "";
+  display: block;
+  width: 154px;
+  height: 42px;
+  background: url("/pikobuy-logo.png") center / contain no-repeat;
+}
+
+.category-link {
+  display: block;
+  cursor: pointer;
+}
+
+.category-card b {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 9px;
+  color: var(--blue);
+  background: #edf0ff;
+  transition: .2s;
+  pointer-events: none;
+}
+
+.category-link:hover .category-card {
+  border-color: #b9c6ff;
+  box-shadow: 0 8px 20px rgba(23, 60, 255, .09);
+}
+
+.category-link:hover .category-card b {
+  color: #fff;
+  background: var(--blue);
+  transform: translateY(-2px);
+}
+
+.category-detail {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 28px;
+  padding: clamp(24px, 4vw, 44px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+}
+
+.category-detail > div { max-width: 660px; }
+.category-detail h2 { font-size: clamp(28px, 3vw, 40px); letter-spacing: -.055em; margin-bottom: 14px; }
+.category-detail p { color: var(--muted); font-size: 16px; line-height: 1.6; }
+.category-detail .button-dark { white-space: nowrap; }
+
+@media (max-width: 860px) {
+  .category-detail { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .brand::before { width: 118px; height: 36px; }
+}
