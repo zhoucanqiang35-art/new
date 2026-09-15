@@ -2,7 +2,6 @@ export const mainSite = "https://findspreadsheet.com";
 
 export const locales = [
   { code: "en-US", short: "EN", label: "English (US)", country: "United States" },
-  { code: "en-GB", short: "EN", label: "English (UK)", country: "United Kingdom" },
   { code: "de-DE", short: "DE", label: "Deutsch", country: "Germany" },
   { code: "fr-FR", short: "FR", label: "Français", country: "France" },
   { code: "es-ES", short: "ES", label: "Español", country: "Spain" },
@@ -10,21 +9,7 @@ export const locales = [
   { code: "nl-NL", short: "NL", label: "Nederlands", country: "Netherlands" },
   { code: "pl-PL", short: "PL", label: "Polski", country: "Poland" },
   { code: "pt-PT", short: "PT", label: "Português", country: "Portugal" },
-  { code: "pt-BR", short: "BR", label: "Português (Brasil)", country: "Brazil" },
   { code: "sv-SE", short: "SV", label: "Svenska", country: "Sweden" },
-  { code: "da-DK", short: "DA", label: "Dansk", country: "Denmark" },
-  { code: "nb-NO", short: "NO", label: "Norsk", country: "Norway" },
-  { code: "fi-FI", short: "FI", label: "Suomi", country: "Finland" },
-  { code: "cs-CZ", short: "CS", label: "Čeština", country: "Czech Republic" },
-  { code: "ro-RO", short: "RO", label: "Română", country: "Romania" },
-  { code: "hu-HU", short: "HU", label: "Magyar", country: "Hungary" },
-  { code: "el-GR", short: "EL", label: "Ελληνικά", country: "Greece" },
-  { code: "bg-BG", short: "BG", label: "Български", country: "Bulgaria" },
-  { code: "hr-HR", short: "HR", label: "Hrvatski", country: "Croatia" },
-  { code: "sk-SK", short: "SK", label: "Slovenčina", country: "Slovakia" },
-  { code: "sl-SI", short: "SL", label: "Slovenščina", country: "Slovenia" },
-  { code: "et-EE", short: "ET", label: "Eesti", country: "Estonia" },
-  { code: "lt-LT", short: "LT", label: "Lietuvių", country: "Lithuania" },
 ] as const;
 
 type Copy = {
