@@ -1061,5 +1061,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-customs-declaration-duties-guide",
+    title: "PikoBuy Customs: Declaration and Duty Checklist",
+    description: "A PikoBuy customs guide to accurate parcel descriptions, values, import duties and restricted-item checks for UK, EU and other international buyers.",
+    published: "15 September 2026",
+    updated: "15 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy customs",
+    secondaryKeywords: [
+      "PikoBuy customs declaration",
+      "PikoBuy import tax",
+      "PikoBuy customs duty",
+      "PikoBuy prohibited items",
+      "PikoBuy parcel declaration"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Terms of Service, Shipping Terms, Beginner's Guide, Shipping Estimate and Contact page on 15 September 2026. We cross-checked destination-side principles against current GOV.UK guidance for goods sent from abroad and European Commission guidance for online goods arriving from outside the EU. Platform statements, government rules and our practical record-keeping advice are separated. This guide does not promise clearance, give legal advice or recommend an invented declaration value.",
+    sections: [
+      {
+        heading: "The direct answer: customs is a separate decision stage",
+        paragraphs: [
+          "A PikoBuy parcel does not bypass normal import controls. PikoBuy can prepare and dispatch the parcel through an available shipping route, but the destination customs authority decides whether the goods may enter and whether tax, duty or further information is required. PikoBuy's Terms state that cross-border transactions may incur duties, taxes, brokerage fees and other charges, and place those costs on the user. Its Shipping Terms also say PikoBuy does not assume risks arising from customs policies.",
+          "The useful preparation is straightforward: identify every item, retain the price actually paid, use an accurate description and value, check destination and carrier restrictions, and keep the order and parcel records together. Do this before paying for international shipping. Once a parcel is moving, a missing invoice, vague description or prohibited product is harder to correct. No declaration formula based only on parcel weight can replace evidence about the goods inside."
+        ]
+      },
+      {
+        heading: "Separate warehouse approval from customs clearance",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide places warehouse inspection before international parcel submission. The platform says it checks items in, provides photos and performs a defect check; the user then chooses a route and pays international shipping. That sequence provides a final opportunity to confirm what is in the warehouse. It does not mean the items have been approved by the destination country, because import clearance happens later under different rules.",
+          "Treat the warehouse and border as two evidence gates. At the warehouse, verify identity, quantity, visible condition and the parcel list. For the border, verify lawful import, description, value, supporting documents and possible charges. A product can look correct in warehouse photos yet still be restricted by a carrier or customs authority. Conversely, a customs release says the shipment may enter; it does not prove that the seller sent the correct size or that hidden defects are absent."
+        ]
+      },
+      {
+        heading: "Build an item-by-item declaration record",
+        paragraphs: [
+          "Create one line for every different product in the parcel. Record a plain item name, quantity, material or composition when known, intended use where it helps identify the product, purchase value, source order and country of origin if reliable evidence is available. “Two cotton T-shirts” is more useful than “clothes”; “stainless-steel wristwatch” is more useful than “accessory”. Do not guess a material, origin or specification simply to fill a field. Ask for clarification when the source listing does not support it.",
+          "Match this record to the final warehouse parcel rather than to the original shopping plan. An item that was returned should not remain on the declaration, while a duplicate quantity should not disappear because the products look alike. Save warehouse photos and the parcel list beside the purchase records. If customs or the courier requests evidence, a consistent chain from seller order to received item to submitted parcel is easier to explain than screenshots gathered after the tracking stops."
+        ]
+      },
+      {
+        heading: "Use a supportable value, not an online formula",
+        paragraphs: [
+          "Search results and community posts often suggest one declaration amount per kilogram or a narrow number for a whole route. PikoBuy's public pages do not publish a universal formula that makes those figures accurate or safe. Weight describes the parcel's mass; it does not establish what the goods cost. Use transaction records, seller invoices and the requirements shown during the current parcel process to support the information supplied.",
+          "Do not ask for an artificially low value to reduce tax. The European Commission warns that a value much lower than the price paid can lead to seizure, additional costs or a fine. Customs officers may compare the declaration with supporting documents and examine the parcel. An honest value is not a guarantee of instant release, but a fabricated one creates an avoidable inconsistency. If the interface or carrier instruction is unclear, submit a PikoBuy ticket before dispatch rather than copying a stranger's number."
+        ]
+      },
+      {
+        heading: "Budget separately for tax, duty and handling fees",
+        paragraphs: [
+          "International shipping paid to PikoBuy is not necessarily the last charge. PikoBuy's Terms list duties, taxes and brokerage fees as possible user costs. For Great Britain, current GOV.UK guidance says VAT applies to goods sent from abroad under its stated rules, while Customs Duty can apply to excise goods or consignments worth more than £135. The calculation can include the goods and, in relevant cases, postage, packaging and insurance. The courier normally contacts the recipient when money is due.",
+          "For EU destinations, the European Commission says import VAT applies to goods purchased outside the EU regardless of value. Customs duty may also apply above €150, subject to product-specific rules and exceptions, and a postal operator or courier may charge a customs-clearance fee. These are current examples checked on 15 September 2026, not worldwide promises. Rules, rates and payment arrangements can change, so confirm them with the destination's customs or tax authority immediately before shipping."
+        ]
+      },
+      {
+        heading: "Check three different sets of product restrictions",
+        paragraphs: [
+          "A product needs to pass platform, shipping-route and destination-law checks. PikoBuy's Terms prohibit illegal, infringing, fraudulent or improper activity and specifically prohibit products without lawful intellectual-property rights or authorization. The Terms say PikoBuy may cancel orders, refuse service, return or dispose of non-compliant items, with related fees, fines, storage and disposal costs borne by the customer. Do not treat a spreadsheet row or seller listing as proof that an item is lawful to buy or import.",
+          "A product accepted for purchase may still be excluded from a particular air or postal route, while a carrier-accepted product may still require a permit or be prohibited at destination. Batteries, liquids, food, medicines, plants, animal products and branded goods can raise different questions, but the exact rule depends on the item and country. Use the current PikoBuy parcel screen for route eligibility and the destination authority for import legality. When either answer is uncertain, do not submit the parcel."
+        ]
+      },
+      {
+        heading: "Keep consolidation from obscuring the contents",
+        paragraphs: [
+          "Consolidation can place goods from several sellers into one international parcel. PikoBuy's Contact page describes combining items from different sellers, while the Beginner's Guide allows packaging requests such as minimal or reinforced packaging. The practical benefit is a single parcel decision, but the customs record still needs to account for all of its contents. Combining orders does not turn six different products into one generic “package”.",
+          "Resolve returns and missing-item questions before repacking. Then compare the final parcel list with your item-by-item record and warehouse images. If original retail packaging, labels or invoices may be relevant to identification, consider that before asking for removal; this guide cannot determine what documents a specific authority will require. Record why packaging changed and retain the earlier photos. The final description, value and quantity should reflect what actually leaves the warehouse."
+        ]
+      },
+      {
+        heading: "Choose a shipping route without assuming customs immunity",
+        paragraphs: [
+          "PikoBuy's shipping estimator asks for destination, product type, weight and parcel dimensions. Those inputs help compare available transport options, but the public estimator does not promise that any route is duty-free or immune from inspection. The Beginner's Guide says routes differ in delivery time and billing methods. Read the live route description and any compensation terms rather than inferring customs treatment from a marketing label or an old community post.",
+          "PikoBuy states that third-party logistics providers carry its international parcels and identifies confiscation, damage, loss and peak-season delays among cross-border risks. Insurance or compensation terms, when offered, should be checked for the selected route and event; they are not automatic customs clearance. Avoid concentrating more value than you can responsibly document and manage in one parcel. Parcel size can affect shipping cost, while product type, origin, value and local law can affect customs."
+        ]
+      },
+      {
+        heading: "Respond methodically when tracking shows a customs hold",
+        paragraphs: [
+          "Read the exact last tracking event before acting. “Presented to customs”, “clearance information required”, “charges due” and “released” describe different states. Save the wording, timestamp, tracking number and named carrier. Check for an email, text or letter, but verify any payment request through the carrier's known website or contact channel rather than trusting a link in an unexpected message.",
+          "If documents are requested, provide consistent order, payment and item information through the authorized channel. Use a PikoBuy ticket for questions about the warehouse record, parcel data or documents it generated, and contact the destination carrier or authority for its own clearance request. PikoBuy's public Contact page recommends ticket submission. A customs delay has no universal deadline, so avoid inventing one; keep each case reference and ask which specific fact or document remains outstanding."
+        ]
+      },
+      {
+        heading: "Complete this customs checklist before parcel payment",
+        paragraphs: [
+          "Confirm the destination and recipient details; compare every warehouse item with the parcel list; write specific descriptions and quantities; retain support for the purchase value; check platform, route and destination restrictions; estimate tax, duty and carrier handling separately from PikoBuy shipping; and save the route terms visible at submission. If a field requires information you cannot verify, pause and ask rather than inventing an answer. Accuracy is a risk control, not a promise that customs will waive inspection or charges.",
+          "Finally, keep the purchase orders, warehouse photos, final parcel list, payment records and tracking events in one evidence folder until delivery and inspection are complete. FindSpreadsheet is independent from PikoBuy and can help you discover and compare product links, but it cannot approve an import, calculate an account-specific tax bill or guarantee clearance. The practical PikoBuy customs strategy is to make the parcel easy to describe, easy to document and lawful for the chosen destination before it leaves the warehouse."
+        ]
+      }
+    ]
   }
 ];
