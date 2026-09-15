@@ -1,1 +1,23 @@
-/* /index.html 200
+# Keep crawler files as their real static responses before the SPA fallback.
+/sitemap.xml  /sitemap.xml  200
+/robots.txt   /robots.txt   200
+
+# Client-side application routes.
+/categories                 /index.html  200
+/categories/*               /index.html  200
+/products                   /index.html  200
+/articles                   /index.html  200
+/articles/*                 /index.html  200
+/faq                        /index.html  200
+/shoes                      /index.html  200
+/hoodies                    /index.html  200
+/t-shirts                   /index.html  200
+/jackets                    /index.html  200
+/pants                      /index.html  200
+/bags                       /index.html  200
+/watches                    /index.html  200
+/electronics                /index.html  200
+/accessories                /index.html  200
+/find-system                /index.html  200
+/shipping-calculator        /index.html  200
+/*                          /index.html  200
