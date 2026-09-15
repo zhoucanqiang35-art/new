@@ -1,4 +1,8 @@
 @import "tailwindcss";
+/* A definite hero height makes the cover image fill the full research scene,
+   rather than resolving to its shallow intrinsic image height. */
+@media (min-width:801px){.hero{height:748px!important;min-height:748px!important}}
+@media (max-width:800px){.hero{height:620px!important;min-height:620px!important}}
 .longform{padding-top:0!important}
 .article.longform{width:100%!important;max-width:1600px!important}
 .standalone{padding-top:32px!important;padding-bottom:32px!important}.category-directory{width:100%;max-width:none}.category-directory-card{min-height:154px;padding:18px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:16px;align-items:end;background:#fff}.category-directory-card>div{display:grid;align-content:start;gap:8px}.category-directory-card span{color:var(--coral);font-size:10px;font-weight:800}.category-directory-card strong{font-size:21px;letter-spacing:-.045em}.category-directory-card p{margin:0;color:var(--muted);font-size:12px;line-height:1.4}.category-arrow{width:52px!important;min-height:52px!important;padding:0!important;font-size:22px!important;align-self:end}@media(max-width:800px){.standalone{padding-top:24px!important;padding-bottom:24px!important}.category-directory-card{min-height:128px;grid-template-columns:minmax(0,1fr) 46px;padding:15px;gap:12px}.category-directory-card strong{font-size:18px}.category-directory-card p{font-size:11px}.category-arrow{width:46px!important;min-height:46px!important;font-size:20px!important}}
