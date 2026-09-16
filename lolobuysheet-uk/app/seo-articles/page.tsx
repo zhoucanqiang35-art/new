@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-shipping-plan",
+    date: "15 September 2026",
+    title: "LoloBuy Shipping Plan: How to Build a China-to-Home Parcel Before Submission",
+    description: "A practical method for grouping warehouse items, comparing current shipping evidence, and recording a parcel decision before submission.",
+  },
+  {
     href: "/seo-articles/lolobuy-qc-photos-guide",
     date: "13 September 2026",
     title: "LoloBuy QC Photos Guide: How to Inspect a Warehouse Item Before Parcel Submission",

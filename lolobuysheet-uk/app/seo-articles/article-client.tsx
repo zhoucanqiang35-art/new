@@ -22,7 +22,7 @@ export function ArticleClient({ article }: { article: SeoArticle }) {
         <section>
           <h2>Continue your research</h2>
           <p>
-            Use the <Link href="/categories">product categories</Link> to narrow a search, then return to the <Link href="/seo-articles">research library</Link> for the order-research guide. The database search is available from every page header.
+            Start with the <Link href="/seo-articles/lolobuy-product-link-research">product-link research guide</Link>, then use the <Link href="/seo-articles/lolobuy-qc-photos-guide">QC photos guide</Link> when an item reaches the warehouse. You can also browse the <Link href="/categories">product categories</Link> or return to the <Link href="/seo-articles">research library</Link>. The database search is available from every page header.
           </p>
         </section>
         <p className="source-note">{article.sourceNote}</p>
