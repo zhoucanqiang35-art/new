@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>LoloBuy QC and Tracking Tool</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand-logo" href="/"
+          ><img src="/assets/lolobuy-logo.png" alt="LoloBuy"
+        /></a>
+        <nav class="navlinks">
+          <a href="/">Home</a><a href="/categories/">Product categories</a
+          ><a href="/product-details/">Product details</a
+          ><a href="/seo-articles/">SEO articles</a><a href="/faq/">FAQ</a
+          ><a href="/qc-tracker/">QC & tracking</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="shell">
+        <div class="page-intro">
+          <span>QC & TRACKING TOOL</span>
+          <h1>Research QC and check shipment status carefully</h1>
+          <p>
+            Use QC search to find product context. Shipment status is not
+            connected to a live carrier feed in this independent preview.
+          </p>
+        </div>
+        <div class="tool-columns">
+          <section class="tool-panel">
+            <h2>QC product search</h2>
+            <p>
+              Search a product term, then check live listing details and
+              available product context.
+            </p>
+            <form class="searchbox" data-search>
+              <input
+                aria-label="Search for QC context"
+                placeholder="Paste a product name or link term"
+                required
+              /><button>Search QC context</button>
+            </form>
+          </section>
+          <section class="tool-panel">
+            <h2>Shipment lookup</h2>
+            <p>
+              Enter an ID for a transparent result. No carrier status is
+              invented or cached here.
+            </p>
+            <form class="searchbox" data-tracker>
+              <input
+                aria-label="Tracking ID"
+                placeholder="Enter tracking ID"
+              /><button>Check status</button>
+            </form>
+            <p id="tracking-result" class="result">
+              Enter a tracking ID to check its current record.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script src="/assets/app.js"></script>
+    <script src="/assets/pages.js"></script>
+  </body>
+</html>

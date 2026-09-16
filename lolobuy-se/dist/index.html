@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>LoloBuy Spreadsheet 2026 | Product Search & QC Research</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+    <style>
+      .homepage-section {
+        margin-top: 54px;
+      }
+      .kicker {
+        display: block;
+        color: #ff6a35;
+        font-size: 0.74rem;
+        letter-spacing: 0.12em;
+        font-weight: 800;
+        margin-bottom: 7px;
+      }
+      .text-link {
+        color: #c64016;
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .text-link:hover {
+        text-decoration: underline;
+      }
+      .section-copy {
+        margin: -6px 0 16px;
+        color: #667085;
+        max-width: 650px;
+      }
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+      }
+      .category-grid a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid #e3e8ef;
+        border-radius: 11px;
+        padding: 14px 15px;
+        color: #344054;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .category-grid a:hover {
+        border-color: #ffb39a;
+        color: #c64016;
+        box-shadow: 0 8px 20px #1b315010;
+      }
+      .category-grid span,
+      .home-article-grid a b {
+        color: #ff6a35;
+      }
+      .home-article-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .home-article-grid article {
+        background: #fff;
+        border: 1px solid #e3e8ef;
+        border-radius: 15px;
+        padding: 22px;
+        min-height: 250px;
+        display: flex;
+        flex-direction: column;
+      }
+      .home-article-grid span {
+        color: #ff6a35;
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+        font-weight: 800;
+      }
+      .home-article-grid h3 {
+        font-size: 1.25rem;
+        line-height: 1.16;
+        letter-spacing: -0.035em;
+        margin: 14px 0 9px;
+      }
+      .home-article-grid p {
+        margin: 0;
+        color: #667085;
+        font-size: 0.94rem;
+      }
+      .home-article-grid a {
+        margin-top: auto;
+        padding-top: 18px;
+        color: #344054;
+        font-weight: 800;
+        text-decoration: none;
+      }
+      .home-article-grid a:hover {
+        color: #c64016;
+      }
+      @media (max-width: 900px) {
+        .category-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .home-article-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 680px) {
+        .homepage-section {
+          margin-top: 38px;
+        }
+        .category-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .home-article-grid {
+          grid-template-columns: 1fr;
+        }
+        .text-link {
+          display: inline-block;
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <style>
+      .category-grid {
+        background: #0c0b12;
+        padding: 18px;
+        border-radius: 18px;
+        gap: 16px;
+      }
+      .category-grid .category-card {
+        min-height: 190px;
+        padding: 21px;
+        background: #12111d;
+        border: 1px solid #2a2940;
+        border-radius: 16px;
+        color: #f8fafc;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        box-shadow: none;
+        transition:
+          border-color 0.18s,
+          transform 0.18s,
+          background 0.18s;
+      }
+      .category-grid .category-card:hover {
+        background: #1b1922;
+        border-color: #e3a000;
+        color: #fff;
+        box-shadow: none;
+        transform: translateY(-3px);
+      }
+      .category-copy {
+        display: block;
+        min-width: 0;
+      }
+      .category-copy small,
+      .category-copy strong,
+      .category-copy em {
+        display: block;
+      }
+      .category-copy small {
+        color: #e3a000;
+        font-size: 0.69rem;
+        letter-spacing: 0.08em;
+        font-weight: 800;
+        margin-bottom: 13px;
+      }
+      .category-copy strong {
+        font-size: 1.05rem;
+        line-height: 1.15;
+      }
+      .category-copy em {
+        margin-top: 9px;
+        color: #9491a7;
+        font-size: 0.84rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1.42;
+      }
+      .category-grid .category-arrow {
+        display: grid;
+        place-items: center;
+        flex: 0 0 37px;
+        width: 37px;
+        height: 37px;
+        border-radius: 10px;
+        background: #302510;
+        color: #e3a000;
+        font-size: 1.22rem;
+        line-height: 1;
+      }
+      .category-card:hover .category-arrow {
+        background: #e3a000;
+        color: #11101a;
+      }
+      @media (max-width: 900px) {
+        .category-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 680px) {
+        .category-grid {
+          padding: 12px;
+          grid-template-columns: 1fr;
+        }
+        .category-grid .category-card {
+          min-height: 136px;
+          padding: 17px;
+        }
+        .category-copy em {
+          font-size: 0.88rem;
+        }
+      }
+    </style>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand-logo" href="/"
+          ><img src="/assets/lolobuy-logo.png" alt="LoloBuy"
+        /></a>
+        <nav class="navlinks">
+          <a href="/">Home</a><a href="/categories/">Product categories</a
+          ><a href="/product-details/">Product details</a
+          ><a href="/seo-articles/">SEO articles</a><a href="/faq/">FAQ</a
+          ><a href="/qc-tracker/">QC & tracking</a>
+        </nav>
+        <select class="language" id="language" aria-label="Select language">
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="pl">Polski</option>
+          <option value="sv">Svenska</option>
+        </select>
+      </div>
+    </header>
+    <style>
+      .category-grid .category-copy {
+        color: #f8fafc;
+      }
+      .category-grid .category-copy small {
+        color: #e3a000;
+      }
+      .category-grid .category-copy em {
+        color: #9491a7;
+      }
+      .database-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        padding: 10px 15px;
+        border-radius: 9px;
+        background: #fff;
+        color: #17233b;
+        font-weight: 800;
+        text-decoration: none;
+        border: 1px solid #d7e0f1;
+      }
+      .database-button:hover {
+        border-color: #ffb39a;
+        color: #c64016;
+      }
+    </style>
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow" data-t="eyebrow">
+          Independent LoloBuy research • Europe & North America
+        </div>
+        <h1 data-t="title">
+          Find the right spreadsheet product before you choose a buying route.
+        </h1>
+        <p data-t="lead">
+          Search a product once, then open matching FindSpreadsheet results
+          directly.
+        </p>
+        <form class="searchbox" data-search>
+          <input
+            aria-label="Search products"
+            placeholder="Search shoes, jacket, wallet, earbuds…"
+            data-ph="ph"
+            required
+          /><button type="submit" data-t="search">Search FindSpreadsheet</button>
+        </form>
+        <a class="database-button" href="https://findspreadsheet.com/"
+          data-t="db">Open database</a
+        >
+        <p class="small-note" data-t="note">
+          Independent research preview. Check product availability, pricing and
+          route conditions live.
+        </p>
+      </div>
+    </section>
+    <style>
+      @media (max-width: 680px) {
+        .hero {
+          padding: 29px 0;
+        }
+        .hero h1 {
+          font-size: 2.15rem;
+          margin: 8px 0 10px;
+        }
+        .hero p {
+          font-size: 0.96rem;
+          margin: 0 0 9px;
+        }
+        .database-button {
+          width: 100%;
+          margin-top: 7px;
+        }
+        .small-note {
+          margin-top: 8px !important;
+        }
+        .main {
+          padding: 26px 0 32px;
+        }
+        .homepage-section {
+          margin-top: 28px;
+        }
+        .section-head h2 {
+          font-size: 1.37rem;
+        }
+        .section-copy {
+          font-size: 0.9rem;
+          margin: 0 0 10px;
+        }
+        .feature-grid,
+        .home-article-grid {
+          display: grid;
+          grid-template-columns: none;
+          grid-template-rows: repeat(2, minmax(126px, 1fr));
+          grid-auto-flow: column;
+          grid-auto-columns: minmax(170px, 72vw);
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          scroll-snap-type: x mandatory;
+          padding-bottom: 5px;
+        }
+        .feature-card,
+        .home-article-grid article {
+          min-height: 126px;
+          padding: 15px;
+          scroll-snap-align: start;
+        }
+        .feature-card h3 {
+          margin: 7px 0 5px;
+          font-size: 1rem;
+        }
+        .feature-card p {
+          font-size: 0.8rem;
+        }
+        .home-article-grid {
+          grid-template-rows: 1fr;
+          grid-auto-columns: minmax(225px, 78vw);
+        }
+        .home-article-grid article {
+          min-height: 194px;
+        }
+        .home-article-grid h3 {
+          font-size: 1.08rem;
+          margin: 9px 0 6px;
+        }
+        .home-article-grid p {
+          font-size: 0.84rem;
+        }
+        .home-article-grid a {
+          padding-top: 10px;
+        }
+        .category-grid {
+          grid-template-columns: none !important;
+          grid-template-rows: repeat(2, 128px);
+          grid-auto-flow: column;
+          grid-auto-columns: minmax(184px, 69vw);
+          overflow-x: auto;
+          overscroll-behavior-x: contain;
+          scroll-snap-type: x mandatory;
+          padding: 11px !important;
+          gap: 10px;
+        }
+        .category-grid .category-card {
+          min-height: 128px !important;
+          padding: 14px !important;
+          scroll-snap-align: start;
+        }
+        .category-copy small {
+          font-size: 0.61rem;
+          margin-bottom: 7px;
+        }
+        .category-copy strong {
+          font-size: 0.95rem;
+        }
+        .category-copy em {
+          margin-top: 5px;
+          font-size: 0.76rem !important;
+        }
+        .category-grid .category-arrow {
+          width: 31px;
+          height: 31px;
+          flex-basis: 31px;
+        }
+        .footer {
+          padding: 14px 0;
+        }
+        .footer .shell {
+          gap: 8px;
+        }
+        .footer-logo {
+          width: 72px;
+        }
+      }
+    </style>
+    <main class="main">
+      <div class="shell">
+        <section>
+          <div class="section-head">
+            <div><h2>Choose the task you need now.</h2></div>
+            <p>
+              Each card opens its own page, then keeps the next action focused
+              and short.
+            </p>
+          </div>
+          <div class="feature-grid">
+            <a class="feature-card" href="/categories/"
+              ><span>01 / DIRECTORY</span>
+              <h3>Product categories</h3>
+              <p>
+                Browse ten focused categories, then search the matching database
+                results.
+              </p></a
+            >
+            <a class="feature-card" href="/product-details/"
+              ><span>02 / PRODUCT</span>
+              <h3>Product details</h3>
+              <p>
+                Start with product wording, price context and the checks worth
+                making.
+              </p></a
+            >
+            <a class="feature-card" href="/seo-articles/"
+              ><span>03 / GUIDE</span>
+              <h3>SEO articles</h3>
+              <p>
+                Read practical buying, QC and shipping explainers with clear
+                limitations.
+              </p></a
+            >
+            <a class="feature-card" href="/faq/"
+              ><span>04 / ANSWERS</span>
+              <h3>FAQ</h3>
+              <p>
+                Get short answers before moving to product research or a parcel
+                decision.
+              </p></a
+            >
+            <a class="feature-card" href="/qc-tracker/"
+              ><span>05 / TOOL</span>
+              <h3>QC & tracking</h3>
+              <p>
+                Open QC search and a transparent shipment-status lookup surface.
+              </p></a
+            >
+            <a class="feature-card accent" href="/tools/lolobuy-search/"
+              ><span>06 / SEARCH</span>
+              <h3>Product search tool</h3>
+              <p>
+                Enter a specific product term and continue straight to
+                FindSpreadsheet.
+              </p></a
+            >
+          </div>
+        </section>
+        <section class="homepage-section" aria-labelledby="category-title">
+          <div class="section-head">
+            <div>
+              <span class="kicker">PRODUCT CATEGORIES</span>
+              <h2 id="category-title">
+                Start with a focused product category.
+              </h2>
+            </div>
+            <a class="text-link" href="/categories/">View all categories</a>
+          </div>
+          <p class="section-copy">
+            Choose a category to open the matching FindSpreadsheet search.
+            Product availability and pricing stay on the main database.
+          </p>
+          <div class="category-grid">
+            <a class="category-card" href="/categories/shoes/"
+              ><span class="category-copy"
+                ><small>01 / FOOTWEAR</small><strong>Shoes</strong
+                ><em>Premium footwear collections and latest styles.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/hoodies-sweaters/"
+              ><span class="category-copy"
+                ><small>02 / LAYERS</small><strong>Hoodies / Sweaters</strong
+                ><em
+                  >Cosy hoodies and stylish sweaters for every season.</em
+                ></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/t-shirts/"
+              ><span class="category-copy"
+                ><small>03 / TOPS</small><strong>T-Shirts</strong
+                ><em>Trendy graphic tees and essential basics.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/jackets/"
+              ><span class="category-copy"
+                ><small>04 / OUTERWEAR</small><strong>Jackets</strong
+                ><em
+                  >Outerwear from bombers to parkas for all weather.</em
+                ></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/pants-shorts/"
+              ><span class="category-copy"
+                ><small>05 / BOTTOMS</small><strong>Pants / Shorts</strong
+                ><em>Bottoms from classic pants to athletic shorts.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/headwear/"
+              ><span class="category-copy"
+                ><small>06 / HEADWEAR</small><strong>Headwear</strong
+                ><em>Caps, beanies and hats to complete your look.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/sets/"
+              ><span class="category-copy"
+                ><small>07 / SETS</small><strong>Sets</strong
+                ><em>Coordinated outfit sets for effortless style.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/underwear-underpants/"
+              ><span class="category-copy"
+                ><small>08 / ESSENTIALS</small
+                ><strong>Underwear / Underpants</strong
+                ><em>Comfort essentials and premium undergarments.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/jerseys/"
+              ><span class="category-copy"
+                ><small>09 / SPORT</small><strong>Jersey</strong
+                ><em>Sports jerseys and athletic performance wear.</em></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+            <a class="category-card" href="/categories/accessories/"
+              ><span class="category-copy"
+                ><small>10 / ACCESSORIES</small><strong>Accessories</strong
+                ><em
+                  >Bags, jewelry and finishing touches for any outfit.</em
+                ></span
+              ><b class="category-arrow" aria-hidden="true">→</b></a
+            >
+          </div>
+        </section>
+        <section class="homepage-section" aria-labelledby="articles-title">
+          <div class="section-head">
+            <div>
+              <span class="kicker">SEO ARTICLES</span>
+              <h2 id="articles-title">
+                Useful context before you search or ship.
+              </h2>
+            </div>
+            <a class="text-link" href="/seo-articles/">Read all articles</a>
+          </div>
+          <div class="home-article-grid">
+            <article>
+              <span>BUYING BASICS</span>
+              <h3>How LoloBuy works: a research-first guide</h3>
+              <p>
+                Understand the hand-off from product research to ordering,
+                inspection and parcel choices—without treating a guide as a live
+                service promise.
+              </p>
+              <a href="/seo-articles/how-lolobuy-works/"
+                >Read the guide <b>→</b></a
+              >
+            </article>
+            <article>
+              <span>QC EXPLAINER</span>
+              <h3>What QC photos can help you assess</h3>
+              <p>
+                Use inspection images to review visible details, then keep size,
+                materials and live seller information in your product research
+                checklist.
+              </p>
+              <a href="/qc-tracker/">Open QC guide <b>→</b></a>
+            </article>
+            <article>
+              <span>PARCEL PLANNING</span>
+              <h3>Plan shipping after product decisions</h3>
+              <p>
+                Compare your parcel options only after the product, size and
+                inspection outcome are clear. Shipping conditions can change by
+                destination.
+              </p>
+              <a href="/faq/">Read parcel FAQ <b>→</b></a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="shell">
+        <img
+          src="/assets/lolobuy-logo.png"
+          alt="LoloBuy"
+          class="footer-logo"
+        /><span
+          >Independent research preview. Not operated by or affiliated with
+          LoloBuy.</span
+        >
+      </div>
+    </footer>
+    <script src="/assets/app.js?v=21"></script>
+  </body>
+</html>

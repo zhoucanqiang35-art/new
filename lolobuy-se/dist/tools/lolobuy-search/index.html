@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>LoloBuy Product Search Tool</title>
+    <link rel="stylesheet" href="/assets/site.css" />
+  </head>
+  <body>
+    <header class="top">
+      <div class="shell nav">
+        <a class="brand-logo" href="/"
+          ><img src="/assets/lolobuy-logo.png" alt="LoloBuy"
+        /></a>
+        <nav class="navlinks">
+          <a href="/">Home</a><a href="/categories/">Product categories</a
+          ><a href="/product-details/">Product details</a
+          ><a href="/seo-articles/">SEO articles</a><a href="/faq/">FAQ</a
+          ><a href="/qc-tracker/">QC & tracking</a>
+        </nav>
+      </div>
+    </header>
+    <section class="tool-hero">
+      <div class="shell">
+        <div class="eyebrow">INDEPENDENT PRODUCT SEARCH</div>
+        <h1>
+          Search a specific product, then open exact FindSpreadsheet results.
+        </h1>
+        <p>The product wording is kept in the next search step.</p>
+      </div>
+    </section>
+    <main class="main">
+      <div class="shell">
+        <section class="tool-surface">
+          <label for="query">Product search</label>
+          <form class="searchbox" data-search>
+            <input
+              id="query"
+              aria-label="Product search"
+              placeholder="Search shoes, jacket, wallet, earbuds…"
+              required
+              autofocus
+            /><button>Search FindSpreadsheet</button>
+          </form>
+          <div class="examples">
+            <button type="button" data-query="shoes">Shoes</button
+            ><button type="button" data-query="hoodies">Hoodies</button
+            ><button type="button" data-query="wireless earbuds">
+              Wireless earbuds</button
+            ><button type="button" data-query="wallet">Wallet</button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
