@@ -7,11 +7,12 @@ import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about packaging, customs preparation, parcel tracking, forwarding, payments, shipping estimates, QC photos and warehouse returns.",
+  description: "Read independent PikoBuy guides about warehouse checks, packaging, customs preparation, tracking, forwarding, payments, shipping estimates and returns.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: PackageSearch, tag: "WAREHOUSE PROCESS", title: "PikoBuy Warehouse Guide 2026: Inspect, Decide, Then Ship", description: "Follow the warehouse evidence, return, packaging and parcel decisions without inventing storage limits or service promises.", href: "/pikobuy-warehouse", time: "10 min read" },
   { icon: Box, tag: "PARCEL PACKAGING", title: "PikoBuy Packaging Guide 2026: Minimal vs Reinforced Requests", description: "Choose packaging after warehouse checks, preserve return eligibility and recheck packed weight and dimensions before shipping.", href: "/pikobuy-packaging", time: "10 min read" },
   { icon: Landmark, tag: "CUSTOMS PREPARATION", title: "PikoBuy Customs Guide 2026: Prepare an Honest Parcel Record", description: "Prepare accurate contents and value evidence, understand carrier and customs roles, and avoid unsupported tax or clearance promises.", href: "/pikobuy-customs", time: "10 min read" },
   { icon: MapPinned, tag: "PARCEL TRACKING", title: "PikoBuy Tracking Guide 2026: Read Parcel Updates Without Guessing", description: "Know when tracking information should appear, how to separate parcel stages and when a missing update belongs with official support.", href: "/pikobuy-tracking", time: "10 min read" },
@@ -33,7 +34,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 14 SEPTEMBER 2026</p><h2>Choose parcel packaging without guessing.</h2><p>Compare minimal and reinforced requests, preserve return-sensitive packaging and recheck the final parcel data.</p></div><Link href="/pikobuy-packaging">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 16 SEPTEMBER 2026</p><h2>Use the warehouse as a decision checkpoint.</h2><p>Match the item, inspect the evidence, protect the return window and submit only a verified parcel.</p></div><Link href="/pikobuy-warehouse">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>

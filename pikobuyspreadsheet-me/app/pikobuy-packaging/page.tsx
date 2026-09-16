@@ -105,6 +105,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="PACKAGING GUIDE" title={title} intro="PikoBuy packaging is a parcel decision made after warehouse inspection: protect the goods, preserve anything needed for a possible return, and then recheck the packed weight and dimensions. This guide explains when minimal or reinforced packaging may fit without promising a saving or damage-free delivery." sections={sections} reviewedDate="Reviewed 14 September 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-warehouse",label:"Complete the warehouse checks before packaging"},
   {href:"/pikobuy-return-policy",label:"Protect return eligibility before changing packaging"},
   {href:"/qc-guide",label:"Review warehouse photos before parcel submission"},
   {href:"/pikobuy-shipping-calculator",label:"Re-estimate shipping with packed dimensions"},

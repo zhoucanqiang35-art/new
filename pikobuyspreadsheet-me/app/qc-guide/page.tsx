@@ -57,6 +57,7 @@ export default function Page(){return <GuidePage pageId="qc-guide" kicker="QUALI
     "Remember: passing a photo review means the visible evidence is acceptable. It is not a guarantee of authenticity, hidden condition or future performance."
   ]}
 ]} relatedLinks={[
+  {href:"/pikobuy-warehouse",label:"Follow the full PikoBuy warehouse workflow"},
   {href:"/pikobuy-packaging",label:"Choose parcel packaging after QC is complete"},
   {href:"/pikobuy-return-policy",label:"PikoBuy return policy and warehouse deadline"},
   {href:"/buyer-checklist",label:"Seven-point buyer checklist"},
