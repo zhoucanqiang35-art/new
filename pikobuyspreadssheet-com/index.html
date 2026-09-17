@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Independent Pikobuy spreadsheet research hub: search questions, QC checks, sizing, source links and shipment-planning prompts.">
+    <title>Pikobuy Spreadsheet Research Hub | Preview</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Pikobuy Spreadsheet Research Hub home"><img src="assets/pikobuy-logo.png" alt="Pikobuy Spreadsheet"></a>
+      <nav id="nav" aria-label="Primary navigation"></nav>
+      <label class="lang-wrap"><span class="visually-hidden">Language</span><select id="language" aria-label="Language"></select></label>
+    </header>
+
+    <main id="top">
+      <section class="hero section-shell">
+        <div class="hero-copy">
+          <p class="eyebrow" id="eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p class="lead" id="hero-lead"></p>
+          <form id="search-form" class="search-box">
+            <label class="visually-hidden" for="search-input">Search</label>
+            <input id="search-input" required autocomplete="off">
+            <button type="submit" id="search-button"></button>
+          </form>
+          <p class="small-note" id="search-note"></p>
+          <div class="hero-actions"><a class="button primary" href="#questions" id="questions-cta"></a><a class="button secondary" href="https://findspreadsheet.com/" id="database-cta"></a></div>
+        </div>
+        <div class="hero-art"><img id="hero-image" src="assets/research-hero.jpg" width="1536" height="1024" alt=""></div>
+      </section>
+
+      <section class="trust-strip section-shell" id="facts"><div id="fact-cards"></div></section>
+
+      <section class="home-pages section-shell" id="home-pages"><div class="section-heading"><p class="eyebrow" id="home-pages-kicker"></p><h2 id="home-pages-title"></h2></div><div class="card-grid" id="home-page-cards"></div></section>
+
+      <section class="section-shell question-section" id="questions">
+        <div class="section-heading"><p class="eyebrow" id="question-kicker"></p><h2 id="question-title"></h2><p id="question-copy"></p></div>
+        <div class="question-layout"><div id="question-list" class="question-list" role="tablist" aria-label="Questions"></div><article id="answer-panel" class="answer-panel" aria-live="polite"></article></div>
+      </section>
+
+      <section class="paths section-shell" id="paths"><div class="section-heading"><p class="eyebrow" id="path-kicker"></p><h2 id="path-title"></h2></div><div class="card-grid" id="path-cards"></div></section>
+
+      <section class="process section-shell" id="process"><div class="section-heading"><p class="eyebrow" id="process-kicker"></p><h2 id="process-title"></h2><p id="process-copy"></p></div><ol id="process-steps"></ol></section>
+
+      <section class="region-section section-shell" id="regions"><div><p class="eyebrow" id="region-kicker"></p><h2 id="region-title"></h2><p id="region-copy"></p></div><div class="region-card"><div class="region-dots"><i></i><i></i><i></i><i></i><i></i></div><p id="region-note"></p></div></section>
+
+      <section class="final-section section-shell"><div><p class="eyebrow" id="final-kicker"></p><h2 id="final-title"></h2><p id="final-copy"></p></div><a class="button primary" href="https://findspreadsheet.com/" id="final-cta"></a></section>
+    </main>
+    <footer><p id="footer-copy"></p><p id="preview-note"></p></footer>
+    <script src="app.js?v=11"></script>
+  </body>
+</html>
