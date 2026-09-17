@@ -11,8 +11,9 @@ import { guidePartTen } from "./guides-part-ten";
 import { guidePartEleven } from "./guides-part-eleven";
 import { guidePartTwelve } from "./guides-part-twelve";
 import { guidePartThirteen } from "./guides-part-thirteen";
+import { guidePartFourteen } from "./guides-part-fourteen";
 
-export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide"] as const;
+export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide"] as const;
 export type GuideSlug = typeof guideOrder[number];
 
 export type GuideSection = { heading: string; paragraphs: string[]; checklist?: string[] };
@@ -31,4 +32,4 @@ export type Guide = {
   cta?: { title: string; text: string; href: string; label: string };
 };
 
-export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen };
+export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen, ...guidePartFourteen };

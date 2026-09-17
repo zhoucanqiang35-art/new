@@ -9,10 +9,11 @@ import { guideTenTranslations } from "./guide-ten-translations";
 import { guideElevenTranslations } from "./guide-eleven-translations";
 import { guideTwelveTranslations } from "./guide-twelve-translations";
 import { guideThirteenTranslations } from "./guide-thirteen-translations";
+import { guideFourteenTranslations } from "./guide-fourteen-translations";
 import type { Locale } from "./locales";
 
 /** Translate editorial copy while preserving the exact page structure. */
 export function tr(locale: Locale, text: string): string {
   if (locale === "en") return text;
-  return guideThirteenTranslations[locale]?.[text] ?? guideTwelveTranslations[locale]?.[text] ?? guideElevenTranslations[locale]?.[text] ?? guideTenTranslations[locale]?.[text] ?? guideNineTranslations[locale]?.[text] ?? guideEightTranslations[locale]?.[text] ?? guideSevenTranslations[locale]?.[text] ?? guideSixTranslations[locale]?.[text] ?? guideFiveTranslations[locale]?.[text] ?? guideFourTranslations[locale]?.[text] ?? generatedTranslations[locale]?.[text] ?? text;
+  return guideFourteenTranslations[locale]?.[text] ?? guideThirteenTranslations[locale]?.[text] ?? guideTwelveTranslations[locale]?.[text] ?? guideElevenTranslations[locale]?.[text] ?? guideTenTranslations[locale]?.[text] ?? guideNineTranslations[locale]?.[text] ?? guideEightTranslations[locale]?.[text] ?? guideSevenTranslations[locale]?.[text] ?? guideSixTranslations[locale]?.[text] ?? guideFiveTranslations[locale]?.[text] ?? guideFourTranslations[locale]?.[text] ?? generatedTranslations[locale]?.[text] ?? text;
 }

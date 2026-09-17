@@ -47,7 +47,7 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 624);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 648);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
@@ -60,6 +60,26 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-italy-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-netherlands-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-spain-guide/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-sweden-guide/);
+});
+
+test("publishes the Sweden guide with crawlable article metadata", async () => {
+  const response = await request("/guide/lolobuy-sweden-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /LoloBuy Sweden guide 2026/);
+  assert.match(html, /https:\/\/schema\.org/);
+  assert.match(html, /Article/);
+  assert.match(html, /datePublished/);
+  assert.match(html, /name=["']keywords["'][^>]+LoloBuy Sweden/i);
+  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-sweden-guide/i);
+  assert.match(html, /Swedish Customs/);
+  assert.match(html, /1 July 2026/);
+  assert.match(html, /1 November 2026/);
+  assert.match(html, /SEK 1,655\.30/);
+  assert.match(html, /Browse the product database/);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-sweden-guide["']/i);
+  assert.doesNotMatch(html, /noindex/i);
 });
 
 test("publishes the Spain guide with crawlable article metadata", async () => {
