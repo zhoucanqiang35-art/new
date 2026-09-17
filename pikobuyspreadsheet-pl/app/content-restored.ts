@@ -442,5 +442,123 @@ const damagedParcelGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide];
+const missingItemGuide: Guide = {
+  slug: "pikobuy-missing-item-from-parcel",
+  eyebrow: "Missing contents",
+  title: "PikoBuy Missing Item From Parcel: A Weight and Evidence Checklist",
+  seoTitle: "PikoBuy Missing Item From Parcel: Evidence Guide",
+  description: "Trace a missing PikoBuy parcel item through the order, warehouse, packing and delivery records, using weight as supporting evidence rather than automatic proof.",
+  readTime: "9 min read",
+  updated: "Updated 17 September 2026",
+  publishedDate: "2026-09-17",
+  modifiedDate: "2026-09-17",
+  editorialNote: "This independent guide was checked against PikoBuy’s public User Registration Agreement, Shipping Terms, Returns & Exchanges policy and Beginner Guide on 17 September 2026. It cannot inspect an order, determine where an item disappeared or promise compensation, and it does not represent PikoBuy, a seller, carrier or insurer.",
+  intro: [
+    "Finding a PikoBuy missing item from parcel is not enough to show when or where it went missing. The useful investigation follows the item through four records: what was ordered, what entered the warehouse, what was packed, and what was present when the delivered parcel was opened.",
+    "PikoBuy’s public terms treat several situations differently. The Shipping Terms say missing goods identified when forwarded items reach the warehouse should be checked with the sender. The User Registration Agreement says international parcels are carried by third-party logistics providers, tells recipients to inspect outer packaging at delivery, and lists some delivery-shortage situations among its liability exclusions.",
+    "Use this checklist to build a factual timeline, compare quantities and weights, preserve the sealed opening sequence and ask support one answerable question. Weight can strengthen or weaken a theory, but it cannot by itself prove who removed an item or whether an item was packed in the first place.",
+  ],
+  visual: {
+    src: "/pikobuy-missing-item-evidence-chain.svg",
+    alt: "Evidence chain for tracing a missing PikoBuy parcel item from order to warehouse, packed parcel and delivered unboxing",
+    caption: "An original evidence chain: reconcile the order, warehouse record, packing record and delivered contents before assigning a cause.",
+  },
+  sections: [
+    {
+      heading: "Identify the exact missing unit before making a claim",
+      paragraphs: [
+        "Start with the order record, not the empty space in the box. Write the order or item identifier, seller, selected variation, quantity paid for and every component the live listing said was included. Separate a missing purchased item from optional packaging, a free gift, a removable accessory or a seller image that was illustrative rather than a contents list.",
+        "For multipacks, count individual units and retail packs separately. ‘One sock set is missing’ is ambiguous if the order was for two packs of five pairs. A useful statement is: ‘Order item A shows quantity two; the warehouse record appears to show two sealed packs; the delivered parcel contained one sealed pack.’ Keep the original listing screenshot and payment record with that statement.",
+        "If the listing changed or disappeared, do not reconstruct its contents from memory. Use saved order details and ask support what quantity was recorded at purchase. This prevents a genuine listing misunderstanding from being reported as a transport shortage.",
+      ],
+      bullets: [
+        "Order and item identifiers",
+        "Paid quantity and selected variation",
+        "Included parts supported by the saved listing",
+        "Exact delivered count using the same unit",
+      ],
+    },
+    {
+      heading: "Locate the first record where the item is absent",
+      paragraphs: [
+        "Arrange the evidence in order: seller dispatch or domestic tracking, warehouse receipt, inspection photos, any additional detailed photos, parcel submission list, packed-parcel photo, packed weight and delivered opening. Mark the last stage where the item is visible or recorded and the first stage where it is absent. Do not skip an uncertain stage by assuming the missing item must have reached it.",
+        "PikoBuy’s Shipping Terms specifically address goods that customers forward to the warehouse. They say forwarded goods are unpacked and inspected and that, if goods are missing when the warehouse receives them, the user should contact the sender for verification; PikoBuy says it is not liable for missing items not caused by PikoBuy. This inbound-forwarding case is different from a purchased item shown in warehouse records but absent after international delivery.",
+        "Warehouse photographs can support visible quantity and identity only when the relevant items and angles are clear. The same terms say professional inspection cannot be provided for special or professional goods. A sealed box photographed from outside does not prove every component inside it, and a group photo should not be treated as an itemised packing certificate unless the interface explicitly provides one.",
+      ],
+    },
+    {
+      heading: "Check whether anything was deliberately removed",
+      paragraphs: [
+        "A part that is absent at delivery was not necessarily lost. PikoBuy’s User Registration Agreement says sensitive items including essential oils, care solutions, lubricants, batteries and glue may be removed to support delivery. If the missing object matches a sensitive component, check the order notes, parcel messages and route warnings for a removal record before opening a shortage case.",
+        "Confirm whether the item was removed, returned to warehouse inventory, discarded under an accepted instruction or excluded from the submitted parcel. Ask what happened to the exact component and whether the action was shown before payment. Do not assume that removal makes the remaining product eligible for every carrier or destination; route acceptance remains a separate question.",
+        "Customs examination is another possible hand-off, but a customs scan alone does not prove that an authority removed the item. Keep any official inspection, resealing or seizure notice. PikoBuy’s agreement says sensitive parcels may be inspected and that it does not guarantee customs clearance, so distinguish an observed customs action from speculation based only on a tracking gap.",
+      ],
+    },
+    {
+      heading: "Preserve a continuous delivery and unboxing record",
+      paragraphs: [
+        "Before opening, photograph all sides of the delivered parcel, including the shipping label, seals, tape joins, punctures and any place that appears reopened. PikoBuy’s agreement tells recipients to check outer packaging when signing and to contact customer service immediately if a problem appears after signing. If the carrier offers a delivery notation or damage report, save it, but do not assume every carrier provides the same procedure.",
+        "When practical, make one continuous video that begins with the sealed label and all sides, then shows each layer of packaging and every item removed. Lay the contents out without discarding filler, inner bags or small accessories. Photograph empty compartments and any mismatched seal. Keep private address and telephone details inside the official case rather than posting the raw video publicly.",
+        "Do not stage a second opening or rearrange contents to make the shortage easier to see. Preserve the original file and its timestamp. A clear chain from sealed parcel to complete contents is stronger than many disconnected close-ups, though it still cannot prove what happened before the recording began.",
+      ],
+      bullets: [
+        "All parcel sides, label, seals and visible damage",
+        "One continuous opening sequence when practical",
+        "Every item, inner bag, filler and empty compartment",
+        "Original files plus the delivery and recording times",
+      ],
+    },
+    {
+      heading: "Use weight as a cross-check, not a verdict",
+      paragraphs: [
+        "Collect the warehouse or packed-parcel weight shown for the shipment and, if safe and practical, weigh the delivered parcel with all contents and packaging retained. Use the same unit and record the scale display in a photograph or video. Note whether the published figure was estimated or final, whether outer packaging changed, and whether customs or a carrier added tape or materials.",
+        "A meaningful difference can support further investigation, especially when the missing item has a known measured weight. But there is no universal difference threshold in the public PikoBuy pages reviewed for this guide. Scales have different accuracy, figures may be rounded, packaging can be wet or altered, and product weights can vary. Do not subtract a seller’s approximate product weight and call the result proof.",
+        "An unchanged weight does not close the case either. PikoBuy’s User Registration Agreement lists intact, unopened and unreduced-weight mail with short or damaged contents among situations where it disclaims responsibility when the cause is not attributable to PikoBuy. That wording is a reason to preserve more than weight—not a factual determination that every intact parcel claim fails.",
+      ],
+    },
+    {
+      heading: "Open the right type of case promptly",
+      paragraphs: [
+        "If the item was never shown or recorded at warehouse arrival, ask for an inbound or seller-stage review. If it was present in warehouse evidence but not listed in the submitted parcel, ask about parcel selection or an intentional removal. If it appears in the packed record but not in a documented delivered opening, provide the delivery and unboxing evidence for a logistics review.",
+        "PikoBuy says users may authorize it to communicate about a claim with the third-party logistics provider, while compensation follows that provider’s standards. The public agreement also says after-sales service must be requested within its validity period, calculated from delivery days and receipt-confirmation time, but it does not publish one fixed universal deadline for every delivered shortage. Contact official support immediately and ask for the exact deadline and documents for the case.",
+        "Do not present the warehouse five-day return rule as the delivery-shortage deadline. The Returns & Exchanges page describes eligible seller returns within 120 hours after an order first changes to In Warehouse. A shortage noticed after international delivery has a different fact pattern and needs the current parcel after-sales instructions.",
+      ],
+    },
+    {
+      heading: "Send a compact quantity-reconciliation report",
+      paragraphs: [
+        "Lead with the parcel number, route, destination and delivery time. Name the missing item and paid quantity, then show the four-stage reconciliation: ordered, warehouse, packed and delivered. Attach only the strongest files in chronological order, while retaining originals. Ask support to confirm the recorded packed contents, any removal note, the applicable carrier procedure and the next formal step.",
+        "Keep facts and inferences separate. Write ‘the warehouse image dated 10 September shows two labelled units; the continuous opening on 16 September shows one’ rather than ‘the warehouse stole one.’ If the photograph is unclear, say so. Neutral language lets each party compare its own scan, weight and handling records without first disputing an unsupported accusation.",
+        "A complete evidence pack cannot guarantee recovery or compensation. It can reveal that the issue began before international shipping, that a component was intentionally removed, or that the delivered parcel record needs a carrier review. This guide reflects public PikoBuy pages checked on 17 September 2026; live order records, route terms and written case instructions take priority over a static article.",
+      ],
+      bullets: [
+        "One sentence naming the exact shortage",
+        "Ordered, warehouse, packed and delivered quantities",
+        "Chronological photos, video, weight and tracking evidence",
+        "A direct question about deadline, documents and resolution",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/pikobuy-parcel-damaged-on-arrival", label: "Use the sealed unboxing checklist", note: "Document packaging and the opening sequence before contents are moved or discarded." },
+    { href: "/pikobuy-qc-photo-guide", label: "Interpret warehouse QC photos carefully", note: "Confirm what is visible without treating a sealed package or unclear angle as proof of contents." },
+    { href: "/pikobuy-parcel-insurance-claim", label: "Review insurance and claim evidence", note: "Compare saved route wording and exclusions before assuming a shortage is covered." },
+    { href: "/pikobuy-prohibited-items-shipping-restrictions", label: "Check sensitive-component removal", note: "Verify whether a battery, liquid or other restricted component was intentionally removed." },
+  ],
+  faqHeading: "PikoBuy missing-item questions",
+  faq: [
+    { question: "What evidence should I save when a PikoBuy parcel is missing an item?", answer: "Save the order and paid quantity, seller listing, warehouse photos, parcel submission list, packed image and weight, tracking chronology, every side of the sealed delivered parcel, a continuous opening record when practical, the complete delivered contents and all support messages." },
+    { question: "Does a lower delivered weight prove an item was removed in transit?", answer: "No. A weight difference can support investigation, but scale accuracy, rounding, estimates, moisture and packaging changes can affect the comparison. Use the same unit, preserve both records and combine weight with itemised warehouse, packing and unboxing evidence." },
+    { question: "Could PikoBuy have intentionally removed a component?", answer: "The User Registration Agreement says sensitive items including essential oils, care solutions, lubricants, batteries and glue may be removed. Check parcel notes and route messages, then ask what happened to the exact component rather than assuming it was lost." },
+    { question: "Does the 120-hour warehouse return window cover a missing delivered item?", answer: "Not automatically. The published 120-hour rule concerns eligible products after they first enter the warehouse. A shortage discovered after international delivery should be reported immediately through the current parcel after-sales process, with support asked to confirm the exact deadline and required evidence." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — signing checks, shortage exclusions, sensitive-item removal and logistics claims" },
+    { href: "https://www.pikobuy.com/protocol/shipping", label: "PikoBuy Shipping Terms — forwarded-goods shortages, warehouse inspection and third-party logistics risks" },
+    { href: "https://www.pikobuy.com/protocol/returns", label: "PikoBuy Returns & Exchanges — separate warehouse return timing and eligibility" },
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — purchase, warehouse inspection, packing and shipping stages" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);

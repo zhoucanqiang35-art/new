@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy missing item evidence chain</title>
+  <desc id="desc">A four-stage comparison of ordered quantity, warehouse record, packed parcel and delivered contents, followed by a support case.</desc>
+  <rect width="1200" height="675" rx="36" fill="#f6f1e8"/>
+  <rect x="52" y="48" width="1096" height="579" rx="28" fill="#fffdf8" stroke="#1d2b2a" stroke-width="3"/>
+  <text x="92" y="111" fill="#1d2b2a" font-family="Arial, sans-serif" font-size="34" font-weight="700">Trace the first missing record</text>
+  <text x="92" y="148" fill="#52615f" font-family="Arial, sans-serif" font-size="20">Reconcile quantity first. Use weight only as supporting evidence.</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(83 215)">
+      <rect width="210" height="224" rx="22" fill="#e7f0e7" stroke="#1d2b2a" stroke-width="2"/>
+      <circle cx="105" cy="52" r="27" fill="#26734d"/><text x="105" y="61" text-anchor="middle" fill="white" font-size="24" font-weight="700">1</text>
+      <text x="105" y="112" text-anchor="middle" fill="#1d2b2a" font-size="23" font-weight="700">ORDERED</text>
+      <text x="105" y="148" text-anchor="middle" fill="#42514f" font-size="16"><tspan x="105">Paid quantity, variation</tspan><tspan x="105" dy="24">and included parts</tspan></text>
+    </g>
+    <path d="M304 327h43" stroke="#c0643b" stroke-width="6" stroke-linecap="round"/><path d="m338 315 14 12-14 12" fill="none" stroke="#c0643b" stroke-width="6"/>
+    <g transform="translate(357 215)">
+      <rect width="210" height="224" rx="22" fill="#e6edf5" stroke="#1d2b2a" stroke-width="2"/>
+      <circle cx="105" cy="52" r="27" fill="#315f86"/><text x="105" y="61" text-anchor="middle" fill="white" font-size="24" font-weight="700">2</text>
+      <text x="105" y="112" text-anchor="middle" fill="#1d2b2a" font-size="23" font-weight="700">WAREHOUSE</text>
+      <text x="105" y="148" text-anchor="middle" fill="#42514f" font-size="16"><tspan x="105">Receipt, QC photos</tspan><tspan x="105" dy="24">and visible count</tspan></text>
+    </g>
+    <path d="M578 327h43" stroke="#c0643b" stroke-width="6" stroke-linecap="round"/><path d="m612 315 14 12-14 12" fill="none" stroke="#c0643b" stroke-width="6"/>
+    <g transform="translate(631 215)">
+      <rect width="210" height="224" rx="22" fill="#f7e6d7" stroke="#1d2b2a" stroke-width="2"/>
+      <circle cx="105" cy="52" r="27" fill="#c0643b"/><text x="105" y="61" text-anchor="middle" fill="white" font-size="24" font-weight="700">3</text>
+      <text x="105" y="112" text-anchor="middle" fill="#1d2b2a" font-size="23" font-weight="700">PACKED</text>
+      <text x="105" y="148" text-anchor="middle" fill="#42514f" font-size="16"><tspan x="105">Submitted contents,</tspan><tspan x="105" dy="24">photo and weight</tspan></text>
+    </g>
+    <path d="M852 327h43" stroke="#c0643b" stroke-width="6" stroke-linecap="round"/><path d="m886 315 14 12-14 12" fill="none" stroke="#c0643b" stroke-width="6"/>
+    <g transform="translate(905 215)">
+      <rect width="210" height="224" rx="22" fill="#f1e7f5" stroke="#1d2b2a" stroke-width="2"/>
+      <circle cx="105" cy="52" r="27" fill="#74518a"/><text x="105" y="61" text-anchor="middle" fill="white" font-size="24" font-weight="700">4</text>
+      <text x="105" y="112" text-anchor="middle" fill="#1d2b2a" font-size="23" font-weight="700">DELIVERED</text>
+      <text x="105" y="148" text-anchor="middle" fill="#42514f" font-size="16"><tspan x="105">Sealed opening and</tspan><tspan x="105" dy="24">complete contents</tspan></text>
+    </g>
+  </g>
+  <rect x="83" y="482" width="1032" height="92" rx="20" fill="#1d2b2a"/>
+  <text x="599" y="520" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="22" font-weight="700">Report the first stage where the quantity no longer reconciles</text>
+  <text x="599" y="552" text-anchor="middle" fill="#c7d976" font-family="Arial, sans-serif" font-size="17">Observed difference ≠ automatic proof of cause, liability or compensation</text>
+</svg>
