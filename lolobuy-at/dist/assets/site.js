@@ -44,7 +44,7 @@ function compactMobileReading(){
     });
   }
 }
-document.querySelectorAll('.nav a[href="/seo-articles/"]').forEach(link=>link.href='/seo-articles/lolobuy-order-checklist/');
+document.querySelectorAll('.nav a[href^="/seo-articles/"]').forEach(link=>link.href='/seo-articles/');
 const pageLanguage=currentLanguage();
 if(pageLanguage!=='en')document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href&&!href.startsWith('/'+pageLanguage+'/'))link.setAttribute('href','/'+pageLanguage+href)});
 tileCategories();
