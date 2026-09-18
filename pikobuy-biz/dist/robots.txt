@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pikobuy-biz-preview.canqiangzhou32.chatgpt.site/sitemap.xml
+Sitemap: https://pikobuy.biz/sitemap.xml
