@@ -53,6 +53,7 @@ export default function Page(){return <GuidePage pageId="how-pikobuy-works" kick
     {title:"Keep parcel records",text:"Save the second payment, parcel data and tracking information."}
   ]}
 ]} relatedLinks={[
+  {href:"/pikobuy-order-status",label:"Understand each PikoBuy order and parcel stage"},
   {href:"/pikobuy-warehouse",label:"Use the PikoBuy warehouse as a decision checkpoint"},
   {href:"/pikobuy-product-links",label:"Find and verify PikoBuy product links"},
   {href:"/qc-guide",label:"PikoBuy QC photo guide"},

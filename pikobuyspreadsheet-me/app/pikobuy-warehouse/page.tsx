@@ -111,6 +111,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="WAREHOUSE GUIDE" title={title} intro="Use the PikoBuy warehouse as a decision checkpoint: match the item, inspect the evidence, protect the return window, settle packaging and then build the international parcel. This guide separates PikoBuy's published process from practical record-keeping advice." sections={sections} reviewedDate="Reviewed 16 September 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-order-status",label:"Separate product, warehouse and parcel statuses"},
   {href:"/qc-guide",label:"Review PikoBuy warehouse photos in detail"},
   {href:"/pikobuy-return-policy",label:"Act within the eligible warehouse return window"},
   {href:"/pikobuy-packaging",label:"Choose packaging after item approval"},

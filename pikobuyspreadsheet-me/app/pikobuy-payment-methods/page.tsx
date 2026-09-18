@@ -102,6 +102,7 @@ const structuredData = [
 ];
 
 export default function Page(){return <GuidePage kicker="PAYMENT GUIDE" title={title} intro="PikoBuy's published workflow separates the product purchase from the later international shipping payment. This guide shows what to verify and save at each stage without inventing fees, rates or refund timelines." sections={sections} reviewedDate="Reviewed 6 September 2026" structuredData={structuredData} relatedLinks={[
+  {href:"/pikobuy-order-status",label:"Match each payment to the correct order stage"},
   {href:"/how-pikobuy-works",label:"Follow the complete PikoBuy order workflow"},
   {href:"/pikobuy-product-links",label:"Verify the product and exact option before paying"},
   {href:"/pikobuy-return-policy",label:"Understand warehouse return and refund boundaries"},
