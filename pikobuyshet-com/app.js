@@ -123,3 +123,6 @@
     render(lang);
   });
 })();
+
+
+/* Cloudflare Pages rebuild trigger: 2026-09-18 */
