@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-parcel-tracking-guide",
+    date: "17 September 2026",
+    title: "LoloBuy Parcel Tracking Guide: How to Read Shipping Updates After Dispatch",
+    description: "An evidence-first method for reading parcel events, recording waybill details, and responding to unclear updates without guessing.",
+  },
+  {
     href: "/seo-articles/lolobuy-shipping-plan",
     date: "15 September 2026",
     title: "LoloBuy Shipping Plan: How to Build a China-to-Home Parcel Before Submission",
