@@ -20,6 +20,7 @@ for (const file of [
   'pikobuy-product-search-guide.html',
   'pikobuy-forwarding-guide.html',
   'pikobuy-customs-guide.html',
+  'pikobuy-payment-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
