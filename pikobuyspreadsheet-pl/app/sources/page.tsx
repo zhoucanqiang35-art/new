@@ -14,12 +14,13 @@ export const metadata: Metadata = {
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
     ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 30 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, minimal or reinforced packaging requests, route selection and differing billing methods. Verified 17 September 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, search, first payment, warehouse inspection, route selection, tracking availability and the published 24/7 customer-service statement. Verified 19 September 2026."],
+    ["Contact page", "", "Official support email and ticket submission marked as the recommended contact route; no universal per-case response or resolution time was published on the reviewed page. Verified 19 September 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres; no universal dimensional-weight divisor is published on the public page. Verified 9 September 2026."],
     ["Shipping terms", "", "Forwarding inspection boundaries, inbound missing-item handling, third-party logistics and cross-border risks including customs action, loss, damage and delays. Verified 17 September 2026."],
-    ["Returns & Exchanges", "", "Five-day/120-hour warehouse return window, eligibility, exclusions, responsibility and published fee formula. Verified 17 September 2026."],
-    ["User Registration Agreement", "", "Third-party logistics, signing checks, shortage exclusions, after-sales timing, sensitive-item removal, insurance exclusions and delivery responsibilities. Verified 17 September 2026."],
-    ["Terms of Service", "", "Company and platform scope, accurate shipping-information duties, cross-border charges, prohibited-item enforcement and policy changes. Verified 13 September 2026."],
+    ["Returns & Exchanges", "", "Five-day/120-hour warehouse return window, eligibility, exclusions, responsibility and published fee formula. Verified 19 September 2026."],
+    ["User Registration Agreement", "", "Third-party logistics, signing checks, after-sales timing, customer-service verification, insurance exclusions and delivery responsibilities. Verified 19 September 2026."],
+    ["Terms of Service", "", "Company and platform scope, accurate shipping-information duties, after-sales support, cross-border charges and policy changes. Verified 19 September 2026."],
     ["Privacy Policy", "", "Account, transaction, usage and device data categories; stated uses, partner sharing, deletion requests and account-security responsibilities. Verified 3 September 2026."],
   ]},
   { id: "public-evidence-sources", title: "Limited public review evidence", external: false, links: [
