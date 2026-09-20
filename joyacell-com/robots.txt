@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://joyacell-preview.canqiangzhou32.chatgpt.site/sitemap.xml
+Sitemap: https://joyacell.com/sitemap.xml
