@@ -114,6 +114,7 @@ export default function Page(){return <GuidePage kicker="ORDER STATUS GUIDE" tit
   {href:"/how-pikobuy-works",label:"See the complete product-to-parcel sequence"},
   {href:"/pikobuy-warehouse",label:"Handle the In Warehouse decision stage"},
   {href:"/pikobuy-return-policy",label:"Protect the eligible warehouse return window"},
+  {href:"/pikobuy-parcel-submission",label:"Prepare and submit the international parcel"},
   {href:"/pikobuy-payment-methods",label:"Separate product and international shipping payments"},
   {href:"/pikobuy-tracking",label:"Interpret updates after the parcel is shipped"}
 ]}/>}

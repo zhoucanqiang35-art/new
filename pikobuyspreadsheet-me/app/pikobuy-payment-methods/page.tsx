@@ -106,6 +106,7 @@ export default function Page(){return <GuidePage kicker="PAYMENT GUIDE" title={t
   {href:"/how-pikobuy-works",label:"Follow the complete PikoBuy order workflow"},
   {href:"/pikobuy-product-links",label:"Verify the product and exact option before paying"},
   {href:"/pikobuy-return-policy",label:"Understand warehouse return and refund boundaries"},
+  {href:"/pikobuy-parcel-submission",label:"Verify the parcel before paying international freight"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate the parcel before the second payment"},
   {href:"/pikobuy-forwarding-guide",label:"Understand payment boundaries for forwarded goods"}
 ]}/>}

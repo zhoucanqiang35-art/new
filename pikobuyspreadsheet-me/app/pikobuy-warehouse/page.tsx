@@ -116,5 +116,6 @@ export default function Page(){return <GuidePage kicker="WAREHOUSE GUIDE" title=
   {href:"/pikobuy-return-policy",label:"Act within the eligible warehouse return window"},
   {href:"/pikobuy-packaging",label:"Choose packaging after item approval"},
   {href:"/pikobuy-forwarding-guide",label:"Send outside orders to the PikoBuy warehouse"},
+  {href:"/pikobuy-parcel-submission",label:"Turn approved items into an auditable parcel"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate the approved parcel with current data"}
 ]}/>}
