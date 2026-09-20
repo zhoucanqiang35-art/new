@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://joyagoospreadssheet.com/sitemap.xml
+Sitemap: https://joyagoospreadssheet-com.pages.dev/sitemap.xml
