@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy parcel forwarding address and warehouse matching flow</title>
+  <desc id="desc">A six-step flow from an approved forwarding order through the live warehouse address and domestic tracking number to inspection and warehouse storage.</desc>
+  <rect width="1200" height="650" fill="#f5f7fb"/>
+  <rect x="42" y="34" width="1116" height="582" rx="30" fill="#fff" stroke="#dce3ef" stroke-width="2"/>
+  <text x="82" y="88" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="700" fill="#17233d">LoloBuy forwarding: match the carton before storage</text>
+  <text x="82" y="120" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#5d687c">The order number, live address and domestic tracking number form one evidence chain.</text>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="78" y="166" width="286" height="108" rx="18" fill="#eef3ff" stroke="#8ba7ef" stroke-width="2"/>
+    <circle cx="112" cy="199" r="18" fill="#294d9b"/>
+    <text x="112" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1</text>
+    <text x="143" y="202" font-size="19" font-weight="700" fill="#223d83">Create forwarding order</text>
+    <text x="99" y="236" font-size="15" fill="#52617b">Contents · quantity · category · notes</text>
+    <text x="99" y="259" font-size="15" fill="#52617b">Wait for approval before dispatch</text>
+
+    <rect x="457" y="166" width="286" height="108" rx="18" fill="#f3efff" stroke="#aa91e3" stroke-width="2"/>
+    <circle cx="491" cy="199" r="18" fill="#65439c"/>
+    <text x="491" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2</text>
+    <text x="522" y="202" font-size="19" font-weight="700" fill="#4b327d">Open live address</text>
+    <text x="478" y="236" font-size="15" fill="#5d5270">Forwarding → View warehouse address</text>
+    <text x="478" y="259" font-size="15" fill="#5d5270">Copy every current account field</text>
+
+    <rect x="836" y="166" width="286" height="108" rx="18" fill="#fff4e8" stroke="#dfa15e" stroke-width="2"/>
+    <circle cx="870" cy="199" r="18" fill="#9b5c25"/>
+    <text x="870" y="205" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3</text>
+    <text x="901" y="202" font-size="19" font-weight="700" fill="#7b491c">Verify seller label</text>
+    <text x="857" y="236" font-size="15" fill="#6d5742">Recipient · phone · district · remark</text>
+    <text x="857" y="259" font-size="15" fill="#6d5742">Save the label screenshot</text>
+
+    <path d="M364 220h78" fill="none" stroke="#8b96a9" stroke-width="3"/>
+    <path d="m432 212 12 8-12 8" fill="none" stroke="#8b96a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M743 220h78" fill="none" stroke="#8b96a9" stroke-width="3"/>
+    <path d="m811 212 12 8-12 8" fill="none" stroke="#8b96a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="78" y="382" width="286" height="108" rx="18" fill="#edf8f3" stroke="#79baa2" stroke-width="2"/>
+    <circle cx="112" cy="415" r="18" fill="#23745b"/>
+    <text x="112" y="421" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4</text>
+    <text x="143" y="418" font-size="19" font-weight="700" fill="#1a6952">Attach tracking</text>
+    <text x="99" y="452" font-size="15" fill="#48655c">Carrier · number · carton count</text>
+    <text x="99" y="475" font-size="15" fill="#48655c">Link to the approved order immediately</text>
+
+    <rect x="457" y="382" width="286" height="108" rx="18" fill="#eef3ff" stroke="#8ba7ef" stroke-width="2"/>
+    <circle cx="491" cy="415" r="18" fill="#294d9b"/>
+    <text x="491" y="421" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">5</text>
+    <text x="522" y="418" font-size="19" font-weight="700" fill="#223d83">Warehouse match</text>
+    <text x="478" y="452" font-size="15" fill="#52617b">Receipt · prohibited-item check</text>
+    <text x="478" y="475" font-size="15" fill="#52617b">Selected inspection · weighing</text>
+
+    <rect x="836" y="382" width="286" height="108" rx="18" fill="#f3efff" stroke="#aa91e3" stroke-width="2"/>
+    <circle cx="870" cy="415" r="18" fill="#65439c"/>
+    <text x="870" y="421" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">6</text>
+    <text x="901" y="418" font-size="19" font-weight="700" fill="#4b327d">Confirm in Warehouse</text>
+    <text x="857" y="452" font-size="15" fill="#5d5270">Check items before combine, split</text>
+    <text x="857" y="475" font-size="15" fill="#5d5270">or return decision</text>
+
+    <path d="M979 286v40H221v41" fill="none" stroke="#8b96a9" stroke-width="3"/>
+    <path d="m213 357 8 12 8-12" fill="none" stroke="#8b96a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M364 436h78" fill="none" stroke="#8b96a9" stroke-width="3"/>
+    <path d="m432 428 12 8-12 8" fill="none" stroke="#8b96a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M743 436h78" fill="none" stroke="#8b96a9" stroke-width="3"/>
+    <path d="m811 428 12 8-12 8" fill="none" stroke="#8b96a9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="178" y="538" width="844" height="47" rx="14" fill="#fff8e8" stroke="#e4c26b"/>
+    <text x="600" y="568" text-anchor="middle" font-size="16" font-weight="700" fill="#6e5619">Public help pages name different warehouse locations. Use the signed-in address for the approved order.</text>
+  </g>
+</svg>
