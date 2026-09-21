@@ -1245,7 +1245,7 @@ export const seoArticles: SeoArticle[] = [
     title: "PikoBuy Payment Methods: Two-Stage Cost Guide",
     description: "Understand PikoBuy payment methods, the two-payment workflow, account balance deductions, failed-payment checks and costs beyond checkout.",
     published: "19 September 2026",
-    updated: "19 September 2026",
+    updated: "21 September 2026",
     author: "FindSpreadsheet Editorial Team",
     primaryKeyword: "PikoBuy payment methods",
     secondaryKeywords: [
@@ -1255,7 +1255,7 @@ export const seoArticles: SeoArticle[] = [
       "PikoBuy refund payment",
       "PikoBuy shipping payment"
     ],
-    methodology: "Our editorial team reviewed PikoBuy's live Beginner's Guide, Terms of Service, Shipping Terms, Returns & Exchanges, Contact page and the payment logos displayed across its public site on 19 September 2026. We separate published workflow facts from our record-keeping advice. We did not access a private checkout, run a payment, or invent processing fees, exchange rates, refund times, card availability or payment outcomes.",
+    methodology: "Our editorial team reviewed PikoBuy's live Beginner's Guide, Terms of Service, Shipping Terms, Returns & Exchanges, Contact page and the payment logos displayed across its public site on 19 September 2026, then rechecked those logos on 21 September 2026. We separate published workflow facts from our record-keeping advice. We did not access a private checkout, run a payment, or invent processing fees, exchange rates, refund times, account-level availability or payment outcomes.",
     sections: [
       {
         heading: "The direct answer: plan for two PikoBuy payments, not one",
@@ -1267,7 +1267,7 @@ export const seoArticles: SeoArticle[] = [
       {
         heading: "Check the payment options shown in your live checkout",
         paragraphs: [
-          "PikoBuy's current public pages display payment logos for Visa, Mastercard, American Express and JCB. That is evidence that the site presents those card networks publicly, but it is not proof that every network, issuing country, currency or account will be accepted in every checkout. The official public pages reviewed for this guide do not publish a universal table covering country availability, conversion rates, card fees, minimum amounts or processing times.",
+          "PikoBuy's current public pages display payment logos for Visa, Mastercard, American Express, JCB, Klarna, Google Pay and Apple Pay. That shows which names the public site presents, but it does not prove that every method, issuing country, currency, device or account will be eligible in every checkout. The official public pages reviewed for this guide do not publish a universal table covering country availability, conversion rates, fees, minimum amounts or processing times.",
           "Use the options actually shown after signing in and review the final amount before authorising it. Confirm the transaction currency, the amount presented by PikoBuy and any information shown by the card issuer or payment provider. If a preferred card is absent or declined, do not assume an unofficial workaround is supported. Use PikoBuy's recommended ticket channel to ask about the specific order and consult the payment provider through its known app, website or telephone number for issuer-side questions."
         ]
       },
@@ -1325,6 +1325,95 @@ export const seoArticles: SeoArticle[] = [
         paragraphs: [
           "Before the first payment, verify the live domain, source listing, exact option, quantity, current amount and domestic delivery terms. At the warehouse, review the photos and any return deadline before committing the item to a parcel. Before the second payment, verify the parcel contents, destination, measured weight and dimensions, packaging request, available route, displayed charge and possible destination costs. Save the confirmation after each authorised step.",
           "If a payment fails or the records disagree, stop retrying, compare the PikoBuy and provider statuses, redact sensitive information and submit one precise ticket. FindSpreadsheet is independent from PikoBuy: it can help compare product links, but it cannot process a payment, confirm a private checkout option or determine a refund. The safest conclusion is deliberately modest—use the live checkout for supported methods and amounts, while keeping enough evidence to explain every charge."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "pikobuy-order-status-stage-guide",
+    title: "PikoBuy Order Status: Stage-by-Stage Guide",
+    description: "Read a PikoBuy order status by stage, identify who controls the next action and know what evidence to check before waiting or escalating.",
+    published: "21 September 2026",
+    updated: "21 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy order status",
+    secondaryKeywords: [
+      "PikoBuy order pending",
+      "PikoBuy In Warehouse",
+      "PikoBuy order not shipped",
+      "PikoBuy parcel status",
+      "PikoBuy tracking update"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Beginner's Guide, Terms of Service, Shipping Terms, Returns & Exchanges, Shipping Estimate and Contact page on 21 September 2026. PikoBuy does not publish a complete public dictionary of every private-account status label, so this guide identifies only the stage names and timing statements that can be verified publicly. We did not access a private order, invent internal statuses or promise seller, warehouse, carrier or refund times.",
+    sections: [
+      {
+        heading: "The direct answer: read the stage before reading the wording",
+        paragraphs: [
+          "A PikoBuy order status is useful only when it is tied to the part of the transaction it describes. The published workflow moves through product selection, purchasing order and first payment, seller fulfilment, warehouse inspection, parcel submission and international delivery. A delay before warehouse arrival belongs to a different record and responsible party from a delay after the international parcel has been dispatched.",
+          "PikoBuy does not provide a complete public glossary for every label visible inside a private account. Do not use an unofficial status table as though it were guaranteed. Instead, record the exact wording and timestamp shown, identify the last confirmed event, and ask what must happen next. The most important question is not simply “How long has this status existed?” but “Which seller, PikoBuy team, carrier or customs authority currently controls the next verifiable action?”"
+        ]
+      },
+      {
+        heading: "Confirm that the purchasing order and first payment exist",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide places the first payment after the buyer selects the specification, colour, size and quantity and submits the purchasing order. Its Terms add that an order is an offer that PikoBuy or a participating merchant may accept or reject, and that an order will not be processed if payment fails. An item saved in a spreadsheet, search result or basket is therefore not evidence of a paid purchasing order.",
+          "Check for an order number, selected option, amount, payment record and current account status. If the payment provider shows a charge but PikoBuy shows no successful transaction or order movement, preserve redacted records from both sides before retrying. If the order exists but the option is wrong, raise that issue before seller fulfilment where possible. Never treat a bank authorisation, screenshot of a listing or spreadsheet row as proof that the seller purchase was completed."
+        ]
+      },
+      {
+        heading: "Separate seller purchasing from seller dispatch",
+        paragraphs: [
+          "After first payment, the item still needs to be purchased from or accepted by the underlying seller and sent toward the warehouse. PikoBuy's guide says the actual purchase price controls and that an out-of-stock order will be refunded. It does not publish one universal deadline for every seller to accept, prepare or dispatch every product. Customised goods, pre-orders and ordinary in-stock products should not be assumed to follow the same timing.",
+          "When a PikoBuy order appears pending at this stage, compare the current option and seller listing with the order record. Ask whether the order has been accepted, whether the price or specification needs confirmation, whether a domestic tracking number exists, or whether the seller reported that the item is unavailable. Use dates and identifiers rather than an unsupported expected-delivery claim. A seller-facing question needs the purchasing order number, not an international parcel tracking number that does not yet exist."
+        ]
+      },
+      {
+        heading: "Treat domestic transit and warehouse receipt as separate events",
+        paragraphs: [
+          "A domestic carrier event showing delivery does not automatically prove that an item has been matched, unpacked and checked into the correct PikoBuy order. The official workflow says that when goods reach the warehouse, PikoBuy performs check-in, photo confirmation and a defect check. Those warehouse actions occur after the seller's domestic shipment, so a short gap between carrier delivery and a completed warehouse record can represent a handoff rather than an international shipping delay.",
+          "Keep the seller or domestic tracking number, delivery timestamp, recipient information and expected contents. If the account has not moved to a warehouse stage, ask whether the shipment was received and matched to the purchasing order. For a forwarded item, also include the forwarding form and sender because PikoBuy's Shipping Terms tell users to provide the warehouse address to the sender and submit a forwarding record. Do not open an international carrier enquiry for an item that has not become a parcel."
+        ]
+      },
+      {
+        heading: "Use In Warehouse as an active decision checkpoint",
+        paragraphs: [
+          "“In Warehouse” is one of the few exact PikoBuy order statuses defined in a public policy. The Returns & Exchanges page says an eligible return application can be made within five days after the status changes to In Warehouse, counted as 120 hours from the next hour. Eligibility also depends on the seller's return offer, the product's condition, category rules and seller consent. Warehouse arrival is therefore the start of a review task, not a reason to stop checking the order.",
+          "Compare the warehouse photographs with the source listing and selected option. Check identity, quantity, visible condition, colour, size label and included parts, then keep packaging and seals intact while a return question remains open. If the evidence is unclear, request a suitable clarification or detailed photograph where available. Record the In Warehouse timestamp before contacting support because a general question should not be assumed to pause or extend the published return window."
+        ]
+      },
+      {
+        heading: "Interpret Not Shipped only within the return-policy context",
+        paragraphs: [
+          "PikoBuy's return FAQ uses the exact label “Not Shipped” when explaining charges. It says no fees are charged for a return request at that point, because the published fees apply when a no-quality-issue return involves a product that has entered the warehouse. That statement is useful, but it should not be expanded into a complete definition of every pre-dispatch status or a guarantee that the seller will approve every cancellation.",
+          "If an order shows Not Shipped and you want to stop it, save the status and submit the request through the order's current controls. Ask whether the seller purchase has occurred, whether cancellation or return is available, and what record will show the result. Do not confuse Not Shipped with an international parcel that has not received a carrier scan. One refers to the order context described by the return policy; the other arises after parcel submission and dispatch."
+        ]
+      },
+      {
+        heading: "Distinguish warehouse storage, parcel submission and dispatch",
+        paragraphs: [
+          "Several In Warehouse items can remain separate until the buyer chooses which ones to consolidate, selects packaging and submits a parcel. PikoBuy's guide places route selection, parcel submission and international shipping payment after warehouse inspection. Until that action is completed, the products may be ready for a decision but are not yet an international shipment. Waiting for overseas tracking at this point will not clarify the order status.",
+          "Before submitting, resolve wrong-item, visible-defect and return questions. Match every included order to the parcel list, confirm the destination and packaging request, and use the current weight and dimensions when comparing routes. PikoBuy's estimator asks for destination, product type, weight, length, width and height, while the guide says routes differ in timing and billing methods. A paid parcel submission is a new stage with its own number and evidence; it does not replace the underlying order records."
+        ]
+      },
+      {
+        heading: "Start tracking expectations only after parcel shipment",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says tracking information will be available within three days after the parcel is shipped. The phrase “after the parcel is shipped” matters. It is not a three-day promise from first payment, warehouse arrival or parcel preparation, and it is not a guaranteed international delivery time. Save the parcel number, route, payment confirmation and dispatch status before deciding whether a tracking number is overdue.",
+          "Once a tracking number appears, read the latest carrier event rather than relying only on a broad PikoBuy parcel status. PikoBuy's Shipping Terms say third-party logistics providers carry international parcels and identify customs action, damage, loss and peak-season delay as cross-border risks. Ask PikoBuy about the parcel record and dispatch handoff; ask the named carrier about its current scan or local delivery event; follow the customs authority's instructions when clearance information is requested."
+        ]
+      },
+      {
+        heading: "Follow the separate status path for forwarded goods",
+        paragraphs: [
+          "Forwarding begins outside PikoBuy's purchasing order. The user obtains the warehouse address, gives it to the sender, submits the forwarding form, waits for warehouse receipt and photographs, then finds the forwarded goods on the order page and submits a parcel. A seller payment or domestic dispatch arranged independently will not be represented by the same PikoBuy purchasing records as a Buy-for-Me order.",
+          "For a missing forwarded shipment, match the forwarding form to the domestic tracking event and expected contents. The Shipping Terms say the sender should be contacted when goods are missing at warehouse receipt for reasons not caused by PikoBuy, and that PikoBuy does not provide product after-sales service for forwarded goods. It can help ship an item back to the seller or sender. Status troubleshooting should therefore establish what reached the warehouse before asking PikoBuy to resolve the independent seller transaction."
+        ]
+      },
+      {
+        heading: "Use this order-status escalation checklist",
+        paragraphs: [
+          "Capture the exact status, timestamp and time zone; name the purchasing order, forwarded item or parcel; state the last confirmed event; attach the smallest relevant evidence set; identify who controls the next action; and ask one answerable question. Examples include whether a seller purchase was accepted, whether domestic delivery was matched to the order, whether warehouse photographs are complete, whether a return request remains available, or whether a shipped parcel has received its tracking number.",
+          "PikoBuy's Contact page recommends submitting a ticket. Keep updates in one case where possible and add only material changes such as a warehouse photo, seller response or carrier scan. FindSpreadsheet is independent from PikoBuy and cannot view private statuses or change an order. The reliable method is to preserve the handoff record at every stage, act promptly when a published deadline applies and avoid inventing a universal waiting time where PikoBuy has not published one."
         ]
       }
     ]
