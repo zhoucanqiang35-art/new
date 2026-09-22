@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const sections: GuideSection[] = [
   {heading:"The answer in one minute",paragraphs:[
     "PikoBuy uses two main payment stages in its published beginner workflow. You first select the exact product options, submit the purchasing order and make the first payment. After the goods reach the China warehouse and you review them, you choose an available route, submit a parcel and pay the international shipping fee. Treat those as separate decisions with separate records.",
-    "PikoBuy's public footer currently displays MasterCard, American Express, JCB, Master and Visa payment logos. Those logos are the only publicly visible payment-method evidence used in this guide. They do not establish that every card, country, currency or transaction will be accepted, and they do not publish a universal processing fee or exchange rate. The live PikoBuy checkout is the authority for the methods and total offered to your account.",
+    "PikoBuy's public footer currently displays MasterCard, American Express, JCB, Master, Visa, Klarna, Google Pay and Apple Pay logos. Those logos are the only publicly visible payment-method evidence used in this guide. They do not establish that every method, country, currency or transaction will be accepted, and they do not publish a universal processing fee or exchange rate. The live PikoBuy checkout is the authority for the methods and total offered to your account.",
     "Before either payment, check the order or parcel, the amount and currency shown, and any unresolved item or route issue. Save the confirmation after payment. If a charge appears pending, duplicated or unsuccessful, do not repeatedly submit it without checking the account record and payment provider; use PikoBuy's official support channel for an account-specific answer."
   ]},
   {heading:"What PikoBuy officially publishes about payment",paragraphs:[
@@ -41,7 +41,7 @@ const sections: GuideSection[] = [
     "Save the parcel number, route, item list, shipping total, payment date and later tracking number. PikoBuy's terms say third-party logistics providers carry parcels and identify risks such as customs action, damage, loss and peak-season delay. Paying freight does not remove those risks or guarantee delivery."
   ]},
   {heading:"How to read the payment logos correctly",paragraphs:[
-    "As reviewed on 6 September 2026, the PikoBuy homepage and other public pages display logos labelled MasterCard, American Express, JCB, Master and Visa under “Payment methods.” It is reasonable to report that those logos are displayed. It is not reasonable to infer detailed acceptance rules that the public page does not provide.",
+    "As reviewed on 22 September 2026, the PikoBuy homepage and other public pages display logos labelled MasterCard, American Express, JCB, Master, Visa, Klarna, Google Pay and Apple Pay under “Payment methods.” It is reasonable to report that those logos are displayed. It is not reasonable to infer detailed acceptance rules that the public page does not provide.",
     "A logo does not tell you whether a particular issuing country, card type, currency, billing address or verification attempt will succeed. It also does not reveal fees, exchange rates, authorization holds or refund routing. Check the methods and disclosures presented during the live checkout for the account and transaction you are making.",
     "Use only the official PikoBuy domain and account flow when entering payment details. This site does not process PikoBuy payments and should never be given card credentials. Treat messages that request a password, security code or payment outside the verified checkout as a reason to stop and confirm through PikoBuy's official contact channel."
   ]},
@@ -74,21 +74,21 @@ const sections: GuideSection[] = [
     "After dispatch: parcel number, tracking number and support record"
   ]},
   {heading:"Concise FAQ",paragraphs:[
-    "What PikoBuy payment methods are shown publicly? PikoBuy currently displays MasterCard, American Express, JCB, Master and Visa logos. Check live checkout for actual availability and terms.",
+    "What PikoBuy payment methods are shown publicly? PikoBuy currently displays MasterCard, American Express, JCB, Master, Visa, Klarna, Google Pay and Apple Pay logos. Check live checkout for actual availability and terms.",
     "Why does PikoBuy have two payments? The first payment is for the purchasing order. The later payment follows warehouse review and covers the submitted international parcel and chosen route.",
     "Does the first payment include international shipping? The published workflow treats international freight as a separate later payment.",
     "What happens if an item is out of stock? PikoBuy's beginner guide says an out-of-stock order will be refunded, while prices remain subject to actual purchase.",
     "How long does a PikoBuy refund take? The public pages reviewed here do not give one universal completion time. Check the account status and contact official support for the specific order."
   ]},
   {heading:"Fact basis and editorial boundary",paragraphs:[
-    "This article was reviewed on 6 September 2026 against PikoBuy's public homepage, Beginner's Guide, Returns & Exchanges page and Shipping Terms. Those first-party pages support the displayed payment logos, two-stage payment process, actual-purchase and out-of-stock statements, refund boundaries, route billing differences and forwarded-goods balance rule.",
+    "This article was updated on 22 September 2026 against PikoBuy's public homepage, Beginner's Guide, Returns & Exchanges page and Shipping Terms. Those first-party pages support the displayed payment logos, two-stage payment process, actual-purchase and out-of-stock statements, refund boundaries, route billing differences and forwarded-goods balance rule.",
     "The record-keeping method, checkout checks and two-payment checklist are independent editorial advice. They are not PikoBuy promises. No transaction fee, exchange rate, authorization rate, fixed refund time, customer story or invented payment method appears here.",
     "Payment options, policies and account details can change. Recheck the official checkout and policy pages before acting. Product discovery links on this site continue to lead only to FindSpreadsheet."
   ]}
 ];
 
 const faqs = [
-  {question:"What PikoBuy payment methods are shown publicly?",answer:"PikoBuy currently displays MasterCard, American Express, JCB, Master and Visa logos. The live checkout determines actual availability and terms."},
+  {question:"What PikoBuy payment methods are shown publicly?",answer:"PikoBuy currently displays MasterCard, American Express, JCB, Master, Visa, Klarna, Google Pay and Apple Pay logos. The live checkout determines actual availability and terms."},
   {question:"Why does PikoBuy have two payments?",answer:"The official guide describes a first payment for the purchasing order and a later payment for the submitted international parcel and selected route."},
   {question:"Does the first PikoBuy payment include international shipping?",answer:"The published workflow treats international shipping as a separate payment made after warehouse review and parcel submission."},
   {question:"What happens if a PikoBuy item is out of stock?",answer:"PikoBuy's beginner guide says an out-of-stock order will be refunded and that prices are subject to actual purchase."},
@@ -96,12 +96,12 @@ const faqs = [
 ];
 
 const structuredData = [
-  {"@context":"https://schema.org","@type":"Article",headline:title,description,datePublished:"2026-09-06",dateModified:"2026-09-06",mainEntityOfPage:canonical,inLanguage:"en",keywords:"PikoBuy payment methods, how to pay on PikoBuy, PikoBuy first payment, PikoBuy shipping payment",citation:["https://www.pikobuy.com/home","https://www.pikobuy.com/guide","https://www.pikobuy.com/protocol/returns","https://www.pikobuy.com/protocol/shipping"],author:{"@type":"Organization",name:"PikoBuy Spreadsheet Guide"},publisher:{"@type":"Organization",name:"PikoBuy Spreadsheet Guide"},isAccessibleForFree:true},
+  {"@context":"https://schema.org","@type":"Article",headline:title,description,datePublished:"2026-09-06",dateModified:"2026-09-22",mainEntityOfPage:canonical,inLanguage:"en",keywords:"PikoBuy payment methods, how to pay on PikoBuy, PikoBuy first payment, PikoBuy shipping payment",citation:["https://www.pikobuy.com/home","https://www.pikobuy.com/guide","https://www.pikobuy.com/protocol/returns","https://www.pikobuy.com/protocol/shipping"],author:{"@type":"Organization",name:"PikoBuy Spreadsheet Guide"},publisher:{"@type":"Organization",name:"PikoBuy Spreadsheet Guide"},isAccessibleForFree:true},
   {"@context":"https://schema.org","@type":"FAQPage",mainEntity:faqs.map(faq=>({"@type":"Question",name:faq.question,acceptedAnswer:{"@type":"Answer",text:faq.answer}}))},
   {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://pikobuyspreadsheet.me/"},{"@type":"ListItem",position:2,name:"SEO Articles",item:"https://pikobuyspreadsheet.me/seo-articles"},{"@type":"ListItem",position:3,name:title,item:canonical}]}
 ];
 
-export default function Page(){return <GuidePage kicker="PAYMENT GUIDE" title={title} intro="PikoBuy's published workflow separates the product purchase from the later international shipping payment. This guide shows what to verify and save at each stage without inventing fees, rates or refund timelines." sections={sections} reviewedDate="Reviewed 6 September 2026" structuredData={structuredData} relatedLinks={[
+export default function Page(){return <GuidePage kicker="PAYMENT GUIDE" title={title} intro="PikoBuy's published workflow separates the product purchase from the later international shipping payment. This guide shows what to verify and save at each stage without inventing fees, rates or refund timelines." sections={sections} reviewedDate="Updated 22 September 2026" structuredData={structuredData} relatedLinks={[
   {href:"/pikobuy-order-status",label:"Match each payment to the correct order stage"},
   {href:"/how-pikobuy-works",label:"Follow the complete PikoBuy order workflow"},
   {href:"/pikobuy-product-links",label:"Verify the product and exact option before paying"},

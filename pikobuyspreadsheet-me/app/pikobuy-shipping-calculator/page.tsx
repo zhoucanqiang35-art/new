@@ -104,6 +104,7 @@ const structuredData = [
 export default function Page(){return <GuidePage kicker="SHIPPING CALCULATOR" title={title} intro="Use the PikoBuy shipping calculator as a staged estimate: start with honest destination, product, weight and size inputs, then replace guesses with current warehouse and parcel data before paying international freight." sections={sections} reviewedDate="Reviewed 4 September 2026" structuredData={structuredData} relatedLinks={[
   {href:"/pikobuy-packaging",label:"Choose minimal or reinforced packaging before re-estimating"},
   {href:"/pikobuy-parcel-submission",label:"Apply the estimate during parcel submission"},
+  {href:"/pikobuy-shipping-times",label:"Turn route estimates into a staged timeline"},
   {href:"/shipping-guide",label:"Plan the complete PikoBuy shipping workflow"},
   {href:"/how-pikobuy-works",label:"Follow the order from source link to parcel"},
   {href:"/qc-guide",label:"Review warehouse evidence before shipping"},

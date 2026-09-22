@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Box, Calculator, Camera, Clock3, CreditCard, Landmark, Link2, ListChecks, MapPinned, Package, PackageCheck, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
+import { ArrowRight, BookOpen, Box, Calculator, Camera, Clock3, CreditCard, Hourglass, Landmark, Link2, ListChecks, MapPinned, Package, PackageCheck, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
 import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about parcel submission, order status, warehouse checks, packaging, customs, tracking, payments, shipping and returns.",
+  description: "Read independent PikoBuy guides about shipping times, parcel submission, order status, warehouse checks, tracking, payments, customs and returns.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: Hourglass, tag: "SHIPPING TIMES", title: "PikoBuy Shipping Times 2026: Build a Realistic Timeline", description: "Separate seller movement, warehouse decisions, parcel dispatch and tracking so route estimates are not mistaken for delivery promises.", href: "/pikobuy-shipping-times", time: "10 min read" },
   { icon: PackageCheck, tag: "PARCEL SUBMISSION", title: "PikoBuy Parcel Submission Guide 2026: Check Before You Ship", description: "Verify warehouse items, protect return options, choose packaging and a live route, then separate submission from dispatch and tracking.", href: "/pikobuy-parcel-submission", time: "10 min read" },
   { icon: Clock3, tag: "ORDER STATUS", title: "PikoBuy Order Status Guide 2026: Follow Every Stage", description: "Separate product orders, warehouse items, submitted parcels and shipped tracking so every update leads to the right next action.", href: "/pikobuy-order-status", time: "10 min read" },
   { icon: PackageSearch, tag: "WAREHOUSE PROCESS", title: "PikoBuy Warehouse Guide 2026: Inspect, Decide, Then Ship", description: "Follow the warehouse evidence, return, packaging and parcel decisions without inventing storage limits or service promises.", href: "/pikobuy-warehouse", time: "10 min read" },
@@ -36,7 +37,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 20 SEPTEMBER 2026</p><h2>Check the parcel before you ship.</h2><p>Close warehouse and return questions, confirm packaging and route inputs, then keep submission, payment and dispatch separate.</p></div><Link href="/pikobuy-parcel-submission">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 22 SEPTEMBER 2026</p><h2>Build a realistic shipping timeline.</h2><p>Separate seller movement, warehouse handling, parcel dispatch, tracking and delivery before judging how long a shipment takes.</p></div><Link href="/pikobuy-shipping-times">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>
