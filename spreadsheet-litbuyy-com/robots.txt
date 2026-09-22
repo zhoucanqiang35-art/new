@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://spreadsheet-litbuyy.com/sitemap.xml
+Sitemap: https://spreadsheet-litbuyy.com/sitemap-gsc.xml
