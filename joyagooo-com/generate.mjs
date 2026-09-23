@@ -2,7 +2,7 @@ import { mkdirSync, writeFileSync, rmSync, cpSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
 const out = 'dist';
-const siteOrigin='https://joyagooocom-seo-preview.canqiangzhou32.chatgpt.site';
+const siteOrigin='https://joyagooo.com';
 rmSync(out, { recursive: true, force: true });
 mkdirSync(join(out, 'assets'), { recursive: true });
 cpSync(join('assets', 'joyagoo-logo.svg'), join(out, 'assets/joyagoo-logo.svg'));
