@@ -234,6 +234,32 @@ async function assertSupportTicketArticle() {
   if (checks.some((check) => !check)) throw new Error("Support-ticket article failed SEO, schema, FAQ, image or link validation");
 }
 
+async function assertPaymentOrderArticle() {
+  const response = await worker.default.fetch(
+    new Request("https://pikobuyspreadsheet-pl.pages.dev/pikobuy-order-not-processed-after-payment", { headers: { accept: "text/html" } }),
+    env,
+    ctx,
+  );
+  const html = await response.text();
+  const checks = [
+    response.status === 200,
+    (html.match(/<h1>/g) ?? []).length === 1,
+    html.includes('content="index, follow"'),
+    html.includes('rel="canonical" href="https://pikobuyspreadsheet.pl/pikobuy-order-not-processed-after-payment"'),
+    html.includes('"@type":"Article"'),
+    html.includes('"@type":"BreadcrumbList"'),
+    html.includes('"@type":"FAQPage"'),
+    (html.match(/<details/g) ?? []).length === 4,
+    html.includes('href="/pikobuy-fees-total-cost"'),
+    html.includes('href="/pikobuy-seller-listing-verification"'),
+    html.includes('href="/how-to-contact-pikobuy-support-order-problem"'),
+    html.includes('href="/pikobuy-return-policy"'),
+    html.includes('href="https://findspreadsheet.com/AllProducts/"'),
+    html.includes('src="/pikobuy-payment-order-reconciliation.svg"'),
+  ];
+  if (checks.some((check) => !check)) throw new Error("Payment-order article failed SEO, schema, FAQ, image or link validation");
+}
+
 async function assertNotFound() {
   const response = await worker.default.fetch(
     new Request("https://pikobuyspreadsheet-pl.pages.dev/this-page-does-not-exist", { headers: { accept: "text/html" } }),
@@ -293,13 +319,15 @@ await assertPage("/pikobuy-parcel-returned-to-warehouse", "PikoBuy Parcel Return
 await assertPage("/pikobuy-parcel-damaged-on-arrival", "PikoBuy Parcel Damaged on Arrival: An Unboxing Evidence Checklist");
 await assertPage("/pikobuy-missing-item-from-parcel", "PikoBuy Missing Item From Parcel: A Weight and Evidence Checklist");
 await assertPage("/how-to-contact-pikobuy-support-order-problem", "How to Contact PikoBuy Support About an Order: Evidence Checklist");
-await assertPage("/seo-articles", "How to Contact PikoBuy Support About an Order: Evidence Checklist");
+await assertPage("/pikobuy-order-not-processed-after-payment", "PikoBuy Order Not Processed After Payment: Evidence Checklist");
+await assertPage("/seo-articles", "PikoBuy Order Not Processed After Payment: Evidence Checklist");
 await assertInsuranceArticle();
 await assertVolumetricWeightArticle();
 await assertReturnedParcelArticle();
 await assertDamagedParcelArticle();
 await assertMissingItemArticle();
 await assertSupportTicketArticle();
+await assertPaymentOrderArticle();
 await assertNotFound();
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
@@ -314,6 +342,7 @@ await assertPublicAsset("/pikobuy-returned-parcel-checklist.svg", "image/svg+xml
 await assertPublicAsset("/pikobuy-damaged-parcel-evidence-flow.svg", "image/svg+xml", "preserve the evidence chain");
 await assertPublicAsset("/pikobuy-missing-item-evidence-chain.svg", "image/svg+xml", "Trace the first missing record");
 await assertPublicAsset("/pikobuy-support-ticket-evidence-map.svg", "image/svg+xml", "One case. One timeline. One answerable request.");
+await assertPublicAsset("/pikobuy-payment-order-reconciliation.svg", "image/svg+xml", "Match one attempt to one transaction and one order.");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -327,10 +356,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 288 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/how-to-contact-pikobuy-support-order-problem")) {
-  throw new Error(`Expected 288 sitemap URLs with Swedish hreflang alternates and the support-ticket guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 297 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-order-not-processed-after-payment")) {
+  throw new Error(`Expected 297 sitemap URLs with Swedish hreflang alternates and the payment-order guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 288-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 297-URL sitemap, CSS and JavaScript.",
 );
