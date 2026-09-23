@@ -1905,6 +1905,116 @@ export const researchArticles: ResearchArticle[] = [
         "After delivery, confirm that the expected items, quantities and selected evidence appear before moving them into an international parcel. If the package is unmatched, send one organized evidence set to authenticated support and preserve the case response. Once stored, decide whether to combine, split or return based on route eligibility and current warehouse data. This workflow cannot guarantee acceptance, inspection accuracy or a matching time. It gives US and European buyers a traceable chain from a China seller's label to the exact warehouse item later selected for international shipping."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-package-removal-brand-tag-guide",
+    tag: "PACKAGING",
+    title: "LoloBuy Package Removal Guide: Boxes, Tags and Shipping Weight",
+    description: "A fact-checked guide to LoloBuy package removal, simple packing and brand-tag choices, with a practical checklist for balancing shipping weight, protection and return risk.",
+    readTime: "15 min read",
+    published: "2026-09-23",
+    updated: "2026-09-23",
+    keywords: [
+      "LoloBuy package removal",
+      "LoloBuy brand tag removal",
+      "LoloBuy remove shoe box",
+      "LoloBuy simple packaging",
+      "LoloBuy parcel packaging",
+      "LoloBuy shipping weight"
+    ],
+    sources: [
+      {
+        label: "LoloBuy Help Center — Packaging Methods You Need To Know",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300751675537",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Simple Packing",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242306514453946",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Package removal",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242306518844916",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Brand Tag Removal",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300754165910",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Product weight and warehouse stocking",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300744204423",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Estimated weight and real weight",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300798075086",
+        accessed: "23 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Delivery Service Agreement",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300779790518",
+        accessed: "23 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Compare actual and volumetric shipping weight", url: "/articles/lolobuy-actual-vs-volumetric-weight" },
+      { label: "Plan a LoloBuy shipping budget", url: "/articles/lolobuy-shipping-cost-guide" },
+      { label: "Review LoloBuy warehouse QC photos", url: "/articles/lolobuy-qc-photos-guide" },
+      { label: "Prepare evidence for returns and refunds", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Plan parcel consolidation", url: "/articles/lolobuy-parcel-consolidation-guide" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-package-removal-decision-flow.svg",
+      alt: "Decision flow for choosing LoloBuy package removal, simple packing or keeping original boxes and brand tags",
+      caption: "Original packaging decision flow based on LoloBuy public help pages checked on 23 September 2026. Protection, return rights and the live route quote should be reviewed before any irreversible removal.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "Package removal is a trade-off, not an automatic saving", paragraphs: [
+        "A shoe box, retail carton or hanging tag can look like dead weight when international freight is expensive. Sometimes removing it makes a parcel smaller or lighter. Sometimes the final charge does not change because the parcel remains inside the same billing increment, another dimension controls the volumetric calculation, or protective material must replace part of what was removed. The right question is therefore not simply whether LoloBuy can remove packaging. It is which layer can be removed without sacrificing protection, evidence, return options or something you genuinely want to keep.",
+        "This guide separates platform facts from editorial advice. The service descriptions below come from LoloBuy public help pages accessed on 23 September 2026. The decision framework is independent buyer guidance for US and European destinations. It does not promise a particular saving, route, customs result or handling outcome. Check the selected products, final packed measurements and live delivery options in your account before paying for the international parcel."
+      ]},
+      { heading: "Understand the three different packaging choices", paragraphs: [
+        "LoloBuy publicly describes Package Removal as a free option selected while submitting a delivery order. Its listed choices range from removing the transport box only to removing the transport box, product packaging box and packaging bag, plus an option for other requirements. The page says necessary protective packaging for vulnerable goods should remain. It specifically warns buyers who need all original packaging for gifts or preservation not to choose removal. That warning matters because the request can change the received product presentation permanently.",
+        "Simple Packing is a separate service description. LoloBuy says it is intended for non-fragile items and uses light stretch film or plastic bags, with bag packaging prioritized while the actual goods can still lead the warehouse to use a carton. Brand Tag Removal is another distinct choice involving attached paper, plastic, metal or holographic tags. Do not combine these labels into one vague instruction. Record exactly which product needs which service and which packaging layers must remain."
+      ]},
+      { heading: "Map the packaging layers before asking for removal", paragraphs: [
+        "A typical warehouse item may have four layers: the Chinese courier's outer bag or carton, the seller's retail box or bag, structural protection such as a frame, insert or air cushion, and the product itself with labels or tags. LoloBuy's warehouse-stocking guidance says external shipping packaging is generally removed in cases that do not qualify for original-box storage, subject to exceptions for items such as figures, fragile products or large quantities. The Package Removal option reaches further and can include the product packaging box or bag.",
+        "Before submission, use warehouse photos to label each visible layer. Write instructions with physical nouns: remove the brown courier carton, keep the molded insert, keep the dust bag, or keep the retail box. Avoid saying only “remove packaging,” because that does not communicate whether a shoe box, collectible display box, protective case or accessory pouch has value to you. When an important layer is not visible, request a focused photo if the current service permits it before making an irreversible choice."
+      ]},
+      { heading: "Use billing method to decide what could matter", paragraphs: [
+        "LoloBuy's packaging guide distinguishes parcels billed by actual weight from parcels billed by volume weight. For actual-weight shipments, it describes using an appropriately sized bag or carton and adding light filling where needed. For volume-weight shipments, it describes folding bags to remove gaps and cutting excess carton to reduce volume, while warning that a cut-down carton is less secure. This makes the trade-off clear: a packaging change that barely affects scale weight may still matter if it reduces the parcel's measured dimensions.",
+        "Do not apply a divisor copied from an old guide. Route formulas, billing increments and eligibility can change, and LoloBuy's delivery agreement says rates and delivery times may be adjusted. Compare the live route card for the actual parcel. Note whether the quote uses scale weight, volumetric weight or the greater of the two; record the billing increment; then compare the packed result. A 200-gram reduction is useful only if it changes the chargeable bracket or helps keep a route available."
+      ]},
+      { heading: "Decide whether a shoe box is disposable or functional", paragraphs: [
+        "The package-removal page names shoe boxes as an example of original packaging that may be removed when it does not affect protection. That is not a universal statement that every shoe box is unnecessary. A rigid box can protect shape, contain accessories and preserve resale or collector value. It can also add substantial volume. Soft footwear may travel acceptably with internal shaping and a protective outer parcel, while structured, delicate or presentation-focused footwear may justify keeping more support.",
+        "Make the choice item by item. Keep the size label in your evidence file before removing a labelled box. Confirm that spare laces, cards, dust bags or accessories are not discarded with it. If you need the box for a gift or collection, follow LoloBuy's own warning and do not choose removal. If reducing volume is the priority, ask for the retail box to be removed while retaining shape support and any accessories, then compare the final packed dimensions rather than assuming a saving in advance."
+      ]},
+      { heading: "Protect fragile goods before optimizing volume", paragraphs: [
+        "LoloBuy says its removal process retains necessary protective packaging such as supporting boxes, airbags and soft bags for vulnerable products, with the exact handling subject to the real item. Its simple-packing page is explicitly framed around non-fragile goods. Those statements support a conservative rule: do not choose the lightest-looking option for glass, figures, structured bags, electronics or products with crush-sensitive surfaces unless the remaining protection is clear.",
+        "For mixed parcels, separate the protection decision from the consolidation decision. Soft clothing can fill space around a rigid item, but it is not a substitute for structural protection. A larger carton may be appropriate when a fragile item must remain supported. If one product forces a safer box while the rest could use a bag, compare a split shipment against the combined parcel using the live quotes. Cheapest per kilogram is not useful if the packaging exposes an irreplaceable item to avoidable damage."
+      ]},
+      { heading: "Treat brand-tag removal as an irreversible product change", paragraphs: [
+        "LoloBuy's brand-tag page says removal may affect the product's appearance and may create a risk that the item cannot be returned or exchanged. That is the most important verified fact for the decision. A tag can carry material, washing, size, price or brand information. Once cut, detached or discarded, it may no longer support product identification or a seller's return conditions. Photograph both sides of relevant tags and resolve any product dispute before authorizing removal.",
+        "The same help page says tag removal might lower the chance of a parcel being taxed. Treat that only as LoloBuy's qualified statement, not as a customs guarantee or a reason to misdescribe goods. Customs treatment depends on destination law, product category, declared value and the shipment itself. Removing a tag does not change what the product is. It does not eliminate intellectual-property restrictions, import requirements, VAT, duty or inspection risk."
+      ]},
+      { heading: "Accurate declaration still applies after boxes or tags are removed", paragraphs: [
+        "LoloBuy's delivery agreement advises accurate parcel-value declaration and says shipment data can include product name, quantity and unit price. It also says the value entered can be used as the basis for a compensation claim. Packaging removal must therefore stay separate from declaration. Describe the actual contents and quantities, use the current platform instructions and comply with the destination's import rules. Do not reduce a declared value merely because a retail box or tag is absent.",
+        "For a US or European buyer, the practical record should link the stored item, packaging request, final parcel line and declaration entry. Preserve the original order price, warehouse photos and final packed details. If customs, a carrier or after-sales support asks what was shipped, that evidence is more useful than a memory of which check box was selected. The packaging request changes presentation and sometimes dimensions; it does not create a different underlying product."
+      ]},
+      { heading: "Reconcile estimated and final packed measurements", paragraphs: [
+        "LoloBuy's weight help explains that the initial estimate includes the received item in its original packing plus anticipated parcel packaging, while the completed parcel is weighed again after packing. It also notes that choosing original-packaging removal can make the final result differ from the estimate. The useful takeaway is the sequence, not the old sample prices, named routes or formulas shown on that help page. Those examples can become stale and should not be treated as today's quote.",
+        "Save three checkpoints: the warehouse item's recorded dimensions and weight, the estimate shown while building the parcel, and the real packed weight and dimensions after processing. If the charge changes, compare those records with the live billing rule. A lighter parcel can still have the same charge, and a smaller carton can matter more than lost grams on a volume-sensitive line. If the final package does not reflect a clear instruction, contact authenticated support with the order, parcel and service records."
+      ]},
+      { heading: "A practical LoloBuy packaging checklist", paragraphs: [
+        "Before choosing a service, identify fragile or crush-sensitive items, collector or gift packaging, return-sensitive tags, size labels and accessories. Review the warehouse photos and save the order evidence. For every item, mark each packaging layer as remove, keep or confirm. Use Simple Packing only where the goods suit its non-fragile description. For Package Removal, state the exact box or bag to remove and the protective parts to retain. Leave brand tags in place until identity, visible condition and return decisions are settled.",
+        "Before payment, compare the final parcel against the original instructions. Check the packed weight and dimensions, current route eligibility, chargeable-weight method, declaration and protection choice. Save screenshots of the selected service and final quote. This routine cannot guarantee savings or prevent every handling and customs problem. It does give buyers a defensible decision trail and keeps a reversible shipping preference from becoming an irreversible product mistake."
+      ]}
+    ]
   }
 ];
-// Content-only refresh for the 21 September 2026 Pages deployment.

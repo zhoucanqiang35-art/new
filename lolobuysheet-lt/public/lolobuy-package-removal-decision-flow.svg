@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy package removal decision flow</title>
+  <desc id="desc">A four-step flow for deciding whether to keep original packaging, use simple packing, remove boxes, or remove brand tags before checking final parcel measurements and live routes.</desc>
+  <rect width="1200" height="650" rx="36" fill="#f7f8fc"/>
+  <text x="70" y="78" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#18212f">Choose packaging by risk, not by guesswork</text>
+  <text x="70" y="116" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#536173">Record each decision before the parcel is packed</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="70" y="160" width="240" height="250" rx="24" fill="#ffffff" stroke="#d7deea" stroke-width="2"/>
+    <circle cx="115" cy="205" r="24" fill="#2957d7"/>
+    <text x="115" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">1</text>
+    <text x="105" y="260" font-size="22" font-weight="700" fill="#18212f">Protection first</text>
+    <text x="105" y="302" font-size="17" fill="#536173">Fragile, structured,</text>
+    <text x="105" y="330" font-size="17" fill="#536173">collectible or a gift?</text>
+    <rect x="103" y="356" width="174" height="34" rx="17" fill="#e9efff"/>
+    <text x="190" y="379" text-anchor="middle" font-size="15" font-weight="700" fill="#2957d7">KEEP SUPPORT</text>
+    <path d="M325 285h48" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round"/>
+    <path d="m363 274 12 11-12 11" fill="none" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="390" y="160" width="240" height="250" rx="24" fill="#ffffff" stroke="#d7deea" stroke-width="2"/>
+    <circle cx="435" cy="205" r="24" fill="#16856b"/>
+    <text x="435" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">2</text>
+    <text x="425" y="260" font-size="22" font-weight="700" fill="#18212f">Map the layers</text>
+    <text x="425" y="302" font-size="17" fill="#536173">Courier carton, retail box,</text>
+    <text x="425" y="330" font-size="17" fill="#536173">insert, bag and accessories</text>
+    <rect x="423" y="356" width="174" height="34" rx="17" fill="#e5f6f1"/>
+    <text x="510" y="379" text-anchor="middle" font-size="15" font-weight="700" fill="#16856b">REMOVE / KEEP</text>
+    <path d="M645 285h48" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round"/>
+    <path d="m683 274 12 11-12 11" fill="none" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="710" y="160" width="240" height="250" rx="24" fill="#ffffff" stroke="#d7deea" stroke-width="2"/>
+    <circle cx="755" cy="205" r="24" fill="#c77716"/>
+    <text x="755" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">3</text>
+    <text x="745" y="260" font-size="22" font-weight="700" fill="#18212f">Tags are different</text>
+    <text x="745" y="302" font-size="17" fill="#536173">Save label evidence and</text>
+    <text x="745" y="330" font-size="17" fill="#536173">resolve return questions</text>
+    <rect x="743" y="356" width="174" height="34" rx="17" fill="#fff1df"/>
+    <text x="830" y="379" text-anchor="middle" font-size="15" font-weight="700" fill="#a65a08">IRREVERSIBLE</text>
+    <path d="M965 285h48" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round"/>
+    <path d="m1003 274 12 11-12 11" fill="none" stroke="#8c9ab0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1030" y="160" width="100" height="250" rx="24" fill="#18212f"/>
+    <circle cx="1080" cy="205" r="24" fill="#ffffff"/>
+    <text x="1080" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#18212f">4</text>
+    <text x="1080" y="262" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">CHECK</text>
+    <text x="1080" y="294" text-anchor="middle" font-size="15" fill="#cbd4e2">weight</text>
+    <text x="1080" y="320" text-anchor="middle" font-size="15" fill="#cbd4e2">size</text>
+    <text x="1080" y="346" text-anchor="middle" font-size="15" fill="#cbd4e2">route</text>
+    <text x="1080" y="372" text-anchor="middle" font-size="15" fill="#cbd4e2">declaration</text>
+    <rect x="70" y="464" width="1060" height="122" rx="22" fill="#eef2f8"/>
+    <text x="100" y="508" font-size="20" font-weight="700" fill="#18212f">Final rule</text>
+    <text x="100" y="544" font-size="18" fill="#536173">A smaller or lighter parcel does not guarantee a lower price. Confirm the final packed measurements,</text>
+    <text x="100" y="573" font-size="18" fill="#536173">the live billing method and the destination rules before payment. Packaging removal never changes what the product is.</text>
+  </g>
+</svg>
