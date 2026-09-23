@@ -1417,5 +1417,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-shipping-insurance-claim-checklist",
+    title: "PikoBuy Shipping Insurance: Evidence Checklist",
+    description: "Check PikoBuy shipping insurance by route, understand the published risk limits and preserve useful evidence for a lost or damaged parcel claim.",
+    published: "23 September 2026",
+    updated: "23 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy shipping insurance",
+    secondaryKeywords: [
+      "PikoBuy parcel insurance",
+      "PikoBuy insurance claim",
+      "PikoBuy lost parcel",
+      "PikoBuy damaged parcel",
+      "PikoBuy compensation"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Shipping Terms, Terms of Service, Beginner's Guide, Shipping Estimate and Contact page on 23 September 2026. The public pages mention logistics insurance but do not publish one universal coverage table, premium, compensation limit, exclusion list or claim deadline for every route. This guide therefore separates verified platform statements from an independent evidence checklist and does not promise that a route, parcel or event is insured.",
+    sections: [
+      {
+        heading: "The direct answer: verify insurance on the actual route",
+        paragraphs: [
+          "PikoBuy shipping insurance should be checked on the specific route available for your finished parcel, not assumed from a general reference to insurance. PikoBuy's public Shipping Terms say that third-party logistics providers carry its parcels, that cross-border risks must be assessed and borne by the user, and that the platform works to reduce loss through risk alerts and continuously improving logistics insurance. The public page does not state that every route includes the same protection.",
+          "Before paying international shipping, record whether the selected route displays insurance or compensation terms, what event is covered, the maximum payable amount, what evidence is required, and any deadline or exclusion. If those details are not visible or are ambiguous, ask PikoBuy through the current support channel and preserve the answer with the parcel record. A generic statement that insurance exists is not enough to establish coverage for loss, damage, delay or customs action."
+        ]
+      },
+      {
+        heading: "Separate insurance from PikoBuy's general service obligations",
+        paragraphs: [
+          "PikoBuy's Terms of Service list international shipping, logistics tracking and after-sales support within the platform's service scope. They also say PikoBuy is not liable for delays, failures or losses caused by force majeure or events beyond its reasonable control, including international logistics disruptions. Its Shipping Terms are more specific: third-party providers carry parcels, and PikoBuy does not assume risks arising from customs policies or uncontrollable cross-border factors such as confiscation, damage, loss and peak-season delay.",
+          "These statements do not prove that an insurance option will reject every claim, but they make it unsafe to treat ordinary platform support and contractual liability as the same thing as route-specific cover. Support may help investigate a parcel without accepting compensation liability. An insurer or logistics provider may apply a separate set of conditions. Ask which document controls the selected route, who decides a claim and where the compensation rules are shown before relying on a protection label."
+        ]
+      },
+      {
+        heading: "Compare covered events instead of the word insured",
+        paragraphs: [
+          "A useful comparison names the event. Total loss, partial loss, visible damage, concealed damage, delivery delay, customs confiscation and a returned parcel are different outcomes. PikoBuy's public Shipping Terms name loss, damage, confiscation and peak-season delay as logistics risks, but they do not publish a universal promise that insurance covers those risks. Do not infer delay compensation from loss cover, or customs cover from a damaged-parcel rule.",
+          "Create a small route note with one row for each relevant event and mark it covered, excluded or unclear only from the live terms. Also record any declared-value cap, product restriction, deductible, proof requirement and filing window actually displayed. If the route page uses a short label without definitions, treat the unanswered fields as unknown. The best route is not automatically the one with the broadest marketing phrase; it is the one whose cost, restrictions and protection match the parcel you are actually submitting."
+        ]
+      },
+      {
+        heading: "Use final parcel data when checking protection",
+        paragraphs: [
+          "PikoBuy's shipping estimator asks for destination, product type, weight, length, width and height. Its Beginner's Guide says buyers choose a route after warehouse inspection and that routes differ in delivery time and billing methods. Insurance should therefore be checked after consolidation and packaging decisions produce a realistic parcel, because product type, destination, dimensions and value can affect which routes remain available and which restrictions matter.",
+          "Match the insurance note to the final parcel number, not an earlier estimate. Save the contents list, destination, measured weight and dimensions, selected packaging, declared information, route name, charge and the terms shown at payment. If you later change the parcel, split it, remove an item or select another route, repeat the check. Evidence for an abandoned quote does not establish the conditions attached to the parcel that was dispatched."
+        ]
+      },
+      {
+        heading: "Build a warehouse baseline before dispatch",
+        paragraphs: [
+          "A damage claim is easier to describe when the pre-shipment condition is documented. PikoBuy's Beginner's Guide says warehouse inspection includes check-in, photo confirmation and a defect check. Its Shipping Terms say forwarded goods are unpacked and inspected, while professional inspection is not available for special and professional products. Review those records before parcel submission and distinguish a visible pre-existing issue from damage first seen after delivery.",
+          "Save the order or forwarding identifier, warehouse photographs, item quantity, visible condition and any additional detailed photographs or measurements you purchased. Resolve a wrong item, missing accessory or obvious defect while the goods are still at the warehouse rather than recasting it later as carrier damage. For fragile or high-value contents, record the packaging request and whether the route permits the product. Inspection photos are evidence of visible condition, not a guarantee about hidden construction or future transit survival."
+        ]
+      },
+      {
+        heading: "Keep value, contents and declaration records consistent",
+        paragraphs: [
+          "Retain the source listing, selected option, purchasing-order payment and parcel contents list so each shipped item can be identified and valued. If the purchase price changed, save the final transaction rather than an old spreadsheet figure. PikoBuy's Terms say cross-border transactions may incur duties, taxes, brokerage fees or other charges and place those costs on the user. Insurance or compensation should not be assumed to reimburse destination taxes or every incidental expense unless the applicable terms say so.",
+          "Use accurate parcel descriptions, quantities and supporting records. A claim file becomes weaker when the contents list, declared information and purchase evidence describe different things. Do not use an invented per-kilogram declaration formula or lower a value simply because someone says it improves customs outcomes. PikoBuy's public pages do not publish a universal declaration shortcut or state that inaccurate information will remain protected by insurance."
+        ]
+      },
+      {
+        heading: "Track the handoff and preserve the last confirmed event",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says tracking information will be available within three days after the parcel is shipped. That is a tracking-availability statement after dispatch, not a delivery guarantee or a claim deadline. Save the parcel status that confirms shipment, the route and tracking number, then capture material carrier events with their date, time and location. This creates a handoff history without assuming that a quiet period proves loss.",
+          "When tracking stops, identify the last party that recorded possession and ask a specific question through the appropriate channel. A PikoBuy enquiry can confirm parcel preparation and dispatch information; the named carrier may explain a transport or local-delivery scan; a customs authority controls its own clearance requests. Keep case numbers and written replies together. Repeated screenshots of an unchanged status add less value than one clear timeline showing what happened and who was contacted."
+        ]
+      },
+      {
+        heading: "Document damage or shortage at delivery",
+        paragraphs: [
+          "If the parcel arrives damaged, preserve the outer packaging, shipping label and internal packing long enough to document the condition. Take clear photographs of every side, any puncture or crushing, the opened package, each affected item and the full contents together. If something is missing, compare the delivered contents with the PikoBuy parcel list and warehouse baseline. Record the delivery date and the first time the issue was observed without claiming a cause that the evidence cannot show.",
+          "A continuous unboxing video can provide context when available, but do not fabricate or stage one after the event. Keep original files and avoid editing out timestamps or identifiers needed for verification. At the same time, redact payment credentials, passwords and unrelated personal data before sending material to support. The useful question is whether the evidence connects a specific dispatched parcel to a specific shortage or change in condition, not whether the complaint contains the largest number of attachments."
+        ]
+      },
+      {
+        heading: "Submit one claim-ready evidence pack",
+        paragraphs: [
+          "PikoBuy's Contact page recommends submitting a ticket. Start with the parcel number, route, tracking number, dispatch and delivery dates, last carrier event, item identifiers, purchase evidence and a concise description of the claimed event. Attach the route terms saved at payment, relevant warehouse baseline, packaging record, carrier or delivery evidence and photographs of damage or shortage. Ask which policy or logistics rule applies, what additional proof is required, who is assessing the case and what next date should be monitored.",
+          "Do not invent a deadline because PikoBuy's public pages do not publish one universal insurance-claim window. Instead, follow the exact time limit displayed for the selected route or given in the support response, and act promptly when a parcel is visibly damaged or missing. Keep the discussion in one ticket where possible and add only material evidence. If a carrier requires a separate report, save its reference and tell PikoBuy rather than opening conflicting narratives with different facts."
+        ]
+      },
+      {
+        heading: "Use a five-question decision before paying",
+        paragraphs: [
+          "Ask five questions: Is protection offered for this exact route and parcel? Which named events are covered or excluded? What value limit, fee or deductible is displayed? What evidence and filing deadline apply? Who makes the decision and pays an accepted claim? If any answer matters to your willingness to ship but remains unclear, pause and obtain a written clarification. Choosing another route or splitting a parcel may reduce one exposure, but neither action guarantees eligibility or payment.",
+          "FindSpreadsheet is independent from PikoBuy and cannot view private route terms, insure a parcel or decide compensation. Use it to compare product leads, then use the live PikoBuy parcel page and support record for the shipping decision. The practical conclusion is simple: do not buy the word insurance. Verify the event, limit and process attached to the actual route, preserve a pre-dispatch baseline, and maintain one consistent evidence trail from warehouse to delivery."
+        ]
+      }
+    ]
   }
 ];
