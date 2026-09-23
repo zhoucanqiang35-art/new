@@ -22,6 +22,7 @@ for (const file of [
   'pikobuy-customs-guide.html',
   'pikobuy-payment-guide.html',
   'pikobuy-order-tracking-guide.html',
+  'pikobuy-parcel-consolidation-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
