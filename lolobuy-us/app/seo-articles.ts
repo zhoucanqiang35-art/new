@@ -35,6 +35,72 @@ const officialSources: SeoSource[] = [
 ];
 
 export const seoGuidePages: Record<string, SeoGuidePage> = {
+  "seo-articles/lolobuy-spreadsheet-order-checklist": {
+    kicker: "ORDER CHECKLIST / SPREADSHEET WORKFLOW",
+    title: "How to use a LoloBuy spreadsheet without skipping the checks that matter",
+    summary: "A practical order checklist connecting product discovery, seller details, warehouse photos, parcel planning and the live information that must be confirmed before payment.",
+    readTime: "12 min read • reviewed 24 Sep 2026",
+    visual: "workflow",
+    sections: [
+      {
+        heading: "Start with the spreadsheet, but do not stop there",
+        paragraphs: [
+          "A LoloBuy spreadsheet is useful because it turns a scattered product search into a browsable starting point. Categories, short names and direct product routes can help a shopper move from a general idea to a listing worth checking. That convenience is discovery, not verification. A spreadsheet row cannot confirm that a seller still has stock, that every photograph shows the current version, that a size label will fit, or that the final delivered item will match a marketing description. Treat each row as a lead that still needs evidence.",
+          "The safest workflow keeps three records separate. The spreadsheet helps you find a candidate. The original seller listing provides the current product description, variants and price context. The LoloBuy account provides the live purchase, warehouse and parcel information. When those records disagree, pause and resolve the difference instead of assuming the shortest description is correct. This habit matters more than collecting a very large number of links.",
+        ],
+      },
+      {
+        heading: "Before ordering: identify the exact item",
+        paragraphs: [
+          "Open the final destination of the product link and confirm that it still describes the item named in the spreadsheet. Record the seller, product title, selected color, size, model and quantity. If the page contains several styles under one listing, save the exact option rather than only the main photograph. Prices, availability and seller descriptions can change, so use the live page shown when you are preparing the order.",
+          "Size deserves its own check. Compare stated measurements with a garment or object you already own, and note whether the chart describes a body or a finished product. Do not rely only on familiar labels such as small or large. For electronics, record the model, plug, voltage, included accessories and any region-specific detail. For shoes, note the sizing system and the measurement used to choose it. Clear notes make a later warehouse comparison much easier.",
+        ],
+        bullets: [
+          "Save the source URL and the exact selected variant.",
+          "Keep the current size chart or key measurements.",
+          "Record what should be included in the package.",
+          "Write down the visible differences that would make you request clarification.",
+        ],
+      },
+      {
+        heading: "At the warehouse: compare evidence in a fixed order",
+        paragraphs: [
+          "LoloBuy's public website describes a purchasing service in which goods are sent to its China warehouse, and it describes warehouse inspection and photographs as part of the process. Use those images first to confirm order accuracy: item type, quantity, color, selected size and obvious included pieces. Then examine overall shape and proportion before zooming into seams, surface condition, print placement, hardware or packaging damage. A fixed order reduces the chance of admiring details while missing a basic mismatch.",
+          "Photographs have limits. They can show a visible condition from the angles provided, but they cannot prove authenticity, long-term durability, exact material composition, scent, comfort, waterproofing or every internal electronic function. Camera distance and lighting can also distort size and color. When a measurement or hidden area matters, ask a specific question or request a useful angle instead of converting uncertainty into a positive claim.",
+        ],
+      },
+      {
+        heading: "Decide before parcel submission",
+        paragraphs: [
+          "Warehouse arrival is a decision point, not an automatic signal to ship. Compare the received evidence with the notes you made before ordering. If the variant is wrong, an important area is missing from the images, or a measurement falls outside your acceptable range, keep the issue tied to the order record and use the current account process for clarification or any available after-sales option. Deadlines and eligibility can depend on the seller, reason, item condition and platform terms, so confirm the live rule instead of relying on an undated guide.",
+          "Keep screenshots and messages until the matter is resolved. Describe a problem precisely: for example, identify the ordered color and the received color, or name the measurement shown and the expected range. A specific comparison is more useful than saying an item looks bad. If the evidence is incomplete, record that uncertainty. The purpose of inspection is to support a decision, not to manufacture certainty that the images do not provide.",
+        ],
+      },
+      {
+        heading: "Build the parcel from current numbers",
+        paragraphs: [
+          "The product price is not the complete landed cost. Domestic seller delivery, transaction charges shown in the account, optional services, packaging, international transport, insurance choices, currency conversion and destination taxes can all affect the result. Use the live parcel screen for current figures. Old rate tables and social posts may describe a different destination, parcel size, item mix or period.",
+          "Compare scale weight with parcel dimensions when both are available. Some routes can charge according to a dimensional or volumetric calculation rather than scale weight alone. Removing retail packaging may reduce volume but may also reduce protection or remove components you want to keep. Consolidating items can reduce the number of outbound parcels, yet it can also concentrate value and combine items with different handling or route restrictions. Make the packaging decision before choosing a line.",
+        ],
+      },
+      {
+        heading: "Compare shipping lines without a false promise",
+        paragraphs: [
+          "Review only the lines offered for the prepared parcel and destination. Compare content eligibility, chargeable-weight method, current displayed cost, tracking coverage, declared estimate, compensation or insurance terms and operational notices. Batteries, liquids, oversized items and other controlled categories can affect availability. A route mentioned in an old review is not evidence that it will be available for your parcel today.",
+          "Delivery estimates are planning ranges, not guarantees. Warehouse processing, carrier pickup, export handling, line-haul movement, customs, destination-carrier transfer and final delivery are separate stages. Leave a buffer for an event or deadline. Keep the parcel number, selected line and last meaningful tracking event together so that a support question can include useful context rather than only a cropped screenshot.",
+        ],
+      },
+      {
+        heading: "Use one final checklist",
+        paragraphs: [
+          "Before product payment, confirm the final link, seller, exact variant, measurements and included pieces. Before international shipping, confirm the warehouse match, visible condition, address, parcel contents, packaging choice, current route eligibility and displayed total. Recheck anything time-sensitive in the live account on the day you act. A spreadsheet should make this workflow easier to repeat; it should never encourage a shopper to skip the seller page or current platform terms.",
+          "After delivery, compare the result with your original notes and warehouse evidence. Record what was accurate and what you would check differently next time. One order cannot prove the typical performance of every seller, product or route, but a well-kept record can improve your own next decision. That is the practical value of a LoloBuy spreadsheet: organized discovery connected to disciplined verification, not a promise that removes cross-border shopping risk.",
+        ],
+      },
+    ],
+    sources: officialSources,
+    cta: { label: "Browse the FindSpreadsheet product database", href: "https://findspreadsheet.com/" },
+  },
   "guides/how-lolobuy-works": {
     kicker: "BEGINNER GUIDE / OFFICIAL WORKFLOW",
     title: "How LoloBuy works: from a product link to an international parcel",

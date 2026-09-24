@@ -458,6 +458,7 @@ export function UpdatesPage({ locale = "en" }: { locale?: string }) {
 
 export function ArticlesPage({ locale = "en" }: { locale?: string }) {
   const articles = [
+    ["CHECKLIST", "How to use a LoloBuy spreadsheet without skipping the checks that matter", "/seo-articles/lolobuy-spreadsheet-order-checklist", "12 MIN"],
     ["BEGINNER", "How LoloBuy works: the complete product-link-to-parcel guide", "/guides/how-lolobuy-works", "15 MIN"],
     ["QC", "A seven-frame method for reading warehouse photos", "/guides/qc-photos", "16 MIN"],
     ["SHIPPING", "Plan a parcel without relying on stale route claims", "/guides/shipping", "15 MIN"],

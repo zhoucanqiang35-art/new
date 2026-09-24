@@ -11,8 +11,7 @@ export const metadata: Metadata = {
     template: "%s | LoloBuy US",
   },
   description: "An independent, source-led LoloBuy spreadsheet, QC, warehouse, shipping and tracking guide for shoppers in the United States and Europe.",
-  robots: { index: false, follow: false },
-  other: { "codex-preview": "public-inspection" },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "LoloBuy Spreadsheet 2026 — Independent QC & Buying Guide",
     description: "Product discovery with context: categories, QC methodology, parcel planning and official-source checks.",

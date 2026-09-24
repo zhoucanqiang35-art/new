@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, path } = resolveParts(slug);
   if (!path && locale !== "en") {
     const copy = localeCopy[locale] || localeCopy.en;
-    return { title: `${copy.title} ${copy.accent} | LoloBuy US`, description: copy.lede, robots: { index: false, follow: false } };
+    return { title: `${copy.title} ${copy.accent} | LoloBuy US`, description: copy.lede, robots: { index: true, follow: true } };
   }
   const page = contentPages[path];
   const translatedPage = page ? localizedPage(page, locale) : undefined;
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = translatedPage?.title || (special[path] ? tx(locale, special[path][0]) : undefined);
   const description = translatedPage?.summary || (special[path] ? tx(locale, special[path][1]) : undefined);
   if (!title) return {};
-  return { title, description, robots: { index: false, follow: false } };
+  return { title, description, robots: { index: true, follow: true } };
 }
 
 export default async function DynamicPage({ params }: Props) {
