@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-image-search-guide",
+    date: "23 September 2026",
+    title: "LoloBuy Image Search Guide: Turn a Product Photo into a Verifiable Shortlist",
+    description: "A practical method for preparing a reference image, comparing visual results, and turning candidates into a research-ready shortlist.",
+  },
+  {
     href: "/seo-articles/lolobuy-return-request-guide",
     date: "19 September 2026",
     title: "LoloBuy Return Request Guide: Build an Evidence-Ready Warehouse Case",

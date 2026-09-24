@@ -22,7 +22,7 @@ export function ArticleClient({ article }: { article: SeoArticle }) {
         <section>
           <h2>Continue your research</h2>
           <p>
-            Start with the <Link href="/seo-articles/lolobuy-product-link-research">product-link research guide</Link>, review warehouse evidence with the <Link href="/seo-articles/lolobuy-qc-photos-guide">QC photos guide</Link>, then build a parcel with the <Link href="/seo-articles/lolobuy-shipping-plan">shipping plan guide</Link> and read post-dispatch events with the <Link href="/seo-articles/lolobuy-parcel-tracking-guide">parcel tracking guide</Link>. You can also browse the <Link href="/categories">product categories</Link> or return to the <Link href="/seo-articles">research library</Link>.
+            Discover candidates with the <Link href="/seo-articles/lolobuy-image-search-guide">image search guide</Link>, verify them with the <Link href="/seo-articles/lolobuy-product-link-research">product-link research guide</Link>, and review warehouse evidence with the <Link href="/seo-articles/lolobuy-qc-photos-guide">QC photos guide</Link>. Continue with the <Link href="/seo-articles/lolobuy-shipping-plan">shipping plan guide</Link> or <Link href="/seo-articles/lolobuy-return-request-guide">return request guide</Link>, then use the <Link href="/seo-articles/lolobuy-parcel-tracking-guide">parcel tracking guide</Link> after dispatch.
           </p>
         </section>
         <p className="source-note">{article.sourceNote}</p>
