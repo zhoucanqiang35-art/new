@@ -12,7 +12,7 @@ const pages = [
   { path: "shipping-guide", lastmod: "2026-08-29", changefreq: "monthly", priority: "0.8" },
   { path: "buyer-checklist", lastmod: "2026-08-29", changefreq: "monthly", priority: "0.8" },
   { path: "faq", lastmod: "2026-08-29", changefreq: "monthly", priority: "0.8" },
-  { path: "seo-articles", lastmod: "2026-09-22", changefreq: "weekly", priority: "0.9" },
+  { path: "seo-articles", lastmod: "2026-09-24", changefreq: "weekly", priority: "0.9" },
 ];
 
 const urls = [];
@@ -30,6 +30,7 @@ urls.push({ path: "pikobuy-warehouse", url: `${base}/pikobuy-warehouse`, lastmod
 urls.push({ path: "pikobuy-order-status", url: `${base}/pikobuy-order-status`, lastmod: "2026-09-18", changefreq: "monthly", priority: "0.9" });
 urls.push({ path: "pikobuy-parcel-submission", url: `${base}/pikobuy-parcel-submission`, lastmod: "2026-09-20", changefreq: "monthly", priority: "0.9" });
 urls.push({ path: "pikobuy-shipping-times", url: `${base}/pikobuy-shipping-times`, lastmod: "2026-09-22", changefreq: "monthly", priority: "0.9" });
+urls.push({ path: "pikobuy-parcel-consolidation", url: `${base}/pikobuy-parcel-consolidation`, lastmod: "2026-09-24", changefreq: "monthly", priority: "0.9" });
 for (const locale of locales) for (const page of pages) urls.push({ ...page, url: `${base}/${locale}${page.path ? `/${page.path}` : ""}`, priority: page.path ? page.priority : "0.8" });
 for (const locale of ["", ...locales]) for (const category of categories) urls.push({ url: `${base}${locale ? `/${locale}` : ""}/categories/${category}`, lastmod: "2026-08-29", changefreq: "monthly", priority: "0.7" });
 

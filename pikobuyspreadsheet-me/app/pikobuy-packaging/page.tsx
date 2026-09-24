@@ -109,6 +109,7 @@ export default function Page(){return <GuidePage kicker="PACKAGING GUIDE" title=
   {href:"/pikobuy-return-policy",label:"Protect return eligibility before changing packaging"},
   {href:"/qc-guide",label:"Review warehouse photos before parcel submission"},
   {href:"/pikobuy-parcel-submission",label:"Complete the parcel submission checklist"},
+  {href:"/pikobuy-parcel-consolidation",label:"Plan packaging for a combined product mix"},
   {href:"/pikobuy-shipping-calculator",label:"Re-estimate shipping with packed dimensions"},
   {href:"/shipping-guide",label:"Compare current routes and parcel risks"}
 ]}/>}

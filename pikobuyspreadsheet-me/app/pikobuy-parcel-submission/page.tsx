@@ -118,6 +118,7 @@ export default function Page(){return <GuidePage kicker="PARCEL SUBMISSION GUIDE
   {href:"/pikobuy-warehouse",label:"Complete the warehouse decision first"},
   {href:"/pikobuy-return-policy",label:"Protect the eligible return window"},
   {href:"/pikobuy-packaging",label:"Choose minimal or reinforced packaging"},
+  {href:"/pikobuy-parcel-consolidation",label:"Review whether several items should travel together"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate with current parcel inputs"},
   {href:"/pikobuy-shipping-times",label:"Understand what happens before and after dispatch"},
   {href:"/pikobuy-tracking",label:"Follow the parcel after dispatch"}

@@ -123,6 +123,7 @@ export default function Page(){return <GuidePage kicker="SHIPPING TIMES GUIDE" t
   {href:"/pikobuy-order-status",label:"Match each update to the correct record"},
   {href:"/pikobuy-warehouse",label:"Handle the warehouse decision stage"},
   {href:"/pikobuy-parcel-submission",label:"Prepare the parcel before dispatch"},
+  {href:"/pikobuy-parcel-consolidation",label:"Plan which warehouse items travel together"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate with current parcel inputs"},
   {href:"/pikobuy-tracking",label:"Read events after shipment"}
 ]}/>}
