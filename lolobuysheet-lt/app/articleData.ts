@@ -2016,6 +2016,117 @@ export const researchArticles: ResearchArticle[] = [
         "Before payment, compare the final parcel against the original instructions. Check the packed weight and dimensions, current route eligibility, chargeable-weight method, declaration and protection choice. Save screenshots of the selected service and final quote. This routine cannot guarantee savings or prevent every handling and customs problem. It does give buyers a defensible decision trail and keeps a reversible shipping preference from becoming an irreversible product mistake."
       ]}
     ]
+  },
+  {
+    slug: "lolobuy-customs-declaration-value-guide",
+    tag: "CUSTOMS",
+    title: "LoloBuy Customs Declaration Guide: Value, Item Names and Proof",
+    description: "A fact-checked LoloBuy customs declaration workflow for choosing clear item names, reconciling quantities and value, and preparing evidence for US and European clearance.",
+    readTime: "15 min read",
+    published: "2026-09-25",
+    updated: "2026-09-25",
+    keywords: [
+      "LoloBuy customs declaration",
+      "LoloBuy declared value",
+      "LoloBuy parcel declaration",
+      "LoloBuy customs clearance documents",
+      "LoloBuy tax ID",
+      "LoloBuy declaration items"
+    ],
+    sources: [
+      {
+        label: "LoloBuy current parcel-submission interface and declaration fields",
+        url: "https://www.lolobuy.com/assets/index-63dcc24c.js",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Delivery Service Agreement",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300779790518",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — Customs risks associated with Shopping Agent service",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300933013835",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "LoloBuy Help Center — The customs inspection",
+        url: "https://www.lolobuy.com/prod-api/user/common/helpMenuDetail?id=1242300937929045",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "European Commission — Customs formalities for low value consignments",
+        url: "https://taxation-customs.ec.europa.eu/customs/customs-procedures-import-and-export/customs-operations/customs-formalities-low-value-consignments_en",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "GOV.UK — Tax and customs for goods sent from abroad",
+        url: "https://www.gov.uk/goods-sent-from-abroad/tax-and-duty",
+        accessed: "25 September 2026"
+      },
+      {
+        label: "US Federal Register — De minimis suspension for non-postal modes",
+        url: "https://www.federalregister.gov/documents/2026/06/24/2026-12670/indefinite-suspension-of-the-de-minimis-exemption-for-merchandise-arriving-through-all-modes-other",
+        accessed: "25 September 2026"
+      }
+    ],
+    relatedLinks: [
+      { label: "Plan LoloBuy shipping to the USA", url: "/articles/lolobuy-shipping-to-usa-checklist" },
+      { label: "Review UK and EU VAT and customs planning", url: "/articles/lolobuy-shipping-to-uk-eu-vat-customs" },
+      { label: "Check restricted-item eligibility before ordering", url: "/articles/lolobuy-restricted-items-shipping-guide" },
+      { label: "Track LoloBuy parcel and customs exceptions", url: "/articles/lolobuy-parcel-tracking-delivery-status" },
+      { label: "Prepare return and refund evidence", url: "/articles/lolobuy-return-refund-evidence-guide" },
+      { label: "Browse product leads on FindSpreadsheet", url: "https://findspreadsheet.com/" }
+    ],
+    illustration: {
+      src: "/lolobuy-customs-declaration-evidence-flow.svg",
+      alt: "LoloBuy customs declaration workflow from warehouse items to accurate item names, values, proof and customs response",
+      caption: "Original declaration-evidence workflow based on the LoloBuy parcel interface and government sources checked on 25 September 2026. Destination rules and route fields can change, so the signed-in parcel screen remains the final checkpoint.",
+      width: 1200,
+      height: 650
+    },
+    sections: [
+      { heading: "A customs declaration should reconcile, not merely look plausible", paragraphs: [
+        "A useful LoloBuy customs declaration is a compact account of what is actually inside the parcel. The item names should correspond to the stored products, quantities should add up, unit prices should support the total, and the chosen currency should match the record you can explain. Treating the form as a number to copy from a forum creates a fragile shipment: the warehouse record, payment evidence and declaration may tell three different stories when a carrier or customs office asks a question.",
+        "This guide separates current platform facts from editorial workflow advice. Platform details come from LoloBuy's public website program and help pages accessed on 25 September 2026. Destination facts come from current US, EU and UK government publications. No tax result, inspection outcome, route availability or clearance time is promised. The fields and limits displayed for the actual parcel in the signed-in account should control the submission."
+      ]},
+      { heading: "Know what the current LoloBuy form asks for", paragraphs: [
+        "LoloBuy's current English parcel interface includes declaration item name, weight, quantity, unit price, currency and declared amount. It also exposes self-declaration and estimated-declaration modes, and some route configurations can request a tax-payment method or tax ID. The interface validates details such as English-only item names, positive prices and route-specific minimums, maximums or item-count limits. Those dynamic limits should be read from the live route rather than copied into a permanent checklist.",
+        "The same interface tells self-declaring users to provide truthful, compliant contents and recommends standard product-category names. It warns that customs decisions cannot be controlled by the platform. Build the declaration only after the parcel contents are final. If an item was returned, split into another parcel or removed during consolidation, it should not remain in the declaration merely because it appeared in the original shopping cart."
+      ]},
+      { heading: "Use specific, ordinary item names", paragraphs: [
+        "A declaration name should be understandable to a person who has never seen the seller listing. “Cotton T-shirt,” “rubber-soled shoes,” “polyester backpack” or “plastic building blocks” communicates more than “gift,” “sample,” “accessory” or an internal product nickname. LoloBuy's interface currently accepts English letters and spaces for the declaration name, so prepare simple English category terms before submission. Do not use a vague label to hide a battery, liquid, cosmetic or other characteristic that affects transport or import controls.",
+        "Keep names consistent across evidence. The marketplace listing may use promotional language, while the warehouse record may use a translated title. Your declaration does not need to reproduce either title word for word, but it should describe the same object. Save a small mapping table with stored-item ID, seller description, chosen declaration name and quantity. If several similar garments can honestly share one category line, verify that the live form and route allow the combined quantity."
+      ]},
+      { heading: "Reconcile quantity, unit price and total value", paragraphs: [
+        "LoloBuy's delivery agreement says the platform can fill product name, quantity and unit price from submitted product information, while the buyer enters the parcel value. It also says declared product name and quantity may be modified in parcel details before packaging. Use that review window. Multiply each line's unit price by its quantity, total the lines and compare the result with the declared amount shown on the screen. Resolve differences before the parcel is sealed.",
+        "For editorial record-keeping, start from the amount actually paid for the goods and preserve the order receipt, discounts and any seller refund. Do not inflate a line to make the total fit, and do not divide one expensive item into fictional low-value units. If the platform or carrier defines a particular valuation method for freight, insurance, tax or used goods, follow the current instruction for that shipment. When uncertain, ask authenticated support before paying rather than inventing a value."
+      ]},
+      { heading: "Do not confuse declared value with shipping cost or compensation", paragraphs: [
+        "Product value, international freight, destination tax and insurance are related but not interchangeable. LoloBuy's agreement states that the declared value entered can be used as the value basis for a compensation claim. That makes an artificially low figure a risk beyond customs: it may weaken the evidence available if a covered loss occurs. Keep a parcel ledger with merchandise value, freight charge, optional protection and destination charges in separate columns.",
+        "Destination calculations can also include costs outside the product lines. GOV.UK states that when VAT is collected at import, the taxable package value can include goods, postage, packaging, insurance and any duty owed. That does not mean those elements should be duplicated as fake merchandise in LoloBuy's item table. It means the buyer should preserve them as separate records and use the official destination guidance or carrier assessment to understand the final charge."
+      ]},
+      { heading: "Prepare a clearance evidence folder before dispatch", paragraphs: [
+        "LoloBuy's customs-inspection page says a recipient may be contacted for an invoice or customs-clearance material when a parcel is considered unusual, including when it is bulky, heavy or sensitive. Prepare the response before the parcel moves: seller order confirmation, payment receipt, itemized product list, LoloBuy order and parcel numbers, tracking number, declared lines, warehouse photos and the final freight receipt. Store readable copies rather than links that require a Chinese marketplace login.",
+        "Name the files so another person can follow them: parcel number, item number and document type. If a discount changed the paid price, keep the pre-discount listing and the final receipt together. If the parcel contains forwarded goods bought outside LoloBuy, preserve the sender's invoice or payment record as well. This evidence does not guarantee clearance, but it lets you answer a real request quickly without reconstructing the transaction under pressure."
+      ]},
+      { heading: "US buyers should ignore old de minimis shortcuts", paragraphs: [
+        "US low-value import treatment changed materially before this article was published. Federal Register rules issued by US Customs and Border Protection in June 2026 implement an indefinite suspension of the duty-free de minimis exemption for covered merchandise arriving through postal and non-postal channels. A spreadsheet or video still repeating the old assumption that every parcel below 800 dollars is automatically duty-free is not a safe declaration guide.",
+        "For a US-bound LoloBuy parcel, describe the goods accurately, retain origin and purchase evidence where available, and evaluate the route using the current interface. Do not select a declaration value merely to fit a former threshold. The applicable entry process, duties and data can depend on transport mode and product classification. Check current CBP or carrier instructions at submission, especially when combining items that differ in material, use or restriction status."
+      ]},
+      { heading: "EU and UK records need their own destination logic", paragraphs: [
+        "The European Commission states that an import declaration is required for all goods entering the EU regardless of value, and describes simplified data for eligible low-value consignments. IOSS is a VAT collection mechanism for qualifying sales, not permission to omit or fictionalize the contents. If the LoloBuy route requests a tax-payment method or IOSS-related selection, use only information that actually applies to the transaction and do not enter a tax number borrowed from another seller or parcel.",
+        "The UK has separate rules. GOV.UK explains that VAT or duty collection depends on the goods, value and circumstances, and that the courier may contact the recipient when charges are due. Keep the recipient name, address and contact details accurate, because the person receiving the parcel may need to respond. For both UK and EU destinations, verify live government guidance instead of treating one European threshold, VAT method or carrier practice as universal."
+      ]},
+      { heading: "Respond to a customs hold with one consistent record", paragraphs: [
+        "A tracking message such as customs clearance, documentation required or held for inspection is not proof that the parcel is lost. First verify the request through the carrier's official tracking page or contact channel. Then compare the requested shipment number with the LoloBuy parcel number and the declaration evidence folder. Provide only the relevant, truthful documents through the authorized channel; do not send identity or payment records to an address found in an unsolicited message.",
+        "LoloBuy's public customs guidance says inspection is generally a spot-check process and warns that failure to cooperate can lead to return or destruction costs. Record the date, requesting organization, requested document, submission method and response. If a declared line contains an error, do not quietly create a contradictory invoice. Ask the carrier, customs authority or LoloBuy support how a correction should be handled and keep the written instruction with the case."
+      ]},
+      { heading: "A practical LoloBuy declaration checklist", paragraphs: [
+        "Before packaging, freeze the real contents and export a list of the stored items selected. Write plain English category names, confirm each quantity, reconcile unit prices to the purchase evidence and verify the displayed currency and total. Check whether the live route asks for self or estimated declaration, a tax-payment method, tax ID or additional data. Review restricted characteristics separately; an accurate name does not make a prohibited item eligible for transport.",
+        "Before payment, screenshot the declaration, route and parcel summary. Save the receipts, warehouse evidence and final freight record in one folder. After dispatch, monitor official tracking and keep contact details reachable. This workflow does not promise lower tax or faster clearance. Its value is consistency: the parcel contents, LoloBuy form, payment evidence and explanation to customs all describe the same shipment, which is the strongest starting point when a human reviewer asks for proof."
+      ]}
+    ]
   }
 ];
-// Content-only refresh for the 23 September 2026 Pages deployment.
+// Content-only refresh for the 25 September 2026 Pages deployment.

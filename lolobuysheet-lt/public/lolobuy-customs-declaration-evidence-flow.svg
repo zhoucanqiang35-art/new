@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy customs declaration evidence workflow</title>
+  <desc id="desc">A four-stage workflow that matches warehouse items to clear declaration lines, supporting proof and any official customs response.</desc>
+  <rect width="1200" height="650" rx="36" fill="#f6f8fc"/>
+  <text x="70" y="78" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#172033">Build one consistent customs record</text>
+  <text x="70" y="116" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#58667a">The contents, declaration and proof should describe the same parcel</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="70" y="160" width="240" height="260" rx="24" fill="#ffffff" stroke="#d8dfeb" stroke-width="2"/>
+    <circle cx="115" cy="205" r="24" fill="#275bd6"/>
+    <text x="115" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">1</text>
+    <text x="104" y="260" font-size="22" font-weight="700" fill="#172033">Freeze contents</text>
+    <text x="104" y="302" font-size="17" fill="#58667a">Stored item IDs</text>
+    <text x="104" y="330" font-size="17" fill="#58667a">Final quantities</text>
+    <text x="104" y="358" font-size="17" fill="#58667a">Restricted features</text>
+    <rect x="103" y="380" width="174" height="28" rx="14" fill="#e8efff"/>
+    <text x="190" y="400" text-anchor="middle" font-size="14" font-weight="700" fill="#275bd6">WAREHOUSE LIST</text>
+
+    <path d="M325 290h48" stroke="#93a0b3" stroke-width="4" stroke-linecap="round"/>
+    <path d="m363 279 12 11-12 11" fill="none" stroke="#93a0b3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="390" y="160" width="240" height="260" rx="24" fill="#ffffff" stroke="#d8dfeb" stroke-width="2"/>
+    <circle cx="435" cy="205" r="24" fill="#16846b"/>
+    <text x="435" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">2</text>
+    <text x="424" y="260" font-size="22" font-weight="700" fill="#172033">Declare clearly</text>
+    <text x="424" y="302" font-size="17" fill="#58667a">English item name</text>
+    <text x="424" y="330" font-size="17" fill="#58667a">Quantity and unit price</text>
+    <text x="424" y="358" font-size="17" fill="#58667a">Currency and total</text>
+    <rect x="423" y="380" width="174" height="28" rx="14" fill="#e4f5f0"/>
+    <text x="510" y="400" text-anchor="middle" font-size="14" font-weight="700" fill="#16846b">RECONCILE</text>
+
+    <path d="M645 290h48" stroke="#93a0b3" stroke-width="4" stroke-linecap="round"/>
+    <path d="m683 279 12 11-12 11" fill="none" stroke="#93a0b3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="710" y="160" width="240" height="260" rx="24" fill="#ffffff" stroke="#d8dfeb" stroke-width="2"/>
+    <circle cx="755" cy="205" r="24" fill="#c87918"/>
+    <text x="755" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#ffffff">3</text>
+    <text x="744" y="260" font-size="22" font-weight="700" fill="#172033">Save proof</text>
+    <text x="744" y="302" font-size="17" fill="#58667a">Order and receipt</text>
+    <text x="744" y="330" font-size="17" fill="#58667a">Warehouse photos</text>
+    <text x="744" y="358" font-size="17" fill="#58667a">Parcel and freight record</text>
+    <rect x="743" y="380" width="174" height="28" rx="14" fill="#fff1df"/>
+    <text x="830" y="400" text-anchor="middle" font-size="14" font-weight="700" fill="#a95d0a">EVIDENCE FOLDER</text>
+
+    <path d="M965 290h48" stroke="#93a0b3" stroke-width="4" stroke-linecap="round"/>
+    <path d="m1003 279 12 11-12 11" fill="none" stroke="#93a0b3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <rect x="1030" y="160" width="100" height="260" rx="24" fill="#172033"/>
+    <circle cx="1080" cy="205" r="24" fill="#ffffff"/>
+    <text x="1080" y="213" text-anchor="middle" font-size="22" font-weight="700" fill="#172033">4</text>
+    <text x="1080" y="265" text-anchor="middle" font-size="17" font-weight="700" fill="#ffffff">RESPOND</text>
+    <text x="1080" y="305" text-anchor="middle" font-size="14" fill="#ccd5e3">verify</text>
+    <text x="1080" y="332" text-anchor="middle" font-size="14" fill="#ccd5e3">submit</text>
+    <text x="1080" y="359" text-anchor="middle" font-size="14" fill="#ccd5e3">record</text>
+
+    <rect x="70" y="474" width="1060" height="112" rx="22" fill="#eaf0f8"/>
+    <text x="100" y="518" font-size="20" font-weight="700" fill="#172033">Decision rule</text>
+    <text x="100" y="552" font-size="18" fill="#58667a">Use the live route fields and current destination rules. Never alter an item name or value merely to fit an old threshold.</text>
+  </g>
+</svg>
