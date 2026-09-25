@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy deposit and balance payment evidence flow</title>
+  <desc id="desc">Five stages for recording seller terms, the deposit, the balance deadline, the final payment and warehouse evidence.</desc>
+  <rect width="1200" height="675" rx="36" fill="#f3f0e8"/>
+  <rect x="56" y="54" width="1088" height="567" rx="28" fill="#fffdf8" stroke="#d7d0c4" stroke-width="2"/>
+  <text x="96" y="118" fill="#18202a" font-family="Georgia,serif" font-size="38" font-weight="700">Deposit → balance: keep one traceable order</text>
+  <text x="96" y="154" fill="#65707b" font-family="Arial,sans-serif" font-size="18">Capture the terms before the deposit. Control the deadline before the balance.</text>
+  <path d="M170 333H1035" fill="none" stroke="#c8d29c" stroke-width="8" stroke-linecap="round"/>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(155 333)"><circle r="54" fill="#ecf4cc" stroke="#879b36" stroke-width="3"/><text y="8" text-anchor="middle" fill="#26300d" font-size="28" font-weight="700">01</text><text y="90" text-anchor="middle" fill="#18202a" font-size="19" font-weight="700">Seller terms</text><text y="118" text-anchor="middle" fill="#65707b" font-size="14">variant · price · rules</text></g>
+    <g transform="translate(375 333)"><circle r="54" fill="#e1f0ee" stroke="#4d8b83" stroke-width="3"/><text y="8" text-anchor="middle" fill="#15312d" font-size="28" font-weight="700">02</text><text y="90" text-anchor="middle" fill="#18202a" font-size="19" font-weight="700">Deposit record</text><text y="118" text-anchor="middle" fill="#65707b" font-size="14">amount · time · order ID</text></g>
+    <g transform="translate(595 333)"><circle r="62" fill="#fff0cf" stroke="#c58b28" stroke-width="4"/><text y="8" text-anchor="middle" fill="#51340b" font-size="28" font-weight="700">03</text><text y="98" text-anchor="middle" fill="#18202a" font-size="19" font-weight="700">Deadline control</text><text y="126" text-anchor="middle" fill="#65707b" font-size="14">date · time · timezone</text></g>
+    <g transform="translate(815 333)"><circle r="54" fill="#e8e5f7" stroke="#7568a6" stroke-width="3"/><text y="8" text-anchor="middle" fill="#292044" font-size="28" font-weight="700">04</text><text y="90" text-anchor="middle" fill="#18202a" font-size="19" font-weight="700">Balance payment</text><text y="118" text-anchor="middle" fill="#65707b" font-size="14">match before paying</text></g>
+    <g transform="translate(1035 333)"><circle r="54" fill="#e7eef4" stroke="#5f7d96" stroke-width="3"/><text y="8" text-anchor="middle" fill="#1b2d3a" font-size="28" font-weight="700">05</text><text y="90" text-anchor="middle" fill="#18202a" font-size="19" font-weight="700">Procurement / QC</text><text y="118" text-anchor="middle" fill="#65707b" font-size="14">status · received item</text></g>
+  </g>
+  <rect x="96" y="526" width="1008" height="54" rx="12" fill="#18202a"/>
+  <text x="600" y="560" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="17" font-weight="700">Do not assume a reminder, cancellation right, grace period or refund exception.</text>
+</svg>
