@@ -2129,4 +2129,4 @@ export const researchArticles: ResearchArticle[] = [
     ]
   }
 ];
-// Content-only refresh for the 25 September 2026 Pages deployment.
+// Content-only Pages deployment refresh for 25 September 2026.
