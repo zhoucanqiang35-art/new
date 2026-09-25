@@ -15,8 +15,9 @@ import { guidePartFourteen } from "./guides-part-fourteen";
 import { guidePartFifteen } from "./guides-part-fifteen";
 import { guidePartSixteen } from "./guides-part-sixteen";
 import { guidePartSeventeen } from "./guides-part-seventeen";
+import { guidePartEighteen } from "./guides-part-eighteen";
 
-export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide", "lolobuy-poland-guide", "lolobuy-portugal-guide", "lolobuy-belgium-guide"] as const;
+export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide", "lolobuy-poland-guide", "lolobuy-portugal-guide", "lolobuy-belgium-guide", "lolobuy-ireland-guide"] as const;
 export type GuideSlug = typeof guideOrder[number];
 
 export type GuideSection = { heading: string; paragraphs: string[]; checklist?: string[] };
@@ -35,4 +36,4 @@ export type Guide = {
   cta?: { title: string; text: string; href: string; label: string };
 };
 
-export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen, ...guidePartFourteen, ...guidePartFifteen, ...guidePartSixteen, ...guidePartSeventeen };
+export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen, ...guidePartFourteen, ...guidePartFifteen, ...guidePartSixteen, ...guidePartSeventeen, ...guidePartEighteen };
