@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-manual-order-guide",
+    date: "25 September 2026",
+    title: "LoloBuy Manual Order Guide: Prepare an Unlisted Product Request Without Guesswork",
+    description: "A practical method for preparing the link, specifications, price evidence, quantity, and reference image for a clear manual order request.",
+  },
+  {
     href: "/seo-articles/lolobuy-image-search-guide",
     date: "23 September 2026",
     title: "LoloBuy Image Search Guide: Turn a Product Photo into a Verifiable Shortlist",
