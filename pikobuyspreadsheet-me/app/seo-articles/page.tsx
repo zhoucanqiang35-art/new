@@ -7,11 +7,12 @@ import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about parcel consolidation, shipping times, warehouse checks, tracking, payments, customs and returns.",
+  description: "Read independent PikoBuy guides about shipping insurance, parcel consolidation, shipping times, warehouse checks, tracking, customs and returns.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: ShieldCheck, tag: "SHIPPING INSURANCE", title: "PikoBuy Shipping Insurance Guide 2026: Check Coverage Before You Pay", description: "Read the live route terms, separate logistics risks, record any coverage wording and preserve evidence for damage or loss without assuming compensation.", href: "/pikobuy-shipping-insurance", time: "10 min read" },
   { icon: Boxes, tag: "PARCEL CONSOLIDATION", title: "PikoBuy Parcel Consolidation Guide 2026: Combine Orders Carefully", description: "Verify warehouse items, resolve returns, test product and route compatibility, compare combined and split scenarios, then audit the final parcel.", href: "/pikobuy-parcel-consolidation", time: "10 min read" },
   { icon: Hourglass, tag: "SHIPPING TIMES", title: "PikoBuy Shipping Times 2026: Build a Realistic Timeline", description: "Separate seller movement, warehouse decisions, parcel dispatch and tracking so route estimates are not mistaken for delivery promises.", href: "/pikobuy-shipping-times", time: "10 min read" },
   { icon: PackageCheck, tag: "PARCEL SUBMISSION", title: "PikoBuy Parcel Submission Guide 2026: Check Before You Ship", description: "Verify warehouse items, protect return options, choose packaging and a live route, then separate submission from dispatch and tracking.", href: "/pikobuy-parcel-submission", time: "10 min read" },
@@ -38,7 +39,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 24 SEPTEMBER 2026</p><h2>Combine warehouse items carefully.</h2><p>Resolve returns, test product and route compatibility, compare parcel scenarios and verify the final itemised list before paying freight.</p></div><Link href="/pikobuy-parcel-consolidation">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 26 SEPTEMBER 2026</p><h2>Check shipping protection before payment.</h2><p>Save the live route terms, understand what is not publicly guaranteed, and build a complete evidence record before the parcel leaves the warehouse.</p></div><Link href="/pikobuy-shipping-insurance">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>

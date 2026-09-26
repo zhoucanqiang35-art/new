@@ -109,6 +109,7 @@ const structuredData = [
 
 export default function Page(){return <GuidePage kicker="CUSTOMS GUIDE" title={title} intro="PikoBuy customs preparation is an evidence task: describe the real goods, keep truthful transaction records and follow the current destination rules. PikoBuy coordinates the parcel, while third-party carriers and customs authorities retain separate roles." sections={sections} reviewedDate="Reviewed 12 September 2026" structuredData={structuredData} relatedLinks={[
   {href:"/shipping-guide",label:"Compare routes and product restrictions"},
+  {href:"/pikobuy-shipping-insurance",label:"Keep customs and insurance outcomes separate"},
   {href:"/pikobuy-tracking",label:"Read parcel tracking and customs events carefully"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate the parcel with current inputs"},
   {href:"/pikobuy-forwarding-guide",label:"Document goods purchased outside PikoBuy"}

@@ -68,6 +68,7 @@ export default function Page(){return <GuidePage pageId="shipping-guide" kicker=
   {href:"/pikobuy-packaging",label:"Choose minimal or reinforced parcel packaging"},
   {href:"/pikobuy-customs",label:"Prepare accurate records for customs questions"},
   {href:"/pikobuy-shipping-times",label:"Build a stage-by-stage shipping timeline"},
+  {href:"/pikobuy-shipping-insurance",label:"Review insurance wording before paying freight"},
   {href:"/pikobuy-tracking",label:"Track a shipped PikoBuy parcel without guessing"},
   {href:"/pikobuy-shipping-calculator",label:"Use the PikoBuy shipping calculator step by step"},
   {href:"/pikobuy-forwarding-guide",label:"Forward your own order to the PikoBuy warehouse"},

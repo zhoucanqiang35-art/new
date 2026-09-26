@@ -123,5 +123,6 @@ export default function Page(){return <GuidePage kicker="PARCEL CONSOLIDATION GU
   {href:"/pikobuy-packaging",label:"Choose packaging for the actual product mix"},
   {href:"/pikobuy-parcel-submission",label:"Audit the parcel before submission"},
   {href:"/pikobuy-shipping-calculator",label:"Compare current parcel scenarios"},
+  {href:"/pikobuy-shipping-insurance",label:"Review protection for the selected live route"},
   {href:"/pikobuy-shipping-times",label:"Keep submission, dispatch and delivery separate"}
 ]}/>}
