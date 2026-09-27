@@ -1074,7 +1074,7 @@ export const seoArticles: SeoArticle[] = [
       "PikoBuy customs declaration",
       "PikoBuy import tax",
       "PikoBuy customs duty",
-      "PikoBuy prohibited items",
+      "PikoBuy restricted imports",
       "PikoBuy parcel declaration"
     ],
     methodology: "Our editorial team reviewed PikoBuy's live Terms of Service, Shipping Terms, Beginner's Guide, Shipping Estimate and Contact page on 15 September 2026. We cross-checked destination-side principles against current GOV.UK guidance for goods sent from abroad and European Commission guidance for online goods arriving from outside the EU. Platform statements, government rules and our practical record-keeping advice are separated. This guide does not promise clearance, give legal advice or recommend an invented declaration value.",
@@ -1592,6 +1592,95 @@ export const seoArticles: SeoArticle[] = [
         paragraphs: [
           "Before installing, match the provider, developer website and support domain; verify current compatibility; read both the store privacy label and PikoBuy policy; and reject unofficial download files. Before ordering, save the source and exact option. After each payment, confirm the account record. At warehouse arrival, inspect the evidence promptly. Before shipping, verify the parcel and route. After dispatch, keep the tracking number and material carrier events.",
           "FindSpreadsheet is independent from PikoBuy and cannot authenticate an app session, process payment or change an order. Use it to compare product leads, then rely on the verified PikoBuy account record for purchasing and shipping. The practical rule is to make the mobile workflow auditable: confirm where the app came from, preserve each handoff and move to the website or official support whenever the smaller interface does not show enough information for a confident decision."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "pikobuy-prohibited-items-pre-order-checklist",
+    title: "PikoBuy Prohibited Items: Buyer Checklist",
+    description: "Check PikoBuy prohibited items, intellectual-property risk, carrier restrictions and destination rules before paying for a product or parcel.",
+    published: "27 September 2026",
+    updated: "27 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy prohibited items",
+    secondaryKeywords: [
+      "PikoBuy restricted items",
+      "PikoBuy shipping restrictions",
+      "PikoBuy counterfeit policy",
+      "PikoBuy product restrictions",
+      "PikoBuy carrier restrictions"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Terms of Service, Shipping Terms, Beginner's Guide and Contact page on 27 September 2026. We separate PikoBuy's published platform rules from carrier and destination checks that must be completed for the actual parcel. PikoBuy's public pages reviewed here do not provide one exhaustive list for every route and country, so this guide does not invent product categories, legal conclusions or guaranteed approvals.",
+    sections: [
+      {
+        heading: "The direct answer: pass three checks before you pay",
+        paragraphs: [
+          "A product is not automatically acceptable because it appears in a spreadsheet, imports into PikoBuy search or can be purchased from a Chinese seller. Before paying, check three separate layers: PikoBuy's platform rules, the restrictions attached to the available carrier or route, and the import rules at the destination. A product must pass all three. Approval at one layer does not override a restriction at another.",
+          "PikoBuy's current Terms prohibit users from requesting, listing, purchasing, shipping or receiving products that breach its Prohibited Items Policy. The Terms specifically include products without lawful intellectual-property rights or authorisation and products that otherwise infringe intellectual-property rights. This is a clear stop condition, not a detail to solve later through packaging, a different description or a different shipping line."
+        ]
+      },
+      {
+        heading: "Start with PikoBuy's published prohibition",
+        paragraphs: [
+          "The public Terms reviewed on 27 September 2026 do not expose a complete category-by-category list for every product, route and country. They do establish the governing rule: users must not use the service for illegal, infringing, fraudulent or improper activity, and prohibited or unauthorised products must not enter the workflow. If a product's legality or intellectual-property status cannot be explained from reliable evidence, its presence on a seller page is not enough to make it suitable for PikoBuy.",
+          "This distinction matters for independent discovery sites. A spreadsheet row can organise a source link, image, category and option, but it cannot grant a licence, prove authenticity or approve a shipment. Treat the row as a research lead. Open the current seller listing, identify what is actually offered and stop when the product depends on an unsupported brand claim, copied design, misleading description or other right the seller cannot lawfully use."
+        ]
+      },
+      {
+        heading: "Understand the consequences before sending goods",
+        paragraphs: [
+          "PikoBuy's Terms say it may cancel orders, refuse service, return or dispose of items and take other measures when the prohibition is breached. They also place related fees, fines, storage and disposal costs on the customer. That means the downside is not limited to a seller order being rejected. A product sent to the warehouse can create additional decisions and costs if it cannot lawfully remain in the service or proceed to international shipping.",
+          "The same Terms describe a zero-tolerance approach to counterfeit goods and other intellectual-property infringement. PikoBuy says it may inspect, request documentation, remove listings, suspend or terminate accounts, cooperate with rights holders and authorities, and apply remedies for confirmed violations according to law. Do not interpret a warehouse arrival scan, photograph or temporary account status as final approval when the platform can still investigate the item."
+        ]
+      },
+      {
+        heading: "Do not treat search results as an approval tool",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says buyers can paste a product link or keywords into its search box and select specifications before submitting a purchasing order. Search is a way to locate an item and create a transaction record; the published guide does not say that every returned result has been pre-cleared for intellectual-property, carrier or destination compliance. Automated import of a title, image or option cannot replace a decision about the actual product.",
+          "Record the source URL, seller identity, exact option and the words used to describe the product. Compare those facts with the PikoBuy result. If a seller image, title and option do not describe the same thing, do not choose the least restrictive interpretation. Ask for clarification or reject the item. Changing the search wording, cropping an image or selecting a vague option does not change what the seller will send."
+        ]
+      },
+      {
+        heading: "Check product legitimacy with evidence you can retain",
+        paragraphs: [
+          "For an unbranded product, confirm that the live listing accurately describes its maker, material, model and included parts where those facts matter. For a product presented as branded, licensed or authorised, require evidence that supports that representation; a logo in a seller photograph, a high sales count or a spreadsheet label is not proof. If authenticity is essential and the seller cannot provide credible documentation, do not place the order through PikoBuy.",
+          "Save the listing and the selected option at the time of the decision because seller pages can change. Preserve relevant seller messages and any documentation, but do not manufacture a receipt, alter a brand name or ask someone to describe the item as something else. An evidence file should explain the genuine product. It should never be a tool for making a restricted or infringing item appear acceptable."
+        ]
+      },
+      {
+        heading: "Forwarding does not bypass product rules",
+        paragraphs: [
+          "The forwarding workflow lets a sender deliver goods to the PikoBuy warehouse after the user obtains the warehouse address and submits a forwarding form. PikoBuy then receives, photographs and stores the goods before the user submits an international parcel. This changes who purchased the domestic item; it does not exempt the goods from PikoBuy's Terms, carrier conditions or destination law. Already owning an item is not the same as being allowed to forward it internationally.",
+          "PikoBuy's Shipping Terms say all forwarded goods are unpacked and inspected, but they also say professional inspection is not available for special and professional products. The warehouse image therefore cannot certify authenticity, technical safety, chemical composition or legal import status. For forwarded items, keep the sender's domestic tracking, purchase evidence and accurate product description, and resolve eligibility before the sender releases the parcel."
+        ]
+      },
+      {
+        heading: "Treat route eligibility as a second gate",
+        paragraphs: [
+          "A lawful product may still be unsuitable for a particular carrier or route. PikoBuy's public guide says shipping routes differ in delivery time and billing methods, while its Shipping Terms say third-party logistics providers carry international parcels. Current route conditions can therefore matter independently of the platform's general product policy. Check the exact route shown for the actual destination, product type, measured weight and packed dimensions rather than relying on an old screenshot or community list.",
+          "Do not assume that a route appearing in an estimate guarantees acceptance after warehouse inspection or parcel packing. Read any item restrictions and documentation requirements visible during live submission. If the interface does not answer a material question, use a support ticket and preserve the written response with the parcel record. A route name alone does not establish coverage, customs treatment, compensation or permission for a particular item."
+        ]
+      },
+      {
+        heading: "Check destination law as a third gate",
+        paragraphs: [
+          "The destination authority controls whether goods may enter its territory. PikoBuy's Terms require accurate, complete and current registration and shipping information, and its Shipping Terms say the platform does not assume risks arising from customs policies or uncontrollable cross-border events. A product accepted by PikoBuy and a carrier can still be refused, held or confiscated under destination rules. Check the official import authority for the recipient country immediately before ordering and again before parcel submission if rules may have changed.",
+          "Use an accurate product name, quantity and supportable value in parcel records. Do not hide a restricted feature, remove a brand from the description or use a false declaration to imitate an ordinary product. The customs guide on this site covers declaration and duty preparation in more detail; this checklist addresses the earlier question of whether the item should enter the purchasing or forwarding workflow at all."
+        ]
+      },
+      {
+        heading: "Pause when the answer depends on missing facts",
+        paragraphs: [
+          "Some decisions cannot be made from a listing photograph. Eligibility may depend on composition, technical specifications, intended use, brand authorisation, packaging, quantity, destination or the conditions of a particular route. When one of those facts controls the answer, label it unknown and obtain evidence before payment. Do not substitute a seller's reassurance for a carrier rule or treat a community anecdote about one parcel as approval for another.",
+          "A useful support request is specific: include the product link, exact option, plain description, destination and the route or workflow being considered, then ask which published rule or document applies. PikoBuy's Contact page recommends submitting a ticket. Redact passwords, complete card details and unrelated personal information. Keep the reply dated because a response about one route, product and destination may not remain applicable after any of those facts changes."
+        ]
+      },
+      {
+        heading: "Use this pre-order stop-or-proceed checklist",
+        paragraphs: [
+          "Proceed only when the live seller offer is accurately identified; any branded or licensed claim is supported; the product does not conflict with PikoBuy's Terms; the current carrier or route accepts the actual item; the destination permits import; the parcel can be described truthfully; and the evidence is saved. Stop when approval depends on disguising the product, changing its value, using another person's documents or assuming that warehouse photos will prove a specialist fact they cannot show.",
+          "FindSpreadsheet is independent from PikoBuy and cannot authorise a product, route or import. Use it to discover and compare product leads, then make the eligibility decision from current platform terms, seller evidence, live route conditions and official destination rules. The practical PikoBuy prohibited items rule is simple: verify before the first payment, repeat the route and destination checks before the second, and do not ship an item whose acceptability depends on concealment or guesswork."
         ]
       }
     ]
