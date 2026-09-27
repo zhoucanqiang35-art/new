@@ -35,6 +35,7 @@ const routes = [
   "/how-to-contact-pikobuy-support-order-problem",
   "/pikobuy-order-not-processed-after-payment",
   "/pikobuy-deposit-order-balance-payment",
+  "/pikobuy-seller-not-shipped-order",
   "/faq/is-this-the-official-pikobuy-website",
   "/faq/how-to-use-a-pikobuy-spreadsheet",
   "/faq/how-to-check-a-product-link-before-ordering",
@@ -59,7 +60,7 @@ const sitemapEntries = routes.flatMap((route) =>
           `<xhtml:link rel="alternate" hreflang="${language}" href="${urlFor(route, language)}" />`,
       ),
     ].join("\n    ");
-    return `  <url>\n    <loc>${urlFor(route, locale)}</loc>\n    <lastmod>2026-09-25</lastmod>\n    ${alternates}\n  </url>`;
+    return `  <url>\n    <loc>${urlFor(route, locale)}</loc>\n    <lastmod>2026-09-27</lastmod>\n    ${alternates}\n  </url>`;
   }),
 );
 

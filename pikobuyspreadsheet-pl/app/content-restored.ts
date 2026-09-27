@@ -865,5 +865,105 @@ const depositBalanceGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide];
+const sellerNotShippedGuide: Guide = {
+  slug: "pikobuy-seller-not-shipped-order",
+  eyebrow: "Domestic fulfilment",
+  title: "PikoBuy Seller Has Not Shipped: Domestic Order Evidence Checklist",
+  seoTitle: "PikoBuy Seller Not Shipped: What to Check",
+  description: "Diagnose a PikoBuy seller-not-shipped order before warehouse arrival, compare the domestic evidence and request a clear wait, cancel or refund decision.",
+  readTime: "9 min read",
+  updated: "Updated 27 September 2026",
+  publishedDate: "2026-09-27",
+  modifiedDate: "2026-09-27",
+  editorialNote: "This independent guide was checked against PikoBuy’s public User Registration Agreement, Beginner Guide, Returns & Exchanges policy, Terms of Service, Contact page and a current product-detail page on 27 September 2026. It cannot view an order, contact a seller, cancel a purchase or promise a dispatch or refund time.",
+  intro: [
+    "A PikoBuy seller not shipped order sits between two better-known checkpoints: payment and warehouse arrival. The purchase may have been submitted or accepted, yet no usable domestic movement is visible. That is different from a failed payment, an international parcel delay or an item already waiting for warehouse QC, so the evidence and the next request should be different too.",
+    "PikoBuy’s Beginner Guide says an out-of-stock order will be refunded, while its User Registration Agreement warns that low-credibility sellers may create disputes involving non-shipment or false shipment. The Returns & Exchanges page also says no return-related fee is charged when an order is still marked Not Shipped. None of those statements creates one universal seller-dispatch deadline, automatic cancellation rule or guaranteed refund-arrival time.",
+    "The useful task is to establish which stage can actually be proved: order created, seller purchase accepted, domestic tracking created, carrier movement recorded or warehouse receipt completed. This checklist builds that chronology without treating an estimate as a service guarantee.",
+  ],
+  visual: {
+    src: "/pikobuy-seller-not-shipped-evidence.svg",
+    alt: "Five-stage evidence path for a PikoBuy order awaiting seller shipment to the warehouse",
+    caption: "An original domestic-fulfilment map: locate the first missing record before choosing whether to wait, cancel or escalate.",
+  },
+  sections: [
+    {
+      heading: "Locate the order before diagnosing the delay",
+      paragraphs: [
+        "Begin with the last account status you can prove, not the label you expect to see next. Save the PikoBuy order ID, product link, selected variant, quantity, payment time, current status and any seller-purchase message. PikoBuy’s Terms say that placing an order is an offer to purchase and that PikoBuy or participating merchants may accept or reject it. A successful payment record therefore does not by itself prove that the seller accepted and dispatched the item.",
+        "Separate four questions: was a purchasing order generated and confirmed; was the item actually purchased from the seller; did the seller provide a domestic tracking number; and does the carrier history show physical movement toward the PikoBuy warehouse? Those are diagnostic categories used by this guide, not an official PikoBuy status dictionary. The public pages reviewed do not publish a complete definition for every account label.",
+        "Do not use the international tracking guide at this stage. The Beginner Guide places warehouse inspection before parcel submission and international-shipping payment. Until the item reaches the warehouse, the relevant journey is seller-to-warehouse fulfilment inside China, not the later cross-border parcel.",
+      ],
+      bullets: [
+        "PikoBuy order ID and exact selected variant",
+        "Payment, order-generation and purchase timestamps",
+        "Domestic tracking number and first carrier event",
+        "Current seller message or support instruction",
+      ],
+    },
+    {
+      heading: "Compare the seller promise with the live evidence",
+      paragraphs: [
+        "Save the original listing and any delivery estimate shown when the order was placed. Current PikoBuy product-detail pages can display seller-to-warehouse delivery information, domestic shipping cost and an estimated warehouse-arrival date for the specific item. Treat those values as dated listing evidence, not a universal PikoBuy delivery promise. Product, seller, purchase time and live conditions can change the estimate.",
+        "Record the order time and timezone, the estimate exactly as displayed and any later change. PikoBuy’s public product pages also state buying-service hours for current listings, but a service-hours notice is not proof that a particular seller dispatched an item that day. The proof you need is an order-side purchase record followed by seller or carrier evidence connected to the same item.",
+        "If no seller-specific dispatch commitment is visible, do not invent one by counting another buyer’s order or a different listing. The official pages reviewed on 27 September 2026 do not publish one maximum domestic dispatch period for all Taobao, 1688, Weidian or other sellers. Ask support which current seller deadline applies to the exact order.",
+      ],
+    },
+    {
+      heading: "Distinguish no shipment, false shipment and slow domestic transit",
+      paragraphs: [
+        "No domestic tracking number, a newly created number with no carrier acceptance and a moving parcel with delayed scans are not the same state. A tracking label can be generated before a carrier physically receives the parcel. Capture the complete event history and timestamps; do not describe a label-only record as confirmed movement or a quiet scan as proof that the item is lost.",
+        "PikoBuy’s User Registration Agreement recommends shops with a Taobao credibility level of at least three stars that have paid the Taobao deposit. It warns that low-credibility shops without a deposit may involve seller non-shipment, false shipment, after-sales and rights-protection disputes. This is a platform warning, not proof that the seller in one unresolved order acted dishonestly.",
+        "Ask an evidence-based question: ‘Has the purchasing agent confirmed seller dispatch, and has the domestic carrier accepted this parcel?’ If the order shows a number but no movement, request the seller-dispatch record and current carrier state. If scans show movement, request the expected warehouse hand-off or the action point for a stalled domestic parcel. Do not accuse the seller when the available record only proves a delay.",
+      ],
+    },
+    {
+      heading: "Choose whether to wait, cancel or request a refund review",
+      paragraphs: [
+        "The Returns & Exchanges page says that no fees are charged when a return is requested while the order status is Not Shipped. It explains that return-related fees apply when an item has no quality issue and has already entered the warehouse. That is useful, but it does not say every Not Shipped order is automatically cancellable or instantly refunded. The same policy says PikoBuy can return a product only with the seller’s consent.",
+        "If the item is confirmed out of stock, the Beginner Guide says the order will be refunded. The reviewed public pages do not publish one refund-arrival time covering every seller, cause, account balance or payment method. Ask support to identify the case as seller cancellation, out-of-stock refund, user-requested cancellation or another state, and request the account-side refund reference when it is issued.",
+        "Check for special conditions before requesting cancellation. A customised product, an item governed by seller-specific rules or a paid deposit order may not follow the ordinary path. PikoBuy’s User Registration Agreement says paid deposit orders cannot be cancelled under the referenced Taobao seller rules and that missing the balance deadline can forfeit the deposit. Keep that exception separate from a normal fully paid order.",
+      ],
+    },
+    {
+      heading: "Send one support ticket with an answerable request",
+      paragraphs: [
+        "PikoBuy’s Contact page displays a support email and marks ticket submission as the recommended route. Use the current official page or the support control inside the signed-in account. Keep one thread so the original order record, later tracking check and final decision stay in chronological order.",
+        "A compact opening can read: ‘Order [ID], item [link and variant], paid [date, time and timezone]. The current status is [exact text]. The original seller-to-warehouse estimate was [record], and domestic tracking [number / not shown] currently shows [latest event and time]. Please confirm whether the seller accepted and dispatched the item, the applicable seller deadline, and whether I should continue waiting or request cancellation and refund review.’",
+        "Attach labelled screenshots of the order, listing terms, payment, domestic tracking and any earlier message, while hiding passwords, verification codes and full payment credentials. Ask for one current action and the rule behind it. The Contact page promotes timely replies, but the reviewed public pages do not state one guaranteed first-response or resolution time for every non-shipment case.",
+      ],
+    },
+    {
+      heading: "Close the domestic record when the order moves",
+      paragraphs: [
+        "If the seller dispatches, save the first carrier-acceptance event and the warehouse-receipt time. When the order changes to In Warehouse, inspect the photos and compare the item, variant and quantity with the original order. A late seller shipment does not remove the need for QC, and carrier movement does not prove that the correct item was sent.",
+        "If the order is cancelled or refunded, save the written reason, cancellation time, refund amount, destination of the funds and reference. Do not treat ‘refund requested’ as the same state as ‘funds available.’ If the record remains unclear, follow up in the same support thread with the unresolved question rather than restarting the story in duplicate tickets.",
+        "The final record should answer four points: what was ordered, what the seller or carrier actually did, which rule PikoBuy applied and how the case ended. That evidence is more useful than a generic seller-delay claim, and it keeps this domestic-stage problem separate from later warehouse returns, international tracking and parcel claims.",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/pikobuy-seller-listing-verification", label: "Verify the seller and original listing", note: "Preserve the product, selected option, seller information and purchase-time evidence before diagnosing fulfilment." },
+    { href: "/pikobuy-order-not-processed-after-payment", label: "Check whether an order was generated", note: "Use the payment reconciliation guide when the transaction exists but the purchasing order itself is missing or unconfirmed." },
+    { href: "/pikobuy-deposit-order-balance-payment", label: "Separate deposit orders from normal cancellations", note: "Check the seller-set balance deadline before applying the ordinary Not Shipped decision path." },
+    { href: "/how-to-contact-pikobuy-support-order-problem", label: "Build a focused support ticket", note: "Send one chronology, safe identifiers and a single request through the official support route." },
+  ],
+  faqHeading: "PikoBuy seller-shipment questions",
+  faq: [
+    { question: "How long should a PikoBuy seller take to ship to the warehouse?", answer: "The official pages reviewed on 27 September 2026 do not publish one maximum domestic dispatch time for every seller or marketplace. Save the order-specific estimate and ask support which seller deadline currently applies." },
+    { question: "Can I cancel a PikoBuy order while it says Not Shipped?", answer: "PikoBuy’s Returns & Exchanges page says no return-related fee is charged when a return is requested at Not Shipped status, but it also says returns require seller consent. Special seller rules, customised items and deposit orders may change the result, so request an order-specific cancellation review." },
+    { question: "Does an estimated warehouse-arrival date guarantee seller delivery?", answer: "No. Current PikoBuy product pages may show a seller-to-warehouse estimate for a particular listing, but the public policies do not describe it as a universal guaranteed arrival date. Preserve it as evidence and compare it with actual domestic tracking." },
+    { question: "What evidence should I send when a PikoBuy seller has not shipped?", answer: "Send the order ID, exact product and variant, payment and purchase times, original listing or estimate, current order status, domestic tracking history and one requested action. Hide passwords, verification codes and full payment credentials." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — seller role, poor-credibility warning, non-shipment, false shipment and deposit exceptions" },
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — order payment, out-of-stock refund and warehouse-inspection sequence" },
+    { href: "https://www.pikobuy.com/protocol/returns", label: "PikoBuy Returns & Exchanges — Not Shipped fee rule, seller consent and later warehouse timing" },
+    { href: "https://www.pikobuy.com/protocol/terms", label: "PikoBuy Terms of Service — order acceptance or rejection and service boundaries" },
+    { href: "https://www.pikobuy.com/contact", label: "PikoBuy Contact page — recommended ticket route and support email" },
+    { href: "https://www.pikobuy.com/product/detail?productUrl=https%3A%2F%2Fitem.taobao.com%2Fitem.htm%3Fid%3D732099004466", label: "Current PikoBuy product-detail example — listing-specific domestic cost, buying hours and estimated warehouse arrival" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide, sellerNotShippedGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);
