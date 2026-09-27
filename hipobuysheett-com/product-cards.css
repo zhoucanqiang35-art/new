@@ -1,0 +1,5 @@
+.product-photo{object-fit:cover;object-position:center;background-image:none!important}
+.product-detail{margin:0;min-height:39px;color:#50605a;font-size:13px;line-height:1.45}
+.price{margin-top:11px;font-size:16px}
+.price small{font-size:10px;text-transform:uppercase}
+.source-price{margin-top:3px;color:#64716c;font-size:11px;font-weight:700}
