@@ -1,0 +1,14 @@
+.category-reference{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;margin-top:28px}
+.category-ref-card{position:relative;display:flex;min-height:155px;overflow:hidden;flex-direction:column;align-items:center;justify-content:flex-end;padding:18px 14px;border:1px solid #e8e9e9;border-radius:13px;background:#f7f7f7;color:#17211f;text-align:center;text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s}
+.category-ref-card:hover{transform:translateY(-3px);background:#f1fafc;box-shadow:0 12px 22px #0c2f3214}
+.category-visual{display:none!important}
+.category-icon{position:absolute;top:16px;left:50%;display:grid;width:49px;height:49px;place-items:center;transform:translateX(-50%);border-radius:12px;background:#caa47d;color:#5d3822;font-size:22px;font-weight:900;box-shadow:0 6px 12px #6e513c20}
+.category-ref-card h2{margin:0;font-size:16px;letter-spacing:-.035em}
+.category-ref-card p{min-height:auto;margin:7px 0 8px;color:#5a5f61;font-size:12px;line-height:1.25}
+.category-drops{color:#8b6042;font-size:8px;letter-spacing:3px}
+.showcase{min-height:600px;display:flex;flex-direction:column;justify-content:center}
+.homepage-articles{padding:0 30px 52px}.homepage-articles>h2{margin:0 0 18px;font-size:34px;letter-spacing:-.05em}.homepage-article{max-width:850px;margin:0 0 28px;padding:32px;background:#fff;border:1px solid #cad0c7}.homepage-article h1{font-size:clamp(28px,3.4vw,45px);line-height:1.02;letter-spacing:-.055em}.homepage-article h2{margin-top:30px;font-size:24px;letter-spacing:-.04em}.homepage-article p{font:16px/1.65 Georgia,serif;color:#34413d}.homepage-article .tag{font-size:12px;font-weight:800;letter-spacing:.1em;color:#537f70}.homepage-article .source{padding:15px;border-left:3px solid #caa47d;background:#f7f3ee}
+@media(max-width:850px){.showcase{min-height:0;display:block}}
+@media(max-width:850px){.homepage-articles{padding:0 17px 38px}.homepage-article{padding:24px 20px}.homepage-article p{font-size:16px}}
+@media(max-width:850px){.category-reference{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.category-ref-card{min-height:155px}}
+@media(max-width:520px){.category-reference{grid-template-columns:1fr}.category-ref-card{min-height:155px}}
