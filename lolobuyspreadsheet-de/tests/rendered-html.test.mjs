@@ -47,7 +47,7 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 744);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 768);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
@@ -65,6 +65,27 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-portugal-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-belgium-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-ireland-guide/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-switzerland-guide/);
+});
+
+test("publishes the Switzerland guide with crawlable article metadata", async () => {
+  const response = await request("/guide/lolobuy-switzerland-guide");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /LoloBuy Switzerland guide 2026/);
+  assert.match(html, /https:\/\/schema\.org/);
+  assert.match(html, /Article/);
+  assert.match(html, /datePublished/);
+  assert.match(html, /name=["']keywords["'][^>]+LoloBuy Switzerland/i);
+  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-switzerland-guide/i);
+  assert.match(html, /Swiss Federal Office for Customs and Border Security/);
+  assert.match(html, /8\.1%/);
+  assert.match(html, /CHF 5/);
+  assert.match(html, /1 January 2024/);
+  assert.match(html, /version 1\.0\.7/);
+  assert.match(html, /Browse the product database/);
+  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-switzerland-guide["']/i);
+  assert.doesNotMatch(html, /noindex/i);
 });
 
 test("publishes the Ireland guide with crawlable article metadata", async () => {
