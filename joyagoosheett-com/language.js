@@ -35,15 +35,20 @@
   async function translateText(text,lang){
     const key='jg-i18n-'+lang+'-'+btoa(unescape(encodeURIComponent(text))).slice(0,300);
     const cached=localStorage.getItem(key);if(cached)return cached;
-    const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+encodeURIComponent(lang)+'&dt=t&q='+encodeURIComponent(text);
-    const response=await fetch(url);if(!response.ok)throw new Error('translation unavailable');
-    const data=await response.json();const translated=data[0].map(part=>part[0]).join('');
-    localStorage.setItem(key,translated);return translated;
+    const pieces=text.match(/[^.!?]+[.!?]*|.{1,420}/g)||[text];
+    const translated=[];
+    for(const piece of pieces){const clean=piece.trim();if(!clean){translated.push(piece);continue}
+      const url='https://api.mymemory.translated.net/get?q='+encodeURIComponent(clean)+'&langpair=en%7C'+encodeURIComponent(lang);
+      const response=await fetch(url,{headers:{Accept:'application/json'}});if(!response.ok)throw new Error('translation unavailable');
+      const data=await response.json();const value=data?.responseData?.translatedText;if(!value)throw new Error('translation unavailable');
+      translated.push(piece.match(/^\s*/)[0]+value);
+    }
+    const joined=translated.join('');localStorage.setItem(key,joined);return joined;
   }
   async function translatePage(lang){
     if(lang==='en'){location.reload();return}
     const nodes=safeNodes();
-    for(const node of nodes){if(!node.dataset.enText)node.dataset.enText=node.textContent;try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}}
+    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});\n    for(let i=0;i<jobs.length;i+=3)await Promise.all(jobs.slice(i,i+3));
   }
   function setLanguage(lang){
     localStorage.setItem('joyagoo-sheet-language',lang);updateFixed(lang);translatePage(lang);
