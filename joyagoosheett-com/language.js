@@ -1,6 +1,6 @@
 /* Offline language pack. It does not send page text to another service. */
 (()=>{
-const langs=['en','de','fr','es','it','pt','nl','pl'],store='joy-sheet-language-v3';
+const langs=['en','de','fr','es','it','pt','nl','pl'],store='joy-sheet-language-v3';let homeLang='';
 const t={
 en:{l:'Language',n:['Home','Categories','Product detail','SEO articles','QC','FAQ']},
 de:{l:'Sprache',n:['Startseite','Kategorien','Produktdetails','SEO-Artikel','QC','FAQ']},
@@ -28,6 +28,7 @@ function render(lang){
  document.querySelectorAll('header nav a').forEach((e,i)=>e.textContent=v.n[i]);document.querySelectorAll('.language span').forEach(e=>e.textContent=v.l);document.querySelectorAll('.language select').forEach(e=>e.value=lang);
  if(!c)return;
  const path=location.pathname;
+ if(!path.includes('categories')&&!path.includes('product-detail')&&!path.includes('seo-articles')&&!path.includes('/qc')&&!path.includes('/faq')&&homeLang!==lang){homeLang=lang;document.querySelector('.language select').dispatchEvent(new Event('change'))}
  if(path.includes('categories')){put('.category-page h1',h(c[0]),true);put('.category-page>p:not(.eyebrow)',c[1]);const names=(cats[lang]||'Shoes|T-Shirts|Hoodies|Jackets|Pants & Shorts|Bags|Accessories|Headwear|Electronics|Jerseys').split('|');document.querySelectorAll('.category-tile strong').forEach((e,i)=>e.textContent=names[i]);document.querySelectorAll('.category-tile small').forEach(e=>e.textContent=v.n[1]+' ↗')}
  if(path.includes('product-detail')){put('.detail-intro h1',h(c[2]),true);put('.detail-intro p:last-child',c[3]);document.querySelectorAll('.open-detail').forEach(e=>e.textContent=v.n[2]+' ↗')}
  if(path.includes('/qc')){put('.detail h1',h(c[4]),true);put('.detail>div p:last-child',c[5])}
