@@ -42,11 +42,11 @@
   }
   function splitForTranslation(text){
     const parts=[];let remaining=text;
-    while(remaining.length>360){let cut=remaining.lastIndexOf(' ',360);if(cut<120)cut=360;parts.push(remaining.slice(0,cut));remaining=remaining.slice(cut)}
+    while(remaining.length>180){let cut=remaining.lastIndexOf(' ',180);if(cut<120)cut=180;parts.push(remaining.slice(0,cut));remaining=remaining.slice(cut)}
     if(remaining)parts.push(remaining);return parts;
   }
   async function translateText(text,lang){
-    const key='jg-i18n-'+lang+'-'+btoa(unescape(encodeURIComponent(text))).slice(0,300);
+    const key='jg-i18n-v2-'+lang+'-'+btoa(unescape(encodeURIComponent(text))).slice(0,300);
     const cached=localStorage.getItem(key);if(cached)return cached;
     const translated=[];
     for(const piece of splitForTranslation(text)){const clean=piece.trim();if(!clean){translated.push(piece);continue}
