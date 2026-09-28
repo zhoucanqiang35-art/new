@@ -31,7 +31,7 @@ function applySeo(lang){
   const article=window.JoySheetSEO&&window.JoySheetSEO[lang];
   if(!article||article.h.length!==8||article.p.length!==19)return;
   document.querySelectorAll('.journal .article h2').forEach((e,i)=>put(e,(i+1)+'. '+article.h[i]));
-  document.querySelectorAll('.journal .article>p').forEach((e,i)=>put(e,article.p[i]));
+  document.querySelectorAll('.journal .article>p').forEach((e,i)=>put(e,article.p[i]+((window.JoySheetSEOExpand&&window.JoySheetSEOExpand[lang]&&window.JoySheetSEOExpand[lang][i])?'<br><br>'+window.JoySheetSEOExpand[lang][i]:''),true));
 }
 function renderHome(lang){const select=document.getElementById('language');if(!select)return;select.value=lang;syncing=true;select.dispatchEvent(new Event('change'));syncing=false;split(N[lang]).forEach((v,i)=>put(document.querySelectorAll('.home-category span')[i],v));document.querySelectorAll('.quick-grid strong').forEach((e,i)=>put(e,nav[lang][i+1]));document.querySelectorAll('.quick-grid span').forEach((e,i)=>put(e,nav[lang][i+1]+' ↗'))}
 function render(lang){const d=L[lang],p=location.pathname;document.documentElement.lang=lang;document.querySelectorAll('.language span').forEach(e=>put(e,nav[lang][0]));document.querySelectorAll('.language select').forEach(e=>e.value=lang);document.querySelectorAll('header nav a').forEach((e,i)=>put(e,nav[lang][i+1]));links(lang);
