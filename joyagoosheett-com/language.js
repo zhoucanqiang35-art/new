@@ -12,7 +12,7 @@
     pl:['Strona główna','Kategorie produktów','Szczegóły produktów','Artykuły SEO','QC','FAQ']
   };
   const style=document.createElement('style');
-  style.textContent='.lang-switch{position:relative;z-index:30;flex:0 0 auto}.lang-trigger{appearance:none;border:1px solid #fff!important;background:#000!important;color:#fff!important;padding:10px 12px;cursor:pointer;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;white-space:nowrap}.lang-menu{position:absolute;right:0;top:calc(100% + 8px);display:none;width:154px;padding:5px;background:#000;border:1px solid #fff;box-shadow:0 14px 35px rgba(0,0,0,.45)}.lang-switch.open .lang-menu{display:grid}.lang-menu button{appearance:none;border:0;background:#000;color:#fff;text-align:left;padding:10px;cursor:pointer;font:12px Arial,Helvetica,sans-serif}.lang-menu button:hover,.lang-menu button[aria-current=true]{background:#fff;color:#000}@media(max-width:760px){.lang-trigger{padding:8px 10px}.lang-menu{right:0}}';
+  style.textContent='.nav{gap:8px!important}.nav a{margin:0!important;padding-left:2px!important;padding-right:2px!important}.lang-switch{position:relative;z-index:30;flex:0 0 auto}.lang-trigger{appearance:none;border:1px solid #fff!important;background:#000!important;color:#fff!important;padding:10px 12px;cursor:pointer;font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.04em;white-space:nowrap}.lang-menu{position:absolute;right:0;top:calc(100% + 8px);display:none;width:154px;padding:5px;background:#000;border:1px solid #fff;box-shadow:0 14px 35px rgba(0,0,0,.45)}.lang-switch.open .lang-menu{display:grid}.lang-menu button{appearance:none;border:0;background:#000;color:#fff;text-align:left;padding:10px;cursor:pointer;font:12px Arial,Helvetica,sans-serif}.lang-menu button:hover,.lang-menu button[aria-current=true]{background:#fff;color:#000}@media(max-width:760px){.nav{gap:6px!important}.lang-trigger{padding:8px 10px}.lang-menu{right:0}}';
   document.head.append(style);
   function makeSwitcher(){
     const old=document.querySelector('.lang,.lang-switch'); if(!old)return;
@@ -46,9 +46,8 @@
     const joined=translated.join('');localStorage.setItem(key,joined);return joined;
   }
   async function translatePage(lang){
-    if(lang==='en'){location.reload();return}
     const nodes=safeNodes();
-    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});
+    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;if(lang==='en'){node.textContent=node.dataset.enText;return}try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});
     for(let i=0;i<jobs.length;i+=3)await Promise.all(jobs.slice(i,i+3));
   }
   function setLanguage(lang){
