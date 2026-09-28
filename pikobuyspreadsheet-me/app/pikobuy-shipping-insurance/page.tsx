@@ -123,5 +123,6 @@ export default function Page(){return <GuidePage kicker="SHIPPING INSURANCE GUID
   {href:"/pikobuy-packaging",label:"Document the packaging decision"},
   {href:"/pikobuy-tracking",label:"Read tracking events without assuming loss"},
   {href:"/pikobuy-customs",label:"Keep customs and insurance boundaries separate"},
-  {href:"/pikobuy-shipping-times",label:"Separate tracking availability from delivery"}
+  {href:"/pikobuy-shipping-times",label:"Separate tracking availability from delivery"},
+  {href:"/pikobuy-prohibited-items",label:"Confirm product and route eligibility before ordering"}
 ]}/>}

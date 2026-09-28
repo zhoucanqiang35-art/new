@@ -106,6 +106,7 @@ export default function Page(){return <GuidePage kicker="SHIPPING CALCULATOR" ti
   {href:"/pikobuy-parcel-submission",label:"Apply the estimate during parcel submission"},
   {href:"/pikobuy-parcel-consolidation",label:"Compare combined and split parcel scenarios"},
   {href:"/pikobuy-shipping-times",label:"Turn route estimates into a staged timeline"},
+  {href:"/pikobuy-prohibited-items",label:"Verify product type and current route eligibility"},
   {href:"/shipping-guide",label:"Plan the complete PikoBuy shipping workflow"},
   {href:"/how-pikobuy-works",label:"Follow the order from source link to parcel"},
   {href:"/qc-guide",label:"Review warehouse evidence before shipping"},

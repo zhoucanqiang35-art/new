@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Box, Boxes, Calculator, Camera, Clock3, CreditCard, Hourglass, Landmark, Link2, ListChecks, MapPinned, Package, PackageCheck, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
+import { AlertTriangle, ArrowRight, BookOpen, Box, Boxes, Calculator, Camera, Clock3, CreditCard, Hourglass, Landmark, Link2, ListChecks, MapPinned, Package, PackageCheck, PackageSearch, RotateCcw, ShieldCheck, Truck } from "lucide-react";
 import { SiteFooter, SiteHeader } from "../site-chrome";
 import SeoParitySections from "../seo-parity-sections";
 import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
   title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about shipping insurance, parcel consolidation, shipping times, warehouse checks, tracking, customs and returns.",
+  description: "Read independent PikoBuy guides about prohibited items, shipping insurance, parcel consolidation, warehouse checks, tracking, customs and returns.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: AlertTriangle, tag: "PROHIBITED ITEMS", title: "PikoBuy Prohibited Items Guide 2026: Check Before Ordering", description: "Verify the exact product, destination, truthful product type and current route before paying, then protect return options if eligibility remains unclear.", href: "/pikobuy-prohibited-items", time: "10 min read" },
   { icon: ShieldCheck, tag: "SHIPPING INSURANCE", title: "PikoBuy Shipping Insurance Guide 2026: Check Coverage Before You Pay", description: "Read the live route terms, separate logistics risks, record any coverage wording and preserve evidence for damage or loss without assuming compensation.", href: "/pikobuy-shipping-insurance", time: "10 min read" },
   { icon: Boxes, tag: "PARCEL CONSOLIDATION", title: "PikoBuy Parcel Consolidation Guide 2026: Combine Orders Carefully", description: "Verify warehouse items, resolve returns, test product and route compatibility, compare combined and split scenarios, then audit the final parcel.", href: "/pikobuy-parcel-consolidation", time: "10 min read" },
   { icon: Hourglass, tag: "SHIPPING TIMES", title: "PikoBuy Shipping Times 2026: Build a Realistic Timeline", description: "Separate seller movement, warehouse decisions, parcel dispatch and tracking so route estimates are not mistaken for delivery promises.", href: "/pikobuy-shipping-times", time: "10 min read" },
@@ -39,7 +40,7 @@ export default function SeoArticlesPage() {
     <SiteHeader />
     <section className="directory-hero seo-hub-hero"><p className="kicker">SEO ARTICLE LIBRARY</p><h1>Useful PikoBuy answers, not keyword filler.</h1><p>Each long-form article is written in plain English, follows one search intent and separates PikoBuy’s published process from independent buying checks.</p></section>
     <section className="section article-hub">
-      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 26 SEPTEMBER 2026</p><h2>Check shipping protection before payment.</h2><p>Save the live route terms, understand what is not publicly guaranteed, and build a complete evidence record before the parcel leaves the warehouse.</p></div><Link href="/pikobuy-shipping-insurance">Read the new guide <ArrowRight size={16}/></Link></div>
+      <div className="article-featured"><div><p className="kicker">NEW GUIDE · 28 SEPTEMBER 2026</p><h2>Check product eligibility before ordering.</h2><p>Use the exact item, destination, truthful product type and current route instead of relying on a copied prohibited-items list.</p></div><Link href="/pikobuy-prohibited-items">Read the new guide <ArrowRight size={16}/></Link></div>
       <div className="article-card-grid">
         {articles.map(({icon:Icon,tag,title,description,href,time}) => <Link href={href} className="article-card" key={href}><div className="article-icon"><Icon/></div><span>{tag} · {time}</span><h2>{title}</h2><p>{description}</p><b>Read full article <ArrowRight size={15}/></b></Link>)}
       </div>

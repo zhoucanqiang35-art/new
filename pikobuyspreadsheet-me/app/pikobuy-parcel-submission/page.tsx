@@ -122,5 +122,6 @@ export default function Page(){return <GuidePage kicker="PARCEL SUBMISSION GUIDE
   {href:"/pikobuy-shipping-calculator",label:"Estimate with current parcel inputs"},
   {href:"/pikobuy-shipping-insurance",label:"Save current insurance and risk terms before payment"},
   {href:"/pikobuy-shipping-times",label:"Understand what happens before and after dispatch"},
+  {href:"/pikobuy-prohibited-items",label:"Recheck every product before final parcel submission"},
   {href:"/pikobuy-tracking",label:"Follow the parcel after dispatch"}
 ]}/>}

@@ -112,5 +112,6 @@ export default function Page(){return <GuidePage kicker="CUSTOMS GUIDE" title={t
   {href:"/pikobuy-shipping-insurance",label:"Keep customs and insurance outcomes separate"},
   {href:"/pikobuy-tracking",label:"Read parcel tracking and customs events carefully"},
   {href:"/pikobuy-shipping-calculator",label:"Estimate the parcel with current inputs"},
-  {href:"/pikobuy-forwarding-guide",label:"Document goods purchased outside PikoBuy"}
+  {href:"/pikobuy-forwarding-guide",label:"Document goods purchased outside PikoBuy"},
+  {href:"/pikobuy-prohibited-items",label:"Verify truthful product type and route eligibility"}
 ]}/>}
