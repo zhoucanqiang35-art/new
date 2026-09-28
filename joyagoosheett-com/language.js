@@ -32,15 +32,19 @@
     document.querySelectorAll('.lang-trigger').forEach(x=>x.textContent=lang.toUpperCase()+' / '+languages[lang]);
     document.querySelectorAll('.lang-menu [data-code]').forEach(x=>x.setAttribute('aria-current',String(x.dataset.code===lang)));
   }
+  function splitForTranslation(text){
+    const parts=[];let remaining=text;
+    while(remaining.length>360){let cut=remaining.lastIndexOf(' ',360);if(cut<120)cut=360;parts.push(remaining.slice(0,cut));remaining=remaining.slice(cut)}
+    if(remaining)parts.push(remaining);return parts;
+  }
   async function translateText(text,lang){
     const key='jg-i18n-'+lang+'-'+btoa(unescape(encodeURIComponent(text))).slice(0,300);
     const cached=localStorage.getItem(key);if(cached)return cached;
-    const pieces=text.match(/[^.!?]+[.!?]*|.{1,420}/g)||[text];
     const translated=[];
-    for(const piece of pieces){const clean=piece.trim();if(!clean){translated.push(piece);continue}
+    for(const piece of splitForTranslation(text)){const clean=piece.trim();if(!clean){translated.push(piece);continue}
       const url='https://api.mymemory.translated.net/get?q='+encodeURIComponent(clean)+'&langpair=en%7C'+encodeURIComponent(lang);
       const response=await fetch(url,{headers:{Accept:'application/json'}});if(!response.ok)throw new Error('translation unavailable');
-      const data=await response.json();const value=data?.responseData?.translatedText;if(!value)throw new Error('translation unavailable');
+      const data=await response.json();const value=data?.responseData?.translatedText;if(!value||data?.responseStatus!==200)throw new Error('translation unavailable');
       translated.push(piece.match(/^\s*/)[0]+value);
     }
     const joined=translated.join('');localStorage.setItem(key,joined);return joined;
