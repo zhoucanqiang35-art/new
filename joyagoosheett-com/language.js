@@ -20,6 +20,7 @@ pt:['Navegue por direção de moda.','Escolha uma categoria para abrir a página
 nl:['Blader op moderichting.','Kies een categorie om de overeenkomstige actuele pagina op FindSpreadsheet te openen.','Tien actuele productrecords.','Blader door tien records in hoge resolutie; elke kaart opent de bijbehorende pagina op FindSpreadsheet.','Lees de foto’s. Beslis daarna.','QC-foto’s zijn referentiemateriaal na aankomst in het magazijn, geen garantie voor eindconditie of verzending.','Duidelijke grenzen. Betere beslissingen.','JoyaGoo-proces: wat wanneer te controleren.'],
 pl:['Przeglądaj według kierunku mody.','Wybierz kategorię, aby otworzyć odpowiadającą jej aktualną stronę w FindSpreadsheet.','Dziesięć aktualnych rekordów produktów.','Przewiń dziesięć rekordów wysokiej rozdzielczości; każda karta otwiera odpowiednią stronę w FindSpreadsheet.','Przeczytaj zdjęcia. Potem zdecyduj.','Zdjęcia QC są materiałem referencyjnym po przybyciu do magazynu, a nie gwarancją stanu końcowego ani wysyłki.','Jasne granice. Lepsze decyzje.','Proces JoyaGoo: co i kiedy sprawdzać.']
 };
+const cats={de:'Schuhe|T-Shirts|Hoodies|Jacken|Hosen & Shorts|Taschen|Accessoires|Kopfbedeckung|Elektronik|Trikots',fr:'Chaussures|T-shirts|Sweats à capuche|Vestes|Pantalons & shorts|Sacs|Accessoires|Couvre-chefs|Électronique|Maillots',es:'Zapatos|Camisetas|Sudaderas|Chaquetas|Pantalones y shorts|Bolsos|Accesorios|Sombreros|Electrónica|Camisetas deportivas',it:'Scarpe|T-shirt|Felpe|Giacche|Pantaloni e shorts|Borse|Accessori|Copricapi|Elettronica|Maglie',pt:'Sapatos|Camisetas|Moletons|Jaquetas|Calças e shorts|Bolsas|Acessórios|Chapéus|Eletrônicos|Camisetas esportivas',nl:'Schoenen|T-shirts|Hoodies|Jassen|Broeken & shorts|Tassen|Accessoires|Hoofddeksels|Elektronica|Shirts',pl:'Buty|T-shirty|Bluzy z kapturem|Kurtki|Spodnie i szorty|Torby|Akcesoria|Nakrycia głowy|Elektronika|Koszulki sportowe'};
 function put(s,v,html){const e=document.querySelector(s);if(e){if(html)e.innerHTML=v;else e.textContent=v}}
 function h(s){return s.replace('. ','<br><em>')+'</em>'}
 function render(lang){
@@ -27,7 +28,7 @@ function render(lang){
  document.querySelectorAll('header nav a').forEach((e,i)=>e.textContent=v.n[i]);document.querySelectorAll('.language span').forEach(e=>e.textContent=v.l);document.querySelectorAll('.language select').forEach(e=>e.value=lang);
  if(!c)return;
  const path=location.pathname;
- if(path.includes('categories')){put('.category-page h1',h(c[0]),true);put('.category-page>p:not(.eyebrow)',c[1]);document.querySelectorAll('.category-tile small').forEach(e=>e.textContent=v.n[1]+' ↗')}
+ if(path.includes('categories')){put('.category-page h1',h(c[0]),true);put('.category-page>p:not(.eyebrow)',c[1]);const names=(cats[lang]||'Shoes|T-Shirts|Hoodies|Jackets|Pants & Shorts|Bags|Accessories|Headwear|Electronics|Jerseys').split('|');document.querySelectorAll('.category-tile strong').forEach((e,i)=>e.textContent=names[i]);document.querySelectorAll('.category-tile small').forEach(e=>e.textContent=v.n[1]+' ↗')}
  if(path.includes('product-detail')){put('.detail-intro h1',h(c[2]),true);put('.detail-intro p:last-child',c[3]);document.querySelectorAll('.open-detail').forEach(e=>e.textContent=v.n[2]+' ↗')}
  if(path.includes('/qc')){put('.detail h1',h(c[4]),true);put('.detail>div p:last-child',c[5])}
  if(path.includes('/faq'))put('.faq>h1',h(c[6]),true);
