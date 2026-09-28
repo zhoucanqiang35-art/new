@@ -42,18 +42,19 @@
   }
   function splitForTranslation(text){
     const parts=[];let remaining=text;
-    while(remaining.length>180){let cut=remaining.lastIndexOf(' ',180);if(cut<120)cut=180;parts.push(remaining.slice(0,cut));remaining=remaining.slice(cut)}
+    while(remaining.length>560){let cut=Math.max(remaining.lastIndexOf('. ',560),remaining.lastIndexOf('; ',560),remaining.lastIndexOf(', ',560),remaining.lastIndexOf(' ',560));if(cut<360)cut=560;parts.push(remaining.slice(0,cut+1));remaining=remaining.slice(cut+1)}
     if(remaining)parts.push(remaining);return parts;
   }
   async function translateText(text,lang){
-    const key='jg-i18n-v2-'+lang+'-'+btoa(unescape(encodeURIComponent(text))).slice(0,300);
+    const key='jg-i18n-v3-'+lang+'-'+btoa(unescape(encodeURIComponent(text)));
     const cached=localStorage.getItem(key);if(cached)return cached;
     const translated=[];
     for(const piece of splitForTranslation(text)){const clean=piece.trim();if(!clean){translated.push(piece);continue}
-      const url='https://api.mymemory.translated.net/get?q='+encodeURIComponent(clean)+'&langpair=en%7C'+encodeURIComponent(lang);
+      const url='https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+encodeURIComponent(lang)+'&dt=t&q='+encodeURIComponent(clean);
       const response=await fetch(url,{headers:{Accept:'application/json'}});if(!response.ok)throw new Error('translation unavailable');
-      const data=await response.json();const value=data?.responseData?.translatedText;if(!value||data?.responseStatus!==200)throw new Error('translation unavailable');
-      translated.push(piece.match(/^\s*/)[0]+value);
+      const data=await response.json();const value=Array.isArray(data?.[0])?data[0].map(part=>part?.[0]||'').join(''):'';
+      if(!value)throw new Error('translation unavailable');
+      translated.push(piece.match(/^\s*/)[0]+value+piece.match(/\s*$/)[0]);
     }
     const joined=translated.join('');localStorage.setItem(key,joined);return joined;
   }
