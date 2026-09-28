@@ -48,7 +48,8 @@
   async function translatePage(lang){
     if(lang==='en'){location.reload();return}
     const nodes=safeNodes();
-    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});\n    for(let i=0;i<jobs.length;i+=3)await Promise.all(jobs.slice(i,i+3));
+    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});
+    for(let i=0;i<jobs.length;i+=3)await Promise.all(jobs.slice(i,i+3));
   }
   function setLanguage(lang){
     localStorage.setItem('joyagoo-sheet-language',lang);updateFixed(lang);translatePage(lang);
