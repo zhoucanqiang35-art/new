@@ -4,8 +4,8 @@
   const nav={
     en:['Home','Product categories','Product details','SEO articles','QC','FAQ'],
     de:['Startseite','Produktkategorien','Produktdetails','SEO-Artikel','QC','FAQ'],
-    fr:['Accueil','Catégories de produits','Détails des produits','Articles SEO','CQ','FAQ'],
-    es:['Inicio','Categorías de productos','Detalles de productos','Artículos SEO','CC','Preguntas frecuentes'],
+    fr:['Accueil','Catégories de produits','Détails des produits','Articles SEO','QC','FAQ'],
+    es:['Inicio','Categorías de productos','Detalles de productos','Artículos SEO','QC','Preguntas frecuentes'],
     it:['Home','Categorie di prodotti','Dettagli prodotto','Articoli SEO','CQ','FAQ'],
     pt:['Início','Categorias de produtos','Detalhes dos produtos','Artigos SEO','CQ','FAQ'],
     nl:['Home','Productcategorieën','Productdetails','SEO-artikelen','QC','FAQ'],
