@@ -24,7 +24,8 @@
     document.addEventListener('click',e=>{if(!box.contains(e.target))box.classList.remove('open')});
   }
   function safeNodes(){
-    return [...document.querySelectorAll('main h1,main h2,main h3,main p,main b,main strong,main .mono,main .eyebrow,main .price,main .open,main .button,main .cta,main .lead,main .note,main li')].filter(el=>!el.closest('.nav,.lang-switch,.brand')&&!el.dataset.noTranslate&&el.textContent.trim());
+    const nodes=[...document.querySelectorAll('main h1,main h2,main h3,main p,main b,main strong,main .mono,main .eyebrow,main .price,main .open,main .button,main .cta,main .lead,main .note,main li')].filter(el=>!el.closest('.nav,.lang-switch,.brand')&&!el.dataset.noTranslate&&el.textContent.trim());
+    return nodes.filter(el=>!nodes.some(parent=>parent!==el&&parent.contains(el)));
   }
   function updateFixed(lang){
     document.documentElement.lang=lang;
