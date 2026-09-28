@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-order-status-guide",
+    date: "27 September 2026",
+    title: "LoloBuy Order Status Guide: Read Purchase-to-Warehouse Updates Before Shipping",
+    description: "An evidence-first guide to reading payment, purchasing, seller dispatch, and warehouse-arrival updates without confusing an order with a parcel.",
+  },
+  {
     href: "/seo-articles/lolobuy-manual-order-guide",
     date: "25 September 2026",
     title: "LoloBuy Manual Order Guide: Prepare an Unlisted Product Request Without Guesswork",
