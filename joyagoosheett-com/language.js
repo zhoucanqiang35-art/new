@@ -25,7 +25,7 @@ function put(s,v,html){const e=document.querySelector(s);if(e){if(html)e.innerHT
 function h(s){return s.replace('. ','<br><em>')+'</em>'}
 function render(lang){
  const v=t[lang],c=copy[lang]||null;document.documentElement.lang=lang;
- document.querySelectorAll('header nav a').forEach((e,i)=>e.textContent=v.n[i]);document.querySelectorAll('.language span').forEach(e=>e.textContent=v.l);document.querySelectorAll('.language select').forEach(e=>e.value=lang);
+ document.querySelectorAll('header nav a').forEach((e,i)=>{e.textContent=v.n[i];const u=new URL(e.href,location.href);if(u.origin===location.origin){if(lang==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',lang);e.href=u.pathname+u.search+u.hash}});document.querySelectorAll('main a[href^="."]').forEach(e=>{const u=new URL(e.href,location.href);if(lang==='en')u.searchParams.delete('lang');else u.searchParams.set('lang',lang);e.href=u.pathname+u.search+u.hash});document.querySelectorAll('.language span').forEach(e=>e.textContent=v.l);document.querySelectorAll('.language select').forEach(e=>e.value=lang);
  if(!c)return;
  const path=location.pathname;
  if(!path.includes('categories')&&!path.includes('product-detail')&&!path.includes('seo-articles')&&!path.includes('/qc')&&!path.includes('/faq')&&homeLang!==lang){homeLang=lang;document.querySelector('.language select').dispatchEvent(new Event('change'))}
