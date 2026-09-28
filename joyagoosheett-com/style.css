@@ -5,3 +5,7 @@ header>nav{position:absolute!important;left:50%;transform:translateX(-50%);width
 
 /* Keep the homepage copy in the right feature area shown in the approved layout. */
 @media(min-width:901px){.hero-copy{margin-left:27vw;max-width:610px}}
+
+/* Compact the hero and add the approved high-resolution editorial image. */
+@media(min-width:901px){.hero{min-height:0;padding:4.5rem 8vw 1rem}.manifesto{position:relative;min-height:680px;padding-right:50vw}.manifesto .eyebrow,.manifesto h2,.manifesto .text-link{position:relative;z-index:1}.manifesto h2{max-width:100%}.manifesto:after{content:'';position:absolute;top:5.25rem;right:5vw;width:38vw;height:620px;background:url('assets/editorial-hero.png') 78% center/cover no-repeat}}
+@media(max-width:900px){.manifesto:after{content:'';display:block;width:100%;height:260px;margin-top:1.5rem;background:url('assets/editorial-hero.png') 78% center/cover no-repeat}}
