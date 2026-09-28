@@ -23,9 +23,16 @@
     box.querySelectorAll('[data-code]').forEach(b=>b.addEventListener('click',()=>{box.classList.remove('open');setLanguage(b.dataset.code);}));
     document.addEventListener('click',e=>{if(!box.contains(e.target))box.classList.remove('open')});
   }
-  function safeNodes(){
-    const nodes=[...document.querySelectorAll('main h1,main h2,main h3,main p,main b,main strong,main .mono,main .eyebrow,main .price,main .open,main .button,main .cta,main .lead,main .note,main li')].filter(el=>!el.closest('.nav,.lang-switch,.brand')&&!el.dataset.noTranslate&&el.textContent.trim());
-    return nodes.filter(el=>!nodes.some(parent=>parent!==el&&parent.contains(el)));
+  function safeTextNodes(){
+    const root=document.querySelector('main');if(!root)return[];
+    const result=[],walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+    let node;
+    while(node=walker.nextNode()){
+      const parent=node.parentElement,raw=node.nodeValue||'';
+      if(!raw.trim()||!parent||parent.closest('script,style,.nav,.lang-switch,.brand')||parent.dataset.noTranslate!==undefined)continue;
+      result.push(node);
+    }
+    return result;
   }
   function updateFixed(lang){
     document.documentElement.lang=lang;
@@ -51,9 +58,19 @@
     const joined=translated.join('');localStorage.setItem(key,joined);return joined;
   }
   async function translatePage(lang){
-    const nodes=safeNodes();
-    const jobs=nodes.map(async node=>{if(!node.dataset.enText)node.dataset.enText=node.textContent;if(lang==='en'){node.textContent=node.dataset.enText;return}try{node.textContent=await translateText(node.dataset.enText,lang)}catch(e){node.textContent=node.dataset.enText}});
-    for(let i=0;i<jobs.length;i+=3)await Promise.all(jobs.slice(i,i+3));
+    const groups=new Map();
+    for(const node of safeTextNodes()){
+      if(node.__joyagooEnglish===undefined)node.__joyagooEnglish=node.nodeValue;
+      const english=node.__joyagooEnglish;
+      if(!groups.has(english))groups.set(english,[]);
+      groups.get(english).push(node);
+    }
+    const jobs=[...groups.entries()].map(async([english,nodes])=>{
+      let value=english;
+      if(lang!=='en'){try{value=await translateText(english,lang)}catch(e){value=english}}
+      nodes.forEach(node=>{node.nodeValue=value});
+    });
+    for(let i=0;i<jobs.length;i+=4)await Promise.all(jobs.slice(i,i+4));
   }
   function setLanguage(lang){
     localStorage.setItem('joyagoo-sheet-language',lang);updateFixed(lang);translatePage(lang);
