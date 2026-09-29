@@ -1,0 +1,1 @@
+(()=>{const select=document.querySelector('#language');if(!select)return;const key='usfans-sheett-language';select.value=localStorage.getItem(key)||'EN';select.addEventListener('change',()=>{localStorage.setItem(key,select.value);document.documentElement.lang=select.value.toLowerCase()})})();
