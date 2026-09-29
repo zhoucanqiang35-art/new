@@ -2310,4 +2310,4 @@ export const researchArticles: ResearchArticle[] = [
     ]
   }
 ];
-// Content-only Pages deployment refresh for 29 September 2026.
+// Cloudflare Pages content deployment refresh for 29 September 2026.
