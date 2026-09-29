@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy shipping address verification flow</title>
+  <desc id="desc">A five-step workflow: build a trusted recipient record, validate the destination format, compare the parcel summary, recheck the live route, and save the final waybill evidence.</desc>
+  <rect width="1200" height="650" rx="34" fill="#f5f7ff"/>
+  <rect x="42" y="40" width="1116" height="570" rx="28" fill="#ffffff" stroke="#d8def2" stroke-width="2"/>
+  <text x="88" y="104" fill="#17203b" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Verify the address before international shipping</text>
+  <text x="88" y="144" fill="#5b6480" font-family="Arial, Helvetica, sans-serif" font-size="19">Use the destination postal standard, then preserve the parcel record.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="88" y="196" width="188" height="176" rx="20" fill="#eef1ff" stroke="#9facf5" stroke-width="2"/>
+    <circle cx="126" cy="234" r="20" fill="#4f5bd5"/><text x="126" y="241" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">1</text>
+    <text x="112" y="282" fill="#17203b" font-size="21" font-weight="700">Trusted record</text>
+    <text x="112" y="316" fill="#505a78" font-size="17">Name, street, unit,</text><text x="112" y="341" fill="#505a78" font-size="17">locality, postcode,</text><text x="112" y="366" fill="#505a78" font-size="17">phone</text>
+    <path d="M286 284h34" stroke="#7580ac" stroke-width="3" stroke-linecap="round"/><path d="M313 276l10 8-10 8" fill="none" stroke="#7580ac" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="330" y="196" width="188" height="176" rx="20" fill="#effaf6" stroke="#79c9a9" stroke-width="2"/>
+    <circle cx="368" cy="234" r="20" fill="#148766"/><text x="368" y="241" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">2</text>
+    <text x="354" y="282" fill="#17203b" font-size="21" font-weight="700">Postal check</text>
+    <text x="354" y="316" fill="#505a78" font-size="17">USPS or national</text><text x="354" y="341" fill="#505a78" font-size="17">operator format;</text><text x="354" y="366" fill="#505a78" font-size="17">postcode matches</text>
+    <path d="M528 284h34" stroke="#7580ac" stroke-width="3" stroke-linecap="round"/><path d="M555 276l10 8-10 8" fill="none" stroke="#7580ac" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="572" y="196" width="188" height="176" rx="20" fill="#fff7e8" stroke="#e7b45d" stroke-width="2"/>
+    <circle cx="610" cy="234" r="20" fill="#c77b10"/><text x="610" y="241" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">3</text>
+    <text x="596" y="282" fill="#17203b" font-size="21" font-weight="700">Parcel summary</text>
+    <text x="596" y="316" fill="#505a78" font-size="17">Compare every field;</text><text x="596" y="341" fill="#505a78" font-size="17">find truncation, stale</text><text x="596" y="366" fill="#505a78" font-size="17">data or missing unit</text>
+    <path d="M770 284h34" stroke="#7580ac" stroke-width="3" stroke-linecap="round"/><path d="M797 276l10 8-10 8" fill="none" stroke="#7580ac" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="814" y="196" width="188" height="176" rx="20" fill="#fff0f3" stroke="#e59aae" stroke-width="2"/>
+    <circle cx="852" cy="234" r="20" fill="#c54f70"/><text x="852" y="241" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">4</text>
+    <text x="838" y="282" fill="#17203b" font-size="21" font-weight="700">Live route</text>
+    <text x="838" y="316" fill="#505a78" font-size="17">Recheck eligibility,</text><text x="838" y="341" fill="#505a78" font-size="17">price and terms after</text><text x="838" y="366" fill="#505a78" font-size="17">material corrections</text>
+    <path d="M1002 284h34" stroke="#7580ac" stroke-width="3" stroke-linecap="round"/><path d="M1029 276l10 8-10 8" fill="none" stroke="#7580ac" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1046" y="196" width="102" height="176" rx="20" fill="#eef6ff" stroke="#8ab8e8" stroke-width="2"/>
+    <circle cx="1082" cy="234" r="20" fill="#2878be"/><text x="1082" y="241" fill="#ffffff" font-size="20" font-weight="700" text-anchor="middle">5</text>
+    <text x="1070" y="282" fill="#17203b" font-size="19" font-weight="700">Save</text>
+    <text x="1070" y="314" fill="#505a78" font-size="16">Label</text><text x="1070" y="338" fill="#505a78" font-size="16">Waybill</text><text x="1070" y="362" fill="#505a78" font-size="16">Tracking</text>
+    <rect x="88" y="424" width="1060" height="122" rx="20" fill="#17203b"/>
+    <text x="120" y="466" fill="#ffffff" font-size="21" font-weight="700">Hard stop</text>
+    <text x="120" y="502" fill="#dce2ff" font-size="18">Do not pay while the postcode conflicts, the unit is missing, the recipient cannot confirm the address,</text>
+    <text x="120" y="530" fill="#dce2ff" font-size="18">or a material correction has not been reflected in the authoritative parcel record.</text>
+  </g>
+</svg>
