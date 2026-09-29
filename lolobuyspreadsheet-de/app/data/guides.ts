@@ -18,7 +18,6 @@ import { guidePartSeventeen } from "./guides-part-seventeen";
 import { guidePartEighteen } from "./guides-part-eighteen";
 import { guidePartNineteen } from "./guides-part-nineteen";
 import { guidePartTwenty } from "./guides-part-twenty";
-import { guidePartTwenty } from "./guides-part-twenty";
 
 export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide", "lolobuy-poland-guide", "lolobuy-portugal-guide", "lolobuy-belgium-guide", "lolobuy-ireland-guide", "lolobuy-switzerland-guide", "lolobuy-norway-guide"] as const;
 export type GuideSlug = typeof guideOrder[number];

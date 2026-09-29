@@ -16,7 +16,6 @@ import { guideSeventeenTranslations } from "./guide-seventeen-translations";
 import { guideEighteenTranslations } from "./guide-eighteen-translations";
 import { guideNineteenTranslations } from "./guide-nineteen-translations";
 import { guideTwentyTranslations } from "./guide-twenty-translations";
-import { guideTwentyTranslations } from "./guide-twenty-translations";
 import type { Locale } from "./locales";
 
 /** Translate editorial copy while preserving the exact page structure. */
