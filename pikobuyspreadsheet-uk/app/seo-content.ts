@@ -1340,7 +1340,7 @@ export const seoArticles: SeoArticle[] = [
     secondaryKeywords: [
       "PikoBuy order pending",
       "PikoBuy In Warehouse",
-      "PikoBuy order not shipped",
+      "PikoBuy order stages",
       "PikoBuy parcel status",
       "PikoBuy tracking update"
     ],
@@ -1681,6 +1681,95 @@ export const seoArticles: SeoArticle[] = [
         paragraphs: [
           "Proceed only when the live seller offer is accurately identified; any branded or licensed claim is supported; the product does not conflict with PikoBuy's Terms; the current carrier or route accepts the actual item; the destination permits import; the parcel can be described truthfully; and the evidence is saved. Stop when approval depends on disguising the product, changing its value, using another person's documents or assuming that warehouse photos will prove a specialist fact they cannot show.",
           "FindSpreadsheet is independent from PikoBuy and cannot authorise a product, route or import. Use it to discover and compare product leads, then make the eligibility decision from current platform terms, seller evidence, live route conditions and official destination rules. The practical PikoBuy prohibited items rule is simple: verify before the first payment, repeat the route and destination checks before the second, and do not ship an item whose acceptability depends on concealment or guesswork."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "pikobuy-seller-shipping-domestic-order-checklist",
+    title: "PikoBuy Seller Shipping: Order Checklist",
+    description: "Track the PikoBuy seller-shipping stage, separate purchase from dispatch, check domestic delivery evidence and act before warehouse arrival.",
+    published: "29 September 2026",
+    updated: "29 September 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy seller shipping",
+    secondaryKeywords: [
+      "PikoBuy seller not shipped",
+      "PikoBuy domestic tracking",
+      "PikoBuy purchase order",
+      "PikoBuy warehouse arrival",
+      "PikoBuy order cancellation"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Beginner's Guide, Terms of Service, Returns & Exchanges, Shipping Terms and Contact page on 29 September 2026. We use only publicly verifiable stages and policy statements. PikoBuy does not publish one universal seller-dispatch deadline or a complete private-account status dictionary, so this guide does not invent seller preparation times, cancellation approval, refund timing or warehouse check-in targets.",
+    sections: [
+      {
+        heading: "The direct answer: seller shipping is the domestic stage",
+        paragraphs: [
+          "PikoBuy seller shipping happens after a purchasing order and first payment but before the item is checked into the PikoBuy warehouse. The underlying seller must accept or fulfil the order, prepare the selected item and hand it to a domestic carrier. Only after warehouse receipt, matching, photographs and inspection does the item reach the warehouse stage. This is not international shipping, and an overseas tracking number should not yet be expected.",
+          "Read this stage as a sequence of evidence rather than one vague wait: successful PikoBuy order, confirmed product and option, seller dispatch, domestic tracking, domestic delivery, then warehouse check-in. A problem at each handoff has a different owner and remedy. This focused checklist complements the broader PikoBuy order-status guide by concentrating on the seller-to-warehouse portion of the workflow."
+        ]
+      },
+      {
+        heading: "First confirm that a purchasing order was actually created",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide places product selection, specification confirmation, purchasing-order submission and first payment before seller fulfilment. Its Terms say an order is an offer that PikoBuy or a participating merchant may accept or reject, and an order will not be processed if payment fails. A spreadsheet row, imported product page, basket entry or card authorisation therefore does not by itself prove that the purchase moved to the seller stage.",
+          "Before asking why a seller has not shipped, record the PikoBuy order number, exact source link, selected colour or model, size, quantity, displayed amount and successful payment entry. If those records do not agree, resolve the mismatch before treating the order as a dispatch delay. Retrying a payment without understanding the first attempt can make the evidence harder to follow; preserve redacted payment and order records first."
+        ]
+      },
+      {
+        heading: "Separate seller acceptance from seller dispatch",
+        paragraphs: [
+          "An order can exist before the seller has handed anything to a carrier. PikoBuy's guide says prices are subject to the actual purchase and that an out-of-stock order will be refunded. Its Terms also allow an order to be accepted or rejected. Those facts mean a paid request can still require confirmation of availability, option or actual price before dispatch. Do not label every pre-dispatch pause a logistics failure.",
+          "Check whether the requested option still exists on the live seller page and whether any price or specification decision is pending. Then ask a narrow question: was the seller purchase accepted, is the item unavailable, does the order need a buyer decision, or has a domestic tracking number been issued? One precise question tied to the order number is more useful than asking when the international parcel will arrive, because no international parcel exists at this point."
+        ]
+      },
+      {
+        heading: "Do not invent a universal seller-dispatch deadline",
+        paragraphs: [
+          "PikoBuy's public pages reviewed for this guide do not publish one deadline covering every seller, product and order type. An in-stock ordinary item, a pre-order and a customised product should not be assumed to share the same preparation period. A seller estimate on a listing may also change and is not the same as a platform-wide guarantee. Use the dates shown in the actual order rather than a community rule of thumb.",
+          "Create a short timeline with the order-submission time, successful payment time, any acceptance or purchasing update, and the most recent seller-side message. If no new event appears, ask support which verifiable action is pending and who controls it. This does not require guessing how many days are normal. It requires identifying whether the order is waiting for PikoBuy purchasing, seller confirmation, seller dispatch or a buyer response."
+        ]
+      },
+      {
+        heading: "Read domestic tracking as a chain of custody",
+        paragraphs: [
+          "Once a domestic tracking number is available, match it to the correct PikoBuy purchasing order. Save the carrier name, tracking number, first acceptance event, latest scan and expected contents. A number with no carrier event may indicate that shipment information was created before physical handoff, while an active scan shows movement within China. Neither event proves warehouse check-in, product accuracy or international dispatch.",
+          "Keep one domestic number separate from any later international parcel number. A single seller order may also contain more than one item or shipment, so compare quantities rather than assuming one delivered package completes the order. If the tracking page is unclear, report the exact last scan and timestamp. Avoid translating it into a stronger conclusion such as lost, refused or delivered to the wrong place unless the evidence actually says so."
+        ]
+      },
+      {
+        heading: "Treat domestic delivery and In Warehouse as different events",
+        paragraphs: [
+          "A carrier's delivered event records a handoff at the warehouse address; it does not automatically show that PikoBuy matched, unpacked and checked the item into the correct order. PikoBuy's guide says warehouse receipt is followed by check-in, photo confirmation and a defect check. That makes domestic delivery evidence useful for locating the handoff, but the order still needs a warehouse record before the buyer can review the item.",
+          "If domestic tracking shows delivery but the item is not in the warehouse record, preserve the delivery timestamp, recipient or delivery evidence shown by the carrier, parcel number, seller, expected contents and PikoBuy order number. Ask whether the package was received and matched. Do not start an international carrier enquiry or assume the item is ready for consolidation; both steps belong after warehouse processing and parcel submission."
+        ]
+      },
+      {
+        heading: "Act carefully when an order is still Not Shipped",
+        paragraphs: [
+          "PikoBuy's Returns & Exchanges FAQ uses the exact status “Not Shipped” in its fee explanation. It says no fees are charged for a return request at that point; the stated fees apply when a no-quality-issue return involves a product that has entered the warehouse. This is a useful cost distinction, but it is not a promise that every cancellation is automatic or that every refund follows the same timetable.",
+          "If you want to stop a Not Shipped order, capture the current status and use the order's available request controls promptly. Ask whether the seller purchase already occurred, whether cancellation or return is available, and what account entry will confirm the result. Do not order a replacement until the first order outcome is clear. Also distinguish a seller order marked Not Shipped from an international parcel that lacks a tracking scan; they are different records at different stages."
+        ]
+      },
+      {
+        heading: "Use warehouse photos to close the seller-shipping loop",
+        paragraphs: [
+          "After warehouse check-in, compare the photographs and order record with the live source listing and the option you saved. Confirm product identity, colour, model, size label, quantity, visible condition and included parts. A domestic shipment reaching the warehouse is not proof that the seller sent the correct item. The warehouse evidence is the first practical opportunity to compare what arrived with what the purchasing order requested.",
+          "PikoBuy's return policy says eligible applications may be made within five days after an order changes to In Warehouse, defined as 120 hours from the next hour after that change. Eligibility also depends on seller terms, condition, category and seller consent. Record the timestamp and review promptly. If the seller sent the wrong product, the policy says the customer normally does not bear the return cost unless the seller insists; keep the order and photo evidence together rather than assuming the outcome."
+        ]
+      },
+      {
+        heading: "Handle Buy-for-Me and forwarded goods differently",
+        paragraphs: [
+          "This seller-shipping checklist applies most directly when PikoBuy assists with the purchase. In forwarding, the user or sender arranged the seller transaction independently, obtains the PikoBuy warehouse address and submits a forwarding record. PikoBuy's Shipping Terms say the sender should be contacted when forwarded goods are missing at warehouse receipt for reasons not caused by PikoBuy, and PikoBuy does not provide product after-sales service for forwarded goods.",
+          "For a forwarded domestic parcel, keep the independent order confirmation, sender identity, forwarding form, domestic tracking and package contents. If the parcel reaches the warehouse but an item is missing, first establish what the sender placed in the package and what the warehouse received. PikoBuy may help ship goods back to the seller or sender, but the public policy does not turn it into the after-sales party for an independently purchased product."
+        ]
+      },
+      {
+        heading: "Use this seller-shipping escalation checklist",
+        paragraphs: [
+          "Before opening a support ticket, identify the PikoBuy order and exact option; show the successful payment entry; state whether seller acceptance is confirmed; include the domestic carrier and tracking number if one exists; quote the latest scan and timestamp; say whether the warehouse shows receipt or In Warehouse; and ask one answerable question. Redact passwords, full card details and unrelated personal information.",
+          "PikoBuy's Contact page recommends submitting a ticket. Keep material updates in one case, such as a new carrier scan, seller response or warehouse photo. FindSpreadsheet is independent from PikoBuy and cannot see private orders or change a seller outcome. Use it to compare product leads, then preserve the seller-to-warehouse evidence inside the actual transaction. The reliable rule is simple: confirm the order, identify the pending handoff, and act when a published return condition applies instead of guessing a universal wait time."
         ]
       }
     ]
