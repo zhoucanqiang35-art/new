@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://usfans-sheett.com/</loc></url><url><loc>https://usfans-sheett.com/categories.html</loc></url><url><loc>https://usfans-sheett.com/products.html</loc></url><url><loc>https://usfans-sheett.com/articles.html</loc></url><url><loc>https://usfans-sheett.com/faq.html</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://usfans-sheett.com/</loc></url>
+  <url><loc>https://usfans-sheett.com/categories.html</loc></url>
+  <url><loc>https://usfans-sheett.com/details.html</loc></url>
+  <url><loc>https://usfans-sheett.com/articles.html</loc></url>
+  <url><loc>https://usfans-sheett.com/faq.html</loc></url>
+</urlset>
