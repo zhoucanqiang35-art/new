@@ -67,7 +67,6 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-ireland-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-switzerland-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-norway-guide/);
-  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-norway-guide/);
 });
 
 test("publishes the Norway guide with crawlable article metadata", async () => {
@@ -84,25 +83,6 @@ test("publishes the Norway guide with crawlable article metadata", async () => {
   assert.match(html, /NOK 3,000/);
   assert.match(html, /25%/);
   assert.match(html, /20 September 2026/);
-  assert.match(html, /Browse the product database/);
-  assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-norway-guide["']/i);
-  assert.doesNotMatch(html, /noindex/i);
-});
-
-test("publishes the Norway guide with crawlable article metadata", async () => {
-  const response = await request("/guide/lolobuy-norway-guide");
-  assert.equal(response.status, 200);
-  const html = await response.text();
-  assert.match(html, /LoloBuy Norway guide 2026/);
-  assert.match(html, /https:\/\/schema\.org/);
-  assert.match(html, /Article/);
-  assert.match(html, /datePublished/);
-  assert.match(html, /name=["']keywords["'][^>]+LoloBuy Norway/i);
-  assert.match(html, /hreflang=["']x-default["'][^>]+\/guide\/lolobuy-norway-guide/i);
-  assert.match(html, /Norwegian Customs/);
-  assert.match(html, /25%/);
-  assert.match(html, /NOK 3,000/);
-  assert.match(html, /VOEC/);
   assert.match(html, /Browse the product database/);
   assert.match(html, /<link[^>]+rel=["']canonical["'][^>]+href=["']https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-norway-guide["']/i);
   assert.doesNotMatch(html, /noindex/i);
