@@ -1,0 +1,214 @@
+:root{--ink:#f5f4f1;--muted:#c6c2bd;--paper:#202022;--orange:#ff7319;--red:#ff4b50;--panel:#2a2a2d;--soft:#333135}
+
+*{box-sizing:border-box}
+
+body{margin:0;background:var(--paper);color:var(--ink);font:16px Inter,Arial,sans-serif}
+
+a{color:inherit;text-decoration:none}
+
+.site{max-width:1440px;margin:auto;min-height:100vh}
+
+.rail{min-height:78px;padding:14px 32px;display:flex;align-items:center;gap:26px;background:rgba(28,28,30,.92);position:sticky;top:0;z-index:5;box-shadow:0 10px 30px rgba(0,0,0,.24);backdrop-filter:blur(14px)}
+
+.logo{display:flex;align-items:center}
+
+.logo img{display:block;width:110px;height:auto}
+
+.kicker{font:11px 'DM Mono';color:var(--muted);white-space:nowrap}
+
+.rail nav{display:flex;align-items:center;gap:20px;font-size:13px;flex:1}
+
+.rail nav a{white-space:nowrap;padding:8px 0}
+
+.rail nav a:hover,.rail nav a.active{color:var(--orange)}
+
+.lang{position:relative}
+
+.lang>summary{padding:9px 11px;background:#303034;color:var(--ink);font:11px 'DM Mono';cursor:pointer;list-style:none;user-select:none}
+.lang>summary::-webkit-details-marker{display:none}
+.lang[open]>summary{outline:2px solid var(--orange);outline-offset:2px}
+
+.lang>button{padding:9px 11px;background:#303034;color:var(--ink);font:11px 'DM Mono';cursor:pointer;border:0}
+
+.langs{display:none;position:absolute;top:39px;right:0;width:135px;background:#29292c;padding:7px;box-shadow:0 14px 30px rgba(0,0,0,.34)}
+
+.langs.open{display:grid}
+.lang[open] .langs{display:grid}
+
+.langs button,.langs a{border:0;background:#29292c;color:var(--ink);padding:8px;text-align:left;cursor:pointer;font:12px Inter}
+
+.langs button:hover,.langs a:hover{background:#3a3a3e}
+
+.page{padding:52px 32px 76px}
+
+.eyebrow{font:11px 'DM Mono';color:#ff8a3d}
+
+.page h1{font:clamp(3.4rem,8vw,6.2rem) 'Instrument Serif',Georgia,serif;line-height:.8;letter-spacing:-.07em;margin:17px 0 28px}
+
+.intro{max-width:660px;color:var(--muted);line-height:1.65;margin:0}
+
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:44px}
+
+.product{background:var(--panel);box-shadow:0 10px 24px rgba(0,0,0,.24);overflow:hidden;min-width:0}
+.product-card-link{display:block;color:inherit;text-decoration:none;cursor:pointer}
+.product-card-link:hover,.product-card-link:focus-visible{transform:translateY(-2px);outline:none;box-shadow:0 15px 30px rgba(0,0,0,.34)}
+
+.product-visual{height:260px;background-image:url('https://usfanssss-guide.canqiangzhou32.chatgpt.site/product-grid-hd.png');background-size:300% 400%;background-repeat:no-repeat}
+
+.p0{background-position:0 0}
+
+.p1{background-position:50% 0}
+
+.p2{background-position:100% 0}
+
+.p3{background-position:0 33.333%}
+
+.p4{background-position:50% 33.333%}
+
+.p5{background-position:100% 33.333%}
+
+.p6{background-position:0 66.666%}
+
+.p7{background-position:50% 66.666%}
+
+.p8{background-position:100% 66.666%}
+
+.p9{background-position:0 100%}
+
+.p10{background-position:50% 100%}
+
+.p11{background-position:100% 100%}
+
+.product-copy{padding:16px}
+
+.product-copy small{font:11px 'DM Mono';color:#ff8a3d}
+
+.product h2{font:1.45rem 'Instrument Serif',Georgia,serif;line-height:.95;letter-spacing:-.04em;margin:9px 0 18px}
+
+.product-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px}
+
+.price{font-size:15px;font-weight:700}
+
+.product-arrow{font:11px 'DM Mono';color:var(--orange);display:inline-flex;align-items:center;justify-content:center;min-height:30px;padding:6px 0;white-space:nowrap}
+.product-arrow:hover,.product-arrow:focus-visible{color:#fff;outline:none;text-decoration:underline;text-underline-offset:4px}
+
+.category-hero{background:linear-gradient(135deg,#4a2818,#2a292d);padding:30px;min-height:230px;display:flex;align-items:stretch;gap:28px;justify-content:space-between}
+.category-hero>div{display:flex;flex-direction:column;justify-content:end}
+.category-hero img{width:min(280px,38%);object-fit:cover;align-self:center}
+
+.category-hero p{margin:0;color:#e3d9d3;max-width:580px;line-height:1.6}
+
+.category-go{display:inline-block;background:linear-gradient(90deg,var(--orange),var(--red));padding:15px 20px;margin-top:28px;font-size:12px;font-weight:700;width:max-content}
+
+.article-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:44px}
+
+.lead,.article,.faq details{background:var(--panel);padding:26px}
+
+.lead{background:#442923}
+
+.article:nth-child(3){background:linear-gradient(135deg,#ff7319,#ff4b50)}
+
+.lead h2,.article h2{font:2.4rem 'Instrument Serif',Georgia,serif;line-height:.9;letter-spacing:-.05em;margin:15px 0}
+
+.lead p,.article p,.faq p{font-size:14px;line-height:1.6;color:var(--muted)}
+
+.article:nth-child(3) p{color:#fff}
+
+.article-page{max-width:960px}
+
+.article-intro{max-width:680px;font-size:1.1rem;line-height:1.6;color:var(--muted);margin:22px 0 36px}
+
+.article-body{max-width:760px;background:var(--panel);padding:clamp(24px,5vw,54px);font-size:1.05rem;line-height:1.75}
+
+.article-body p{margin:0 0 1.35rem}
+
+.article-body h2{font:2rem 'Instrument Serif',Georgia,serif;line-height:1.05;letter-spacing:-.035em;margin:2.35rem 0 .9rem}
+
+.article-body h2:first-of-type{margin-top:2rem}
+
+.article-body ul{margin:0 0 1.35rem;padding-left:1.2rem}
+
+.article-body li{margin:.55rem 0;padding-left:.25rem}
+
+.faq{display:grid;gap:12px;max-width:800px;margin-top:44px}
+
+.faq details{padding:19px 22px}
+
+.faq details:nth-child(even){background:var(--soft)}
+
+.faq summary{font-weight:700;cursor:pointer;list-style:none}
+
+.faq summary:after{content:'+';float:right;color:var(--orange);font-size:20px}
+
+.faq p{margin:15px 0 0}
+
+@media(max-width:900px){.rail{padding:14px 16px}
+
+.kicker{display:none}
+
+.rail nav{overflow:auto;gap:15px}
+
+.page{padding:44px 16px}
+
+.product-grid{grid-template-columns:repeat(3,1fr)}
+
+}
+
+@media(max-width:620px){.rail{gap:12px}
+
+.logo img{width:88px}
+
+.rail nav{display:none}
+
+.page h1{font-size:3.4rem}
+
+.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+
+.product-visual{height:190px}
+
+.article-grid{grid-template-columns:1fr}
+
+.category-hero{padding:22px}
+
+}
+
+.category-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:18px}
+.category-tile{min-height:160px;padding:15px;background:var(--panel);display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+.category-tile:nth-child(6){background:#4c2a1c}
+.category-tile span,.category-tile small{font:11px 'DM Mono';color:#ff8a3d}
+.category-tile i{font-style:normal;font-size:28px}
+.category-tile b{font-size:15px;letter-spacing:-.03em}
+.category-tile--reference{min-height:160px;padding:15px;background:var(--panel);transition:transform .18s ease,background .18s ease}
+.category-tile--reference:nth-child(6){background:#4c2a1c}
+.category-tile--reference:hover{background:#343438;transform:translateY(-3px)}
+.category-tile--reference:nth-child(6):hover{background:#5d3322}
+.category-tile--reference i{display:block;font-size:31px;line-height:1;margin:15px 0 13px;filter:drop-shadow(0 2px 0 #111)}
+.category-tile--reference b{font-size:16px;line-height:1.1}
+.category-tile--reference small{color:var(--muted);font:11px Inter,Arial,sans-serif;margin-top:14px}
+.category-tile--image{padding:0;overflow:hidden;min-height:0;background:transparent}
+.category-tile--image img{display:block;width:100%;height:auto;min-height:160px;object-fit:cover}
+.category-tile--visual{padding:0;overflow:hidden;min-height:220px;position:relative;background:var(--panel)}
+.category-image{height:160px;background-image:url('https://usfanssss-guide.canqiangzhou32.chatgpt.site/product-grid-hd.png');background-size:300% 400%;background-repeat:no-repeat;background-color:var(--panel)}
+.category-tile-copy{min-height:60px;padding:12px 15px;display:grid;grid-template-columns:1fr auto;align-items:end;gap:4px 10px;background:var(--panel)}
+.category-tile-copy span{grid-column:1/-1;font:10px 'DM Mono';color:#ff8a3d}
+.category-tile-copy b{font-size:15px;letter-spacing:-.03em}
+.category-tile-copy small{font:10px 'DM Mono';color:#ff8a3d;text-align:right}
+.price em{font:10px 'DM Mono';font-style:normal;color:#ff8a3d;margin-right:5px}
+.detail-price span{display:block;font:10px 'DM Mono';letter-spacing:.1em;color:#ff8a3d;margin-bottom:5px}
+.product-page-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;margin-top:36px}
+.product-page-image{min-height:510px;background-image:url('https://usfanssss-guide.canqiangzhou32.chatgpt.site/product-grid-hd.png');background-size:300% 400%;background-repeat:no-repeat;background-color:var(--panel)}
+.product-page-copy{padding:32px;background:var(--panel);display:flex;flex-direction:column;justify-content:flex-end}
+.product-page-copy h2{font:3.1rem 'Instrument Serif',Georgia,serif;line-height:.86;letter-spacing:-.06em;margin:16px 0}
+.product-page-copy p{color:var(--muted);line-height:1.6}
+.detail-price{font-size:25px;font-weight:700;margin:18px 0}
+.detail-link{display:inline-block;padding:15px 19px;background:linear-gradient(90deg,var(--orange),var(--red));font-size:12px;font-weight:700;width:max-content}
+.catalogue .tile.tile-image{padding:0;overflow:hidden;min-height:0;display:block}
+.catalogue .tile.tile-image img{display:block;width:100%;height:auto;min-height:160px;object-fit:cover}
+@media(max-width:900px){.category-grid{grid-template-columns:repeat(3,1fr)}
+.product-page-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){.category-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+.product-page-image{min-height:340px}
+.product-page-copy{padding:22px}
+}
+@media(max-width:620px){.category-hero{padding:18px;min-height:0;gap:15px}.category-hero img{width:42%;align-self:stretch}.category-hero p{font-size:13px;line-height:1.45}.category-go{margin-top:16px;padding:12px 14px;font-size:10px}.category-tile{min-height:128px}.category-tile--image img{min-height:128px}.category-tile--visual{min-height:172px}.category-image{height:118px}.category-tile-copy{min-height:54px;padding:9px 11px}}
