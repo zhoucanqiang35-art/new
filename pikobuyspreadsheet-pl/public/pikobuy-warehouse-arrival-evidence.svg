@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">PikoBuy warehouse arrival evidence path</title>
+  <desc id="desc">Five checkpoints connecting a domestic seller shipment to a matched PikoBuy warehouse record.</desc>
+  <rect width="1200" height="675" rx="36" fill="#eef3f4"/>
+  <rect x="55" y="52" width="1090" height="571" rx="28" fill="#ffffff" stroke="#cad6d9" stroke-width="2"/>
+  <text x="96" y="116" fill="#14262a" font-family="Georgia,serif" font-size="38" font-weight="700">Connect the delivery scan to the warehouse record</text>
+  <text x="96" y="153" fill="#62757a" font-family="Arial,sans-serif" font-size="18">Carrier delivery, physical receipt and completed check-in are separate evidence points.</text>
+  <path d="M160 333H1040" fill="none" stroke="#b9cfd4" stroke-width="8" stroke-linecap="round"/>
+  <g font-family="Arial,sans-serif">
+    <g transform="translate(150 333)"><circle r="55" fill="#e6f2d2" stroke="#789442" stroke-width="3"/><text y="8" text-anchor="middle" fill="#2b3c12" font-size="28" font-weight="700">01</text><text y="92" text-anchor="middle" fill="#14262a" font-size="19" font-weight="700">Order match</text><text y="120" text-anchor="middle" fill="#62757a" font-size="14">ID · item · quantity</text></g>
+    <g transform="translate(370 333)"><circle r="55" fill="#dceff0" stroke="#4c8b91" stroke-width="3"/><text y="8" text-anchor="middle" fill="#17373a" font-size="28" font-weight="700">02</text><text y="92" text-anchor="middle" fill="#14262a" font-size="19" font-weight="700">Carrier event</text><text y="120" text-anchor="middle" fill="#62757a" font-size="14">acceptance · movement</text></g>
+    <g transform="translate(590 333)"><circle r="62" fill="#fff0c9" stroke="#c58a20" stroke-width="4"/><text y="8" text-anchor="middle" fill="#54380b" font-size="28" font-weight="700">03</text><text y="99" text-anchor="middle" fill="#14262a" font-size="19" font-weight="700">Delivery proof</text><text y="127" text-anchor="middle" fill="#62757a" font-size="14">time · place · recipient</text></g>
+    <g transform="translate(810 333)"><circle r="55" fill="#e8e4f4" stroke="#7668a3" stroke-width="3"/><text y="8" text-anchor="middle" fill="#2b2342" font-size="28" font-weight="700">04</text><text y="92" text-anchor="middle" fill="#14262a" font-size="19" font-weight="700">Warehouse match</text><text y="120" text-anchor="middle" fill="#62757a" font-size="14">receipt · intake record</text></g>
+    <g transform="translate(1030 333)"><circle r="55" fill="#e1eaf1" stroke="#5d7d95" stroke-width="3"/><text y="8" text-anchor="middle" fill="#1d3040" font-size="28" font-weight="700">05</text><text y="92" text-anchor="middle" fill="#14262a" font-size="19" font-weight="700">In Warehouse</text><text y="120" text-anchor="middle" fill="#62757a" font-size="14">photos · QC · clock</text></g>
+  </g>
+  <rect x="96" y="526" width="1008" height="54" rx="12" fill="#14262a"/>
+  <text x="600" y="560" text-anchor="middle" fill="#ffffff" font-family="Arial,sans-serif" font-size="17" font-weight="700">Match → trace → prove delivery → confirm receipt → inspect the item.</text>
+</svg>

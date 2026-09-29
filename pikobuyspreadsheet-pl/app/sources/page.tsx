@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 const sourceGroups = [
   { id: "pikobuy-sources", title: "PikoBuy platform source record", external: false, links: [
     ["Official homepage", "", "Product sourcing, purchasing assistance, warehouse inspection and global shipping overview. Verified 30 August 2026."],
-    ["Beginner guide", "", "Six-step flow covering selection, first product payment, warehouse inspection, separate international-shipping payment, tracking availability, actual-purchase pricing and out-of-stock refunds. Verified 27 September 2026."],
-    ["Contact page", "", "Official support email and ticket submission marked as the recommended contact route; no universal per-case response or resolution time was published on the reviewed page. Verified 27 September 2026."],
+    ["Beginner guide", "", "Six-step flow covering selection, first product payment, arrival-triggered warehouse check-in and inspection, separate international-shipping payment, tracking availability, actual-purchase pricing and out-of-stock refunds. Verified 29 September 2026."],
+    ["Contact page", "", "Official support email and ticket submission marked as the recommended contact route; no universal per-case response, warehouse check-in or resolution time was published on the reviewed page. Verified 29 September 2026."],
     ["Current product-detail page", "", "A current listing displayed product-specific domestic shipping cost, buying-service hours and an estimated warehouse-arrival date; these fields were treated as dated listing evidence rather than a universal guarantee. Verified 27 September 2026."],
     ["Shipping estimator", "", "Destination, product type, weight in kilograms and parcel length, width and height in centimetres; no universal dimensional-weight divisor is published on the public page. Verified 9 September 2026."],
-    ["Shipping terms", "", "Forwarding inspection boundaries, inbound missing-item handling, third-party logistics and cross-border risks including customs action, loss, damage and delays. Verified 17 September 2026."],
-    ["Returns & Exchanges", "", "No return-related fee at Not Shipped status, seller-consent boundary, and separate five-day/120-hour warehouse return conditions. Verified 27 September 2026."],
-    ["User Registration Agreement", "", "Purchasing-agent roles, warnings about seller non-shipment and false shipment, deposit exceptions, third-party logistics and after-sales boundaries. Verified 27 September 2026."],
-    ["Terms of Service", "", "Failed-payment handling, order acceptance or rejection, account-security duties, service scope and policy changes. Verified 27 September 2026."],
+    ["Shipping terms", "", "Forwarding-form sequence, warehouse receipt, photo confirmation, storage, inbound missing-item handling, COD balance note and third-party logistics risks. Verified 29 September 2026."],
+    ["Returns & Exchanges", "", "First In Warehouse status as the published 120-hour starting point, seller-consent boundary, eligibility and return costs. Verified 29 September 2026."],
+    ["User Registration Agreement", "", "Seller, purchasing-agent and warehouse acceptance roles, domestic and international transport boundaries and policy updates. Verified 29 September 2026."],
+    ["Terms of Service", "", "Service scope, order acceptance, platform role, account-security duties and operational changes. Verified 29 September 2026."],
     ["Privacy Policy", "", "Account, transaction, usage and device data categories; stated uses, partner sharing, deletion requests and account-security responsibilities. Verified 3 September 2026."],
   ]},
   { id: "public-evidence-sources", title: "Limited public review evidence", external: false, links: [
