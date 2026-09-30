@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-rehearsal-parcel-guide",
+    date: "29 September 2026",
+    title: "LoloBuy Rehearsal Parcel Guide: Test Weight and Dimensions Before Real Submission",
+    description: "A practical method for treating pre-packing weight, dimensions, volumetric weight, and billing evidence as estimates before submitting a real parcel.",
+  },
+  {
     href: "/seo-articles/lolobuy-order-status-guide",
     date: "27 September 2026",
     title: "LoloBuy Order Status Guide: Read Purchase-to-Warehouse Updates Before Shipping",
