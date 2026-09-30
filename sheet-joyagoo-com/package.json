@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "build": "node generate.mjs"
+    "build": "node generate.mjs && node -e \"process.stdout.write('Sheet Joyagoo correct-preview build 2026-09-30\\n')\""
   }
 }
