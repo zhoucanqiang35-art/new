@@ -338,6 +338,32 @@ async function assertWarehouseArrivalArticle() {
   if (checks.some((check) => !check)) throw new Error("Warehouse-arrival article failed SEO, schema, FAQ, image or link validation");
 }
 
+async function assertQcPhotosMissingArticle() {
+  const response = await worker.default.fetch(
+    new Request("https://pikobuyspreadsheet-pl.pages.dev/pikobuy-qc-photos-not-showing", { headers: { accept: "text/html" } }),
+    env,
+    ctx,
+  );
+  const html = await response.text();
+  const checks = [
+    response.status === 200,
+    (html.match(/<h1>/g) ?? []).length === 1,
+    html.includes('content="index, follow"'),
+    html.includes('rel="canonical" href="https://pikobuyspreadsheet.pl/pikobuy-qc-photos-not-showing"'),
+    html.includes('"@type":"Article"'),
+    html.includes('"@type":"BreadcrumbList"'),
+    html.includes('"@type":"FAQPage"'),
+    (html.match(/<details/g) ?? []).length === 4,
+    html.includes('href="/pikobuy-item-not-in-warehouse"'),
+    html.includes('href="/pikobuy-qc-photo-guide"'),
+    html.includes('href="/pikobuy-return-policy"'),
+    html.includes('href="/how-to-contact-pikobuy-support-order-problem"'),
+    html.includes('href="https://findspreadsheet.com/AllProducts/"'),
+    html.includes('src="/pikobuy-qc-photos-missing-evidence.svg"'),
+  ];
+  if (checks.some((check) => !check)) throw new Error("QC-photos-missing article failed SEO, schema, FAQ, image or link validation");
+}
+
 async function assertNotFound() {
   const response = await worker.default.fetch(
     new Request("https://pikobuyspreadsheet-pl.pages.dev/this-page-does-not-exist", { headers: { accept: "text/html" } }),
@@ -401,7 +427,8 @@ await assertPage("/pikobuy-order-not-processed-after-payment", "PikoBuy Order No
 await assertPage("/pikobuy-deposit-order-balance-payment", "PikoBuy Deposit Order Balance Payment: Deadline and Evidence Checklist");
 await assertPage("/pikobuy-seller-not-shipped-order", "PikoBuy Seller Has Not Shipped: Domestic Order Evidence Checklist");
 await assertPage("/pikobuy-item-not-in-warehouse", "PikoBuy Item Not in Warehouse: Domestic Delivery Evidence Checklist");
-await assertPage("/seo-articles", "PikoBuy Item Not in Warehouse: Domestic Delivery Evidence Checklist");
+await assertPage("/pikobuy-qc-photos-not-showing", "PikoBuy QC Photos Not Showing: Warehouse Evidence Checklist");
+await assertPage("/seo-articles", "PikoBuy QC Photos Not Showing: Warehouse Evidence Checklist");
 await assertInsuranceArticle();
 await assertVolumetricWeightArticle();
 await assertReturnedParcelArticle();
@@ -412,6 +439,7 @@ await assertPaymentOrderArticle();
 await assertDepositBalanceArticle();
 await assertSellerNotShippedArticle();
 await assertWarehouseArrivalArticle();
+await assertQcPhotosMissingArticle();
 await assertNotFound();
 await assertAsset(cssAsset, "text/css");
 await assertAsset(jsAsset, "text/javascript");
@@ -430,6 +458,7 @@ await assertPublicAsset("/pikobuy-payment-order-reconciliation.svg", "image/svg+
 await assertPublicAsset("/pikobuy-deposit-balance-decision.svg", "image/svg+xml", "Capture the terms before the deposit. Control the deadline before the balance.");
 await assertPublicAsset("/pikobuy-seller-not-shipped-evidence.svg", "image/svg+xml", "Locate → compare → verify movement → request one decision → close the record.");
 await assertPublicAsset("/pikobuy-warehouse-arrival-evidence.svg", "image/svg+xml", "Match → trace → prove delivery → confirm receipt → inspect the item.");
+await assertPublicAsset("/pikobuy-qc-photos-missing-evidence.svg", "image/svg+xml", "No usable photo means");
 
 const robots = await readFile(path.join(outputDirectory, "robots.txt"), "utf8");
 if (/^Disallow:\s*\/$/m.test(robots) || !robots.includes("https://pikobuyspreadsheet.pl/sitemap.xml")) {
@@ -443,10 +472,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 324 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-item-not-in-warehouse")) {
-  throw new Error(`Expected 324 sitemap URLs with Swedish hreflang alternates and the warehouse-arrival guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 333 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-qc-photos-not-showing")) {
+  throw new Error(`Expected 333 sitemap URLs with Swedish hreflang alternates and the missing-QC-photo guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 324-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 333-URL sitemap, CSS and JavaScript.",
 );
