@@ -26,6 +26,7 @@ for (const file of [
   'pikobuy-1688-buying-guide.html',
   'pikobuy-packaging-guide.html',
   'pikobuy-taobao-buying-guide.html',
+  'pikobuy-tmall-buying-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
