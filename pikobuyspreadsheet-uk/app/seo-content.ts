@@ -1773,5 +1773,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-fees-full-cost-checklist",
+    title: "PikoBuy Fees: Full Cost Checklist",
+    description: "Map PikoBuy fees across product purchase, domestic delivery, warehouse choices, international shipping, returns and import charges.",
+    published: "3 October 2026",
+    updated: "3 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy fees",
+    secondaryKeywords: [
+      "PikoBuy service fee",
+      "PikoBuy shipping fees",
+      "PikoBuy return fee",
+      "PikoBuy hidden fees",
+      "PikoBuy total cost"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Beginner's Guide, Shipping Estimate, Returns & Exchanges, Shipping Terms, Terms of Service, home page and current product-page cost fields on 3 October 2026. We distinguish published charges and workflow stages from costs that appear only in a live order, parcel or payment screen. The public pages reviewed do not provide one universal schedule for every purchasing, currency-conversion, storage, photo, packaging or insurance charge, so this guide does not invent those rates.",
+    sections: [
+      {
+        heading: "The direct answer: budget the transaction in layers",
+        paragraphs: [
+          "PikoBuy fees cannot be reduced to one percentage. The published workflow separates the product purchase from international shipping, while other possible costs arise from seller delivery to the warehouse, optional warehouse choices, returns and destination charges. The useful question is not simply whether PikoBuy has a fee. It is which cost belongs to the current stage, what evidence supports it and whether it is confirmed or still an estimate.",
+          "Build a cost ledger with five layers: product and seller-to-warehouse cost; first-payment and payment-provider effects; warehouse and return choices; international parcel cost; and destination taxes or brokerage. Keep estimates in a different column from paid amounts. This prevents a low product price from being mistaken for the delivered total and stops one old screenshot from becoming a promise about a future order."
+        ]
+      },
+      {
+        heading: "Start with the live product and domestic delivery fields",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says the buyer selects the specification, colour, size and quantity, submits a purchasing order and completes the first payment. It also says prices are subject to the actual purchase and an out-of-stock order will be refunded. The source listing and selected option therefore control the product amount more directly than a spreadsheet headline, saved image or earlier search result.",
+          "Current PikoBuy product pages can show shipping from the seller to the PikoBuy warehouse as a separate field, and the amount can differ between listings. Record the product price, exact option, quantity and domestic delivery amount shown for the live order. Do not describe seller delivery as free unless the current order says so, and do not assume a displayed zero or non-zero amount applies to another seller, option or date."
+        ]
+      },
+      {
+        heading: "Keep the first payment and parcel payment separate",
+        paragraphs: [
+          "PikoBuy publishes a two-stage workflow. The first payment belongs to the purchasing order. After warehouse inspection, the buyer chooses a route, submits a parcel and pays the international shipping fee. These payments cover different events and should have separate records. A completed product payment does not include the later parcel by default, while money reserved for shipping should not be counted as already paid.",
+          "At checkout, verify the displayed amount, currency and payment method before authorising it. PikoBuy's public footer currently displays several card and wallet brands, but availability can depend on the actual checkout. The public pages reviewed for this guide do not state one universal payment-processing or currency-conversion rate for every user. Compare the PikoBuy transaction with the payment provider's final amount rather than inventing an exchange-rate markup."
+        ]
+      },
+      {
+        heading: "Understand when the account balance matters",
+        paragraphs: [
+          "The account balance is not just a label to ignore. PikoBuy's Returns & Exchanges policy tells users to keep enough balance to cover return shipping and the service fee. Its Shipping Terms also say that when an independently forwarded domestic parcel arrives cash on delivery, PikoBuy may deduct that inbound shipping cost from the account balance without separate confirmation. A balance movement should therefore be linked to a specific order, return or forwarded package.",
+          "Keep a simple balance reconciliation: opening amount, top-up or refund entry, deduction, related order or parcel number, date and remaining balance. If an entry is unclear, ask support what transaction created it before adding more funds. PikoBuy's public pages reviewed here do not publish a complete top-up, withdrawal or balance-conversion fee schedule, so the live account record is the controlling evidence for those events."
+        ]
+      },
+      {
+        heading: "Treat warehouse extras as choices, not assumed freebies",
+        paragraphs: [
+          "PikoBuy's guide says warehouse processing includes check-in, photo confirmation and a defect check, and that buyers may add requests such as minimal or reinforced packaging. The Shipping Terms say forwarding users can view inspection photos or purchase additional detailed photos. These statements establish that standard inspection and optional choices exist, but they do not publish one permanent menu or price covering every photo, packaging material and parcel.",
+          "Decide what evidence or protection the item actually needs, then read the price shown in the live warehouse or parcel screen. A focused measurement photo may be useful when fit controls the decision; reinforcement may be justified for a fragile box; minimal packaging may suit a flexible item. Do not buy an extra merely because it exists, and do not remove packaging while a return question is unresolved. Record any selected service as its own cost line."
+        ]
+      },
+      {
+        heading: "Estimate international shipping with parcel facts",
+        paragraphs: [
+          "PikoBuy's Shipping Estimate asks for destination country or region, product type, weight in kilograms, and parcel length, width and height in centimetres. Those fields show why the international amount cannot be calculated from the product price alone. The final package, its contents and the available route all matter. PikoBuy's guide also says routes differ in delivery time and billing methods.",
+          "Run an estimate only after using realistic packed measurements, and label the result as an estimate until the live parcel is ready. Compare a consolidated parcel with a split only when the actual contents support both arrangements. A larger group may reduce repeated base costs, but a bulky or restricted item may change route eligibility or billing. The shipping-cost guide on this site explains weight and dimensions in more detail; this fee checklist keeps that amount in the wider transaction ledger."
+        ]
+      },
+      {
+        heading: "Calculate return costs from the published reason",
+        paragraphs: [
+          "PikoBuy's Returns & Exchanges page publishes one explicit customer-choice formula: shipping back to the seller, the seller's original shipping fee and an RMB 5 service fee. It notes that the original delivery charge can still apply even when the purchase appeared to offer free shipping. The policy lists changing your mind, buying the wrong product, ordering too many or finding international shipping over budget as customer-responsibility examples.",
+          "Seller-responsibility cases are different. The policy says customers normally do not bear return costs when the seller shipped the wrong product or a verified quality issue caused the return, unless the seller insists on the shipping charge. Eligibility, seller consent, product condition and timing still control the result. Apply within the published 120-hour window after an eligible order changes to In Warehouse, preserve photographs and do not turn the normal responsibility rule into a guaranteed refund amount."
+        ]
+      },
+      {
+        heading: "Add taxes, duties and brokerage as destination costs",
+        paragraphs: [
+          "PikoBuy's Terms say cross-border transactions may incur duties, taxes, brokerage fees or other charges and place those costs on the user. These amounts are not part of the seller price and may not be collected at the same stage as international shipping. They depend on the destination, goods, value, carrier process and current law. A shipping estimate should not be presented as a guaranteed tax-inclusive delivered total unless the chosen live route expressly says that.",
+          "Keep purchase records, accurate product descriptions, quantities and supportable values with the parcel file. Check the destination authority before submission and retain any carrier or customs payment notice. Do not use a weight-based declaration shortcut or lower the value to force the budget to work. The customs guide on this site covers declaration preparation; for fee planning, the important step is reserving a destination-cost line instead of assuming it is zero."
+        ]
+      },
+      {
+        heading: "Do not assume insurance or route add-ons are universal",
+        paragraphs: [
+          "PikoBuy's Shipping Terms say third-party providers carry international parcels and identify risks including customs action, confiscation, damage, loss and peak-season delay. They also say PikoBuy works to reduce risk through alerts and logistics insurance. The public pages reviewed here do not provide one insurance price, compensation limit, deductible, exclusion list or claim deadline that applies to every route.",
+          "Read the terms displayed for the exact destination, parcel and route before paying. If protection is optional, record its price and covered event separately from the base shipping amount. If the screen is unclear, ask a ticket question that names the route and parcel rather than assuming the word insurance means full reimbursement. The shipping-insurance checklist on this site explains the evidence needed when route-specific protection is available."
+        ]
+      },
+      {
+        heading: "Use this full-cost decision checklist",
+        paragraphs: [
+          "Before the first payment, record the live product price, selected option, seller-to-warehouse delivery and payment total. At the warehouse, add only confirmed photo, measurement, packaging or return costs. Before the second payment, use the final parcel contents, measured weight, dimensions, route, insurance choice and destination information. After dispatch, retain any customs, brokerage or last-mile charge with its receipt.",
+          "Mark every row paid, quoted, estimated or unknown, and never total unknown items as zero. FindSpreadsheet is independent from PikoBuy and cannot set platform, seller, carrier or customs fees. Use it to discover and compare product leads, then verify each cost in the live PikoBuy transaction. The practical answer to concerns about PikoBuy hidden fees is an auditable ledger: name every stage, preserve the displayed amount and refuse to substitute an unsupported universal percentage."
+        ]
+      }
+    ]
   }
 ];
