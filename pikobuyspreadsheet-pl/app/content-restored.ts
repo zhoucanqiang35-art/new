@@ -1171,5 +1171,104 @@ const qcPhotosMissingGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide, sellerNotShippedGuide, warehouseArrivalDelayedGuide, qcPhotosMissingGuide];
+const warehouseDamageGuide: Guide = {
+  slug: "pikobuy-item-damaged-in-warehouse",
+  eyebrow: "Warehouse damage",
+  title: "PikoBuy Item Damaged in Warehouse: Return Evidence Checklist",
+  seoTitle: "PikoBuy Item Damaged in Warehouse? What to Do",
+  description: "Document a PikoBuy item damaged before international shipping, classify the evidence and protect the 120-hour warehouse return window.",
+  readTime: "9 min read",
+  updated: "Updated 3 October 2026",
+  publishedDate: "2026-10-03",
+  modifiedDate: "2026-10-03",
+  editorialNote: "This independent guide was checked against PikoBuy’s public Beginner Guide, Returns & Exchanges policy, Shipping Terms, User Registration Agreement and Contact page on 3 October 2026. It cannot inspect an item, decide responsibility, approve a return or promise a refund.",
+  intro: [
+    "A PikoBuy item damaged in warehouse photos needs a different response from a parcel damaged after international delivery. At the warehouse stage, the product has not yet been placed in your outbound parcel. The useful evidence is the order record, first In Warehouse time, original inspection images, seller listing and any focused follow-up photo—not an unboxing video from the destination.",
+    "PikoBuy’s Beginner Guide says warehouse inspection after arrival includes check-in, photo confirmation and a defect check. Its Returns & Exchanges page separately lists quality issues, such as holes or stains, and products damaged during domestic shipping among the return-responsibility examples. That does not mean every mark automatically qualifies or proves who caused it; the same policy makes the result subject to eligibility, condition, packaging and seller consent.",
+    "Act while the decision is still reversible. Preserve the images as first shown, describe one visible problem precisely, protect the published 120-hour warehouse return period and ask for a recorded return decision before international parcel submission.",
+  ],
+  visual: {
+    src: "/pikobuy-warehouse-damage-decision.svg",
+    alt: "Decision path for documenting a PikoBuy item damaged at the warehouse before international shipping",
+    caption: "An original warehouse-damage evidence path: preserve, classify, verify, request a decision and keep the item out of the parcel until the case is recorded.",
+  },
+  sections: [
+    {
+      heading: "Freeze the evidence before changing the order",
+      paragraphs: [
+        "Open the exact order and save the order ID, item title, selected colour, size or model, quantity, seller link and first In Warehouse timestamp. Download or capture the original QC gallery and any warehouse note before requesting repacking, label removal, disposal or parcel submission. A screenshot should show which order the image belongs to and when you captured it.",
+        "Keep the seller reference beside the warehouse record. Save the listing images, option text and any seller description that relates directly to the disputed area. The goal is not to claim that polished listing photography proves perfect condition. It is to establish what was ordered, what variation should have arrived and what visible condition now needs an answer.",
+        "Do not edit the only copy of a photo. If you add arrows or circles for support, retain the untouched image as well. Hide your address, balance, payment credentials and unrelated orders. A clean evidence folder should let another person connect one item, one timestamp and one visible problem without relying on a long narrative.",
+      ],
+      bullets: [
+        "Order ID, exact variant and quantity",
+        "First In Warehouse date, time and timezone",
+        "Original QC images and warehouse notes",
+        "Seller listing and close-up of the disputed area",
+      ],
+    },
+    {
+      heading: "Classify what the photos actually show",
+      paragraphs: [
+        "Use a narrow category: visible quality issue, wrong item or variation, missing component, damaged retail packaging, or possible domestic-shipping damage. PikoBuy’s return table gives holes and stains as examples of quality issues, identifies a wrong colour or size as a seller error, and separately mentions a product already damaged on arrival at the warehouse because of domestic shipping. These are useful reporting categories, not an automatic ruling for an individual order.",
+        "Describe location, scale and condition in observable terms. ‘Two-centimetre tear beside the left pocket’ is stronger than ‘bad quality.’ ‘Outer shoe box crushed at the front-right corner; shoe condition not visible from this angle’ separates packaging from the product. Avoid diagnosing cause when the photos cannot show when or how the damage occurred.",
+        "If the image is missing, mismatched or too distant, use the missing-QC-photo workflow first. Request one focused view that could change the decision: the stained panel in neutral light, the cracked part from two angles, the seal, the size label or all included pieces together. Do not treat ‘not shown’ as evidence that the item is undamaged.",
+      ],
+    },
+    {
+      heading: "Know what warehouse inspection cannot establish",
+      paragraphs: [
+        "PikoBuy’s User Registration Agreement says some electrical, model and other specialist products cannot receive professional inspection. It says inspectors may be limited to checking visible appearance and accessories and may be unable to open packaging to assess quality. A photo can document a visible tear, stain, crack, dent or absent visible part, but it cannot prove hidden electronics, internal construction, authenticity or long-term performance.",
+        "Packaging can create a second limit. The return policy lists category-specific resale requirements: some seals, tamper devices, tags or plastic wrapping must remain intact. Do not ask for packaging to be opened merely to chase certainty if opening it could affect eligibility. Ask support whether the requested inspection is compatible with the seller’s return and packaging conditions before authorising it.",
+        "Fragile items deserve cautious wording too. PikoBuy’s agreement warns that ceramics, glass and irregular shapes can be damaged across multiple transport stages. At the warehouse stage, establish the recorded pre-international-shipping condition. That record becomes especially important if you later choose to keep and ship the item, but it does not remove later carrier risk.",
+      ],
+    },
+    {
+      heading: "Protect the 120-hour return decision window",
+      paragraphs: [
+        "PikoBuy’s Returns & Exchanges page says an eligible return can be requested within five days after the order first changes to In Warehouse, counted from the next hour, with five days defined as 120 hours. Calculate the deadline from the recorded status time. The page does not say the clock begins when you first notice a defect or when an extra photograph arrives.",
+        "Eligibility remains conditional. The seller must support the relevant return, the item must remain in the required resalable condition, category and packaging rules can exclude a product, and PikoBuy says it can return an item only with the seller’s consent. A visible defect is evidence for review, not a guarantee that the seller accepts responsibility or that every cost is waived.",
+        "Submit the issue before the deadline rather than waiting for a perfect investigation. Ask support to record that the item is being held out of parcel submission while the evidence is reviewed. If another image is needed, state that the request concerns a possible return decision and ask for the current order-specific deadline in writing. Do not assume a photo request pauses or extends the published period.",
+      ],
+    },
+    {
+      heading: "Request one outcome and keep costs qualified",
+      paragraphs: [
+        "Choose a primary request: return to the seller, exchange if the seller and current process allow it, a focused image before deciding, or written confirmation of another available remedy. Avoid asking simultaneously for a refund, replacement, repair, discount and shipment. One checkable outcome makes the support thread easier to route and keeps any seller response tied to the evidence.",
+        "The returns page says that, normally, customers do not bear return costs when the seller shipped the wrong product or a product has a quality issue, unless the seller insists otherwise. It also says the total refund is based on the actual product price paid, requires sufficient account balance for any return shipping and service fee due, and lists RMB 5 plus shipping components for an unconditional return. These published examples do not let an independent guide quote the final cost for a disputed order.",
+        "Ask support to identify the recorded responsibility category, seller decision, refundable amount, any domestic return shipping, any service fee and any balance requirement before you approve the action. Save the answer. Do not treat a general fee table as a personalised invoice or assume that international shipping, optional services or exchange-rate differences are included in the product refund.",
+      ],
+    },
+    {
+      heading: "Keep the item out of the international parcel",
+      paragraphs: [
+        "PikoBuy’s public workflow places warehouse inspection before international parcel submission and shipping payment. Preserve that boundary. Once an item is packed and dispatched internationally, the evidence problem can expand from a warehouse-stage quality or domestic-transit issue into a carrier, customs or destination-delivery dispute governed by different records and limitations.",
+        "A practical support opening is: ‘Order [ID], [item and exact variant], first shown In Warehouse at [date, time and timezone]. QC image [number] shows [precise visible issue and location]. I have not submitted this item for international shipping. Please record the issue, confirm the responsibility category and seller response, and tell me the available return or evidence step before [calculated deadline].’ Attach only the order screen, original images, annotated copy and relevant listing reference.",
+        "Close the case when the return is recorded, an agreed replacement reaches the warehouse and receives a new inspection, or you make an informed decision to keep the item. If you keep it, save the damaged-condition record and choose packaging with that vulnerability in mind. If it is returned, preserve the return status, seller decision, fees, tracking and refund record until the financial entry matches the agreed outcome.",
+      ],
+    },
+  ],
+  internalLinks: [
+    { href: "/pikobuy-qc-photo-guide", label: "Read visible QC evidence correctly", note: "Separate what the image proves from hidden qualities, authenticity and long-term performance." },
+    { href: "/pikobuy-qc-photos-not-showing", label: "Fix a missing or unusable photo first", note: "Use the gallery-status checklist when the necessary damage view is absent, mismatched or unclear." },
+    { href: "/pikobuy-return-policy", label: "Check the warehouse return conditions", note: "Review the In Warehouse trigger, packaging rules, seller consent, responsibility and possible costs." },
+    { href: "/pikobuy-parcel-damaged-on-arrival", label: "Use the post-delivery damage guide later", note: "International parcel damage needs unboxing, outer-package and carrier evidence instead of this warehouse-stage record." },
+  ],
+  faqHeading: "PikoBuy warehouse damage questions",
+  faq: [
+    { question: "What should I do if a PikoBuy QC photo shows a damaged item?", answer: "Save the original photo, order details, selected variation, seller reference and first In Warehouse time. Describe the visible issue precisely, keep the item out of an international parcel and ask support to record a return or evidence decision before the current deadline." },
+    { question: "Does PikoBuy automatically refund an item damaged before international shipping?", answer: "The public return policy lists quality issues and domestic-shipping damage as responsibility examples, but it does not promise an automatic refund. Eligibility, item condition, packaging, seller consent, responsibility and the order-specific decision still matter." },
+    { question: "Who pays to return a damaged PikoBuy warehouse item?", answer: "PikoBuy’s policy says customers normally do not bear return costs for a wrong product or quality issue unless the seller insists otherwise. Domestic-shipping damage is listed separately. Ask support to confirm the recorded responsibility and exact costs for the order before approving a return." },
+    { question: "Should I ship the item internationally while a warehouse damage case is open?", answer: "The safer reversible choice is to keep it out of the parcel until the visible issue, seller response, deadline and next action are recorded. International dispatch introduces different carrier and delivery evidence and may reduce practical options." },
+  ],
+  sources: [
+    { href: "https://www.pikobuy.com/guide", label: "PikoBuy Beginner Guide — check-in, photo confirmation and defect check before international parcel submission" },
+    { href: "https://www.pikobuy.com/protocol/returns", label: "PikoBuy Returns & Exchanges — quality, wrong-item and domestic-shipping-damage examples, 120-hour timing, packaging, consent and costs" },
+    { href: "https://www.pikobuy.com/protocol/user", label: "PikoBuy User Registration Agreement — inspection limits for specialist, sealed and fragile products" },
+    { href: "https://www.pikobuy.com/protocol/shipping", label: "PikoBuy Shipping Terms — inspection photos, additional detailed photos and separate international-logistics risks" },
+    { href: "https://www.pikobuy.com/contact", label: "PikoBuy Contact — support email and recommended ticket route" },
+  ],
+};
+
+export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide, sellerNotShippedGuide, warehouseArrivalDelayedGuide, qcPhotosMissingGuide, warehouseDamageGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);

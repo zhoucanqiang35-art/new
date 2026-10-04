@@ -38,6 +38,7 @@ const routes = [
   "/pikobuy-seller-not-shipped-order",
   "/pikobuy-item-not-in-warehouse",
   "/pikobuy-qc-photos-not-showing",
+  "/pikobuy-item-damaged-in-warehouse",
   "/faq/is-this-the-official-pikobuy-website",
   "/faq/how-to-use-a-pikobuy-spreadsheet",
   "/faq/how-to-check-a-product-link-before-ordering",
