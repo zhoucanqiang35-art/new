@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-customs-declaration-guide",
+    date: "3 October 2026",
+    title: "LoloBuy Customs Declaration Guide: Build an Evidence-Ready Parcel Record",
+    description: "A practical method for reconciling declaration names, quantities, weights, values, currency, and tax-method information with the real parcel.",
+  },
+  {
     href: "/seo-articles/lolobuy-rehearsal-parcel-guide",
     date: "29 September 2026",
     title: "LoloBuy Rehearsal Parcel Guide: Test Weight and Dimensions Before Real Submission",
