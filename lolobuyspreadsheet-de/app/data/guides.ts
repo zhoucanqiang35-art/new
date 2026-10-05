@@ -18,8 +18,9 @@ import { guidePartSeventeen } from "./guides-part-seventeen";
 import { guidePartEighteen } from "./guides-part-eighteen";
 import { guidePartNineteen } from "./guides-part-nineteen";
 import { guidePartTwenty } from "./guides-part-twenty";
+import { guidePartTwentyOne } from "./guides-part-twenty-one";
 
-export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide", "lolobuy-poland-guide", "lolobuy-portugal-guide", "lolobuy-belgium-guide", "lolobuy-ireland-guide", "lolobuy-switzerland-guide", "lolobuy-norway-guide"] as const;
+export const guideOrder = ["how-lolobuy-works", "qc-photos", "warehouse-parcel", "shipping-costs", "tracking-status", "safety-checklist", "lolobuy-germany-guide", "lolobuy-uk-guide", "lolobuy-canada-guide", "lolobuy-usa-guide", "lolobuy-france-guide", "lolobuy-reviews", "lolobuy-vs-superbuy", "lolobuy-update-september-2026", "lolobuy-italy-guide", "lolobuy-netherlands-guide", "lolobuy-spain-guide", "lolobuy-sweden-guide", "lolobuy-poland-guide", "lolobuy-portugal-guide", "lolobuy-belgium-guide", "lolobuy-ireland-guide", "lolobuy-switzerland-guide", "lolobuy-norway-guide", "lolobuy-denmark-guide"] as const;
 export type GuideSlug = typeof guideOrder[number];
 
 export type GuideSection = { heading: string; paragraphs: string[]; checklist?: string[] };
@@ -38,4 +39,4 @@ export type Guide = {
   cta?: { title: string; text: string; href: string; label: string };
 };
 
-export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen, ...guidePartFourteen, ...guidePartFifteen, ...guidePartSixteen, ...guidePartSeventeen, ...guidePartEighteen, ...guidePartNineteen, ...guidePartTwenty };
+export const guideData: Record<GuideSlug, Guide> = { ...guidePartOne, ...guidePartTwo, ...guidePartThree, ...guidePartFour, ...guidePartFive, ...guidePartSix, ...guidePartSeven, ...guidePartEight, ...guidePartNine, ...guidePartTen, ...guidePartEleven, ...guidePartTwelve, ...guidePartThirteen, ...guidePartFourteen, ...guidePartFifteen, ...guidePartSixteen, ...guidePartSeventeen, ...guidePartEighteen, ...guidePartNineteen, ...guidePartTwenty, ...guidePartTwentyOne };
