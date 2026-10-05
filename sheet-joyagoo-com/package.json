@@ -1,6 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "build": "node generate.mjs && node publish-root.mjs"
+    "build": "node generate.mjs"
   }
 }
