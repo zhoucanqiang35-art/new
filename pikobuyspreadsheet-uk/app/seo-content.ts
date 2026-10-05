@@ -1862,5 +1862,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-exchange-rate-currency-conversion-guide",
+    title: "PikoBuy Exchange Rate: Currency Conversion Guide",
+    description: "Understand PikoBuy exchange-rate displays, CNY product prices, two-stage payments and the records needed to check your final converted cost.",
+    published: "5 October 2026",
+    updated: "5 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy exchange rate",
+    secondaryKeywords: [
+      "PikoBuy currency conversion",
+      "PikoBuy CNY price",
+      "PikoBuy payment currency",
+      "PikoBuy USD price",
+      "PikoBuy card exchange rate"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live home page, a current product page, Beginner's Guide, Terms of Service, Returns & Exchanges, Shipping Terms and Shipping Estimate on 5 October 2026. We also checked the European Central Bank's CNY reference-rate methodology for independent context. PikoBuy's public pages show converted prices but do not publish one fixed exchange rate, spread, update schedule or settlement formula, so this guide does not invent any of them.",
+    sections: [
+      {
+        heading: "The direct answer: treat the displayed conversion as a checkpoint",
+        paragraphs: [
+          "A PikoBuy exchange-rate display helps you understand a CNY product price in another currency, but it should not be treated as a permanent rate or a promise about the final amount on a card statement. A current PikoBuy product page can show a seller price in CNY alongside a USD equivalent and can display seller-to-warehouse delivery in both currencies. The public pages reviewed for this guide do not explain the conversion source, refresh interval, spread, rounding method or exact rate used at settlement.",
+          "Use three separate records: the source amount in CNY, the converted amount shown by PikoBuy at the decision point, and the amount ultimately charged or posted by the payment provider. Those numbers answer different questions. The first describes the seller's price, the second supports comparison inside the platform, and the third shows what left your account. Preserving all three is more reliable than trying to reconstruct a transaction from today's exchange rate later."
+        ]
+      },
+      {
+        heading: "Start with the seller's CNY amount and exact option",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide tells buyers to confirm specifications, colour, size and quantity before submitting a purchasing order and completing the first payment. Its current product pages can show the product amount in CNY, a converted display amount, and a separate seller-to-warehouse shipping field. Record the exact option and quantity with those figures because a different colour, size, bundle or accessory can carry a different source price. A currency comparison cannot correct an option mismatch.",
+          "The guide also says prices are subject to the actual purchase. That means a spreadsheet row, search result or saved product card is not the controlling transaction record. Open the live product page, compare it with the source listing and capture the order summary when you are ready to pay. If the CNY amount changes, first determine whether the seller price, selected option, quantity or domestic shipping changed before attributing the difference to exchange rates."
+        ]
+      },
+      {
+        heading: "Do not reverse-engineer an unpublished rate into a guarantee",
+        paragraphs: [
+          "You can divide a displayed foreign-currency amount by the CNY amount to estimate the page's implied conversion at that moment. That calculation is useful for checking arithmetic and comparing two live screens. It does not prove which market source PikoBuy used, whether a margin is included, when the display last refreshed or whether the checkout and card settlement will use the same basis. The public material reviewed here does not supply those answers.",
+          "Independent reference rates can provide context, but a central-bank or mid-market reference is informational and is not necessarily a consumer transaction rate. Payment processors and card issuers may apply their own conversion rules or charges under the agreement with the cardholder. Do not label the difference between a reference rate and a completed card charge as a PikoBuy fee without evidence connecting that difference to PikoBuy. Name the provider, currency and timestamp before assigning responsibility."
+        ]
+      },
+      {
+        heading: "Track the first and second payments independently",
+        paragraphs: [
+          "PikoBuy's published workflow separates the purchasing-order payment from international shipping. The first payment occurs after the buyer selects the product specification and submits the purchasing order. The second occurs after warehouse arrival, inspection, parcel submission and route selection. Because these payments happen at different times and may have different source amounts, one earlier conversion screenshot cannot establish the later parcel cost in another currency.",
+          "Create one ledger row for the product transaction and another for the international parcel. For each, save the source amount and currency, PikoBuy's displayed conversion, payment method, authorised amount, posted amount and date. Add seller-to-warehouse delivery to the product row and keep international shipping on the parcel row. This structure reveals whether a difference came from currency movement, a changed source amount, a new cost component or a provider-side charge."
+        ]
+      },
+      {
+        heading: "Use the checkout and provider record as transaction evidence",
+        paragraphs: [
+          "PikoBuy's public footer currently displays Visa, Mastercard, American Express, JCB, Klarna, Google Pay and Apple Pay marks, but a footer mark is not proof that every method or currency is available to every account or transaction. Check the live checkout. Before authorising, record the amount, currency and selected method actually shown. Avoid assuming that a wallet changes the underlying card's conversion rules or that a familiar card logo guarantees settlement in your home currency.",
+          "After payment, compare PikoBuy's successful transaction or balance entry with the payment provider's record. A pending authorisation can differ from a final posted transaction, so label each status rather than treating both as completed charges. If the currencies or amounts do not reconcile, keep redacted screenshots and transaction references. Do not expose a full card number, security code, password or unnecessary identity document in a support request."
+        ]
+      },
+      {
+        heading: "Separate conversion differences from platform fees",
+        paragraphs: [
+          "A higher home-currency total does not identify its cause on its own. The underlying CNY price may have changed; seller-to-warehouse delivery may have been added; the selected option may cost more; the payment provider may have converted the transaction; or another disclosed order component may appear at checkout. Compare like with like: same item, same option, same quantity, same source currency and the same transaction stage.",
+          "The PikoBuy fees guide on this site maps product, domestic delivery, warehouse, return, parcel and destination costs. Use that cost map before analysing exchange-rate effects. A transparent fee should remain its own ledger line instead of being folded into an implied currency rate. Conversely, do not call an unfavourable conversion a hidden platform fee unless the transaction evidence shows which party applied it. Unknown is a valid conclusion when the public record is incomplete."
+        ]
+      },
+      {
+        heading: "Handle refunds and returns in the original transaction context",
+        paragraphs: [
+          "PikoBuy's Returns & Exchanges policy says the total refund is based on the actual product price paid. It also publishes return costs for customer-choice returns, including shipping back to the seller, the seller's original shipping fee and an RMB 5 service fee. These rules describe the product refund and return deductions; the public policy reviewed does not promise that a home-currency refund will equal the earlier card statement amount or specify a universal exchange rate for every refund path.",
+          "Keep the original product amount, original payment record, approved refund amount, deductions, balance entry or provider credit, and each currency shown. Compare the refund with the transaction it reverses, not with a new product-page conversion. If the refund appears in a PikoBuy balance rather than directly on the original method, record that as a separate event. Ask support which order and amount a credit represents before assuming a currency loss or duplicate refund."
+        ]
+      },
+      {
+        heading: "Treat account balance movements as their own ledger",
+        paragraphs: [
+          "PikoBuy's Shipping Terms say cash-on-delivery charges for forwarded domestic parcels may be deducted from the user's account balance without separate confirmation and recommend maintaining enough balance for warehousing. The Returns policy likewise tells users to keep sufficient balance for return shipping and the service fee. A balance can therefore record operational deductions that are not new card conversions at the moment they occur.",
+          "For every balance movement, save the date, amount, currency or unit shown, direction, linked order or parcel, and stated reason. Do not mix a top-up, refund credit, COD deduction and return charge into one net number. When a balance entry lacks a clear reference, ask for the linked transaction before calculating an exchange rate. A clean balance ledger prevents an internal adjustment from being mistaken for a duplicate external payment."
+        ]
+      },
+      {
+        heading: "Compare costs with a reproducible method",
+        paragraphs: [
+          "Choose one comparison currency and one timestamp for planning. Record the live CNY product and domestic shipping amounts, then note the converted PikoBuy display and an independent reference for context. Keep the reference source and time because rates move. The goal is not to predict the exact settlement but to identify whether two products or parcel choices are being compared on the same basis.",
+          "Use a range when the final amount is still unknown. The Shipping Estimate asks for destination, product type, weight and parcel dimensions, and PikoBuy says routes differ in delivery time and billing methods. Estimate the parcel separately from the product conversion, then replace the estimate with the live parcel quote when the warehouse data exists. Never total an unknown conversion, uncertain package size or possible destination charge as zero merely to produce a precise-looking budget."
+        ]
+      },
+      {
+        heading: "Use this exchange-rate and payment checklist",
+        paragraphs: [
+          "Before the first payment, save the source listing, exact option, CNY product price, domestic delivery, displayed conversion, checkout currency and payment method. After payment, add the provider's authorised and posted amounts. Repeat the same process for the international parcel rather than reusing the product-order rate. For a refund, connect every credit and deduction to the original order and preserve both platform and provider records.",
+          "FindSpreadsheet is independent from PikoBuy and cannot set platform or card exchange rates. Use it to compare current product leads, then verify the live source amount and PikoBuy transaction before paying. The practical PikoBuy exchange-rate rule is simple: preserve the CNY base, timestamp every displayed conversion, and trust the completed transaction records for the amount actually paid. When the calculation cannot identify who applied a difference, ask a specific support question instead of inventing a fixed markup."
+        ]
+      }
+    ]
   }
 ];
