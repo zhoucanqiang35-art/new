@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">LoloBuy manual order verification flow</title>
+  <desc id="desc">Five evidence checkpoints from the source listing through form entry, agent verification, warehouse review and the final ship or after-sales decision.</desc>
+  <rect width="1200" height="650" rx="34" fill="#f7f5ef"/>
+  <text x="70" y="82" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#17212b">Manual order: verify before each handoff</text>
+  <text x="70" y="122" font-family="Arial, sans-serif" font-size="19" fill="#52606d">Keep the same source evidence from product link to warehouse decision.</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(70 180)">
+      <rect width="196" height="285" rx="22" fill="#fff" stroke="#1f7a68" stroke-width="3"/>
+      <circle cx="40" cy="42" r="22" fill="#1f7a68"/><text x="40" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">1</text>
+      <text x="24" y="94" font-size="23" font-weight="700" fill="#17212b">Source listing</text>
+      <text x="24" y="132" font-size="17" fill="#52606d"><tspan x="24">Save URL, seller,</tspan><tspan x="24" dy="27">option, quantity,</tspan><tspan x="24" dy="27">price and freight.</tspan></text>
+      <rect x="24" y="224" width="148" height="34" rx="17" fill="#e5f3ef"/><text x="98" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#1f7a68">EVIDENCE BASE</text>
+    </g>
+    <path d="M276 322h34" stroke="#8a98a5" stroke-width="4"/><path d="m304 310 14 12-14 12" fill="none" stroke="#8a98a5" stroke-width="4"/>
+    <g transform="translate(318 180)">
+      <rect width="196" height="285" rx="22" fill="#fff" stroke="#3568a8" stroke-width="3"/>
+      <circle cx="40" cy="42" r="22" fill="#3568a8"/><text x="40" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">2</text>
+      <text x="24" y="94" font-size="23" font-weight="700" fill="#17212b">Manual form</text>
+      <text x="24" y="132" font-size="17" fill="#52606d"><tspan x="24">Enter exact title,</tspan><tspan x="24" dy="27">specification, price,</tspan><tspan x="24" dy="27">freight and quantity.</tspan></text>
+      <rect x="24" y="224" width="148" height="34" rx="17" fill="#e9f0f9"/><text x="98" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#3568a8">SAVE SCREEN</text>
+    </g>
+    <path d="M524 322h34" stroke="#8a98a5" stroke-width="4"/><path d="m552 310 14 12-14 12" fill="none" stroke="#8a98a5" stroke-width="4"/>
+    <g transform="translate(566 180)">
+      <rect width="196" height="285" rx="22" fill="#fff" stroke="#b06b2c" stroke-width="3"/>
+      <circle cx="40" cy="42" r="22" fill="#b06b2c"/><text x="40" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">3</text>
+      <text x="24" y="94" font-size="23" font-weight="700" fill="#17212b">Agent check</text>
+      <text x="24" y="132" font-size="17" fill="#52606d"><tspan x="24">Resolve availability,</tspan><tspan x="24" dy="27">fee, price or freight</tspan><tspan x="24" dy="27">changes in-account.</tspan></text>
+      <rect x="24" y="224" width="148" height="34" rx="17" fill="#f8eee4"/><text x="98" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#9a581e">VERIFY CHANGE</text>
+    </g>
+    <path d="M772 322h34" stroke="#8a98a5" stroke-width="4"/><path d="m800 310 14 12-14 12" fill="none" stroke="#8a98a5" stroke-width="4"/>
+    <g transform="translate(814 180)">
+      <rect width="196" height="285" rx="22" fill="#fff" stroke="#7650a5" stroke-width="3"/>
+      <circle cx="40" cy="42" r="22" fill="#7650a5"/><text x="40" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">4</text>
+      <text x="24" y="94" font-size="23" font-weight="700" fill="#17212b">Warehouse</text>
+      <text x="24" y="132" font-size="17" fill="#52606d"><tspan x="24">Compare visible item,</tspan><tspan x="24" dy="27">option and quantity</tspan><tspan x="24" dy="27">with the baseline.</tspan></text>
+      <rect x="24" y="224" width="148" height="34" rx="17" fill="#f0eafa"/><text x="98" y="247" text-anchor="middle" font-size="15" font-weight="700" fill="#68428f">MARK LIMITS</text>
+    </g>
+    <path d="M1019 322h34" stroke="#8a98a5" stroke-width="4"/><path d="m1047 310 14 12-14 12" fill="none" stroke="#8a98a5" stroke-width="4"/>
+    <g transform="translate(1062 180)">
+      <rect width="96" height="285" rx="22" fill="#17212b"/>
+      <circle cx="48" cy="42" r="22" fill="#fff"/><text x="48" y="50" text-anchor="middle" font-size="22" font-weight="700" fill="#17212b">5</text>
+      <text x="48" y="98" text-anchor="middle" font-size="20" font-weight="700" fill="#fff"><tspan x="48">Ship</tspan><tspan x="48" dy="30">or</tspan><tspan x="48" dy="30">resolve</tspan></text>
+      <text x="48" y="235" text-anchor="middle" font-size="14" fill="#d7dee5"><tspan x="48">No open</tspan><tspan x="48" dy="22">mismatch</tspan></text>
+    </g>
+  </g>
+  <rect x="70" y="510" width="1088" height="76" rx="18" fill="#17212b"/>
+  <text x="94" y="543" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#fff">Hard stop before payment</text>
+  <text x="94" y="568" font-family="Arial, sans-serif" font-size="16" fill="#d7dee5">Accessible listing · exact option · supported item · evidenced amounts · acceptable after-sales terms</text>
+</svg>
