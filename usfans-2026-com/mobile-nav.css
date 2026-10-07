@@ -1,0 +1,6 @@
+@media(max-width:760px){
+  .top{height:auto;min-height:58px;flex-wrap:wrap;padding:11px 0 0}
+  .locale{margin-left:auto}
+  .nav{order:3;display:flex;width:100%;gap:18px;overflow:auto;white-space:nowrap;font-size:10px}
+  .nav a{padding:10px 0 9px}
+}

@@ -1,0 +1,6 @@
+body[data-page="home"] .legacy-hero{grid-template-columns:1fr;min-height:620px}
+body[data-page="home"] .legacy-hero .legacy-copy{display:none}
+body[data-page="home"] .legacy-hero .legacy-scene{min-height:620px;width:100%}
+body[data-page="home"] #categories .section-head{align-items:start}
+body[data-page="home"] #categories .section-head h2{max-width:620px}
+.moved-search{display:flex;gap:12px;border-bottom:2px solid var(--ink);padding:0 0 8px;margin-top:24px;max-width:350px}.moved-search input{min-width:0;flex:1;border:0;outline:0;background:transparent}.moved-search button{border:0;background:transparent;padding:0;font-weight:700;cursor:pointer}.moved-hint{font-size:11px;color:var(--mute);margin:9px 0 0}@media(max-width:760px){body[data-page="home"] .legacy-hero,body[data-page="home"] .legacy-hero .legacy-scene{min-height:430px}.moved-search{max-width:none}}

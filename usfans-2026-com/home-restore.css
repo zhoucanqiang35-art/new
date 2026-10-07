@@ -1,0 +1,3 @@
+.product-summary{grid-template-columns:1fr;min-height:0}
+.product-summary .product-copy{min-height:0;padding:42px 48px}
+@media(max-width:760px){.product-summary .product-copy{padding:31px 24px}}
