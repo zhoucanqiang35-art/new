@@ -19,6 +19,7 @@ function anchorId(value:string){
 
 export function ArticleLayout({ article, locale="en", chrome=englishChrome }: { article: Article; locale?:string; chrome?:ArticleChrome }) {
   const home=`/${locale}`;
+  const canonicalPath=article.englishOnly || locale === "en" ? `/articles/${article.slug}/` : `/${locale}/articles/${article.slug}/`;
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -27,7 +28,8 @@ export function ArticleLayout({ article, locale="en", chrome=englishChrome }: { 
     datePublished: article.published,
     dateModified: article.modified ?? "2026-08-26",
     inLanguage: article.englishOnly ? "en" : locale,
-    mainEntityOfPage: `https://lolobuy.fr/articles/${article.slug}/`,
+    mainEntityOfPage: `https://lolobuy.fr${canonicalPath}`,
+    url: `https://lolobuy.fr${canonicalPath}`,
     author: { "@type": "Organization", name: "FindSpreadsheet Research" },
     publisher: { "@type": "Organization", name: "FindSpreadsheet" },
     ...(article.heroImage ? { image: `https://lolobuy.fr${article.heroImage.src}` } : {}),
@@ -102,6 +104,6 @@ export function ArticleLayout({ article, locale="en", chrome=englishChrome }: { 
       <section className="article-takeaway"><p>{chrome.takeawayLabel}</p><h2>{article.takeaway}</h2><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">{chrome.openDatabase}<ArrowRight/></a></section>
     </article>
 
-    <footer className="article-footer"><a href={`${home}/seo-articles`}>{chrome.researchArticles}</a><span>{chrome.footerNote}</span><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">FindSpreadsheet</a></footer>
+    <footer className="article-footer"><a href={`${home}/seo-articles`}>{chrome.researchArticles}</a><a href="/editorial-standards/">Editorial standards</a><span>{chrome.footerNote}</span><a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">FindSpreadsheet</a></footer>
   </main>;
 }
