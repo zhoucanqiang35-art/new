@@ -1951,5 +1951,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-warehouse-address-forwarding-checklist",
+    title: "PikoBuy Warehouse Address: Forwarding Checklist",
+    description: "Learn how to obtain and verify the current PikoBuy warehouse address, submit a forwarding order, track domestic delivery and confirm receipt.",
+    published: "7 October 2026",
+    updated: "7 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy warehouse address",
+    secondaryKeywords: [
+      "PikoBuy forwarding address",
+      "PikoBuy warehouse shipping",
+      "PikoBuy forwarding order",
+      "ship to PikoBuy warehouse",
+      "PikoBuy domestic tracking"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's live Shipping Terms, Beginner's Guide, home page, Contact page, Terms of Service and Privacy Policy on 7 October 2026. The Shipping Terms direct users to obtain the current warehouse address through online customer service or the forwarding order form. We therefore do not reproduce an address that could be account-specific or become outdated, and we do not invent mandatory labels, warehouse codes, check-in times or service guarantees that PikoBuy has not published.",
+    sections: [
+      {
+        heading: "The direct answer: retrieve the live address before dispatch",
+        paragraphs: [
+          "The correct PikoBuy warehouse address is the one currently shown through PikoBuy's online customer service or forwarding order form. That is the method stated in PikoBuy's Shipping Terms. Do not copy an address from an old video, community post, seller message or previous parcel without checking it against the live account. A warehouse may change, and the exact recipient or reference details needed to match a parcel may depend on current instructions.",
+          "The safe workflow is short: obtain the live address, copy every displayed field exactly, submit the forwarding form, give the same address details to the sender, save the domestic tracking number, and wait for the warehouse receipt and photographs. Only after the forwarded goods appear on the order page should you build an international parcel and pay the shipping fee. This guide explains how to preserve evidence at every handoff without publishing a potentially stale address."
+        ]
+      },
+      {
+        heading: "Confirm that forwarding is the right workflow",
+        paragraphs: [
+          "Forwarding and Buy-for-Me begin with different responsibilities. In Buy-for-Me, PikoBuy describes purchasing from sellers based on the user's requirements and managing those orders. In forwarding, you or another sender arranges the domestic purchase or shipment and sends the goods to the PikoBuy warehouse. The warehouse address alone does not create a PikoBuy purchasing order, and PikoBuy does not become the original seller merely because it receives the package.",
+          "Choose forwarding only when you can manage the sender relationship, source order, domestic payment and any product-level after-sales issue. Record who bought the goods, who will dispatch them, what the package should contain and which domestic carrier will move it. If you need PikoBuy to handle the purchase, start with the purchasing workflow instead. Making this choice first prevents an independently bought item from being mistaken for an agent-purchased order later."
+        ]
+      },
+      {
+        heading: "Get the address from the current form or support channel",
+        paragraphs: [
+          "PikoBuy's published forwarding process names two sources for the warehouse address: online customer service and the forwarding order form page. Use one of those current sources while signed in to the relevant account. If the two screens appear inconsistent, pause and ask support which set of details applies before the sender dispatches. PikoBuy's Contact page recommends submitting a ticket, which provides a record when a clarification is needed.",
+          "Check more than the street line. Copy the recipient name, phone number, province, city, district, postcode and any account identifier or reference that the live instructions actually provide. Do not invent a warehouse code because another user had one, and do not omit a field because it looks repetitive. Use the exact order and script shown by PikoBuy where the seller or carrier form supports it. Keep a dated, redacted screenshot so you can establish which instructions you followed."
+        ]
+      },
+      {
+        heading: "Verify every field before the seller creates a label",
+        paragraphs: [
+          "Compare the address entered on the seller's order with the PikoBuy source field by field. Chinese addresses are often divided differently from UK, US or EU forms, so a visually similar line can still place a district, building or recipient detail in the wrong box. Ask the sender to show the final shipping label or order address before collection when practical. The goal is an exact transfer, not a translated approximation.",
+          "Also check whether the seller has saved an earlier PikoBuy address. A saved address is convenient but should not be trusted automatically for a new shipment. Replace outdated details and make sure the domestic carrier accepts the phone number and postcode format supplied by the current PikoBuy instructions. PikoBuy's Terms require users to provide accurate, complete and up-to-date shipping information; this is the point where that responsibility becomes operational."
+        ]
+      },
+      {
+        heading: "Submit a forwarding order that can be matched",
+        paragraphs: [
+          "PikoBuy's second published forwarding step is to complete and submit the forwarding form as required. Use the information shown by the live form rather than a generic template. Typical evidence worth keeping includes the source order, sender, product description, quantity, expected package count and domestic tracking number, but the fields PikoBuy actually requests should control the submission. Never guess a tracking number or reuse one from another parcel.",
+          "Save the forwarding-order confirmation and its identifier before the shipment reaches the warehouse. Match one carrier number to the correct expected contents, and note when a seller splits one purchase into multiple packages. If a tracking number changes after collection, update the record or contact support rather than creating an unexplained duplicate. A clear forwarding record gives the warehouse a better basis for linking a delivered carton to the correct account and expected goods."
+        ]
+      },
+      {
+        heading: "Track the domestic parcel as a chain of custody",
+        paragraphs: [
+          "Domestic tracking proves movement toward the warehouse; it does not prove warehouse check-in. Save the carrier, tracking number, sender handoff, latest scan, delivery event and expected contents. Keep this domestic number separate from the international parcel number that may be created later. When several sellers ship separately, maintain one row per package so a delivered carton is not mistaken for completion of the entire forwarding order.",
+          "A carrier's delivered event marks one handoff. PikoBuy's Shipping Terms then describe warehouse receipt, photographs and storage. Allow those records to appear before concluding that the goods are missing, but do not substitute an invented universal check-in deadline. If there is a mismatch, report the exact delivery time, carrier evidence, forwarding-order identifier, sender and contents. Ask whether the parcel was received and matched rather than saying only that an order is late."
+        ]
+      },
+      {
+        heading: "Prepare for cash-on-delivery domestic charges",
+        paragraphs: [
+          "A forwarded package can arrive with domestic shipping payable on delivery. PikoBuy's Shipping Terms state that this amount may be deducted from the user's account balance without separate confirmation and tell users to keep enough balance for smooth warehousing. Confirm with the sender whether the domestic freight is prepaid or cash on delivery before dispatch. Do not assume that a seller's product payment included the warehouse-bound transport.",
+          "Record the expected domestic charge if the sender knows it, then reconcile any balance deduction with the correct tracking number and forwarding order. The public policy reviewed for this guide does not publish one universal domestic delivery price or currency-conversion rule. If the deduction is unclear, ask support to identify the transaction. Do not add funds repeatedly until you understand whether the first balance movement relates to freight, another order or a separate account event."
+        ]
+      },
+      {
+        heading: "Use warehouse photos to confirm receipt, not perfection",
+        paragraphs: [
+          "PikoBuy says all goods forwarded to its warehouse are unpacked and inspected. Its forwarding process also says photographs are taken for confirmation before storage. Compare those photographs with the source order and package record: identity, option, quantity, visible condition and included parts. If the standard images cannot answer an important question, the Shipping Terms say users may purchase additional detailed photos, subject to what the live account offers.",
+          "Inspection has limits. PikoBuy says professional inspection cannot be provided for special and professional products. A photo also cannot prove every hidden function, material claim or authenticity statement. Decide what the available evidence can establish and what remains uncertain. Do not approve international shipment simply because a carton arrived. First resolve obvious differences while the sender and domestic evidence are still easy to connect to the warehouse record."
+        ]
+      },
+      {
+        heading: "Know who handles missing goods and returns",
+        paragraphs: [
+          "When forwarded goods are missing at warehouse receipt for a reason not caused by PikoBuy, the Shipping Terms direct the user to contact the sender and state that PikoBuy is not liable for compensation. Build the evidence before assigning fault: what the sender says was packed, package count and weight if available, domestic tracking, warehouse photographs and the forwarding record. A delivered scan alone cannot establish which items were inside the package.",
+          "PikoBuy also states that it does not provide product after-sales service for forwarded products. The user must deal with the seller or sender, although PikoBuy can help ship goods back. Confirm that the seller accepts a return, the address is current, the item remains in suitable condition and every cost is understood before requesting outbound domestic shipping. Do not apply the Buy-for-Me return assumptions automatically to goods you purchased independently."
+        ]
+      },
+      {
+        heading: "Use this final forwarding-address checklist",
+        paragraphs: [
+          "Before dispatch, retrieve the current PikoBuy warehouse address; copy every live field; verify the seller's final label; submit the forwarding form; save its identifier; record the sender, package count and contents; confirm prepaid or cash-on-delivery freight; and keep enough account balance if COD applies. After dispatch, save domestic tracking and distinguish carrier delivery from warehouse check-in. After receipt, compare the photos before submitting an international parcel.",
+          "FindSpreadsheet is independent from PikoBuy and cannot provide a private warehouse address, change a forwarding record or see an account. Use it to compare product leads, then rely on the current PikoBuy form or support record for the operational address. The practical rule is to treat the address as live account data, not evergreen editorial content: verify it for every shipment, preserve the label and tracking evidence, and do not move to international shipping until the correct goods are matched in the warehouse."
+        ]
+      }
+    ]
   }
 ];
