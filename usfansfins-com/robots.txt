@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://usfansfins.com/sitemap.xml
+Sitemap: https://usfansfins.com/sitemap-gsc.xml
