@@ -2,17 +2,6 @@ const locales=[['en','English'],['de','Deutsch'],['fr','Français'],['es','Espa�
 const localeCodes=new Set(locales.map(([code])=>code));
 const routes={Hoodies:'https://findspreadsheet.com/hoodies-sweaters/',Pants:'https://findspreadsheet.com/pants-shorts/',Hats:'https://findspreadsheet.com/headwear/',Watches:'https://findspreadsheet.com/search.html?channelid=2&keywords=watches',Electronics:'https://findspreadsheet.com/electronics/',Socks:'https://findspreadsheet.com/search.html?channelid=2&keywords=socks',Accessories:'https://findspreadsheet.com/accessories/',Shoes:'https://findspreadsheet.com/shoes/',Jackets:'https://findspreadsheet.com/jackets/','Other stuff':'https://findspreadsheet.com/search.html?channelid=2&keywords=other'};
 const icon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 11H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>';
-const editorialCopy={
-  en:'Published by LoloBuy AT Research, an independent editorial resource with no affiliation to LoloBuy. <a href="/editorial-standards/" data-no-locale>Read our editorial standards and research method.</a>',
-  de:'Veröffentlicht von LoloBuy AT Research, einer unabhängigen Redaktion ohne Verbindung zu LoloBuy. <a href="/editorial-standards/" data-no-locale>Redaktionsstandards und Recherche-Methode lesen.</a>',
-  fr:'Publié par LoloBuy AT Research, une ressource éditoriale indépendante sans lien avec LoloBuy. <a href="/editorial-standards/" data-no-locale>Lire nos règles éditoriales et notre méthode de recherche.</a>',
-  es:'Publicado por LoloBuy AT Research, un recurso editorial independiente sin afiliación con LoloBuy. <a href="/editorial-standards/" data-no-locale>Leer las normas editoriales y el método de investigación.</a>',
-  it:'Pubblicato da LoloBuy AT Research, una risorsa editoriale indipendente senza affiliazione con LoloBuy. <a href="/editorial-standards/" data-no-locale>Leggi gli standard editoriali e il metodo di ricerca.</a>',
-  pt:'Publicado pela LoloBuy AT Research, um recurso editorial independente sem afiliação à LoloBuy. <a href="/editorial-standards/" data-no-locale>Leia os padrões editoriais e o método de pesquisa.</a>',
-  nl:'Gepubliceerd door LoloBuy AT Research, een onafhankelijke redactionele bron zonder band met LoloBuy. <a href="/editorial-standards/" data-no-locale>Lees onze redactionele normen en onderzoeksmethode.</a>',
-  pl:'Opublikowane przez LoloBuy AT Research, niezależne źródło redakcyjne bez powiązania z LoloBuy. <a href="/editorial-standards/" data-no-locale>Przeczytaj standardy redakcyjne i metodę badawczą.</a>',
-  sv:'Publicerad av LoloBuy AT Research, en oberoende redaktionell resurs utan koppling till LoloBuy. <a href="/editorial-standards/" data-no-locale>Läs våra redaktionella standarder och forskningsmetod.</a>'
-};
 
 function currentLanguage(){const first=location.pathname.split('/').filter(Boolean)[0];return localeCodes.has(first)?first:'en'}
 function routeForLanguage(code){const parts=location.pathname.split('/').filter(Boolean);if(localeCodes.has(parts[0]))parts.shift();const route='/'+parts.join('/')+(parts.length?'/':'');return code==='en'?route:'/'+code+route}
@@ -55,21 +44,10 @@ function compactMobileReading(){
     });
   }
 }
-function addEditorialDisclosure(){
-  const article=document.querySelector('.article');
-  if(!article||!/^\/(?:[a-z]{2}\/)?seo-articles\//.test(location.pathname)||article.dataset.editorialDisclosure)return;
-  const disclosure=document.createElement('aside');
-  disclosure.className='editorial-disclosure';
-  disclosure.setAttribute('aria-label','Editorial disclosure');
-  disclosure.innerHTML='<p><b>Editorial disclosure:</b> '+(editorialCopy[currentLanguage()]||editorialCopy.en)+'</p>';
-  article.append(disclosure);
-  article.dataset.editorialDisclosure='true';
-}
 document.querySelectorAll('.nav a[href^="/seo-articles/"]').forEach(link=>link.href='/seo-articles/');
 const pageLanguage=currentLanguage();
-if(pageLanguage!=='en')document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href&&!link.hasAttribute('data-no-locale')&&!href.startsWith('/'+pageLanguage+'/'))link.setAttribute('href','/'+pageLanguage+href)});
+if(pageLanguage!=='en')document.querySelectorAll('a[href^="/"]').forEach(link=>{const href=link.getAttribute('href');if(href&&!href.startsWith('/'+pageLanguage+'/'))link.setAttribute('href','/'+pageLanguage+href)});
 tileCategories();
 compactMobileReading();
-addEditorialDisclosure();
 document.querySelectorAll('[data-search]').forEach(form=>form.addEventListener('submit',event=>{event.preventDefault();const value=form.querySelector('input')?.value.trim();if(value)location.href='https://findspreadsheet.com/search.html?channelid=2&keywords='+encodeURIComponent(value)}));
 document.querySelectorAll('.header-row').forEach(header=>{const select=document.createElement('select');select.className='language-select';select.setAttribute('aria-label','Select language');locales.forEach(([code,label])=>select.add(new Option(label,code)));select.value=currentLanguage();select.addEventListener('change',()=>{location.href=routeForLanguage(select.value)});header.append(select)});
