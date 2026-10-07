@@ -24,6 +24,25 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v6
 
+      - name: Enable Pages publishing
+        uses: actions/github-script@v8
+        with:
+          script: |
+            try {
+              await github.request("POST /repos/{owner}/{repo}/pages", {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                build_type: "workflow",
+              });
+              core.info("GitHub Pages enabled for workflow publishing.");
+            } catch (error) {
+              if (error.status === 409 || error.status === 422) {
+                core.info("GitHub Pages is already enabled.");
+              } else {
+                throw error;
+              }
+            }
+
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
