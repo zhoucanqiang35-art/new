@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-shopping-cart-guide",
+    date: "7 October 2026",
+    title: "LoloBuy Shopping Cart Guide: Audit a China Order Before Payment",
+    description: "An evidence-first method for checking product identity, variants, quantities, shop groups, and cart totals before moving to payment.",
+  },
+  {
     href: "/seo-articles/lolobuy-shipping-calculator-guide",
     date: "5 October 2026",
     title: "LoloBuy Shipping Calculator Guide: Build a Pre-Order Freight Scenario",
