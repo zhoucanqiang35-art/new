@@ -1,0 +1,6 @@
+{
+  "$schema": "./lolobuy-fr/node_modules/wrangler/config-schema.json",
+  "name": "lolobuy-fr",
+  "pages_build_output_dir": "./lolobuy-fr/out",
+  "compatibility_date": "2026-10-08"
+}
