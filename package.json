@@ -1,0 +1,8 @@
+{
+  "name": "lolobuy-fr-pages-build",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm ci --prefix lolobuy-fr --ignore-scripts && npm run build --prefix lolobuy-fr"
+  }
+}
