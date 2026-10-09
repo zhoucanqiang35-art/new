@@ -2040,5 +2040,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-missing-item-evidence-guide",
+    title: "PikoBuy Missing Item: Evidence and Escalation Guide",
+    description: "Find the stage where a PikoBuy item went missing, preserve useful order and parcel evidence, and contact the party responsible for the next check.",
+    published: "9 October 2026",
+    updated: "9 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy missing item",
+    secondaryKeywords: [
+      "PikoBuy item missing from parcel",
+      "PikoBuy warehouse missing item",
+      "PikoBuy wrong quantity",
+      "PikoBuy package missing item",
+      "PikoBuy support evidence"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's current Shipping Terms, Beginner's Guide, Returns & Exchanges policy, Terms of Service, Contact page and Privacy Policy on 9 October 2026. This guide separates official platform statements from our practical evidence-organising method. PikoBuy does not publish one universal missing-item investigation time, compensation outcome or claim deadline for every route, so none is promised here.",
+    sections: [
+      {
+        heading: "The direct answer: identify the missing-item stage first",
+        paragraphs: [
+          "A PikoBuy missing item can mean several different things: a seller never dispatched it, a domestic order was split, a forwarded carton arrived short, the warehouse record shows the wrong quantity, an item was left out of a submitted parcel, or the delivered international package contains less than expected. Those events involve different records and responsible parties. Start by locating the last point at which the item was individually confirmed instead of treating every shortage as the same claim.",
+          "Build a short timeline with the product order, selected option and quantity, seller dispatch, domestic tracking, warehouse check-in and photographs, submitted parcel contents, international tracking and delivery condition. Mark each stage confirmed, unclear or missing. This method does not decide fault by itself, but it prevents a carrier delivery scan, warehouse photo or seller message from being used as proof of something that record cannot establish. Escalate the first unexplained gap."
+        ]
+      },
+      {
+        heading: "Confirm what was actually ordered and paid for",
+        paragraphs: [
+          "Open the purchasing order rather than relying on a product-page screenshot. Match the product identifier, exact colour or size, quantity, seller, amount paid and order status. PikoBuy's Beginner's Guide tells users to select specifications before submitting and paying for a purchasing order, and says out-of-stock products are refunded. An out-of-stock cancellation or reduced paid quantity is not the same as a physical item disappearing after dispatch.",
+          "Save the order confirmation and any later adjustment as separate records. If a listing bundled several pieces, document what the selected option said was included; do not infer contents from a promotional image. When the paid order already shows a lower quantity or a refund, reconcile that transaction before contacting the warehouse. When the paid quantity is correct but the dispatch or receipt record is not, move to the next handoff and keep the original order as the baseline."
+        ]
+      },
+      {
+        heading: "Separate seller dispatch from domestic delivery",
+        paragraphs: [
+          "One seller order can be sent in more than one domestic package, while several products can also travel under one tracking number. Create one row per tracking number and note which items the seller says are inside. A label-created status does not prove carrier possession, and one delivered carton does not prove that every package in a split shipment has arrived. Ask for the package count and dispatch evidence when the order record is ambiguous.",
+          "Compare each domestic carrier event with a PikoBuy warehouse check-in, not simply with the calendar date. PikoBuy's published workflow places seller-to-warehouse transport before warehouse receipt, inspection and photographs. The public pages reviewed do not state one universal warehouse check-in time, so avoid declaring an item lost solely because it has not appeared after an assumed number of hours. Report the exact tracking number, delivery event, order number and expected contents when asking for a match check."
+        ]
+      },
+      {
+        heading: "Apply the forwarding rules to independently purchased goods",
+        paragraphs: [
+          "Forwarded goods follow a different responsibility path from Buy-for-Me purchases. PikoBuy's Shipping Terms say users obtain the warehouse address, submit the forwarding form and arrange delivery. They also state that when forwarded goods are missing at warehouse receipt for a reason not caused by PikoBuy, the user should contact the sender and PikoBuy is not liable for compensation. That makes the sender's packing and domestic shipment evidence essential.",
+          "Match the forwarding-order identifier, sender, expected package count, domestic tracking and contents before assigning responsibility. Ask the sender whether the item was packed, whether the shipment was split and whether the carrier recorded an exception. PikoBuy says forwarded goods are unpacked and inspected, but inspection cannot establish that an absent item was originally inside a sealed carton. If a return is needed, remember that PikoBuy says it does not provide product after-sales service for forwarded products, although it may help ship goods back."
+        ]
+      },
+      {
+        heading: "Use warehouse photos as a quantity baseline",
+        paragraphs: [
+          "PikoBuy's guide describes warehouse check-in, photo confirmation and defect checking. Review every image alongside the item record: count visible units, match the option, look for separate accessories and note whether sealed packaging hides the contents. Save the original warehouse images and their order or stock identifiers. If the standard view cannot answer a material quantity question, PikoBuy's Shipping Terms say users may purchase additional detailed photos where the live service offers them.",
+          "A photograph is evidence of what it visibly shows, not a complete forensic inventory. A single angle may hide a second piece; packaging may contain parts that are not visible; and a label cannot prove internal contents. State the precise discrepancy, such as 'one unit visible where the paid order records two,' rather than saying the warehouse lost an item. This gives support a specific count to review and preserves the distinction between confirmed evidence and a reasonable question."
+        ]
+      },
+      {
+        heading: "Act while product-level after-sales options remain open",
+        paragraphs: [
+          "For eligible Buy-for-Me returns, PikoBuy's Returns & Exchanges policy publishes a five-day period, defined as 120 hours beginning from the next hour after the product status becomes 'In Warehouse'. The policy also makes eligibility conditional on factors including seller acceptance and product condition. If the warehouse record shows a wrong product or quantity, preserve the status timestamp and raise the discrepancy promptly rather than waiting until international parcel delivery.",
+          "Keep original packaging, labels and accessories together while the issue is reviewed. The Returns policy distinguishes customer-choice returns from seller-responsibility issues such as a wrong product or quality problem, but the facts and seller response still matter. Do not promise yourself a refund, replacement or free return before PikoBuy confirms the case. Ask whether the received quantity can be checked, which evidence is needed and what action is available within the applicable order path."
+        ]
+      },
+      {
+        heading: "Freeze the parcel list before international submission",
+        paragraphs: [
+          "Before paying international shipping, compare the warehouse inventory with the submitted parcel item by item. Record each stock or order identifier, quantity and any excluded item. A product can remain in storage rather than being physically missing if it was not selected for the parcel. Conversely, a parcel submission screen can reveal that a warehouse record is incomplete before the goods leave the facility, when the evidence is easier to investigate.",
+          "Save the final parcel-content list, package photographs or measurements offered in the account, route and parcel number. Do not edit your own notes after dispatch without retaining the earlier version. PikoBuy's workflow places parcel submission and shipping payment after warehouse confirmation; use that checkpoint as a signed-off baseline. If the submitted contents differ from the warehouse inventory, stop and ask for correction before dispatch instead of hoping the international delivery will resolve the mismatch."
+        ]
+      },
+      {
+        heading: "Document a shortage found after delivery",
+        paragraphs: [
+          "When an international package arrives short, photograph the shipping label, every side of the outer packaging, seals, tape, tears or re-sealing, internal packaging and all received contents together. Keep the box and packing materials while the case is open. Record the delivery time and condition. If an unboxing video already exists naturally, preserve the original file; do not recreate an opening or present a staged recording as contemporaneous evidence.",
+          "Compare the delivered contents with the saved warehouse and parcel baselines. A carrier's delivered scan proves a delivery event, not the number of items inside. Similarly, outer damage may support a transit question but does not by itself show when an item disappeared. State the evidence chain plainly: what was confirmed at the warehouse, what was listed in the submitted parcel, what condition arrived and what was physically present. Avoid changing packaging or discarding labels until the responsible party responds."
+        ]
+      },
+      {
+        heading: "Send the case to the party controlling the next check",
+        paragraphs: [
+          "Use the seller or sender for an unconfirmed domestic dispatch or a forwarded-goods packing shortage. Use PikoBuy support for a mismatch between the purchasing order, warehouse record, photographs or submitted parcel. Use the identified carrier path when the evidence points to an international transit or delivery event, while keeping PikoBuy's parcel record in the case. If route-specific insurance was selected, check its actual terms rather than assuming every missing-item event is covered.",
+          "PikoBuy's Contact page recommends submitting a ticket. Use one clear subject, include the relevant order or parcel identifiers, give a dated timeline, attach only the decisive evidence and ask one answerable question. For example: 'Please confirm whether stock item A, quantity two, was packed in parcel B; the warehouse record shows two and the delivered parcel contained one.' Do not open contradictory cases with changing quantities, and do not post private order or address data publicly."
+        ]
+      },
+      {
+        heading: "Build one missing-item evidence pack",
+        paragraphs: [
+          "Your pack should contain the paid order and exact option, seller or sender confirmation, all domestic tracking numbers, forwarding record where relevant, warehouse status and photographs, any timely discrepancy report, final parcel-content list, international tracking, delivery-condition images and support references. Add a one-page timeline and mark each fact as confirmed or unresolved. Redact card details, passwords, identity documents and unrelated address data; PikoBuy's Privacy Policy describes transaction, order and logistics data, but a useful case does not require sharing every personal record.",
+          "FindSpreadsheet is independent from PikoBuy and cannot inspect an account, warehouse shelf or carrier investigation. Use it to compare product leads, then keep operational evidence in the relevant order and parcel records. The practical PikoBuy missing-item rule is to preserve the last confirmed handoff, identify the first gap and ask the party controlling that stage for one specific check. That produces a stronger case than guessing when the item disappeared or promising an outcome the published policies do not guarantee."
+        ]
+      }
+    ]
   }
 ];
