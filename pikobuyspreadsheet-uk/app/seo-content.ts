@@ -2129,5 +2129,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-1688-order-checklist",
+    title: "PikoBuy 1688 Guide: Check MOQ, Options and Total Cost",
+    description: "Use this PikoBuy 1688 checklist to verify quantity rules, price tiers, product options, warehouse evidence, returns and parcel costs before ordering.",
+    published: "11 October 2026",
+    updated: "11 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy 1688",
+    secondaryKeywords: [
+      "how to buy from 1688 with PikoBuy",
+      "PikoBuy 1688 link",
+      "1688 minimum order quantity",
+      "1688 product options",
+      "PikoBuy 1688 QC"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's current home page, Beginner's Guide, Returns & Exchanges policy, Shipping Terms, Shipping Estimate, Terms of Service and Contact page on 11 October 2026. We also used Alibaba Group's current description of 1688 only to establish the marketplace's domestic wholesale context. We do not claim that every 1688 listing has an MOQ, that the lowest displayed price applies to one unit, or that wholesale sourcing guarantees savings, quality or return acceptance.",
+    sections: [
+      {
+        heading: "The direct answer: verify the 1688 buying unit before payment",
+        paragraphs: [
+          "PikoBuy publicly lists 1688 among the platforms from which users can select products and says a product link or keywords can be submitted for purchasing service. The important part is not merely getting the link to load. Before paying, establish what one buying unit contains, the minimum quantity attached to the selected option, the price that applies to that quantity, seller-to-warehouse delivery and whether the seller's return conditions fit your risk.",
+          "Use a four-stage record: source listing, PikoBuy purchasing order, warehouse evidence and international parcel. Save the same option and quantity at every stage. If the imported page is incomplete or the price changes, pause and ask for confirmation rather than assuming a low headline price represents the exact order. PikoBuy says prices are subject to actual purchase and that out-of-stock orders are refunded, so the live purchasing record matters more than an earlier promotional screenshot."
+        ]
+      },
+      {
+        heading: "Understand what 1688 is without assuming every listing is wholesale",
+        paragraphs: [
+          "Alibaba Group describes 1688 as China's leading integrated domestic wholesale marketplace, bringing together wholesale suppliers across industries. That context explains why listings may use quantity breaks, packs, mixed specifications or business-oriented product descriptions. It does not mean every seller is a factory, every offer is available to an overseas retail buyer, or every product becomes cheaper after shipping and returns are included.",
+          "Treat each listing as its own contract proposal. Identify the seller, product title, option structure, buying unit, minimum quantity, price tier and domestic delivery terms shown on that specific page. Do not import marketplace-wide assumptions from a different 1688 seller or an old tutorial. PikoBuy facilitates search, purchasing and warehouse handling, but its Terms say it is not the manufacturer and, unless expressly stated otherwise, not the seller of record."
+        ]
+      },
+      {
+        heading: "Start with a clean source link and a dated listing record",
+        paragraphs: [
+          "Copy the direct product link rather than a search-results page, shortened redirect or social-media repost. PikoBuy's guide says users can paste a product link or keywords into its search box. After import, compare the source seller, title, main image and option labels with the original page. If the imported result points to a different item, lacks key options or cannot parse the page, do not substitute the closest-looking product without recording the change.",
+          "Save a dated source record containing the URL, seller or store name, product title, visible price range, domestic freight, option table and relevant description images. This is not proof that the seller will accept the order, but it preserves what you relied on. PikoBuy recommends saving item or store information for easier ordering. A dated record also helps separate a later seller edit from an option that was selected incorrectly at checkout."
+        ]
+      },
+      {
+        heading: "Decode MOQ, price tiers and the real buying unit",
+        paragraphs: [
+          "MOQ means minimum order quantity, but do not assume a universal 1688 minimum. One listing may allow a single piece, another may require several units, and another may sell a bag, pair, box or case as one purchase unit. A displayed price range can reflect different quantities, options or specifications. Confirm which tier applies to your intended quantity and whether different colours or sizes can be combined to meet the seller's rule.",
+          "Write the calculation in plain language: number of purchase units multiplied by pieces per unit equals expected pieces. Then record the unit price for that quantity and any seller-to-warehouse delivery. If the imported PikoBuy page shows only one price while the source listing shows tiers, ask which amount will be used before payment. Never present the lowest visible tier as the payable single-unit price unless the selected quantity actually qualifies for it."
+        ]
+      },
+      {
+        heading: "Lock every specification and quantity in the purchasing order",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide instructs users to confirm specifications, colour and size, then select colour, size and quantity when submitting the purchasing order. For a 1688 order, extend that record to material, model, pack size, version and any mixed-variant instruction that appears on the listing. Use the seller's exact option labels where possible; a translated nickname can hide the difference between one piece and one set.",
+          "Create one line per distinct option. For example, two black medium units and three grey large units should not become an unexplained total of five. Save the final PikoBuy order screen before the first payment and compare its quantity with the source rule. If a seller must manually confirm a mixed order, label that condition unresolved until PikoBuy reports acceptance. A note is useful only when it is specific, observable and consistent with the selected listing options."
+        ]
+      },
+      {
+        heading: "Reconcile the first payment with the seller's actual purchase",
+        paragraphs: [
+          "PikoBuy describes the purchasing order as the first payment stage and says prices are subject to the actual purchase. Separate product price, seller-to-warehouse delivery and any confirmed order adjustment in your ledger. If the seller changes the price, quantity requirement or availability, compare the revised terms with your original decision before approving further action. A small unit-price change can become material across a larger quantity.",
+          "If the product is out of stock, PikoBuy's guide says the order will be refunded. The public pages reviewed do not promise one universal refund-arrival time, exchange rate or seller response time, so do not budget against an assumed deadline. Keep the order identifier, original amount, approved adjustment or cancellation and final balance or payment record. When the numbers do not reconcile, ask support which product, freight or quantity change produced the difference."
+        ]
+      },
+      {
+        heading: "Track domestic packages by expected contents",
+        paragraphs: [
+          "A multi-option or larger order may arrive in one domestic carton or several, but the listing alone does not prove the seller's package plan. Record every domestic tracking number and the options or quantities the seller says it contains. Distinguish seller dispatch, carrier delivery and PikoBuy warehouse check-in. One delivered tracking number should not be treated as confirmation that all units from a split order reached the warehouse.",
+          "When the warehouse record is incomplete, compare the paid quantity, seller dispatch evidence and each check-in before opening a general missing-item claim. PikoBuy does not publish one universal seller-dispatch or warehouse check-in time. Ask a narrow question using the order and tracking identifiers. This preserves the chain of custody and helps determine whether the unresolved quantity remains with the seller, the domestic carrier or the warehouse matching process."
+        ]
+      },
+      {
+        heading: "Use warehouse QC to test the order, not the seller's marketing",
+        paragraphs: [
+          "PikoBuy says warehouse inspection includes check-in, photo confirmation and a defect check. Compare the images with the saved purchasing order: visible option, quantity, labels, major colour differences, obvious damage and included parts. When several units are packaged together, note what is actually visible. The public guide does not promise that every hidden component or every unit in a larger order will be individually opened and photographed.",
+          "Define the evidence you need before the order arrives. A useful request might ask for the size labels across selected units, the visible count of a set or a measurement between named endpoints. A vague request to 'check quality' cannot establish material composition, durability, authenticity or internal function. If the standard photos cannot answer a material question, ask whether an additional detailed photo is available before submitting the international parcel."
+        ]
+      },
+      {
+        heading: "Make the return decision inside the applicable warehouse window",
+        paragraphs: [
+          "PikoBuy's Returns & Exchanges policy says eligible products must meet the seller's return conditions, remain resalable and have been in the warehouse for no more than five days. It defines the application window as 120 hours counted from the next hour after the status changes to 'In Warehouse'. Some categories and seller-defined goods are not eligible, and PikoBuy can return a product only with the seller's consent.",
+          "Check eligibility before placing a quantity-sensitive order, not after a mismatch appears. Preserve packaging, labels, seals and accessories while reviewing QC. If the seller shipped the wrong option or there is a quality issue, record the evidence and select the accurate reason; if you ordered too many or international shipping exceeds your budget, the policy treats those as customer-responsibility situations with stated return costs. Do not assume a wholesale-style order can be partially returned unless the seller agrees."
+        ]
+      },
+      {
+        heading: "Calculate total cost before approving the international parcel",
+        paragraphs: [
+          "A low source-unit price is only one part of the decision. Add the confirmed quantity, seller-to-warehouse delivery, any approved return or warehouse service, international parcel quote, payment conversion and possible destination taxes or charges. PikoBuy's Shipping Estimate asks for destination, product type, weight and parcel dimensions, while its guide says routes differ in delivery time and billing methods. Use final warehouse data when it becomes available.",
+          "FindSpreadsheet is independent from PikoBuy and does not verify 1688 sellers, set a seller's MOQ or control an order outcome. Use it to compare current product leads, then verify the source listing and live PikoBuy order before paying. The practical PikoBuy 1688 rule is simple: define the buying unit, qualify for the actual price tier, preserve every selected option, inspect the received quantity and calculate the parcel from confirmed—not hoped-for—data."
+        ]
+      }
+    ]
   }
 ];
