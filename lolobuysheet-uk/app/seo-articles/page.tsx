@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-payment-methods-guide",
+    date: "11 October 2026",
+    title: "LoloBuy Payment Methods Guide: Verify the Checkout Before You Pay",
+    description: "An evidence-first method for checking live payment channels, currency, billing details, handling fees, payable total, and result status.",
+  },
+  {
     href: "/seo-articles/lolobuy-coupon-guide",
     date: "9 October 2026",
     title: "LoloBuy Coupon Guide: Verify a Discount Before Checkout",
