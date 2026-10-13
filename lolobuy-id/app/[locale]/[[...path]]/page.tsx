@@ -37,12 +37,13 @@ export async function generateMetadata({params}:{params:Promise<Params>}):Promis
   const page=route.length?getPage(locale,route[0]):undefined;
   const article=route[0]==="article"?getArticles(locale).find(a=>a.slug===route[1]):undefined;
   const category=route[0]==="category"?categories.find(c=>c.slug===route[1]):undefined;
-  const title=article?.metaTitle??article?.title??page?.title??(category?`${localizedCategories(locale)[categories.indexOf(category)].name} spreadsheet finds`:"LoloBuy spreadsheet research");
-  const description=article?.metaDescription??article?.excerpt??page?.intro??(category?localizedCategories(locale)[categories.indexOf(category)].note:homeDescription(locale));
+  const useLocalizedArticleCopy=Boolean(article&&locale!=="en"&&!article.englishOnly);
+  const title=useLocalizedArticleCopy?article!.title:article?.metaTitle??article?.title??page?.title??(category?`${localizedCategories(locale)[categories.indexOf(category)].name} spreadsheet finds`:"LoloBuy spreadsheet research");
+  const description=useLocalizedArticleCopy?article!.excerpt:article?.metaDescription??article?.excerpt??page?.intro??(category?localizedCategories(locale)[categories.indexOf(category)].note:homeDescription(locale));
   const suffix=route.length?`/${route.join("/")}`:"";
   const alternateLocales=article?.englishOnly?["en" as const]:locales;
   const languages=Object.fromEntries(alternateLocales.map(code=>[code,prefix(code,suffix)]));
-  const resolvedTitle=article?.metaTitle?title:`${title} | FindSpreadsheet Agent Guide`;
+  const resolvedTitle=article?.metaTitle&&!useLocalizedArticleCopy?title:`${title} | FindSpreadsheet Agent Guide`;
   return {title:resolvedTitle,description,keywords:article?[article.primaryKeyword,...(article.secondaryKeywords??[])].filter(Boolean) as string[]:undefined,alternates:{canonical:prefix(locale,suffix),languages:{...languages,"x-default":prefix("en",suffix)}},openGraph:article?{title:resolvedTitle,description,type:"article",url:prefix(locale,suffix),publishedTime:article.published,modifiedTime:article.modified}:undefined,twitter:article?{card:"summary_large_image",title:resolvedTitle,description}:undefined};
 }
 function homeDescription(locale:Locale){return {en:"Independent LoloBuy spreadsheet research for Europe and North America.",de:"Unabhängige LoloBuy-Spreadsheet-Recherche für Europa und Nordamerika.",fr:"Recherche indépendante du spreadsheet LoloBuy pour l’Europe et l’Amérique du Nord.",es:"Investigación independiente del spreadsheet LoloBuy para Europa y Norteamérica.",it:"Ricerca indipendente sullo spreadsheet LoloBuy per Europa e Nord America.",pt:"Pesquisa independente do spreadsheet LoloBuy para a Europa e América do Norte."}[locale];}

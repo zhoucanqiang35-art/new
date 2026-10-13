@@ -70,7 +70,7 @@ test("publishes a canonical spreadsheet cluster and chargeable-weight tool", asy
   assert.doesNotMatch(sitemapXml, /<loc>https:\/\/lolobuy\.id\/en\/category\/shoes<\/loc>/);
 });
 
-test("publishes the tracking guide only at its English canonical URL", async () => {
+test("publishes the tracking guide with canonical localized URLs", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("tracking-test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -84,19 +84,22 @@ test("publishes the tracking guide only at its English canonical URL", async () 
   assert.match(articleHtml, /<title>LoloBuy Tracking Guide: Parcel Statuses &amp; Delays<\/title>/);
   assert.match(articleHtml, new RegExp(`rel="canonical" href="https://lolobuy\\.id/en/article/${slug}"`));
   assert.match(articleHtml, new RegExp(`hrefLang="en" href="https://lolobuy\\.id/en/article/${slug}"`));
-  assert.doesNotMatch(articleHtml, new RegExp(`/de/article/${slug}`));
+  assert.match(articleHtml, new RegExp(`hrefLang="de" href="https://lolobuy\\.id/de/article/${slug}"`));
   assert.match(articleHtml, /"@type":"Article"/);
   assert.match(articleHtml, /Compare routes before parcel submission/);
   assert.match(articleHtml, /https:\/\/findspreadsheet\.com\//);
 
-  const untranslatedResponse = await worker.fetch(new Request(`https://lolobuy.id/de/article/${slug}`), env, context);
-  assert.equal(untranslatedResponse.status, 404);
+  const localizedResponse = await worker.fetch(new Request(`https://lolobuy.id/de/article/${slug}`), env, context);
+  const localizedHtml = await localizedResponse.text();
+  assert.equal(localizedResponse.status, 200);
+  assert.match(localizedHtml, /<title>LoloBuy Tracking: Paketstatus, Verzögerungen und die richtige nächste Aktion/);
+  assert.match(localizedHtml, new RegExp(`rel="canonical" href="https://lolobuy\\.id/de/article/${slug}"`));
 
   const sitemapResponse = await worker.fetch(new Request("https://lolobuy.id/sitemap.xml"), env, context);
   const sitemapXml = await sitemapResponse.text();
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/en/article/${slug}</loc>`));
-  assert.doesNotMatch(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/de/article/${slug}</loc>`));
+  assert.match(sitemapXml, new RegExp(`<loc>https://lolobuy\\.id/de/article/${slug}</loc>`));
 });
 
 test("publishes the USA customs guide only at its English canonical URL", async () => {
