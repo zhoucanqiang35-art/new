@@ -60,7 +60,7 @@ const displayCategories: Record<Locale, string[][]> = {
 };
 
 const categoryCta: Record<Locale,string> = {en:"Shop now",fr:"Voir la sélection",de:"Jetzt ansehen",es:"Ver selección",it:"Scopri ora",pt:"Ver seleção",nl:"Bekijk nu",pl:"Zobacz produkty",sv:"Visa produkter"};
-const articleLengthLabel: Record<Locale,string> = {en:"1200–1800 words",fr:"1200–1800 mots",de:"1200–1800 Wörter",es:"1200–1800 palabras",it:"1200–1800 parole",pt:"1200–1800 palavras",nl:"1200–1800 woorden",pl:"1200–1800 słów",sv:"1200–1800 ord"};
+const articleLengthLabel: Record<Locale,string> = {en:"evidence-led guide",fr:"guide fondé sur des preuves",de:"quellenbasierter Leitfaden",es:"guía basada en evidencias",it:"guida basata su evidenze",pt:"guia baseado em evidências",nl:"evidence-based gids",pl:"przewodnik oparty na dowodach",sv:"evidensbaserad guide"};
 
 const officialFaqs: Record<Locale,string[][]> = {
   en:[
@@ -86,7 +86,7 @@ const officialFaqs: Record<Locale,string[][]> = {
 const MAIN_SITE="https://findspreadsheet.com/";
 const categoryLinks=["/shoes/","/hoodies-sweaters/","/t-shirts/","/jackets/","/pants-shorts/","/headwear/","/ShortSets/","/other-stuff/","/jersey/","/accessories/"];
 const productLinks=["/t-shirts/cp-company-t-shirt-2993.html","/accessories/supreme-wallet-2995.html","/electronics/beats-studio-buds-wireless-headset-20-styles-664.html","/jersey/qatar-short-sleeve-suits-2249.html"];
-const articleSlugs=["lolobuy-spreadsheet-guide","lolobuy-qc-photo-checklist","lolobuy-international-shipping-guide","lolobuy-fees-exchange-rate-ledger","lolobuy-refund-cancel-return-guide"];
+const articleSlugs=["lolobuy-spreadsheet-guide","lolobuy-qc-photo-checklist","lolobuy-international-shipping-guide","lolobuy-fees-exchange-rate-ledger","lolobuy-refund-cancel-return-guide","lolobuy-reviews-before-you-order"];
 const newArticleCard:Record<Locale,string[]>={
   en:["LoloBuy fees and exchange rates: build a cost ledger before you ship","Record product cost, China freight, payment conversion, warehouse extras and final parcel adjustments without treating a changing quote as a fixed fee."],
   fr:["Frais LoloBuy et taux de change : créez un registre des coûts avant l’envoi","Enregistrez produit, transport en Chine, conversion, services d’entrepôt et ajustements du colis sans figer un devis variable."],
@@ -108,6 +108,17 @@ const refundArticleCard:Record<Locale,string[]>={
   nl:["LoloBuy-terugbetaling: een bestelling annuleren of retourneren","Controleer de live status, bewaak de magazijntermijn, bewaar bewijs en reconcilieer het saldo."],
   pl:["Zwrot LoloBuy: anulowanie lub odesłanie zamówienia","Sprawdź aktualny status, pilnuj terminu magazynowego, zachowaj dowody i rozlicz saldo."],
   sv:["LoloBuy-återbetalning: avbryt eller returnera en beställning","Kontrollera aktuell status, skydda lagerfristen, spara bevis och stäm av saldot."]
+};
+const reviewArticleCard:Record<Locale,string[]>={
+  en:["LoloBuy reviews 2026: what to check before you order","Separate public claims from your product record, warehouse evidence, current parcel quote and order-specific support."],
+  fr:["Avis LoloBuy 2026 : vérifications avant de commander","Distinguez les promesses publiques de votre fiche produit, preuves QC, devis actuel et dossier de commande."],
+  de:["LoloBuy Bewertungen 2026: Prüfung vor der Bestellung","Trennen Sie öffentliche Aussagen von Produktdaten, Lagerbelegen, aktuellem Paketangebot und Supportakte."],
+  es:["Reseñas de LoloBuy 2026: qué revisar antes de pedir","Separa promesas públicas, ficha, pruebas QC, cotización actual y registro de soporte."],
+  it:["Recensioni LoloBuy 2026: controlli prima di ordinare","Separa promesse pubbliche, scheda, prove QC, preventivo attuale e record di assistenza."],
+  pt:["Avaliações LoloBuy 2026: verificações antes de encomendar","Separe promessas públicas, ficha, provas QC, cotação atual e registo de apoio."],
+  nl:["LoloBuy reviews 2026: controle vóór bestellen","Scheid openbare claims van productrecord, QC-bewijs, actuele quote en supportdossier."],
+  pl:["Opinie LoloBuy 2026: sprawdzenie przed zamówieniem","Oddziel publiczne obietnice od karty, dowodów QC, wyceny i dokumentacji wsparcia."],
+  sv:["LoloBuy recensioner 2026: kontroll före köp","Skilj offentliga påståenden från produktpost, QC-bevis, aktuell offert och supportunderlag."]
 };
 
 function MainSearch({t,compact=false}:{t:Copy;compact?:boolean}){
@@ -137,7 +148,7 @@ export function LoloSite({locale:initialLocale="en",view="home"}:{locale?:Locale
     {show("product-details")&&<section className="detail-section" id="product-details"><div className="section-heading"><div><p className="eyebrow">{t.detailsEyebrow}</p><h2>{t.detailsTitle}</h2></div><p>{t.detailsIntro}</p></div><div className="product-grid">{t.products.map(([title,text],i)=><a className="product-card" key={title} href={`https://findspreadsheet.com${productLinks[i]}`} target="_blank" rel="noreferrer"><span className="product-card__number">0{i+1}</span><div className={`product-art product-art--${i+1}`}><PackageCheck/></div><h3>{title}</h3><p>{text}</p><strong>{t.viewDetails}<ArrowRight/></strong></a>)}</div></section>}
     {show("how-it-works")&&<section className="process-section" id="how-it-works"><div className="section-heading section-heading--light"><div><p className="eyebrow">{t.processEyebrow}</p><h2>{t.processTitle}</h2></div><p>{t.processIntro}</p></div><div className="guide-grid">{t.guides.map(([step,title,text],i)=>{const Icon=[Search,PackageCheck,Truck][i];return <article className="guide-card" key={title}><div className="guide-icon"><Icon/></div><p>{step}</p><h3>{title}</h3><span>{text}</span></article>})}</div></section>}
     {show("shipping")&&<section className="shipping-section" id="shipping"><div className="shipping-copy"><p className="eyebrow">{t.shippingEyebrow}</p><h2>{t.shippingTitle}</h2><p>{t.shippingText}</p><ul>{t.shippingList.map(x=><li key={x}><Check/>{x}</li>)}</ul><a className="text-link" href={MAIN_SITE} target="_blank" rel="noreferrer">{t.database}<ExternalLink size={16}/></a></div><aside className="fact-card"><div className="fact-card__head"><Globe2/><span><strong>{t.marketTitle}</strong><small>{t.marketSub}</small></span></div><div className="locale-grid">{locales.map(code=><button type="button" key={code} onClick={()=>changeLocale(code)} className={code===locale?"active":""}><strong>{code.toUpperCase()}</strong><span>{languageNames[code]}</span></button>)}</div><p><CircleAlert size={16}/>{t.marketNote}</p></aside></section>}
-    {show("seo-articles")&&<section className="seo-section" id="seo-articles"><div className="section-heading"><div><p className="eyebrow">{t.seoEyebrow}</p><h2>{t.seoTitle}</h2></div><p>{t.seoIntro}</p></div><div className="article-grid">{[...t.articles,newArticleCard[locale],refundArticleCard[locale]].map(([title,text],i)=>{const slug=articleSlugs[i];return <article key={title} id={`article-${i+1}`}><span>0{i+1} · {articleLengthLabel[locale]}</span><h3>{title}</h3><p>{text}</p><a href={locale==="en"?`/articles/${slug}`:`/${locale}/articles/${slug}`}>{t.readArticle}<ArrowRight/></a></article>})}</div></section>}
+    {show("seo-articles")&&<section className="seo-section" id="seo-articles"><div className="section-heading"><div><p className="eyebrow">{t.seoEyebrow}</p><h2>{t.seoTitle}</h2></div><p>{t.seoIntro}</p></div><div className="article-grid">{[...t.articles,newArticleCard[locale],refundArticleCard[locale],reviewArticleCard[locale]].map(([title,text],i)=>{const slug=articleSlugs[i];return <article key={title} id={`article-${i+1}`}><span>0{i+1} · {articleLengthLabel[locale]}</span><h3>{title}</h3><p>{text}</p><a href={locale==="en"?`/articles/${slug}`:`/${locale}/articles/${slug}`}>{t.readArticle}<ArrowRight/></a></article>})}</div></section>}
     {show("faq")&&<section className="faq-section" id="faq"><div className="section-heading"><div><p className="eyebrow">{t.faqEyebrow}</p><h2>{t.faqTitle}</h2></div><p>{t.faqIntro}</p></div><div className="faq-list">{officialFaqs[locale].map(([q,a],i)=><details key={q} open={i===0}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}</div></section>}
     <section className="database-cta"><div><p className="eyebrow">{t.ready}</p><h2>{t.ctaTitle}</h2><p>{t.ctaText}</p></div><MainSearch t={t} compact/></section>
     <footer><div className="brand brand--footer brand-image"><img src="/lolobuy-logo.png" alt="LoloBuy"/></div><p>{t.disclosure}</p><div><a href={MAIN_SITE} target="_blank" rel="noreferrer">{t.footerLinks[0]}</a><a href={`${home}/faq`}>{t.footerLinks[1]}</a><a href={`${home}/seo-articles`}>{t.footerLinks[2]}</a></div><small>{t.checked}</small></footer>
