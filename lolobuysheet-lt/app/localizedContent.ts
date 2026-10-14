@@ -1,8 +1,31 @@
-import generated from "./generatedLocalizedContent.json";
 import type { ResearchArticle } from "./articleData";
+import en from "./localized-content/en.json";
+import es from "./localized-content/es.json";
+import fr from "./localized-content/fr.json";
+import de from "./localized-content/de.json";
+import it from "./localized-content/it.json";
+import pl from "./localized-content/pl.json";
+import nl from "./localized-content/nl.json";
+import sv from "./localized-content/sv.json";
+import no from "./localized-content/no.json";
+import da from "./localized-content/da.json";
+import pt from "./localized-content/pt.json";
+import cs from "./localized-content/cs.json";
+import ro from "./localized-content/ro.json";
+import hu from "./localized-content/hu.json";
+import fi from "./localized-content/fi.json";
+import el from "./localized-content/el.json";
+import tr from "./localized-content/tr.json";
+import lt from "./localized-content/lt.json";
+import lv from "./localized-content/lv.json";
+import et from "./localized-content/et.json";
+import sk from "./localized-content/sk.json";
+import bg from "./localized-content/bg.json";
+import hr from "./localized-content/hr.json";
+import ga from "./localized-content/ga.json";
 
 export type LocalizedFaq={slug:string;question:string;short:string;answer:string;sourceHref:string};
 export type LocalizedUi={translatedEdition:string;preserved:string;sourceNote:string;checked:string;verifyLive:string;allArticles:string;allFaqs:string};
 export type LocalizedBundle={articles:ResearchArticle[];faqs:LocalizedFaq[];ui:LocalizedUi};
 
-export const localizedContent=generated as unknown as Record<string,LocalizedBundle>;
+export const localizedContent={en,es,fr,de,it,pl,nl,sv,no,da,pt,cs,ro,hu,fi,el,tr,lt,lv,et,sk,bg,hr,ga} as unknown as Record<string,LocalizedBundle>;

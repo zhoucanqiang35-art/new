@@ -138,10 +138,7 @@ export default async function ArticleDetail({
                 <ul>
                   {article.sources.map((source) => (
                     <li key={source.url}>
-                      <a href={source.url} target="_blank" rel="noreferrer noopener">
-                        {source.label}
-                      </a>{" "}
-                      — accessed {source.accessed}
+                      {source.label} — accessed {source.accessed}
                     </li>
                   ))}
                 </ul>

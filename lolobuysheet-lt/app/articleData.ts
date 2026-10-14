@@ -13,7 +13,9 @@ export type ResearchArticle = {
   sections: { heading: string; paragraphs: string[] }[];
 };
 
-export const researchArticles: ResearchArticle[] = [
+import { octoberResearchArticles } from "./octoberArticleData";
+
+const baseResearchArticles: ResearchArticle[] = [
   {
     slug: "how-to-use-a-lolobuy-spreadsheet",
     tag: "BEGINNER",
@@ -2389,4 +2391,6 @@ export const researchArticles: ResearchArticle[] = [
     ]
   }
 ];
+
+export const researchArticles = [...baseResearchArticles, ...octoberResearchArticles];
 // Cloudflare Pages content deployment refresh for 5 October 2026.
