@@ -33,4 +33,6 @@ await writeFile(
   join(projectRoot, 'functions', '[[path]].js'),
   `${catalog}\n${app}\nexport async function onRequest(context) { return APP.fetch(context.request, context.env); }\n`,
 );
-await writeFile(join(distRoot, 'index.html'), '<!doctype html><title>PikoBuy Spreadsheet</title>');
+// Keep a concrete static artifact alongside the Function so a source update
+// always produces a fresh Pages build, rather than reusing a stale output.
+await writeFile(join(distRoot, 'index.html'), '<!doctype html><meta charset="utf-8"><meta name="application-name" content="PikoBuy Spreadsheet"><title>PikoBuy Spreadsheet</title>');
