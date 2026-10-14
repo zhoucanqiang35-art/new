@@ -12,5 +12,6 @@
     "test": "npm run build:generate && node --test tests/localized-pages.test.mjs tests/site-integrity.test.mjs"
   },
   "type": "module",
-  "displayName": "LoloBuy Review Preview"
+  "displayName": "LoloBuy Review Preview",
+  "deploymentRevision": "2026-10-14-prebuilt-v2"
 }
