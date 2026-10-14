@@ -46,7 +46,7 @@ if (functionSource === workerSource || !functionSource.includes('await ensureCat
 const functionsRoot = join(projectRoot, 'functions');
 await rm(functionsRoot, { recursive: true, force: true });
 await mkdir(functionsRoot, { recursive: true });
-await writeFile(join(functionsRoot, '[[path]].js'), `${catalogModule}${functionSource}\nexport async function onRequest(context) { return APP.fetch(context.request, context.env); }\n`);
+await writeFile(join(functionsRoot, '[[path]].js'), `${catalogModule}${functionSource}\nexport async function onRequest(context) {\n  try { return await APP.fetch(context.request, context.env); }\n  catch (error) { return new Response(\`PikoBuy Spreadsheet runtime error: \${error?.message || String(error)}\`, { status: 500, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } }); }\n}\n`);
 
 // Pages requires an asset directory alongside the Functions entrypoint.
 await mkdir(join(distRoot, 'catalog-data'), { recursive: true });
