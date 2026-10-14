@@ -144,5 +144,128 @@ export const octoberResearchArticles = [
         "Before purchase, confirm the selected option, live item price and domestic freight. At warehouse arrival, decide whether any paid service or packaging change has a real purpose. Before international payment, confirm the accepted item list, destination, route eligibility, actual or volumetric billing method, quote and any destination obligations you can verify. After delivery, record the final amount and actual outcome.",
         "This routine does not promise a fixed LoloBuy fee because there is no responsible universal fee for every product and country. It gives each cost a place, a source and a status. That is what turns a spreadsheet into a useful planning tool: not a false certainty, but a record that makes price changes, shipping choices and future comparisons understandable." ] }
     ]
+  },
+  {
+    slug: "lolobuy-spreadsheet-search-guide-2026",
+    tag: "SPREADSHEET SEARCH",
+    title: "LoloBuy Spreadsheet 2026: Search Finds, QC Photos and Live Listings",
+    description: "A practical LoloBuy spreadsheet search method for turning a broad brand or product idea into a precise, evidence-led shortlist.",
+    readTime: "14 min read",
+    published: "2026-10-14",
+    updated: "2026-10-14",
+    keywords: ["LoloBuy spreadsheet", "LoloBuy spreadsheet 2026", "LoloBuy finds", "LoloBuy spreadsheet search", "LoloBuy QC photos", "LoloBuy product links"],
+    sources: [
+      { label: "LoloBuy public service overview — ordering, inspection, storage and parcel workflow", url: "https://www.lolobuy.com/", accessed: "14 October 2026" },
+      { label: "LoloBuy live product page — product, warehouse freight and international-shipping fields", url: "https://www.lolobuy.com/productDetail/7808418606?inviteCode=2e26j&url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7808418606", accessed: "14 October 2026" }
+    ],
+    relatedLinks: [
+      { label: "Browse product categories", url: "/categories" },
+      { label: "Use the warehouse QC checklist", url: "/articles/lolobuy-qc-photos-guide" },
+      { label: "Read the cost and route guide", url: "/articles/lolobuy-shipping-cost-guide" }
+    ],
+    sections: [
+      { heading: "Why the LoloBuy spreadsheet search is the first decision", paragraphs: [
+        "People searching for a LoloBuy spreadsheet usually do not need another page of unlabelled product links. They need a faster way to move from an incomplete idea — a brand, a shoe shape, a jacket, a price range or a photo — to a listing that can still be checked live. A spreadsheet is useful because marketplace product titles can be inconsistent and discovery can be slow. It is not useful if it encourages a buyer to trust a title, a cover image or a historic price without opening the source record.",
+        "The reliable search sequence is therefore: define the product, narrow the category, open the current source listing, confirm the selected option, then save the evidence that matters before ordering. LoloBuy's public overview describes an order-to-warehouse-to-parcel workflow, including quality inspection with photos and selecting stored goods for a parcel. That makes a well-organised spreadsheet a research layer before the live platform steps, not a replacement for them." ] },
+      { heading: "Search from the most specific useful phrase", paragraphs: [
+        "Start with a short phrase that combines a product type and one decision detail. ‘Black zip hoodie’, ‘running shoe 44’, ‘small leather wallet’ or ‘USB-C earbuds’ will normally reveal more useful candidates than a brand name alone. Add a colour, material, season, silhouette, size system or intended use only when it will help you rule out the wrong results. Broad search terms create a long list; a good search phrase creates a comparison set.",
+        "Do not force a result because an exact keyword is missing. Sellers can translate names poorly, omit a model term or reuse a listing title. Search adjacent terms and then use the category to filter. For example, a sneaker search should also check runners, slides or footwear; an outerwear search may need jacket, shell, fleece or down. The aim is to discover possible listings, then let exact option text and live images decide whether they belong on the shortlist." ] },
+      { heading: "Use category pages to control comparison", paragraphs: [
+        "A category is more than a visual shelf. It tells you which facts must be comparable. Shoes need size-system, insole, pair symmetry and packaging checks. Clothing needs measurement-led comparison, because a label alone does not establish fit. Bags need dimensions, interior layout and hardware views. Electronics need connector, model, included-accessory and route-eligibility checks. Keep listings from different categories out of the same quick comparison, because a single score cannot represent all of those questions.",
+        "Make a small shortlist rather than trying to judge every result at once. Three to five candidates are enough for most purchases. Put the source URL, exact option, visible price, domestic freight signal, image date if shown and the one uncertainty that remains into a note or spreadsheet row. This produces an audit trail if a seller changes a variation or a warehouse photo later shows a mismatch." ] },
+      { heading: "Read a spreadsheet row as a lead, not a promise", paragraphs: [
+        "A row can make discovery efficient, but fields can become stale. Price ranges often hide option-specific surcharges; a source listing can alter stock, images or size charts; and a URL can point to a page whose current variation no longer matches the original entry. Open the live page before adding an item to cart. Match product type, chosen colour, size or model, quantity and any price shown after selection. If the live listing disagrees with the row, the live listing is the more recent record.",
+        "This principle also prevents misleading USD comparisons. A reference conversion is useful for comparing two candidates but is not an order quote. Product price, freight to warehouse, paid services, parcel dimensions, international route and destination charges are separate decisions. Record reference prices as reference prices, and keep final amounts only from the relevant live order or parcel screen." ] },
+      { heading: "Use images to identify, not to overclaim", paragraphs: [
+        "Search images and product thumbnails are useful for identifying shape, colour family, visible details and possible duplicate listings. They cannot confirm material composition, fit, authenticity, battery condition or long-term performance. Treat a cover image as a route to questions: does the live page show the same option, does the size chart apply to it, and is the listed accessory or packaging included? A clean thumbnail should never end the research step.",
+        "Warehouse QC photos come later and have a more focused role. LoloBuy publicly describes warehouse inspection and feedback photos, so use them to compare the ordered item with the saved selection, quantity and visible condition. They can reveal an obvious wrong option, surface mark or missing accessory. They cannot turn an unverified seller claim into a guarantee. The best spreadsheet search preserves this difference between discovery images, seller images and warehouse evidence." ] },
+      { heading: "Build an evidence-led search routine", paragraphs: [
+        "For each candidate, capture five things: the source URL, the exact option text, a live product-price reference, the size or specification evidence, and the question that still needs a warehouse check. For apparel, that final question may be a pit-to-pit measurement. For shoes, it may be the insole length and pair alignment. For a small accessory, it may be the internal layout. For electronics, it may be whether a route accepts the battery or magnetic component. One clear question is more useful than a vague request for ‘better quality’.",
+        "At checkout, make a final identity check before payment. LoloBuy's public product interface distinguishes product details, freight to warehouse and international-shipping estimate fields; those should not be collapsed into one copied price. After warehouse arrival, compare the QC record with the baseline you saved. Before parcel submission, compare live routes for the actual accepted contents. This makes the LoloBuy spreadsheet search a repeatable process rather than a one-click gamble." ] },
+      { heading: "The 2026 search checklist", paragraphs: [
+        "Search a product phrase with one useful attribute. Open the category that best matches the product. Shortlist only live listings that show a clear option. Save source URL, option, price reference and measurement or specification evidence. Keep an uncertainty field rather than silently assuming the answer. At warehouse stage, use QC photos for visible identity and condition. At parcel stage, use the live route list for shipping eligibility and cost.",
+        "This approach is deliberately less dramatic than claims about ‘best batches’ or guaranteed finds. It gives a buyer a better chance of detecting a stale link, wrong option, weak size evidence or unsuitable shipping profile before money is committed. That is the useful role of a LoloBuy spreadsheet in 2026: faster discovery paired with clearer verification, not recycled certainty." ] }
+    ]
+  },
+  {
+    slug: "lolobuy-qc-bilder-photo-checklist",
+    tag: "QC PHOTOS",
+    title: "LoloBuy QC Photos (QC Bilder): A Visible-Evidence Checklist Before Shipping",
+    description: "How to use LoloBuy QC photos — including searches for QC Bilder — to check identity, measurements and visible condition without making unsupported quality claims.",
+    readTime: "13 min read",
+    published: "2026-10-14",
+    updated: "2026-10-14",
+    keywords: ["LoloBuy QC photos", "LoloBuy QC Bilder", "LoloBuy QC", "LoloBuy warehouse pictures", "LoloBuy inspection photos"],
+    sources: [
+      { label: "LoloBuy public service overview — warehouse quality inspection and feedback photos", url: "https://www.lolobuy.com/", accessed: "14 October 2026" },
+      { label: "LoloBuy manual-filling page — visible-only inspection limitation for certain third-party orders", url: "https://www.lolobuy.com/productDetail/7814481340?inviteCode=2e26j&url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7814481340", accessed: "14 October 2026" }
+    ],
+    relatedLinks: [
+      { label: "Read the detailed QC guide", url: "/articles/lolobuy-qc-photos-guide" },
+      { label: "Plan product measurements by category", url: "/categories" },
+      { label: "Decide whether to consolidate after QC", url: "/articles/lolobuy-parcel-consolidation-guide" }
+    ],
+    sections: [
+      { heading: "What ‘QC Bilder’ can actually prove", paragraphs: [
+        "Searches for LoloBuy QC Bilder, QC photos or warehouse pictures usually mean the buyer wants certainty before international shipping. The public LoloBuy service description says warehouse staff inspect goods and provide inspection feedback photos. That supports a real visible-evidence checkpoint. It does not establish a fixed photo count, a laboratory test, an authenticity certificate or the same inspection depth for every category.",
+        "Use the photos to answer visible questions: did the warehouse receive the product, option, quantity and accessories that were ordered; is there apparent damage; and does a measurement or detail require a follow-up? Do not use a photo to prove fabric composition, hidden construction, electronic performance, safety, future durability or fit. A useful QC decision states both what is visible and what remains unverified." ] },
+      { heading: "Create the comparison record before photos arrive", paragraphs: [
+        "QC is much stronger when there is a baseline. Before purchase, save the source URL, exact seller option text, selected size or model, quantity, price record and seller image that identifies the variation. For a manual order, keep the entered specification and any staff clarification. Without this record, it becomes easy to approve a similar-looking item even when the colour, version or included piece differs from what was selected.",
+        "Write one category-specific check beside the order. It might be ‘verify 30 cm insole’, ‘show inside wallet compartment’, ‘confirm USB-C connector’, or ‘measure chest width’. This makes an additional-photo request precise if it is needed. It also avoids the common failure mode of receiving many close-ups that still do not answer the question that would change the decision." ] },
+      { heading: "Check identity before appearance", paragraphs: [
+        "Start with identity in a fixed order: product type, option or colour, size or model, quantity, included accessories and any printed or labelled variant code. For sets, count every part. For shoes, compare both shoes and the size tag. For electronics, compare connector, plug type and included cable. For bags and wallets, check the intended dimensions and interior configuration, not only the logo or exterior colour.",
+        "An attractive but wrong item is still a wrong item. If the visible record conflicts with the saved selection, preserve the source listing, order record and relevant photo before opening an after-sales or support route. Objective mismatches are clearer than broad statements that an item ‘does not look right’. Use the current account controls and timing; seller-dependent return rules can vary." ] },
+      { heading: "Review condition with a repeatable photo order", paragraphs: [
+        "Move through the image set in the same sequence: overall front, overall back, side views, labels or specification information, close construction details, measurements and accessories. This prevents one flattering angle from dominating the decision. Check for visible marks, damage, symmetry, loose stitching, misaligned prints, broken hardware or missing components. Compare several pictures before judging colour, because warehouse lighting and camera angle can change it.",
+        "Keep observations factual. ‘Left and right sole heights appear different in this view’ is a useful question; ‘this guarantees poor quality’ is not. A photo may justify a focused request for an alternate angle or measurement, but it may not resolve hidden properties. Stop asking for more images when the remaining doubt is something photos cannot establish." ] },
+      { heading: "Use the right checks for each product category", paragraphs: [
+        "For clothing, measurements generally matter more than a familiar tag. Compare chest, length, shoulder, sleeve, waist, rise or inseam with an item you own. For shoes, compare pair symmetry, toe and heel alignment, visible glue or stitching, size label and insole measurement if offered. For bags and accessories, compare exact dimensions, corners, zip or clasp function, strap anchors and internal layout. QC images are strongest where a decision can be seen or measured.",
+        "For electronics, use photos to confirm model, connector, outer condition and visible accessories only. The manual-order notice on the public site explicitly warns that some third-party products may receive only an appearance check. A clean exterior cannot prove battery health, wireless performance, internal components or certification. Also check route eligibility separately: an acceptable visual item can still be unsuitable for a given international line." ] },
+      { heading: "Ask for one precise follow-up", paragraphs: [
+        "If a visible gap would change the decision, request the missing evidence in one sentence. Examples: ‘Please measure the insole from heel to toe’, ‘Please show the inside label straight on’, or ‘Please photograph the connector beside the included cable’. Include the product or warehouse identifier and explain the exact comparison point. Avoid ‘send more QC’ because it creates work without defining success.",
+        "Do not turn additional photos into a delay tactic. If the central concern is authenticity, internal performance, exact material composition or long-term reliability, another photo may not solve it. In that situation the responsible choices are to accept the uncertainty, use a supported service if available, choose a better-documented listing or reconsider the purchase. Clear limits are part of good QC, not a weakness." ] },
+      { heading: "Make the accept, question or after-sales decision before shipping", paragraphs: [
+        "Finish the review with one explicit state: accept when identity and visible condition meet the saved standard; question when one focused image or measurement could decide the issue; or investigate after-sales when there is an objective wrong item, missing part or visible defect. Do this before a parcel is submitted. Once items are consolidated and internationally shipped, options can become more complex and costly.",
+        "Save the final QC images with the order record and note what was accepted as visible versus what was not verifiable. This will make later feedback more useful and gives the next purchase a realistic standard. LoloBuy QC photos are valuable because they expose preventable visible mistakes; they should not be used to invent guarantees that the evidence cannot support." ] }
+    ]
+  },
+  {
+    slug: "lolobuy-logo-official-site-safety-guide",
+    tag: "SAFETY",
+    title: "LoloBuy Logo and Official Site: Verify the Platform Before You Order",
+    description: "A safety-first guide for people searching LoloBuy logo or official-site terms: verify the destination, order record and payment context before acting.",
+    readTime: "12 min read",
+    published: "2026-10-14",
+    updated: "2026-10-14",
+    keywords: ["LoloBuy logo", "LoloBuy official site", "is LoloBuy official", "LoloBuy login safety", "LoloBuy order verification"],
+    sources: [
+      { label: "LoloBuy public homepage — service description, warehouse workflow and support navigation", url: "https://www.lolobuy.com/", accessed: "14 October 2026" },
+      { label: "LoloBuy public product page — order and third-party-product disclaimer", url: "https://www.lolobuy.com/productDetail/7804657088?inviteCode=2e26j&url=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D7804657088", accessed: "14 October 2026" }
+    ],
+    relatedLinks: [
+      { label: "Read about this independent guide", url: "/about" },
+      { label: "Use a spreadsheet without buying blind", url: "/articles/how-to-use-a-lolobuy-spreadsheet" },
+      { label: "Build a cost record before payment", url: "/articles/lolobuy-fees-cost-breakdown-guide" }
+    ],
+    sections: [
+      { heading: "Why a logo search needs an identity check", paragraphs: [
+        "A search for the LoloBuy logo can be navigational, but a familiar logo is not enough to verify a website, product page or message. Logos can be copied, screenshots can be edited and a page can use a correct-looking brand mark while sending a buyer to an unrelated destination. The safer starting point is the destination itself: confirm the domain, use an account you opened intentionally and verify that an order or payment screen belongs to the product record you created.",
+        "This independent site is a research layer and is not the LoloBuy platform. It can help a reader understand source listings, warehouse QC and parcel decisions, then direct product discovery to FindSpreadsheet. It should never be used as proof that a payment request, a social-media contact or an unauthenticated message is official. Complete current orders only through the live service interface you have independently verified." ] },
+      { heading: "Check the destination before entering account details", paragraphs: [
+        "Type or select the intended official address deliberately instead of following a shortened link from a comment, message or unfamiliar advertisement. Check that the browser shows the expected secure domain and that the page content matches the workflow you intended to use. LoloBuy's public homepage describes purchasing from Chinese sources, warehouse inspection and parcel submission; an unrelated page that does not show a coherent account, order or help context deserves extra caution.",
+        "Do not share a password, authentication code, recovery code or payment information with anyone who contacts you outside the confirmed account flow. Support questions should be started from the platform's own current support area, using the specific order or parcel number. A real support interaction may still require evidence, but it should not require you to disclose account credentials to a private chat account." ] },
+      { heading: "Verify an order from the record, not the branding", paragraphs: [
+        "The public product page separates product details, freight to warehouse, destination information and international-shipping estimate fields. Match any purchase request to those details: source URL, selected option, quantity, product amount, domestic freight, order number and status. A logo or product image cannot establish that a requested balance payment belongs to your order; the linked order record and stated reason are the relevant evidence.",
+        "For manual orders, the public form requests product link, product name, specifications, commodity price, freight to warehouse and quantity. Preserve what you entered. If a later clarification or price change appears, compare it with the seller page and the exact submitted selection before acting. This does not mean every adjustment is wrong; it means every adjustment should be traceable to an order and a current explanation." ] },
+      { heading: "Recognise the third-party-listing boundary", paragraphs: [
+        "LoloBuy's public product pages state that shopping-agent products originate from third-party shopping platforms and are not directly sold by LoloBuy. That distinction matters when evaluating seller photos, product descriptions, intellectual-property claims, stock, returns and technical specifications. A platform account can provide an ordering and warehouse workflow without turning a third-party seller statement into a verified platform promise.",
+        "Keep a source record for each purchase: original seller page, selected option, current screenshots or listing text, order number and warehouse images. If an item is unavailable, differs from the selected option or needs a later price confirmation, this record lets you ask a narrow, evidence-based question. It also prevents a copied product image or branding element from becoming the only basis for trust." ] },
+      { heading: "Use payment and parcel checks that can be audited", paragraphs: [
+        "Before paying, verify that the screen is inside the authenticated order or parcel flow, the identifier matches your saved record, the currency and reason are visible, and the amount corresponds to a current item, service or route choice. Keep product price, domestic freight, optional warehouse service, international freight and destination-side obligations in separate fields. A single all-in number can hide the reason for a change.",
+        "Before international shipping, verify accepted warehouse items, route eligibility, chargeable-weight method, packed dimensions, tracking level and the final parcel number. Do not make declaration or customs choices from a copied social post. Use accurate information and check current destination requirements. The logo is irrelevant at this stage; the specific parcel record and live route terms are what matter." ] },
+      { heading: "A simple official-site safety routine", paragraphs: [
+        "Open the intended destination yourself. Confirm the domain before sign-in. Compare every product and payment request with the saved order record. Keep seller claims separate from verified warehouse observations. Use only the authenticated order, parcel and support routes shown by the platform. Save a screenshot or note of the order number, status, amount and stated reason whenever a decision could need later explanation.",
+        "This routine will not make every third-party listing reliable or eliminate shipping and seller risk. It does reduce avoidable mistakes caused by lookalike pages, vague payment requests, stale screenshots and missing order context. For someone searching the LoloBuy logo or official site, that is the practical answer: verify the live destination and record, then make the next decision from evidence rather than from branding alone." ] }
+    ]
   }
 ] as const;

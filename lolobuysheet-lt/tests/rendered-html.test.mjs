@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const expectedTitle = /<title>LoloBuy Spreadsheet: Finds, QC Photos &amp; Shipping Guide \(2026\)<\/title>/i;
+const expectedTitle = /<title>LoloBuy Spreadsheet 2026: Finds, QC Photos &amp; Shipping Guide<\/title>/i;
 const expectedCanonical = /<link[^>]+rel="canonical"[^>]+href="https:\/\/lolobuysheet\.lt\/"/i;
 const webSiteSchema = /"@type":"WebSite"/;
 

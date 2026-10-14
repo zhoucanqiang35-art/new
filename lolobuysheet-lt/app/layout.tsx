@@ -4,8 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lolobuysheet.lt"),
-  title: { default: "LoloBuy Spreadsheet: Finds, QC Photos & Shipping Guide (2026)", template: "%s | LoloBuy Sheet" },
-  description: "Research LoloBuy spreadsheet finds with product categories, QC-photo checks, warehouse planning and shipping-cost guidance for US and European buyers.",
+  title: { default: "LoloBuy Spreadsheet 2026: Finds, QC Photos & Shipping Guide", template: "%s | LoloBuy Sheet" },
+  description: "Search LoloBuy spreadsheet finds by category, check QC photos and compare warehouse and shipping decisions for US and European buyers.",
   robots: {
     index: true,
     follow: true,
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     },
   },
   alternates: { canonical: "/" },
-  openGraph: { title: "LoloBuy Spreadsheet: Finds, QC Photos & Shipping Guide", description: "Independent product research for global buyers", url: "https://lolobuysheet.lt/", siteName: "LoloBuy Sheet", images: [{ url: "/og.png", width: 1731, height: 909, alt: "LoloBuy Spreadsheet — independent product research for global buyers" }], type: "website" },
-  twitter: { card: "summary_large_image", title: "LoloBuy Spreadsheet: Finds, QC Photos & Shipping Guide", description: "Independent product research for global buyers", images: ["/og.png"] },
+  openGraph: { title: "LoloBuy Spreadsheet 2026: Finds, QC Photos & Shipping Guide", description: "Independent product research for global buyers", url: "https://lolobuysheet.lt/", siteName: "LoloBuy Sheet", images: [{ url: "/og.png", width: 1731, height: 909, alt: "LoloBuy Spreadsheet — independent product research for global buyers" }], type: "website" },
+  twitter: { card: "summary_large_image", title: "LoloBuy Spreadsheet 2026: Finds, QC Photos & Shipping Guide", description: "Independent product research for global buyers", images: ["/og.png"] },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 
