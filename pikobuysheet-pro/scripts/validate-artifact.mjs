@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const workerPath = resolve(projectRoot, "dist/_worker.js");
+const workerPath = resolve(projectRoot, "functions/[[path]].js");
 
 const source = await readFile(workerPath, "utf8");
 
@@ -12,9 +12,9 @@ const source = await readFile(workerPath, "utf8");
 const moduleUrl = `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
 const workerModule = await import(moduleUrl);
 assert.equal(
-  typeof workerModule.default?.fetch,
+  typeof workerModule.onRequest,
   "function",
-  `${pathToFileURL(workerPath)} must export default.fetch`,
+  `${pathToFileURL(workerPath)} must export onRequest`,
 );
 
-console.log("Artifact is valid ESM and exports default.fetch");
+console.log("Artifact is valid ESM and exports onRequest");
