@@ -13,6 +13,7 @@ export default function GuidePage({ slug, locale }: { slug: GuideSlug; locale: L
   const base = localizedPath(locale, "guide");
   const reviewed = guide.reviewed ?? "18 Aug 2026";
   const published = guide.published ?? "2026-08-18";
+  const modified = guide.modified ?? published;
   const articlePath = localizedPath(locale, `guide/${slug}`);
   const articleUrl = new URL(articlePath, "https://lolobuyspreadsheet.de").href;
   const sources = guide.sources ?? [
@@ -26,7 +27,7 @@ export default function GuidePage({ slug, locale }: { slug: GuideSlug; locale: L
     headline: tr(locale, guide.title),
     description: tr(locale, guide.deck),
     datePublished: published,
-    dateModified: published,
+    dateModified: modified,
     inLanguage: guide.language ?? locale,
     mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
     author: { "@type": "Organization", name: "FindSpreadsheet Editorial" },

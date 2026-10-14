@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { guideOrder } from "./data/guides";
+import { guideData, guideOrder } from "./data/guides";
 import { localeCodes, localizedPath, sectionKeys } from "./data/locales";
 
 const siteUrl = "https://lolobuyspreadsheet.de";
@@ -30,9 +30,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const guides: MetadataRoute.Sitemap = localeCodes.flatMap((locale) =>
     guideOrder.map((slug) => ({
       url: absolute(localizedPath(locale, `guide/${slug}`)),
-      lastModified,
+      lastModified: new Date(`${guideData[slug].modified ?? guideData[slug].published ?? "2026-08-18"}T00:00:00.000Z`),
       changeFrequency: "monthly" as const,
-      priority: 0.7,
+      priority: guideData[slug].modified === "2026-10-14" ? 0.85 : 0.7,
     })),
   );
 

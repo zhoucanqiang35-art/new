@@ -47,7 +47,7 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.equal(sitemapResponse.status, 200);
   assert.match(sitemapResponse.headers.get("content-type") ?? "", /application\/xml/i);
   const sitemap = await sitemapResponse.text();
-  assert.equal((sitemap.match(/<url>/g) ?? []).length, 816);
+  assert.equal((sitemap.match(/<url>/g) ?? []).length, 888);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/de\/guide\/qc-photos/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-germany-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-uk-guide/);
@@ -68,6 +68,9 @@ test("serves crawlable robots and a complete multilingual sitemap", async () => 
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-switzerland-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-norway-guide/);
   assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-denmark-guide/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-spreadsheet-guide/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-returns-refunds/);
+  assert.match(sitemap, /https:\/\/lolobuyspreadsheet\.de\/guide\/lolobuy-warehouse-storage/);
 });
 
 test("publishes the Denmark guide with crawlable article metadata", async () => {
