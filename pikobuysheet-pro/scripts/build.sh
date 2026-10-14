@@ -8,6 +8,9 @@ rm -rf "$dist_root"
 mkdir -p "$dist_root"
 
 # Cloudflare Pages Advanced Mode runs this Module Worker for every route.
-cat "$project_root/worker/catalog-data.js" "$project_root/worker/index.js" > "$dist_root/_worker.js"
+# Encode catalogue strings before combining the files. This prevents the Pages
+# Functions compiler from misreading seller titles that contain quote marks.
+node "$project_root/scripts/build.mjs" "$project_root" "$dist_root"
 
 echo "Built $dist_root"
+
