@@ -4,11 +4,15 @@ import { join } from 'node:path';
 const [projectRoot, distRoot] = process.argv.slice(2);
 if (!projectRoot || !distRoot) throw new Error('Expected project and output directories.');
 
-const [catalog, worker] = await Promise.all([
+const [catalogSource, worker] = await Promise.all([
   readFile(join(projectRoot, 'worker/catalog-data.js'), 'utf8'),
   readFile(join(projectRoot, 'worker/index.js'), 'utf8'),
 ]);
-if (!catalog.includes('const SNAPSHOT_PRODUCTS = [')) throw new Error('Product catalogue is invalid.');
+const catalogMatch = catalogSource.match(/const SNAPSHOT_PRODUCTS = (\[[\s\S]*\]);\s*$/m);
+if (!catalogMatch) throw new Error('Product catalogue is invalid.');
+// Re-serialise the source record. This keeps every product field but removes
+// source-file characters that Pages' Function compiler can misinterpret.
+const catalog = `const SNAPSHOT_PRODUCTS = ${JSON.stringify(JSON.parse(catalogMatch[1]))};`;
 
 // Keep the catalogue and renderer in one Pages Function.  The prior build
 // loaded the catalogue through an ASSETS binding, which produced an empty
