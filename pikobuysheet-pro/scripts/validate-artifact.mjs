@@ -1,20 +1,10 @@
-import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
-
-const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
-const workerPath = resolve(projectRoot, "functions/[[path]].js");
-
-const source = await readFile(workerPath, "utf8");
-
-// A data URL forces ESM parsing even though the generated output has no package.json.
-const moduleUrl = `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
-const workerModule = await import(moduleUrl);
-assert.equal(
-  typeof workerModule.onRequest,
-  "function",
-  `${pathToFileURL(workerPath)} must export onRequest`,
-);
-
-console.log("Artifact is valid ESM and exports onRequest");
+import assert from 'node:assert/strict';
+import { readFile, stat } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
+const html = await readFile(resolve(root, 'dist/index.html'), 'utf8');
+assert.match(html, /catalog-data\/products\.json/);
+assert.match(html, /Open official PikoBuy purchase/);
+assert.ok((await stat(resolve(root, 'dist/catalog-data/products.json'))).size > 1_000_000);
+console.log('Static Pages artifact is valid.');
