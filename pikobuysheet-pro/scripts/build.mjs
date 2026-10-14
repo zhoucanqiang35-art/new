@@ -16,14 +16,12 @@ const catalogModule = `let SNAPSHOT_PRODUCTS = [];
 let catalogPromise;
 async function ensureCatalog(request, assets) {
   if (SNAPSHOT_PRODUCTS.length) return;
-  if (!assets?.fetch) throw new Error('Pages static asset binding is unavailable.');
+  if (!assets?.fetch) return;
   if (!catalogPromise) {
     catalogPromise = assets.fetch(new URL('/catalog-data/products.json', request.url))
-      .then((response) => {
-        if (!response.ok) throw new Error('Product catalogue asset is unavailable.');
-        return response.json();
-      })
+      .then((response) => response.ok ? response.json() : [])
       .then((products) => { SNAPSHOT_PRODUCTS = Array.isArray(products) ? products : []; })
+      .catch(() => { SNAPSHOT_PRODUCTS = []; })
       .finally(() => { catalogPromise = null; });
   }
   await catalogPromise;
