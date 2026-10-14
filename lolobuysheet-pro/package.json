@@ -6,9 +6,10 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "build": "bash scripts/build-cloudflare-pages.sh",
-    "build:pages": "bash scripts/build-cloudflare-pages.sh",
-    "test": "npm run build && node --test tests/localized-pages.test.mjs tests/site-integrity.test.mjs"
+    "build": "bash scripts/build-static-pages.sh",
+    "build:generate": "bash scripts/build-cloudflare-pages.sh",
+    "build:pages": "bash scripts/build-static-pages.sh",
+    "test": "npm run build:generate && node --test tests/localized-pages.test.mjs tests/site-integrity.test.mjs"
   },
   "type": "module",
   "displayName": "LoloBuy Review Preview"
