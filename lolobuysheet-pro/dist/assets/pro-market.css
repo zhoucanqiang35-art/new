@@ -1,0 +1,132 @@
+.market-focus {
+  width: min(1180px, calc(100% - 40px));
+  margin: 26px auto 0;
+  padding: clamp(30px, 5vw, 64px);
+  border: 1px solid rgba(26, 48, 38, 0.12);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #16362c 0%, #214d3f 55%, #315f4f 100%);
+  color: #f8fbf6;
+  box-sizing: border-box;
+}
+
+.market-focus__intro {
+  display: grid;
+  grid-template-columns: 0.9fr 1.25fr;
+  gap: 22px 50px;
+  align-items: end;
+}
+
+.market-focus__intro .eyebrow {
+  grid-column: 1 / -1;
+  color: #d8e997;
+  margin: 0;
+}
+
+.market-focus__intro h2,
+.market-focus__intro p {
+  margin: 0;
+}
+
+.market-focus__intro h2 {
+  max-width: 600px;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+}
+
+.market-focus__intro > p:last-child {
+  max-width: 650px;
+  color: rgba(248, 251, 246, 0.78);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.market-focus__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.market-focus__grid article,
+.market-focus__grid a {
+  min-height: 152px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.07);
+  color: inherit;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.market-focus__grid a:hover,
+.market-focus__grid a:focus-visible {
+  background: rgba(216, 233, 151, 0.14);
+  border-color: rgba(216, 233, 151, 0.62);
+}
+
+.market-focus__grid span {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #d8e997;
+  color: #16362c;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.market-focus__grid h3 {
+  margin: 18px 0 8px;
+  font-size: 18px;
+}
+
+.market-focus__grid p {
+  margin: 0;
+  color: rgba(248, 251, 246, 0.7);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.market-focus__note {
+  margin: 18px 0 0;
+  color: rgba(248, 251, 246, 0.66);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .market-focus__intro {
+    grid-template-columns: 1fr;
+  }
+
+  .market-focus__intro .eyebrow {
+    grid-column: auto;
+  }
+
+  .market-focus__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .market-focus {
+    width: calc(100% - 24px);
+    padding: 24px 18px;
+    border-radius: 22px;
+  }
+
+  .market-focus__grid {
+    gap: 8px;
+  }
+
+  .market-focus__grid article,
+  .market-focus__grid a {
+    min-height: 138px;
+    padding: 15px;
+  }
+}

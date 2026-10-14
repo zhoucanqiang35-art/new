@@ -6,9 +6,9 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "build": "bash scripts/build-static-pages.sh",
+    "build": "node -e \"console.log('Using prebuilt Cloudflare Pages output')\"",
     "build:generate": "bash scripts/build-cloudflare-pages.sh",
-    "build:pages": "bash scripts/build-static-pages.sh",
+    "build:pages": "node -e \"console.log('Using prebuilt Cloudflare Pages output')\"",
     "test": "npm run build:generate && node --test tests/localized-pages.test.mjs tests/site-integrity.test.mjs"
   },
   "type": "module",
