@@ -47,7 +47,7 @@ Cloudflare Pages 项目设置：
 - Build command：`npm run build:pages`
 - Build output directory：`dist`
 
-最后一次部署触发：`2026-08-18 09:10 UTC`（仅用于触发 Cloudflare 重新构建，不影响网站内容）。
+最后一次部署触发：`2026-10-14 05:34 UTC`（仅用于触发 Cloudflare 重新构建，不影响网站内容）。
 
 本地验证 Pages 产物可运行：
 
