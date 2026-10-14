@@ -18,7 +18,7 @@ async function ensureCatalog(request, assets) {
   if (SNAPSHOT_PRODUCTS.length) return;
   if (!assets?.fetch) throw new Error('Pages static asset binding is unavailable.');
   if (!catalogPromise) {
-    catalogPromise = assets.fetch(new URL('/_data/catalog.json', request.url))
+    catalogPromise = assets.fetch(new URL('/catalog-data/products.json', request.url))
       .then((response) => {
         if (!response.ok) throw new Error('Product catalogue asset is unavailable.');
         return response.json();
@@ -49,6 +49,6 @@ await mkdir(functionsRoot, { recursive: true });
 await writeFile(join(functionsRoot, '[[path]].js'), `${catalogModule}${functionSource}\nexport async function onRequest(context) { return APP.fetch(context.request, context.env); }\n`);
 
 // Pages requires an asset directory alongside the Functions entrypoint.
-await mkdir(join(distRoot, '_data'), { recursive: true });
-await writeFile(join(distRoot, '_data', 'catalog.json'), catalogMatch[1]);
+await mkdir(join(distRoot, 'catalog-data'), { recursive: true });
+await writeFile(join(distRoot, 'catalog-data', 'products.json'), catalogMatch[1]);
 await writeFile(join(distRoot, 'index.html'), '<!doctype html><title>PikoBuy Spreadsheet</title><meta http-equiv="refresh" content="0;url=/">');
