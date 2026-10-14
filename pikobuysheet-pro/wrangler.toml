@@ -1,3 +1,3 @@
 name = "pikobuysheet-pro"
-main = "dist/server/index.js"
+pages_build_output_dir = "./dist"
 compatibility_date = "2026-10-14"
