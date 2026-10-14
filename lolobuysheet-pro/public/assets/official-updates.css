@@ -1,0 +1,232 @@
+.official-update-card {
+  min-height: 350px;
+}
+
+.official-update-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: 1px solid #ef62664d;
+  border-radius: 999px;
+  background: #fffaf3;
+  color: var(--coral);
+  padding: 6px 9px;
+  font: 800 9px/1 var(--font-mono), monospace;
+  letter-spacing: .06em;
+}
+
+.official-update-card .editorial-icon {
+  width: auto;
+  min-width: 48px;
+  padding: 0 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.official-update-card p {
+  padding-right: 24px;
+  padding-bottom: 28px;
+  font-size: 14px;
+}
+
+.official-update-card:focus-visible {
+  outline: 3px solid #ef62664d;
+  outline-offset: 4px;
+}
+
+.editorial-progress {
+  display: none;
+}
+
+[dir="rtl"] .official-update-badge {
+  right: auto;
+  left: 24px;
+}
+
+[dir="rtl"] .official-update-card p {
+  padding-right: 0;
+  padding-left: 24px;
+}
+
+[dir="rtl"] .official-update-card > b {
+  right: auto;
+  left: 24px;
+}
+
+@media (max-width: 720px) {
+  .editorial-section {
+    padding: 44px 18px 48px;
+  }
+
+  .editorial-head {
+    align-items: stretch;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .editorial-head h2 {
+    margin: 7px 0 8px;
+    font-size: clamp(30px, 8.2vw, 32px);
+    line-height: 1.06;
+  }
+
+  .editorial-head > div > p:last-child {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 12.5px;
+    line-height: 1.5;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .editorial-head > a {
+    align-items: center;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 11px 14px;
+    font-size: 12.5px;
+    display: inline-flex;
+  }
+
+  .editorial-grid {
+    scrollbar-width: none;
+    scroll-snap-type: inline mandatory;
+    overscroll-behavior-inline: contain;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 86%;
+    gap: 12px;
+    padding: 2px 14% 8px 0;
+    overflow-x: auto;
+  }
+
+  .editorial-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .official-update-card {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 232px;
+    height: 232px;
+    padding: 16px 16px 42px;
+    border-radius: 16px;
+  }
+
+  .official-update-badge {
+    top: 15px;
+    right: 15px;
+    padding: 5px 7px;
+    font-size: 8px;
+  }
+
+  .official-update-card .editorial-icon {
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    margin: 20px 0 9px;
+    padding: 0;
+    border-radius: 8px;
+    font-size: 10px;
+  }
+
+  .official-update-card h3 {
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 7px;
+    font-size: 17px;
+    line-height: 1.2;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .official-update-card p {
+    display: -webkit-box;
+    overflow: hidden;
+    padding: 0;
+    font-size: 11.5px;
+    line-height: 1.45;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  .official-update-card > b {
+    right: 16px;
+    bottom: 14px;
+    font-size: 17px;
+  }
+
+  .editorial-progress {
+    justify-content: center;
+    gap: 0;
+    min-height: 24px;
+    margin-top: 7px;
+    display: flex;
+  }
+
+  .editorial-progress button {
+    position: relative;
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    padding: 0;
+  }
+
+  .editorial-progress button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    background: #d8cec2;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    transition: width .2s ease, background-color .2s ease;
+  }
+
+  .editorial-progress button[aria-current="true"]::before {
+    width: 22px;
+    background: var(--coral, #ef6266);
+  }
+
+  .editorial-progress button:focus-visible {
+    outline: 2px solid var(--coral, #ef6266);
+    outline-offset: 3px;
+  }
+
+  [dir="rtl"] .editorial-grid {
+    padding-right: 0;
+    padding-left: 14%;
+  }
+
+  [dir="rtl"] .official-update-badge {
+    right: auto;
+    left: 15px;
+  }
+
+  [dir="rtl"] .official-update-card > b {
+    right: auto;
+    left: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .editorial-grid {
+    grid-auto-columns: 90%;
+    padding-right: 10%;
+  }
+
+  [dir="rtl"] .editorial-grid {
+    padding-right: 0;
+    padding-left: 10%;
+  }
+
+  .official-update-card {
+    min-height: 238px;
+    height: 238px;
+  }
+}
