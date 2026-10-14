@@ -52,7 +52,14 @@ function withLang(path, lang = 'en') {
   return `${local.pathname}${local.search}${local.hash}`;
 }
 const catalogPath = (path, lang = 'en') => withLang(`/catalog?path=${encodeURIComponent(path)}`, lang);
-const productPath = (path, lang = 'en') => withLang(`/product?path=${encodeURIComponent(path)}`, lang);
+// Keep both the canonical source path and the seller/item ID in local links.
+// A source path is the preferred lookup key, while the ID makes old links and
+// source URLs with a changed slug resolve to the same internal product record.
+const productPath = (path, lang = 'en', productId = '') => {
+  const query = new URLSearchParams({ path });
+  if (productId) query.set('productId', productId);
+  return withLang(`/product?${query.toString()}`, lang);
+};
 
 function languagePicker(lang, currentPath) {
   const options = LANGUAGE_OPTIONS.map(([code, name]) => `<option value="${escapeHtml(withLang(currentPath, code))}"${code === lang ? ' selected' : ''}>${escapeHtml(name)}</option>`).join('');
@@ -443,7 +450,7 @@ function routeForSource(candidate) {
 }
 
 function itemIdFromUrl(value) {
-  const match = String(value || '').match(/itemID(?:%3D|=)(\d{5,})/i);
+  const match = String(value || '').match(/(?:itemID|productId|weidian)(?:%3D|=)(\d{4,})/i);
   if (match) return match[1];
   try {
     const external = new URL(value);
@@ -462,6 +469,48 @@ function localHref(value) {
   const id = itemIdFromUrl(value);
   if (id) return `/buy?productId=${encodeURIComponent(id)}`;
   return '#';
+}
+
+function decodedValue(value = '') {
+  let result = String(value || '').trim();
+  for (let index = 0; index < 2; index += 1) {
+    try {
+      const decoded = decodeURIComponent(result);
+      if (decoded === result) break;
+      result = decoded;
+    } catch {
+      break;
+    }
+  }
+  return result;
+}
+
+function snapshotProductForReference(...values) {
+  const candidates = values.flatMap((value) => {
+    const raw = decodedValue(value);
+    if (!raw) return [];
+    const paths = [raw];
+    const source = sourceUrl(raw);
+    if (source) paths.push(source.pathname);
+    return paths;
+  });
+  const ids = new Set();
+  for (const candidate of candidates) {
+    const id = itemIdFromUrl(candidate) || (/^\d{4,}$/.test(candidate) ? candidate : '');
+    if (id) ids.add(id);
+  }
+  return SNAPSHOT_PRODUCTS.find((product) => candidates.includes(product.path))
+    || SNAPSHOT_PRODUCTS.find((product) => ids.has(String(product.weidian)) || ids.has(String(product.id)))
+    || null;
+}
+
+function sourceProductUrlFromReference(...values) {
+  for (const value of values) {
+    const source = sourceUrl(decodedValue(value));
+    if (source && isProductPath(source.pathname)) return source;
+  }
+  const saved = snapshotProductForReference(...values);
+  return saved ? sourceUrl(saved.path) : null;
 }
 
 const browseCategories = [
@@ -719,7 +768,7 @@ function browsePage(content, title, lang = 'en', currentPath = '/', active = '')
 
 function productCard(product, lang = 'en') {
   const copy = siteCopy(lang);
-  const productDetail = productPath(product.path, lang);
+  const productDetail = productPath(product.path, lang, product.weidian || product.id);
   return `<article class="product-card"><a href="${productDetail}"><img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.alt || product.title)}" loading="lazy"></a><div class="product-copy"><h2 class="notranslate">${escapeHtml(product.title)}</h2><div class="product-meta notranslate"><span>$${usdPrice(product.price)} USD</span><span>${product.weidian ? `ID ${escapeHtml(product.weidian)}` : (copy ? escapeHtml(copy.record) : 'Open product record')}</span></div><a class="details-link" href="${productDetail}">${copy ? escapeHtml(copy.record) : 'View full record'} <span>→</span></a></div></article>`;
 }
 
@@ -864,20 +913,24 @@ async function renderCatalog(upstreamUrl, keywords = '', lang = 'en', currentPat
   return new Response(browsePage(body, `${heading} | PikoBuy Spreadsheet`, lang, currentPath), { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
 }
 
-async function renderProduct(upstreamUrl, lang = 'en', currentPath = '/product') {
+async function renderProduct(upstreamUrl, lang = 'en', currentPath = '/product', savedProduct = null) {
   const copy = siteCopy(lang);
   const html = await sourceHtml(upstreamUrl);
   // The direct source detail is authoritative.  If it has a short-lived
   // upstream failure, look up the same product in its source category, where
   // FindSpreadsheet exposes the exact purchase button metadata as well.
-  const fallback = html ? null : await categoryFallbackProduct(upstreamUrl);
-  if (!html && !fallback) return new Response(browsePage(`<main class="catalog-wrap"><div class="empty"><h1>${escapeHtml(copy ? copy.record : 'Product temporarily unavailable')}</h1></div></main>`, 'PikoBuy Spreadsheet', lang, currentPath), { status: 502, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
+  const categoryFallback = !html && upstreamUrl ? await categoryFallbackProduct(upstreamUrl) : null;
+  // The imported catalogue is a durable product-detail fallback.  It is used
+  // for an unavailable source request and also fills any field an older live
+  // detail template does not expose (notably its Weidian purchase ID).
+  const fallback = { ...(savedProduct || {}), ...(categoryFallback || {}) };
+  if (!html && !fallback.path && !fallback.weidian) return new Response(browsePage(`<main class="catalog-wrap"><div class="empty"><h1>${escapeHtml(copy ? copy.record : 'Product temporarily unavailable')}</h1></div></main>`, 'PikoBuy Spreadsheet', lang, currentPath), { status: 502, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
   const title = cleanText((html && html.match(/<h1 class="product-title">([\s\S]*?)<\/h1>/i) || [])[1]) || fallback?.title || 'Product details';
-  const id = verifiedWeidianIdFromProductHtml(html) || fallback?.weidian || '';
+  const id = verifiedWeidianIdFromProductHtml(html) || fallback.weidian || '';
   const price = cleanText((html && html.match(/<div class="product-price">([^<]+)</i) || [])[1]) || fallback?.price || '';
   const listingImages = await weidianProductImages(id);
   const qc = await qcImages(id);
-  const mainSiteImages = (html ? galleryImages(html) : [fallback?.image]).filter(Boolean).slice(0, 24);
+  const mainSiteImages = (html ? galleryImages(html) : [fallback.image]).filter(Boolean).slice(0, 24);
   // The top viewer is deliberately limited to the matching Weidian images.
   // If Weidian does not return public images, retain the source-gallery image
   // as an honest fallback instead of substituting QC images into that viewer.
@@ -938,11 +991,13 @@ export default {
     if (url.pathname === '/sitemap.xml') return new Response('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://pikobuysheet.pro/</loc><priority>1.0</priority></url><url><loc>https://pikobuysheet.pro/categories</loc><priority>0.9</priority></url><url><loc>https://pikobuysheet.pro/product-details</loc><priority>0.8</priority></url><url><loc>https://pikobuysheet.pro/seo-articles</loc><priority>0.8</priority></url><url><loc>https://pikobuysheet.pro/faq</loc><priority>0.7</priority></url><url><loc>https://pikobuysheet.pro/catalog?path=%2FAllProducts%2F</loc><priority>0.8</priority></url></urlset>', { headers: { 'content-type': 'application/xml; charset=utf-8' } });
     if (url.pathname === '/buy') {
       let productId = url.searchParams.get('productId') || '';
+      const localProduct = snapshotProductForReference(productId, url.searchParams.get('path'), url.searchParams.get('productUrl'));
+      if (localProduct?.weidian) productId = localProduct.weidian;
       if (!/^\d{5,}$/.test(productId)) {
-        const upstream = sourceUrl(url.searchParams.get('path') || '');
+        const upstream = sourceProductUrlFromReference(url.searchParams.get('path'), url.searchParams.get('productUrl'), productId);
         if (upstream && isProductPath(upstream.pathname)) {
           const detailHtml = await sourceHtml(upstream);
-          const fallback = detailHtml ? null : await categoryFallbackProduct(upstream);
+          const fallback = detailHtml ? snapshotProductForReference(upstream.pathname) : await categoryFallbackProduct(upstream);
           productId = verifiedWeidianIdFromProductHtml(detailHtml) || fallback?.weidian || '';
         }
       }
@@ -960,9 +1015,20 @@ export default {
       return renderCatalog(upstream, '', lang, `${url.pathname}${url.search}`, url.searchParams.get('page'));
     }
     if (url.pathname === '/product') {
-      const upstream = sourceUrl(url.searchParams.get('path') || '');
-      if (!upstream || !isProductPath(upstream.pathname)) return new Response(home(lang), { status: 400, headers: { 'content-type': 'text/html; charset=utf-8' } });
-      return renderProduct(upstream, lang, `${url.pathname}${url.search}`);
+      const path = url.searchParams.get('path') || url.searchParams.get('productPath') || '';
+      const productUrl = url.searchParams.get('productUrl') || '';
+      const productId = url.searchParams.get('productId') || url.searchParams.get('itemID') || url.searchParams.get('id') || '';
+      const requestedItemId = itemIdFromUrl(productUrl) || (/^\d{5,}$/.test(productId) ? productId : '');
+      const saved = snapshotProductForReference(path, productUrl, productId)
+        || (requestedItemId ? { id: requestedItemId, weidian: requestedItemId, title: `Weidian item ${requestedItemId}`, price: '', image: '' } : null);
+      const upstream = sourceProductUrlFromReference(path, productUrl, productId);
+      if (!upstream || !isProductPath(upstream.pathname)) {
+        // Preserve an internal detail page for a recognised seller record
+        // even when an older link supplies only its numeric item ID.
+        if (saved) return renderProduct(sourceUrl(saved.path), lang, `${url.pathname}${url.search}`, saved);
+        return new Response(home(lang), { status: 400, headers: { 'content-type': 'text/html; charset=utf-8' } });
+      }
+      return renderProduct(upstream, lang, `${url.pathname}${url.search}`, saved);
     }
     return new Response('Not found', { status: 404 });
   },
