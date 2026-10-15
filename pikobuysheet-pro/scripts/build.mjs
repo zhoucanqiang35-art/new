@@ -4,35 +4,49 @@ import { join } from 'node:path';
 const [projectRoot, distRoot] = process.argv.slice(2);
 if (!projectRoot || !distRoot) throw new Error('Expected project and output directories.');
 
-const [catalogSource, worker] = await Promise.all([
-  readFile(join(projectRoot, 'worker/catalog-data.js'), 'utf8'),
-  readFile(join(projectRoot, 'worker/index.js'), 'utf8'),
-]);
-const catalogMatch = catalogSource.match(/const SNAPSHOT_PRODUCTS = (\[[\s\S]*\]);\s*$/m);
-if (!catalogMatch) throw new Error('Product catalogue is invalid.');
-// Re-serialise the source record. This keeps every product field but removes
-// source-file characters that Pages' Function compiler can misinterpret.
-const catalog = `const SNAPSHOT_PRODUCTS = ${JSON.stringify(JSON.parse(catalogMatch[1]))};`;
+const catalogSource = await readFile(join(projectRoot, 'worker/catalog-data.js'), 'utf8');
+const catalogMatch = catalogSource.match(/^const SNAPSHOT_PRODUCTS = (\[[\s\S]*\]);\s*$/m);
+if (!catalogMatch) throw new Error('Could not read the product catalogue.');
 
-// Keep the catalogue and renderer in one Pages Function.  The prior build
-// loaded the catalogue through an ASSETS binding, which produced an empty
-// catalogue at runtime.  This preserves the reference site's working data
-// model without any cross-site or browser-side data request.
-const app = worker
-  .replace('export default {', 'const APP = {')
-  .replace('async fetch(request) {', 'async fetch(request, env = {}) {');
-if (!app.includes('const APP = {') || !app.includes('async fetch(request, env = {}) {')) {
-  throw new Error('Could not convert the reference renderer to a Pages Function.');
+// Keep the full catalogue as a static Pages asset. Embedding it in the
+// Function source makes Cloudflare's publishing wrapper reject the deploy.
+// The Function loads this same-origin asset through the built-in ASSETS
+// binding, so no product data or visitor navigation leaves this project.
+const catalogModule = `let SNAPSHOT_PRODUCTS = [];
+let catalogPromise;
+async function ensureCatalog(request, assets) {
+  if (SNAPSHOT_PRODUCTS.length) return;
+  if (!assets?.fetch) return;
+  if (!catalogPromise) {
+    catalogPromise = assets.fetch(new URL('/catalog-data/products.json', request.url))
+      .then((response) => response.ok ? response.json() : [])
+      .then((products) => { SNAPSHOT_PRODUCTS = Array.isArray(products) ? products : []; })
+      .catch(() => { SNAPSHOT_PRODUCTS = []; })
+      .finally(() => { catalogPromise = null; });
+  }
+  await catalogPromise;
+}
+`;
+const workerSource = await readFile(join(projectRoot, 'worker/index.js'), 'utf8');
+let functionSource = workerSource.replace('export default {', 'const APP = {');
+functionSource = functionSource.replace('async fetch(request) {', 'async fetch(request, env = {}) {');
+functionSource = functionSource.replace(
+  'const url = new URL(request.url);\n    const lang = langOf(url.searchParams.get(\'lang\'));',
+  'const url = new URL(request.url);\n    await ensureCatalog(request, env.ASSETS);\n    const lang = langOf(url.searchParams.get(\'lang\'));',
+);
+if (functionSource === workerSource || !functionSource.includes('await ensureCatalog(request, env.ASSETS);')) {
+  throw new Error('Could not create the Pages Functions entrypoint.');
 }
 
-await rm(join(projectRoot, 'functions'), { recursive: true, force: true });
-await rm(distRoot, { recursive: true, force: true });
-await mkdir(join(projectRoot, 'functions'), { recursive: true });
-await mkdir(distRoot, { recursive: true });
-await writeFile(
-  join(projectRoot, 'functions', '[[path]].js'),
-  `${catalog}\n${app}\nexport async function onRequest(context) { return APP.fetch(context.request, context.env); }\n`,
-);
-// Keep a concrete static artifact alongside the Function so a source update
-// always produces a fresh Pages build, rather than reusing a stale output.
-await writeFile(join(distRoot, 'index.html'), '<!doctype html><meta charset="utf-8"><meta name="application-name" content="PikoBuy Spreadsheet"><title>PikoBuy Spreadsheet</title>');
+// Pages Functions avoids the Advanced Mode wrapper that rejects a large
+// generated Worker in the deployment stage. The catch-all function retains
+// the exact same request handler and routes as the original Worker.
+const functionsRoot = join(projectRoot, 'functions');
+await rm(functionsRoot, { recursive: true, force: true });
+await mkdir(functionsRoot, { recursive: true });
+await writeFile(join(functionsRoot, '[[path]].js'), `${catalogModule}${functionSource}\nexport async function onRequest(context) {\n  try { return await APP.fetch(context.request, context.env); }\n  catch (error) { return new Response(\`PikoBuy Spreadsheet runtime error: \${error?.message || String(error)}\`, { status: 500, headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' } }); }\n}\n`);
+
+// Pages requires an asset directory alongside the Functions entrypoint.
+await mkdir(join(distRoot, 'catalog-data'), { recursive: true });
+await writeFile(join(distRoot, 'catalog-data', 'products.json'), catalogMatch[1]);
+await writeFile(join(distRoot, 'index.html'), '<!doctype html><title>PikoBuy Spreadsheet</title><meta http-equiv="refresh" content="0;url=/">');
