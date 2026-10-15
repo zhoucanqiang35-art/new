@@ -1,0 +1,6 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  "name": "lolobuyspreadsheet-pl",
+  "compatibility_date": "2026-10-15",
+  "pages_build_output_dir": "dist/client"
+}
