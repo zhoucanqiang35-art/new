@@ -36,5 +36,6 @@ jobs:
       - run: npx wrangler pages deploy dist --project-name lolobuysheet-lt --branch main
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
       - name: Notify Bing through IndexNow
-        run: node scripts/indexnow-payload.mjs | curl --fail-with-body --request POST https://api.indexnow.org/indexnow --header 'Content-Type: application/json; charset=utf-8' --data-binary @-
+        run: |
+          node scripts/indexnow-payload.mjs | curl --fail-with-body --request POST https://api.indexnow.org/indexnow --header 'Content-Type: application/json; charset=utf-8' --data-binary @-
         if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
