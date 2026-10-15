@@ -5,19 +5,25 @@ import { useEffect, useState } from "react";
 export const localeCodes = ["en", "nl", "de", "fr", "es", "it", "pl", "pt", "sv"] as const;
 export type Language = typeof localeCodes[number];
 export const isLanguage = (value: string | null): value is Language => Boolean(value && (localeCodes as readonly string[]).includes(value));
-export function useLanguage(): Language {
-  const [language, setLanguage] = useState<Language>("en");
+export function languageFromPathname(pathname: string): Language | null {
+  const segment = pathname.split("/")[1] ?? "";
+  return isLanguage(segment) ? segment : null;
+}
+export function useLanguage(initialLanguage: Language = "en"): Language {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   useEffect(() => {
+    const pathLanguage = languageFromPathname(window.location.pathname);
     const current = new URLSearchParams(window.location.search).get("lang");
     const stored = window.localStorage.getItem("lolobuysheet-language");
-    const next = isLanguage(current) ? current : isLanguage(stored) ? stored : "en";
+    const next = pathLanguage ?? (isLanguage(current) ? current : isLanguage(stored) ? stored : initialLanguage);
     setLanguage(next);
     document.documentElement.lang = next;
-  }, []);
+  }, [initialLanguage]);
   return language;
 }
 export function localeHref(path: string, language: Language) {
-  return `${path}${path.includes("?") ? "&" : "?"}lang=${language}`;
+  const normalized = path === "/" ? "" : path.startsWith("/") ? path : `/${path}`;
+  return `/${language}${normalized}`;
 }
 
 export type Copy = { name:string; code:string; nav:string[]; eyebrow:string; title:string; intro:string; explore:string; search:string; note:string; section:string; sectionBody:string; guide:string; guideBody:string; article:string; articleBody:string; faq:string; faqBody:string; source:string; independent:string; focus:string; countries:string[] };

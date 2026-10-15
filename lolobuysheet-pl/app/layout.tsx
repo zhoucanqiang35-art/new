@@ -41,16 +41,6 @@ export default function RootLayout({
     <html lang="en" translate="no">
       <head>
         <meta name="google" content="notranslate" />
-        <link rel="alternate" hrefLang="en" href="https://lolobuysheet.pl/?lang=en" />
-        <link rel="alternate" hrefLang="de" href="https://lolobuysheet.pl/?lang=de" />
-        <link rel="alternate" hrefLang="fr" href="https://lolobuysheet.pl/?lang=fr" />
-        <link rel="alternate" hrefLang="es" href="https://lolobuysheet.pl/?lang=es" />
-        <link rel="alternate" hrefLang="it" href="https://lolobuysheet.pl/?lang=it" />
-        <link rel="alternate" hrefLang="pt" href="https://lolobuysheet.pl/?lang=pt" />
-        <link rel="alternate" hrefLang="nl" href="https://lolobuysheet.pl/?lang=nl" />
-        <link rel="alternate" hrefLang="pl" href="https://lolobuysheet.pl/?lang=pl" />
-        <link rel="alternate" hrefLang="sv" href="https://lolobuysheet.pl/?lang=sv" />
-        <link rel="alternate" hrefLang="x-default" href="https://lolobuysheet.pl/?lang=en" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "WebSite",

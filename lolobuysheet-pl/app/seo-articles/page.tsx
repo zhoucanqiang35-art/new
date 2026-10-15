@@ -1,7 +1,7 @@
 "use client";
 
 import { SiteHeader } from "../components/SiteHeader";
-import { languageCopy, pageLabels, useLanguage } from "../i18n";
+import { Language, languageCopy, pageLabels, useLanguage } from "../i18n";
 import { localizedArticleBodies } from "../localized-article-bodies";
 import { regionalGuides } from "../regional-guides";
 
@@ -68,10 +68,10 @@ const localizedTitles: Record<string, string[]> = {
   sv:["LoloBuy-spreadsheet: granska en produkt före betalning","LoloBuy QC-bilder: bedöm synliga bevis noggrant","LoloBuy fraktkostnad: planera ett paket utan falsk precision"],
 };
 
-export default function Articles(){
-  const language=useLanguage(); const t=languageCopy[language]; const labels=pageLabels[language]; const localized=localizedArticleBodies[language];
+export default function Articles({initialLanguage}: {initialLanguage?: Language}){
+  const language=useLanguage(initialLanguage); const t=languageCopy[language]; const labels=pageLabels[language]; const localized=localizedArticleBodies[language];
   const regional=regionalGuides[language];
-  return <main><SiteHeader/><article className="articles-section standalone long-article seo-page">
+  return <main><SiteHeader initialLanguage={language}/><article className="articles-section standalone long-article seo-page">
     <section className="merged-details"><p className="eyebrow">{labels.buyerCheck}</p><h2>{t.guide}</h2><div className="details-layout"><div className="checkerboard">{labels.detailCards.map(card=><span key={card}>{card}</span>)}</div><div><p className="large-copy">{t.guideBody} {t.faqBody}</p><a className="text-link" href="https://findspreadsheet.com/">{t.explore} ↗</a></div></div></section>
     {language==="en" ? articles.map((article,index)=><section className="merged-article" key={article.title}><p className="eyebrow">SEO ARTICLE {String(index+1).padStart(2,"0")}</p><h1>{article.title}</h1><p className="article-meta">{article.meta}</p>{article.paragraphs.map((p,i)=><p key={i}>{p}</p>)}<a href="https://findspreadsheet.com/">Research products on FindSpreadsheet →</a></section>) : localized.map((article,index)=><section className="merged-article" key={article.slug}><p className="eyebrow">{t.article} {String(index+1).padStart(2,"0")}</p><h1>{localizedTitles[language]?.[index] ?? labels.articleTitle}</h1><p className="article-meta">{t.source}</p>{article.sections.map(section=><section key={section.heading}><h2 className="article-subheading">{section.heading}</h2>{section.paragraphs.map((paragraph,i)=><p key={i}>{paragraph}</p>)}</section>)}<a href="https://findspreadsheet.com/">{t.explore} →</a></section>)}
     <section className="merged-article regional-guide" id="lolobuy-poland-import-guide"><p className="eyebrow">{language==="en" ? "SEO ARTICLE 04 · POLAND" : `${t.article} 04 · POLSKA`}</p><h1>{regional.title}</h1><p className="article-meta">{regional.meta}</p>{regional.sections.map(section=><section key={section.heading}><h2 className="article-subheading">{section.heading}</h2>{section.paragraphs.map((paragraph,i)=><p key={i}>{paragraph}</p>)}</section>)}<a href="https://findspreadsheet.com/">{language==="en" ? "Research products on FindSpreadsheet" : t.explore} →</a></section>

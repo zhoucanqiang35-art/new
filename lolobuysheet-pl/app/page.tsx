@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { factualFaq } from "./editorial-content";
-import { languageCopy, pageLabels } from "./i18n";
+import { languageCopy, localeHref, pageLabels } from "./i18n";
 import { localizedArticleBodies } from "./localized-article-bodies";
 
 type Language = "en" | "de" | "fr" | "es" | "it" | "pt" | "nl" | "pl" | "sv";
@@ -50,13 +50,15 @@ const verifiedGuide = [
   "The practical checklist is simple: save the listing details; confirm option and quantity; review available visual evidence; ask focused questions; check destination and route information at submission; retain the parcel reference; and review tracking as it develops. When you are ready to research products, use the FindSpreadsheet search or a relevant category route. This independent site does not place orders, accept payments, or represent LoloBuy customer support."
 ];
 
-export default function Home() {
-  const [language, setLanguage] = useState<Language>("en");
+export default function Home({initialLanguage="en"}: {initialLanguage?: Language}) {
+  const [language, setLanguage] = useState<Language>(initialLanguage);
   const [compactMobile, setCompactMobile] = useState(false);
   useEffect(() => {
+    const fromPath = window.location.pathname.split("/")[1] as Language | undefined;
     const requested = new URLSearchParams(window.location.search).get("lang") as Language | null;
     const remembered = window.localStorage.getItem("lolobuysheet-language") as Language | null;
-    if (requested && content[requested]) setLanguage(requested);
+    if (fromPath && content[fromPath]) setLanguage(fromPath);
+    else if (requested && content[requested]) setLanguage(requested);
     else if (remembered && content[remembered]) setLanguage(remembered);
     const media = window.matchMedia("(max-width: 500px)");
     const sync = () => setCompactMobile(media.matches);
@@ -68,11 +70,10 @@ export default function Home() {
   const homeFaq = [...factualFaq[language], { question: shared.explore, answer: shared.independent }, { question: shared.focus, answer: shared.source }];
   const switchLanguage = (next: Language) => {
     window.localStorage.setItem("lolobuysheet-language", next);
-    const destination = new URL(window.location.href);
-    destination.searchParams.set("lang", next);
-    window.location.assign(destination.toString());
+    const current = window.location.pathname.replace(/^\/(en|de|fr|es|it|pt|nl|pl|sv)(?=\/|$)/, "") || "/";
+    window.location.assign(localeHref(current, next));
   };
-  const route = (path: string) => `${path}${path.includes("?") ? "&" : "?"}lang=${language}`;
+  const route = (path: string) => localeHref(path, language);
   return <main translate="no">
     <header className="site-header">
       <a className="brand" href="#top" aria-label="LoloBuy Sheet Poland home"><img className="brand-logo" src="/lolobuy-logo.png" alt="LoloBuy"/><strong>Sheet<span className="brand-muted">.pl</span></strong></a>
@@ -81,7 +82,7 @@ export default function Home() {
     </header>
     <section id="top" className="hero">
       <div className="hero-copy"><p className="eyebrow">{t.eyebrow}</p><h1>{t.title}</h1><p className="intro">{t.intro}</p><div className="hero-actions"><a className="button button-lime" href="https://findspreadsheet.com/">{t.primary}<span>↗</span></a><a className="button button-ghost" href="#section-2">{t.secondary}</a></div><form className="search" action="https://findspreadsheet.com/search.html" method="get"><label htmlFor="query">{t.search}</label><input type="hidden" name="channelid" value="2"/><div><input id="query" name="keywords" placeholder={t.search} required/><button type="submit">{t.searchLabel} <span>→</span></button></div></form></div>
-      <div className="hero-art"><img src="/research-atlas-v2.jpg" alt="Research desk"/><div className="art-stamp">{labels.check}<br/><b>09 / 2026</b></div><div className="art-caption">{shared.independent}</div></div>
+      <div className="hero-art"><img src="/research-atlas.png" alt="Research desk"/><div className="art-stamp">{labels.check}<br/><b>09 / 2026</b></div><div className="art-caption">{shared.independent}</div></div>
     </section>
     <section className="signal-strip"><div><b>09</b><span>{shared.focus}</span></div><div><b>10</b><span>{labels.categoryCount}</span></div><div><b>01</b><span>{shared.explore}: FindSpreadsheet</span></div><p>{shared.note}</p></section>
     <section id="section-2" className="method-section"><div className="section-heading"><p className="eyebrow">01 / {labels.check}</p><h2>{shared.guide}</h2></div><div className="method-grid">{labels.guideSteps.map((step,index)=><article key={step}><span>{String(index+1).padStart(2,"0")}</span><h3>{step}</h3><p>{index===0?shared.sectionBody:index===1?shared.faqBody:shared.guideBody}</p></article>)}</div></section>
@@ -89,6 +90,6 @@ export default function Home() {
     <section id="section-3" className="details-section"><div className="section-heading"><p className="eyebrow">03 / {labels.buyerCheck}</p><h2>{shared.guide}</h2></div><div className="details-layout"><div className="checkerboard">{labels.detailCards.map(card=><span key={card}>{card}</span>)}</div><div><p className="large-copy">{shared.guideBody} {shared.faqBody}</p><a className="text-link" href="https://findspreadsheet.com/">{shared.explore} <span>↗</span></a></div></div></section>
     <section id="section-4" className="articles-section"><div className="section-heading split"><div><p className="eyebrow">04 / {labels.reading}</p><h2>{language==="en"?verifiedGuide[0]:labels.articleTitle}</h2></div><p>{language==="en"?verifiedGuide[1]:shared.source}</p></div><details className="long-article" open={!compactMobile}><summary>{language==="en"?"Read the complete practical guide":shared.article}</summary>{language==="en"?verifiedGuide.slice(2).map((paragraph,index)=><p key={index}>{paragraph}</p>):localizedArticleBodies[language][0].sections.flatMap(section=>[<h3 key={section.heading}>{section.heading}</h3>,...section.paragraphs.map((paragraph,index)=><p key={section.heading+index}>{paragraph}</p>)])}<a href="https://findspreadsheet.com/">{shared.explore} →</a></details></section>
     <section id="section-5" className="faq-section"><div className="section-heading"><p className="eyebrow">05 / {labels.answers}</p><h2>{t.faq}</h2></div><div className="faq-grid">{homeFaq.map((item,index)=><details key={item.question} open={index===0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></section>
-    <footer><div className="brand footer-brand"><img className="brand-logo" src="/lolobuy-logo.png" alt="LoloBuy"/><strong>Sheet<span className="brand-muted">.pl</span></strong></div><p>{t.footer}</p><a href="https://findspreadsheet.com/">FindSpreadsheet.com ↗</a></footer>
+    <footer><div className="brand footer-brand"><img className="brand-logo" src="/lolobuy-logo.png" alt="LoloBuy"/><strong>Sheet<span className="brand-muted">.pl</span></strong></div><p>{shared.independent}</p><a href="https://findspreadsheet.com/">FindSpreadsheet.com ↗</a></footer>
   </main>;
 }
