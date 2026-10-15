@@ -1,7 +1,7 @@
 // Standalone catalogue renderer: version 27 source rebuild.
 const SOURCE_ORIGIN = 'https://findspreadsheet.com';
 const SOURCE_HOST = new URL(SOURCE_ORIGIN).hostname;
-const PIKOBUY_REGISTER = 'https://www.pikobuy.com/?mode=register&redirect=/home';
+const PIKOBUY_REGISTER = 'https://ikako.vip/r/wtqaa';
 // Source catalog prices are CNY. Display an estimated USD equivalent at a clear, consistent rate.
 const CNY_PER_USD = 7.2;
 // Eight-card desktop rows keep imported product images readable while local
