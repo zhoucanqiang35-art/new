@@ -24,7 +24,7 @@ const categories = ["shoes", "clothing", "accessories"] as const;
 function entry(path: string, priority: number): MetadataRoute.Sitemap[number] {
   return {
     url: `${siteUrl}${path}`,
-    lastModified: new Date("2026-08-30"),
+    lastModified: new Date("2026-10-15"),
     changeFrequency: "weekly",
     priority,
   };
