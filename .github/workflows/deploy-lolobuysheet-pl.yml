@@ -1,0 +1,38 @@
+name: Deploy LoloBuy Sheet PL
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "lolobuysheet-pl/**"
+      - ".github/workflows/deploy-lolobuysheet-pl.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lolobuysheet-pl-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    defaults:
+      run:
+        working-directory: lolobuysheet-pl
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - run: pnpm install --no-lockfile --ignore-scripts
+      - run: pnpm run build
+      - run: pnpm exec wrangler pages deploy dist/client --project-name lolobuysheet-pl --branch main
+        if: ${{ env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != '' }}
