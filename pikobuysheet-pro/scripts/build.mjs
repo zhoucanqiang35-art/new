@@ -8,7 +8,7 @@ if (!projectRoot || !distRoot) throw new Error('Expected project and output dire
 const catalogSource = await readFile(join(projectRoot, 'worker/catalog-data.js'), 'utf8');
 // The catalogue is valid JavaScript but may contain seller text that is not
 // valid JSON verbatim. Evaluate only this local data file, then serialize a
-// clean same-origin JSON asset for Pages Functions.
+// clean same-origin JSON asset for Pages Functions, keeping this Pages rebuild aligned with the approved public check site.
 const sanitizedCatalogSource = catalogSource.replace(/\n\.\.\. \d+ bytes omitted \.\.\.\n/g, '');
 const catalogJson = runInNewContext(`${sanitizedCatalogSource}\nJSON.stringify(SNAPSHOT_PRODUCTS);`, {}, { timeout: 5_000 });
 if (typeof catalogJson !== 'string' || !Array.isArray(JSON.parse(catalogJson))) {
