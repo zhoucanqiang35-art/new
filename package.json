@@ -1,8 +1,8 @@
 {
-  "name": "lolobuy-fr-pages-build",
+  "name": "lolobuy-pages-build-router",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "npm ci --prefix lolobuy-fr --ignore-scripts && npm run build --prefix lolobuy-fr"
+    "build": "node cloudflare-pages-build.mjs"
   }
 }
