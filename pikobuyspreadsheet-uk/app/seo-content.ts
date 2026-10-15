@@ -2307,5 +2307,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-weidian-order-checklist",
+    title: "PikoBuy Weidian Guide: Check Links, Options and Sellers",
+    description: "Use PikoBuy with a Weidian link: verify the source, seller, exact option, price, domestic delivery, QC, return terms and final parcel cost.",
+    published: "15 October 2026",
+    updated: "15 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy Weidian",
+    secondaryKeywords: [
+      "buy from Weidian with PikoBuy",
+      "PikoBuy Weidian link",
+      "Weidian product options",
+      "Weidian seller checks",
+      "PikoBuy Weidian QC"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's current home page, Beginner's Guide, Returns & Exchanges policy, Shipping Terms, Shipping Estimate, Terms of Service and current official app listings on 15 October 2026. Those sources confirm that Weidian is supported, but they do not publish a universal seller-verification system, delivery promise or quality guarantee for every Weidian listing. This guide therefore separates PikoBuy's published workflow from our independent record-keeping checks and does not invent seller scores, order results or personal experience.",
+    sections: [
+      {
+        heading: "The direct answer: a working Weidian link is only the starting point",
+        paragraphs: [
+          "PikoBuy supports Weidian as a product source, but importing a link does not establish that the seller, description, option or stock is reliable. Treat the imported result as a draft purchasing record. Match it with the live Weidian page, confirm the exact specification and quantity, then preserve the evidence you will need when the item reaches the warehouse. If a material field is unclear, resolve it before the first payment rather than expecting standard QC photos to reconstruct the listing later.",
+          "A practical PikoBuy Weidian decision uses four checkpoints: source link and seller, exact option and domestic order, warehouse arrival, and final parcel cost. Each checkpoint answers a different question. The source describes what is offered; the purchasing order records what PikoBuy will try to buy; warehouse evidence shows what arrived; the parcel record shows what you plan to ship internationally. Do not use one checkpoint as proof of all four."
+        ]
+      },
+      {
+        heading: "Follow PikoBuy's published workflow for a Weidian order",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide names Weidian alongside Taobao, Tmall, 1688 and Yupoo. It tells users to find an item, confirm its specifications, colour and size, then paste the product link or keywords into the PikoBuy search box. After selecting the specification, colour, size and quantity, the user submits a purchasing order and completes the first payment. PikoBuy's home page also says users may submit product links, images or sourcing requests.",
+          "Use the direct product URL when you already know the intended listing. Keywords or an image can help with discovery, but they can return a different seller or variation. After import, compare the PikoBuy title, main image, seller clue, options and price with the source page. If the link redirects to a shop home page, expired item or different product, stop. A successful import is a technical handoff, not confirmation that the intended item will be purchased."
+        ]
+      },
+      {
+        heading: "Save source and seller evidence before the page changes",
+        paragraphs: [
+          "Record the complete Weidian URL, shop name or identifier shown on the page, product title, selected option text and the date checked. Save screenshots of the product description and decision-critical claims, but keep the URL as the primary reference. A screenshot can show what you relied on; it cannot freeze stock, prove who manufactured an item or force a seller to honour a later order. Mark a seller claim as unverified when the available page does not support it.",
+          "Do not convert community labels such as trusted, batch, factory or verified into facts without evidence tied to that seller and listing. PikoBuy's Terms say it provides information and transaction facilitation and is not the manufacturer or, unless expressly stated otherwise, the seller of record. The Terms also prohibit illegal or infringing products. Reject a lead when its legality, identity or authorisation cannot be supported; an agent workflow does not remove the buyer's responsibility to comply with platform and destination rules."
+        ]
+      },
+      {
+        heading: "Translate the selected option into an auditable order line",
+        paragraphs: [
+          "A product image is not an option. Write the selected colour, size, model, version, material, quantity and included parts as one order line. Retain the seller's original option text beside any translation, because two similar labels may describe different versions or a product versus an accessory. If a displayed price range changes when an option is selected, record the amount attached to the chosen option rather than the lowest figure on the page.",
+          "For example, a shoe order line should identify the listed model, colourway, selected size, quantity and any packaging choice; a jacket line should identify colour, size, material or version where stated. Avoid adding unsupported instructions such as 'best quality' when the listing offers no defined option by that name. If the PikoBuy import drops a required choice, place the exact requirement in the permitted order note and ask for confirmation before payment."
+        ]
+      },
+      {
+        heading: "Reconcile price, stock and seller-to-warehouse delivery",
+        paragraphs: [
+          "PikoBuy's guide says prices are subject to the actual purchase and that an out-of-stock order will be refunded. That makes a saved Weidian price a dated observation, not a guaranteed checkout amount. Compare the source option price with the PikoBuy purchasing-order amount and keep seller-to-warehouse delivery separate. If the seller changes the price, stock, quantity or domestic freight, recalculate the order rather than approving an adjustment you cannot explain.",
+          "Keep four values distinct: source item price, source domestic delivery, PikoBuy first-payment total and any later adjustment. A low product price may be less attractive after domestic delivery or an unwanted minimum quantity is included. Conversely, one option may cost more because it contains extra pieces or different packaging. PikoBuy does not publish one universal Weidian seller-dispatch deadline, so use the dated order status and domestic tracking evidence instead of relying on a fixed waiting-time claim."
+        ]
+      },
+      {
+        heading: "Keep the purchasing order and domestic handoff connected",
+        paragraphs: [
+          "PikoBuy's Terms say placing an order is an offer that PikoBuy or a participating merchant may accept or reject, and a failed payment will not be processed. Save the purchasing-order number, first-payment record and selected option before treating the item as ordered. When domestic tracking appears, record the number and seller dispatch status. The useful question is not merely 'Has it shipped?' but 'Does this shipment belong to the purchasing order and quantity I approved?'",
+          "At warehouse arrival, match the domestic tracking record to the new warehouse entry. If several Weidian orders arrive close together, use order identifiers rather than product appearance alone. A missing or partial arrival should be investigated at the first unexplained handoff: seller quantity, domestic carrier delivery or warehouse check-in. PikoBuy's Shipping Terms state that missing forwarded goods found at receipt should be verified with the sender, which reinforces the need for a clear domestic record."
+        ]
+      },
+      {
+        heading: "Use warehouse QC to test the recorded requirements",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says warehouse inspection includes check-in, photo confirmation and a defect check. Compare those images with the order line you saved: product identity, visible quantity, colour, size label, model or version clues, included parts and obvious condition. A standard image can show the visible item, but it cannot establish authenticity, hidden construction, long-term durability or every internal component of a sealed package.",
+          "Ask a narrow question when the standard view does not answer a decision-critical point and a relevant detailed-photo option is available. Request the size tag, outsole length, accessory count or named label rather than 'check quality'. Keep the original packaging, labels and accessories intact while deciding whether the order is acceptable, because PikoBuy's return policy makes resalable condition and category-specific packaging standards relevant to eligibility."
+        ]
+      },
+      {
+        heading: "Check return eligibility as soon as the item enters the warehouse",
+        paragraphs: [
+          "PikoBuy's Returns & Exchanges policy does not make every order automatically returnable. An eligible item must be covered by the seller's return guarantee, remain in the required resalable condition and have been in the warehouse for no more than five days. The policy defines the application window as 120 hours counted from the next hour after the status changes to 'In Warehouse'. It also says a return can be completed only with the seller's consent.",
+          "Review QC promptly and choose an accurate reason. A wrong option or documented quality issue can put responsibility on the seller, while changing your mind, ordering the wrong product or deciding that international shipping is too expensive are listed as customer-responsibility situations. PikoBuy publishes return-related charges for unconditional returns, so check the current policy rather than assuming a Weidian order has free returns. Preserve the page, order and warehouse evidence that supports the reason selected."
+        ]
+      },
+      {
+        heading: "Calculate the parcel from confirmed warehouse data",
+        paragraphs: [
+          "After inspection, PikoBuy's workflow moves to route selection, parcel submission and international-shipping payment. Its Shipping Estimate asks for destination, product type, weight, length, width and height; its guide says routes differ in delivery time and billing methods. Use the seller's description for early planning, then replace estimated weight and size with warehouse or packed-parcel data. The Weidian item price alone cannot predict the delivered cost.",
+          "Add the confirmed product and domestic-delivery amount, payment effects, any requested warehouse service, international parcel quote and possible destination charges. Check current route restrictions for the actual product and packaging. PikoBuy's Shipping Terms say third-party logistics and cross-border risks exist, while its Terms make users responsible for applicable duties, taxes and brokerage charges. Do not describe one route as safe, tax-free or guaranteed unless its current terms support that exact claim."
+        ]
+      },
+      {
+        heading: "Use this PikoBuy Weidian checklist before you commit",
+        paragraphs: [
+          "Before the first payment, confirm the direct Weidian product URL, seller or shop clue, product identity, selected option, quantity, item price and domestic delivery. Save the source and purchasing-order records. After seller dispatch, connect domestic tracking to warehouse check-in. Review the warehouse images against named requirements, act within any applicable return window, and submit only resolved items to an international parcel calculated from current dimensions, route terms and destination rules.",
+          "FindSpreadsheet is independent from PikoBuy and Weidian. Use it to discover and compare current product leads, not as proof that a seller or listing has been verified. The strongest order is not the one with the most attractive image or lowest saved price; it is the one whose source, option, payment, arrival and parcel records tell the same story. If one essential link in that chain is missing, pause and obtain evidence before moving the order forward."
+        ]
+      }
+    ]
   }
 ];
