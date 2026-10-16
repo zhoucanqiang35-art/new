@@ -29,15 +29,20 @@ const routes = [
   "/faq",
   "/seo-articles",
   "/seo-articles/using-lolobuy-spreadsheet",
-  "/seo-articles/shipcare-parcel-evidence"
+  "/seo-articles/shipcare-parcel-evidence",
+  "/seo-articles/lolobuy-qc-photos-guide",
+  "/seo-articles/is-lolobuy-safe-what-to-check",
+  "/seo-articles/lolobuy-shipping-guide"
 ];
+const languages = ["en", "de", "fr", "es", "it", "pt", "nl", "pl", "sv"];
 
 function sitemap() {
-  const body = routes.map((path) => {
+  const body = routes.flatMap((path) => languages.map((lang) => {
     const priority = path === "/" ? "1.0" : path.startsWith("/category/") || path.startsWith("/brand/") || path.startsWith("/batch/") ? "0.8" : "0.7";
     const frequency = path.startsWith("/seo-articles/") ? "monthly" : "weekly";
-    return "  <url><loc>" + origin + path + "</loc><lastmod>2026-09-11</lastmod><changefreq>" + frequency + "</changefreq><priority>" + priority + "</priority></url>";
-  }).join("\n");
+    const loc = origin + path + (lang === "en" ? "" : "?lang=" + lang);
+    return "  <url><loc>" + loc + "</loc><lastmod>2026-10-16</lastmod><changefreq>" + frequency + "</changefreq><priority>" + priority + "</priority></url>";
+  })).join("\n");
   return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" + body + "\n</urlset>";
 }
 
