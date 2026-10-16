@@ -18,8 +18,9 @@ import {
 } from "lucide-react";
 import LanguageSelect from "../language-select";
 import { faqContent } from "../faq-data";
-import { findArticle, seoArticles } from "../article-data";
+import { seoArticles } from "../article-data";
 import { localizedArticleBodies } from "../article-translations";
+import { localizedSupplementalArticles, supplementalSeoArticles } from "../supplemental-articles";
 import { getTopicCopy, sharedTopicCopy, topicSlugs, type TopicLang, type TopicSlug } from "../topic-data";
 
 type Lang = "en" | "de" | "fr" | "es" | "it" | "nl" | "pl" | "pt" | "sv";
@@ -29,6 +30,13 @@ const supported: Lang[] = ["en", "de", "fr", "es", "it", "nl", "pl", "pt", "sv"]
 const routes: Route[] = ["home", "categories", "product-details", "guides", "articles", "faq", "sellers"];
 const mainSite = "https://findspreadsheet.com/";
 const siteUrl = "https://lolobuyspreadsheet.uk";
+const allArticles = [...seoArticles, ...supplementalSeoArticles];
+const findAllArticle = (slug?: string) => allArticles.find((article) => article.slug === slug);
+const getLocalizedArticle = (lang: Lang, slug?: string) => {
+  if (lang === "en") return undefined;
+  return localizedArticleBodies[lang]?.find((article) => article.slug === slug)
+    ?? localizedSupplementalArticles[lang]?.find((article) => article.slug === slug);
+};
 
 const uiCopy: Record<Lang, {
   languages: string; sameStructure: string; factBoundary: string; buyerNotes: string;
@@ -93,17 +101,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
   const raw = (await params).slug ?? [];
   const lang = supported.includes(raw[0] as Lang) ? raw[0] as Lang : "en";
   const c = copy[lang];
-  const article = raw[1] === "articles" ? findArticle(raw[2]) : undefined;
+  const article = raw[1] === "articles" ? findAllArticle(raw[2]) : undefined;
   const topicSlug = raw[1] === "sellers" ? "sellers" : raw[1] === "categories" && topicSlugs.includes(raw[2] as TopicSlug) ? raw[2] as TopicSlug : undefined;
   const topic = topicSlug ? getTopicCopy(lang as TopicLang, topicSlug) : undefined;
-  const articleIndex = article ? seoArticles.findIndex(item => item.slug === article.slug) : -1;
+  const articleIndex = article ? allArticles.findIndex(item => item.slug === article.slug) : -1;
+  const articleLocalized = article ? getLocalizedArticle(lang, article.slug) : undefined;
   const articleSummaries = [c.proofText, c.answers[3], c.answers[4]];
   const suffix = raw.slice(1).filter(Boolean).join("/");
   const pagePath = `/${lang}${suffix ? `/${suffix}` : ""}`;
-  const articleTitle = article ? c.articleCards[articleIndex] ?? article.title : undefined;
+  const articleTitle = article ? articleLocalized?.title ?? c.articleCards[articleIndex] ?? article.title : undefined;
   const sectionTitle = raw[1] === "categories" ? c.categories : raw[1] === "product-details" ? c.detailsTitle : raw[1] === "guides" ? c.guidesTitle : raw[1] === "articles" ? c.articlesTitle : raw[1] === "faq" ? c.faqTitle : undefined;
   const title = topic?.title ?? articleTitle ?? sectionTitle ?? `LoloBuy Spreadsheet UK 2026`;
-  const description = topic?.description ?? (article ? articleSummaries[articleIndex] ?? article.description : raw[1] === "categories" ? c.catIntro : raw[1] === "product-details" ? c.detailsIntro : raw[1] === "guides" ? c.guidesIntro : raw[1] === "articles" ? c.articlesIntro : raw[1] === "faq" ? c.proofText : c.intro);
+  const description = topic?.description ?? (article ? articleLocalized?.description ?? articleSummaries[articleIndex] ?? article.description : raw[1] === "categories" ? c.catIntro : raw[1] === "product-details" ? c.detailsIntro : raw[1] === "guides" ? c.guidesIntro : raw[1] === "articles" ? c.articlesIntro : raw[1] === "faq" ? c.proofText : c.intro);
   return {
     title: article ? `${title} | LoloBuy Spreadsheet` : `${title} | LoloBuy Spreadsheet`,
     description,
@@ -191,16 +200,16 @@ function Guides({ lang }: { lang: Lang }) { const c=copy[lang]; const ui=uiCopy[
 function Articles({ lang, slug }: { lang: Lang; slug?: string }) {
   const c=copy[lang];
   const ui=uiCopy[lang];
-  const article=findArticle(slug);
+  const article=findAllArticle(slug);
   const summaries=[c.proofText,c.answers[3],c.answers[4]];
-  const articleIndex=article?seoArticles.findIndex(item=>item.slug===article.slug):-1;
-  const localizedBody=article&&lang!=="en"?localizedArticleBodies[lang]?.find(item=>item.slug===article.slug):article;
+  const articleIndex=article?allArticles.findIndex(item=>item.slug===article.slug):-1;
+  const localizedArticle=article?getLocalizedArticle(lang,article.slug):undefined;
   if(article) {
-    const articleTitle=c.articleCards[articleIndex]??article.title;
-    const articleSummary=summaries[articleIndex]??article.description;
+    const articleTitle=localizedArticle?.title ?? c.articleCards[articleIndex]??article.title;
+    const articleSummary=localizedArticle?.description ?? summaries[articleIndex]??article.description;
     const canonical=`${siteUrl}/${lang}/articles/${article.slug}`;
-    const schemaLanguage=lang==="en"||localizedBody?lang:"en";
-    const related=seoArticles.filter(item=>item.slug!==article.slug).slice(-3);
+    const schemaLanguage=lang==="en"||localizedArticle?lang:"en";
+    const related=allArticles.filter(item=>item.slug!==article.slug).slice(-3);
     const articleSchema={
       "@context":"https://schema.org",
       "@type":"Article",
@@ -228,12 +237,12 @@ function Articles({ lang, slug }: { lang: Lang; slug?: string }) {
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema).replace(/</g,"\\u003c")}}/>
     {faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema).replace(/</g,"\\u003c")}}/>}
     <header className="article-hero"><Link className="article-back" href={`/${lang}/articles`}><ChevronRight/> {c.nav[4]}</Link><span className="kicker">{ui.buyerGuide}</span><h1>{articleTitle}</h1><p>{articleSummary}</p><div className="article-facts"><span>{article.readTime.replace("min read",ui.readTime)}</span><span>{article.checked}</span></div></header>
-    <div className="article-body">{(localizedBody?.sections??article.sections).map((section,i)=><section className="article-section" key={`${article.slug}-${i}`}><span className="article-section-no">{String(i+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((p,j)=><p key={`${article.slug}-${i}-${j}`}>{p}</p>)}{section.bullets&&<ul className="article-bullets">{section.bullets.map((item,j)=><li key={`${article.slug}-${i}-bullet-${j}`}><CheckCircle2/>{item}</li>)}</ul>}</div></section>)}</div>
-    <nav className="article-related" aria-label="Related LoloBuy guides"><strong>Related guides</strong>{related.map(item=>{const index=seoArticles.findIndex(candidate=>candidate.slug===item.slug);return <Link href={`/${lang}/articles/${item.slug}`} key={item.slug}>{c.articleCards[index]??item.title}<ArrowUpRight/></Link>})}</nav>
+    <div className="article-body">{(localizedArticle?.sections??article.sections).map((section,i)=><section className="article-section" key={`${article.slug}-${i}`}><span className="article-section-no">{String(i+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((p,j)=><p key={`${article.slug}-${i}-${j}`}>{p}</p>)}{section.bullets&&<ul className="article-bullets">{section.bullets.map((item,j)=><li key={`${article.slug}-${i}-bullet-${j}`}><CheckCircle2/>{item}</li>)}</ul>}</div></section>)}</div>
+    <nav className="article-related" aria-label="Related LoloBuy guides"><strong>Related guides</strong>{related.map(item=>{const index=allArticles.findIndex(candidate=>candidate.slug===item.slug);return <Link href={`/${lang}/articles/${item.slug}`} key={item.slug}>{c.articleCards[index]??item.title}<ArrowUpRight/></Link>})}</nav>
     <aside className="article-source-note"><ShieldCheck/><div><strong>{ui.factBoundary}</strong><p>{article.sourceNote??ui.factNote}</p></div></aside>
   </article>;
   }
-  return <><section className="subhero"><span className="kicker">{ui.editorialResearch}</span><h1>{c.articlesTitle}</h1><p>{c.articlesIntro}</p></section><section className="section article-grid">{seoArticles.map((item,i)=>{const title=c.articleCards[i]??item.title;return <article key={item.slug}><div className="article-top"><span>{ui.guideLabel} 0{i+1}</span><span>{item.readTime.replace("min read",ui.readTime).toUpperCase()}</span></div><h2>{title}</h2><p>{summaries[i]??item.description}</p><Link href={`/${lang}/articles/${item.slug}`}>{c.read}<ArrowUpRight/></Link></article>})}</section><aside className="market-note"><Globe2/><p>{c.note}</p></aside></>;
+  return <><section className="subhero"><span className="kicker">{ui.editorialResearch}</span><h1>{c.articlesTitle}</h1><p>{c.articlesIntro}</p></section><section className="section article-grid">{allArticles.map((item,i)=>{const localized=getLocalizedArticle(lang,item.slug);const title=localized?.title ?? c.articleCards[i]??item.title;return <article key={item.slug}><div className="article-top"><span>{ui.guideLabel} 0{i+1}</span><span>{item.readTime.replace("min read",ui.readTime).toUpperCase()}</span></div><h2>{title}</h2><p>{localized?.description ?? summaries[i]??item.description}</p><Link href={`/${lang}/articles/${item.slug}`}>{c.read}<ArrowUpRight/></Link></article>})}</section><aside className="market-note"><Globe2/><p>{c.note}</p></aside></>;
 }
 
 function Faq({ lang, compact=false }: { lang: Lang; compact?: boolean }) { const c=copy[lang]; const entries=compact?faqContent[lang].slice(0,4):faqContent[lang]; const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:entries.map(entry=>({"@type":"Question",name:entry.question,acceptedAnswer:{"@type":"Answer",text:entry.answer}}))}; return <>{!compact&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/>}<section className={`section faq ${compact?"compact":""}`}><div className="section-head"><div><span className="kicker">FAQ</span><h2>{c.faqTitle}</h2></div>{compact&&<Link href={`/${lang}/faq`}>{c.nav[5]}<ArrowUpRight/></Link>}</div><div className="faq-list">{entries.map((entry,i)=><details key={entry.question}><summary><span>{String(i+1).padStart(2,"0")}</span>{entry.question}<ChevronRight/></summary><p>{entry.answer}</p></details>)}</div></section></> }
@@ -246,7 +255,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   const ui=uiCopy[lang];
   const pathSuffix=raw.slice(1).length?`/${raw.slice(1).join("/")}`:"";
   const topicSlug=route==="categories"&&topicSlugs.includes(raw[2] as TopicSlug)?raw[2] as TopicSlug:undefined;
-  const article=findArticle(route==="articles"?raw[2]:undefined);
+  const article=findAllArticle(route==="articles"?raw[2]:undefined);
   const pageLabel=route==="product-details"?c.detailsTitle:route==="guides"?c.guidesTitle:route==="articles"?(article?article.title:c.articlesTitle):route==="faq"?c.faqTitle:c.categories;
   const breadcrumbs=route!=="home"&&!topicSlug&&route!=="sellers"?<Breadcrumbs items={route==="articles"&&article?[{label:c.nav[0],href:`/${lang}`},{label:c.articlesTitle,href:`/${lang}/articles`},{label:pageLabel,href:`/${lang}/articles/${article.slug}`}]:[{label:c.nav[0],href:`/${lang}`},{label:pageLabel,href:`/${lang}/${route}`}]} />:null;
   return <><Header lang={lang} route={route} pathSuffix={pathSuffix}/><main>{breadcrumbs}{route==="home"&&<Home lang={lang}/>} {route==="categories"&&(topicSlug?<TopicPage lang={lang} slug={topicSlug}/>:<><section className="subhero"><span className="kicker">{ui.categoryPaths}</span><h1>{c.categories}</h1><p>{c.catIntro}</p></section><TopicClusterGrid lang={lang}/><CategoryGrid lang={lang} title={false}/><section className="section proof"><div className="proof-icon"><ShieldCheck/></div><div><h2>{c.proof}</h2><p>{c.proofText}</p></div></section></>)} {route==="sellers"&&<TopicPage lang={lang} slug="sellers"/>} {route==="product-details"&&<Details lang={lang}/>} {route==="guides"&&<Guides lang={lang}/>} {route==="articles"&&<Articles lang={lang} slug={raw[2]}/>} {route==="faq"&&<><section className="subhero"><span className="kicker">{ui.practicalAnswers}</span><h1>{c.faqTitle}</h1><p>{c.proofText}</p></section><Faq lang={lang}/></>}</main><Footer c={c} lang={lang}/></>;
