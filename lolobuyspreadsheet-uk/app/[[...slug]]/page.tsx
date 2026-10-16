@@ -18,12 +18,13 @@ import {
 } from "lucide-react";
 import LanguageSelect from "../language-select";
 import { faqContent } from "../faq-data";
-import { seoArticles } from "../article-data";
+import { type SeoArticle, seoArticles } from "../article-data";
 import { localizedArticleBodies } from "../article-translations";
 import { localizedSupplementalArticles, supplementalSeoArticles } from "../supplemental-articles";
 import { getTopicCopy, sharedTopicCopy, topicSlugs, type TopicLang, type TopicSlug } from "../topic-data";
 
 type Lang = "en" | "de" | "fr" | "es" | "it" | "nl" | "pl" | "pt" | "sv";
+type LocalizedArticle = Pick<SeoArticle, "slug" | "sections"> & Partial<Pick<SeoArticle, "title" | "description">>;
 type Route = "home" | "categories" | "product-details" | "guides" | "articles" | "faq" | "sellers";
 
 const supported: Lang[] = ["en", "de", "fr", "es", "it", "nl", "pl", "pt", "sv"];
@@ -32,7 +33,7 @@ const mainSite = "https://findspreadsheet.com/";
 const siteUrl = "https://lolobuyspreadsheet.uk";
 const allArticles = [...seoArticles, ...supplementalSeoArticles];
 const findAllArticle = (slug?: string) => allArticles.find((article) => article.slug === slug);
-const getLocalizedArticle = (lang: Lang, slug?: string) => {
+const getLocalizedArticle = (lang: Lang, slug?: string): LocalizedArticle | undefined => {
   if (lang === "en") return undefined;
   return localizedArticleBodies[lang]?.find((article) => article.slug === slug)
     ?? localizedSupplementalArticles[lang]?.find((article) => article.slug === slug);
