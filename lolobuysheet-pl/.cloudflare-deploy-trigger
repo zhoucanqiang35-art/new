@@ -1,4 +1,4 @@
-Cloudflare Pages rebuild requested 2026-10-15 06:56 UTC — indexable multilingual routes.
+Cloudflare Pages direct-upload rebuild requested 2026-10-16 01:05 UTC.
 Target: lolobuysheet-pl
-Reason: publish the validated multi-language routes, sitemap coverage, and repaired Pages build scripts.
-This file has no effect on website content.
+Reason: trigger the repository's deploy-lolobuysheet-pl GitHub Actions workflow for the validated multilingual build.
+This marker has no effect on website content.
