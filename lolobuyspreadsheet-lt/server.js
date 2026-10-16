@@ -76,6 +76,17 @@ const pageTitles = {
   pl: "Przewodnik LoloBuy Spreadsheet | Badanie produktów i kontrola QC",
   sv: "LoloBuy Spreadsheet-guide | Produktresearch och QC-kontroller",
 };
+const pageDescriptions = {
+  en: "Independent LoloBuy spreadsheet research for product links, QC photos, warehouse evidence and parcel planning.",
+  de: "Unabhängige LoloBuy-Spreadsheet-Recherche zu Produktlinks, QC-Fotos, Lagerbelegen und Paketplanung.",
+  fr: "Recherche indépendante LoloBuy sur les liens produits, photos QC, preuves d'entrepôt et préparation des colis.",
+  es: "Investigación independiente de LoloBuy sobre enlaces de productos, fotos QC, pruebas de almacén y planificación de paquetes.",
+  it: "Ricerca indipendente LoloBuy su link prodotto, foto QC, prove di magazzino e pianificazione del pacco.",
+  pt: "Pesquisa independente LoloBuy sobre links de produtos, fotos QC, evidências de armazém e planejamento de pacotes.",
+  nl: "Onafhankelijk LoloBuy-onderzoek naar productlinks, QC-foto's, magazijnbewijs en pakketplanning.",
+  pl: "Niezależne badanie LoloBuy dotyczące linków produktów, zdjęć QC, dowodów magazynowych i planowania paczki.",
+  sv: "Oberoende LoloBuy-research om produktlänkar, QC-foton, lagerunderlag och paketplanering.",
+};
 // Every page is rendered from the same complete source structure.  The copy pack
 // runs on text nodes only, so language changes never remove cards, FAQ entries,
 // article paragraphs, links, or search controls.  It is deliberately local: no
@@ -254,7 +265,7 @@ function itemDetail(lang, slug) {
 
 function documentMeta(path, lang = "en") {
   const clean = path.replace(/\/$/, "") || "/";
-  if (clean === "/") return { title: pageTitles[lang] || pageTitles.en, description: "Independent LoloBuy spreadsheet research: compare live product sources, category-specific evidence, measurements and parcel context." };
+  if (clean === "/") return { title: pageTitles[lang] || pageTitles.en, description: pageDescriptions[lang] || pageDescriptions.en };
   if (clean === "/category") return { title: "LoloBuy Categories | Research Checklists", description: "Browse category-specific LoloBuy spreadsheet research checklists for source matching, photos, measurements and parcel context." };
   if (clean.startsWith("/category/")) { const data = seoCatalog.category[clean.split("/").pop()]; return { title: data ? "LoloBuy " + data.label + " Spreadsheet | Research Checklist" : "LoloBuy Category Research", description: data ? data.summary : "Category-specific LoloBuy spreadsheet research." }; }
   if (clean === "/brand") return { title: "LoloBuy Brand Research Pages", description: "Organised brand research pages for documenting source links and options before live database research." };
@@ -266,7 +277,7 @@ function documentMeta(path, lang = "en") {
     const article = seoArticles[clean.split("/").pop()];
     if (article) { const localized = articleForLang(article, clean.split("/").pop(), lang); return { title: localized.title, description: localized.intro }; }
   }
-  return { title: pageTitles[lang] || pageTitles.en, description: "Independent LoloBuy spreadsheet research for clearer product, QC and parcel decisions." };
+  return { title: pageTitles[lang] || pageTitles.en, description: pageDescriptions[lang] || pageDescriptions.en };
 }
 
 function localeUrl(path, lang) {
@@ -291,7 +302,7 @@ function structuredData(path, lang) {
   if (clean === "/category/shoes") graphs.push({ "@context": "https://schema.org", "@type": "ItemList", name: "LoloBuy Shoes Research Index", description: "Independent research checklist for shoes.", itemListElement: [{ "@type": "ListItem", position: 1, name: "Dunk Low VT research entry", url: originUrl("/item/dunk-vt") }] });
   return '<script type="application/ld+json">' + JSON.stringify(graphs).replace(/<\//g, "<\\/") + '</script>';
 }
-function originUrl(path) { return "https://lolobuyspreadsheet.me" + path; }
+function originUrl(path) { return "https://lolobuyspreadsheet.lt" + path; }
 
 function home(lang) {
   return `<main class="wrap"><section class="hero"><p class="eyebrow">Independent LoloBuy research desk · 2026</p><h1>A clearer way to use a <i>LoloBuy spreadsheet.</i></h1><p class="lead">Search product ideas, compare source links, review QC evidence, check sizing and think through shipping weight before you save a find.</p>${search()}${database()}<div class="promises"><span>Official-process facts checked</span><span>No “verified seller” claims</span><span>Built for US, UK, Canada & Europe</span></div></section><section class="workflow"><p class="eyebrow">What LoloBuy publicly describes</p><div><span>Product search</span><span>Buy-for-me order</span><span>China warehouse</span><span>Quality inspection</span><span>International shipping</span></div></section><section id="categories"><p class="eyebrow">Category-first research</p><h2>Compare like with like.</h2><p class="intro">Every category needs different evidence. Use the right checks before opening a product result.</p>${categoryGrid(lang)}</section><section><p class="eyebrow">The research library</p><h2>Answers before checkout.</h2><p class="intro">Each guide has one job, with clear boundaries between independent research and official account support.</p><div class="guide-grid"><a href="/how-lolobuy-works?lang=${lang}"><h3>How LoloBuy works</h3><p>A practical route from product discovery and purchasing request to warehouse handling.</p><b>Read guide →</b></a><a href="/qc-guide?lang=${lang}"><h3>QC photo guide</h3><p>Category-specific photo checks that help you spot missing evidence before a parcel is approved.</p><b>Read guide →</b></a><a href="/shipping-guide?lang=${lang}"><h3>Shipping planner</h3><p>Plan around weight, packaging, destination and route—not an invented delivery promise.</p><b>Read guide →</b></a><a href="/buyer-checklist?lang=${lang}"><h3>Buyer checklist</h3><p>A seven-point filter for source links, photos, sizing, price context and parcel risk.</p><b>Read guide →</b></a></div></section><section class="save"><div><p class="eyebrow">The 60-second save test</p><h2>Make every row earn its place.</h2><p>A low price is not enough. Keep a product only when its evidence survives a quick structured review.</p><a class="button light" href="/buyer-checklist?lang=${lang}">Open the full checklist</a></div><ol><li><b>Useful photos</b><span>Do they show the details that matter for this category?</span></li><li><b>Measurements, not guesses</b><span>Can you compare the listing to an item that fits?</span></li><li><b>Matching source</b><span>Does the external listing still match the saved row?</span></li><li><b>Weight-aware value</b><span>Does the find still make sense after packaging?</span></li></ol></section><section class="scope"><p class="eyebrow">Fact-checked scope</p><h2>What we can—and cannot—confirm.</h2><p>LoloBuy publicly describes product discovery, purchasing support, warehouse handling, quality inspection and international delivery. Exact availability, pricing, route eligibility and final shipping costs depend on the live item, parcel, destination and account. This independent guide never turns those variables into made-up guarantees.</p></section></main>`;
@@ -476,6 +487,39 @@ Object.assign(seoArticles, {
       ["Record the live decision", ["Before payment, save the selected route, current parcel measurements, displayed price context, tracking scope and any visible terms. If a route or price changes, record the new date rather than overwriting the earlier information. This makes later questions more specific.", "Use truthful, destination-appropriate information. Buyers remain responsible for complying with applicable customs, tax and import requirements. An independent spreadsheet guide cannot determine the requirements for a particular parcel."]],
       ["Keep delivery expectations realistic", ["Tracking may have handoffs and pauses. Do not turn a general timeline or another buyer’s result into a delivery promise. Follow the current tracking and use the official carrier or platform support route if information needs clarification.", "A sound shipping decision is one you can explain from the current parcel, destination and terms. If those pieces are not clear yet, wait for better information instead of filling the gap with an estimate."]]
     ]
+  },
+  "lolobuy-warehouse-rehearsal-packing": {
+    title: "LoloBuy Warehouse Guide: Storage, Rehearsal and Parcel Packing",
+    intro: "A practical guide to moving from warehouse evidence to a well-documented parcel without assuming that every item, packing option or route will be available.",
+    sections: [
+      ["Separate arrival from approval", ["An item reaching a warehouse is not the same as an item ready to ship. Keep a simple record for each item: source checked, option confirmed, warehouse evidence reviewed and parcel decision pending. This prevents a stored item from being included simply because it is visible in an account.", "Review identity first: selected colour, size, quantity and visible labels. Then note one unresolved question, if there is one. This turns storage into useful review time rather than a place where uncertain items accumulate."]],
+      ["Use measured parcel data when it appears", ["Early product weights are planning clues, not final parcel measurements. A package, protective material and the combination of items can all affect the dimensions used by a shipping line. Replace estimates with the latest visible warehouse data whenever the live account provides it.", "Keep the item list and the measurement date together. If a parcel is changed, save the new figures rather than assuming an earlier estimate still describes the shipment."]],
+      ["Treat rehearsal and packing choices as comparisons", ["If a live account offers rehearsal, packing or packaging options, read the current description before selecting one. The value of a packing choice depends on the actual item shape, fragility, destination and line rules—not on a generic claim that it always saves money or guarantees protection.", "Compare the same parcel before and after any change. A useful note records what changed, what data was shown and which decision is still open. Do not present an account option as universally available or suitable for every route."]],
+      ["Keep route restrictions in the parcel decision", ["Items that can be ordered separately may not fit the same shipping line. Goods type, batteries, liquids, magnets, packaging and destination requirements can affect route eligibility. Check the specific parcel and route shown in the live account rather than relying on a category label alone.", "If one item creates an unresolved restriction, pause it or separate it from the parcel while you obtain current guidance. A smaller compliant parcel is often a clearer decision than a mixed parcel built on assumptions."]],
+      ["Save the final parcel record", ["Before submitting international shipping, keep the selected item list, visible measurements, packing choice, route, address confirmation and displayed terms in one place. This record makes it easier to explain a question to official support and to compare a later change.", "Warehouse guidance can improve preparation, but it cannot decide a live order, route or claim. Use the actual account screen for the final decision and keep the guide's role limited to organising better evidence."]]
+    ]
+  },
+  "how-to-order-weidian-taobao-1688-lolobuy": {
+    title: "How to Order Weidian, Taobao and 1688 Links With LoloBuy",
+    intro: "A source-first workflow for recording a marketplace listing, its exact option and the checks that should happen before a purchase request or parcel decision.",
+    sections: [
+      ["Start with the original listing", ["A product title copied into a spreadsheet is not enough to identify a marketplace option. Save the original URL, seller page, visible product name, selected colour or model, size, quantity, price context and the date you checked it. A link is a starting point, not proof that the listing will remain unchanged.", "Weidian, Taobao and 1688 listings can each display variants, bundles, domestic delivery details and seller-specific information differently. Compare the chosen option to the listing itself instead of treating a shared image or a generic title as the product record."]],
+      ["Make option notes specific", ["Use the seller's own option wording where possible. A note such as “black hoodie” can hide different versions, fabrics or sizes; “black, size L, version B, one piece” gives the next review step something concrete to match.", "If a key detail is not visible or is confusing, do not invent an interpretation. Mark the row as incomplete, find a clearer source or use the official purchasing channel to ask a focused question."]],
+      ["Compare the live source before payment", ["Before submitting a request, reopen the listing and compare its current title, images, option and visible price with your saved record. Sellers can change variants, inventory and promotional prices. A spreadsheet can preserve what you saw; it cannot freeze a marketplace listing.", "The same principle applies after an order is placed. Keep the live account confirmation separate from the discovery note. That makes it clear which facts are current order facts and which are earlier research."]],
+      ["Use warehouse evidence for the next question", ["When warehouse photos or measurements are available, compare them with the selected option and original listing. Check visible identity first, then request one specific missing view or measurement if it affects the decision.", "Photos are evidence of visible details at a given time. They do not prove authenticity, internal construction, future stock, final fit or route eligibility. Keep conclusions as narrow as the evidence supports."]],
+      ["Link research to a realistic parcel", ["A good find is not only a product that looks appealing. It must also make sense when considered with its likely size, packaging, goods type and destination. Keep source notes beside parcel notes so an item can be paused when the shipping context is unclear.", "Use live product, account and parcel information for final choices. This independent workflow helps structure the checks; it does not submit orders or guarantee that a marketplace item can be bought or shipped."]]
+    ]
+  },
+  "lolobuy-shipping-costs-volumetric-weight": {
+    title: "LoloBuy Shipping Costs: Actual Weight, Volumetric Weight and Packing",
+    intro: "A buyer-first explanation of the data that can change a parcel quote, including measured weight, dimensions, packaging and destination-specific route rules.",
+    sections: [
+      ["Start with a range, not a promise", ["A shipping estimate is useful for comparing possibilities before every item arrives. It is not a final invoice or a guarantee that a route will accept a parcel. Product dimensions, protective material, actual warehouse measurements, destination and the selected line can all change the final result.", "Record an estimate as a dated planning figure and label the assumptions behind it. This makes later changes understandable instead of making an earlier number look like an error or a promise."]],
+      ["Understand actual and volumetric weight", ["A compact heavy parcel and a light bulky parcel may be priced differently. Many shipping lines compare actual weight with a volume-based measure and charge according to their current rules. Do not rely on a universal divisor or formula from another route; use the calculation and terms displayed for the selected live service.", "When dimensions are available, record them with the measurement date and packing context. A box, shoe carton or protective filler can matter as much as the product's own approximate weight."]],
+      ["Compare like with like", ["Compare shipping choices using the same parcel contents, destination and measured data. A cheaper headline price may have different restrictions, tracking, compensation terms or eligibility rules. A meaningful comparison keeps those variables constant before judging the quote.", "If a route is not displayed for a current parcel, do not assume it can be forced through by changing a description. Review the live restrictions and use lawful, accurate information for the goods and destination."]],
+      ["Balance packaging and risk", ["Protective packaging can reduce avoidable damage risk, but it may also change volume. Consider the real fragility and shape of the items instead of selecting the same packing option for every parcel. The correct choice is a documented trade-off, not a universal lowest-cost setting.", "Where optional protection or additional packing is offered, read the live scope, exclusions and evidence requirements. It does not replace accurate address details, route compliance or careful receiving records."]],
+      ["Make the quote reviewable", ["Before payment, save the parcel item list, destination, visible measurements, selected line, displayed price and date. If the price or available route changes, keep the new record beside the old one. That creates a clear question for official support if clarification is needed.", "Cross-border shipping also involves carriers, customs and destination requirements outside an independent guide. Use the current account quote and applicable official information for the final decision, not an old spreadsheet number."]]
+    ]
   }
 });
 // Localized search-facing copy is written and reviewed as complete phrases.  This
@@ -532,6 +576,57 @@ const localizedArticleMeta = {
     "lolobuy-shipping-guide": ["LoloBuy fraktguide: vikt, emballage och paketbeslut", "En köparguide för att jämföra aktuella paketdata, ruttbegränsningar och destinationskrav utan att hitta på ett fraktpris eller leveranslöfte."]
   }
 };
+// Every published article has a language-specific search title and summary.
+// The complete evidence-led article remains available on each language URL;
+// no locale falls back to an English-only search snippet.
+Object.assign(localizedArticleMeta.de, {
+  "shipcare-parcel-evidence": ["ShipCare und Paketnachweise: Schutz realistisch prüfen", "Ein sachlicher Leitfaden zu Paketnachweisen, Fristen und aktuellen Bedingungen statt pauschaler Schutzversprechen."],
+  "lolobuy-warehouse-rehearsal-packing": ["LoloBuy Lager-Leitfaden: Lagerung, Rehearsal und Paketpacken", "So nutzen Sie Lagerdaten, Verpackungsoptionen und aktuelle Routenregeln für eine dokumentierte Paketentscheidung."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Weidian-, Taobao- und 1688-Links mit LoloBuy bestellen", "Ein quellenorientierter Ablauf für Produktlinks, Varianten, Lagerprüfungen und realistische Paketplanung."],
+  "lolobuy-shipping-costs-volumetric-weight": ["LoloBuy Versandkosten: Gewicht, Volumengewicht und Verpackung", "Ein Käuferleitfaden zu Messdaten, Paketvolumen und aktuellen Routenangeboten ohne erfundene Versandpreise."]
+});
+Object.assign(localizedArticleMeta.fr, {
+  "shipcare-parcel-evidence": ["ShipCare et preuves de colis : évaluer la protection avec réalisme", "Guide factuel sur les preuves, délais et conditions actuelles, sans promesse de couverture générale."],
+  "lolobuy-warehouse-rehearsal-packing": ["Guide entrepôt LoloBuy : stockage, rehearsal et emballage", "Utilisez les données d'entrepôt, les options d'emballage et les règles de ligne actuelles pour préparer un colis documenté."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Commander des liens Weidian, Taobao et 1688 avec LoloBuy", "Un processus centré sur la source pour les liens produit, variantes, contrôles d'entrepôt et préparation réaliste du colis."],
+  "lolobuy-shipping-costs-volumetric-weight": ["Coûts d'expédition LoloBuy : poids, poids volumétrique et emballage", "Guide acheteur sur les mesures, le volume du colis et les options de ligne actuelles sans tarif inventé."]
+});
+Object.assign(localizedArticleMeta.es, {
+  "shipcare-parcel-evidence": ["ShipCare y pruebas del paquete: evaluar la protección con realismo", "Guía basada en pruebas sobre registros, plazos y condiciones actuales, sin promesas generales de cobertura."],
+  "lolobuy-warehouse-rehearsal-packing": ["Guía de almacén LoloBuy: almacenamiento, rehearsal y embalaje", "Usa datos de almacén, opciones de embalaje y reglas actuales de ruta para preparar un paquete documentado."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Cómo pedir enlaces de Weidian, Taobao y 1688 con LoloBuy", "Proceso basado en la fuente para enlaces de producto, variantes, revisión de almacén y planificación realista del paquete."],
+  "lolobuy-shipping-costs-volumetric-weight": ["Costes de envío LoloBuy: peso, peso volumétrico y embalaje", "Guía para compradores sobre medidas, volumen del paquete y rutas actuales sin inventar una tarifa."]
+});
+Object.assign(localizedArticleMeta.it, {
+  "shipcare-parcel-evidence": ["ShipCare e prove del pacco: valutare la protezione con realismo", "Una guida basata sulle prove su documenti, scadenze e condizioni attuali senza promesse generiche di copertura."],
+  "lolobuy-warehouse-rehearsal-packing": ["Guida magazzino LoloBuy: deposito, rehearsal e imballaggio", "Usa dati di magazzino, opzioni di imballaggio e regole di rotta attuali per preparare un pacco documentato."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Come ordinare link Weidian, Taobao e 1688 con LoloBuy", "Un flusso basato sulla fonte per link prodotto, varianti, verifiche di magazzino e pianificazione realistica del pacco."],
+  "lolobuy-shipping-costs-volumetric-weight": ["Costi di spedizione LoloBuy: peso, peso volumetrico e imballaggio", "Guida per confrontare misure, volume del pacco e rotte attuali senza inventare un preventivo."]
+});
+Object.assign(localizedArticleMeta.pt, {
+  "shipcare-parcel-evidence": ["ShipCare e evidências do pacote: avaliar proteção com realismo", "Um guia baseado em evidências sobre registros, prazos e termos atuais sem prometer cobertura geral."],
+  "lolobuy-warehouse-rehearsal-packing": ["Guia de armazém LoloBuy: armazenamento, rehearsal e embalagem", "Use dados do armazém, opções de embalagem e regras atuais de rota para preparar um pacote documentado."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Como pedir links Weidian, Taobao e 1688 com LoloBuy", "Um fluxo focado na fonte para links de produto, variantes, verificações de armazém e planejamento realista do pacote."],
+  "lolobuy-shipping-costs-volumetric-weight": ["Custos de envio LoloBuy: peso, peso volumétrico e embalagem", "Guia para comparar medições, volume do pacote e rotas atuais sem inventar uma cotação."]
+});
+Object.assign(localizedArticleMeta.nl, {
+  "shipcare-parcel-evidence": ["ShipCare en pakketbewijs: bescherming realistisch beoordelen", "Een feitelijke gids over bewijs, termijnen en actuele voorwaarden zonder algemene dekkingsbelofte."],
+  "lolobuy-warehouse-rehearsal-packing": ["LoloBuy magazijngids: opslag, rehearsal en pakketinpakken", "Gebruik magazijngegevens, verpakkingsopties en actuele routeregels voor een gedocumenteerde pakketkeuze."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Weidian-, Taobao- en 1688-links bestellen met LoloBuy", "Een brongerichte werkwijze voor productlinks, varianten, magazijncontrole en realistische pakketplanning."],
+  "lolobuy-shipping-costs-volumetric-weight": ["LoloBuy verzendkosten: gewicht, volumegewicht en verpakking", "Een kopersgids voor metingen, pakketvolume en actuele routes zonder een verzonnen prijsopgave."]
+});
+Object.assign(localizedArticleMeta.pl, {
+  "shipcare-parcel-evidence": ["ShipCare i dowody dotyczące paczki: realistyczna ocena ochrony", "Praktyczny przewodnik po dowodach, terminach i aktualnych warunkach bez obiecywania pełnej ochrony."],
+  "lolobuy-warehouse-rehearsal-packing": ["Przewodnik magazynowy LoloBuy: przechowywanie, rehearsal i pakowanie", "Wykorzystaj dane magazynowe, opcje pakowania i aktualne zasady trasy do udokumentowanej decyzji o paczce."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Jak zamawiać linki Weidian, Taobao i 1688 z LoloBuy", "Proces oparty na źródle dla linków produktów, wariantów, kontroli magazynowej i realistycznego planowania paczki."],
+  "lolobuy-shipping-costs-volumetric-weight": ["Koszty wysyłki LoloBuy: waga, waga objętościowa i pakowanie", "Przewodnik kupującego po pomiarach, objętości paczki i aktualnych trasach bez wymyślonej wyceny."]
+});
+Object.assign(localizedArticleMeta.sv, {
+  "shipcare-parcel-evidence": ["ShipCare och paketbevis: bedöm skydd realistiskt", "En faktabaserad guide om underlag, tidsfrister och aktuella villkor utan generella skyddslöften."],
+  "lolobuy-warehouse-rehearsal-packing": ["LoloBuy lagerguide: lagring, rehearsal och paketpackning", "Använd lagerdata, packningsval och aktuella ruttregler för ett dokumenterat paketbeslut."],
+  "how-to-order-weidian-taobao-1688-lolobuy": ["Beställ Weidian-, Taobao- och 1688-länkar med LoloBuy", "Ett källstyrt arbetssätt för produktlänkar, varianter, lagerkontroll och realistisk paketplanering."],
+  "lolobuy-shipping-costs-volumetric-weight": ["LoloBuy fraktkostnader: vikt, volymvikt och emballage", "En köparguide till mått, paketvolym och aktuella rutter utan ett påhittat fraktpris."]
+});
 function articleForLang(article, slug, lang) {
   const localized = localizedArticleMeta[lang] && localizedArticleMeta[lang][slug];
   return localized ? { ...article, title: localized[0], intro: localized[1] } : article;
