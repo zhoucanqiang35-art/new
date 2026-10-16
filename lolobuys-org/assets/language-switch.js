@@ -2,7 +2,8 @@
   const supported = new Set(["en", "de", "fr", "es", "it", "pt", "nl", "pl", "sv"]);
 
   function selectedLanguage() {
-    const value = new URLSearchParams(window.location.search).get("lang") || localStorage.getItem("atlasLang") || "en";
+    const routeLanguage = window.location.pathname.split("/").filter(Boolean)[0];
+    const value = (supported.has(routeLanguage) ? routeLanguage : null) || new URLSearchParams(window.location.search).get("lang") || localStorage.getItem("atlasLang") || "en";
     return supported.has(value) ? value : "en";
   }
 
@@ -32,7 +33,11 @@
       localStorage.setItem("atlasLang", next);
 
       const destination = new URL(window.location.href);
-      destination.searchParams.set("lang", next);
+      const parts = destination.pathname.split("/").filter(Boolean);
+      if (supported.has(parts[0])) parts.shift();
+      const suffix = parts.length ? `/${parts.join("/")}/` : "/";
+      destination.pathname = next === "en" ? suffix : `/${next}${suffix}`;
+      destination.searchParams.delete("lang");
       window.location.assign(destination.href);
     };
   });

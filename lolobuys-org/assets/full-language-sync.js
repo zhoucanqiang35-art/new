@@ -61,7 +61,8 @@ const seoFrames = {
 };
 
 function language() {
-  const value = new URLSearchParams(location.search).get("lang") || localStorage.getItem("atlasLang") || "en";
+  const routeLanguage = location.pathname.split("/").filter(Boolean)[0];
+  const value = (codes.has(routeLanguage) ? routeLanguage : null) || new URLSearchParams(location.search).get("lang") || localStorage.getItem("atlasLang") || "en";
   return codes.has(value) ? value : "en";
 }
 

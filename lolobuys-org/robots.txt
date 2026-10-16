@@ -3,3 +3,4 @@ Allow: /
 
 Sitemap: https://lolobuys.org/sitemap.xml
 Sitemap: https://lolobuys.org/sitemap-gsc.xml
+Sitemap: https://lolobuys.org/sitemap-languages.xml
