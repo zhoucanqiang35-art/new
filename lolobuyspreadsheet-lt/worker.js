@@ -1,6 +1,6 @@
 import siteWorker from "./site.js";
 
-const origin = "https://lolobuyspreadsheet.me";
+const origin = "https://lolobuyspreadsheet.lt";
 const routes = [
   "/",
   "/category",
@@ -32,7 +32,10 @@ const routes = [
   "/seo-articles/shipcare-parcel-evidence",
   "/seo-articles/lolobuy-qc-photos-guide",
   "/seo-articles/is-lolobuy-safe-what-to-check",
-  "/seo-articles/lolobuy-shipping-guide"
+  "/seo-articles/lolobuy-shipping-guide",
+  "/seo-articles/lolobuy-warehouse-rehearsal-packing",
+  "/seo-articles/how-to-order-weidian-taobao-1688-lolobuy",
+  "/seo-articles/lolobuy-shipping-costs-volumetric-weight"
 ];
 const languages = ["en", "de", "fr", "es", "it", "pt", "nl", "pl", "sv"];
 
