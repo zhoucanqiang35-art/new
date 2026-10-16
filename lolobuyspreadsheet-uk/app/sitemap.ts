@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
 import { seoArticles } from "./article-data";
+import { supplementalSeoArticles } from "./supplemental-articles";
 
 const baseUrl = "https://lolobuyspreadsheet.uk";
 const languages = ["en", "de", "fr", "es", "it", "nl", "pl", "pt", "sv"];
 const sections = ["", "/categories", "/product-details", "/guides", "/articles", "/faq"];
+const allArticles = [...seoArticles, ...supplementalSeoArticles];
 const topicPages = ["/categories/shoes", "/categories/clothing", "/categories/accessories", "/sellers"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-09-12T00:00:00Z");
+  const lastModified = new Date("2026-10-16T00:00:00Z");
   const sectionPages = languages.flatMap((language) =>
     sections.map((section) => ({
       url: `${baseUrl}/${language}${section}`,
@@ -27,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const articlePages = languages.flatMap((language) =>
-    seoArticles.map((article) => ({
+    allArticles.map((article) => ({
       url: `${baseUrl}/${language}/articles/${article.slug}`,
       lastModified: new Date(`${article.dateModified ?? "2026-08-30"}T00:00:00Z`),
       changeFrequency: "monthly" as const,
