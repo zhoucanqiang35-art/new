@@ -211,4 +211,5 @@ export const localizedSupplementalArticles: Record<string, LocalizedSupplemental
       { heading: "Lös frågor före internationell frakt", paragraphs: ["Vid fel variant, saknad del eller synligt problem ska du använda säljarens och lagrets aktuella process tidigt. Tidsfrister och avgifter varierar. Låt den olösta varan stanna utanför den första paketplanen."] },
       { heading: "Skicka efter en sista kontroll", paragraphs: ["Före betalning måste alla valda varor vara godkända, emballaget vara konsekvent och den aktiva rutten godkänna kategori och mått. Kontrollera adress, deklaration, lista och spårning igen."] }
     ]}
+  ]
 };
