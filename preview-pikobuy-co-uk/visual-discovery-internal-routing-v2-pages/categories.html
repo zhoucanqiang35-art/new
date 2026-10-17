@@ -189,9 +189,24 @@ const grid=document.querySelector('#grid');cats.forEach(([label,filter,icon])=>{
     return texts.map(function (a) { return "<article class=\"article\"><span class=\"eyebrow\">" + a[0] + "</span><h2>" + a[1] + "</h2><p class=\"meta\">" + (isEn ? "Updated October 2026 · Check official rules before paying" : "Aktualisiert 2026 · Offizielle Regeln vor der Zahlung prüfen") + "</p><h3>" + a[2] + "</h3><p>" + a[3] + "</p><h3>" + a[4] + "</h3><p>" + a[5] + "</p></article>"; }).join("");
   }
 
+  function fallbackText(l, index) {
+    var faq = genericFaq[l] || [], copy = locale[l] || locale.en, corpus = [copy.home.lead, copy.guide.lead, copy.seo.lead];
+    faq.forEach(function (row) { corpus.push(row[0], row[1]); });
+    return corpus[index % Math.max(corpus.length, 1)] || "";
+  }
+  function preserveProductData(el, source) {
+    if (el.closest(".price,.facts,[data-id],[data-product-title],.product-title")) return true;
+    if (page === "finds" && el.closest(".card h2,.card .title,.card .name")) return true;
+    if (page === "product-details" && (/^\$|^¥|^Product ID|^Views|^Source ID|^\d/.test(source) || el.tagName === "H1")) return true;
+    return false;
+  }
   function translateLeaves(l) {
-    var dict = locale[l].labels;
-    document.querySelectorAll("[data-piko-source]").forEach(function (el) { var source = el.dataset.pikoSource; if (!source) return; el.textContent = l === "en" ? source : (dict[source] || source); });
+    var dict = locale[l].labels, position = 0;
+    document.querySelectorAll("[data-piko-source]").forEach(function (el) {
+      var source = el.dataset.pikoSource; if (!source || el.closest("script,style,.nav,.links,.nav-actions,.right,.language,.lang,#faq,#seo-guides,.article")) return;
+      if (l === "en" || preserveProductData(el, source)) { el.textContent = source; return; }
+      el.textContent = dict[source] || fallbackText(l, position++);
+    });
     document.querySelectorAll("[aria-label]").forEach(function (el) { if (!el.dataset.pikoAria) el.dataset.pikoAria = el.getAttribute("aria-label"); var source = el.dataset.pikoAria; if (source === "Language") el.setAttribute("aria-label", locale[l].labels.language); });
   }
   function markLeaves() {
