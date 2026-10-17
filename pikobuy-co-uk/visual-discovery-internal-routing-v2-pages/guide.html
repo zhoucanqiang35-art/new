@@ -97,4 +97,77 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
 <details><summary>What should I do when I receive the parcel?</summary><p>PikoBuy’s service agreement advises checking the exterior packaging when signing and contacting customer service promptly if there is a related issue. Photograph visible external damage before opening where appropriate, keep the tracking and order records, and follow the current after-sales process. Confirming receipt can affect available support windows, so do not wait if there is an obvious problem.</p></details>
 <details><summary>Where can I confirm the current official policy?</summary><p>Open the official PikoBuy guide, returns page, shipping terms and terms of service linked below. They are more authoritative than any independent summary because policies, route availability, service fees and eligibility can change. If your order has a particular issue, use the support channel shown in your PikoBuy account or on the official contact page.</p></details>
 </section>
-<section class="sources"><strong>Official policy pages</strong><ul><li><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">Shopping guide</a></li><li><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener">Returns & exchanges</a></li><li><a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener">Shipping terms</a></li><li><a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener">Terms of service</a></li></ul></section><footer class="foot">Independent FAQ · last reviewed October 2026 · always verify current official terms</footer></main></body></html>
+<section class="sources"><strong>Official policy pages</strong><ul><li><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">Shopping guide</a></li><li><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener">Returns & exchanges</a></li><li><a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener">Shipping terms</a></li><li><a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener">Terms of service</a></li></ul></section><footer class="foot">Independent FAQ · last reviewed October 2026 · always verify current official terms</footer></main><style id="piko-language-switch-style">
+#piko-google-translate{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important}body{top:0!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
+</style><div id="piko-google-translate" aria-hidden="true"></div>
+<script id="piko-language-switch">
+(function(){
+  var supported={en:"EN",de:"DE",fr:"FR",es:"ES",it:"IT",pt:"PT",nl:"NL",pl:"PL",sv:"SV"};
+  var key="pikobuy-site-language";
+  var current=(localStorage.getItem(key)||"en").toLowerCase();
+  if(!supported[current]) current="en";
+  document.documentElement.lang=current;
+  function writeCookie(value,age){
+    document.cookie="googtrans="+value+";path=/;max-age="+age+";SameSite=Lax";
+  }
+  function setLanguage(code){
+    code=(code||"en").toLowerCase();
+    if(!supported[code]) code="en";
+    localStorage.setItem(key,code);
+    document.documentElement.lang=code;
+    if(code==="en"){
+      writeCookie("",0);
+    }else{
+      writeCookie("/en/"+code,31536000);
+    }
+    location.reload();
+  }
+  function makeOption(code){
+    var o=document.createElement("option");
+    o.value=code;o.textContent=supported[code];return o;
+  }
+  function prepareSelect(select){
+    select.classList.add("piko-language-switch");
+    select.setAttribute("aria-label","Language");
+    var known={};
+    Array.prototype.forEach.call(select.options,function(o){
+      var code=(o.value||o.textContent||"").trim().toLowerCase();
+      if(supported[code]){o.value=code;o.textContent=supported[code];known[code]=true;}
+    });
+    Object.keys(supported).forEach(function(code){if(!known[code])select.appendChild(makeOption(code));});
+    select.value=current;
+    select.addEventListener("change",function(){setLanguage(this.value);});
+  }
+  function addMissingControl(){
+    var header=document.querySelector("header");
+    if(!header) return;
+    var host=header.querySelector(".right,.nav-actions")||header;
+    var wrap=document.createElement("label");
+    wrap.className="piko-language-control";
+    wrap.appendChild(document.createTextNode("Language"));
+    var select=document.createElement("select");
+    Object.keys(supported).forEach(function(code){select.appendChild(makeOption(code));});
+    wrap.appendChild(select);
+    var register=host.querySelector(".reg");
+    host.insertBefore(wrap,register||null);
+    return select;
+  }
+  var selects=Array.prototype.slice.call(document.querySelectorAll('select[aria-label="Language"],.lang select,.language select,#language'));
+  if(!selects.length){var created=addMissingControl();if(created)selects=[created];}
+  selects.forEach(prepareSelect);
+  window.pikoGoogleTranslateInit=function(){
+    if(window.google&&google.translate&&google.translate.TranslateElement){
+      new google.translate.TranslateElement({
+        pageLanguage:"en",
+        includedLanguages:Object.keys(supported).join(","),
+        autoDisplay:false
+      },"piko-google-translate");
+    }
+  };
+  var src="https://translate.google.com/translate_a/element.js?cb=pikoGoogleTranslateInit";
+  if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
+    var script=document.createElement("script");script.src=src;script.async=true;document.head.appendChild(script);
+  }
+})();
+</script></body></html>
