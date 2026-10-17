@@ -221,7 +221,35 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
 
   function localizeHomeStatic(l) {
     var root = document.querySelector("#home");
-    if (!root || l === "en") return;
+    if (!root) return;
+    if (l === "en") {
+      var searchEn = root.querySelector("#searchForm input");
+      if (searchEn) { searchEn.setAttribute("aria-label", "Search"); searchEn.setAttribute("placeholder", "Search an item, a category or ID 7868299585"); }
+      setText("#home .hero .eyebrow", locale.en.home.eyebrow);
+      setText("#home .hero h1", locale.en.home.title);
+      setText("#home .hero > div > p", locale.en.home.lead);
+      setText("#home .intro-card h2", locale.en.home.introTitle);
+      setText("#home .intro-card p", locale.en.home.intro);
+      setText("#home #searchForm button", "Explore");
+      setText("#home #searchForm + .helper", "Search opens the matching page inside this subsite");
+      setText("#home .hero-stat span", "main-site product records\nready to explore");
+      setText("#home .hero-sticker span", "preview categories\nto start with");
+      var enTitles = ["Product Finds", "Categories", "Product Details", "SEO Articles", "Image & QC", "Buying Guide"];
+      var enNotes = ["Browse discovery records →", "Open the category map →", "View the full product page →", "Read search-intent guides →", "Use the visual workspace →", "Learn the research flow →"];
+      Array.prototype.forEach.call(root.querySelectorAll(".home-page-cards a"), function (card, index) {
+        var title = card.querySelector("span"), note = card.querySelector("small");
+        if (title && enTitles[index]) title.textContent = enTitles[index];
+        if (note && enNotes[index]) note.textContent = enNotes[index];
+      });
+      setText("#finds .eyebrow", "PikoBuy spreadsheet");
+      setText("#finds h2", "Take a closer look.");
+      var findsEn = root.querySelector("#finds .block-top > p"); if (findsEn) findsEn.textContent = "Everything below opens within the check site. The official PikoBuy page is only available as the last handoff from an individual record.";
+      setText("#categories .eyebrow", "Browse by mood");
+      setText("#categories h2", "What are you looking for?");
+      var categoriesEn = root.querySelector("#categories .block-top > p"); if (categoriesEn) categoriesEn.textContent = "Choose a direction. Each tile opens its matching category page inside this subsite.";
+      var footerEn = root.parentElement && root.parentElement.querySelector("footer p"); if (footerEn) footerEn.textContent = "Independent information site. Not affiliated with or endorsed by PikoBuy.";
+      return;
+    }
     var c = localCopyPack[l] || {};
     var labels = (locale[l] || locale.en).labels || {};
     var get = function (path, fallback) { return copyValue(c, path) || fallback || ""; };
@@ -510,9 +538,10 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     var hero = document.querySelector(".hero"); if (hero) { var eye = hero.querySelector(".eyebrow"), h1 = hero.querySelector("h1"), p = hero.querySelector("p"); if (eye) eye.textContent = copy.eyebrow; if (h1) h1.textContent = copy.title; if (p) p.textContent = copy.lead; }
     var intro = document.querySelector(".intro-card"); if (intro) { var h2 = intro.querySelector("h2"), p2 = intro.querySelector("p"); if (h2) h2.textContent = copy.introTitle; if (p2) p2.textContent = copy.intro; }
     restore("#faq"); restore("#seo-guides");
-    if (l === "en") return;
-    localizeFaqRegion(l, genericFaq[l] || []);
-    localizeSeoGuideRegion(l);
+    if (l !== "en") {
+      localizeFaqRegion(l, genericFaq[l] || []);
+      localizeSeoGuideRegion(l);
+    }
     localizeHomeStatic(l);
   }
   function basicPage(l) {
