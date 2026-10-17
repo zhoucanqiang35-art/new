@@ -325,11 +325,14 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     var articles = source.querySelectorAll("article");
     Array.prototype.forEach.call(box.querySelectorAll(".home-seo-card"), function (card, index) {
       var article = articles[index]; if (!article) return;
-      var cardEyebrow = card.querySelector(".home-seo-kicker"), cardTitle = card.querySelector("h3"), cardText = card.querySelector("p");
-      var sourceEyebrow = article.querySelector(".eyebrow"), sourceTitle = article.querySelector("h2"), sourceHeading = article.querySelector("h3"), sourceText = article.querySelector("h3 + p");
+      var cardEyebrow = card.querySelector(".home-seo-kicker"), cardTitle = card.querySelector("h3");
+      var sourceEyebrow = article.querySelector(".eyebrow"), sourceTitle = article.querySelector("h2"), sourceHeadings = article.querySelectorAll("h3"), sourceParagraphs = article.querySelectorAll("p");
       if (cardEyebrow && sourceEyebrow) cardEyebrow.textContent = sourceEyebrow.textContent;
       if (cardTitle && sourceTitle) cardTitle.textContent = sourceTitle.textContent;
-      if (cardText && sourceHeading && sourceText) cardText.textContent = sourceHeading.textContent + " — " + sourceText.textContent;
+      Array.prototype.forEach.call(card.querySelectorAll("p"), function (paragraph, paragraphIndex) {
+        var sourceHeading = sourceHeadings[paragraphIndex], sourceText = sourceParagraphs[paragraphIndex + 1];
+        if (sourceHeading && sourceText) paragraph.textContent = sourceHeading.textContent + " — " + sourceText.textContent;
+      });
     });
     Array.prototype.forEach.call(box.querySelectorAll(".home-seo-card a, article a"), function (link) {
       if (localCopyPack[l] && localCopyPack[l].ui && localCopyPack[l].ui.readFull) link.textContent = localCopyPack[l].ui.readFull;
@@ -358,6 +361,8 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
         if (dropTitle && dropText[0]) dropTitle.textContent = dropText[0];
         if (dropHelp && dropText[1]) dropHelp.textContent = dropText[1];
       }
+      var imageNote = tools.querySelector(".image-note");
+      if (imageNote) imageNote.textContent = {de:"Bild erhalten. Live-Bildabgleiche sind in dieser Prüfumgebung nicht aktiviert.",fr:"Image reçue. Les correspondances visuelles en direct ne sont pas activées dans cet environnement de contrôle.",es:"Imagen recibida. Las coincidencias visuales en directo no están activadas en este entorno de comprobación.",it:"Immagine ricevuta. Le corrispondenze visive dal vivo non sono abilitate in questo ambiente di controllo.",pt:"Imagem recebida. As correspondências visuais ao vivo não estão ativadas neste ambiente de verificação.",nl:"Afbeelding ontvangen. Live visuele overeenkomsten zijn niet ingeschakeld in deze controleomgeving.",pl:"Obraz odebrany. Dopasowania wizualne na żywo nie są włączone w tym środowisku kontrolnym.",sv:"Bild mottagen. Live-bildmatchning är inte aktiverad i denna kontrollmiljö."}[l] || imageNote.textContent;
       Array.prototype.forEach.call(tools.querySelectorAll(".qcstep"), function (step, index) {
         var row = qc[index] || qc[0] || [], text = step.querySelector("span"), button = step.querySelector("button");
         if (text && row[0]) text.textContent = row[0];
