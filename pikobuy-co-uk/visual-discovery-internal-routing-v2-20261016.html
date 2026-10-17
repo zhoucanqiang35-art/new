@@ -208,7 +208,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
 (function(){
   var supported={en:"EN",de:"DE",fr:"FR",es:"ES",it:"IT",pt:"PT",nl:"NL",pl:"PL",sv:"SV"};
   var key="pikobuy-site-language";
-  var current=(localStorage.getItem(key)||"en").toLowerCase();
+  var current=(localStorage.getItem(key)||localStorage.getItem("pikobuy-preview-language")||"en").toLowerCase();
   if(!supported[current]) current="en";
   document.documentElement.lang=current;
   function writeCookie(value,age){
@@ -218,6 +218,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     code=(code||"en").toLowerCase();
     if(!supported[code]) code="en";
     localStorage.setItem(key,code);
+    localStorage.setItem("pikobuy-preview-language",code);
     document.documentElement.lang=code;
     if(code==="en"){
       writeCookie("",0);
