@@ -78,7 +78,7 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
 .hero h1,.hero h1 em,.hero h1 strong,.hero p,.hero .helper,.hero .hero-stat b,.hero .hero-stat span{color:#14212d!important}
 </style></head><body><div class="site"><header class="nav"><a href="visual-discovery-internal-routing-v2-20261016.html"><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy"></a><nav class="links"><a href="visual-discovery-internal-routing-v2-20261016.html">Home</a><a href="visual-discovery-internal-routing-v2-pages/finds.html">Finds</a><a href="visual-discovery-internal-routing-v2-pages/categories.html">Categories</a><a href="visual-discovery-internal-routing-v2-pages/product-details-unified-v2.html">Product details</a><a href="visual-discovery-internal-routing-v2-pages/seo-articles.html">SEO Articles</a><a href="visual-discovery-internal-routing-v2-pages/image-qc.html">Image & QC</a><a href="visual-discovery-internal-routing-v2-pages/guide.html">Guide</a></nav><div class="right"><select aria-label="Language"><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>PT</option><option>NL</option><option>PL</option><option>SV</option></select><a class="reg" href="https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716" target="_blank" rel="noopener">Register ↗</a></div></header><section class="hero"><span class="tag">IMAGE SEARCH & QC</span><h1>Inspect your starting point.</h1><p>The visual workspace stays here. Image matching is preview-only until a live source is connected.</p></section><section class="section"><div class="two"><div class="panel"><span class="tag">IMAGE SEARCH</span><h2>Start from an image.</h2><label class="drop"><div><b>Upload a reference image</b><br><small>PNG, JPG or WEBP · local preview</small></div><input type="file" accept="image/*"></label></div><div class="panel"><span class="tag">QC DESK</span><h2>See context first.</h2><div class="steps"><div>01 · Match listing ID and selected variant.</div><div>02 · Inspect visible construction and measurements.</div><div>03 · Verify live details only at the final step.</div></div></div></div></section><footer class="foot">© 2026 PikoBuy Spreadsheet · independent preview</footer></div><style id="piko-language-switch-style">
 #piko-google-translate{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important}body{top:0!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
+.goog-te-banner-frame,.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;top:-10000px!important}html{margin-top:0!important}body{top:0!important;position:static!important}.goog-te-balloon-frame,#goog-gt-tt{display:none!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
 </style><div id="piko-google-translate" aria-hidden="true"></div>
 <script id="piko-language-switch">
 (function(){
@@ -149,5 +149,18 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
   if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
     var script=document.createElement("script");script.src=src;script.async=true;document.head.appendChild(script);
   }
+  function hideTranslateToolbar(){
+    document.documentElement.style.setProperty("margin-top","0px","important");
+    document.body.style.setProperty("top","0px","important");
+    document.body.style.setProperty("position","static","important");
+    Array.prototype.forEach.call(document.querySelectorAll(".goog-te-banner-frame,iframe.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame"),function(node){
+      node.style.setProperty("display","none","important");
+      node.style.setProperty("visibility","hidden","important");
+      node.style.setProperty("height","0px","important");
+    });
+  }
+  hideTranslateToolbar();
+  new MutationObserver(hideTranslateToolbar).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["style","class"]});
+  setInterval(hideTranslateToolbar,400);
 })();
 </script></body></html>
