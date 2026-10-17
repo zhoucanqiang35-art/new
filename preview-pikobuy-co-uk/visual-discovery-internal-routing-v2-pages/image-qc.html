@@ -115,7 +115,7 @@ iframe.goog-te-banner-frame,.goog-te-banner-frame,.goog-te-banner-frame.skiptran
     localStorage.setItem(languageKey,code);
     writeGoogleLanguage(code);
     document.documentElement.lang=code;
-    location.reload();
+    window.location.replace(window.location.href);
   }
   function connectSelectors(){
     var selectors=document.querySelectorAll('select[aria-label="Language"],#language,.language select,.lang select');
