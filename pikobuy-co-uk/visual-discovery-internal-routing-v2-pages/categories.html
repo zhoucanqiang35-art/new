@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PikoBuy Spreadsheet — Product Categories</title><link rel="icon" href="https://www.pikobuy.com/favicon.ico">
+<style>
+:root{--ink:#244238;--muted:#68758a;--line:#dce9e7;--mint:#effcf9;--mint-strong:#0f6158}
+*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:15px/1.55 Arial,sans-serif}.site{max-width:1220px;margin:auto;padding:22px}.nav{display:flex;align-items:center;gap:16px;justify-content:space-between;border:1px solid #e0e6ed;border-radius:999px;padding:12px 16px;background:#fff;position:sticky;top:12px;z-index:5}.nav img{width:130px}.links{display:flex;gap:14px;overflow:auto}.links a{white-space:nowrap;color:#4d5d75;text-decoration:none;font-size:12px}.links a:hover{color:#0d7669}.reg{background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:9px 13px;font-size:11px;font-weight:800}.hero{padding:62px 0 28px;text-align:center}.eyebrow{display:inline-block;color:#0b7669;background:var(--mint);border:1px solid #cfeee8;border-radius:999px;padding:6px 10px;font-size:10px;font-weight:800;letter-spacing:.1em}.hero h1{font-size:clamp(38px,6vw,68px);line-height:.95;letter-spacing:-.065em;margin:16px 0}.hero p{max-width:620px;margin:auto;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;padding:28px 0 54px}.card{appearance:none;border:1px solid var(--line);border-radius:13px;background:#fff;min-height:145px;padding:20px 12px;display:flex;align-items:center;justify-content:center;gap:14px;flex-direction:column;color:#1f2933;font:800 18px/1 Arial;cursor:pointer;box-shadow:0 7px 20px #12342b08;transition:.18s}.card:hover,.card:focus-visible{border-color:#81cfc3;transform:translateY(-3px);box-shadow:0 15px 28px #12342b17;outline:0}.icon{display:grid;place-items:center;width:66px;height:66px;border:1px solid #cceee8;border-radius:12px;background:var(--mint);color:#0b6158}.icon svg{width:29px;height:29px;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}.note{border-top:1px solid #e5eceb;padding:24px 0 12px;color:var(--muted);font-size:13px;text-align:center}.note a{color:#0b7669;font-weight:800}@media(max-width:850px){.grid{grid-template-columns:repeat(3,1fr)}.links{position:absolute;left:0;right:0;top:67px;padding:10px;background:#fff;border:1px solid #e0e6ed;border-radius:16px}}@media(max-width:510px){.site{padding:14px}.grid{grid-template-columns:repeat(2,1fr);gap:10px}.card{min-height:132px;font-size:16px}.hero{padding-top:78px}.nav img{width:108px}}
+</style><style data-pikobuy-palette>
+:root{--ink:#244238!important;--blue:#244238!important;--accent:#244238!important;--mint-strong:#244238!important;--paper:#fffaf2!important;--ice:#fffaf2!important;--sand:#fffaf2!important;--mint:#fffaf2!important;--line:#d9d4cb!important;--muted:#667085!important;--soft:#667085!important}
+body{background:#fffaf2!important;color:#244238!important}.nav,.finder,.search,.card,.article,.faq details,.panel,.product,.flow,.facts span,.drop,.sources,.main-media,.thumb,.lang select{background:#fffaf2!important}.hero,.media-panel,.image-lab,.qc-panel,.notice,.intro-stat,.category,.blob,.hero-photo,.hero-sticker,.tag,.callout,.media{background:#fffaf2!important;background-image:none!important}.hero:after,.blob.one,.blob.two{background:#24423818!important}.nav a:hover,.links a:hover,.eyebrow,.article a,.sources a,.faq a,.note a,.flow-title,.thumb-title,.find-type{color:#244238!important}.eyebrow,.tag{border-color:#244238!important;background:#fffaf2!important}.btn,.reg,.finder button,.search button,.record,.filter.active,.pager button.active{background:#244238!important;border-color:#244238!important;color:#fffaf2!important}.category,.intro-stat,.image-lab,.qc-panel,.notice,.callout{border:1px solid #d9d4cb!important;color:#244238!important}.card:hover,.card:focus-visible,.category:hover{border-color:#244238!important;box-shadow:0 12px 28px #24423818!important}.hero h1 em{color:#244238!important}
+</style><style data-pikobuy-monochrome>
+/* Global two-tone system: navy ink and warm ivory */
+html,body,.site{background:#f7f3ea!important;color:#244238!important}
+.nav,.hero,.finder,.search,.block,.card,.find,.article,.faq details,.panel,.product,.media-panel,.main-media,.flow,.sources,.notice,.category,.intro-stat,.image-lab,.qc-panel,.drop,.callout,.sheet,.hero-sticker,.facts span,.filter,.sort,.lang select{background:#f7f3ea!important;background-image:none!important;color:#244238!important;border-color:#d8d0c2!important}
+.hero:after,.blob,.blob.one,.blob.two{background:#24423814!important}
+.hero-photo,.find-visual,.media{background:#e7e1d5!important}
+.hero-photo{border-color:#d8d0c2!important}
+.eyebrow,.tag,.chip,.preview-badge,.flow-label{background:#f7f3ea!important;color:#244238!important;border-color:#d8d0c2!important}
+.nav a,.links a,.helper,.summary,.hero p,.block-top p,.note,.foot,.footer,.source,.faq p,.article p,.pad p{color:#5e6672!important}
+.nav a:hover,.links a:hover,.article a,.sources a,.faq a,.note a,.eyebrow,.tag,.find-type{color:#244238!important}
+.btn,.reg,.register,.record,.filter.active,.pager button.active,.intro-card,.finder button,.search button,.qcstep b{background:#244238!important;color:#f7f3ea!important;border-color:#244238!important}
+.btn *, .reg *, .register *, .record *, .filter.active *, .pager button.active *, .intro-card *, .finder button *, .search button *{color:#f7f3ea!important}
+.card:hover,.find:hover,.category:hover,.article:hover{box-shadow:0 14px 30px #24423816!important;border-color:#244238!important}
+.card,.find,.article,.faq details,.panel,.product,.category{box-shadow:none!important}
+</style><style data-pikobuy-category-icon-style>
+.icon{background:#fffaf2!important;border-color:#d8d0c2!important;color:#244238!important}
+.icon svg{stroke:currentColor!important}
+</style><style data-pikobuy-global-accent-cleanup>
+.eyebrow:before,.eyebrow::before{background:#244238!important}
+</style><style data-pikobuy-reference-palette>
+/* Reference palette: charcoal black, warm white and coral red. */
+:root{--ink:#f8f3eb!important;--blue:#db454a!important;--accent:#db454a!important;--mint-strong:#db454a!important;--paper:#151310!important;--ice:#1d1a17!important;--sand:#1d1a17!important;--mint:#1d1a17!important;--line:#443b35!important;--muted:#b9afa5!important;--soft:#b9afa5!important}
+html,body,.site{background:#151310!important;color:#f8f3eb!important}
+.nav,.hero,.finder,.search,.block,.card,.find,.article,.faq details,.panel,.product,.media-panel,.flow,.sources,.notice,.category,.intro-stat,.image-lab,.qc-panel,.drop,.callout,.sheet,.hero-sticker,.facts span,.filter,.sort,.lang select,.home-page-cards a,.home-faq details{background:#1d1a17!important;color:#f8f3eb!important;border-color:#443b35!important}
+.hero-art,.hero-photo,.find-visual,.media{background:#1d1a17!important;border-color:#443b35!important}
+.hero:after,.blob,.blob.one,.blob.two{background:#000!important}
+h1,h2,h3,h4,h5,.category,.category .category-name,.find h3,.product-head h1,.home-faq summary,.find-foot strong,.price{color:#f8f3eb!important}
+.nav a,.links a,.helper,.summary,.hero p,.block-top p,.note,.foot,.footer,.source,.faq p,.article p,.pad p,.category small,.find-foot,.home-faq p{color:#b9afa5!important}
+.nav a:hover,.links a:hover,.article a,.sources a,.faq a,.note a,.eyebrow,.tag,.find-type,.flow-title,.thumb-title{color:#f8f3eb!important}
+.eyebrow,.tag,.chip,.preview-badge,.flow-label{background:#26211e!important;color:#f8f3eb!important;border-color:#58483f!important}
+.eyebrow:before,.eyebrow::before{background:#db454a!important}
+.btn,.reg,.register,.record,.filter.active,.pager button.active,.intro-card,.finder button,.search button,.qcstep b{background:#db454a!important;color:#fffaf4!important;border-color:#db454a!important}
+.btn *,.reg *,.register *,.record *,.filter.active *,.pager button.active *,.intro-card *,.finder button *,.search button *{color:#fffaf4!important}
+.btn.alt{background:#26211e!important;border-color:#58483f!important;color:#f8f3eb!important}
+.thumb.active{border-color:#db454a!important}
+.card:hover,.find:hover,.category:hover,.article:hover,.home-page-cards a:hover{border-color:#db454a!important;box-shadow:0 14px 30px #00000055!important}
+.card,.find,.article,.faq details,.panel,.product,.category,.home-page-cards a{box-shadow:none!important}
+.flow{background:transparent!important}.flow-item{border-color:#443b35!important}
+</style><style data-pikobuy-reference-palette-fix>
+/* Keep coral as an accent, never as a page-wide content surface. */
+.hero h1 em,.hero h1 strong,.hero-stat b{color:#f8f3eb!important}
+.intro-card{background:#1d1a17!important;color:#f8f3eb!important;border:1px solid #443b35!important}
+.intro-card *{color:#f8f3eb!important}
+.logo img,.nav img{filter:brightness(0) invert(1)!important}
+</style><style data-pikobuy-aqua-reference-palette>
+/* Reference palette: bright white, soft aqua, deep ink and forest-green actions. */
+:root{--ink:#14212d!important;--blue:#0b6b57!important;--accent:#12cbb9!important;--mint-strong:#0b6b57!important;--paper:#fafffe!important;--ice:#e8fffa!important;--sand:#e8fffa!important;--mint:#e8fffa!important;--line:#c7ebe4!important;--muted:#5f7180!important;--soft:#5f7180!important}
+html,body,.site{background:#fafffe!important;color:#14212d!important}
+.nav,.finder,.search,.block,.card,.find,.article,.faq details,.panel,.product,.media-panel,.flow,.sources,.notice,.category,.intro-stat,.image-lab,.qc-panel,.drop,.callout,.sheet,.hero-sticker,.facts span,.filter,.sort,.lang select,.home-page-cards a,.home-faq details{background:#fff!important;color:#14212d!important;border-color:#c7ebe4!important}
+.hero{background:#baf6ec!important;color:#14212d!important;overflow:hidden!important}
+.hero-art{background:linear-gradient(135deg,#baf6ec 0%,#58ddcf 100%)!important;border-color:#8ce9de!important}
+.hero>div:first-child{position:relative!important;z-index:2!important}
+.hero-photo{background:#d6fffa!important;border-color:#8ce9de!important;opacity:.22!important}
+.hero-photo img{filter:none!important}
+.hero h1,.hero h1 em,.hero h1 strong,.hero-stat b,.product-head h1,h1,h2,h3,h4,h5,.category,.category .category-name,.find h3,.home-faq summary,.find-foot strong,.price{color:#14212d!important}
+.nav a,.links a,.helper,.summary,.hero p,.block-top p,.note,.foot,.footer,.source,.faq p,.article p,.pad p,.category small,.find-foot,.home-faq p,.hero-stat span{color:#5f7180!important}
+.nav a:hover,.links a:hover,.article a,.sources a,.faq a,.note a,.eyebrow,.tag,.find-type,.flow-title,.thumb-title{color:#0b6b57!important}
+.eyebrow,.tag,.chip,.preview-badge,.flow-label{background:#effffc!important;color:#0b6b57!important;border-color:#a9eee4!important}
+.eyebrow:before,.eyebrow::before{background:#12cbb9!important}
+.btn,.reg,.register,.record,.filter.active,.pager button.active,.finder button,.search button,.qcstep b{background:#0b6b57!important;color:#fff!important;border-color:#0b6b57!important}
+.btn *,.reg *,.register *,.record *,.filter.active *,.pager button.active *,.finder button *,.search button *{color:#fff!important}
+.intro-card{background:#e8fffa!important;color:#14212d!important;border:1px solid #c7ebe4!important}
+.intro-card *{color:#14212d!important}
+.btn.alt{background:#fff!important;border-color:#a9eee4!important;color:#0b6b57!important}
+.logo img,.nav img{filter:none!important}
+.thumb.active{border-color:#0b6b57!important}
+.card:hover,.find:hover,.category:hover,.article:hover,.home-page-cards a:hover{border-color:#0b6b57!important;box-shadow:0 14px 30px #0b6b5718!important}
+.card,.find,.article,.faq details,.panel,.product,.category,.home-page-cards a{box-shadow:none!important}
+.flow{background:transparent!important}.flow-item{border-color:#c7ebe4!important}
+.find-visual,.media{background:#e8fffa!important}
+</style><style data-pikobuy-aqua-hero-overlay-fix>
+/* Remove the legacy dark hero overlay so the reference aqua palette stays visible. */
+.hero,.hero:has(.hero-art){background:linear-gradient(135deg,#c7f9ef 0%,#8deee0 100%)!important;color:#14212d!important}
+.hero::before,.hero:before,.hero::after,.hero:after{display:none!important;background:transparent!important;background-image:none!important;opacity:0!important}
+.hero>*,.hero>div{position:relative!important;z-index:1!important}
+.hero-art,.hero .hero-art{background:linear-gradient(135deg,#c7f9ef 0%,#64dfd0 100%)!important;color:#14212d!important}
+.hero .blob,.hero .blob.one,.hero .blob.two{background:#12cbb9!important;opacity:.13!important}
+.hero h1,.hero h1 em,.hero h1 strong,.hero p,.hero .helper,.hero .hero-stat b,.hero .hero-stat span{color:#14212d!important}
+</style></head><body><main class="site">
+<header class="nav"><a href="visual-discovery-internal-routing-v2-20261016.html"><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy"></a><nav class="links"><a href="visual-discovery-internal-routing-v2-20261016.html">Home</a><a href="visual-discovery-internal-routing-v2-pages/finds.html">Finds</a><a href="visual-discovery-internal-routing-v2-pages/categories.html">Categories</a><a href="visual-discovery-internal-routing-v2-pages/product-details-unified-v2.html">Product details</a><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">Official guide ↗</a></nav><a class="reg" href="https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716" target="_blank" rel="noopener">Register ↗</a></header>
+<section class="hero" id="categories"><span class="eyebrow">PRODUCT CATEGORIES</span><h1>Browse by what you want to wear.</h1><p>Choose a category to open its matching PikoBuy Spreadsheet category page. The category labels are a browsing aid; verify the item title and selected option before ordering.</p></section>
+<section class="grid" aria-label="Product categories" id="grid"></section>
+<p class="note">Need a different item? Use <a href="visual-discovery-internal-routing-v2-pages/finds.html">all product finds</a> to search the local catalog by name or ID.</p>
+</main><script>
+const icons={shoe:'<svg viewBox="0 0 32 32"><path d="M4 21c6 0 7-7 9-8 2 4 7 6 14 6l2 4H4z"/><path d="M19 20h2M23 20h2"/></svg>',shirt:'<svg viewBox="0 0 32 32"><path d="M9 7l4-3h6l4 3 5 3-3 6-4-2v14H11V14l-4 2-3-6z"/></svg>',pants:'<svg viewBox="0 0 32 32"><path d="M9 4h14l-2 24h-5l-1-13-1 13H9z"/></svg>',bag:'<svg viewBox="0 0 32 32"><rect x="5" y="11" width="22" height="16" rx="2"/><path d="M11 11V8a5 5 0 0110 0v3"/></svg>',shorts:'<svg viewBox="0 0 32 32"><path d="M8 5h16l-1 20h-6l-1-8-1 8H9z"/><path d="M16 6v8"/></svg>',watch:'<svg viewBox="0 0 32 32"><rect x="10" y="9" width="12" height="14" rx="3"/><path d="M13 9V4h6v5M13 23v5h6v-5M16 13v4l3 2"/></svg>',diamond:'<svg viewBox="0 0 32 32"><path d="M6 12l5-6h10l5 6-10 14z"/><path d="M6 12h20M11 6l5 6 5-6"/></svg>',accessory:'<svg viewBox="0 0 32 32"><rect x="9" y="5" width="12" height="22" rx="3"/><path d="M13 8h6M13 24h6"/></svg>'};
+const cats=[['Shoes','shoes','shoe'],['Hoodies/Sweaters','hoodies-sweaters','shirt'],['T-Shirts','t-shirts','shirt'],['Jackets','jackets','shirt'],['Pants/Shorts','pants-shorts','pants'],['Headwear','headwear','accessory'],['Sets','ShortSets','shirt'],['Underwear/Underpants','other-stuff','accessory'],['Jersey','jersey','shirt'],['Accessories','accessories','accessory']];
+const grid=document.querySelector('#grid');cats.forEach(([label,filter,icon])=>{const b=document.createElement('button');b.className='card';b.innerHTML='<span class="icon">'+icons[icon]+'</span><span>'+label+'</span>';b.onclick=()=>{localStorage.setItem('pikobuy-subsite-category',filter);location.href='visual-discovery-internal-routing-v2-pages/finds.html?category='+encodeURIComponent(filter)};grid.appendChild(b)});
+</script></body></html>
