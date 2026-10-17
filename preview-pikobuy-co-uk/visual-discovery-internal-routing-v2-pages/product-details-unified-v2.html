@@ -116,4 +116,56 @@ iframe.goog-te-banner-frame,.goog-te-banner-frame,.goog-te-banner-frame.skiptran
   new MutationObserver(suppressTranslateToolbar).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["style","class"]});
   window.addEventListener("load",suppressTranslateToolbar,{once:true});
 })();
+</script><div id="piko-silent-translate" aria-hidden="true"></div>
+<style id="piko-silent-translate-style">
+#piko-silent-translate{position:fixed!important;left:-10000px!important;top:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+</style>
+<script id="piko-silent-translate-script">
+(function(){
+  var languageKey="pikobuy-preview-language";
+  var languages={en:1,de:1,fr:1,es:1,it:1,pt:1,nl:1,pl:1,sv:1};
+  function normalise(value){value=String(value||"en").toLowerCase();return languages[value]?value:"en";}
+  function writeGoogleLanguage(code){
+    if(code==="en") document.cookie="googtrans=;path=/;max-age=0;SameSite=Lax";
+    else document.cookie="googtrans=/en/"+code+";path=/;max-age=31536000;SameSite=Lax";
+  }
+  function selectedLanguage(){return normalise(localStorage.getItem(languageKey)||"en");}
+  function translateTo(code){
+    code=normalise(code);
+    localStorage.setItem(languageKey,code);
+    writeGoogleLanguage(code);
+    document.documentElement.lang=code;
+    location.reload();
+  }
+  function connectSelectors(){
+    var selectors=document.querySelectorAll('select[aria-label="Language"],#language,.language select,.lang select');
+    Array.prototype.forEach.call(selectors,function(select){
+      var has=Array.prototype.some.call(select.options,function(option){return normalise(option.value||option.textContent)===selectedLanguage();});
+      if(has) Array.prototype.forEach.call(select.options,function(option){option.selected=normalise(option.value||option.textContent)===selectedLanguage();});
+      if(!select.dataset.pikoFullTextBound){
+        select.dataset.pikoFullTextBound="1";
+        select.addEventListener("change",function(){translateTo(this.value||this.options[this.selectedIndex].textContent);});
+      }
+    });
+  }
+  function initialiseTranslator(){
+    if(!(window.google&&google.translate&&google.translate.TranslateElement)) return;
+    if(document.querySelector("#piko-silent-translate .goog-te-gadget")) return;
+    new google.translate.TranslateElement({
+      pageLanguage:"en",
+      includedLanguages:"en,de,fr,es,it,pt,nl,pl,sv",
+      autoDisplay:false
+    },"piko-silent-translate");
+  }
+  window.pikoSilentTranslateReady=initialiseTranslator;
+  connectSelectors();
+  document.documentElement.lang=selectedLanguage();
+  writeGoogleLanguage(selectedLanguage());
+  if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
+    var script=document.createElement("script");
+    script.src="https://translate.google.com/translate_a/element.js?cb=pikoSilentTranslateReady";
+    script.async=true;
+    document.head.appendChild(script);
+  }else initialiseTranslator();
+})();
 </script></body></html>
