@@ -126,6 +126,41 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
   function setText(selector, value) { var node = document.querySelector(selector); if (node) node.textContent = value; }
   function pairs(rows) { return rows.map(function (row) { return "<details" + (row[2] ? " open" : "") + "><summary>" + escapeHtml(row[0]) + "</summary><p>" + escapeHtml(row[1]) + "</p></details>"; }).join(""); }
 
+  function localizeFaqRegion(l, rows) {
+    var box = document.querySelector("#faq");
+    if (!box || !rows || !rows.length) return;
+    var eyebrow = box.querySelector(".block-top .eyebrow");
+    var title = box.querySelector(".block-top h2");
+    var lead = box.querySelector(".block-top > p");
+    if (eyebrow) eyebrow.textContent = locale[l].nav[7] || eyebrow.textContent;
+    if (title) title.textContent = l === "de" ? "Fragen vor dem Öffnen eines Produkts." : l === "fr" ? "Questions avant d’ouvrir un produit." : l === "es" ? "Preguntas antes de abrir un producto." : l === "it" ? "Domande prima di aprire un prodotto." : l === "pt" ? "Perguntas antes de abrir um produto." : l === "nl" ? "Vragen voordat je een product opent." : l === "pl" ? "Pytania przed otwarciem produktu." : l === "sv" ? "Frågor innan du öppnar en produkt." : title.textContent;
+    if (lead) lead.textContent = rows[0][1] || lead.textContent;
+    Array.prototype.forEach.call(box.querySelectorAll("details"), function (item, index) {
+      var row = rows[index % rows.length] || [];
+      var summary = item.querySelector("summary");
+      var answer = item.querySelector("p");
+      if (summary && row[0]) summary.textContent = row[0];
+      if (answer && row[1]) answer.textContent = row[1];
+    });
+  }
+  function localizeSeoGuideRegion(l) {
+    var box = document.querySelector("#seo-guides");
+    if (!box || l === "en") return;
+    var source = document.createElement("div");
+    source.innerHTML = articleMarkup(l);
+    var targetLeaves = box.querySelectorAll(".article h2,.article h3,.article p,.article .eyebrow");
+    var sourceLeaves = source.querySelectorAll("h2,h3,p,.eyebrow");
+    Array.prototype.forEach.call(targetLeaves, function (target, index) {
+      if (sourceLeaves.length) target.textContent = sourceLeaves[index % sourceLeaves.length].textContent;
+    });
+    var eyebrow = box.querySelector(".block-top .eyebrow");
+    var title = box.querySelector(".block-top h2");
+    var lead = box.querySelector(".block-top > p");
+    if (eyebrow) eyebrow.textContent = locale[l].seo.eyebrow || eyebrow.textContent;
+    if (title) title.textContent = locale[l].seo.title || title.textContent;
+    if (lead) lead.textContent = locale[l].seo.lead || lead.textContent;
+  }
+
   var locale = {
     en: { name: "English", nav: ["Home", "Finds", "Categories", "Product details", "SEO Articles", "Image & QC", "Guide", "FAQ"],
       labels: { language: "Language", register: "Register ↗", search: "Search", clear: "Clear", explore: "Explore", view: "View", loading: "Loading local catalog…", media: "Loading product media…", local: "Local product detail", finds: "Finds /", records: "records", "Most viewed": "Most viewed", "Newest record": "Newest record", "Price: low first": "Price: low first", "Price: high first": "Price: high first", "View record": "View record", "No preview record matches that search. Try a broader name, category or item ID.": "No preview record matches that search. Try a broader name, category or item ID." },
@@ -267,14 +302,15 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
     var copy = locale[l].home, root = document.querySelector("#home"); if (!root) return;
     var hero = document.querySelector(".hero"); if (hero) { var eye = hero.querySelector(".eyebrow"), h1 = hero.querySelector("h1"), p = hero.querySelector("p"); if (eye) eye.textContent = copy.eyebrow; if (h1) h1.textContent = copy.title; if (p) p.textContent = copy.lead; }
     var intro = document.querySelector(".intro-card"); if (intro) { var h2 = intro.querySelector("h2"), p2 = intro.querySelector("p"); if (h2) h2.textContent = copy.introTitle; if (p2) p2.textContent = copy.intro; }
-    if (l === "en") { restore("#faq"); restore("#seo-guides"); return; }
-    setHTML("#faq", "<div class=\"block-top\"><div><span class=\"eyebrow\">" + locale[l].nav[7] + "</span><h2>" + (l === "de" ? "Fragen vor dem Öffnen eines Produkts." : l === "fr" ? "Questions avant d’ouvrir un produit." : l === "es" ? "Preguntas antes de abrir un producto." : l === "it" ? "Domande prima di aprire un prodotto." : l === "pt" ? "Perguntas antes de abrir um produto." : l === "nl" ? "Vragen voordat je een product opent." : l === "pl" ? "Pytania przed otwarciem produktu." : "Frågor innan du öppnar en produkt.") + "</h2></div><p>" + genericFaq[l][0][1] + "</p></div>" + pairs(genericFaq[l]));
-    setHTML("#seo-guides", "<div class=\"block-top\"><div><span class=\"eyebrow\">" + locale[l].seo.eyebrow + "</span><h2>" + locale[l].seo.title + "</h2></div><p>" + locale[l].seo.lead + "</p></div>" + articleMarkup(l));
+    restore("#faq"); restore("#seo-guides");
+    if (l === "en") return;
+    localizeFaqRegion(l, genericFaq[l] || []);
+    localizeSeoGuideRegion(l);
   }
   function basicPage(l) {
     if (page === "guide") {
       var c = locale[l].guide; setText(".hero .eyebrow", c.eyebrow); setText(".hero h1", c.title); setText(".hero p", c.lead);
-      if (l === "en") restore("#faq"); else setHTML("#faq", pairs(genericFaq[l]));
+      restore("#faq"); if (l !== "en") localizeFaqRegion(l, (typeof fullFaq !== "undefined" && fullFaq[l]) || genericFaq[l] || []);
     }
     if (page === "seo") {
       var s = locale[l].seo; setText(".hero .eyebrow", s.eyebrow); setText(".hero h1", s.title); setText(".hero p", s.lead);
