@@ -241,7 +241,7 @@ const grid=document.querySelector('#grid');cats.forEach(([label,filter,icon])=>{
     });
   }
   function apply(value) {
-    var l = lang(value); localStorage.setItem(KEY, l); document.documentElement.lang = l; controls(l); nav(l); markLeaves(); basicPage(l); home(l); translateLeaves(l);
+    var l = lang(value); localStorage.setItem(KEY, l); document.documentElement.lang = l; controls(l); nav(l); markLeaves(); basicPage(l); home(l); translateLeaves(l); basicPage(l); home(l);
   }
   window.pikoSetLanguage = apply;
   apply(lang(localStorage.getItem(KEY)));
