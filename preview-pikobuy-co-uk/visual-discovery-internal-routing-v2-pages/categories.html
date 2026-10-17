@@ -236,7 +236,8 @@ const grid=document.querySelector('#grid');cats.forEach(([label,filter,icon])=>{
     }
   }
   function controls(l) {
-    document.querySelectorAll("select#language, select[aria-label='Language']").forEach(function (select) {
+    document.querySelectorAll("select").forEach(function (select) {
+      if (!Array.prototype.some.call(select.options, function (option) { return supported[String(option.value || "").toLowerCase()]; })) return;
       select.value = l;
       if (!select.dataset.pikoLanguageBound) { select.dataset.pikoLanguageBound = "1"; select.addEventListener("change", function () { apply(this.value); }); }
     });
