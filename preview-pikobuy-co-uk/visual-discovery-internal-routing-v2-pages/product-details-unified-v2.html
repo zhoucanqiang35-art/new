@@ -372,6 +372,18 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
     if (page === "categories") {
       var c2 = locale[l].home; setText(".hero .eyebrow", l === "en" ? "PRODUCT CATEGORIES" : locale[l].nav[2].toUpperCase()); setText(".hero h1", l === "de" ? "Nach dem suchen, was du tragen möchtest." : l === "fr" ? "Parcourez selon ce que vous voulez porter." : l === "es" ? "Explora según lo que quieras llevar." : l === "it" ? "Sfoglia in base a ciò che vuoi indossare." : l === "pt" ? "Explore pelo que pretende usar." : l === "nl" ? "Blader op wat je wilt dragen." : l === "pl" ? "Przeglądaj według tego, co chcesz nosić." : l === "sv" ? "Bläddra efter det du vill bära." : "Browse by what you want to wear.");
     }
+    if (page === "finds") {
+      var findCopy = localCopyPack[l] || {};
+      setText(".hero .eyebrow", copyValue(findCopy, "database") || locale[l].labels.finds);
+      setText(".hero h1", copyValue(findCopy, "pageTitles.products") || locale[l].home.title);
+      setText(".hero p", copyValue(findCopy, "pageIntros.products") || locale[l].home.lead);
+    }
+    if (page === "image-qc") {
+      var qcCopy = localCopyPack[l] || {};
+      setText(".hero .eyebrow", copyValue(qcCopy, "pageTitles.qc") || locale[l].nav[5]);
+      setText(".hero h1", copyValue(qcCopy, "pageTitles.qc") || locale[l].home.title);
+      setText(".hero p", copyValue(qcCopy, "pageIntros.qc") || locale[l].home.lead);
+    }
   }
   function controls(l) {
     document.querySelectorAll("select").forEach(function (select) {
