@@ -2,7 +2,8 @@
 (function () {
   "use strict";
   var KEY = "pikobuy-preview-language";
-  var page = (document.currentScript && document.currentScript.dataset.pikoPage) || "home";
+  var packTag = document.currentScript || document.querySelector("#piko-static-language-packs");
+  var page = (packTag && packTag.dataset.pikoPage) || "home";
   var supported = { en: 1, de: 1, fr: 1, es: 1, it: 1, pt: 1, nl: 1, pl: 1, sv: 1 };
   var original = new Map();
   var scheduled = false;
