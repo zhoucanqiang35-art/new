@@ -582,6 +582,6 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
   window.pikoSetLanguage = apply;
   markLeaves();
   apply(lang(localStorage.getItem(KEY)));
-  new MutationObserver(function () { if (scheduled) return; scheduled = true; requestAnimationFrame(function () { scheduled = false; markLeaves(); translateLeaves(lang(localStorage.getItem(KEY))); }); }).observe(document.body, { childList: true, subtree: true });
+  new MutationObserver(function () { if (scheduled) return; scheduled = true; requestAnimationFrame(function () { scheduled = false; var current = lang(localStorage.getItem(KEY)); markLeaves(); translateLeaves(current); basicPage(current); home(current); }); }).observe(document.body, { childList: true, subtree: true });
 }());
 </script></body></html>
