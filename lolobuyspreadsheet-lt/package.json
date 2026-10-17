@@ -3,6 +3,6 @@
   "private": true,
   "version": "1.0.1",
   "scripts": {
-    "build": "mkdir -p dist && cp index.html dist/index.html && cp server.js dist/site.js && cp worker.js dist/_worker.js"
+    "build": "mkdir -p dist out && cp index.html dist/index.html && cp server.js dist/site.js && cp worker.js dist/_worker.js && cp dist/index.html out/index.html && cp dist/site.js out/site.js && cp dist/_worker.js out/_worker.js"
   }
 }
