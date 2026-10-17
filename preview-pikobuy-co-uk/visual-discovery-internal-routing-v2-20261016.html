@@ -219,6 +219,61 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
   function setText(selector, value) { var node = document.querySelector(selector); if (node) node.textContent = value; }
   function pairs(rows) { return rows.map(function (row) { return "<details" + (row[2] ? " open" : "") + "><summary>" + escapeHtml(row[0]) + "</summary><p>" + escapeHtml(row[1]) + "</p></details>"; }).join(""); }
 
+  function localizeHomeStatic(l) {
+    var root = document.querySelector("#home");
+    if (!root || l === "en") return;
+    var c = localCopyPack[l] || {};
+    var labels = (locale[l] || locale.en).labels || {};
+    var get = function (path, fallback) { return copyValue(c, path) || fallback || ""; };
+    setText("#home .hero .eyebrow", locale[l].home.eyebrow);
+    setText("#home .hero h1", locale[l].home.title);
+    setText("#home .hero > div > p", locale[l].home.lead);
+    setText("#home .intro-card h2", locale[l].home.introTitle);
+    setText("#home .intro-card p", locale[l].home.intro);
+    var search = root.querySelector("#searchForm input");
+    if (search) { search.setAttribute("aria-label", labels.search || search.getAttribute("aria-label")); search.setAttribute("placeholder", get("search", search.getAttribute("placeholder"))); }
+    var searchButton = root.querySelector("#searchForm button");
+    if (searchButton) searchButton.textContent = labels.explore || searchButton.textContent;
+    var helper = root.querySelector("#searchForm + .helper"); if (helper) helper.textContent = get("ctaText", helper.textContent);
+    var stat = root.querySelector(".hero-stat span"); if (stat) stat.textContent = get("ui.liveDatabase", stat.textContent) + "\n" + get("ui.exploreSite", "");
+    var sticker = root.querySelector(".hero-sticker span"); if (sticker) sticker.textContent = get("ui.focusedCategories", sticker.textContent) + "\n" + get("ctaButton", "");
+    var cardTitles = [get("pageTitles.products"),get("pageTitles.categories"),get("pageTitles.products"),get("pageTitles.seo"),get("pageTitles.qc"),get("pageTitles.guide")];
+    var cardNotes = [get("browse"),get("pageTitles.categories"),get("ui.featureProducts"),get("ui.readFull"),get("pageTitles.qc"),get("pageTitles.guide")];
+    Array.prototype.forEach.call(root.querySelectorAll(".home-page-cards a"), function (card, index) {
+      var title = card.querySelector("span"), note = card.querySelector("small");
+      if (title && cardTitles[index]) title.textContent = cardTitles[index];
+      if (note && cardNotes[index]) note.textContent = cardNotes[index];
+    });
+    var finds = root.querySelector("#finds");
+    if (finds) {
+      setText("#finds .eyebrow", get("database", "PikoBuy spreadsheet"));
+      setText("#finds h2", get("browse", ""));
+      var p = finds.querySelector("p"); if (p) p.textContent = get("browseIntro", p.textContent);
+      var categoryNames = c.categoryNames || [];
+      Array.prototype.forEach.call(finds.querySelectorAll(".filters button"), function (button, index) { if (index && categoryNames[index - 1]) button.textContent = categoryNames[index - 1]; else if (!index) button.textContent = get("ctaButton", button.textContent); });
+      Array.prototype.forEach.call(finds.querySelectorAll("button.record"), function (button) { button.textContent = labels["View record"] || button.textContent; });
+    }
+    var categories = root.querySelector("#categories");
+    if (categories) {
+      setText("#categories .eyebrow", get("browse", ""));
+      setText("#categories h2", get("pageTitles.categories", ""));
+      var categoryLead = categories.querySelector("p"); if (categoryLead) categoryLead.textContent = get("pageIntros.categories", categoryLead.textContent);
+      var names = c.categoryNames || [];
+      Array.prototype.forEach.call(categories.querySelectorAll(".categoryCloud button"), function (button, index) {
+        var name = button.querySelector("span"), note = button.querySelector("small");
+        if (name && names[index]) name.textContent = names[index];
+        if (note) note.textContent = get("ctaButton", note.textContent);
+      });
+    }
+    var tools = root.querySelector("#tools");
+    if (tools) {
+      setText("#tools > .block-top .eyebrow", get("pageTitles.qc", ""));
+      setText("#tools > .block-top h2", get("pageIntros.qc", ""));
+      Array.prototype.forEach.call(tools.querySelectorAll("button"), function (button) { if (button.dataset.pikoSource === "View") button.textContent = labels.view || button.textContent; });
+    }
+    var footer = root.parentElement && root.parentElement.querySelector("footer p"); if (footer) footer.textContent = get("footer", footer.textContent);
+  }
+
   function localizeFaqRegion(l, rows) {
     var box = document.querySelector("#faq");
     if (!box || !rows || !rows.length) return;
@@ -458,6 +513,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     if (l === "en") return;
     localizeFaqRegion(l, genericFaq[l] || []);
     localizeSeoGuideRegion(l);
+    localizeHomeStatic(l);
   }
   function basicPage(l) {
     if (page === "guide") {
