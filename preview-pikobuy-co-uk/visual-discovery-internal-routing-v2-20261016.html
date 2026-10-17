@@ -246,7 +246,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
   }
   function translate(root){
     if(current==="en"){restore(root);return Promise.resolve();}
-    var list=units(root);return batches(list,current).catch(function(){/* Keep the original text rather than showing an error or a third-party banner. */});
+    var list=units(root);return batches(list,current).catch(function(error){document.documentElement.dataset.pikoI18nError=String(error&&error.message||error);});
   }
   function observe(){
     new MutationObserver(function(records){
@@ -274,8 +274,8 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     });
   }
   function start(){
-    current=pageLanguage();document.documentElement.lang=current;bind();selectValue(current);running=true;
-    translate(document.body).finally(function(){running=false;observe();});
+    current=pageLanguage();document.documentElement.lang=current;document.documentElement.dataset.pikoI18n="running-"+current;bind();selectValue(current);running=true;
+    translate(document.body).finally(function(){running=false;document.documentElement.dataset.pikoI18n="done-"+current;observe();});
   }
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start);else start();
 })();
