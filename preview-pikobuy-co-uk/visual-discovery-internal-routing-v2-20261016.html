@@ -206,7 +206,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
   var current="en", running=false, queue=[], timer, sourceText=new WeakMap(), sourceAttr=new WeakMap();
   var ignore="SCRIPT,STYLE,NOSCRIPT,CODE,PRE,TEXTAREA,OPTION";
   function lang(value){value=String(value||"en").toLowerCase();return supported[value]?value:"en";}
-  function pageLanguage(){return lang(new URLSearchParams(location.search).get("lang")||localStorage.getItem(key)||"en");}
+  function pageLanguage(){return lang(localStorage.getItem(key)||"en");}
   function source(node){if(!sourceText.has(node)) sourceText.set(node,node.nodeValue);return sourceText.get(node);}
   function sourceValue(el,name){var map=sourceAttr.get(el);if(!map){map={};sourceAttr.set(el,map);}if(!(name in map))map[name]=el.getAttribute(name)||"";return map[name];}
   function skip(node){
@@ -257,13 +257,15 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
       clearTimeout(timer);timer=setTimeout(function(){var roots=queue.splice(0);roots.forEach(function(root){translate(root);});},80);
     }).observe(document.body,{childList:true,subtree:true});
   }
-  function urlFor(code){var url=new URL(location.href);if(code==="en")url.searchParams.delete("lang");else url.searchParams.set("lang",code);return url.toString();}
   function selectValue(code){
     Array.prototype.forEach.call(document.querySelectorAll('select[aria-label="Language"],#language,.language select,.lang select'),function(select){select.value=code;});
   }
   function change(code){
     code=lang(code);localStorage.setItem(key,code);
-    if(code!==current){location.replace(urlFor(code));}
+    if(code===current)return;
+    current=code;document.documentElement.lang=code;selectValue(code);running=true;
+    restore(document.body);
+    translate(document.body).finally(function(){running=false;});
   }
   function bind(){
     Array.prototype.forEach.call(document.querySelectorAll('select[aria-label="Language"],#language,.language select,.lang select'),function(select){
