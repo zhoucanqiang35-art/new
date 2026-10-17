@@ -106,4 +106,77 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
 <h3>Use cautious language around risk</h3><p>PikoBuy’s shipping terms explain that parcels are carried by third-party logistics providers and that customs policies and other uncontrollable factors can create risk. That does not mean every parcel has a problem; it means no honest guide should promise clearance, an arrival date or compensation outside the published terms. If insurance is offered for a particular parcel, read the current policy and exclusions before buying it. Keep the invoice, warehouse photos and tracking record because those are the practical materials you will need if a carrier or support discussion becomes necessary.</p>
 <div class="callout"><strong>A sensible rule:</strong> decide on an item while it is still in the warehouse; decide on a shipping route only after you know the parcel you are actually sending.</div>
 <ul class="check"><li>Compare QC photos against the chosen seller option, not a random reference image.</li><li>Ask for one precise extra photo when a visible fact is missing.</li><li>Review the return window as soon as the order enters the warehouse.</li><li>Use the shipping estimator with your real destination and expected parcel measurements.</li><li>Never treat QC or shipping estimates as guarantees of authenticity, delivery or customs clearance.</li></ul></article>
-<section class="sources"><strong>Official sources used for these guides</strong><ul><li><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">PikoBuy shopping guide</a> — ordering, warehouse inspection and parcel submission flow.</li><li><a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener">PikoBuy terms of service</a> — service scope, payment and cross-border charges.</li><li><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener">PikoBuy returns & exchanges</a> — eligibility, timing, exclusions and listed fees.</li><li><a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener">PikoBuy shipping terms</a> — forwarding process, inspection scope and logistics risks.</li></ul></section><footer class="foot">Independent PikoBuy Spreadsheet guide · verify current official terms before ordering</footer></main></body></html>
+<section class="sources"><strong>Official sources used for these guides</strong><ul><li><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">PikoBuy shopping guide</a> — ordering, warehouse inspection and parcel submission flow.</li><li><a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener">PikoBuy terms of service</a> — service scope, payment and cross-border charges.</li><li><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener">PikoBuy returns & exchanges</a> — eligibility, timing, exclusions and listed fees.</li><li><a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener">PikoBuy shipping terms</a> — forwarding process, inspection scope and logistics risks.</li></ul></section><footer class="foot">Independent PikoBuy Spreadsheet guide · verify current official terms before ordering</footer></main><style id="piko-language-switch-style">
+#piko-google-translate{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important}body{top:0!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
+</style><div id="piko-google-translate" aria-hidden="true"></div>
+<script id="piko-language-switch">
+(function(){
+  var supported={en:"EN",de:"DE",fr:"FR",es:"ES",it:"IT",pt:"PT",nl:"NL",pl:"PL",sv:"SV"};
+  var key="pikobuy-site-language";
+  var current=(localStorage.getItem(key)||"en").toLowerCase();
+  if(!supported[current]) current="en";
+  document.documentElement.lang=current;
+  function writeCookie(value,age){
+    document.cookie="googtrans="+value+";path=/;max-age="+age+";SameSite=Lax";
+  }
+  function setLanguage(code){
+    code=(code||"en").toLowerCase();
+    if(!supported[code]) code="en";
+    localStorage.setItem(key,code);
+    document.documentElement.lang=code;
+    if(code==="en"){
+      writeCookie("",0);
+    }else{
+      writeCookie("/en/"+code,31536000);
+    }
+    location.reload();
+  }
+  function makeOption(code){
+    var o=document.createElement("option");
+    o.value=code;o.textContent=supported[code];return o;
+  }
+  function prepareSelect(select){
+    select.classList.add("piko-language-switch");
+    select.setAttribute("aria-label","Language");
+    var known={};
+    Array.prototype.forEach.call(select.options,function(o){
+      var code=(o.value||o.textContent||"").trim().toLowerCase();
+      if(supported[code]){o.value=code;o.textContent=supported[code];known[code]=true;}
+    });
+    Object.keys(supported).forEach(function(code){if(!known[code])select.appendChild(makeOption(code));});
+    select.value=current;
+    select.addEventListener("change",function(){setLanguage(this.value);});
+  }
+  function addMissingControl(){
+    var header=document.querySelector("header");
+    if(!header) return;
+    var host=header.querySelector(".right,.nav-actions")||header;
+    var wrap=document.createElement("label");
+    wrap.className="piko-language-control";
+    wrap.appendChild(document.createTextNode("Language"));
+    var select=document.createElement("select");
+    Object.keys(supported).forEach(function(code){select.appendChild(makeOption(code));});
+    wrap.appendChild(select);
+    var register=host.querySelector(".reg");
+    host.insertBefore(wrap,register||null);
+    return select;
+  }
+  var selects=Array.prototype.slice.call(document.querySelectorAll('select[aria-label="Language"],.lang select,.language select,#language'));
+  if(!selects.length){var created=addMissingControl();if(created)selects=[created];}
+  selects.forEach(prepareSelect);
+  window.pikoGoogleTranslateInit=function(){
+    if(window.google&&google.translate&&google.translate.TranslateElement){
+      new google.translate.TranslateElement({
+        pageLanguage:"en",
+        includedLanguages:Object.keys(supported).join(","),
+        autoDisplay:false
+      },"piko-google-translate");
+    }
+  };
+  var src="https://translate.google.com/translate_a/element.js?cb=pikoGoogleTranslateInit";
+  if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
+    var script=document.createElement("script");script.src=src;script.async=true;document.head.appendChild(script);
+  }
+})();
+</script></body></html>
