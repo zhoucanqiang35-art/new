@@ -223,7 +223,7 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
     });
   }
   function apply(value) {
-    var l = lang(value); localStorage.setItem(KEY, l); document.documentElement.lang = l; controls(l); nav(l); markLeaves(); basicPage(l); home(l); translateLeaves(l);
+    var l = lang(value); localStorage.setItem(KEY, l); document.documentElement.lang = l; controls(l); nav(l); markLeaves(); basicPage(l); home(l); translateLeaves(l); basicPage(l); home(l);
   }
   window.pikoSetLanguage = apply;
   apply(lang(localStorage.getItem(KEY)));
