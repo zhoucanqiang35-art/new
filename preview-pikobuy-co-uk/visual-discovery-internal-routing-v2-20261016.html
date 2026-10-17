@@ -282,7 +282,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
       setText("#categories h2", get("pageTitles.categories", ""));
       var categoryLead = categories.querySelector("p"); if (categoryLead) categoryLead.textContent = get("pageIntros.categories", categoryLead.textContent);
       var names = c.categoryNames || [];
-      Array.prototype.forEach.call(categories.querySelectorAll(".categoryCloud button"), function (button, index) {
+      Array.prototype.forEach.call(categories.querySelectorAll("#categoryCloud button"), function (button, index) {
         var name = button.querySelector("span"), note = button.querySelector("small");
         if (name && names[index]) name.textContent = names[index];
         if (note) note.textContent = get("ctaButton", note.textContent);
