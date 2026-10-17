@@ -244,7 +244,7 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
     document.querySelectorAll("[data-piko-source]").forEach(function (el) {
       var source = el.dataset.pikoSource; if (!source || el.closest("script,style,.nav,.links,.nav-actions,.right,.language,.lang,#faq,#seo-guides,.article")) return;
       if (l === "en" || preserveProductData(el, source)) { el.textContent = source; return; }
-      el.textContent = dict[source] || fallbackText(l, position++);
+      el.textContent = dict[source] || source;
     });
     document.querySelectorAll("[aria-label]").forEach(function (el) { if (!el.dataset.pikoAria) el.dataset.pikoAria = el.getAttribute("aria-label"); var source = el.dataset.pikoAria; if (source === "Language") el.setAttribute("aria-label", locale[l].labels.language); });
   }
