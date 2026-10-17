@@ -247,6 +247,17 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
     }
     var c = localCopyPack[l] || {};
     var labels = (locale[l] || locale.en).labels || {};
+    var categoryNamesByLanguage = {
+      de:["Schuhe","Hoodies / Pullover","T-Shirts","Jacken","Hosen / Shorts","Kopfbedeckung","Sets","Unterwäsche","Trikots","Accessoires"],
+      fr:["Chaussures","Sweats à capuche / pulls","T-shirts","Vestes","Pantalons / shorts","Couvre-chefs","Ensembles","Sous-vêtements","Maillots","Accessoires"],
+      es:["Zapatos","Sudaderas / jerséis","Camisetas","Chaquetas","Pantalones / pantalones cortos","Sombreros","Conjuntos","Ropa interior","Camisetas deportivas","Accesorios"],
+      it:["Scarpe","Felpe con cappuccio / maglioni","T-shirt","Giacche","Pantaloni / pantaloncini","Copricapi","Completi","Intimo","Maglie sportive","Accessori"],
+      pt:["Sapatos","Hoodies / camisolas","T-shirts","Casacos","Calças / calções","Chapéus","Conjuntos","Roupa interior","Camisolas desportivas","Acessórios"],
+      nl:["Schoenen","Hoodies / truien","T-shirts","Jassen","Broeken / shorts","Hoofddeksels","Sets","Ondergoed","Sportshirts","Accessoires"],
+      pl:["Buty","Bluzy z kapturem / swetry","T-shirty","Kurtki","Spodnie / szorty","Nakrycia głowy","Komplety","Bielizna","Koszulki sportowe","Akcesoria"],
+      sv:["Skor","Hoodies / tröjor","T-shirts","Jackor","Byxor / shorts","Huvudbonader","Set","Underkläder","Sporttröjor","Accessoarer"]
+    };
+    var translatedCategoryNames = categoryNamesByLanguage[l] || c.categoryNames || [];
     var get = function (path, fallback) { return copyValue(c, path) || fallback || ""; };
     setText("#home .hero .eyebrow", locale[l].home.eyebrow);
     setText("#home .hero h1", locale[l].home.title);
@@ -272,8 +283,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
       setText("#finds .eyebrow", get("database", "PikoBuy spreadsheet"));
       setText("#finds h2", get("browse", ""));
       var p = finds.querySelector("p"); if (p) p.textContent = get("browseIntro", p.textContent);
-      var categoryNames = c.categoryNames || [];
-      Array.prototype.forEach.call(finds.querySelectorAll(".filters button"), function (button, index) { if (index && categoryNames[index - 1]) button.textContent = categoryNames[index - 1]; else if (!index) button.textContent = get("ctaButton", button.textContent); });
+      Array.prototype.forEach.call(finds.querySelectorAll(".filters button"), function (button, index) { if (index && translatedCategoryNames[index - 1]) button.textContent = translatedCategoryNames[index - 1]; else if (!index) button.textContent = get("ctaButton", button.textContent); });
       Array.prototype.forEach.call(finds.querySelectorAll("button.record"), function (button) { button.textContent = labels["View record"] || button.textContent; });
     }
     var categories = root.querySelector("#categories");
@@ -281,7 +291,7 @@ function buildCloud(){cloud.innerHTML=categoryCards.map(e=>'<button class="categ
       setText("#categories .eyebrow", get("browse", ""));
       setText("#categories h2", get("pageTitles.categories", ""));
       var categoryLead = categories.querySelector("p"); if (categoryLead) categoryLead.textContent = get("pageIntros.categories", categoryLead.textContent);
-      var names = c.categoryNames || [];
+      var names = translatedCategoryNames;
       Array.prototype.forEach.call(categories.querySelectorAll("#categoryCloud button"), function (button, index) {
         var name = button.querySelector(".category-name"), note = button.querySelector("small");
         if (name && names[index]) name.textContent = names[index];
