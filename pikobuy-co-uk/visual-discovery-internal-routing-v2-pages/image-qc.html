@@ -76,4 +76,77 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
 .hero-art,.hero .hero-art{background:linear-gradient(135deg,#c7f9ef 0%,#64dfd0 100%)!important;color:#14212d!important}
 .hero .blob,.hero .blob.one,.hero .blob.two{background:#12cbb9!important;opacity:.13!important}
 .hero h1,.hero h1 em,.hero h1 strong,.hero p,.hero .helper,.hero .hero-stat b,.hero .hero-stat span{color:#14212d!important}
-</style></head><body><div class="site"><header class="nav"><a href="visual-discovery-internal-routing-v2-20261016.html"><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy"></a><nav class="links"><a href="visual-discovery-internal-routing-v2-20261016.html">Home</a><a href="visual-discovery-internal-routing-v2-pages/finds.html">Finds</a><a href="visual-discovery-internal-routing-v2-pages/categories.html">Categories</a><a href="visual-discovery-internal-routing-v2-pages/product-details-unified-v2.html">Product details</a><a href="visual-discovery-internal-routing-v2-pages/seo-articles.html">SEO Articles</a><a href="visual-discovery-internal-routing-v2-pages/image-qc.html">Image & QC</a><a href="visual-discovery-internal-routing-v2-pages/guide.html">Guide</a></nav><div class="right"><select aria-label="Language"><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>PT</option><option>NL</option><option>PL</option><option>SV</option></select><a class="reg" href="https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716" target="_blank" rel="noopener">Register ↗</a></div></header><section class="hero"><span class="tag">IMAGE SEARCH & QC</span><h1>Inspect your starting point.</h1><p>The visual workspace stays here. Image matching is preview-only until a live source is connected.</p></section><section class="section"><div class="two"><div class="panel"><span class="tag">IMAGE SEARCH</span><h2>Start from an image.</h2><label class="drop"><div><b>Upload a reference image</b><br><small>PNG, JPG or WEBP · local preview</small></div><input type="file" accept="image/*"></label></div><div class="panel"><span class="tag">QC DESK</span><h2>See context first.</h2><div class="steps"><div>01 · Match listing ID and selected variant.</div><div>02 · Inspect visible construction and measurements.</div><div>03 · Verify live details only at the final step.</div></div></div></div></section><footer class="foot">© 2026 PikoBuy Spreadsheet · independent preview</footer></div></body></html>
+</style></head><body><div class="site"><header class="nav"><a href="visual-discovery-internal-routing-v2-20261016.html"><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy"></a><nav class="links"><a href="visual-discovery-internal-routing-v2-20261016.html">Home</a><a href="visual-discovery-internal-routing-v2-pages/finds.html">Finds</a><a href="visual-discovery-internal-routing-v2-pages/categories.html">Categories</a><a href="visual-discovery-internal-routing-v2-pages/product-details-unified-v2.html">Product details</a><a href="visual-discovery-internal-routing-v2-pages/seo-articles.html">SEO Articles</a><a href="visual-discovery-internal-routing-v2-pages/image-qc.html">Image & QC</a><a href="visual-discovery-internal-routing-v2-pages/guide.html">Guide</a></nav><div class="right"><select aria-label="Language"><option>EN</option><option>DE</option><option>FR</option><option>ES</option><option>IT</option><option>PT</option><option>NL</option><option>PL</option><option>SV</option></select><a class="reg" href="https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716" target="_blank" rel="noopener">Register ↗</a></div></header><section class="hero"><span class="tag">IMAGE SEARCH & QC</span><h1>Inspect your starting point.</h1><p>The visual workspace stays here. Image matching is preview-only until a live source is connected.</p></section><section class="section"><div class="two"><div class="panel"><span class="tag">IMAGE SEARCH</span><h2>Start from an image.</h2><label class="drop"><div><b>Upload a reference image</b><br><small>PNG, JPG or WEBP · local preview</small></div><input type="file" accept="image/*"></label></div><div class="panel"><span class="tag">QC DESK</span><h2>See context first.</h2><div class="steps"><div>01 · Match listing ID and selected variant.</div><div>02 · Inspect visible construction and measurements.</div><div>03 · Verify live details only at the final step.</div></div></div></div></section><footer class="foot">© 2026 PikoBuy Spreadsheet · independent preview</footer></div><style id="piko-language-switch-style">
+#piko-google-translate{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important}body{top:0!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
+</style><div id="piko-google-translate" aria-hidden="true"></div>
+<script id="piko-language-switch">
+(function(){
+  var supported={en:"EN",de:"DE",fr:"FR",es:"ES",it:"IT",pt:"PT",nl:"NL",pl:"PL",sv:"SV"};
+  var key="pikobuy-site-language";
+  var current=(localStorage.getItem(key)||"en").toLowerCase();
+  if(!supported[current]) current="en";
+  document.documentElement.lang=current;
+  function writeCookie(value,age){
+    document.cookie="googtrans="+value+";path=/;max-age="+age+";SameSite=Lax";
+  }
+  function setLanguage(code){
+    code=(code||"en").toLowerCase();
+    if(!supported[code]) code="en";
+    localStorage.setItem(key,code);
+    document.documentElement.lang=code;
+    if(code==="en"){
+      writeCookie("",0);
+    }else{
+      writeCookie("/en/"+code,31536000);
+    }
+    location.reload();
+  }
+  function makeOption(code){
+    var o=document.createElement("option");
+    o.value=code;o.textContent=supported[code];return o;
+  }
+  function prepareSelect(select){
+    select.classList.add("piko-language-switch");
+    select.setAttribute("aria-label","Language");
+    var known={};
+    Array.prototype.forEach.call(select.options,function(o){
+      var code=(o.value||o.textContent||"").trim().toLowerCase();
+      if(supported[code]){o.value=code;o.textContent=supported[code];known[code]=true;}
+    });
+    Object.keys(supported).forEach(function(code){if(!known[code])select.appendChild(makeOption(code));});
+    select.value=current;
+    select.addEventListener("change",function(){setLanguage(this.value);});
+  }
+  function addMissingControl(){
+    var header=document.querySelector("header");
+    if(!header) return;
+    var host=header.querySelector(".right,.nav-actions")||header;
+    var wrap=document.createElement("label");
+    wrap.className="piko-language-control";
+    wrap.appendChild(document.createTextNode("Language"));
+    var select=document.createElement("select");
+    Object.keys(supported).forEach(function(code){select.appendChild(makeOption(code));});
+    wrap.appendChild(select);
+    var register=host.querySelector(".reg");
+    host.insertBefore(wrap,register||null);
+    return select;
+  }
+  var selects=Array.prototype.slice.call(document.querySelectorAll('select[aria-label="Language"],.lang select,.language select,#language'));
+  if(!selects.length){var created=addMissingControl();if(created)selects=[created];}
+  selects.forEach(prepareSelect);
+  window.pikoGoogleTranslateInit=function(){
+    if(window.google&&google.translate&&google.translate.TranslateElement){
+      new google.translate.TranslateElement({
+        pageLanguage:"en",
+        includedLanguages:Object.keys(supported).join(","),
+        autoDisplay:false
+      },"piko-google-translate");
+    }
+  };
+  var src="https://translate.google.com/translate_a/element.js?cb=pikoGoogleTranslateInit";
+  if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
+    var script=document.createElement("script");script.src=src;script.async=true;document.head.appendChild(script);
+  }
+})();
+</script></body></html>
