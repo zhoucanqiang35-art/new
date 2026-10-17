@@ -363,6 +363,19 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
       setText(".hero .eyebrow", copyValue(qcCopy, "pageTitles.qc") || locale[l].nav[5]);
       setText(".hero h1", copyValue(qcCopy, "pageTitles.qc") || locale[l].home.title);
       setText(".hero p", copyValue(qcCopy, "pageIntros.qc") || locale[l].home.lead);
+      var qcSections = qcCopy.sections && qcCopy.sections.qc || [];
+      var panels = document.querySelectorAll(".panel");
+      if (panels[0]) {
+        var imageTag = panels[0].querySelector(".tag"); if (imageTag) imageTag.textContent = copyValue(qcCopy, "pageTitles.qc") || imageTag.textContent;
+        var imageTitle = panels[0].querySelector("h2"); if (imageTitle && qcSections[0]) imageTitle.textContent = qcSections[0][0];
+        var uploadLabel = panels[0].querySelector("b"); if (uploadLabel) uploadLabel.textContent = copyValue(qcCopy, "ui.liveDatabase") || uploadLabel.textContent;
+      }
+      if (panels[1]) {
+        var deskTag = panels[1].querySelector(".tag"); if (deskTag) deskTag.textContent = copyValue(qcCopy, "pageTitles.qc") || deskTag.textContent;
+        var deskTitle = panels[1].querySelector("h2"); if (deskTitle && qcSections[1]) deskTitle.textContent = qcSections[1][0];
+        Array.prototype.forEach.call(panels[1].querySelectorAll(".steps div"), function (step, index) { if (qcSections[index] && qcSections[index][1]) step.textContent = String(index + 1).padStart(2, "0") + " · " + qcSections[index][1]; });
+      }
+      var qcFooter = document.querySelector(".foot"); if (qcFooter) qcFooter.textContent = copyValue(qcCopy, "footer") || qcFooter.textContent;
     }
   }
   function controls(l) {
