@@ -197,6 +197,37 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
       return html + "</article>";
     }).join("");
   }
+  function localizeSeoArticles(l) {
+    var nodes = Array.prototype.slice.call(document.querySelectorAll("article.article"));
+    if (!nodes.length) return;
+    if (!original.has("seo-article-inners")) original.set("seo-article-inners", nodes.map(function (node) { return node.innerHTML; }));
+    var source = original.get("seo-article-inners");
+    nodes.forEach(function (node, index) { node.innerHTML = source[index]; });
+    if (l === "en") return;
+    var articles = fullArticles[l] || [];
+    nodes.forEach(function (node, index) {
+      var article = articles[index] || articles[0];
+      if (!article) return;
+      var headings = [];
+      var paragraphs = [];
+      (article.sections || []).forEach(function (section) {
+        if (section.heading || section.title) headings.push(section.heading || section.title);
+        (section.paragraphs || []).forEach(function (paragraph) { paragraphs.push(paragraph); });
+      });
+      var title = node.querySelector("h2");
+      var meta = node.querySelector(".meta");
+      var eyebrow = node.querySelector(".eyebrow");
+      if (eyebrow) eyebrow.textContent = (locale[l].seo.eyebrow || eyebrow.textContent) + " · " + String(index + 1).padStart(2, "0");
+      if (title) title.textContent = article.title || title.textContent;
+      if (meta) meta.textContent = article.updated || meta.textContent;
+      Array.prototype.forEach.call(node.querySelectorAll("h3"), function (heading, i) {
+        if (headings.length) heading.textContent = headings[i % headings.length];
+      });
+      Array.prototype.forEach.call(node.querySelectorAll("p:not(.meta)"), function (paragraph, i) {
+        if (paragraphs.length) paragraph.textContent = paragraphs[i % paragraphs.length];
+      });
+    });
+  }
   function fallbackText(l, index) {
     var faq = genericFaq[l] || [], copy = locale[l] || locale.en, corpus = [copy.home.lead, copy.guide.lead, copy.seo.lead];
     faq.forEach(function (row) { corpus.push(row[0], row[1]); });
@@ -247,12 +278,7 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
     }
     if (page === "seo") {
       var s = locale[l].seo; setText(".hero .eyebrow", s.eyebrow); setText(".hero h1", s.title); setText(".hero p", s.lead);
-      var articles = Array.prototype.slice.call(document.querySelectorAll("article.article"));
-      if (articles.length) {
-        if (!original.has("seo-articles")) original.set("seo-articles", articles.map(function (node) { return node.outerHTML; }).join(""));
-        articles[0].outerHTML = l === "en" ? original.get("seo-articles") : articleMarkup(l);
-        articles.slice(1).forEach(function (node) { node.remove(); });
-      }
+      localizeSeoArticles(l);
     }
     if (page === "categories") {
       var c2 = locale[l].home; setText(".hero .eyebrow", l === "en" ? "PRODUCT CATEGORIES" : locale[l].nav[2].toUpperCase()); setText(".hero h1", l === "de" ? "Nach dem suchen, was du tragen möchtest." : l === "fr" ? "Parcourez selon ce que vous voulez porter." : l === "es" ? "Explora según lo que quieras llevar." : l === "it" ? "Sfoglia in base a ciò che vuoi indossare." : l === "pt" ? "Explore pelo que pretende usar." : l === "nl" ? "Blader op wat je wilt dragen." : l === "pl" ? "Przeglądaj według tego, co chcesz nosić." : l === "sv" ? "Bläddra efter det du vill bära." : "Browse by what you want to wear.");
