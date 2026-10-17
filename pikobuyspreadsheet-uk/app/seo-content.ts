@@ -2396,5 +2396,94 @@ export const seoArticles: SeoArticle[] = [
         ]
       }
     ]
+  },
+  {
+    slug: "pikobuy-yupoo-order-checklist",
+    title: "PikoBuy Yupoo Guide: Turn Album Links into Checkable Orders",
+    description: "Use PikoBuy with a Yupoo link: capture the seller, item, option and price, then verify purchasing, warehouse QC, returns and parcel cost.",
+    published: "17 October 2026",
+    updated: "17 October 2026",
+    author: "FindSpreadsheet Editorial Team",
+    primaryKeyword: "PikoBuy Yupoo",
+    secondaryKeywords: [
+      "buy from Yupoo with PikoBuy",
+      "PikoBuy Yupoo link",
+      "Yupoo product details",
+      "Yupoo seller order",
+      "PikoBuy Yupoo QC"
+    ],
+    methodology: "Our editorial team reviewed PikoBuy's current home page, Beginner's Guide, Returns & Exchanges policy, Shipping Terms, Shipping Estimate, Terms of Service and Contact page on 17 October 2026. Those sources name Yupoo as a supported source and describe PikoBuy's purchasing, warehouse and parcel stages, but they do not publish one universal ordering format, seller-verification system or set of required fields for every Yupoo page. This guide therefore separates PikoBuy's published workflow from our independent evidence checks and does not treat community anecdotes as proof of prices, delivery outcomes or seller reliability.",
+    sections: [
+      {
+        heading: "The direct answer: make the Yupoo page purchase-ready before payment",
+        paragraphs: [
+          "PikoBuy supports Yupoo as a product source, but a page of photographs is not automatically a complete order instruction. Before submitting a PikoBuy Yupoo link, identify the seller or album, exact item, chosen colour or version, size, quantity, stated price and any linked transaction page. When one of those details is missing, treat the page as a discovery lead and ask for clarification or sourcing help rather than guessing what PikoBuy should buy.",
+          "Use four checkpoints: capture the page, define the order, inspect the warehouse arrival and cost the international parcel. Each checkpoint answers a different question. The album shows what was presented; the purchasing order records what PikoBuy will try to obtain; warehouse evidence shows what visibly arrived; the parcel quote reflects the shipment you plan to send. A good-looking album cannot substitute for the other three records."
+        ]
+      },
+      {
+        heading: "Start with PikoBuy's published link-submission workflow",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide names Yupoo alongside Taobao, Tmall, 1688 and Weidian. It tells users to find an item, confirm its specifications, colour and size, then enter a product link or keywords in PikoBuy. After the buyer chooses the specification, colour, size and quantity, the guide moves to a purchasing order and first payment. PikoBuy's home page also says users may submit a product link, image or sourcing request.",
+          "Paste the most specific page available rather than a broad album or seller home page. Then compare the imported title, image, price and options with the source. If PikoBuy cannot extract the item or the result points to a different product, stop and use the available image or sourcing route with a written description. A technically accepted URL only proves that the page could be submitted; it does not prove the seller, price, option or stock."
+        ]
+      },
+      {
+        heading: "Identify what kind of evidence the Yupoo page provides",
+        paragraphs: [
+          "Yupoo pages do not all provide the same transaction detail. A page may present one item with useful captions, show a wider collection, or direct the visitor elsewhere for price and ordering information. Describe what the specific page actually contains. Do not assume a photograph represents stock, that a caption is a complete specification, or that contact details establish a protected checkout. If no price or purchase route is visible, record that absence instead of filling the gap from another seller's page.",
+          "Save the complete URL, album or seller name shown, page title, image set, captions and the date checked. If a code or item number appears, preserve its exact characters. Screenshots are supporting evidence because album contents can change, but keep the live URL as the primary reference. Mark promotional claims, quality labels and seller descriptions as unverified unless evidence on the page supports the exact claim you need for the order."
+        ]
+      },
+      {
+        heading: "Build one unambiguous order line",
+        paragraphs: [
+          "Turn the selected item into a compact order line: seller or album, page URL, item code or title, colour, size, model or version, quantity, included parts, displayed price and linked transaction URL where one is supplied. Keep the original wording next to any translation. Similar photographs can conceal different materials, packages or accessory-only options, so an image alone should never stand in for the seller's option text.",
+          "For example, a shoe request should name the item code, colour, stated size, quantity and whether packaging is included when the page distinguishes it. A jacket request should identify the exact image or code, colour, size and version. Avoid instructions such as 'best batch' or 'highest quality' unless the seller defines a selectable option with that name. If the listing evidence cannot distinguish the intended item from another version, do not submit the first payment yet."
+        ]
+      },
+      {
+        heading: "Resolve price and purchase-route gaps without improvising",
+        paragraphs: [
+          "When a Yupoo page lacks a clear price or direct buying link, use PikoBuy's published sourcing or product-submission path and provide the evidence you captured. Ask whether the specified item can be sourced, what exact option is being quoted and what domestic delivery applies. Keep all confirmed details in the PikoBuy purchasing record. Do not send money through an unrelated contact or create off-platform instructions merely because an album contains a messaging handle.",
+          "PikoBuy's guide says the displayed amount is subject to the actual purchase and that an out-of-stock order will be refunded. Treat any saved album price as a dated observation, not a guarantee. Reconcile the source evidence, the amount quoted in PikoBuy, the first-payment total and any later adjustment. If the seller changes the price, required quantity, option or domestic freight, recalculate the order and approve only a change you can explain."
+        ]
+      },
+      {
+        heading: "Keep the seller order, domestic tracking and warehouse entry connected",
+        paragraphs: [
+          "PikoBuy's Terms say an order is an offer that PikoBuy or a participating merchant may accept or reject, and an unsuccessful payment will not be processed. Save the PikoBuy purchasing-order number, selected details and payment record before treating the request as ordered. When seller-to-warehouse tracking appears, record its number and connect it to the corresponding order. A seller message or album image is not a substitute for this transaction trail.",
+          "At arrival, match the domestic tracking record to the warehouse entry. If several similar items arrive, use order identifiers, quantities and option records instead of appearance alone. Investigate a missing or partial arrival at the first unexplained handoff: the seller's dispatch, domestic carrier delivery or warehouse check-in. This chain is especially important when the original page is primarily visual and offers few searchable product identifiers."
+        ]
+      },
+      {
+        heading: "Use PikoBuy Yupoo QC to test named requirements",
+        paragraphs: [
+          "PikoBuy's Beginner's Guide says warehouse inspection includes check-in, photo confirmation and a defect check. Compare the standard images with the order line: product identity, visible quantity, colour, size label, item code, included parts and obvious condition. A warehouse photo can show visible features, but it cannot prove authenticity, hidden construction, long-term durability or every component inside sealed packaging.",
+          "Ask a narrow question when a material point is not visible and an appropriate detailed-photo option is available. Request a named size tag, measurement, item code, accessory count or close view rather than asking the warehouse to 'check quality'. Preserve the original album evidence beside the warehouse images so the comparison has a baseline. If the received item cannot be matched to that baseline, pause before submitting it to an international parcel."
+        ]
+      },
+      {
+        heading: "Check legality and returnability before ordering",
+        paragraphs: [
+          "PikoBuy's Terms prohibit illegal or infringing goods and state that PikoBuy provides information and transaction facilitation rather than manufacturing the products or generally acting as seller of record. An agent does not authenticate an item or remove the buyer's obligation to follow platform, intellectual-property, carrier and destination rules. Reject a lead when its identity, legality or required documentation cannot be supported; do not treat an album label as proof of authorisation.",
+          "PikoBuy's Returns & Exchanges policy makes returns conditional. An eligible item must have the seller's return guarantee, remain in the required resalable condition and have been in the warehouse no more than five days. The application window is 120 hours from the next hour after the status changes to 'In Warehouse', and PikoBuy says seller consent is required. Review QC promptly and preserve packaging, labels, seals and accessories while deciding."
+        ]
+      },
+      {
+        heading: "Calculate the delivered plan after warehouse confirmation",
+        paragraphs: [
+          "After inspection, PikoBuy's workflow moves to route selection, parcel submission and international-shipping payment. Its Shipping Estimate asks for destination, product type, weight, length, width and height, while the guide says routes differ in delivery time and billing method. Use album descriptions only for early planning, then replace them with confirmed warehouse or packed-parcel data. The product price cannot predict the delivered total by itself.",
+          "Add the confirmed item and domestic-delivery amount, payment effects, any requested warehouse service, international parcel quote and possible destination charges. Check route restrictions for the actual contents and packaging. PikoBuy's Shipping Terms describe third-party logistics and cross-border risks, and its Terms assign applicable duties, taxes and brokerage charges to the user. Do not describe a route as guaranteed, duty-free or universally insured unless its current terms support that exact claim."
+        ]
+      },
+      {
+        heading: "Use this PikoBuy Yupoo checklist before you commit",
+        paragraphs: [
+          "Before first payment, confirm the most specific Yupoo page, album or seller identifier, exact item, all options, quantity, price evidence and transaction route. If the page does not provide enough data, obtain a written sourcing result instead of guessing. Save the PikoBuy order and payment record, connect domestic tracking to warehouse check-in, compare QC with named requirements and act within any applicable return window before parcel submission.",
+          "FindSpreadsheet is independent from PikoBuy and Yupoo. Use it to discover and compare current product leads, then verify every seller and transaction detail in the live source and PikoBuy order. The practical test is whether the album, purchasing order, warehouse evidence and parcel record describe the same item. If one part of that chain is missing or contradictory, pause and obtain evidence before spending more."
+        ]
+      }
+    ]
   }
 ];
