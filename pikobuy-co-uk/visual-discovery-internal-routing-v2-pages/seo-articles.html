@@ -108,7 +108,7 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
 <ul class="check"><li>Compare QC photos against the chosen seller option, not a random reference image.</li><li>Ask for one precise extra photo when a visible fact is missing.</li><li>Review the return window as soon as the order enters the warehouse.</li><li>Use the shipping estimator with your real destination and expected parcel measurements.</li><li>Never treat QC or shipping estimates as guarantees of authenticity, delivery or customs clearance.</li></ul></article>
 <section class="sources"><strong>Official sources used for these guides</strong><ul><li><a href="https://www.pikobuy.com/guide" target="_blank" rel="noopener">PikoBuy shopping guide</a> — ordering, warehouse inspection and parcel submission flow.</li><li><a href="https://www.pikobuy.com/protocol/terms" target="_blank" rel="noopener">PikoBuy terms of service</a> — service scope, payment and cross-border charges.</li><li><a href="https://www.pikobuy.com/protocol/returns" target="_blank" rel="noopener">PikoBuy returns & exchanges</a> — eligibility, timing, exclusions and listed fees.</li><li><a href="https://www.pikobuy.com/protocol/shipping" target="_blank" rel="noopener">PikoBuy shipping terms</a> — forwarding process, inspection scope and logistics risks.</li></ul></section><footer class="foot">Independent PikoBuy Spreadsheet guide · verify current official terms before ordering</footer></main><style id="piko-language-switch-style">
 #piko-google-translate{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
-.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important}body{top:0!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
+.goog-te-banner-frame,.goog-te-banner-frame.skiptranslate,iframe.goog-te-banner-frame{display:none!important;visibility:hidden!important;height:0!important;top:-10000px!important}html{margin-top:0!important}body{top:0!important;position:static!important}.goog-te-balloon-frame,#goog-gt-tt{display:none!important}.piko-language-control{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}.piko-language-switch{min-width:58px}
 </style><div id="piko-google-translate" aria-hidden="true"></div>
 <script id="piko-language-switch">
 (function(){
@@ -179,5 +179,18 @@ html,body,.site{background:#fafffe!important;color:#14212d!important}
   if(!document.querySelector('script[src^="https://translate.google.com/translate_a/element.js"]')){
     var script=document.createElement("script");script.src=src;script.async=true;document.head.appendChild(script);
   }
+  function hideTranslateToolbar(){
+    document.documentElement.style.setProperty("margin-top","0px","important");
+    document.body.style.setProperty("top","0px","important");
+    document.body.style.setProperty("position","static","important");
+    Array.prototype.forEach.call(document.querySelectorAll(".goog-te-banner-frame,iframe.goog-te-banner-frame,#goog-gt-tt,.goog-te-balloon-frame"),function(node){
+      node.style.setProperty("display","none","important");
+      node.style.setProperty("visibility","hidden","important");
+      node.style.setProperty("height","0px","important");
+    });
+  }
+  hideTranslateToolbar();
+  new MutationObserver(hideTranslateToolbar).observe(document.documentElement,{childList:true,subtree:true,attributes:true,attributeFilter:["style","class"]});
+  setInterval(hideTranslateToolbar,400);
 })();
 </script></body></html>
