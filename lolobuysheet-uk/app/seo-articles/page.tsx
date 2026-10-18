@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-shipcare-claim-guide",
+    date: "17 October 2026",
+    title: "LoloBuy ShipCare Claim Guide: Build a Parcel Evidence File",
+    description: "A practical method for verifying a parcel-specific policy, selecting an available claim type, organising evidence, and tracking the case without assuming an outcome.",
+  },
+  {
     href: "/seo-articles/lolobuy-custom-photo-request-guide",
     date: "15 October 2026",
     title: "LoloBuy Custom Photo Request Guide: Ask for Evidence Before Shipping",
