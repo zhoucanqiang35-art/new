@@ -9,6 +9,6 @@
     "catalog-data-part-af.js",
     "catalog-data-part-ag.js",
   ];
-  for (const part of parts) document.write('<script src="' + part + '"><\\/script>');
-  document.write('<script>eval(atob(window.__litbuyCatalogBase64));<\\/script>');
+  for (const part of parts) document.write('<script src="' + part + '"></script>');
+  document.write('<script>eval(atob(window.__litbuyCatalogBase64));</script>');
 })();
