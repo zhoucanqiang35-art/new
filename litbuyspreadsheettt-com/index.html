@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="LitBuy Spreadsheet product directory and purchase guide."
+    />
+    <title>LitBuy Spreadsheet</title>
+    <link rel="icon" href="assets/logo-Litbuy-2.png" />
+    <link rel="stylesheet" href="home-v23.css" />
+    <link rel="stylesheet" href="hero-stage.css" />
+    <link rel="stylesheet" href="home-sections.css" />
+    <link rel="stylesheet" href="directory-products.css" />
+    <link rel="stylesheet" href="faq-visuals.css" />
+    <link rel="stylesheet" href="i18n.css" />
+    <link rel="stylesheet" href="theme-emerald.css" />
+  </head>
+  <body class="home-page">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="wordmark" href="index.html"
+          ><img src="assets/logo-Litbuy-2.png" alt="LitBuy" /><b
+            >LitBuy<span>Spreadsheet</span></b
+          ></a
+        >
+        <nav>
+          <a class="active" href="index.html" data-i18n="Home">Home</a
+          ><a href="categories.html" data-i18n="Product categories"
+            >Product categories</a
+          ><a href="product-detail.html" data-i18n="Product details"
+            >Product details</a
+          ><a href="seo-articles.html" data-i18n="SEO articles">SEO articles</a
+          ><a href="faq.html" data-i18n="FAQ">FAQ</a>
+        </nav>
+        <div class="language-switch" aria-label="Language"></div>
+        <a class="account" href="register.html" data-i18n="Create account"
+          >Create account</a
+        >
+      </div>
+    </header>
+    <main>
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="label">LITBUY SPREADSHEET</p>
+          <h1>Every route, presented on one homepage.</h1>
+          <p>
+            Browse the same categories, product details, guides and answers
+            shown on their independent pages. Each heading below also keeps its
+            own direct page route.
+          </p>
+          <div class="hero-links">
+            <a href="#homeCategories">Browse categories ↓</a
+            ><a href="#homeProductDetail">View product detail ↓</a>
+          </div>
+        </div>
+        <aside class="route-ticket">
+          <div class="ticket-head">
+            <b>DIRECTORY PASS</b><span>HOME / ALL ROUTES</span>
+          </div>
+          <div class="ticket-body">
+            <small>LOCAL CATALOG</small><strong>LitBuy</strong>
+            <p>
+              Search remains inside this check site. Product purchasing uses the
+              corresponding LitBuy product destination.
+            </p>
+          </div>
+          <div class="ticket-code" aria-hidden="true"></div>
+          <a href="categories.html">Open category page →</a>
+        </aside>
+      </section>
+      <section class="home-search shell" aria-label="Search catalog">
+        <div>
+          <p class="label">SEARCH DIRECTORY</p>
+          <h2>Find a product on this subsite.</h2>
+        </div>
+        <form class="directory-search" action="search.html" method="get">
+          <input
+            name="q"
+            aria-label="Search the directory"
+            placeholder="Search a product, seller or product ID"
+          /><button type="submit">Search</button>
+        </form>
+      </section>
+      <section class="subsite-directory shell" id="subsiteDirectorySection" aria-label="Subsite product directory">
+        <div class="subsite-directory-head">
+          <div>
+            <p class="label" data-i18n="INTERNAL PRODUCT DIRECTORY">INTERNAL PRODUCT DIRECTORY</p>
+            <h2 data-i18n="Product categories">Product categories</h2>
+          </div>
+          <a href="categories.html" data-i18n="Browse categories →">Browse categories →</a>
+        </div>
+        <div id="subsiteDirectory" class="subsite-directory-grid" aria-live="polite"></div>
+      </section>
+      <section class="home-present shell" id="homeCategories">
+        <div class="home-present-head">
+          <div>
+            <p class="label">PRODUCT CATEGORIES</p>
+            <h2>All category routes, shown here.</h2>
+            <p>
+              Every category is visible on the homepage and still opens its own
+              local category page.
+            </p>
+          </div>
+          <a href="categories.html">Open category page →</a>
+        </div>
+        <div
+          id="homeCategoryList"
+          class="home-category-list"
+          aria-live="polite"
+        ></div>
+      </section>
+      <section
+        class="home-present home-product-preview shell"
+        id="homeProductDetail"
+      >
+        <div class="home-present-head">
+          <div>
+            <p class="label">PRODUCT DETAILS</p>
+            <h2>Product detail page, presented inline.</h2>
+          </div>
+          <a href="product-detail.html">Open product details →</a>
+        </div>
+        <article
+          id="homeProductCard"
+          class="home-product-card"
+          aria-live="polite"
+        ></article>
+      </section>
+      <section class="home-present shell" id="homeSeoArticles">
+        <div class="home-present-head">
+          <div>
+            <p class="label">SEO ARTICLES</p>
+            <h2>Fact-led LitBuy research, presented on the homepage.</h2>
+          </div>
+          <a href="seo-articles.html">Open all 10 articles →</a>
+        </div>
+        <div class="home-article-list">
+          <article>
+            <span>GUIDE 01</span>
+            <h3>Use the directory as research</h3>
+            <p>
+              Separate product facts from assumptions, then verify the live
+              route before payment.
+            </p>
+            <a href="seo-articles.html#a1">Read article →</a>
+          </article>
+          <article>
+            <span>GUIDE 03</span>
+            <h3>Weidian photos vs QC images</h3>
+            <p>
+              Read listing images and warehouse evidence differently; neither
+              proves authenticity.
+            </p>
+            <a href="seo-articles.html#a3">Read article →</a>
+          </article>
+          <article>
+            <span>GUIDE 08</span>
+            <h3>Plan total cost honestly</h3>
+            <p>
+              Keep item price separate from destination, weight and dimensions
+              in parcel planning.
+            </p>
+            <a href="seo-articles.html#a8">Read article →</a>
+          </article>
+        </div>
+      </section>
+      <section class="home-present shell" id="homeFaq">
+        <div class="home-present-head">
+          <div>
+            <p class="label">FAQ</p>
+            <h2>Full FAQ, presented on the homepage.</h2>
+          </div>
+          <a href="faq.html">Open FAQ page →</a>
+        </div>
+        <div id="homeFaqContent" class="home-faq-content" aria-live="polite"></div>
+      </section>
+      <section class="home-account-panel shell">
+        <div>
+          <p class="label">ACCOUNT</p>
+          <h2>Registration hand-off</h2>
+          <p>
+            The header account button and this link use the same official LitBuy
+            registration destination.
+          </p>
+        </div>
+        <a
+          class="button"
+          data-litbuy-register
+          href="https://litbuy.com/register?inviteCode=E32JME4UQ"
+          >Create account</a
+        >
+      </section>
+    </main>
+    <footer>
+      <div class="shell">
+        <div>
+          <a class="wordmark" href="index.html"
+            ><img src="assets/logo-Litbuy-2.png" alt="LitBuy" /><b
+              >LitBuy<span>Spreadsheet</span></b
+            ></a
+          >
+          <p>Public check environment · internal product routes.</p>
+        </div>
+        <div class="links">
+          <a href="categories.html">Product categories</a
+          ><a href="seo-articles.html">SEO articles</a
+          ><a href="search.html">Search directory</a>
+        </div>
+      </div>
+    </footer>
+    <script src="catalog-data-loader.js"></script>
+    <script src="home-sections.js"></script>
+    <script src="home-faq-embed.js"></script>
+    <script src="locale-content.js"></script>
+    <script src="i18n.js"></script>
+  </body>
+</html>

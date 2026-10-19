@@ -1,0 +1,26 @@
+:root{--ink:#12312c;--muted:#58716a;--paper:#f6f8f2;--card:#fffdf8;--line:#d4ddd2;--blue:#008e75;--purple:#df7448;--soft:#e5f4ed;--dark:#123f36}
+body{background:linear-gradient(90deg,rgba(0,142,117,.07) 1px,transparent 1px),linear-gradient(rgba(0,142,117,.07) 1px,transparent 1px),var(--paper)}
+.topbar{background:rgba(246,248,242,.94)}
+.directory-search input{background:#fffef9}.directory-search button{background:var(--purple)}
+.hero-copy .label{color:#bce8d9}.hero-copy>p:not(.label){color:#e1f3ec}.hero-links a{border-color:#86d7c0}
+.route-ticket{background:radial-gradient(circle at 78% 25%,rgba(0,142,117,.60),transparent 23%),radial-gradient(circle at 85% 75%,rgba(223,116,72,.36),transparent 28%),linear-gradient(130deg,#0d3028 0%,#155548 53%,#0d3028 100%);box-shadow:12px 12px 0 var(--purple)}
+.route-ticket:before{border-color:rgba(196,235,220,.3);box-shadow:0 0 0 42px rgba(196,235,220,.05),0 0 0 85px rgba(196,235,220,.04)}
+.route-ticket:after{background:rgba(207,238,226,.42);box-shadow:0 42px 0 rgba(207,238,226,.22),0 84px 0 rgba(207,238,226,.16),0 126px 0 rgba(207,238,226,.11)}
+.ticket-body p{color:#cae9df}.route-ticket>a{color:#bde9dc}
+.band p{color:#c7e7dc}.step{border-color:#4c7f72}.step span{color:#a9dccc}.id-chip span,.id-chip i{color:#b9e2d3}
+.subsite-directory{background:linear-gradient(135deg,#0d3028 0%,#155548 100%)}.subsite-directory .label{color:#bce8d9}.subsite-directory-head p:not(.label){color:#d2eee4}.subsite-directory-head>a{border-color:#8bd9c4}
+.subsite-directory-card:hover,.subsite-product-card:hover{box-shadow:5px 5px 0 #8bd9c4}.subsite-product-image,.home-product-image{background:#eef5ef}.subsite-buy-button:hover{background:#006f5d}
+.home-article-list span{color:#bce8d9}.home-article-list p{color:#cde9df}.home-article-list a{color:#bce8d9}.fact-note,.source-strip{background:#0d3028;color:#e3f4ed}.fact-note b,.source-strip a{color:#bce8d9}
+@media(max-width:620px){.route-ticket{box-shadow:5px 5px 0 var(--purple)}}
+
+/* Homepage visual refresh: high-resolution architectural imagery, with the
+   catalog's real product thumbnails kept intact on the matching product cards. */
+.route-ticket{background:linear-gradient(90deg,rgba(6,32,27,.94) 0%,rgba(9,53,45,.78) 44%,rgba(10,50,42,.31) 100%),url("assets/home-hero-v62.png") center/cover no-repeat}
+.subsite-directory{background:linear-gradient(108deg,rgba(7,40,33,.95) 0%,rgba(11,67,56,.86) 48%,rgba(10,56,47,.57) 100%),url("assets/directory-stage-v62.png") center/cover no-repeat}
+.subsite-directory-grid{position:relative}.subsite-product-card{background:rgba(255,253,248,.97)}
+.subsite-product-image img,.home-product-image img{object-fit:contain}
+@media(max-width:620px){.route-ticket{background-position:58% center}.subsite-directory{background-position:55% center}}
+
+/* Give the home page a broader desktop composition while preserving the
+   existing compact layout on every internal page and on mobile. */
+@media(min-width:1180px){.home-page .shell,.home-page .topbar-inner{width:min(1400px,calc(100% - 64px))}}
