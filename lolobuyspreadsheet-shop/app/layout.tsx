@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "LoloBuy Spreadsheet Shop | Research Atlas 2026",
-  description: "An independent, multilingual LoloBuy research atlas for product discovery, QC and parcel planning.",
+  metadataBase: new URL("https://lolobuyspreadsheet.shop"),
+  title: { default: "LoloBuy Spreadsheet Research Atlas", template: "%s | LoloBuy Spreadsheet" },
+  description: "Independent LoloBuy spreadsheet research for source links, QC photos and international parcel planning.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
