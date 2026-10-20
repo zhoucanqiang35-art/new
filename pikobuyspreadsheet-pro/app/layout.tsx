@@ -4,11 +4,11 @@ import { locales } from "../lib/site-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://pikobuyspreadsheet.pro"),
-  title: "PikoBuy Spreadsheet 2026 — Product Finds, QC & Shipping Guide",
-  description: "Search PikoBuy spreadsheet finds, score product evidence, review QC photos, plan shipping, understand returns and browse 24 language editions.",
+  title: "PikoBuy Spreadsheet: Search Finds, QC Photos & Shipping Guide (2026)",
+  description: "Search PikoBuy spreadsheet finds by category, compare source links and QC photos, then plan sizing, returns, tracking and shipping with independent research guides.",
   robots: { index: true, follow: true },
   alternates: { canonical: "/", languages: { "x-default": "/", ...Object.fromEntries(locales.map(locale => [locale.lang, `/${locale.code}`])) } },
-  openGraph: { title: "PikoBuy Spreadsheet 2026", description: "Product discovery, live row scoring, QC, shipping and returns guidance in 24 language editions.", type: "website" },
+  openGraph: { title: "PikoBuy Spreadsheet: Search Finds, QC Photos & Shipping Guide", description: "Compare source links and QC photos, then use independent guides for size charts, returns, tracking and shipping.", type: "website" },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 

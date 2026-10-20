@@ -186,9 +186,15 @@ async function translateLocale(locale) {
   }
 }
 
-for (const locale of targetLocales) {
-  await translateLocale(locale);
-  process.stdout.write(`${locale} `);
+// Keep the upstream translator within a modest request rate while avoiding a
+// long single-language queue when new editorial content is added.
+const localeConcurrency = 2;
+for (let index = 0; index < targetLocales.length; index += localeConcurrency) {
+  const group = targetLocales.slice(index, index + localeConcurrency);
+  await Promise.all(group.map(async (locale) => {
+    await translateLocale(locale);
+    process.stdout.write(`${locale} `);
+  }));
 }
 process.stdout.write("\n");
 

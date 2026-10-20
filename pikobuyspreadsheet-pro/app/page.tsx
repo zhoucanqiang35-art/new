@@ -10,8 +10,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "PikoBuy Spreadsheet 2026 | Product Finds, QC & Shipping Guide",
-  description: "Research PikoBuy finds by category, compare visible product evidence, review QC photos, and plan shipping and returns with fact-checked guides.",
+  title: "PikoBuy Spreadsheet: Search Finds, QC Photos & Shipping Guide",
+  description: "Search PikoBuy spreadsheet finds by category, compare source links and QC photos, then use practical guides for size charts, returns, tracking and shipping.",
   alternates: { canonical: "/" },
 };
 
@@ -118,7 +118,7 @@ export default function Home() {
         <h1>A smaller shortlist.<br/><em>A better decision.</em></h1>
         <p className="v3-deck">Search product finds, inspect the evidence behind each row, and understand PikoBuy’s published warehouse, shipping and return process before you commit.</p>
         <div id="search"><ProductSearch id="v3-query" /></div>
-        <div className="v3-meta"><span><b>32</b> independent pages</span><span><b>07</b> top-level routes</span></div>
+        <div className="v3-meta"><span><b>35</b> independent pages</span><span><b>07</b> top-level routes</span></div>
       </div>
       <div className="v3-route-map" aria-label="PikoBuy research route map">
         <div className="v3-map-title"><span>RESEARCH ROUTE / 01</span><b>From a link to a parcel decision</b></div>
