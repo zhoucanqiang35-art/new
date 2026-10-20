@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-packaging-services-guide",
+    date: "19 October 2026",
+    title: "LoloBuy Packaging Services Guide: Choose Add-ons Before Parcel Submission",
+    description: "A practical method for comparing packaging options and add-ons, checking live units and estimates, and preserving the final parcel record.",
+  },
+  {
     href: "/seo-articles/lolobuy-shipcare-claim-guide",
     date: "17 October 2026",
     title: "LoloBuy ShipCare Claim Guide: Build a Parcel Evidence File",
