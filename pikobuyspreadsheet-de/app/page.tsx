@@ -54,7 +54,7 @@ export default function Home() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
         <section className="hero">
           <div className="hero-copy">
-            <div className="eyebrow"><span>Independent research guide</span><span>Updated 24 Aug 2026</span></div>
+            <div className="eyebrow"><span>Independent research guide</span><span>Updated 20 Oct 2026</span></div>
             <h1>PikoBuy Spreadsheet,<br /><em>checked with context.</em></h1>
             <p className="hero-lead">Search product finds, compare the evidence that matters, and continue to the live FindSpreadsheet record only when the category, photos, sizing and shipping context make sense.</p>
             <form className="search-box" action="https://findspreadsheet.com/search.html" method="get">
@@ -70,7 +70,7 @@ export default function Home() {
             <a className="button search-database-button" href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noreferrer">Open database ↗</a>
             <div className="hero-metrics">
               <span><b>10</b> focused categories</span>
-              <span><b>24</b> priority language markets</span>
+              <span><b>9</b> published language editions</span>
               <span><b>1</b> evidence-first workflow</span>
             </div>
           </div>
@@ -160,7 +160,7 @@ export default function Home() {
           <div className="market-grid">
             {markets.map(([code, name], index) => <div className="market-card" key={code}><span>{String(index + 1).padStart(2, "0")}</span><b>{name}</b><small>{code}</small></div>)}
           </div>
-          <p className="market-note">Full language set planned: English, German, French, Spanish, Italian, Dutch, Polish, Portuguese, Swedish, Danish, Norwegian, Finnish, Czech, Romanian, Hungarian, Greek, Slovak, Croatian, Slovenian, Bulgarian, Lithuanian, Latvian, Estonian and Turkish.</p>
+          <p className="market-note">Published language editions: English, German, French, Spanish, Italian, Dutch, Polish, Portuguese and Swedish. Local demand is reviewed through Search Console before adding another edition.</p>
         </section>
 
         <section className="section faq-section" id="faq">

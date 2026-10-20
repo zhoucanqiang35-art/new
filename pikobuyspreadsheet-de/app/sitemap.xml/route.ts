@@ -18,6 +18,9 @@ const urls = [
   "/articles/warehouse-return-window",
   "/articles/recheck-product-links",
   "/articles/western-market-search-intent",
+  "/articles/spreadsheet-2026",
+  "/articles/parcel-submission-checklist",
+  "/articles/parcel-tracking-statuses",
 ];
 const categoryUrls = categories.map((category) => `/${category.slug}`);
 const languages = ["", "/de", "/fr", "/es", "/it", "/nl", "/pl", "/pt", "/sv"];
@@ -30,7 +33,7 @@ ${[
   ...["", "/de"].flatMap((language) => categoryUrls.map((path, index) => ({ language, path, index: index + 1 }))),
 ].map(({ language, path, index }) => `  <url>
     <loc>https://pikobuyspreadsheet.de${language}${path}</loc>
-    <lastmod>${path.startsWith("/categories/") || path === "/articles/shipping-estimate-volumetric-weight" || path === "/articles" ? "2026-08-29" : path === "/articles/first-vs-second-payment" ? "2026-08-27" : "2026-08-24"}</lastmod>
+    <lastmod>${path.startsWith("/categories/") || path === "/articles" || path === "/articles/spreadsheet-2026" || path === "/articles/parcel-submission-checklist" || path === "/articles/parcel-tracking-statuses" ? "2026-10-20" : path === "/articles/shipping-estimate-volumetric-weight" ? "2026-08-29" : path === "/articles/first-vs-second-payment" ? "2026-08-27" : "2026-08-24"}</lastmod>
     <changefreq>${index === 0 ? "daily" : "weekly"}</changefreq>
     <priority>${index === 0 ? "1.0" : path === "/products" || path === "/guides" || path === "/shipping" ? "0.9" : "0.8"}</priority>
   </url>`).join("\n")}

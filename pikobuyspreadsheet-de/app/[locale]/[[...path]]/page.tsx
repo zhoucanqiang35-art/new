@@ -16,6 +16,7 @@ import WesternMarketsPage from "../../articles/western-market-search-intent/page
 import FirstVsSecondPaymentArticle from "../../articles/first-vs-second-payment/page";
 import ShippingEstimateVolumetricWeightArticle from "../../articles/shipping-estimate-volumetric-weight/page";
 import SearchPage from "../../search/page";
+import { LocalizedArticle, getArticleMetadata } from "../../articles/localized-articles";
 import { categories, categoryBySlug, productBySlug } from "../../catalog";
 import { serverTranslations } from "../../i18n/server-translations";
 
@@ -42,6 +43,9 @@ const routeSeo: Record<string, { title: string; description: string }> = {
   "articles/recheck-product-links": { title: "How to Recheck a PikoBuy Spreadsheet Product Link", description: "A defensive link-check process for PikoBuy spreadsheet records, covering redirects, changed variants, images, prices, seller details and stale availability." },
   "articles/warehouse-return-window": { title: "PikoBuy Five-Day Warehouse Return Window: Practical Checklist", description: "A practical guide to PikoBuy's published warehouse return timing, eligibility checks, evidence, seller rules and decision order." },
   "articles/western-market-search-intent": { title: "PikoBuy Search Intent for US, UK and European Buyers", description: "A fact-conscious SEO framework for PikoBuy research content serving US, UK and European search intent without inventing country usage claims." },
+  "articles/spreadsheet-2026": { title: "PikoBuy Spreadsheet 2026: Search, Verify & Decide", description: "A practical PikoBuy spreadsheet guide for finding product leads, verifying variants, reviewing QC evidence and planning a parcel." },
+  "articles/parcel-submission-checklist": { title: "PikoBuy Parcel Submission Checklist: QC, Packing & Routes", description: "A practical parcel checklist covering item confirmation, warehouse evidence, packing choices, route eligibility and shipment records." },
+  "articles/parcel-tracking-statuses": { title: "PikoBuy Parcel Tracking: Status Updates, Gaps & Next Steps", description: "A careful guide to warehouse-to-carrier updates, tracking gaps and useful shipment records." },
   search: { title: "Search PikoBuy Products on FindSpreadsheet", description: "Search the live FindSpreadsheet product database with the correct product-search parameters." },
 };
 
@@ -80,6 +84,8 @@ export async function generateMetadata({ params }: LocalizedPageProps): Promise<
   const dictionary = serverTranslations[locale] || {};
   const translate = (value: string) => dictionary[value] || value;
   let seo = routeSeo[route];
+  const localizedArticle = ({"articles/spreadsheet-2026":"spreadsheet-2026","articles/parcel-submission-checklist":"parcel-submission-checklist","articles/parcel-tracking-statuses":"parcel-tracking-statuses"} as Record<string, "spreadsheet-2026" | "parcel-submission-checklist" | "parcel-tracking-statuses">)[route];
+  if (localizedArticle) seo = getArticleMetadata(localizedArticle, locale);
   if (path[0] === "products" && path.length === 2) {
     const product = productBySlug(path[1]);
     if (product) seo = { title: `${translate(product.title)} — PikoBuy`, description: translate(product.summary) };
@@ -128,6 +134,9 @@ export default async function LocalizedPage({ params, searchParams }: LocalizedP
   if (route === "articles/recheck-product-links") return <RecheckLinksPage />;
   if (route === "articles/warehouse-return-window") return <ReturnWindowPage />;
   if (route === "articles/western-market-search-intent") return <WesternMarketsPage />;
+  if (route === "articles/spreadsheet-2026") return <LocalizedArticle id="spreadsheet-2026" locale={locale} />;
+  if (route === "articles/parcel-submission-checklist") return <LocalizedArticle id="parcel-submission-checklist" locale={locale} />;
+  if (route === "articles/parcel-tracking-statuses") return <LocalizedArticle id="parcel-tracking-statuses" locale={locale} />;
   if (route === "articles/first-vs-second-payment") return <FirstVsSecondPaymentArticle />;
   if (route === "articles/shipping-estimate-volumetric-weight") return <ShippingEstimateVolumetricWeightArticle />;
   if (route === "search") return <SearchPage searchParams={searchParams} />;
