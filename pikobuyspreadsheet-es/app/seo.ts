@@ -27,5 +27,5 @@ export function pageMetadata(locale: string, path: string, title: string, descri
   return { title, description, alternates: routeAlternates(locale, path) };
 }
 
-export const homepageTitle = "Best PikoBuy Spreadsheet 2026 – Verified QC Links & Rep Finds";
-export const homepageDescription = "Find the best PikoBuy spreadsheets with verified QC links, shipping guides to Spain & Europe, and daily updated rep finds.";
+export const homepageTitle = "PikoBuy Spreadsheet 2026: Search Finds, QC Checklist & Shipping Guide";
+export const homepageDescription = "Search PikoBuy product finds, compare warehouse QC evidence, and plan shipping, returns and parcel costs with an independent buyer-first guide.";

@@ -8,13 +8,13 @@ export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  if (locale === "es-ES") return pageMetadata(
+  if (locale === "es-ES") return {...pageMetadata(
     locale,
     "",
     "Pikobuy Spreadsheet España 2026: hallazgos, QC y envíos",
     "Consulta un spreadsheet de PikoBuy en español con enlaces de ropa y zapatillas, fichas de productos, fotos QC, costes de envío y guías para España.",
-  );
-  return pageMetadata(locale,"","PikoBuy Spreadsheet Europe","Independent PikoBuy product, shipping and warehouse research.");
+  ),other:{"content-language":locale}};
+  return {...pageMetadata(locale,"","PikoBuy Spreadsheet Europe","Independent PikoBuy product, shipping and warehouse research."),other:{"content-language":locale}};
 }
 
 export default async function LocaleHome({ params }: { params: Promise<{ locale: string }> }) {

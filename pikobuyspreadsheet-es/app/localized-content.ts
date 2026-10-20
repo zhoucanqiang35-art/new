@@ -123,6 +123,87 @@ export function getLocalizedDetailedFaq(locale: string, fallbackText: string) {
 
 type ArticleSectionPlan = { heading: number; facts: readonly number[] };
 
+export type LocalizedArticleMeta = { title: string; intro: string };
+
+const articleMeta: Record<string, Record<string, LocalizedArticleMeta>> = {
+  "de-DE": {
+    "how-pikobuy-works": { title: "So funktioniert PikoBuy: Vom Produktlink zum internationalen Paket", intro: "Ein faktenbasierter Ablauf zu Bestellung, Lagerprüfung, Rückgabe und Versand." },
+    "pikobuy-shipping-cost-guide": { title: "PikoBuy Versandkosten: Gewicht, Maße und Routen richtig vergleichen", intro: "Plane den Paketpreis mit realistischen Eingaben statt mit einer festen Versandzusage." },
+    "pikobuy-qc-photo-checklist": { title: "PikoBuy QC-Fotos: Checkliste vor dem Versand", intro: "Prüfe Variante, Maße und sichtbaren Zustand, solange eine Entscheidung noch möglich ist." },
+    "pikobuy-return-policy-guide": { title: "PikoBuy Rückgabe: 120 Stunden, Nachweise und Kosten", intro: "Eine praktische Entscheidungshilfe für die Lagerphase." },
+    "pikobuy-tracking-guide": { title: "PikoBuy Tracking: Sendungsstatus, Zoll und Übergaben verstehen", intro: "Lies Scans im richtigen Kontext, ohne Liefertermine zu erfinden." },
+    "pikobuy-restricted-items-guide": { title: "PikoBuy eingeschränkte Artikel: Akkus, Flüssigkeiten und Routen", intro: "Prüfe Produktdaten, verfügbare Routen und Zielregeln vor der Zahlung." },
+    "pikobuy-spain-guide": { title: "PikoBuy Spanien: Versand, IVA, Zoll und Paketplanung", intro: "Eine vorsichtige Planungshilfe für Sendungen nach Spanien." },
+  },
+  "fr-FR": {
+    "how-pikobuy-works": { title: "Comment fonctionne PikoBuy : du lien produit au colis international", intro: "Parcours factuel : commande, contrôle en entrepôt, retour et expédition." },
+    "pikobuy-shipping-cost-guide": { title: "Coût d'expédition PikoBuy : poids, dimensions et itinéraires", intro: "Préparez un budget réaliste au lieu de prendre un devis pour un prix fixe." },
+    "pikobuy-qc-photo-checklist": { title: "Photos QC PikoBuy : checklist avant l'expédition", intro: "Vérifiez la variante, les mesures et l'état visible tant qu'une décision reste possible." },
+    "pikobuy-return-policy-guide": { title: "Retours PikoBuy : 120 heures, preuves et coûts", intro: "Un guide de décision pratique pour la phase entrepôt." },
+    "pikobuy-tracking-guide": { title: "Suivi PikoBuy : statuts, douane et relais transporteur", intro: "Interprétez les scans sans transformer un délai en promesse de livraison." },
+    "pikobuy-restricted-items-guide": { title: "Articles restreints PikoBuy : batteries, liquides et itinéraires", intro: "Vérifiez les faits produit, l'itinéraire actif et les règles de destination." },
+    "pikobuy-spain-guide": { title: "PikoBuy Espagne : livraison, TVA, douane et préparation du colis", intro: "Une méthode prudente pour préparer un envoi vers l'Espagne." },
+  },
+  "es-ES": {
+    "how-pikobuy-works": { title: "Cómo funciona PikoBuy: del enlace del producto al paquete internacional", intro: "Un recorrido basado en hechos sobre pedido, almacén, devolución y envío." },
+    "pikobuy-shipping-cost-guide": { title: "Coste de envío de PikoBuy: peso, medidas y rutas", intro: "Calcula un presupuesto realista sin tratar una cotización como precio fijo." },
+    "pikobuy-qc-photo-checklist": { title: "Fotos QC de PikoBuy: checklist antes del envío", intro: "Revisa variante, medidas y estado visible mientras la decisión todavía es posible." },
+    "pikobuy-return-policy-guide": { title: "Devoluciones PikoBuy: 120 horas, pruebas y costes", intro: "Una guía práctica para decidir durante la fase de almacén." },
+    "pikobuy-tracking-guide": { title: "Seguimiento PikoBuy: estados, aduanas y transportistas", intro: "Lee cada escaneo en contexto sin convertir una demora en una promesa de entrega." },
+    "pikobuy-restricted-items-guide": { title: "Artículos restringidos PikoBuy: baterías, líquidos y rutas", intro: "Comprueba producto, ruta activa y reglas del destino antes de pagar." },
+    "pikobuy-spain-guide": { title: "PikoBuy España: envío, IVA, aduanas y planificación", intro: "Una guía prudente para preparar un paquete dirigido a España." },
+  },
+  "it-IT": {
+    "how-pikobuy-works": { title: "Come funziona PikoBuy: dal link prodotto al pacco internazionale", intro: "Un percorso basato sui fatti per ordine, magazzino, reso e spedizione." },
+    "pikobuy-shipping-cost-guide": { title: "Costi di spedizione PikoBuy: peso, dimensioni e rotte", intro: "Pianifica un budget realistico senza trattare un preventivo come prezzo fisso." },
+    "pikobuy-qc-photo-checklist": { title: "Foto QC PikoBuy: checklist prima della spedizione", intro: "Controlla variante, misure e condizione visibile prima di creare il pacco." },
+    "pikobuy-return-policy-guide": { title: "Resi PikoBuy: 120 ore, prove e costi", intro: "Una guida pratica per decidere nella fase di magazzino." },
+    "pikobuy-tracking-guide": { title: "Tracking PikoBuy: stati, dogana e passaggi al corriere", intro: "Leggi gli aggiornamenti nel loro contesto, senza inventare date di consegna." },
+    "pikobuy-restricted-items-guide": { title: "Articoli con restrizioni PikoBuy: batterie, liquidi e rotte", intro: "Verifica dati del prodotto, rotta attiva e regole del paese prima di pagare." },
+    "pikobuy-spain-guide": { title: "PikoBuy Spagna: spedizione, IVA, dogana e pianificazione", intro: "Un metodo prudente per preparare un pacco diretto in Spagna." },
+  },
+  "nl-NL": {
+    "how-pikobuy-works": { title: "Hoe PikoBuy werkt: van productlink tot internationaal pakket", intro: "Een feitelijke route langs bestelling, magazijncontrole, retour en verzending." },
+    "pikobuy-shipping-cost-guide": { title: "PikoBuy-verzendkosten: gewicht, afmetingen en routes", intro: "Maak een realistisch budget en behandel een offerte niet als vaste prijs." },
+    "pikobuy-qc-photo-checklist": { title: "PikoBuy QC-foto's: checklist vóór verzending", intro: "Controleer variant, maten en zichtbare staat zolang beslissen nog mogelijk is." },
+    "pikobuy-return-policy-guide": { title: "PikoBuy retourneren: 120 uur, bewijs en kosten", intro: "Een praktische beslisgids voor de magazijnfase." },
+    "pikobuy-tracking-guide": { title: "PikoBuy-tracking: statussen, douane en vervoerders", intro: "Lees scans in context zonder een vertraging als leverbelofte te zien." },
+    "pikobuy-restricted-items-guide": { title: "PikoBuy beperkte artikelen: batterijen, vloeistoffen en routes", intro: "Controleer productfeiten, actuele route en bestemmingsregels vóór betaling." },
+    "pikobuy-spain-guide": { title: "PikoBuy Spanje: verzending, btw, douane en pakketplanning", intro: "Een voorzichtige methode voor een pakket naar Spanje." },
+  },
+  "pl-PL": {
+    "how-pikobuy-works": { title: "Jak działa PikoBuy: od linku do produktu po paczkę międzynarodową", intro: "Rzeczowy opis zamówienia, magazynu, zwrotu i wysyłki." },
+    "pikobuy-shipping-cost-guide": { title: "Koszt wysyłki PikoBuy: waga, wymiary i trasy", intro: "Planuj realny budżet zamiast traktować wycenę jako stałą cenę." },
+    "pikobuy-qc-photo-checklist": { title: "Zdjęcia QC PikoBuy: lista kontroli przed wysyłką", intro: "Sprawdź wariant, wymiary i widoczny stan przed utworzeniem paczki." },
+    "pikobuy-return-policy-guide": { title: "Zwroty PikoBuy: 120 godzin, dowody i koszty", intro: "Praktyczny przewodnik decyzji na etapie magazynu." },
+    "pikobuy-tracking-guide": { title: "Śledzenie PikoBuy: statusy, cło i przekazanie kurierowi", intro: "Czytaj skany w kontekście, bez obietnic terminu dostawy." },
+    "pikobuy-restricted-items-guide": { title: "Towary ograniczone PikoBuy: baterie, płyny i trasy", intro: "Sprawdź fakty o produkcie, aktywną trasę i zasady kraju docelowego." },
+    "pikobuy-spain-guide": { title: "PikoBuy Hiszpania: wysyłka, VAT, cło i planowanie paczki", intro: "Ostrożna metoda planowania przesyłki do Hiszpanii." },
+  },
+  "pt-PT": {
+    "how-pikobuy-works": { title: "Como funciona o PikoBuy: do link do produto à encomenda internacional", intro: "Um percurso factual sobre encomenda, armazém, devolução e envio." },
+    "pikobuy-shipping-cost-guide": { title: "Custo de envio PikoBuy: peso, dimensões e rotas", intro: "Planeie um orçamento realista sem tratar uma cotação como preço fixo." },
+    "pikobuy-qc-photo-checklist": { title: "Fotos QC PikoBuy: checklist antes do envio", intro: "Verifique variante, medidas e estado visível antes de criar a encomenda." },
+    "pikobuy-return-policy-guide": { title: "Devoluções PikoBuy: 120 horas, provas e custos", intro: "Um guia prático de decisão na fase de armazém." },
+    "pikobuy-tracking-guide": { title: "Rastreio PikoBuy: estados, alfândega e transportadoras", intro: "Leia cada atualização no contexto, sem prometer uma data de entrega." },
+    "pikobuy-restricted-items-guide": { title: "Artigos restritos PikoBuy: baterias, líquidos e rotas", intro: "Confirme factos do produto, rota ativa e regras de destino antes de pagar." },
+    "pikobuy-spain-guide": { title: "PikoBuy Espanha: envio, IVA, alfândega e planeamento", intro: "Uma abordagem prudente para preparar uma encomenda para Espanha." },
+  },
+  "sv-SE": {
+    "how-pikobuy-works": { title: "Så fungerar PikoBuy: från produktlänk till internationellt paket", intro: "En faktabaserad genomgång av order, lager, retur och frakt." },
+    "pikobuy-shipping-cost-guide": { title: "PikoBuy fraktkostnad: vikt, mått och rutter", intro: "Planera en realistisk budget utan att se en offert som ett fast pris." },
+    "pikobuy-qc-photo-checklist": { title: "PikoBuy QC-bilder: checklista före frakt", intro: "Kontrollera variant, mått och synligt skick innan paketet skapas." },
+    "pikobuy-return-policy-guide": { title: "PikoBuy retur: 120 timmar, underlag och kostnader", intro: "En praktisk beslutsguide för lagerstadiet." },
+    "pikobuy-tracking-guide": { title: "PikoBuy spårning: status, tull och transportörsbyten", intro: "Läs skanningar i sitt sammanhang utan att utlova leveransdatum." },
+    "pikobuy-restricted-items-guide": { title: "PikoBuy begränsade varor: batterier, vätskor och rutter", intro: "Kontrollera produktfakta, aktuell rutt och destinationsregler före betalning." },
+    "pikobuy-spain-guide": { title: "PikoBuy Spanien: frakt, moms, tull och paketplanering", intro: "En försiktig metod för att förbereda ett paket till Spanien." },
+  },
+};
+
+export function getLocalizedArticleMeta(locale: string, slug: string, fallback: LocalizedArticleMeta): LocalizedArticleMeta {
+  return articleMeta[locale]?.[slug] || fallback;
+}
+
 /**
  * These plans are the localized equivalents of the seven English sections.
  * Each position is stable across languages; FAQ facts only supply translated
@@ -156,6 +237,22 @@ const articleSectionPlans: Record<string, readonly ArticleSectionPlan[]> = {
     {heading:9,facts:[9,10,11]},
     {heading:13,facts:[13,8,7]},
   ],
+  "pikobuy-return-policy-guide":[
+    {heading:9,facts:[9,10,11]}, {heading:4,facts:[4,6,9]}, {heading:10,facts:[10,11,5]},
+    {heading:11,facts:[11,3,9]}, {heading:12,facts:[12,9,10]}, {heading:4,facts:[4,9,12]}, {heading:2,facts:[2,9,13]},
+  ],
+  "pikobuy-tracking-guide":[
+    {heading:8,facts:[8,2,4]}, {heading:4,facts:[4,6,2]}, {heading:13,facts:[13,8,7]},
+    {heading:13,facts:[13,7,3]}, {heading:12,facts:[12,8,13]}, {heading:8,facts:[8,13,7]}, {heading:2,facts:[2,4,8]},
+  ],
+  "pikobuy-restricted-items-guide":[
+    {heading:7,facts:[7,3,1]}, {heading:4,facts:[4,5,6]}, {heading:7,facts:[7,13,3]},
+    {heading:13,facts:[13,7,3]}, {heading:7,facts:[7,13,2]}, {heading:5,facts:[5,9,10]}, {heading:7,facts:[7,13,3]},
+  ],
+  "pikobuy-spain-guide":[
+    {heading:2,facts:[2,3,1]}, {heading:7,facts:[7,3,13]}, {heading:13,facts:[13,7,3]},
+    {heading:4,facts:[4,6,9]}, {heading:13,facts:[13,7,8]}, {heading:8,facts:[8,13,7]}, {heading:2,facts:[2,3,13]},
+  ],
 };
 
 export type LocalizedSeoSection = {
@@ -179,6 +276,10 @@ export function getLocalizedSeoSections(locale: string, slug: string, fallbackTe
     "how-pikobuy-works":[items[1].question,items[2].question,items[4].question,items[9].question,shipping.inputsTitle,shipping.riskTitle,items[8].question],
     "pikobuy-shipping-cost-guide":[shipping.title,shipping.inputsTitle,shipping.calloutTitle,`${shipping.inputs[1].label}: ${shipping.inputs[1].description}`,shipping.riskTitle,items[9].question,`${shipping.inputs[4].label}: ${shipping.calloutBody}`],
     "pikobuy-qc-photo-checklist":[items[4].question,`${items[0].question} ${items[4].question}`,`${localized.categories.join(" · ")}`,items[6].question,items[5].question,items[9].question,`${items[13].question} ${items[8].question}`],
+    "pikobuy-return-policy-guide":[items[9].question,items[4].question,items[10].question,items[11].question,items[12].question,`${items[4].question} ${items[9].question}`,`${items[2].question} ${items[9].question}`],
+    "pikobuy-tracking-guide":[items[8].question,items[4].question,items[13].question,shipping.riskTitle,items[12].question,`${items[8].question} ${items[13].question}`,`${items[2].question} ${items[8].question}`],
+    "pikobuy-restricted-items-guide":[shipping.inputsTitle,items[4].question,`${shipping.inputs[1].label}: ${shipping.inputs[1].description}`,items[13].question,`${items[7].question} ${items[13].question}`,items[5].question,shipping.calloutTitle],
+    "pikobuy-spain-guide":[items[2].question,shipping.inputsTitle,shipping.riskTitle,items[4].question,items[13].question,items[8].question,`${items[2].question} ${shipping.calloutTitle}`],
   };
   const sectionHeadings=headings[slug]||headings["how-pikobuy-works"];
   return plans.map((plan,position)=>{

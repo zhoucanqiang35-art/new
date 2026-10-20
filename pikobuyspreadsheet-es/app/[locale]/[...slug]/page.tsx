@@ -3,6 +3,7 @@ import { locales } from "../../data";
 import { categories, products, seoArticles } from "../../data";
 import { LocalizedRoutePage } from "../../site-components";
 import { pageMetadata } from "../../seo";
+import { getLocalizedArticleMeta } from "../../localized-content";
 const singleRoutes = ["categories","products","guides","shipping","countries","qc","methodology","faq","seo-articles"] as const;
 export function generateStaticParams(){
   const routeParams=[
@@ -42,10 +43,14 @@ export async function generateMetadata({params}:{params:Promise<{locale:string;s
     }
     if(first==="seo-articles"){
       const item=seoArticles.find((article)=>article.slug===second);
-      if(item) title=`${item.title} | Guía en español`;
+      if(item) title=getLocalizedArticleMeta(locale,item.slug,{title:item.title,intro:item.excerpt}).title;
     }
-    return pageMetadata(locale,slug.join("/"),title,"Guía independiente en español con enlaces verificables, controles QC, costes orientativos y límites de envío para compradores de PikoBuy en España.");
+    return {...pageMetadata(locale,slug.join("/"),title,"Guía independiente en español con enlaces verificables, controles QC, costes orientativos y límites de envío para compradores de PikoBuy en España."),other:{"content-language":locale}};
   }
-  return pageMetadata(locale,slug.join("/"),"PikoBuy Spreadsheet Europe","Localized PikoBuy product, shipping, QC and research guide.");
+  if(slug[0]==="seo-articles"&&slug[1]){
+    const item=seoArticles.find((article)=>article.slug===slug[1]);
+    if(item){const localized=getLocalizedArticleMeta(locale,item.slug,{title:item.title,intro:item.excerpt});return {...pageMetadata(locale,slug.join("/"),localized.title,localized.intro),other:{"content-language":locale}};}
+  }
+  return {...pageMetadata(locale,slug.join("/"),"PikoBuy Spreadsheet Europe","Localized PikoBuy product, shipping, QC and research guide."),other:{"content-language":locale}};
 }
 export default async function Page({params}:{params:Promise<{locale:string;slug:string[]}>}){const {locale,slug}=await params;if(locale==="en-US"||!locales.some(item=>item.code===locale))notFound();return <LocalizedRoutePage locale={locale} slug={slug}/>;}
