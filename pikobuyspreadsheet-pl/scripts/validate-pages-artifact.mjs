@@ -501,10 +501,10 @@ if (!/@media \(width<=900px\)\{\.article-layout\{grid-template-columns:1fr/.test
 
 const sitemap = await readFile(path.join(outputDirectory, "sitemap.xml"), "utf8");
 const sitemapUrls = sitemap.match(/<loc>/g)?.length ?? 0;
-if (sitemapUrls !== 342 || !sitemap.includes('hreflang="sv"') || !sitemap.includes("/pikobuy-item-damaged-in-warehouse")) {
-  throw new Error(`Expected 342 sitemap URLs with Swedish hreflang alternates and the warehouse-damage guide, found ${sitemapUrls}`);
+if (sitemapUrls !== 328 || !sitemap.includes('hreflang="de"') || !sitemap.includes("/pikobuy-spreadsheet-2026-searchable-finds")) {
+  throw new Error(`Expected 328 sitemap URLs with supported-language alternates and the searchable-finds guide, found ${sitemapUrls}`);
 }
 
 console.log(
-  "Validated indexable Pages routes, canonical links, robots.txt, a 342-URL sitemap, CSS and JavaScript.",
+  "Validated indexable Pages routes, canonical links, robots.txt, a 328-URL sitemap, CSS and JavaScript.",
 );
