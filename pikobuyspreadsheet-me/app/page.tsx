@@ -5,8 +5,8 @@ import CategoryCards from "./category-cards";
 import { SiteFooter, SiteHeader } from "./site-chrome";
 
 export const metadata = {
-  title: "PikoBuy Spreadsheet Guide | Product Research & QC Checks",
-  description: "Independent PikoBuy spreadsheet research for source links, QC photos, sizing and parcel planning without invented stock or seller claims.",
+  title: "PikoBuy Spreadsheet 2026 | Finds, QC Photos, Links & Shipping",
+  description: "Browse independent PikoBuy spreadsheet research for finds, source links, QC photos, sizing and shipping planning without invented seller or delivery claims.",
   alternates: { canonical: "https://pikobuyspreadsheet.me/", languages: { en:"https://pikobuyspreadsheet.me/",de:"https://pikobuyspreadsheet.me/de",fr:"https://pikobuyspreadsheet.me/fr",es:"https://pikobuyspreadsheet.me/es",it:"https://pikobuyspreadsheet.me/it",pt:"https://pikobuyspreadsheet.me/pt",nl:"https://pikobuyspreadsheet.me/nl",pl:"https://pikobuyspreadsheet.me/pl" } },
 };
 

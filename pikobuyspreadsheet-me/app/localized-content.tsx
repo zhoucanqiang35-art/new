@@ -8,7 +8,7 @@ import SeoParitySections from "./seo-parity-sections";
 
 export type Locale = "de"|"fr"|"es"|"it";
 type UI = {back:string,onPage:string,important:string,notice:string,next:string,ctaTitle:string,cta:string,independent:string,reviewed:string,region:string};
-const ui: Record<Locale,UI> = {
+export const ui: Record<Locale,UI> = {
  de:{back:"Zurück zur Übersicht",onPage:"Auf dieser Seite",important:"Wichtig",notice:"Fragen zu Konto, Zahlung, Erstattung und Sendung gehören zum offiziellen PikoBuy-Support.",next:"NÄCHSTER SCHRITT",ctaTitle:"Mit einer Frage suchen, nicht mit einer Vermutung.",cta:"FindSpreadsheet durchsuchen",independent:"Unabhängiger Ratgeber",reviewed:"Geprüft am 26. August 2026",region:"Für USA, UK, Kanada & Europa"},
  fr:{back:"Retour au centre de recherche",onPage:"Sur cette page",important:"Important",notice:"Les questions de compte, paiement, remboursement et colis relèvent du support officiel PikoBuy.",next:"ÉTAPE SUIVANTE",ctaTitle:"Cherchez avec une question, pas une supposition.",cta:"Rechercher sur FindSpreadsheet",independent:"Guide indépendant",reviewed:"Vérifié le 26 août 2026",region:"Pour États-Unis, Royaume-Uni, Canada & Europe"},
  es:{back:"Volver al centro de investigación",onPage:"En esta página",important:"Importante",notice:"Las preguntas sobre cuenta, pago, reembolso y paquetes corresponden al soporte oficial de PikoBuy.",next:"SIGUIENTE PASO",ctaTitle:"Busca con una pregunta, no con una suposición.",cta:"Buscar en FindSpreadsheet",independent:"Guía independiente",reviewed:"Revisado el 26 de agosto de 2026",region:"Para EE. UU., Reino Unido, Canadá y Europa"},

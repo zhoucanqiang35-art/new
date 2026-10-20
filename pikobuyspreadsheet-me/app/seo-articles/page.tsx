@@ -6,12 +6,15 @@ import SeoParitySections from "../seo-parity-sections";
 import { localizedAlternates } from "../seo-metadata";
 
 export const metadata: Metadata = {
-  title: "PikoBuy SEO Articles | Independent Guides for 2026",
-  description: "Read independent PikoBuy guides about prohibited items, shipping insurance, parcel consolidation, warehouse checks, tracking, customs and returns.",
+  title: "PikoBuy Spreadsheet Guides 2026 | QC, Links & Shipping",
+  description: "Read independent PikoBuy spreadsheet guides for product finds, Weidian, Taobao and 1688 links, QC photos, UK shipping and parcel planning.",
   alternates: localizedAlternates("seo-articles"),
 };
 
 const articles = [
+  { icon: BookOpen, tag: "SPREADSHEET RESEARCH", title: "PikoBuy Spreadsheet 2026: Build a Useful Finds List", description: "Turn PikoBuy finds and links into a current, evidence-led list with clear source, variant, QC and parcel checks.", href: "/pikobuy-spreadsheet-2026", time: "9 min read" },
+  { icon: Link2, tag: "SOURCE LINKS", title: "PikoBuy Weidian, Taobao and 1688 Links: Check the Source", description: "Compare a live source listing, selected option and PikoBuy order result before treating a spreadsheet row as ready.", href: "/pikobuy-weidian-taobao-1688", time: "9 min read" },
+  { icon: Truck, tag: "UK SHIPPING", title: "PikoBuy to the UK: Plan Shipping With Real Parcel Data", description: "Use destination, measured weight, dimensions, packaging and current route terms instead of copied shipping promises.", href: "/pikobuy-uk-shipping-guide", time: "9 min read" },
   { icon: AlertTriangle, tag: "PROHIBITED ITEMS", title: "PikoBuy Prohibited Items Guide 2026: Check Before Ordering", description: "Verify the exact product, destination, truthful product type and current route before paying, then protect return options if eligibility remains unclear.", href: "/pikobuy-prohibited-items", time: "10 min read" },
   { icon: ShieldCheck, tag: "SHIPPING INSURANCE", title: "PikoBuy Shipping Insurance Guide 2026: Check Coverage Before You Pay", description: "Read the live route terms, separate logistics risks, record any coverage wording and preserve evidence for damage or loss without assuming compensation.", href: "/pikobuy-shipping-insurance", time: "10 min read" },
   { icon: Boxes, tag: "PARCEL CONSOLIDATION", title: "PikoBuy Parcel Consolidation Guide 2026: Combine Orders Carefully", description: "Verify warehouse items, resolve returns, test product and route compatibility, compare combined and split scenarios, then audit the final parcel.", href: "/pikobuy-parcel-consolidation", time: "10 min read" },

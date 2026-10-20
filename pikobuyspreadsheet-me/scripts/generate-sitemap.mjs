@@ -14,9 +14,15 @@ const pages = [
   { path: "faq", lastmod: "2026-08-29", changefreq: "monthly", priority: "0.8" },
   { path: "seo-articles", lastmod: "2026-09-28", changefreq: "weekly", priority: "0.9" },
 ];
+const growthPages = [
+  { path: "pikobuy-spreadsheet-2026", lastmod: "2026-10-20", changefreq: "monthly", priority: "0.9" },
+  { path: "pikobuy-weidian-taobao-1688", lastmod: "2026-10-20", changefreq: "monthly", priority: "0.9" },
+  { path: "pikobuy-uk-shipping-guide", lastmod: "2026-10-20", changefreq: "monthly", priority: "0.9" },
+];
 
 const urls = [];
 for (const page of pages) urls.push({ ...page, url: `${base}/${page.path}` });
+for (const page of growthPages) urls.push({ ...page, url: `${base}/${page.path}` });
 urls.push({ path: "how-to-use-pikobuy-spreadsheet", url: `${base}/how-to-use-pikobuy-spreadsheet`, lastmod: "2026-08-29", changefreq: "monthly", priority: "0.9" });
 urls.push({ path: "pikobuy-return-policy", url: `${base}/pikobuy-return-policy`, lastmod: "2026-08-31", changefreq: "monthly", priority: "0.9" });
 urls.push({ path: "pikobuy-product-links", url: `${base}/pikobuy-product-links`, lastmod: "2026-09-02", changefreq: "monthly", priority: "0.9" });
@@ -34,6 +40,7 @@ urls.push({ path: "pikobuy-parcel-consolidation", url: `${base}/pikobuy-parcel-c
 urls.push({ path: "pikobuy-shipping-insurance", url: `${base}/pikobuy-shipping-insurance`, lastmod: "2026-09-26", changefreq: "monthly", priority: "0.9" });
 urls.push({ path: "pikobuy-prohibited-items", url: `${base}/pikobuy-prohibited-items`, lastmod: "2026-09-28", changefreq: "monthly", priority: "0.9" });
 for (const locale of locales) for (const page of pages) urls.push({ ...page, url: `${base}/${locale}${page.path ? `/${page.path}` : ""}`, priority: page.path ? page.priority : "0.8" });
+for (const locale of locales) for (const page of growthPages) urls.push({ ...page, url: `${base}/${locale}/${page.path}` });
 for (const locale of ["", ...locales]) for (const category of categories) urls.push({ url: `${base}${locale ? `/${locale}` : ""}/categories/${category}`, lastmod: "2026-08-29", changefreq: "monthly", priority: "0.7" });
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(item => `  <url>\n    <loc>${item.url}</loc>\n    <lastmod>${item.lastmod}</lastmod>\n    <changefreq>${item.changefreq}</changefreq>\n    <priority>${item.priority}</priority>\n  </url>`).join("\n")}\n</urlset>\n`;
