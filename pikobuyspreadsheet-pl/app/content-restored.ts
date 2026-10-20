@@ -45,7 +45,7 @@ function makeGuide(seed: Seed): Guide {
     slug: seed.slug, eyebrow: seed.eyebrow, title: seed.title, seoTitle: seed.seoTitle, description: seed.description,
     readTime: "8 min read", updated: "Updated 11 September 2026", publishedDate: "2026-09-11", modifiedDate: "2026-09-11",
     intro: [
-      `${seed.title} is an independent research guide for shoppers who use a product spreadsheet before deciding whether to continue with a buying platform. It is not a price promise, seller endorsement, warehouse service or delivery guarantee.`,
+      "This is an independent research guide for shoppers who use a product spreadsheet before deciding whether to continue with a buying platform. It is not a price promise, seller endorsement, warehouse service or delivery guarantee.",
       "The useful question is not whether one screenshot or comment looks reassuring. It is whether you can compare the live listing, selected option, warehouse evidence and destination-specific parcel information in a way that still makes sense when conditions change.",
       "PikoBuy publicly describes a flow that can begin with product search or a submitted link, then moves through purchase assistance, warehouse inspection, repacking and international shipping. This guide focuses on the decision point that matters for this topic without presenting the independent site as the service connected to an order.",
     ],
@@ -1270,5 +1270,41 @@ const warehouseDamageGuide: Guide = {
   ],
 };
 
-export const guides = [...seeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide, sellerNotShippedGuide, warehouseArrivalDelayedGuide, qcPhotosMissingGuide, warehouseDamageGuide];
+const prioritySeeds: Seed[] = [
+  {
+    slug: "pikobuy-spreadsheet-2026-searchable-finds",
+    eyebrow: "Spreadsheet search",
+    title: "Pikobuy Spreadsheet 2026: Searchable Finds, QC Photos and Source Checks",
+    seoTitle: "Pikobuy Spreadsheet 2026: Searchable Finds, QC Photos and Source Checks",
+    description: "Use a searchable Pikobuy spreadsheet to narrow product leads, verify live source links and save QC questions before opening an order route.",
+    decision: "Use the spreadsheet for discovery, then verify the active seller listing before deciding whether a product deserves a closer look.",
+    evidence: "PikoBuy describes product search or submitted links, purchase assistance, warehouse inspection and international shipping as distinct stages.",
+    limits: "A spreadsheet route does not replace the platform’s live terms, account information or support process.",
+    checklist: ["Choose one focused product category", "Verify source listing and options", "Prepare QC questions before arrival", "Plan shipping after warehouse data"],
+  },
+  {
+    slug: "pikobuy-source-links-taobao-weidian-1688-yupoo",
+    eyebrow: "Source links",
+    title: "Pikobuy Source Links Explained: Taobao, Weidian, 1688 and Yupoo",
+    seoTitle: "Pikobuy Source Links Explained: Taobao, Weidian, 1688 and Yupoo",
+    description: "Understand what a Taobao, Weidian, 1688 or Yupoo source link can show before you save a Pikobuy spreadsheet find or submit a product route.",
+    decision: "Match item ID, title, colour, size or variation text before treating two similar-looking listings as the same item.",
+    evidence: "The best evidence is the current source listing plus saved option text, not a copied title or an old product image.",
+    limits: "A listing review cannot prove seller reliability, stock, fulfilment speed or how an item will perform after delivery.",
+    checklist: ["Exact product link", "Item ID or seller reference", "Selected colour and size text", "Current images and listing status"],
+  },
+  {
+    slug: "pikobuy-qc-checklist-by-category",
+    eyebrow: "QC checklist",
+    title: "Pikobuy QC Checklist by Category: Shoes, Clothing, Bags and Electronics",
+    seoTitle: "Pikobuy QC Checklist by Category: Shoes, Clothing, Bags and Electronics",
+    description: "Use a category-aware Pikobuy QC checklist to request useful warehouse photos for shoes, clothing, bags and electronics without claiming photos prove more than they show.",
+    decision: "Check item identity and requested variation before spending time on fine visual details.",
+    evidence: "Warehouse images are useful for visible labels, colour, quantity, measurements and damage when the relevant angle is shown.",
+    limits: "Photos cannot prove authenticity, hidden construction, comfort, material composition, battery health or long-term durability.",
+    checklist: ["Correct item and quantity", "Size label or requested measurement", "Colour and visible variation", "Visible damage or missing components"],
+  },
+];
+
+export const guides = [...seeds.map(makeGuide), ...prioritySeeds.map(makeGuide), restrictedItemsGuide, returnedParcelGuide, damagedParcelGuide, missingItemGuide, supportTicketGuide, paymentOrderGuide, depositBalanceGuide, sellerNotShippedGuide, warehouseArrivalDelayedGuide, qcPhotosMissingGuide, warehouseDamageGuide];
 export const getGuide = (slug: string) => guides.find((item) => item.slug === slug);

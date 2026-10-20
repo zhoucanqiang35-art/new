@@ -11,7 +11,6 @@ const languages = [
   ["nl", "NL · Nederlands"],
   ["pt", "PT · Português"],
   ["pl", "PL · Polski"],
-  ["sv", "SV · Svenska"],
 ];
 
 export default function LanguageSwitcher({ current = "en" }: { current?: string }) {

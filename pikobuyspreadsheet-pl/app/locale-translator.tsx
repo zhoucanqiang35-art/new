@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
+import { priorityTranslations } from "./priority-translations";
 
-type Locale = "de" | "fr" | "es" | "it" | "nl" | "pt" | "pl" | "sv";
+type Locale = "de" | "fr" | "es" | "it" | "nl" | "pt" | "pl";
 type Dictionary = Record<string, string>;
 
 const loaders: Record<Locale, () => Promise<{ default: Dictionary }>> = {
@@ -13,7 +14,6 @@ const loaders: Record<Locale, () => Promise<{ default: Dictionary }>> = {
   nl: () => import("./translations/nl.json"),
   pt: () => import("./translations/pt.json"),
   pl: () => import("./translations/pl.json"),
-  sv: () => import("./translations/sv.json"),
 };
 
 export default function LocaleTranslator({ locale }: { locale: string }) {
@@ -28,19 +28,20 @@ export default function LocaleTranslator({ locale }: { locale: string }) {
       document.documentElement.lang = activeLocale;
       document.body.dataset.locale = activeLocale;
 
+      const translated = (value: string) => priorityTranslations[activeLocale]?.[value] || copy[value];
       const translateText = (node: Node) => {
         const parent = node.parentElement;
-        if (!parent || ["SCRIPT", "STYLE", "OPTION"].includes(parent.tagName)) return;
+        if (!parent || ["SCRIPT", "STYLE"].includes(parent.tagName)) return;
         const original = node.nodeValue || "";
         const trimmed = original.trim();
-        const value = copy[trimmed];
+        const value = translated(trimmed);
         if (value) node.nodeValue = original.replace(trimmed, value);
       };
 
       const translateElement = (element: HTMLElement) => {
         ["placeholder", "aria-label", "title"].forEach((attribute) => {
           const value = element.getAttribute(attribute);
-          if (value && copy[value]) element.setAttribute(attribute, copy[value]);
+          if (value && translated(value)) element.setAttribute(attribute, translated(value));
         });
         if (element instanceof HTMLAnchorElement) {
           const href = element.getAttribute("href");
@@ -62,7 +63,10 @@ export default function LocaleTranslator({ locale }: { locale: string }) {
       };
 
       translateTree(document.body);
-      if (copy[document.title]) document.title = copy[document.title];
+      if (translated(document.title)) document.title = translated(document.title);
+      const description = document.querySelector('meta[name="description"]');
+      const descriptionValue = description?.getAttribute("content");
+      if (description && descriptionValue && translated(descriptionValue)) description.setAttribute("content", translated(descriptionValue));
 
       observer = new MutationObserver((mutations) => {
         for (const mutation of mutations) {

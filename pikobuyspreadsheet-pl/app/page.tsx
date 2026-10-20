@@ -19,8 +19,8 @@ export default function Home() {
       <section className="hero shell" id="top">
         <div className="hero-copy">
           <p className="eyebrow"><span /> Independent research hub · 2026</p>
-          <h1>A clearer PikoBuy spreadsheet for Europe.</h1>
-          <p className="lead">Find products on <strong>FindSpreadsheet</strong>, check the source listing, understand warehouse QC, and plan international shipping before you pay.</p>
+          <h1>Pikobuy Spreadsheet 2026: searchable finds, QC photos and source checks.</h1>
+          <p className="lead">Search <strong>FindSpreadsheet</strong> for Taobao, Weidian, 1688 and Yupoo product leads, then check the live source listing, warehouse QC and shipping weight before you pay.</p>
           <form className="search" action="https://findspreadsheet.com/search.html" method="get">
             <label className="sr-only" htmlFor="product-search">Search FindSpreadsheet products</label>
             <input id="product-search" name="keywords" placeholder="Search shoes, hoodies, bags, item ID…" required />
@@ -50,7 +50,7 @@ export default function Home() {
         <div className="shell signal-grid">
           <div><b>20K+</b><span>finds on the main database*</span></div>
           <div><b>10</b><span>focused product categories</span></div>
-          <div><b>26</b><span>evidence-led guides</span></div>
+          <div><b>{guides.length}</b><span>evidence-led guides</span></div>
           <div><b>11</b><span>priority market targets</span></div>
         </div>
       </section>
@@ -87,7 +87,7 @@ export default function Home() {
       <section className="section shell" id="guides">
         <div className="section-heading">
           <div><p className="eyebrow"><span /> Practical guides</p><h2>Answers before checkout.</h2></div>
-          <p>Original, focused pages built from current PikoBuy terms and tools—not generic posts with a changed title.</p>
+          <p>Start with spreadsheet search, source links and QC evidence, then use the deeper guides for sizing, parcel weight, returns and destination planning.</p>
         </div>
         <div className="guide-grid">
           {guides.map((guide, index) => (

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Home from "../../page";
 import LocaleTranslator from "../../locale-translator";
 import { indexableRobots, pageAlternates, supportedLocales } from "../../seo";
+import { localiseSeo } from "../../localized-seo";
 
 const locales: readonly string[] = supportedLocales;
 
@@ -11,9 +12,11 @@ export function generateStaticParams() { return locales.map((locale) => ({ local
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   if (!locales.includes(locale)) return {};
+  const title = "Pikobuy Spreadsheet 2026 | Searchable Finds, QC Photos & Guides";
+  const description = "Search a Pikobuy spreadsheet for Taobao, Weidian, 1688 and Yupoo finds. Compare listings, QC photos, sizing and shipping weight before opening a product route.";
   return {
-    title: "PikoBuy Spreadsheet Europe | Finds, QC & Shipping Guides",
-    description: "Independent PikoBuy spreadsheet research for Europe: browse products, review QC photos, understand returns and estimate parcel shipping.",
+    title: localiseSeo(locale, title),
+    description: localiseSeo(locale, description),
     robots: indexableRobots,
     alternates: pageAlternates("/", locale),
   };
