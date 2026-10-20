@@ -39,7 +39,7 @@ function localizedCopy(id:ArticleId, locale:string): Copy {
   const label = id === "spreadsheet-2026" ? text[0] : id === "parcel-submission-checklist" ? text[1] : text[2];
   const common = genericByLocale[locale];
   const topic = id === "spreadsheet-2026" ? "PikoBuy Spreadsheet 2026" : id === "parcel-submission-checklist" ? "PikoBuy" : "PikoBuy";
-  return {eyebrow:label,title:topic + ": " + label,description:label + " PikoBuy: verificación, decisiones de paquete y datos actuales.",intro:text[3],lead:text[4],
+  return {eyebrow:label,title:topic + ": " + label,description:label + " — PikoBuy.",intro:text[3],lead:text[4],
     sections:[{heading:label,body:[text[5],common[0]]},{heading:common[1],body:[text[6],common[2]]},{heading:common[3],body:[common[4],common[5]]}],
     checklistTitle:common[6],checklist:[text[5],common[0],text[6],common[4],common[5]],closing:text[7],cta:common[7]};
 }
