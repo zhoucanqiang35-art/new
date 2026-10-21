@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" translate="no" className="notranslate" suppressHydrationWarning>
+    <html lang="en" dir="ltr" translate="no" className="notranslate" suppressHydrationWarning>
       <body className="antialiased notranslate" translate="no">{children}</body>
     </html>
   );
