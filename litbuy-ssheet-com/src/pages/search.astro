@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Search the internal LitBuy Spreadsheet catalogue." /><title>Search Products — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="search">
+  <SiteNav />
+  <main class="inner-page"><section class="inner-intro"><p class="eyebrow">INTERNAL PRODUCT SEARCH</p><h1>Search <em>products.</em></h1><p>Search the full exported FindSpreadsheet catalogue without leaving this LitBuy Spreadsheet subsite.</p></section><form class="catalogue-search" action="/search/"><input id="catalogue-query" name="q" placeholder="Search product names or IDs" /><button>Search →</button></form><p class="search-result-note" id="search-result-note">Enter a product name or source ID.</p><section class="finder-grid standalone-products" id="search-grid" aria-live="polite"></section></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Internal catalogue search powered by the main-site export.</p><a href="/product-finds/">All products →</a></footer>
+  <script>
+    import { formatUsd } from '../lib/currency';
+    const esc = (text = '') => String(text).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+    const asUsd = (price) => formatUsd(price);
+    const q = new URLSearchParams(location.search).get('q')?.trim() || '';
+    document.querySelector('#catalogue-query').value = q;
+    if (q) fetch('/data/findspreadsheet-export.json').then((response) => response.json()).then((catalogue) => {
+      const key = q.toLowerCase();
+      const results = catalogue.products.filter((product) => `${product.id} ${product.name} ${product.category}`.toLowerCase().includes(key)).slice(0, 60);
+      document.querySelector('#search-result-note').textContent = `${results.length} internal result${results.length === 1 ? '' : 's'} shown for “${q}”.`;
+      const note = document.querySelector('#search-result-note');
+      const grid = document.querySelector('#search-grid');
+      grid.innerHTML = results.map((product) => `<article class="finder-card"><a href="/product/?id=${encodeURIComponent(product.id)}" class="finder-card-image"><img src="${esc(product.image)}" alt="${esc(product.name)}" loading="lazy" /><span>View detail →</span></a><div class="finder-card-meta"><span>${esc(product.category)}</span><span>Source ${esc(product.id)}</span></div><h3 data-source-content>${esc(product.name)}</h3><div class="finder-card-bottom"><b>${asUsd(product.price)}</b><a href="/product/?id=${encodeURIComponent(product.id)}">Product page →</a></div></article>`).join('') || '<p>No matching product is in the latest export.</p>';
+      window.litbuyTranslateContent?.(note);
+      window.litbuyTranslateContent?.(grid);
+    });
+  </script>
+</body></html>

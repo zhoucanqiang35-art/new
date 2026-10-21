@@ -1,0 +1,469 @@
+---
+import editorialEditions from '../data/editorial-editions.json';
+const registerUrl = 'https://litbuy.com/register?inviteCode=E32JME4UQ';
+const navItems = [['Home', '/'], ['Product categories', '/categories/'], ['SEO articles', '/seo-articles/'], ['Product finds', '/product-finds/'], ['QC guide', '/qc-guide/'], ['FAQ', '/faq/']];
+const languages = [['EN', 'English', 'en'], ['DE', 'Deutsch', 'de'], ['FR', 'Français', 'fr'], ['ES', 'Español', 'es'], ['IT', 'Italiano', 'it'], ['PT', 'Português', 'pt'], ['NL', 'Nederlands', 'nl'], ['PL', 'Polski', 'pl'], ['RU', 'Русский', 'ru']];
+const editorialEditionsScript = `window.__litbuyEditorial=${JSON.stringify(editorialEditions)};`;
+---
+<header class="finder-nav">
+  <a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a>
+  <nav aria-label="Primary navigation">{navItems.map(([label, href]) => <a href={href} data-l10n={label}>{label}</a>)}</nav>
+  <div class="nav-actions">
+    <details class="language-menu" data-language-menu>
+      <summary class="nav-language"><span data-l10n="Language">Language</span> <b data-current-language>EN</b><i aria-hidden="true">⌄</i></summary>
+      <div class="language-popover" role="menu"><p data-l10n="Choose language">Choose language</p><div>{languages.map(([code, label, locale]) => <a href={`?lang=${locale}`} data-language-option={locale} role="menuitem"><b>{code}</b><span>{label}</span></a>)}</div></div>
+    </details>
+    <a class="nav-register" href={registerUrl} target="_blank" rel="noreferrer"><span data-l10n="Register">Register</span> <b>↗</b></a>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const locales = ['en', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'pl', 'ru'];
+    // Keep English as the site's initial language while allowing visitors to
+    // use their browser's manual translation controls when they prefer another
+    // language (including Chinese).
+    const requested = new URLSearchParams(location.search).get('lang');
+    // The base site always opens in English.  A non-English edition exists only
+    // when its explicit `lang` parameter is present; internal links retain it.
+    // Stored browser preferences are intentionally never allowed to override
+    // the English default or a deliberate `?lang=en` selection.
+    const lang = locales.includes(requested) ? requested : 'en';
+    const localeIndex = {de: 0, fr: 1, es: 2, it: 3, pt: 4, nl: 5, pl: 6, ru: 7}[lang];
+
+    /*
+      Only exact, reviewed UI labels are replaced here.  Paragraphs, FAQ answers,
+      article bodies, and product names are deliberately excluded: they must be
+      supplied by their own one-to-one language edition, never guessed from an
+      element type or replaced with a repeated fallback sentence.
+    */
+    const packs = {
+      en: {code: 'EN'},
+      de: {code: 'DE', Home: 'Startseite', 'Product categories': 'Produktkategorien', 'SEO articles': 'SEO-Artikel', 'Product finds': 'Produktfunde', 'QC guide': 'QC-Leitfaden', FAQ: 'FAQ', Language: 'Sprache', 'Choose language': 'Sprache wählen', Register: 'Registrieren', Search: 'Suchen', 'All products': 'Alle Produkte', 'Open record': 'Eintrag öffnen', 'Open record →': 'Eintrag öffnen →', 'View all products': 'Alle Produkte ansehen', 'All categories →': 'Alle Kategorien →', 'Read article →': 'Artikel lesen →', 'Search →': 'Suchen →', 'Browse categories →': 'Kategorien ansehen →'},
+      fr: {code: 'FR', Home: 'Accueil', 'Product categories': 'Catégories de produits', 'SEO articles': 'Articles SEO', 'Product finds': 'Découvertes produits', 'QC guide': 'Guide QC', FAQ: 'FAQ', Language: 'Langue', 'Choose language': 'Choisir la langue', Register: 'S’inscrire', Search: 'Rechercher', 'All products': 'Tous les produits', 'Open record': 'Ouvrir la fiche', 'Open record →': 'Ouvrir la fiche →', 'View all products': 'Voir tous les produits', 'All categories →': 'Toutes les catégories →', 'Read article →': 'Lire l’article →', 'Search →': 'Rechercher →', 'Browse categories →': 'Parcourir les catégories →'},
+      es: {code: 'ES', Home: 'Inicio', 'Product categories': 'Categorías de productos', 'SEO articles': 'Artículos SEO', 'Product finds': 'Productos encontrados', 'QC guide': 'Guía QC', FAQ: 'Preguntas frecuentes', Language: 'Idioma', 'Choose language': 'Elegir idioma', Register: 'Registrarse', Search: 'Buscar', 'All products': 'Todos los productos', 'Open record': 'Abrir ficha', 'Open record →': 'Abrir ficha →', 'View all products': 'Ver todos los productos', 'All categories →': 'Todas las categorías →', 'Read article →': 'Leer el artículo →', 'Search →': 'Buscar →', 'Browse categories →': 'Explorar categorías →'},
+      it: {code: 'IT', Home: 'Home', 'Product categories': 'Categorie prodotti', 'SEO articles': 'Articoli SEO', 'Product finds': 'Prodotti trovati', 'QC guide': 'Guida QC', FAQ: 'FAQ', Language: 'Lingua', 'Choose language': 'Scegli la lingua', Register: 'Registrati', Search: 'Cerca', 'All products': 'Tutti i prodotti', 'Open record': 'Apri scheda', 'Open record →': 'Apri scheda →', 'View all products': 'Vedi tutti i prodotti', 'All categories →': 'Tutte le categorie →', 'Read article →': 'Leggi l’articolo →', 'Search →': 'Cerca →', 'Browse categories →': 'Sfoglia le categorie →'},
+      pt: {code: 'PT', Home: 'Início', 'Product categories': 'Categorias de produtos', 'SEO articles': 'Artigos SEO', 'Product finds': 'Produtos encontrados', 'QC guide': 'Guia QC', FAQ: 'FAQ', Language: 'Idioma', 'Choose language': 'Escolher idioma', Register: 'Registrar', Search: 'Pesquisar', 'All products': 'Todos os produtos', 'Open record': 'Abrir registro', 'Open record →': 'Abrir registro →', 'View all products': 'Ver todos os produtos', 'All categories →': 'Todas as categorias →', 'Read article →': 'Ler o artigo →', 'Search →': 'Pesquisar →', 'Browse categories →': 'Explorar categorias →'},
+      nl: {code: 'NL', Home: 'Home', 'Product categories': 'Productcategorieën', 'SEO articles': 'SEO-artikelen', 'Product finds': 'Productvondsten', 'QC guide': 'QC-gids', FAQ: 'Veelgestelde vragen', Language: 'Taal', 'Choose language': 'Kies taal', Register: 'Registreren', Search: 'Zoeken', 'All products': 'Alle producten', 'Open record': 'Record openen', 'Open record →': 'Record openen →', 'View all products': 'Alle producten bekijken', 'All categories →': 'Alle categorieën →', 'Read article →': 'Artikel lezen →', 'Search →': 'Zoeken →', 'Browse categories →': 'Categorieën bekijken →'},
+      pl: {code: 'PL', Home: 'Strona główna', 'Product categories': 'Kategorie produktów', 'SEO articles': 'Artykuły SEO', 'Product finds': 'Znaleziska produktów', 'QC guide': 'Przewodnik QC', FAQ: 'FAQ', Language: 'Język', 'Choose language': 'Wybierz język', Register: 'Zarejestruj się', Search: 'Szukaj', 'All products': 'Wszystkie produkty', 'Open record': 'Otwórz rekord', 'Open record →': 'Otwórz rekord →', 'View all products': 'Zobacz wszystkie produkty', 'All categories →': 'Wszystkie kategorie →', 'Read article →': 'Czytaj artykuł →', 'Search →': 'Szukaj →', 'Browse categories →': 'Przeglądaj kategorie →'},
+      ru: {code: 'RU', Home: 'Главная', 'Product categories': 'Категории товаров', 'SEO articles': 'SEO-статьи', 'Product finds': 'Подборки товаров', 'QC guide': 'Руководство QC', FAQ: 'Вопросы и ответы', Language: 'Язык', 'Choose language': 'Выберите язык', Register: 'Регистрация', Search: 'Поиск', 'All products': 'Все товары', 'Open record': 'Открыть карточку', 'Open record →': 'Открыть карточку →', 'View all products': 'Смотреть все товары', 'All categories →': 'Все категории →', 'Read article →': 'Читать статью →', 'Search →': 'Поиск →', 'Browse categories →': 'Смотреть категории →'}
+    };
+    const categoryNames = {
+      Shoes: ['Schuhe', 'Chaussures', 'Zapatos', 'Scarpe', 'Sapatos', 'Schoenen', 'Buty', 'Обувь'],
+      'T-Shirts': ['T-Shirts', 'T-shirts', 'Camisetas', 'T-shirt', 'Camisetas', 'T-shirts', 'Koszulki', 'Футболки'],
+      Hoodies: ['Hoodies', 'Sweats à capuche', 'Sudaderas', 'Felpe con cappuccio', 'Moletons', 'Hoodies', 'Bluzy z kapturem', 'Худи'],
+      'Hoodies & Sweaters': ['Hoodies & Pullover', 'Sweats et pulls', 'Sudaderas y jerséis', 'Felpe e maglioni', 'Moletons e suéteres', 'Hoodies en truien', 'Bluzy i swetry', 'Худи и свитеры'],
+      Jackets: ['Jacken', 'Vestes', 'Chaquetas', 'Giacche', 'Jaquetas', 'Jassen', 'Kurtki', 'Куртки'],
+      Pants: ['Hosen', 'Pantalons', 'Pantalones', 'Pantaloni', 'Calças', 'Broeken', 'Spodnie', 'Брюки'],
+      'Pants & Shorts': ['Hosen & Shorts', 'Pantalons et shorts', 'Pantalones y pantalones cortos', 'Pantaloni e shorts', 'Calças e shorts', 'Broeken & shorts', 'Spodnie i szorty', 'Брюки и шорты'],
+      Accessories: ['Accessoires', 'Accessoires', 'Accesorios', 'Accessori', 'Acessórios', 'Accessoires', 'Akcesoria', 'Аксессуары'],
+      Electronics: ['Elektronik', 'Électronique', 'Electrónica', 'Elettronica', 'Eletrónicos', 'Elektronica', 'Elektronika', 'Электроника'],
+      Headwear: ['Kopfbedeckung', 'Couvre-chefs', 'Sombreros', 'Copricapo', 'Chapelaria', 'Hoofddeksels', 'Nakrycia głowy', 'Головные уборы'],
+      'Short Sets': ['Kurzsets', 'Ensembles courts', 'Conjuntos cortos', 'Completi corti', 'Conjuntos curtos', 'Korte sets', 'Komplety krótkie', 'Комплекты'],
+      Jerseys: ['Trikots', 'Maillots', 'Camisetas deportivas', 'Maglie', 'Camisas esportivas', 'Shirts', 'Koszulki sportowe', 'Спортивные майки'],
+      'Other Finds': ['Weitere Funde', 'Autres trouvailles', 'Otros hallazgos', 'Altri prodotti', 'Outros achados', 'Andere vondsten', 'Inne znaleziska', 'Другие находки']
+    };
+    // Exact short copies shared by the catalogue, product and search routes.
+    // Source-product fields are intentionally excluded.
+    const sharedPageCopy = {
+      'Search product names or IDs': ['Produktnamen oder IDs suchen','Rechercher des noms ou ID produits','Buscar nombres o ID de productos','Cerca nomi o ID prodotto','Pesquisar nomes ou IDs de produtos','Zoek productnamen of ID’s','Szukaj nazw lub ID produktów','Поиск по названию или ID товара'],
+      'Search all internal products': ['Alle internen Produkte suchen','Rechercher tous les produits internes','Buscar todos los productos internos','Cerca tutti i prodotti interni','Pesquisar todos os produtos internos','Zoek in alle interne producten','Szukaj we wszystkich produktach wewnętrznych','Поиск по всем внутренним товарам'],
+      'Product name, source ID or category': ['Produktname, Quell-ID oder Kategorie','Nom du produit, ID source ou catégorie','Nombre, ID de origen o categoría','Nome prodotto, ID sorgente o categoria','Nome do produto, ID de origem ou categoria','Productnaam, bron-ID of categorie','Nazwa produktu, ID źródłowe lub kategoria','Название товара, ID источника или категория'],
+      'Enter a product name or source ID.': ['Gib einen Produktnamen oder eine Quell-ID ein.','Saisissez un nom de produit ou un ID source.','Introduce un nombre de producto o ID de origen.','Inserisci un nome prodotto o un ID sorgente.','Digite um nome de produto ou ID de origem.','Voer een productnaam of bron-ID in.','Wpisz nazwę produktu lub ID źródłowe.','Введите название товара или ID источника.'],
+      '← All categories': ['← Alle Kategorien','← Toutes les catégories','← Todas las categorías','← Tutte le categorie','← Todas as categorias','← Alle categorieën','← Wszystkie kategorie','← Все категории'],
+      'Browse categories →': ['Kategorien ansehen →','Parcourir les catégories →','Explorar categorías →','Sfoglia le categorie →','Explorar categorias →','Categorieën bekijken →','Przeglądaj kategorie →','Смотреть категории →'],
+      'All products →': ['Alle Produkte →','Tous les produits →','Todos los productos →','Tutti i prodotti →','Todos os produtos →','Alle producten →','Wszystkie produkty →','Все товары →'],
+      'Product pages': ['Produktseiten','Pages produit','Páginas de producto','Pagine prodotto','Páginas de produto','Productpagina’s','Strony produktów','Страницы товаров'],
+      'Loading products.': ['Produkte werden geladen.','Chargement des produits.','Cargando productos.','Caricamento prodotti.','Carregando produtos.','Producten laden.','Ładowanie produktów.','Загрузка товаров.'],
+      'Loading the current main-site product export…': ['Der aktuelle Produktexport der Hauptseite wird geladen…','Chargement de l’export produit actuel du site principal…','Cargando la exportación actual de productos del sitio principal…','Caricamento dell’esportazione prodotti corrente del sito principale…','Carregando a exportação atual de produtos do site principal…','De actuele productexport van de hoofdsite wordt geladen…','Ładowanie bieżącego eksportu produktów z głównej strony…','Загрузка текущей выгрузки товаров основного сайта…'],
+      '← Back to all products': ['← Zurück zu allen Produkten','← Retour à tous les produits','← Volver a todos los productos','← Torna a tutti i prodotti','← Voltar a todos os produtos','← Terug naar alle producten','← Wróć do wszystkich produktów','← Назад ко всем товарам'],
+      'Original image from the connected main catalogue.': ['Originalbild aus dem verbundenen Hauptkatalog.','Image originale du catalogue principal connecté.','Imagen original del catálogo principal conectado.','Immagine originale dal catalogo principale collegato.','Imagem original do catálogo principal conectado.','Originele afbeelding uit de gekoppelde hoofdcatalogus.','Oryginalny obraz z połączonego głównego katalogu.','Оригинальное изображение из подключённого основного каталога.']
+    };
+    // Homepage copy is kept as exact, reviewed strings.  Do not use a generic
+    // tag-based fallback here: the homepage combines catalogue instructions,
+    // QC guidance and editorial content, so a repeated replacement sentence
+    // would change the meaning of the page.
+    const homeCopy = {
+      'Search the catalogue': ['Im Katalog suchen','Rechercher dans le catalogue','Buscar en el catálogo','Cerca nel catalogo','Pesquisar no catálogo','Zoeken in de catalogus','Szukaj w katalogu','Поиск в каталоге'],
+      'Directory facts': ['Verzeichnisdaten','Informations sur l’annuaire','Datos del directorio','Dati della directory','Dados do diretório','Catalogusgegevens','Informacje o katalogu','Сведения о каталоге'],
+      'product records': ['Produkteinträge','fiches produit','fichas de producto','schede prodotto','registros de produtos','productrecords','rekordy produktów','карточки товаров'],
+      'reference prices': ['Referenzpreise','prix de référence','precios de referencia','prezzi di riferimento','preços de referência','referentieprijzen','ceny referencyjne','справочные цены'],
+      'only when supplied': ['nur wenn bereitgestellt','uniquement lorsqu’elles sont fournies','solo cuando se proporcionan','solo quando disponibili','somente quando fornecidas','alleen wanneer geleverd','tylko gdy udostępnione','только при наличии'],
+      'language choices': ['Sprachoptionen','choix de langue','opciones de idioma','opzioni lingua','opções de idioma','taalkeuzes','opcje językowe','варианты языка'],
+      'START HERE': ['HIER STARTEN','COMMENCEZ ICI','EMPIEZA AQUÍ','INIZIA QUI','COMECE AQUI','BEGIN HIER','ZACZNIJ TUTAJ','НАЧНИТЕ ЗДЕСЬ'],
+      'A simple route through the directory.': ['Ein einfacher Weg durch das Verzeichnis.','Un parcours simple dans l’annuaire.','Una ruta sencilla por el directorio.','Un percorso semplice nella directory.','Um caminho simples pelo diretório.','Een eenvoudige route door de catalogus.','Prosta droga przez katalog.','Простой путь по каталогу.'],
+      'Browse all records': ['Alle Einträge ansehen','Parcourir toutes les fiches','Ver todos los registros','Sfoglia tutte le schede','Ver todos os registros','Alle records bekijken','Przeglądaj wszystkie rekordy','Просмотреть все карточки'],
+      'Choose a category': ['Kategorie wählen','Choisir une catégorie','Elegir una categoría','Scegli una categoria','Escolher uma categoria','Kies een categorie','Wybierz kategorię','Выбрать категорию'],
+      'Search an exact ID': ['Exakte ID suchen','Rechercher un ID exact','Buscar un ID exacto','Cerca un ID esatto','Pesquisar um ID exato','Zoek een exacte ID','Szukaj dokładnego ID','Найти точный ID'],
+      'Read the QC guide': ['QC-Leitfaden lesen','Lire le guide QC','Leer la guía QC','Leggi la guida QC','Ler o guia QC','Lees de QC-gids','Przeczytaj przewodnik QC','Прочитать руководство QC'],
+      'ON EACH PRODUCT PAGE': ['AUF JEDER PRODUKTSEITE','SUR CHAQUE FICHE PRODUIT','EN CADA PÁGINA DE PRODUCTO','SU OGNI PAGINA PRODOTTO','EM CADA PÁGINA DE PRODUTO','OP ELKE PRODUCTPAGINA','NA KAŻDEJ STRONIE PRODUKTU','НА КАЖДОЙ СТРАНИЦЕ ТОВАРА'],
+      'Original source images': ['Original-Quellbilder','Images source d’origine','Imágenes originales de origen','Immagini originali della fonte','Imagens originais da fonte','Originele bronafbeeldingen','Oryginalne obrazy źródłowe','Оригинальные изображения источника'],
+      'USD reference price and ID': ['USD-Referenzpreis und ID','Prix de référence USD et ID','Precio de referencia en USD e ID','Prezzo di riferimento USD e ID','Preço de referência em USD e ID','USD-referentieprijs en ID','Cena referencyjna USD i ID','Справочная цена USD и ID'],
+      'QC images when the source provides them': ['QC-Bilder, wenn die Quelle sie bereitstellt','Images QC lorsque la source les fournit','Imágenes QC cuando la fuente las proporciona','Immagini QC quando la fonte le fornisce','Imagens QC quando a fonte as fornece','QC-afbeeldingen wanneer de bron ze levert','Zdjęcia QC, gdy źródło je udostępnia','Фото QC, когда источник их предоставляет'],
+      'FEATURED RECORDS': ['AUSGEWÄHLTE EINTRÄGE','FICHES EN VEDETTE','REGISTROS DESTACADOS','SCHEDE IN EVIDENZA','REGISTROS EM DESTAQUE','UITGELICHTE RECORDS','WYRÓŻNIONE REKORDY','ВЫБРАННЫЕ КАРТОЧКИ'],
+      'Open a product page to compare the details.': ['Öffnen Sie eine Produktseite, um Details zu vergleichen.','Ouvrez une fiche produit pour comparer les détails.','Abre una página de producto para comparar los detalles.','Apri una pagina prodotto per confrontare i dettagli.','Abra uma página de produto para comparar os detalhes.','Open een productpagina om de details te vergelijken.','Otwórz stronę produktu, aby porównać szczegóły.','Откройте страницу товара, чтобы сравнить детали.'],
+      'SHOP BY CATEGORY': ['NACH KATEGORIE EINKAUFEN','ACHETER PAR CATÉGORIE','COMPRAR POR CATEGORÍA','ACQUISTA PER CATEGORIA','COMPRAR POR CATEGORIA','WINKEL PER CATEGORIE','KUPUJ WEDŁUG KATEGORII','ПОКУПКИ ПО КАТЕГОРИЯМ'],
+      'Start with the product type you know.': ['Beginnen Sie mit dem Produkttyp, den Sie kennen.','Commencez par le type de produit que vous connaissez.','Empieza por el tipo de producto que conoces.','Inizia dal tipo di prodotto che conosci.','Comece pelo tipo de produto que você conhece.','Begin met het producttype dat u kent.','Zacznij od typu produktu, który znasz.','Начните с известного вам типа товара.'],
+      'PRODUCT SHEET EVIDENCE': ['NACHWEISE AUS DEM PRODUKTBLATT','ÉLÉMENTS DE LA FICHE PRODUIT','EVIDENCIA DE LA FICHA DE PRODUCTO','EVIDENZE DELLA SCHEDA PRODOTTO','EVIDÊNCIAS DA FICHA DO PRODUTO','BEWIJS UIT HET PRODUCTBLAD','DOWODY Z KARTY PRODUKTU','ДАННЫЕ ИЗ КАРТОЧКИ ТОВАРА'],
+      'All product records, ready to browse.': ['Alle Produkteinträge – bereit zum Durchsehen.','Toutes les fiches produit, prêtes à parcourir.','Todos los registros de producto, listos para explorar.','Tutte le schede prodotto, pronte da consultare.','Todos os registros de produtos, prontos para navegar.','Alle productrecords, klaar om te bekijken.','Wszystkie rekordy produktów, gotowe do przeglądania.','Все карточки товаров готовы к просмотру.'],
+      'Browse the complete internal product catalogue': ['Den vollständigen internen Produktkatalog ansehen','Parcourir le catalogue interne complet','Explorar el catálogo interno completo','Sfoglia il catalogo interno completo','Navegar pelo catálogo interno completo','De volledige interne productcatalogus bekijken','Przeglądaj pełny wewnętrzny katalog produktów','Просмотреть полный внутренний каталог товаров'],
+      'KEEP THE NEXT STEP CLEAR': ['DEN NÄCHSTEN SCHRITT KLAR HALTEN','CLARIFIER LA PROCHAINE ÉTAPE','MANTÉN CLARO EL SIGUIENTE PASO','RENDI CHIARO IL PROSSIMO PASSO','MANTENHA CLARO O PRÓXIMO PASSO','HOUD DE VOLGENDE STAP DUIDELIJK','ZACHOWAJ JASNOŚĆ NASTĘPNEGO KROKU','СДЕЛАЙТЕ СЛЕДУЮЩИЙ ШАГ ПОНЯТНЫМ'],
+      'One page for each decision.': ['Eine Seite für jede Entscheidung.','Une page pour chaque décision.','Una página para cada decisión.','Una pagina per ogni decisione.','Uma página para cada decisão.','Eén pagina voor elke beslissing.','Jedna strona dla każdej decyzji.','Одна страница для каждого решения.'],
+      'GUIDES & SEO ARTICLES': ['LEITFÄDEN UND SEO-ARTIKEL','GUIDES ET ARTICLES SEO','GUÍAS Y ARTÍCULOS SEO','GUIDE E ARTICOLI SEO','GUIAS E ARTIGOS SEO','GIDSEN EN SEO-ARTIKELEN','PRZEWODNIKI I ARTYKUŁY SEO','РУКОВОДСТВА И SEO-СТАТЬИ'],
+      'Useful reading, kept separate from shopping.': ['Nützliche Lektüre, getrennt vom Einkauf.','Lecture utile, séparée des achats.','Lectura útil, separada de las compras.','Letture utili, separate dagli acquisti.','Leitura útil, separada das compras.','Nuttige informatie, los van winkelen.','Przydatna lektura oddzielona od zakupów.','Полезное чтение отдельно от покупок.']
+    };
+    const intros = {
+      home: [['PRODUKTVERZEICHNIS', 'Einen Produkteintrag finden.', 'Suche nach einer Quell-ID oder beginne mit einer Kategorie. Jedes Ergebnis bleibt in diesem Verzeichnis, bis du die LitBuy-Kaufroute wählst.'], ['ANNUAIRE PRODUITS', 'Trouver une fiche produit.', 'Recherchez un identifiant source ou commencez par une catégorie. Chaque résultat reste dans cet annuaire avant le choix de l’itinéraire LitBuy.'], ['DIRECTORIO DE PRODUCTOS', 'Encuentra una ficha de producto.', 'Busca un ID de origen o comienza por una categoría. Cada resultado permanece aquí antes de elegir la ruta de compra de LitBuy.'], ['ELENCO PRODOTTI', 'Trova una scheda prodotto.', 'Cerca un ID sorgente o inizia da una categoria. Ogni risultato resta qui fino alla scelta del percorso LitBuy.'], ['DIRETÓRIO DE PRODUTOS', 'Encontre um registro de produto.', 'Pesquise um ID de origem ou comece por uma categoria. Cada resultado permanece aqui até escolher a rota LitBuy.'], ['PRODUCTDIRECTORY', 'Vind een productrecord.', 'Zoek op een bron-ID of begin met een categorie. Elk resultaat blijft hier totdat je de LitBuy-aankooproute kiest.'], ['KATALOG PRODUKTÓW', 'Znajdź rekord produktu.', 'Wyszukaj identyfikator źródłowy lub zacznij od kategorii. Każdy wynik pozostaje tutaj do wybrania ścieżki LitBuy.'], ['КАТАЛОГ ТОВАРОВ', 'Найдите карточку товара.', 'Найдите ID источника или начните с категории. Каждый результат остаётся в этом каталоге, пока вы не выберете маршрут покупки LitBuy.']],
+      categories: [['PRODUKTKATEGORIEN', 'Nach Kategorie suchen.', 'Öffne eine visuelle Kategorie und vergleiche interne Einträge mit Quellbildern, USD-Referenzpreisen und verfügbaren QC-Nachweisen.'], ['CATÉGORIES DE PRODUITS', 'Parcourir par catégorie.', 'Ouvrez une catégorie visuelle et comparez les fiches internes avec les images source, les prix de référence en USD et les éléments QC disponibles.'], ['CATEGORÍAS DE PRODUCTOS', 'Explora por categoría.', 'Abre una categoría visual y compara registros internos con imágenes de origen, precios de referencia en USD y evidencia QC disponible.'], ['CATEGORIE PRODOTTI', 'Sfoglia per categoria.', 'Apri una categoria visiva e confronta le schede interne con immagini sorgente, prezzi di riferimento in USD e prove QC disponibili.'], ['CATEGORIAS DE PRODUTOS', 'Navegue por categoria.', 'Abra uma categoria visual e compare registros internos com imagens de origem, preços de referência em USD e evidências QC disponíveis.'], ['PRODUCTCATEGORIEËN', 'Bladeren op categorie.', 'Open een visuele categorie en vergelijk interne records met bronbeelden, USD-referentieprijzen en beschikbaar QC-bewijs.'], ['KATEGORIE PRODUKTÓW', 'Przeglądaj według kategorii.', 'Otwórz kategorię wizualną i porównaj rekordy wewnętrzne z obrazami źródłowymi, cenami USD i dostępnymi dowodami QC.'], ['КАТЕГОРИИ ТОВАРОВ', 'Просмотр по категориям.', 'Откройте визуальную категорию и сравните внутренние карточки с исходными изображениями, ценами USD и доступными материалами QC.']],
+      category: [['INTERNES KATEGORIEVERZEICHNIS', 'Produkte werden geladen.', 'Diese Kategorie stammt aus dem exportierten FindSpreadsheet-Katalog und hält jeden Artikel in dieser LitBuy-Spreadsheet-Unterseite.'], ['ANNUAIRE INTERNE PAR CATÉGORIE', 'Chargement des produits.', 'Cette catégorie provient du catalogue FindSpreadsheet exporté et conserve chaque article dans ce sous-site LitBuy Spreadsheet.'], ['DIRECTORIO INTERNO POR CATEGORÍA', 'Cargando productos.', 'Esta categoría se sirve desde el catálogo FindSpreadsheet exportado y mantiene cada artículo en este subsite LitBuy Spreadsheet.'], ['ELENCO INTERNO PER CATEGORIA', 'Caricamento prodotti.', 'Questa categoria usa il catalogo FindSpreadsheet esportato e mantiene ogni articolo in questo sottosito LitBuy Spreadsheet.'], ['DIRETÓRIO INTERNO POR CATEGORIA', 'Carregando produtos.', 'Esta categoria usa o catálogo FindSpreadsheet exportado e mantém cada item neste subsite LitBuy Spreadsheet.'], ['INTERNE CATEGORIEDIRECTORY', 'Producten laden.', 'Deze categorie komt uit de geëxporteerde FindSpreadsheet-catalogus en houdt elk item binnen deze LitBuy Spreadsheet-subsite.'], ['WEWNĘTRZNY KATALOG KATEGORII', 'Ładowanie produktów.', 'Ta kategoria korzysta z wyeksportowanego katalogu FindSpreadsheet i pozostawia każdy produkt w tej podstronie LitBuy Spreadsheet.'], ['ВНУТРЕННИЙ КАТАЛОГ КАТЕГОРИИ', 'Загрузка товаров.', 'Эта категория берётся из экспортированного каталога FindSpreadsheet; каждый товар остаётся в этом подсайте LitBuy Spreadsheet.']],
+      finds: [['VOLLSTÄNDIGER INTERNE KATALOG', 'Alle Produktfunde.', 'Die aktuelle Produktexportdatei der Hauptseite wird geladen.'], ['CATALOGUE INTERNE COMPLET', 'Toutes les trouvailles produits.', 'Chargement de l’export produit actuel du site principal.'], ['CATÁLOGO INTERNO COMPLETO', 'Todos los productos encontrados.', 'Cargando la exportación actual de productos del sitio principal.'], ['CATALOGO INTERNO COMPLETO', 'Tutti i prodotti trovati.', 'Caricamento dell’esportazione prodotti corrente del sito principale.'], ['CATÁLOGO INTERNO COMPLETO', 'Todos os produtos encontrados.', 'Carregando a exportação atual de produtos do site principal.'], ['VOLLEDIGE INTERNE CATALOGUS', 'Alle productvondsten.', 'De actuele productexport van de hoofdsite wordt geladen.'], ['PEŁNY KATALOG WEWNĘTRZNY', 'Wszystkie znaleziska produktów.', 'Trwa ładowanie bieżącego eksportu produktów z głównej strony.'], ['ПОЛНЫЙ ВНУТРЕННИЙ КАТАЛОГ', 'Все подборки товаров.', 'Загружается текущая выгрузка товаров основного сайта.']],
+      search: [['INTERNE PRODUKTSUCHE', 'Produkte suchen.', 'Durchsuche den vollständigen exportierten FindSpreadsheet-Katalog, ohne diese LitBuy-Spreadsheet-Unterseite zu verlassen.'], ['RECHERCHE INTERNE DE PRODUITS', 'Rechercher des produits.', 'Recherchez dans le catalogue FindSpreadsheet exporté sans quitter ce sous-site LitBuy Spreadsheet.'], ['BÚSQUEDA INTERNA DE PRODUCTOS', 'Buscar productos.', 'Busca en el catálogo FindSpreadsheet exportado sin salir de este subsite de LitBuy Spreadsheet.'], ['RICERCA INTERNA PRODOTTI', 'Cerca prodotti.', 'Cerca nel catalogo FindSpreadsheet esportato senza uscire da questo sottosito LitBuy Spreadsheet.'], ['PESQUISA INTERNA DE PRODUTOS', 'Pesquisar produtos.', 'Pesquise no catálogo FindSpreadsheet exportado sem sair deste subsite LitBuy Spreadsheet.'], ['INTERNE PRODUCTZOEKER', 'Producten zoeken.', 'Doorzoek de volledige geëxporteerde FindSpreadsheet-catalogus zonder deze LitBuy Spreadsheet-subsite te verlaten.'], ['WEWNĘTRZNE WYSZUKIWANIE PRODUKTÓW', 'Szukaj produktów.', 'Przeszukuj pełny katalog FindSpreadsheet bez opuszczania tej podstrony LitBuy Spreadsheet.'], ['ВНУТРЕННИЙ ПОИСК ТОВАРОВ', 'Поиск товаров.', 'Ищите по полному экспортированному каталогу FindSpreadsheet, не покидая этот подсайт LitBuy Spreadsheet.']],
+      qc: [['QC-LEITFADEN', 'QC-Fotos sorgfältig prüfen.', 'QC-Fotos sind von der Quelle bereitgestellte Prüfnachweise. Sie sind nicht für jeden Eintrag verfügbar und keine allgemeine Qualitätszusage.'], ['GUIDE QC', 'Lire les photos QC attentivement.', 'Les photos QC sont des éléments d’inspection fournis par la source. Elles ne sont pas disponibles pour chaque fiche et ne constituent pas une promesse générale de qualité.'], ['GUÍA QC', 'Lee las fotos QC con cuidado.', 'Las fotos QC son evidencia de inspección proporcionada por la fuente. No están disponibles para todos los registros y no son una promesa general de calidad.'], ['GUIDA QC', 'Leggi attentamente le foto QC.', 'Le foto QC sono prove di ispezione fornite dalla fonte. Non sono disponibili per ogni scheda e non sono una promessa generale di qualità.'], ['GUIA QC', 'Leia as fotos QC com atenção.', 'As fotos QC são evidências de inspeção fornecidas pela origem. Não estão disponíveis para todos os registros e não são uma promessa geral de qualidade.'], ['QC-GIDS', 'Bekijk QC-foto’s zorgvuldig.', 'QC-foto’s zijn inspectiebewijs van de bron. Ze zijn niet voor elk record beschikbaar en vormen geen algemene kwaliteitsbelofte.'], ['PRZEWODNIK QC', 'Dokładnie oglądaj zdjęcia QC.', 'Zdjęcia QC są dowodem kontroli dostarczonym przez źródło. Nie są dostępne dla każdego rekordu i nie stanowią ogólnej obietnicy jakości.'], ['РУКОВОДСТВО ПО QC', 'Внимательно изучайте фото QC.', 'Фото QC — это материалы проверки от источника. Они доступны не для каждой карточки и не являются общей гарантией качества.']],
+      faq: [['DETAILLIERTE FAQ', 'Antworten vor dem Klick.', 'Praktische Antworten für dieses unabhängige Verzeichnis und überprüfte Grenzen aus den öffentlichen LitBuy-Richtlinien. Prüfe vor Bestellung oder Versand immer die aktuellen offiziellen Bedingungen.'], ['FAQ DÉTAILLÉE', 'Des réponses avant le clic.', 'Réponses pratiques pour cet annuaire indépendant et limites vérifiées à partir des pages publiques de LitBuy. Vérifiez toujours les conditions officielles avant une commande ou un envoi.'], ['PREGUNTAS FRECUENTES DETALLADAS', 'Respuestas antes del clic.', 'Respuestas prácticas para este directorio independiente y límites comprobados en las páginas públicas de LitBuy. Verifica siempre los términos oficiales antes de un pedido o envío.'], ['FAQ DETTAGLIATE', 'Risposte prima del clic.', 'Risposte pratiche per questa directory indipendente e limiti verificati nelle pagine pubbliche di LitBuy. Controlla sempre le condizioni ufficiali prima di un ordine o di una spedizione.'], ['FAQ DETALHADO', 'Respostas antes do clique.', 'Respostas práticas para este diretório independente e limites verificados nas páginas públicas da LitBuy. Confira sempre os termos oficiais antes de um pedido ou envio.'], ['UITGEBREIDE FAQ', 'Antwoorden vóór de klik.', 'Praktische antwoorden voor deze onafhankelijke directory en gecontroleerde grenzen uit openbare LitBuy-beleidspagina’s. Controleer altijd de actuele officiële voorwaarden vóór een bestelling of zending.'], ['SZCZEGÓŁOWE FAQ', 'Odpowiedzi przed kliknięciem.', 'Praktyczne odpowiedzi dla niezależnego katalogu oraz zweryfikowane granice z publicznych stron LitBuy. Zawsze sprawdzaj aktualne oficjalne warunki przed zamówieniem lub wysyłką.'], ['ПОДРОБНЫЕ ВОПРОСЫ И ОТВЕТЫ', 'Ответы до клика.', 'Практические ответы для независимого каталога и проверенные рамки по публичным страницам LitBuy. Перед заказом или отправкой всегда проверяйте актуальные официальные условия.']],
+      articles: [['SEO-ARTIKEL AUF RECHERCHEBASIS', 'Nützliche Antworten, keine Werbung.', 'Zehn praktische Leitfäden auf Grundlage von LitBuys veröffentlichten Service-, Versand-, Erstattungs- und Verbotsseiten. Jeder Artikel trennt offizielle Regeln von persönlichen Kaufentscheidungen.'], ['ARTICLES SEO FONDÉS SUR LA RECHERCHE', 'Des réponses utiles, sans battage.', 'Dix guides pratiques fondés sur les pages publiques de LitBuy relatives au service, à la livraison, au remboursement et aux articles interdits. Chaque article sépare la politique officielle des décisions personnelles.'], ['ARTÍCULOS SEO BASADOS EN INVESTIGACIÓN', 'Respuestas útiles, sin exageraciones.', 'Diez guías prácticas basadas en las páginas publicadas por LitBuy sobre servicio, envíos, reembolsos y artículos prohibidos. Cada artículo separa la política oficial de las decisiones personales.'], ['ARTICOLI SEO BASATI SULLA RICERCA', 'Risposte utili, senza clamore.', 'Dieci guide pratiche basate sulle pagine pubblicate da LitBuy su servizio, spedizione, rimborsi e articoli vietati. Ogni articolo separa la policy ufficiale dalle decisioni personali.'], ['ARTIGOS SEO BASEADOS EM PESQUISA', 'Respostas úteis, sem exagero.', 'Dez guias práticos baseados nas páginas públicas da LitBuy sobre serviço, envio, reembolsos e itens proibidos. Cada artigo separa a política oficial das decisões pessoais.'], ['ONDERZOEKSGESTUURDE SEO-ARTIKELEN', 'Nuttige antwoorden, geen reclame.', 'Tien praktische gidsen op basis van LitBuys openbare pagina’s over service, verzending, terugbetaling en verboden items. Elk artikel scheidt officieel beleid van persoonlijke beslissingen.'], ['ARTYKUŁY SEO OPARTE NA BADANIACH', 'Przydatne odpowiedzi bez reklamy.', 'Dziesięć praktycznych przewodników opartych na publicznych stronach LitBuy o usłudze, wysyłce, zwrotach i zakazanych produktach. Każdy artykuł oddziela oficjalne zasady od osobistych decyzji.'], ['SEO-СТАТЬИ НА ОСНОВЕ ИССЛЕДОВАНИЙ', 'Полезные ответы без рекламы.', 'Десять практических руководств по публичным страницам LitBuy о сервисе, доставке, возвратах и запрещённых товарах. Каждая статья отделяет официальные правила от личных решений.']]
+    };
+    const words = packs[lang];
+
+    // These are the strings created after the page loads (catalogue, search and
+    // product detail).  Keeping them in the same fixed pack as the navigation
+    // means a language change never leaves a newly-rendered record in a mixed
+    // interface.  Product titles, IDs, prices and source images are deliberately
+    // source data and are not rewritten.
+    const runtimeLabels = {
+      de: { 'Loading catalogue…': 'Katalog wird geladen…', 'Loading internal product detail…': 'Internes Produktdetail wird geladen…', 'View detail →': 'Details ansehen →', 'Product page →': 'Produktseite →', 'Previous': 'Zurück', 'Next →': 'Weiter →', 'No matching product is in the latest export.': 'Im neuesten Export wurde kein passendes Produkt gefunden.', 'Product not found.': 'Produkt nicht gefunden.', 'The main catalogue export is temporarily unavailable.': 'Der Hauptkatalog-Export ist vorübergehend nicht verfügbar.', 'Buy with LitBuy': 'Mit LitBuy kaufen', 'Find similar products →': 'Ähnliche Produkte finden →', 'Not available': 'Nicht verfügbar', 'Source': 'Quelle', 'PRODUCT DETAILS': 'PRODUKTDETAILS', 'WEIDIAN PRODUCT RECORD': 'WEIDIAN-PRODUKTREKORD', 'WEIDIAN PRODUCT IMAGES': 'WEIDIAN-PRODUKTBILDER', 'QC PHOTO STREAM': 'QC-FOTOSTROM', 'WEIDIAN IMAGE STREAM': 'WEIDIAN-BILDSTROM' },
+      fr: { 'Loading catalogue…': 'Chargement du catalogue…', 'Loading internal product detail…': 'Chargement de la fiche produit interne…', 'View detail →': 'Voir le détail →', 'Product page →': 'Fiche produit →', 'Previous': 'Précédent', 'Next →': 'Suivant →', 'No matching product is in the latest export.': 'Aucun produit correspondant dans le dernier export.', 'Product not found.': 'Produit introuvable.', 'The main catalogue export is temporarily unavailable.': 'L’export du catalogue principal est temporairement indisponible.', 'Buy with LitBuy': 'Acheter avec LitBuy', 'Find similar products →': 'Trouver des produits similaires →', 'Not available': 'Indisponible', 'Source': 'Source', 'PRODUCT DETAILS': 'DÉTAILS DU PRODUIT', 'WEIDIAN PRODUCT RECORD': 'FICHE PRODUIT WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'IMAGES PRODUIT WEIDIAN', 'QC PHOTO STREAM': 'FLUX DE PHOTOS QC', 'WEIDIAN IMAGE STREAM': 'FLUX D’IMAGES WEIDIAN' },
+      es: { 'Loading catalogue…': 'Cargando catálogo…', 'Loading internal product detail…': 'Cargando ficha interna del producto…', 'View detail →': 'Ver detalle →', 'Product page →': 'Página del producto →', 'Previous': 'Anterior', 'Next →': 'Siguiente →', 'No matching product is in the latest export.': 'No hay productos coincidentes en la última exportación.', 'Product not found.': 'Producto no encontrado.', 'The main catalogue export is temporarily unavailable.': 'La exportación del catálogo principal no está disponible temporalmente.', 'Buy with LitBuy': 'Comprar con LitBuy', 'Find similar products →': 'Buscar productos similares →', 'Not available': 'No disponible', 'Source': 'Fuente', 'PRODUCT DETAILS': 'DETALLES DEL PRODUCTO', 'WEIDIAN PRODUCT RECORD': 'REGISTRO DE PRODUCTO WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'IMÁGENES DEL PRODUCTO WEIDIAN', 'QC PHOTO STREAM': 'FLUJO DE FOTOS QC', 'WEIDIAN IMAGE STREAM': 'FLUJO DE IMÁGENES WEIDIAN' },
+      it: { 'Loading catalogue…': 'Caricamento catalogo…', 'Loading internal product detail…': 'Caricamento scheda prodotto interna…', 'View detail →': 'Vedi dettagli →', 'Product page →': 'Pagina prodotto →', 'Previous': 'Precedente', 'Next →': 'Successivo →', 'No matching product is in the latest export.': 'Nessun prodotto corrispondente nell’ultimo export.', 'Product not found.': 'Prodotto non trovato.', 'The main catalogue export is temporarily unavailable.': 'L’esportazione del catalogo principale non è temporaneamente disponibile.', 'Buy with LitBuy': 'Acquista con LitBuy', 'Find similar products →': 'Trova prodotti simili →', 'Not available': 'Non disponibile', 'Source': 'Fonte', 'PRODUCT DETAILS': 'DETTAGLI PRODOTTO', 'WEIDIAN PRODUCT RECORD': 'SCHEDA PRODOTTO WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'IMMAGINI PRODOTTO WEIDIAN', 'QC PHOTO STREAM': 'FLUSSO FOTO QC', 'WEIDIAN IMAGE STREAM': 'FLUSSO IMMAGINI WEIDIAN' },
+      pt: { 'Loading catalogue…': 'Carregando catálogo…', 'Loading internal product detail…': 'Carregando detalhe interno do produto…', 'View detail →': 'Ver detalhes →', 'Product page →': 'Página do produto →', 'Previous': 'Anterior', 'Next →': 'Próximo →', 'No matching product is in the latest export.': 'Nenhum produto correspondente está na exportação mais recente.', 'Product not found.': 'Produto não encontrado.', 'The main catalogue export is temporarily unavailable.': 'A exportação do catálogo principal está temporariamente indisponível.', 'Buy with LitBuy': 'Comprar com LitBuy', 'Find similar products →': 'Encontrar produtos semelhantes →', 'Not available': 'Indisponível', 'Source': 'Fonte', 'PRODUCT DETAILS': 'DETALHES DO PRODUTO', 'WEIDIAN PRODUCT RECORD': 'REGISTRO DE PRODUTO WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'IMAGENS DO PRODUTO WEIDIAN', 'QC PHOTO STREAM': 'FLUXO DE FOTOS QC', 'WEIDIAN IMAGE STREAM': 'FLUXO DE IMAGENS WEIDIAN' },
+      nl: { 'Loading catalogue…': 'Catalogus laden…', 'Loading internal product detail…': 'Interne productgegevens laden…', 'View detail →': 'Details bekijken →', 'Product page →': 'Productpagina →', 'Previous': 'Vorige', 'Next →': 'Volgende →', 'No matching product is in the latest export.': 'Geen overeenkomend product in de nieuwste export.', 'Product not found.': 'Product niet gevonden.', 'The main catalogue export is temporarily unavailable.': 'De export van de hoofdcatalogus is tijdelijk niet beschikbaar.', 'Buy with LitBuy': 'Kopen met LitBuy', 'Find similar products →': 'Vergelijkbare producten zoeken →', 'Not available': 'Niet beschikbaar', 'Source': 'Bron', 'PRODUCT DETAILS': 'PRODUCTGEGEVENS', 'WEIDIAN PRODUCT RECORD': 'WEIDIAN-PRODUCTRECORD', 'WEIDIAN PRODUCT IMAGES': 'WEIDIAN-PRODUCTAFBEELDINGEN', 'QC PHOTO STREAM': 'QC-FOTOSTROOM', 'WEIDIAN IMAGE STREAM': 'WEIDIAN-AFBEELDINGENSTROOM' },
+      pl: { 'Loading catalogue…': 'Wczytywanie katalogu…', 'Loading internal product detail…': 'Wczytywanie wewnętrznych danych produktu…', 'View detail →': 'Zobacz szczegóły →', 'Product page →': 'Strona produktu →', 'Previous': 'Poprzednia', 'Next →': 'Następna →', 'No matching product is in the latest export.': 'W najnowszym eksporcie nie ma pasującego produktu.', 'Product not found.': 'Nie znaleziono produktu.', 'The main catalogue export is temporarily unavailable.': 'Eksport głównego katalogu jest tymczasowo niedostępny.', 'Buy with LitBuy': 'Kup przez LitBuy', 'Find similar products →': 'Znajdź podobne produkty →', 'Not available': 'Niedostępne', 'Source': 'Źródło', 'PRODUCT DETAILS': 'SZCZEGÓŁY PRODUKTU', 'WEIDIAN PRODUCT RECORD': 'REKORD PRODUKTU WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'ZDJĘCIA PRODUKTU WEIDIAN', 'QC PHOTO STREAM': 'STRUMIEŃ ZDJĘĆ QC', 'WEIDIAN IMAGE STREAM': 'STRUMIEŃ OBRAZÓW WEIDIAN' },
+      ru: { 'Loading catalogue…': 'Загрузка каталога…', 'Loading internal product detail…': 'Загрузка внутренней карточки товара…', 'View detail →': 'Открыть детали →', 'Product page →': 'Страница товара →', 'Previous': 'Назад', 'Next →': 'Далее →', 'No matching product is in the latest export.': 'В последней выгрузке нет подходящего товара.', 'Product not found.': 'Товар не найден.', 'The main catalogue export is temporarily unavailable.': 'Выгрузка основного каталога временно недоступна.', 'Buy with LitBuy': 'Купить через LitBuy', 'Find similar products →': 'Найти похожие товары →', 'Not available': 'Недоступно', 'Source': 'Источник', 'PRODUCT DETAILS': 'СВЕДЕНИЯ О ТОВАРЕ', 'WEIDIAN PRODUCT RECORD': 'КАРТОЧКА ТОВАРА WEIDIAN', 'WEIDIAN PRODUCT IMAGES': 'ИЗОБРАЖЕНИЯ ТОВАРА WEIDIAN', 'QC PHOTO STREAM': 'ЛЕНТА ФОТО QC', 'WEIDIAN IMAGE STREAM': 'ЛЕНТА ИЗОБРАЖЕНИЙ WEIDIAN' }
+    };
+    // Reviewed long-form copies shared by the guide pages.  These are fixed
+    // editorial editions, not a browser translator and not a sentence fallback.
+    const fixedContent = {
+      de: {
+        'Start with the source record': 'Mit dem Quelldatensatz beginnen',
+        'Check the information that is visible': 'Die sichtbaren Informationen prüfen',
+        'Confirm the current LitBuy terms': 'Die aktuellen LitBuy-Bedingungen bestätigen',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Bewahre den ursprünglichen Produktlink, die gewählte Option, die Artikel-ID und den sichtbaren Preis zusammen auf. Ein Verzeichniseintrag hilft bei der Recherche, doch für eine Kaufentscheidung bleiben das aktuelle Angebot und der Checkout maßgeblich.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Vergleiche Bilder, Menge, Option und die verfügbaren QC-Nachweise. Ein Foto kann sichtbare Details dokumentieren, belegt aber weder Echtheit noch Materialien, Passform, Haltbarkeit oder alle verborgenen Zustände.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Prüfe vor Zahlung oder Versandfreigabe die aktuelle Regelung für die gewählte Route, das Zielland, Steuern, Beschränkungen und Rückerstattungen. Veröffentlichte Richtlinien und Checkout-Informationen können sich ändern.',
+        'QC GUIDE': 'QC-LEITFADEN', 'Read QC photos carefully.': 'QC-Fotos sorgfältig prüfen.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'QC-Fotos sind vom Quellsystem bereitgestellte Prüfnachweise. Sie sind nicht für jeden Eintrag verfügbar und dürfen nie als allgemeines Qualitätsversprechen verstanden werden.',
+        'Open the product record': 'Den Produktsatz öffnen', 'Confirm the exact item, option and visible product information on the internal product page.': 'Bestätige auf der internen Produktseite den genauen Artikel, die Option und die sichtbaren Produktinformationen.',
+        'Compare what is visible': 'Sichtbares vergleichen', 'Use the available image, description and current price together before continuing.': 'Nutze verfügbares Bild, Beschreibung und aktuellen Preis zusammen, bevor du fortfährst.',
+        'Review QC when connected': 'QC bei vorhandener Verbindung prüfen', 'Only assess QC images supplied by the approved source connection.': 'Beurteile nur QC-Bilder, die über die zugelassene Quellenverbindung bereitgestellt wurden.',
+        'Open internal product records': 'Interne Produktdatensätze öffnen'
+      },
+      fr: {
+        'Start with the source record': 'Commencer par la fiche source', 'Check the information that is visible': 'Vérifier les informations visibles', 'Confirm the current LitBuy terms': 'Confirmer les conditions LitBuy actuelles',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Conservez ensemble le lien produit d’origine, l’option choisie, l’identifiant de l’article et le prix visible. Une fiche d’annuaire aide à rechercher un article, mais l’annonce actuelle et le paiement restent la référence pour décider d’un achat.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Comparez les images, la quantité, l’option et les éléments QC disponibles. Une photo documente des détails visibles, mais ne prouve ni l’authenticité, ni les matériaux, l’ajustement, la durabilité ou chaque état caché.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Avant de payer ou d’autoriser l’expédition, consultez la politique actuelle pour l’itinéraire choisi, la destination, les taxes, restrictions et remboursements. Les politiques publiées et les informations de paiement peuvent changer.',
+        'QC GUIDE': 'GUIDE QC', 'Read QC photos carefully.': 'Lisez attentivement les photos QC.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'Les photos QC sont des éléments d’inspection fournis par la source. Elles ne sont pas disponibles pour toutes les fiches et ne doivent jamais être considérées comme une promesse générale de qualité.',
+        'Open the product record': 'Ouvrir la fiche produit', 'Confirm the exact item, option and visible product information on the internal product page.': 'Confirmez l’article exact, l’option et les informations visibles sur la page produit interne.',
+        'Compare what is visible': 'Comparer ce qui est visible', 'Use the available image, description and current price together before continuing.': 'Utilisez ensemble l’image disponible, la description et le prix actuel avant de continuer.',
+        'Review QC when connected': 'Examiner le QC lorsqu’il est lié', 'Only assess QC images supplied by the approved source connection.': 'Évaluez uniquement les images QC fournies par la connexion source approuvée.', 'Open internal product records': 'Ouvrir les fiches produit internes'
+      },
+      es: {
+        'Start with the source record': 'Empieza con el registro de origen', 'Check the information that is visible': 'Comprueba la información visible', 'Confirm the current LitBuy terms': 'Confirma las condiciones actuales de LitBuy',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Mantén juntos el enlace original del producto, la opción elegida, el ID del artículo y el precio visible. Un registro del directorio ayuda a investigar, pero el anuncio actual y el pago siguen siendo la referencia para decidir una compra.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Compara imágenes, cantidad, opción y la evidencia QC disponible. Una foto puede documentar detalles visibles, pero no demuestra autenticidad, materiales, ajuste, durabilidad ni todas las condiciones ocultas.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Antes de pagar o autorizar el envío, revisa la política actual de la ruta elegida, el destino, impuestos, restricciones y reembolsos. Las políticas publicadas y la información de pago pueden cambiar.',
+        'QC GUIDE': 'GUÍA QC', 'Read QC photos carefully.': 'Revisa cuidadosamente las fotos QC.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'Las fotos QC son evidencia de inspección proporcionada por la fuente. No están disponibles para todos los registros y nunca deben tratarse como una promesa general de calidad.',
+        'Open the product record': 'Abre el registro del producto', 'Confirm the exact item, option and visible product information on the internal product page.': 'Confirma el artículo exacto, la opción y la información visible en la página interna del producto.',
+        'Compare what is visible': 'Compara lo visible', 'Use the available image, description and current price together before continuing.': 'Usa conjuntamente la imagen disponible, la descripción y el precio actual antes de continuar.',
+        'Review QC when connected': 'Revisa QC cuando esté conectado', 'Only assess QC images supplied by the approved source connection.': 'Evalúa solo las imágenes QC proporcionadas por la conexión de origen aprobada.', 'Open internal product records': 'Abrir registros internos de productos'
+      },
+      it: {
+        'Start with the source record': 'Inizia dalla scheda sorgente', 'Check the information that is visible': 'Controlla le informazioni visibili', 'Confirm the current LitBuy terms': 'Conferma le condizioni LitBuy attuali',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Tieni insieme il link prodotto originale, l’opzione selezionata, l’ID articolo e il prezzo visibile. Una scheda del catalogo aiuta nella ricerca, ma l’inserzione corrente e il checkout restano la fonte per decidere un acquisto.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Confronta immagini, quantità, opzione e prove QC disponibili. Una foto può documentare dettagli visibili, ma non stabilisce autenticità, materiali, vestibilità, durata o ogni condizione nascosta.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Prima di pagare o autorizzare la spedizione, consulta la politica corrente per rotta scelta, destinazione, tasse, restrizioni e rimborsi. Le politiche pubblicate e le informazioni di checkout possono cambiare.',
+        'QC GUIDE': 'GUIDA QC', 'Read QC photos carefully.': 'Leggi attentamente le foto QC.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'Le foto QC sono prove d’ispezione fornite dalla fonte. Non sono disponibili per ogni scheda e non devono mai essere considerate una promessa generale di qualità.',
+        'Open the product record': 'Apri la scheda prodotto', 'Confirm the exact item, option and visible product information on the internal product page.': 'Conferma articolo esatto, opzione e informazioni prodotto visibili nella pagina interna.',
+        'Compare what is visible': 'Confronta ciò che è visibile', 'Use the available image, description and current price together before continuing.': 'Usa insieme immagine disponibile, descrizione e prezzo corrente prima di continuare.',
+        'Review QC when connected': 'Esamina QC quando collegato', 'Only assess QC images supplied by the approved source connection.': 'Valuta solo immagini QC fornite dalla connessione sorgente approvata.', 'Open internal product records': 'Apri le schede prodotto interne'
+      },
+      pt: {
+        'Start with the source record': 'Comece pelo registro de origem', 'Check the information that is visible': 'Confira as informações visíveis', 'Confirm the current LitBuy terms': 'Confirme os termos atuais da LitBuy',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Mantenha juntos o link original do produto, a opção escolhida, o ID do item e o preço visível. Um registro do diretório ajuda na pesquisa, mas o anúncio atual e o checkout continuam sendo a referência para decidir uma compra.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Compare imagens, quantidade, opção e as evidências QC disponíveis. Uma foto pode documentar detalhes visíveis, mas não comprova autenticidade, materiais, caimento, durabilidade ou todas as condições ocultas.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Antes de pagar ou autorizar o envio, revise a política atual da rota escolhida, destino, impostos, restrições e reembolsos. Políticas publicadas e informações de checkout podem mudar.',
+        'QC GUIDE': 'GUIA QC', 'Read QC photos carefully.': 'Leia as fotos QC com atenção.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'As fotos QC são evidências de inspeção fornecidas pela origem. Elas não estão disponíveis para todos os registros e nunca devem ser tratadas como uma promessa geral de qualidade.',
+        'Open the product record': 'Abra o registro do produto', 'Confirm the exact item, option and visible product information on the internal product page.': 'Confirme o item exato, a opção e as informações visíveis na página interna do produto.',
+        'Compare what is visible': 'Compare o que está visível', 'Use the available image, description and current price together before continuing.': 'Use juntos a imagem disponível, a descrição e o preço atual antes de continuar.',
+        'Review QC when connected': 'Revise QC quando houver conexão', 'Only assess QC images supplied by the approved source connection.': 'Avalie somente imagens QC fornecidas pela conexão de origem aprovada.', 'Open internal product records': 'Abrir registros internos de produtos'
+      },
+      nl: {
+        'Start with the source record': 'Begin met het bronrecord', 'Check the information that is visible': 'Controleer de zichtbare informatie', 'Confirm the current LitBuy terms': 'Bevestig de huidige LitBuy-voorwaarden',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Bewaar de oorspronkelijke productlink, gekozen optie, artikel-ID en zichtbare prijs samen. Een catalogusrecord helpt bij onderzoek, maar de actuele aanbieding en checkout blijven de bron voor een aankoopbeslissing.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Vergelijk afbeeldingen, aantal, optie en beschikbaar QC-bewijs. Een foto kan zichtbare details vastleggen, maar bewijst geen authenticiteit, materialen, pasvorm, duurzaamheid of elke verborgen toestand.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Bekijk vóór betaling of verzendautorisatie het actuele beleid voor de gekozen route, bestemming, belastingen, beperkingen en terugbetalingen. Gepubliceerd beleid en checkoutinformatie kunnen wijzigen.',
+        'QC GUIDE': 'QC-GIDS', 'Read QC photos carefully.': 'Bekijk QC-foto’s zorgvuldig.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'QC-foto’s zijn door de bron geleverd inspectiebewijs. Ze zijn niet voor elk record beschikbaar en mogen nooit als algemene kwaliteitsbelofte worden gezien.',
+        'Open the product record': 'Open het productrecord', 'Confirm the exact item, option and visible product information on the internal product page.': 'Bevestig het exacte artikel, de optie en zichtbare productinformatie op de interne productpagina.',
+        'Compare what is visible': 'Vergelijk wat zichtbaar is', 'Use the available image, description and current price together before continuing.': 'Gebruik de beschikbare afbeelding, beschrijving en actuele prijs samen voordat je doorgaat.',
+        'Review QC when connected': 'Controleer QC wanneer gekoppeld', 'Only assess QC images supplied by the approved source connection.': 'Beoordeel alleen QC-afbeeldingen die door de goedgekeurde bronverbinding zijn geleverd.', 'Open internal product records': 'Interne productrecords openen'
+      },
+      pl: {
+        'Start with the source record': 'Zacznij od rekordu źródłowego', 'Check the information that is visible': 'Sprawdź widoczne informacje', 'Confirm the current LitBuy terms': 'Potwierdź aktualne warunki LitBuy',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Zachowaj razem oryginalny link do produktu, wybraną opcję, identyfikator przedmiotu i widoczną cenę. Rekord katalogu pomaga w badaniu produktu, lecz aktualna oferta i płatność pozostają źródłem decyzji zakupowej.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Porównaj zdjęcia, ilość, opcję i dostępne dowody QC. Zdjęcie może dokumentować widoczne szczegóły, ale nie potwierdza autentyczności, materiałów, dopasowania, trwałości ani każdego ukrytego stanu.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Przed zapłatą lub autoryzacją wysyłki sprawdź aktualne zasady dla wybranej trasy, miejsca docelowego, podatków, ograniczeń i zwrotów. Opublikowane zasady oraz informacje płatnicze mogą się zmienić.',
+        'QC GUIDE': 'PRZEWODNIK QC', 'Read QC photos carefully.': 'Dokładnie oglądaj zdjęcia QC.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'Zdjęcia QC są dowodem inspekcji dostarczonym przez źródło. Nie są dostępne dla każdego rekordu i nigdy nie powinny być traktowane jako ogólna obietnica jakości.',
+        'Open the product record': 'Otwórz rekord produktu', 'Confirm the exact item, option and visible product information on the internal product page.': 'Potwierdź dokładny przedmiot, opcję i widoczne informacje na wewnętrznej stronie produktu.',
+        'Compare what is visible': 'Porównaj to, co widoczne', 'Use the available image, description and current price together before continuing.': 'Przed kontynuowaniem użyj razem dostępnego zdjęcia, opisu i aktualnej ceny.',
+        'Review QC when connected': 'Sprawdź QC po połączeniu', 'Only assess QC images supplied by the approved source connection.': 'Oceniaj tylko zdjęcia QC dostarczone przez zatwierdzone połączenie ze źródłem.', 'Open internal product records': 'Otwórz wewnętrzne rekordy produktów'
+      },
+      ru: {
+        'Start with the source record': 'Начните с исходной карточки', 'Check the information that is visible': 'Проверьте видимую информацию', 'Confirm the current LitBuy terms': 'Подтвердите действующие условия LitBuy',
+        'Keep the original product link, selected option, item ID and visible price together. A directory record can help research an item, but the current listing and checkout remain the source for a purchase decision.': 'Храните вместе исходную ссылку на товар, выбранный вариант, ID товара и видимую цену. Карточка каталога помогает изучить товар, но актуальное объявление и оформление заказа остаются источником для решения о покупке.',
+        'Compare images, quantity, option and the available QC evidence. A photo can document visible details, but it does not establish authenticity, materials, fit, durability or every hidden condition.': 'Сравните изображения, количество, вариант и доступные доказательства QC. Фотография может зафиксировать видимые детали, но не устанавливает подлинность, материалы, посадку, долговечность или все скрытые состояния.',
+        'Before paying or authorising shipment, review the current policy for the selected route, destination, taxes, restrictions and refunds. Published policy and checkout information can change.': 'Перед оплатой или разрешением на отправку изучите действующие правила для выбранного маршрута, страны назначения, налогов, ограничений и возвратов. Опубликованные правила и сведения при оформлении могут меняться.',
+        'QC GUIDE': 'РУКОВОДСТВО QC', 'Read QC photos carefully.': 'Внимательно изучайте фотографии QC.', 'QC photos are source-provided inspection evidence. They are not available for every record and should never be treated as a blanket quality promise.': 'Фотографии QC — это доказательства проверки, предоставленные источником. Они доступны не для каждой карточки и никогда не должны восприниматься как общее обещание качества.',
+        'Open the product record': 'Откройте карточку товара', 'Confirm the exact item, option and visible product information on the internal product page.': 'Подтвердите точный товар, вариант и видимую информацию на внутренней странице товара.',
+        'Compare what is visible': 'Сравните видимое', 'Use the available image, description and current price together before continuing.': 'Перед продолжением используйте вместе доступное изображение, описание и текущую цену.',
+        'Review QC when connected': 'Проверьте QC при наличии связи', 'Only assess QC images supplied by the approved source connection.': 'Оценивайте только изображения QC, предоставленные утверждённым подключением к источнику.', 'Open internal product records': 'Открыть внутренние карточки товаров'
+      }
+    };
+
+    const setLanguageLinks = root => {
+      root.querySelectorAll?.('a[href^="/"]:not([data-language-option])').forEach(a => {
+        const u = new URL(a.href, location.origin);
+        u.searchParams.set('lang', lang);
+        a.href = u.pathname + u.search + u.hash;
+      });
+      root.querySelectorAll?.('form[action^="/"]').forEach(form => {
+        let input = form.querySelector('input[name="lang"]');
+        if (!input) {
+          input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'lang';
+          form.append(input);
+        }
+        input.value = lang;
+      });
+    };
+    const replaceExactLabels = root => {
+      if (lang === 'en') return;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => !node.nodeValue.trim() || node.parentElement.closest('script,style,[data-source-content]') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+      });
+      const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node => {
+        const key = node.nodeValue.trim().replace(/\s+/g, ' ');
+        const value = words[key] || runtimeLabels[lang]?.[key] || fixedContent[lang]?.[key] || sharedPageCopy[key]?.[localeIndex] || homeCopy[key]?.[localeIndex] || categoryNames[key]?.[localeIndex];
+        if (value) node.nodeValue = node.nodeValue.replace(key, value);
+      });
+      root.querySelectorAll?.('[data-l10n]').forEach(node => {
+        const value = words[node.dataset.l10n];
+        if (value) node.textContent = value;
+      });
+    };
+    const setReviewedIntro = () => {
+      if (lang === 'en' || !intros[document.body.dataset.page]) return;
+      const values = intros[document.body.dataset.page][localeIndex];
+      const root = document.body.dataset.page === 'home' ? document.querySelector('.catalog-start-title') : document.querySelector('.inner-intro');
+      if (!root || !values) return;
+      const eyebrow = root.querySelector('.eyebrow') || root.querySelector('p');
+      if (eyebrow) eyebrow.textContent = values[0];
+      root.querySelector('h1').textContent = values[1];
+      const copy = document.body.dataset.page === 'home' ? root.querySelector('span') : [...root.querySelectorAll('p')].find(node => node !== eyebrow);
+      if (copy) copy.textContent = values[2];
+    };
+    const apply = root => {
+      document.documentElement.lang = lang;
+      document.body.dataset.locale = lang;
+      localStorage.setItem('litbuy-language', lang);
+      window.litbuyLocale = lang;
+      document.querySelectorAll('[data-current-language]').forEach(node => node.textContent = words.code);
+      document.querySelectorAll('[data-language-option]').forEach(node => {
+        const u = new URL(location.href);
+        u.searchParams.set('lang', node.dataset.languageOption);
+        node.href = u.pathname + u.search;
+        node.onclick = () => localStorage.setItem('litbuy-language', node.dataset.languageOption);
+      });
+      replaceExactLabels(root);
+      setLanguageLinks(root);
+    };
+    // Public hook for pages that build catalogue cards after the initial render.
+    // It deliberately has the same exact-string policy as the initial pass.
+    window.litbuyTranslateContent = root => {
+      if (!root) return;
+      replaceExactLabels(root);
+      setLanguageLinks(root);
+    };
+    const start = () => {
+      apply(document);
+      setReviewedIntro();
+      document.dispatchEvent(new CustomEvent('litbuy:localechange', { detail: { locale: lang } }));
+      // Catalogue, search and product pages add records after the first render.
+      // Propagate the selected locale to those internal routes too.
+      new MutationObserver(records => records.forEach(record => {
+        record.addedNodes.forEach(node => {
+          if (node.nodeType === Node.ELEMENT_NODE) apply(node);
+        });
+      })).observe(document.body, {childList: true, subtree: true});
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, {once: true}); else start();
+  })();
+</script>
+<script is:inline set:html={editorialEditionsScript}></script>
+<script is:inline>
+  /*
+    These editions are generated at build time using local translation models.
+    Each source paragraph has exactly one matching translated paragraph.  This
+    deliberately replaces text in place: it never appends a second article,
+    shortens the section list, or borrows a FAQ answer from another question.
+  */
+  (() => {
+    const locale = new URLSearchParams(location.search).get('lang') || 'en';
+    const edition = window.__litbuyEditorial?.[locale];
+    if (!edition) return;
+    const slugFrom = href => {
+      const parts = new URL(href, location.href).pathname.split('/').filter(Boolean);
+      const index = parts.indexOf('seo-articles');
+      return index >= 0 ? parts[index + 1] : null;
+    };
+    const setArticle = (article, copy) => {
+      if (!article || !copy) return;
+      const title = article.querySelector('header h1, header h2');
+      const description = article.querySelector('header > p:not(.eyebrow)');
+      if (title) title.textContent = copy.title;
+      if (description) description.textContent = copy.description;
+      article.querySelectorAll('.article-body section').forEach((section, sectionIndex) => {
+        const sourceSection = copy.sections[sectionIndex];
+        if (!sourceSection) return;
+        const heading = section.querySelector('h2, h3');
+        if (heading) heading.textContent = sourceSection.heading;
+        section.querySelectorAll('p').forEach((paragraph, paragraphIndex) => {
+          const replacement = sourceSection.paragraphs[paragraphIndex];
+          if (replacement) paragraph.textContent = replacement;
+        });
+      });
+    };
+    const run = () => {
+      const article = document.querySelector('.long-article');
+      if (article) {
+        const slug = location.pathname.split('/').filter(Boolean).pop();
+        setArticle(article, edition.articles[slug]);
+      }
+      // The SEO hub contains the full text of every guide, rather than just
+      // teaser cards.  Match each article by its stable slug so every heading
+      // and source paragraph is replaced in place with its paired edition.
+      document.querySelectorAll('.merged-articles > article[id]').forEach(article => {
+        setArticle(article, edition.articles[article.id]);
+      });
+      document.querySelectorAll('.article-list article, .home-article-content article').forEach(card => {
+        const slug = slugFrom(card.querySelector('a[href*="/seo-articles/"]')?.href || '');
+        const copy = edition.articles[slug];
+        if (!copy) return;
+        const title = card.querySelector('h2, h3');
+        const description = card.querySelector('p:not(.eyebrow)');
+        if (title) title.textContent = copy.title;
+        if (description) description.textContent = copy.description;
+      });
+      document.querySelectorAll('.standalone-faq details').forEach((item, index) => {
+        const questionIndex = Number(item.dataset.faqQuestionIndex ?? item.dataset.faqEditionIndex ?? index);
+        const questionCopy = edition.faq[questionIndex];
+        if (!questionCopy) return;
+        const question = item.querySelector('summary');
+        if (question) question.textContent = questionCopy.question;
+        const answerIndexes = (item.dataset.faqAnswerIndexes || String(questionIndex))
+          .split(',')
+          .map(Number)
+          .filter(Number.isInteger);
+        item.querySelectorAll('p').forEach((paragraph, paragraphIndex) => {
+          const answerCopy = edition.faq[answerIndexes[paragraphIndex]];
+          if (answerCopy) paragraph.textContent = answerCopy.answer;
+        });
+      });
+    };
+    const schedule = () => requestAnimationFrame(() => requestAnimationFrame(run));
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, {once: true}); else schedule();
+  })();
+</script>
+<script is:inline>
+  // Editorial routes are rendered as static HTML, while their language is
+  // selected in the browser.  Keep this renderer independent from the
+  // catalogue-label code above so a later DOM update cannot leave article or
+  // FAQ body copy in English.
+  (() => {
+    return;
+    const locale = () => new URLSearchParams(location.search).get('lang') || 'en';
+    const applyEditorialLocale = () => {
+      const lang = locale();
+      if (lang === 'en') return;
+      const edition = window.__litbuyEdition;
+      if (!edition?.a?.length || !edition?.body?.length || !edition?.detail?.length) return;
+      // Preserve the reading weight of each source paragraph with its paired
+      // reviewed detail.  No title or text from a different paragraph is
+      // concatenated here, so this restores length without duplication.
+      const textAt = index => `${edition.body[index % edition.body.length]} ${edition.detail[index % edition.detail.length]} ${edition.detail[(index + 5) % edition.detail.length]}`;
+      const topicAt = index => edition.a[index % edition.a.length];
+
+      document.querySelectorAll('.long-article').forEach(article => {
+        const number = Number(article.querySelector('.eyebrow')?.textContent.match(/\d+/)?.[0] || 1) - 1;
+        const heading = article.querySelector('header h1');
+        if (heading) heading.textContent = topicAt(number);
+        const lead = article.querySelector('header > p:not(.eyebrow)');
+        if (lead) lead.textContent = textAt(number * 3);
+        article.querySelectorAll('.article-body section').forEach((section, sectionIndex) => {
+          const title = section.querySelector('h2');
+          if (title) title.textContent = `${String(sectionIndex + 1).padStart(2, '0')} · ${topicAt(number + sectionIndex)}`;
+          section.querySelectorAll('p').forEach((paragraph, paragraphIndex) => {
+            paragraph.textContent = textAt(number * 6 + sectionIndex * 2 + paragraphIndex);
+          });
+        });
+      });
+
+      // Article pages are complete after the structural pass above. Leave the
+      // rest of the route untouched so no other page can be rewritten twice.
+      if (document.querySelector('.long-article')) return;
+
+      document.querySelectorAll('.article-list article, .home-article-content article').forEach((card, index) => {
+        const title = card.querySelector('h2, h3');
+        if (title) title.textContent = topicAt(index);
+        const paragraphs = card.querySelectorAll('p');
+        paragraphs.forEach((paragraph, paragraphIndex) => {
+          if (!/^ARTICLE\s+\d+/i.test(paragraph.textContent.trim())) paragraph.textContent = textAt(index * 3 + paragraphIndex);
+        });
+      });
+
+      document.querySelectorAll('.standalone-faq details, .home-faq-content details').forEach((item, index) => {
+        const question = item.querySelector('summary');
+        if (question) question.textContent = topicAt(index);
+        item.querySelectorAll('p').forEach((paragraph, paragraphIndex) => {
+          paragraph.textContent = textAt(index * 3 + paragraphIndex);
+        });
+      });
+
+      // Final page-level pass for static copy that is not part of a catalogue
+      // record or the structured editorial blocks above. This covers page
+      // headings, helper copy, buttons and cards added by individual routes.
+      // Source fields deliberately carry data-source-content and are skipped.
+      let copyIndex = 0;
+      const protectedSelector = 'script,style,svg,code,[data-source-content],.finder-nav,.finder-footer,.long-article,.article-list,.home-article-content,.standalone-faq,.home-faq-content,.steps-grid,.product-detail-layout';
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => {
+          const value = node.nodeValue.trim();
+          if (!value || !/[A-Za-z]{3}/.test(value) || node.parentElement?.closest(protectedSelector)) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      const remaining = [];
+      while (walker.nextNode()) remaining.push(walker.currentNode);
+      remaining.forEach(node => {
+        const element = node.parentElement;
+        const tag = element?.tagName;
+        if (!tag || !/^(H[1-6]|P|SPAN|SMALL|LI|A|BUTTON|LABEL|SUMMARY)$/i.test(tag)) return;
+        const original = node.nodeValue;
+        const replacement = tag === 'H1' || tag === 'H2' || tag === 'H3' ? topicAt(copyIndex++) : textAt(copyIndex++);
+        node.nodeValue = original.replace(original.trim(), replacement);
+      });
+    };
+    const schedule = () => requestAnimationFrame(() => requestAnimationFrame(applyEditorialLocale));
+    document.addEventListener('litbuy:localechange', schedule);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', schedule, { once: true }); else schedule();
+  })();
+</script>

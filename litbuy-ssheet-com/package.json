@@ -1,0 +1,16 @@
+{
+  "name": "litbuy-spreadsheet-preview",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "export:catalogue": "node scripts/export-findspreadsheet.mjs",
+    "enrich:featured-media": "node scripts/enrich-product-media.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "7.4.0"
+  }
+}

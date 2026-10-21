@@ -1,0 +1,170 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+import fs from 'node:fs';
+import { litbuyArticles } from '../data/litbuy-articles';
+import { formatUsd as usd } from '../lib/currency';
+
+const register = 'https://litbuy.com/register?inviteCode=E32JME4UQ';
+const catalogue = JSON.parse(fs.readFileSync(`${process.cwd()}/public/data/findspreadsheet-export.json`, 'utf-8'));
+const sourceProducts = Array.isArray(catalogue) ? catalogue : catalogue.products;
+const imageProducts = sourceProducts.filter((product) => product.image);
+const homeCategoryOrder = ['shoes', 't-shirts', 'hoodies-sweaters', 'jackets', 'pants-shorts', 'accessories', 'electronics', 'headwear', 'ShortSets', 'jersey', 'other-stuff'];
+const products = homeCategoryOrder.slice(0, 6).map((category) => imageProducts.find((product) => product.category === category)).filter(Boolean);
+const allProductsPreview = homeCategoryOrder.flatMap((category) => imageProducts.filter((product) => product.category === category).slice(0, 3)).slice(0, 24);
+const productImage = (id: string) => sourceProducts.find((product) => product.id === id)?.image;
+const categories = [
+  ['Shoes', 'shoes', 'Footwear and sneaker records'],
+  ['T-Shirts', 't-shirts', 'Short-sleeve product finds'],
+  ['Hoodies', 'hoodies-sweaters', 'Layers, knits and sweatshirts'],
+  ['Jackets', 'jackets', 'Outerwear product records'],
+  ['Pants', 'pants-shorts', 'Trousers and shorts'],
+  ['Accessories', 'accessories', 'Bags, socks and finishing pieces'],
+  ['Electronics', 'electronics', 'Devices and small tech']
+];
+const categoryTiles = [
+  ['Shoes', 'shoes', productImage('6250')],
+  ['Hoodies & Sweaters', 'hoodies-sweaters', productImage('8661')],
+  ['T-Shirts', 't-shirts', productImage('8779')],
+  ['Jackets', 'jackets', productImage('8573')],
+  ['Pants & Shorts', 'pants-shorts', productImage('8793')],
+  ['Headwear', 'headwear', productImage('8945')],
+  ['Short Sets', 'ShortSets', productImage('8397')],
+  ['Jerseys', 'jersey', productImage('8381')],
+  ['Accessories', 'accessories', productImage('9018')],
+  ['Electronics', 'electronics', productImage('8710')],
+  ['Other Finds', 'other-stuff', productImage('8758')],
+  ['All Products', '', productImage('9017')]
+];
+const homeArticles = litbuyArticles.slice(0, 3);
+const homeFaqs = [
+  ['What are LitBuy QC photos able to show?', 'LitBuy says warehouse arrivals receive a basic check of quantity, visible appearance and obvious external defects, and that photos or inspection information may be provided when applicable. QC images can help compare the received item against a saved listing and selected option, but they do not prove authenticity, materials, fit, durability or every hidden detail.'],
+  ['How long does LitBuy say processing and delivery take?', 'LitBuy’s shipping policy says parcels are processed within 1–3 business days, excluding weekends and public holidays. Published transit estimates start after shipment and are estimates, not guarantees. Customs, weather and carrier disruption can affect the actual result.'],
+  ['How does the TAX FREE shipping policy work?', 'LitBuy states that taxes and customs charges are handled for parcels sent through its TAX FREE channels. For other channels, the customer is responsible for clearance and applicable duties or taxes. Confirm the exact line shown for your destination at checkout.'],
+  ['How are approved refunds handled?', 'LitBuy’s published terms say approved refunds are processed back to the original payment method. They do not support cash, offline transfers, third-party payment accounts or another refund destination.']
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Browse LitBuy Spreadsheet product finds by category, source ID, images, USD reference price and available QC photos." />
+    <title>LitBuy Spreadsheet — Product Directory</title>
+    <link rel="icon" href="/assets/logo-Litbuy-2.png" />
+  </head>
+  <body class="finder-body catalog-v12" data-page="home">
+    <SiteNav />
+    <main class="catalog-main">
+      <section class="catalog-start" aria-labelledby="catalog-title">
+        <div class="catalog-start-title">
+          <p>PRODUCT DIRECTORY</p>
+          <h1 id="catalog-title">Find a product record.</h1>
+          <span>Search a source ID or start with a category. Every result stays inside this directory until you choose the LitBuy purchase route.</span>
+        </div>
+        <form class="catalog-search" action="/search/" method="get">
+          <label for="catalog-query">Search the catalogue</label>
+          <div><input id="catalog-query" name="q" placeholder="Product name, source ID or category" /><button>Search</button></div>
+        </form>
+        <div class="catalog-facts" aria-label="Directory facts">
+          <div><b>8,911</b><span>product records</span></div>
+          <div><b>USD</b><span>reference prices</span></div>
+          <div><b>QC</b><span>only when supplied</span></div>
+          <div><b>9</b><span>language choices</span></div>
+        </div>
+      </section>
+
+      <nav class="catalog-category-bar" aria-label="Browse categories">
+        <a class="active" href="/product-finds/">All products</a>
+        {categories.map(([label, slug]) => <a href={`/category/?category=${slug}`}>{label}</a>)}
+        <a href="/qc-guide/">QC guide</a>
+      </nav>
+
+      <section class="catalog-workspace" aria-label="Product directory">
+        <aside class="catalog-sidebar">
+          <div>
+            <p>START HERE</p>
+            <h2>A simple route through the directory.</h2>
+          </div>
+          <nav aria-label="Directory sections">
+            <a href="/product-finds/"><b>Browse all records</b><span>Open the complete product list</span><i>→</i></a>
+            <a href="/categories/"><b>Choose a category</b><span>Keep comparable products together</span><i>→</i></a>
+            <a href="/search/"><b>Search an exact ID</b><span>Go straight to one record</span><i>→</i></a>
+            <a href="/qc-guide/"><b>Read the QC guide</b><span>Understand available photo evidence</span><i>→</i></a>
+          </nav>
+          <div class="catalog-sidebar-note">
+            <p>ON EACH PRODUCT PAGE</p>
+            <ol><li>Original source images</li><li>USD reference price and ID</li><li>QC images when the source provides them</li></ol>
+          </div>
+        </aside>
+
+        <div class="catalog-results">
+          <header>
+            <div><p>FEATURED RECORDS</p><h2>Open a product page to compare the details.</h2></div>
+            <a href="/product-finds/">View all products <span>→</span></a>
+          </header>
+          <div class="catalog-product-grid">
+            {products.map((item) => <article class="catalog-product-card">
+              <a class="catalog-product-image" href={`/product/?id=${item.id}`}><img src={item.image} alt={item.name} loading="lazy" /></a>
+              <div class="catalog-product-copy">
+                <p>{item.category} <span>·</span> Source ID {item.id}</p>
+                <h3 data-source-content><a href={`/product/?id=${item.id}`}>{item.name}</a></h3>
+                <footer><b>{usd(item.price)}</b><a href={`/product/?id=${item.id}`}>Open record <span>→</span></a></footer>
+              </div>
+            </article>)}
+          </div>
+        </div>
+      </section>
+
+      <section class="catalog-category-showcase" aria-labelledby="category-directory-title">
+        <header><div><p>SHOP BY CATEGORY</p><h2 id="category-directory-title">Start with the product type you know.</h2></div><a href="/categories/">All categories →</a></header>
+        <div class="catalog-category-tiles">{categoryTiles.map(([label, slug, image]) => <a href={slug ? `/category/?category=${slug}` : '/product-finds/'}><img src={image} alt={`${label} product category`} loading="lazy" /><b>{label}</b><i>→</i></a>)}</div>
+      </section>
+
+      <section class="catalog-all-records" aria-labelledby="all-records-title">
+        <header><div><p>PRODUCT SHEET EVIDENCE</p><h2 id="all-records-title">All product records, ready to browse.</h2><span>Live catalogue organised by category, USD reference price and available QC-photo evidence.</span></div><a href="/product-finds/">View all 8,911 products →</a></header>
+        <div class="catalog-all-grid">{allProductsPreview.map((item) => <article class="catalog-all-card">
+          <a class="catalog-all-image" href={`/product/?id=${item.id}`}><img src={item.image} alt={item.name} loading="lazy" /></a>
+          <div><p>{item.category} · ID {item.id}</p><h3 data-source-content><a href={`/product/?id=${item.id}`}>{item.name}</a></h3><footer><b>{usd(item.price)}</b><a href={`/product/?id=${item.id}`}>Open record →</a></footer></div>
+        </article>)}</div>
+        <a class="catalog-all-action" href="/product-finds/">Browse the complete internal product catalogue <span>→</span></a>
+      </section>
+
+      <section class="catalog-clarity" aria-label="How the directory works">
+        <header><p>KEEP THE NEXT STEP CLEAR</p><h2>One page for each decision.</h2></header>
+        <div class="catalog-clarity-grid">
+          <article><b>01</b><h3>Search or browse</h3><p>Use a name, a source ID, or a product category to reach internal records.</p><a href="/search/">Search records →</a></article>
+          <article><b>02</b><h3>Review the product</h3><p>See source images, price converted to USD, product ID and related visual evidence together.</p><a href="/product-finds/">Open products →</a></article>
+          <article><b>03</b><h3>Check photo context</h3><p>QC images appear only when they belong to that source record. Otherwise, the product's own images remain visible.</p><a href="/qc-guide/">Open QC guide →</a></article>
+          <article><b>04</b><h3>Continue when ready</h3><p>The final account and purchasing action stays with LitBuy, outside this directory.</p><a href={register} target="_blank" rel="noreferrer">Create LitBuy account ↗</a></article>
+        </div>
+      </section>
+
+      <section class="catalog-reading">
+        <div><p>GUIDES &amp; SEO ARTICLES</p><h2>Useful reading, kept separate from shopping.</h2><span>Articles explain product links, source information and QC-photo context without interrupting the catalogue.</span></div>
+        <nav><a href="/seo-articles/"><b>Product discovery articles</b><span>Read source-first buying guides</span><i>→</i></a><a href="/qc-guide/"><b>QC photo guide</b><span>Know what the available photos mean</span><i>→</i></a><a href="/faq/"><b>Frequently asked questions</b><span>Read the practical answers</span><i>→</i></a></nav>
+      </section>
+
+      <section class="home-reading-content" aria-label="Guides, QC information and FAQs on this page">
+        <section class="home-article-content" aria-labelledby="home-articles-title">
+          <header><div><p>SEO ARTICLES ON THIS PAGE</p><h2 id="home-articles-title">Product research worth reading before you buy.</h2></div><a href="/seo-articles/">All 10 articles →</a></header>
+          <div>{homeArticles.map((article) => <article>
+            <span>ARTICLE {article.number}</span><h3>{article.title}</h3><p class="home-article-lede">{article.description}</p><h4>{article.sections[0].heading}</h4><p>{article.sections[0].paragraphs[0]}</p><a href={`/seo-articles/${article.slug}/`}>Read the full guide →</a>
+          </article>)}</div>
+        </section>
+
+        <section class="home-qc-content" aria-labelledby="home-qc-title">
+          <header><div><p>QC PHOTO GUIDE ON THIS PAGE</p><h2 id="home-qc-title">Read the picture. Keep the limits clear.</h2></div><a href="/qc-guide/">Open the full QC guide →</a></header>
+          <div class="home-qc-grid"><article><b>01</b><h3>Open the exact record</h3><p>Start with the product ID, selected option, visible listing details and the product-specific images shown in this directory.</p></article><article><b>02</b><h3>Compare visible facts</h3><p>Use a QC photo to check what is visible: quantity, colour, obvious appearance and externally visible damage against your saved source record.</p></article><article><b>03</b><h3>Pause if evidence is missing</h3><p>A photo that does not show the detail you need does not answer the question. Ask before authorising an international parcel.</p></article></div>
+          <p class="home-qc-note">LitBuy’s published basic QC scope is quantity, visible appearance and obvious external defects. QC photos are helpful evidence, not an authenticity, materials, fit, durability or compatibility guarantee.</p>
+        </section>
+
+        <section class="home-faq-content" aria-labelledby="home-faq-title">
+          <header><div><p>FAQ ON THIS PAGE</p><h2 id="home-faq-title">Practical answers before the purchase route.</h2></div><a href="/faq/">Read all 17 answers →</a></header>
+          <div>{homeFaqs.map(([question, answer], index) => <details open={index === 0}><summary>{question}</summary><p>{answer}</p></details>)}</div>
+        </section>
+      </section>
+    </main>
+    <footer class="finder-footer"><a class="finder-brand" href="/"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Independent product discovery powered by FindSpreadsheet source records.</p><button class="footer-language" type="button" data-open-language-menu>9 language editions ⌄</button></footer>
+  </body>
+</html>

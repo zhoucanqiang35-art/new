@@ -1,0 +1,16 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+import { litbuyArticles } from '../../data/litbuy-articles';
+
+export function getStaticPaths() {
+  return litbuyArticles.map((article) => ({ params: { slug: article.slug }, props: { article } }));
+}
+
+const { article } = Astro.props;
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={article.description} /><title>{article.title} — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body>
+  <SiteNav />
+  <main class="article-page"><a class="back-link" href="/seo-articles/">← All guides</a><article class="long-article"><header><p class="eyebrow">LITBUY GUIDE · ARTICLE {article.number}</p><h1>{article.title}</h1><p>{article.description}</p></header><div class="article-body">{article.sections.map((section, index) => <section><span>{String(index + 1).padStart(2, '0')}</span><div><h2>{section.heading}</h2>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div></section>)}</div><div class="article-next"><a href="/product-finds/">Browse internal product records →</a><a href="https://litbuy.com/register?inviteCode=E32JME4UQ" target="_blank" rel="noreferrer">Create a LitBuy account ↗</a></div></article></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Independent product-discovery guide; LitBuy policies govern LitBuy services.</p><a href="/seo-articles/">All guides →</a></footer>
+</body></html>

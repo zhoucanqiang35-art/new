@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+import fs from 'node:fs';
+import { formatUsd as usd } from '../lib/currency';
+
+const catalogue = JSON.parse(fs.readFileSync(`${process.cwd()}/public/data/findspreadsheet-export.json`, 'utf-8'));
+const sourceProducts = Array.isArray(catalogue) ? catalogue : catalogue.products;
+const imageProducts = sourceProducts.filter((product) => product.image);
+const productImage = (id: string) => sourceProducts.find((product) => product.id === id)?.image;
+const categoryTiles = [
+  ['Shoes', 'shoes', productImage('6250')], ['Hoodies & Sweaters', 'hoodies-sweaters', productImage('8661')], ['T-Shirts', 't-shirts', productImage('8779')], ['Jackets', 'jackets', productImage('8573')], ['Pants & Shorts', 'pants-shorts', productImage('8793')], ['Headwear', 'headwear', productImage('8945')], ['Short Sets', 'ShortSets', productImage('8397')], ['Jerseys', 'jersey', productImage('8381')], ['Accessories', 'accessories', productImage('9018')], ['Electronics', 'electronics', productImage('8710')], ['Other Finds', 'other-stuff', productImage('8758')], ['All Products', '', productImage('9017')]
+];
+const categoryOrder = ['shoes', 't-shirts', 'hoodies-sweaters', 'jackets', 'pants-shorts', 'accessories', 'electronics', 'headwear', 'ShortSets', 'jersey', 'other-stuff'];
+const productPreview = categoryOrder.flatMap((category) => imageProducts.filter((product) => product.category === category).slice(0, 3)).slice(0, 24);
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Browse LitBuy Spreadsheet product categories with source images, USD reference prices and internal product records." /><title>Product Categories — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="categories">
+  <SiteNav />
+  <main class="inner-page category-directory-page">
+    <section class="inner-intro"><p class="eyebrow">PRODUCT CATEGORIES</p><h1>Browse by <em>category.</em></h1><p>Open a visual category, then compare internal product records with source images, USD reference prices and available QC evidence.</p></section>
+    <section class="catalog-category-showcase category-page-showcase" aria-labelledby="category-image-title">
+      <header><div><p>VISUAL CATEGORY DIRECTORY</p><h2 id="category-image-title">Choose the product type you want to explore.</h2></div><a href="/product-finds/">All 8,911 products →</a></header>
+      <div class="catalog-category-tiles">{categoryTiles.map(([label, slug, image]) => <a href={slug ? `/category/?category=${slug}` : '/product-finds/'}><img src={image} alt={`${label} product category`} loading="lazy" /><b>{label}</b><i>→</i></a>)}</div>
+    </section>
+    <section class="catalog-all-records category-page-records" aria-labelledby="category-products-title">
+      <header><div><p>ALL PRODUCT RECORDS</p><h2 id="category-products-title">Products from every category, shown together.</h2><span>Browse a mixed catalogue window here, or open the complete internal directory for all product records.</span></div><a href="/product-finds/">View all products →</a></header>
+      <div class="catalog-all-grid">{productPreview.map((item) => <article class="catalog-all-card"><a class="catalog-all-image" href={`/product/?id=${item.id}`}><img src={item.image} alt={item.name} loading="lazy" /></a><div><p>{item.category} · ID {item.id}</p><h3 data-source-content><a href={`/product/?id=${item.id}`}>{item.name}</a></h3><footer><b>{usd(item.price)}</b><a href={`/product/?id=${item.id}`}>Open record →</a></footer></div></article>)}</div>
+      <a class="catalog-all-action" href="/product-finds/">Browse the complete internal product catalogue <span>→</span></a>
+    </section>
+  </main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Internal categories powered by the main-site export.</p><a href="/product-finds/">All products →</a></footer>
+</body></html>

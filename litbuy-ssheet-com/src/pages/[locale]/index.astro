@@ -1,0 +1,33 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+
+const editions = {
+  en: { lang: 'en', code: 'EN', name: 'English', eyebrow: 'ENGLISH EDITION', title: 'Find product links with context.', text: 'Browse the independent LitBuy product-discovery guide, then open the approved source record before using a purchase route.', action: 'Browse product finds' },
+  de: { lang: 'de', code: 'DE', name: 'Deutsch', eyebrow: 'DEUTSCHE AUSGABE', title: 'Produktlinks mit Kontext finden.', text: 'Nutze den unabhängigen Produktguide und öffne anschließend den geprüften Quelldatensatz.', action: 'Produktfunde ansehen' },
+  fr: { lang: 'fr', code: 'FR', name: 'Français', eyebrow: 'ÉDITION FRANÇAISE', title: 'Trouver des liens produits avec contexte.', text: 'Parcourez le guide indépendant avant d’ouvrir la fiche source approuvée.', action: 'Voir les trouvailles' },
+  es: { lang: 'es', code: 'ES', name: 'Español', eyebrow: 'EDICIÓN EN ESPAÑOL', title: 'Encuentra enlaces de producto con contexto.', text: 'Consulta la guía independiente y abre después el registro de fuente aprobado.', action: 'Ver productos' },
+  it: { lang: 'it', code: 'IT', name: 'Italiano', eyebrow: 'EDIZIONE ITALIANA', title: 'Trova link prodotto con contesto.', text: 'Esplora la guida indipendente e apri poi la scheda della fonte approvata.', action: 'Scopri i prodotti' },
+  pt: { lang: 'pt', code: 'PT', name: 'Português', eyebrow: 'EDIÇÃO EM PORTUGUÊS', title: 'Encontre links de produtos com contexto.', text: 'Veja o guia independente e abra depois o registro da fonte aprovada.', action: 'Ver produtos' },
+  nl: { lang: 'nl', code: 'NL', name: 'Nederlands', eyebrow: 'NEDERLANDSE EDITIE', title: 'Productlinks vinden met context.', text: 'Bekijk de onafhankelijke gids en open daarna de goedgekeurde bronvermelding.', action: 'Bekijk producten' },
+  pl: { lang: 'pl', code: 'PL', name: 'Polski', eyebrow: 'POLSKA EDYCJA', title: 'Znajdź linki do produktów z kontekstem.', text: 'Przejrzyj niezależny przewodnik, a następnie otwórz zatwierdzony rekord źródłowy.', action: 'Zobacz produkty' },
+  ru: { lang: 'ru', code: 'RU', name: 'Русский', eyebrow: 'РУССКАЯ ВЕРСИЯ', title: 'Находите ссылки на товары в контексте.', text: 'Изучите независимый справочник и затем откройте утверждённую исходную карточку.', action: 'Смотреть товары' }
+} as const;
+
+export function getStaticPaths() { return ['en', 'de', 'fr', 'es', 'it', 'pt', 'nl', 'pl', 'ru'].map((locale) => ({ params: { locale } })); }
+const edition = editions[Astro.params.locale as keyof typeof editions];
+if (!edition) return Astro.redirect('/');
+---
+<html lang={edition.lang}>
+  <head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content={`LitBuy Spreadsheet ${edition.name} product discovery edition.`} /><title>{edition.name} — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head>
+  <body>
+    <SiteNav />
+    <main class="edition-page">
+      <section class="edition-card">
+        <div><p class="eyebrow">{edition.eyebrow} · {edition.code}</p><h1>{edition.title}</h1><p>{edition.text}</p><div class="edition-actions"><a class="ink-button" href="/product-finds/">{edition.action} <span>↗</span></a><a href="/">Back to home →</a></div></div>
+        <aside><span>01</span><b>Source-first</b><p>FindSpreadsheet records remain the only approved data source for the production build.</p><span>02</span><b>Independent guide</b><p>This website does not sell products or replace an agent’s purchasing flow.</p></aside>
+      </section>
+    </main>
+    <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Independent product-discovery preview.</p><a href="/">Home →</a></footer>
+  </body>
+</html>

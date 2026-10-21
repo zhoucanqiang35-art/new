@@ -1,0 +1,33 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Browse the full internal LitBuy Spreadsheet product catalogue." /><title>All Products — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="finds">
+  <SiteNav />
+  <main class="inner-page"><section class="inner-intro"><p class="eyebrow">FULL INTERNAL CATALOGUE</p><h1>All product <em>finds.</em></h1><p id="catalogue-description">Loading the current main-site product export…</p></section><form class="catalogue-search" action="/search/"><input name="q" placeholder="Search all internal products" /><button>Search →</button></form><section class="catalogue-controls"><a href="/categories/">Browse categories →</a><span id="catalogue-count">Loading catalogue…</span></section><section class="finder-grid standalone-products" id="all-products-grid" aria-live="polite"></section><nav class="catalogue-pages" id="all-products-pages" aria-label="Product pages"></nav></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Full internal catalogue powered by the main-site export.</p><a href="/categories/">Categories →</a></footer>
+  <script>
+    import { formatUsd } from '../lib/currency';
+    const esc = (text = '') => String(text).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+    const asUsd = (price) => formatUsd(price);
+    const activePage = Math.max(1, Number(new URLSearchParams(location.search).get('page')) || 1);
+    const perPage = 24;
+    fetch('/data/findspreadsheet-export.json').then((response) => response.json()).then((catalogue) => {
+      const totalPages = Math.ceil(catalogue.products.length / perPage);
+      const page = Math.min(activePage, totalPages);
+      const visible = catalogue.products.slice((page - 1) * perPage, page * perPage);
+      document.querySelector('#catalogue-description').textContent = 'Every item opens its own internal product detail page. Data is exported from the FindsSpreadsheet main catalogue.';
+      document.querySelector('#catalogue-count').textContent = `${catalogue.total.toLocaleString()} products · page ${page} of ${totalPages}`;
+      const description = document.querySelector('#catalogue-description');
+      const count = document.querySelector('#catalogue-count');
+      const grid = document.querySelector('#all-products-grid');
+      grid.innerHTML = visible.map((product) => `<article class="finder-card"><a href="/product/?id=${encodeURIComponent(product.id)}" class="finder-card-image"><img src="${esc(product.image)}" alt="${esc(product.name)}" loading="lazy" /><span>View detail →</span></a><div class="finder-card-meta"><span>${esc(product.category)}</span><span>Source ${esc(product.id)}</span></div><h3 data-source-content>${esc(product.name)}</h3><div class="finder-card-bottom"><b>${asUsd(product.price)}</b><a href="/product/?id=${encodeURIComponent(product.id)}">Product page →</a></div></article>`).join('');
+      const nearby = [page - 1, page, page + 1].filter((value) => value > 0 && value <= totalPages);
+      document.querySelector('#all-products-pages').innerHTML = `${page > 1 ? `<a href="/product-finds/?page=${page - 1}">← Previous</a>` : ''}${nearby.map((value) => `<a class="${value === page ? 'is-current' : ''}" href="/product-finds/?page=${value}">${value}</a>`).join('')}${page < totalPages ? `<a href="/product-finds/?page=${page + 1}">Next →</a>` : ''}`;
+      window.litbuyTranslateContent?.(description);
+      window.litbuyTranslateContent?.(count);
+      window.litbuyTranslateContent?.(grid);
+      window.litbuyTranslateContent?.(document.querySelector('#all-products-pages'));
+    }).catch(() => { document.querySelector('#catalogue-count').textContent = 'Catalogue export is temporarily unavailable.'; });
+  </script>
+</body></html>

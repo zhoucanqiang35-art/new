@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Browse LitBuy Spreadsheet products by category." /><title>Category Products — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="category">
+  <SiteNav />
+  <main class="inner-page"><section class="inner-intro"><p class="eyebrow">INTERNAL CATEGORY DIRECTORY</p><h1 id="category-title">Loading <em>products.</em></h1><p id="category-copy">This category is served from the exported FindSpreadsheet catalogue and keeps every item inside this LitBuy Spreadsheet subsite.</p></section><section class="catalogue-controls"><a href="/categories/">← All categories</a><span id="catalogue-count">Loading catalogue…</span></section><section class="finder-grid standalone-products" id="catalogue-grid" aria-live="polite"></section><nav class="catalogue-pages" id="catalogue-pages" aria-label="Product pages"></nav></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Internal category pages powered by the main-site export.</p><a href="/product-finds/">All products →</a></footer>
+  <script>
+    import { formatUsd } from '../lib/currency';
+    const labels = { shoes: 'Shoes', 't-shirts': 'T-Shirts', 'hoodies-sweaters': 'Hoodies & Sweaters', jackets: 'Jackets', 'pants-shorts': 'Pants & Shorts', accessories: 'Accessories', electronics: 'Electronics', headwear: 'Headwear', jersey: 'Jersey', 'other-stuff': 'Other finds' };
+    const esc = (text = '') => String(text).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+    const asUsd = (price) => formatUsd(price);
+    const params = new URLSearchParams(location.search);
+    const category = params.get('category') || 'shoes';
+    const page = Math.max(1, Number(params.get('page')) || 1);
+    const perPage = 24;
+    fetch('/data/findspreadsheet-export.json').then((response) => response.json()).then((catalogue) => {
+      const list = category === 'all' ? catalogue.products : catalogue.products.filter((product) => product.category === category);
+      const totalPages = Math.max(1, Math.ceil(list.length / perPage));
+      const activePage = Math.min(page, totalPages);
+      const visible = list.slice((activePage - 1) * perPage, activePage * perPage);
+      document.querySelector('#category-title').innerHTML = `${esc(labels[category] || category)} <em>finds.</em>`;
+      document.querySelector('#category-copy').textContent = 'Every card opens an internal product page. Product data and images come from the latest FindSpreadsheet export.';
+      document.querySelector('#catalogue-count').textContent = `${list.length.toLocaleString()} products · page ${activePage} of ${totalPages}`;
+      const title = document.querySelector('#category-title');
+      const copy = document.querySelector('#category-copy');
+      const count = document.querySelector('#catalogue-count');
+      const grid = document.querySelector('#catalogue-grid');
+      grid.innerHTML = visible.map((product) => `<article class="finder-card"><a href="/product/?id=${encodeURIComponent(product.id)}" class="finder-card-image"><img src="${esc(product.image)}" alt="${esc(product.name)}" loading="lazy" /><span>View detail →</span></a><div class="finder-card-meta"><span>${esc(labels[product.category] || product.category)}</span><span>Source ${esc(product.id)}</span></div><h3 data-source-content>${esc(product.name)}</h3><div class="finder-card-bottom"><b>${asUsd(product.price)}</b><a href="/product/?id=${encodeURIComponent(product.id)}">Product page →</a></div></article>`).join('');
+      const pageLinks = [activePage - 1, activePage, activePage + 1].filter((value) => value >= 1 && value <= totalPages);
+      document.querySelector('#catalogue-pages').innerHTML = `${activePage > 1 ? `<a href="/category/?category=${encodeURIComponent(category)}&page=${activePage - 1}">← Previous</a>` : ''}${pageLinks.map((value) => `<a class="${value === activePage ? 'is-current' : ''}" href="/category/?category=${encodeURIComponent(category)}&page=${value}">${value}</a>`).join('')}${activePage < totalPages ? `<a href="/category/?category=${encodeURIComponent(category)}&page=${activePage + 1}">Next →</a>` : ''}`;
+      window.litbuyTranslateContent?.(title);
+      window.litbuyTranslateContent?.(copy);
+      window.litbuyTranslateContent?.(count);
+      window.litbuyTranslateContent?.(grid);
+      window.litbuyTranslateContent?.(document.querySelector('#catalogue-pages'));
+    }).catch(() => { document.querySelector('#catalogue-count').textContent = 'Catalogue export is temporarily unavailable.'; });
+  </script>
+</body></html>

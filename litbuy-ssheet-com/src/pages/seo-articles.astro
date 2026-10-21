@@ -1,0 +1,10 @@
+---
+import '../styles/global.css';
+import SiteNav from '../components/SiteNav.astro';
+import { litbuyArticles } from '../data/litbuy-articles';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="Fact-checked LitBuy guides covering QC photos, shipping, warehouse consolidation, customs, refunds and product-link research." /><title>LitBuy Guides & Articles — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="articles">
+  <SiteNav />
+  <main class="inner-page article-index-page" id="top"><section class="inner-intro"><p class="eyebrow">RESEARCH-LED SEO ARTICLES</p><h1>Useful answers, <em>not hype.</em></h1><p>Ten practical guides built from LitBuy’s published service, shipping, refund and prohibited-item pages. Every article separates official policy from the decisions a buyer must make personally.</p></section><section class="merged-articles">{litbuyArticles.map((article) => <article id={article.slug}><header><span>ARTICLE {article.number}</span><h2>{article.title}</h2><p>{article.description}</p></header><div class="article-body">{article.sections.map((section, index) => <section><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{section.heading}</h3>{section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}</div></section>)}</div><a class="article-top" href="#top">Back to top ↑</a></article>)}</section></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Independent guides using publicly available LitBuy policy pages.</p><a href="/">Home →</a></footer>
+</body></html>

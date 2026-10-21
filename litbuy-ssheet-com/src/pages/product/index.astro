@@ -1,0 +1,31 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+---
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><meta name="description" content="LitBuy Spreadsheet internal product detail." /><title>Product Detail — LitBuy Spreadsheet</title><link rel="icon" href="/assets/logo-Litbuy-2.png" /></head><body data-page="product">
+  <SiteNav />
+  <main class="detail-page" id="product-detail" aria-live="polite"><p>Loading internal product detail…</p></main>
+  <footer class="finder-footer"><a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a><p>Internal product detail powered by the main-site export.</p><a href="/product-finds/">All products →</a></footer>
+  <script>
+    import { currencyReferenceNote, formatUsd } from '../../lib/currency';
+    const esc = (text = '') => String(text).replace(/[&<>'"]/g, (char) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#39;', '"':'&quot;' }[char]));
+    const asUsd = (price) => formatUsd(price);
+    const id = new URLSearchParams(location.search).get('id');
+    fetch('/data/findspreadsheet-export.json').then((response) => response.json()).then((catalogue) => {
+      const product = catalogue.products.find((item) => item.id === id);
+      const target = document.querySelector('#product-detail');
+      if (!product) { target.innerHTML = '<a class="back-link" href="/product-finds/">← Back to all products</a><h1>Product not found.</h1><p>This item is not in the latest main-site export.</p>'; return; }
+      document.title = `${product.name} — LitBuy Spreadsheet`;
+      const buy = product.weidianId ? `https://litbuy.com/product/weidian/${encodeURIComponent(product.weidianId)}` : 'https://litbuy.com/register?inviteCode=E32JME4UQ';
+      const weidianImages = [...new Set([product.image, ...(Array.isArray(product.weidianImages) ? product.weidianImages : [])].filter(Boolean))];
+      const qcImages = Array.isArray(product.qcImages) ? product.qcImages.filter(Boolean) : [];
+      const thumbnails = weidianImages.map((image, index) => `<button class="weidian-thumb${index === 0 ? ' is-active' : ''}" type="button" data-weidian-image="${esc(image)}" aria-label="Show Weidian image ${index + 1}"><img src="${esc(image)}" alt="${esc(product.name)} — Weidian view ${index + 1}" loading="lazy" /></button>`).join('');
+      const streamImages = qcImages.length ? qcImages : weidianImages;
+      const photoStream = streamImages.map((image, index) => `<img src="${esc(image)}" alt="${esc(product.name)} — ${qcImages.length ? 'QC photo' : 'Weidian image'} ${index + 1}" loading="lazy" />`).join('');
+      target.innerHTML = `<a class="back-link" href="/category/?category=${encodeURIComponent(product.category)}">← Back to ${esc(product.category)}</a><article class="product-detail-layout"><section class="product-media-column"><header class="product-media-head"><p class="eyebrow">WEIDIAN PRODUCT RECORD</p><h1 data-source-content>${esc(product.name)}</h1></header><div class="continuous-media"><section class="media-section"><div class="media-section-label"><span>01</span><b>WEIDIAN PRODUCT IMAGES</b><small>${weidianImages.length} source view${weidianImages.length === 1 ? '' : 's'}</small></div><figure class="weidian-main"><img id="weidian-main-image" src="${esc(weidianImages[0] || product.image)}" alt="${esc(product.name)}" /><figcaption>Original image from the connected main catalogue.</figcaption></figure><div class="weidian-thumbs" aria-label="Select a Weidian product image">${thumbnails}</div></section><section class="media-section"><div class="media-section-label"><span>02</span><b>${qcImages.length ? 'QC PHOTO STREAM' : 'WEIDIAN IMAGE STREAM'}</b><small>${qcImages.length ? `${qcImages.length} original photo${qcImages.length === 1 ? '' : 's'}` : 'QC unavailable · using this product’s Weidian images'}</small></div><div class="qc-stream">${photoStream}</div></section></div></section><aside class="product-purchase-panel"><p class="purchase-label">${esc(product.category)} · PRODUCT DETAILS</p><h2 data-source-content>${esc(product.name)}</h2><dl><div><dt>USD REFERENCE</dt><dd class="price">${asUsd(product.price)}</dd><small>${currencyReferenceNote} · final price in LitBuy</small></div><div><dt>PRODUCT ID</dt><dd>${esc(product.id)}</dd></div><div><dt>WEIDIAN ID</dt><dd>${esc(product.weidianId || 'Not available')}</dd></div></dl><a class="ink-button" href="${buy}" target="_blank" rel="noreferrer">Buy with LitBuy <span>↗</span></a><nav class="purchase-links"><a href="/category/?category=${encodeURIComponent(product.category)}">Browse ${esc(product.category)} →</a><a href="/search/?q=${encodeURIComponent(product.id)}">Find similar products →</a></nav></aside></article>`;
+      window.litbuyTranslateContent?.(target);
+      const mainImage = document.querySelector('#weidian-main-image');
+      target.querySelectorAll('[data-weidian-image]').forEach((button) => button.addEventListener('click', () => { const image = button.getAttribute('data-weidian-image'); if (!image || !mainImage) return; mainImage.src = image; target.querySelectorAll('[data-weidian-image]').forEach((item) => item.classList.remove('is-active')); button.classList.add('is-active'); }));
+    }).catch(() => { document.querySelector('#product-detail').textContent = 'The main catalogue export is temporarily unavailable.'; });
+  </script>
+</body></html>
