@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { Site } from "../site";
 import { seoArticles } from "../seo-content";
+import { discoverySeoArticles } from "../discovery-articles";
 import localized from "../localized.generated.json";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 const supported = new Set(["en", "fr", "de", "es", "it", "pt", "nl", "pl", "ro"]);
 const staticRoutes = ["categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
+const allSeoArticles = [...seoArticles, ...discoverySeoArticles].filter((article, index, list) => list.findIndex((item) => item.slug === article.slug) === index);
 
 export function generateStaticParams() {
-  const articleRoutes = seoArticles.map((article) => article.slug);
+  const articleRoutes = allSeoArticles.map((article) => article.slug);
   return [
     { slug: [] },
     ...Array.from(supported).flatMap((lang) => [
@@ -22,9 +24,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parts = (await params).slug ?? [];
   const lang = supported.has(parts[0]) ? parts[0] : "en";
   const route = supported.has(parts[0]) ? parts[1] ?? "home" : parts[0] ?? "home";
-  const names: Record<string, string> = { home:"PikoBuy Spreadsheet UK", categories:"PikoBuy Product Categories", products:"PikoBuy Product Details", guide:"PikoBuy Guide: Products, QC, Shipping and Returns", qc:"PikoBuy QC Checklist", shipping:"PikoBuy Shipping Guide", articles:"PikoBuy Research Articles", faq:"PikoBuy Spreadsheet FAQ", seo:"PikoBuy Spreadsheet SEO Articles" };
+  const names: Record<string, string> = { home:"PikoBuy Spreadsheet: Product Finds, QC Photos & Guides", categories:"PikoBuy Product Categories", products:"PikoBuy Product Details", guide:"PikoBuy Guide: Products, QC, Shipping and Returns", qc:"PikoBuy QC Checklist", shipping:"PikoBuy Shipping Guide", articles:"PikoBuy Research Articles", faq:"PikoBuy Spreadsheet FAQ", seo:"PikoBuy Spreadsheet SEO Articles" };
   const languageBundle=(localized as Record<string,{copy:{pageTitles:Record<string,string>;intro:string};articles:typeof seoArticles}>)[lang];
-  const articles=seoArticles.map((base) => {
+  const articles=allSeoArticles.map((base) => {
     const translated = languageBundle?.articles.find((item) => item.slug === base.slug);
     return translated ? {
       ...translated,
