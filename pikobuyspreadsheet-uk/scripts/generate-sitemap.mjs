@@ -5,7 +5,7 @@ const languages = ["en", "fr", "de", "es", "it", "pt", "nl", "pl", "ro"];
 const staticRoutes = ["", "categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
 const source = [
   await readFile(new URL("../app/seo-content.ts", import.meta.url), "utf8"),
-  ...await Promise.all(["01.ts", "02.ts", "03.ts", "04.ts", "05.ts", "06.ts", "07.ts"].map((file) => readFile(new URL(`../app/discovery-articles/${file}`, import.meta.url), "utf8"))),
+  ...await Promise.all(["01.ts", "02.ts", "03.ts", "04.ts", "05.ts", "06.ts", "07.ts", "08.ts"].map((file) => readFile(new URL(`../app/discovery-articles/${file}`, import.meta.url), "utf8"))),
 ].join("\n");
 const articles = [...new Set([...source.matchAll(/slug:\s*"([a-z0-9-]+)"/g)].map((match) => match[1]))];
 const routes = [...staticRoutes, ...articles];

@@ -5,5 +5,6 @@ import { article as bags } from "./04";
 import { article as haul } from "./05";
 import { article as links } from "./06";
 import { article as qcPhotos } from "./07";
+import { article as tshirts } from "./08";
 
-export const discoverySeoArticles = [finds, shoes, outerwear, bags, haul, links, qcPhotos];
+export const discoverySeoArticles = [finds, shoes, outerwear, bags, haul, links, qcPhotos, tshirts];
