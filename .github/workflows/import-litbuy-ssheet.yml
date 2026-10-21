@@ -1,0 +1,32 @@
+name: Import LitBuy ssheet source
+
+on:
+  push:
+    paths:
+      - '.github/litbuy-import/**'
+      - '.github/workflows/import-litbuy-ssheet.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore source folder
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -d .github/litbuy-import ]; then
+            exit 0
+          fi
+          rm -rf litbuy-ssheet-com
+          mkdir -p litbuy-ssheet-com
+          cat .github/litbuy-import/chunk-* | base64 -d | tar -xzf - -C litbuy-ssheet-com
+          rm -rf .github/litbuy-import
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add LitBuy ssheet source" || exit 0
+          git push
