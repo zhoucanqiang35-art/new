@@ -1,0 +1,12 @@
+/index.html / 301
+/:lang/index.html /:lang/ 301
+/categories.html /categories/ 301
+/category.html /categories/ 301
+/product-details.html /product-details/ 301
+/seo-articles.html /seo-articles/ 301
+/faq.html /faq/ 301
+/:lang/categories.html /:lang/categories/ 301
+/:lang/category.html /:lang/categories/ 301
+/:lang/product-details.html /:lang/product-details/ 301
+/:lang/seo-articles.html /:lang/seo-articles/ 301
+/:lang/faq.html /:lang/faq/ 301
