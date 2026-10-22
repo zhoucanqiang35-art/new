@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /search/
+
+Sitemap: https://litbuy-ssheet.com/sitemap.xml
