@@ -18,6 +18,66 @@ document.addEventListener('DOMContentLoaded', () => {
     button.setAttribute('aria-expanded', String(open));
   });
 
+  const languages = [
+    ['en', 'English'],
+    ['ja', '日本語'],
+    ['de', 'Deutsch'],
+    ['fr', 'Français'],
+    ['es', 'Español'],
+    ['it', 'Italiano'],
+    ['pt', 'Português'],
+    ['nl', 'Nederlands'],
+    ['pl', 'Polski']
+  ];
+  const availableLanguages = new Set(languages.map(([code]) => code));
+  const requestedLanguage = new URL(window.location.href).searchParams.get('lang');
+  const savedLanguage = window.localStorage.getItem('pikobuysheet-language');
+  const language = availableLanguages.has(requestedLanguage)
+    ? requestedLanguage
+    : availableLanguages.has(savedLanguage) ? savedLanguage : 'en';
+  const header = document.querySelector('.site-header');
+
+  const applyLanguage = (code, { updateUrl = false } = {}) => {
+    document.documentElement.lang = code;
+    document.documentElement.dataset.language = code;
+    window.localStorage.setItem('pikobuysheet-language', code);
+
+    document.querySelectorAll('a[href]').forEach(link => {
+      const destination = new URL(link.getAttribute('href'), window.location.href);
+      if (destination.origin !== window.location.origin || destination.protocol !== window.location.protocol) return;
+      destination.searchParams.set('lang', code);
+      link.href = destination.href;
+    });
+
+    if (updateUrl) {
+      const current = new URL(window.location.href);
+      current.searchParams.set('lang', code);
+      window.history.replaceState({}, '', current);
+    }
+  };
+
+  if (header && !document.querySelector('#site-language')) {
+    const picker = document.createElement('label');
+    picker.className = 'language-picker';
+    picker.innerHTML = '<span class="sr-only">Language</span><select id="site-language" aria-label="Language"></select>';
+    const select = picker.querySelector('select');
+
+    languages.forEach(([code, name]) => {
+      const option = document.createElement('option');
+      option.value = code;
+      option.textContent = name;
+      option.selected = code === language;
+      select.appendChild(option);
+    });
+
+    select.addEventListener('change', () => {
+      applyLanguage(select.value, { updateUrl: true });
+      window.dispatchEvent(new CustomEvent('pikobuysheet-language-change', { detail: { language: select.value } }));
+    });
+    header.appendChild(picker);
+  }
+  applyLanguage(language);
+
   document.querySelectorAll('[data-main-search]').forEach(form => form.addEventListener('submit', event => {
     event.preventDefault();
     const query = new FormData(form).get('q')?.trim();
