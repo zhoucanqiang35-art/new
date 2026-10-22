@@ -10,6 +10,12 @@ export const metadata: Metadata = {
 
 const articles = [
   {
+    href: "/seo-articles/lolobuy-shipping-address-guide",
+    date: "21 October 2026",
+    title: "LoloBuy Shipping Address Guide: Build a Parcel-Ready Recipient Record",
+    description: "A practical method for entering and auditing a shipping address, separating structured fields, checking duplicate text, and confirming the parcel record.",
+  },
+  {
     href: "/seo-articles/lolobuy-packaging-services-guide",
     date: "19 October 2026",
     title: "LoloBuy Packaging Services Guide: Choose Add-ons Before Parcel Submission",
