@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const languages = [
     ['en', 'English'],
-    ['ja', '日本語'],
+    ['sv', 'Svenska'],
     ['de', 'Deutsch'],
     ['fr', 'Français'],
     ['es', 'Español'],
