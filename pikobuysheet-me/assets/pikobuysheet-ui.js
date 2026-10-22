@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!document.querySelector('script[data-pikobuysheet-i18n]')) {
     const localisation = document.createElement('script');
-    localisation.src = '/assets/pikobuysheet-i18n.js?v=20261022';
+    localisation.src = '/assets/pikobuysheet-content-i18n.js?v=20261024';
     localisation.defer = true;
     localisation.dataset.pikobuysheetI18n = 'true';
     document.head.appendChild(localisation);
