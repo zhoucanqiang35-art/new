@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
     header.appendChild(picker);
   }
   applyLanguage(language);
+  window.dispatchEvent(new CustomEvent('pikobuysheet-language-ready', { detail: { language } }));
 
   document.querySelectorAll('[data-main-search]').forEach(form => form.addEventListener('submit', event => {
     event.preventDefault();
@@ -85,4 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (query) url.searchParams.set('q', query);
     window.location.href = url.toString();
   }));
+
+  if (!document.querySelector('script[data-pikobuysheet-i18n]')) {
+    const localisation = document.createElement('script');
+    localisation.src = '/assets/pikobuysheet-i18n.js?v=20261022';
+    localisation.defer = true;
+    localisation.dataset.pikobuysheetI18n = 'true';
+    document.head.appendChild(localisation);
+  }
 });
