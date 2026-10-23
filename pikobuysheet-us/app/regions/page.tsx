@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { LanguageSelect } from "../../components/language-select";
+
+export const metadata: Metadata = {
+  title: "PikoBuy Spreadsheet Research for the US & Europe",
+  description: "Independent PikoBuy spreadsheet research covering product links, QC checks and parcel planning for English and European-language visitors.",
+  alternates: { canonical: "/regions" },
+};
 
 const locales = [["EN","English","US · UK"],["DE","Deutsch","Germany · Austria"],["FR","Français","France · Belgium"],["ES","Español","Spain"],["IT","Italiano","Italy"],["NL","Nederlands","Netherlands"],["PL","Polski","Poland"],["PT","Português","Portugal"],["SV","Svenska","Sweden"]];
 export default function Regions(){return <main className="route-shell"><Header/><section className="route-hero"><p className="eyebrow"><span></span> REGIONS & LANGUAGES</p><h1>One complete structure;<br /><em>nine local routes.</em></h1><p>Every locale is planned to retain the same navigation, categories, product-detail depth, article intent and FAQ coverage.</p></section><section className="route-content"><div className="locale-grid">{locales.map(([code,name,market],index)=><div key={code} className="locale-row"><span>{String(index+1).padStart(2,"0")}</span><strong>{code}</strong><p>{name}</p><small>{market}</small></div>)}</div></section><Footer/></main>}
