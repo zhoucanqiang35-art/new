@@ -1,0 +1,66 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+import { getSourceProducts, toSourceWebp, type SourceProduct } from '../../lib/findspreadsheet';
+
+export async function getStaticPaths() {
+  const { products } = await getSourceProducts();
+  return products.map((product) => ({ params: { id: product.id }, props: { product } }));
+}
+
+const { product } = Astro.props as { product: SourceProduct };
+const rate = 6.6743;
+const cnyValue = Number(product.price.replace(/[^\d.]/g, ''));
+const usd = Number.isFinite(cnyValue) ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(cnyValue / rate) + ' USD' : 'See source';
+// The static route receives a single upstream gallery, whose individual image
+// roles are not labelled by the build-time endpoint. Treat it as Weidian/source
+// media rather than falsely labelling source shots as QC, and never duplicate
+// those same files in the continuous sequence. The active catalogue route uses
+// the richer read-only media export when it has separately-labelled QC media.
+const weidianImages = [...new Set([product.image, ...product.gallery])].filter(Boolean).slice(0, 12);
+const qcImages: string[] = [];
+const thumbnailImages = qcImages.length ? qcImages : weidianImages;
+const continuousImages = [...weidianImages, ...qcImages];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={'Internal LitBuy product detail for ' + product.title + ', using current FindSpreadsheet media.'} />
+    <title>{product.title} — LitBuy Product Details</title>
+  </head>
+  <body>
+    <SiteNav active="detail" />
+    <main class="detail-page">
+      <a class="back-link" href="/product-details/">← All product details</a>
+      <section class="detail-top">
+        <div class="detail-media">
+          <div class="main-media"><img id="main-image" src={toSourceWebp(weidianImages[0], 960)} alt={product.title} loading="eager" /></div>
+          {thumbnailImages.length ? <div class="qc-thumbs" aria-label={qcImages.length ? 'QC image thumbnails' : 'Source image thumbnails'}>
+            {thumbnailImages.map((image, index) => <button type="button" data-image={toSourceWebp(image, 960)} aria-label={'Show ' + (qcImages.length ? 'QC' : 'source') + ' image ' + (index + 1)}><img src={toSourceWebp(image, 160)} alt={(qcImages.length ? 'QC' : 'Source') + ' image ' + (index + 1)} loading="lazy" /></button>)}
+          </div> : <p class="qc-empty">Additional product-owned media appears here when FindSpreadsheet provides it for this record.</p>}
+        </div>
+        <div class="detail-info">
+          <p class="eyebrow">{product.category.replaceAll('-', ' ')} · PRODUCT ID {product.id}</p>
+          <h1>{product.title}</h1>
+          <div class="detail-price"><strong>{usd}</strong><span>CNY ¥{product.price} source price · USD estimate</span></div>
+          <p>Review the displayed source media and options before continuing. The product card and all browsing routes remain inside this site; final checkout opens only when you choose LitBuy.</p>
+          <a class="primary-link" href={'https://litbuy.com/product/weidian/' + (product.weidianId || product.id)} rel="noreferrer">Continue to LitBuy ↗</a>
+        </div>
+      </section>
+      <section class="continuous-media">
+        <div class="media-label"><p class="eyebrow">CONTINUOUS IMAGE SEQUENCE</p><h2>{qcImages.length ? 'Weidian originals and QC images' : 'Weidian originals'}</h2><span>Original source aspect ratios are preserved.</span></div>
+        <div class="media-strip">{continuousImages.map((image, index) => <img src={toSourceWebp(image, 1280)} alt={product.title + ' source image ' + (index + 1)} loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />)}</div>
+      </section>
+    </main>
+    <script>
+      const main = document.querySelector('#main-image');
+      document.querySelectorAll('.qc-thumbs button').forEach((button) => button.addEventListener('click', () => {
+        main.src = button.dataset.image;
+        document.querySelectorAll('.qc-thumbs button').forEach((thumb) => thumb.classList.toggle('selected', thumb === button));
+        main.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }));
+    </script>
+  </body>
+</html>

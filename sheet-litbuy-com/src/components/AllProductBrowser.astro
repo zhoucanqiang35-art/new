@@ -1,0 +1,62 @@
+---
+const { category = '', perPage = 24, sixColumns = false } = Astro.props;
+---
+<section class:list={['all-product-browser', sixColumns && 'six-column-catalogue']} data-catalogue-browser data-category={category} data-per-page={perPage}>
+  <div class="catalogue-controls">
+    <label>Search all product sheets <input type="search" placeholder="Title, category or product ID" data-catalogue-search /></label>
+    <p data-catalogue-count>Loading the FindSpreadsheet catalogue…</p>
+  </div>
+  <div class="catalogue-card-grid" data-catalogue-grid aria-live="polite"></div>
+  <nav class="catalogue-pagination" data-catalogue-pagination aria-label="Product pages"></nav>
+</section>
+<script is:inline>
+  const i18n = window.__sheetI18n || { t: (value) => value, internal: (value) => value };
+  const asUsd = (value) => {
+    const amount = Number(String(value || '').replace(/[^\d.]/g, ''));
+    return Number.isFinite(amount) && amount > 0 ? `${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(amount / 6.6743)} USD` : i18n.t('See source');
+  };
+  const imageUrl = (url, width) => `${url}${url.includes('?') ? '&' : '?'}format=webp&w=${width}`;
+  const label = (value) => String(value || '').replaceAll('-', ' ');
+  const safeText = (node, value) => node.textContent = value;
+  // The catalogue is delivered as a static gzip asset so the complete
+  // FindSpreadsheet export remains practical to host with this subsite.
+  const loadData = async (path) => {
+    const response = await fetch(`${path}.gz`, { cache: 'force-cache' });
+    if (!response.ok || !response.body || typeof DecompressionStream === 'undefined') throw new Error('catalogue unavailable');
+    return new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).json();
+  };
+  const renderCard = (product) => {
+    const card = document.createElement('article'); card.className = 'catalogue-product-card';
+    const link = document.createElement('a'); link.className = 'catalogue-product-image'; link.href = i18n.internal(`/product/?id=${encodeURIComponent(product.id)}`);
+    const image = document.createElement('img'); image.src = imageUrl(product.image, 480); image.alt = product.title; image.loading = 'lazy'; image.decoding = 'async'; link.append(image);
+    const body = document.createElement('div'); body.className = 'catalogue-product-body';
+    const meta = document.createElement('p'); safeText(meta, `${label(product.category)} · ID ${product.id}`);
+    const title = document.createElement('h2'); safeText(title, product.title);
+    const price = document.createElement('strong'); safeText(price, asUsd(product.price));
+    const source = document.createElement('small'); safeText(source, `CNY ¥${product.price} ${i18n.t('source price')}`);
+    const footer = document.createElement('div'); footer.className = 'catalogue-card-footer';
+    const qc = document.createElement('a'); qc.href = i18n.internal(`/product/?id=${encodeURIComponent(product.id)}#source-media`); safeText(qc, i18n.t('QC / source photos +'));
+    const details = document.createElement('a'); details.href = i18n.internal(`/product/?id=${encodeURIComponent(product.id)}`); safeText(details, i18n.t('View details →'));
+    footer.append(qc, details); body.append(meta, title, price, source, footer); card.append(link, body); return card;
+  };
+  document.querySelectorAll('[data-catalogue-browser]').forEach(async (root) => {
+    const grid = root.querySelector('[data-catalogue-grid]'); const count = root.querySelector('[data-catalogue-count]'); const pager = root.querySelector('[data-catalogue-pagination]'); const input = root.querySelector('[data-catalogue-search]');
+    try {
+      const data = await loadData('/data/findspreadsheet-export.json');
+      const params = new URLSearchParams(window.location.search); const fixedCategory = root.dataset.category || params.get('category') || ''; let query = ''; let page = Math.max(1, Number(params.get('page')) || 1); const configuredPerPage = Number(root.dataset.perPage) || 24; const perPage = window.matchMedia('(max-width: 800px)').matches ? Math.min(configuredPerPage, 12) : configuredPerPage;
+      const draw = () => {
+        const term = query.trim().toLowerCase(); const filtered = data.products.filter((product) => (!fixedCategory || product.category === fixedCategory) && (!term || `${product.id} ${product.title} ${product.category}`.toLowerCase().includes(term)));
+        const pages = Math.max(1, Math.ceil(filtered.length / perPage)); page = Math.min(page, pages); const start = (page - 1) * perPage;
+        grid.replaceChildren(...filtered.slice(start, start + perPage).map(renderCard));
+        safeText(count, `${filtered.length.toLocaleString()} product sheets · page ${page} of ${pages}`);
+        pager.replaceChildren();
+        const make = (text, target, disabled = false) => { const b = document.createElement('button'); b.type = 'button'; b.disabled = disabled; safeText(b, text); b.addEventListener('click', () => { page = target; const next = new URLSearchParams(window.location.search); next.set('page', String(page)); history.replaceState({}, '', `${location.pathname}?${next}#catalogue`); draw(); root.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); return b; };
+        pager.append(make(i18n.t('← Previous'), page - 1, page === 1)); const status = document.createElement('span'); safeText(status, `${page} / ${pages}`); pager.append(status, make(i18n.t('Next →'), page + 1, page === pages));
+      };
+      input.addEventListener('input', () => { query = input.value; page = 1; draw(); }); draw();
+    } catch { safeText(count, i18n.t('The FindSpreadsheet catalogue could not be loaded.')); }
+  });
+</script>
+<style is:global>
+  .all-product-browser{margin-top:38px}.catalogue-controls{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:21px}.catalogue-controls label{display:grid;gap:7px;color:var(--sub);font-size:10px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}.catalogue-controls input{width:min(360px,72vw);border:1px solid var(--line);border-radius:5px;padding:11px;background:#fff;color:var(--ink);font:inherit;font-size:12px;text-transform:none}.catalogue-controls p{margin:0;color:var(--sub);font-size:11px}.catalogue-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.catalogue-product-card{overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#fff}.catalogue-product-image{display:block;aspect-ratio:1.02;background:#fff7f5}.catalogue-product-image img{display:block;width:100%;height:100%;object-fit:cover}.catalogue-product-body{padding:14px}.catalogue-product-body p{margin:0 0 9px;color:var(--blue);font-size:9px;font-weight:900;letter-spacing:.04em;text-transform:uppercase}.catalogue-product-body h2{height:36px;margin:0;overflow:hidden;color:var(--ink);font-size:14px;line-height:1.3}.catalogue-product-body strong{display:block;margin-top:15px;font-size:22px;letter-spacing:-.05em}.catalogue-product-body small{display:block;margin-top:2px;color:var(--sub);font-size:9px}.catalogue-card-footer{display:flex;justify-content:space-between;gap:8px;margin-top:13px;padding-top:11px;border-top:1px solid var(--line)}.catalogue-card-footer a{color:var(--blue);font-size:9px;font-weight:800;text-decoration:none}.catalogue-pagination{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px}.catalogue-pagination button{border:1px solid var(--line);border-radius:4px;background:#fff;padding:9px 11px;color:var(--ink);font:inherit;font-size:11px;font-weight:800;cursor:pointer}.catalogue-pagination button:disabled{opacity:.4;cursor:not-allowed}.catalogue-pagination span{color:var(--sub);font-size:11px}.six-column-catalogue .catalogue-card-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:11px}.six-column-catalogue .catalogue-product-body{padding:10px}.six-column-catalogue .catalogue-product-body p{font-size:8px;margin-bottom:6px}.six-column-catalogue .catalogue-product-body h2{height:32px;font-size:11px}.six-column-catalogue .catalogue-product-body strong{margin-top:9px;font-size:17px}.six-column-catalogue .catalogue-card-footer{margin-top:9px;padding-top:8px}.six-column-catalogue .catalogue-card-footer a{font-size:8px}@media(max-width:800px){.all-product-browser{margin-top:22px}.catalogue-controls{align-items:start;flex-direction:column;gap:8px;margin-bottom:13px}.catalogue-card-grid,.six-column-catalogue .catalogue-card-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.catalogue-product-image{aspect-ratio:1}.catalogue-product-body{padding:7px}.catalogue-product-body p,.six-column-catalogue .catalogue-product-body p{margin-bottom:4px;font-size:7px}.catalogue-product-body h2,.six-column-catalogue .catalogue-product-body h2{height:27px;font-size:9px;line-height:1.25}.catalogue-product-body strong,.six-column-catalogue .catalogue-product-body strong{margin-top:6px;font-size:14px}.catalogue-product-body small{font-size:7px}.catalogue-card-footer,.six-column-catalogue .catalogue-card-footer{display:flex;flex-direction:column;gap:3px;margin-top:5px;padding-top:5px}.catalogue-card-footer a,.six-column-catalogue .catalogue-card-footer a{font-size:7px;line-height:1.1}.catalogue-pagination{margin-top:16px}.catalogue-pagination button{padding:7px 9px}}
+</style>

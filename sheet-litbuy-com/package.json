@@ -1,0 +1,16 @@
+{
+  "name": "sheet-litbuy-com",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "export:catalogue": "node scripts/export-findspreadsheet.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "latest",
+    "astro": "latest"
+  }
+}

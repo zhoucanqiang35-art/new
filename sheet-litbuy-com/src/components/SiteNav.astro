@@ -1,0 +1,118 @@
+---
+const { active = '' } = Astro.props;
+const registerUrl = 'https://litbuy.com/register?inviteCode=E32JME4UQ';
+---
+<header class="nav">
+  <a class="wordmark flame-link" href={registerUrl} rel="noreferrer" aria-label="Register with LitBuy using invite code E32JME4UQ"><span class="flame-crop"><img src="/assets/litbuy-flame.png?v=wordmark-20261022" alt="LitBuy" width="131" height="34" /></span></a>
+  <nav aria-label="Primary">
+    <a class={active === 'home' ? 'active' : ''} href="/">Home</a>
+    <a class={active === 'categories' ? 'active' : ''} href="/categories/">Product Categories</a>
+    <a class={active === 'detail' ? 'active' : ''} href="/product-details/">Product Details</a>
+    <a class={active === 'seo' ? 'active' : ''} href="/seo-articles/">SEO Articles</a>
+    <a class={active === 'faq' ? 'active' : ''} href="/faq/">FAQ</a>
+  </nav>
+  <div class="nav-actions">
+    <details class="languages"><summary><span>Language</span> · <b data-current-language>EN</b></summary><div><a href="?lang=en" data-language-option="en">English</a><a href="?lang=de" data-language-option="de">Deutsch</a><a href="?lang=fr" data-language-option="fr">Français</a><a href="?lang=es" data-language-option="es">Español</a><a href="?lang=it" data-language-option="it">Italiano</a><a href="?lang=pt" data-language-option="pt">Português</a><a href="?lang=nl" data-language-option="nl">Nederlands</a><a href="?lang=pl" data-language-option="pl">Polski</a><a href="?lang=sv" data-language-option="sv">Svenska</a></div></details>
+    <a class="register" href={registerUrl} rel="noreferrer">Register ↗</a>
+  </div>
+</header>
+<script is:inline src="/scripts/site-i18n.js"></script>
+<script is:inline src="/scripts/site-i18n-full.js"></script>
+<style is:global>
+  :root{--ink:#f9f5ff;--sub:#c9bddd;--blue:#ffd20a;--pale:#1c0a3b;--line:#4f247f;--warm:#ff7900;--white:#fff}
+  body{background:#11051f;color:var(--ink)}.nav{max-width:none;height:58px;gap:14px;padding:0 max(18px,calc((100vw - 1160px)/2));background:#ffd20a;color:#18062b}.nav .wordmark{flex:0 0 auto;gap:0}.nav .wordmark>span.flame-crop{display:block;width:131px;height:34px;overflow:visible;background:transparent}.flame-crop img{display:block;width:131px!important;max-width:none!important;height:34px!important}.nav nav{display:flex;flex:0 1 auto;gap:12px}.nav nav a{font-size:9px;white-space:nowrap}.nav nav a.active,.languages summary{color:#4b1476}.nav-actions{display:flex;flex:0 0 auto;align-items:center;gap:9px;margin-left:auto}.register{padding:8px 9px;border-radius:999px;background:#18062b;color:#fff;text-decoration:none;font-size:9px;font-weight:900}.languages{position:relative}.languages summary{list-style:none;cursor:pointer;font-size:9px;font-weight:800;white-space:nowrap}.languages summary::-webkit-details-marker{display:none}.languages[open]>div{position:absolute;z-index:10;right:0;top:22px;display:grid;grid-template-columns:1fr 1fr;min-width:184px;gap:1px;padding:7px;border:1px solid var(--line);border-radius:5px;background:#1b0936;color:#fff;box-shadow:0 10px 25px #0008}.languages a{padding:7px;text-decoration:none;font-size:10px;font-weight:700}.languages a:hover{background:#351061}.intro-without-image{grid-template-columns:1fr;min-height:0;padding-top:66px;padding-bottom:69px;background:radial-gradient(circle at 75% 5%,#6520a8 0,transparent 27%),linear-gradient(130deg,#10031e 0%,#210945 54%,#11051f 100%)}.intro-without-image .intro-copy{width:min(640px,100%);margin-left:auto;margin-right:auto}.intro-without-image .intro-copy>p:not(.eyebrow){max-width:580px}.categories,.trust,.faq{background:#1b0838}.evidence,.guides{background:#11051f}.intro-buttons a{background:#ffd20a;color:#1a092d}.intro-buttons a+ a{background:#31105d;color:#fff}.guide-art{background:#351061;color:#ffd20a}.art-1{background:#4b1476;color:#ffd20a}.art-2{background:#2b0c53;color:#ff7900}.contact{background:linear-gradient(115deg,#ff7900,#ffd20a);color:#1b0930}.contact .eyebrow{color:#45106c}.contact>p{color:#3b1558}.contact a{background:#17052b;color:#fff}.category-grid>a,.category-page a,.catalogue-product-card,.home-faq-grid article,.guide-grid article,.article-list article{background:#250b4c;color:#fff;border-color:#4f247f}.category-grid>a i,.category-page a i{color:#cdb5ed}.category-grid>a b,.category-page a b,.catalogue-product-body p,.catalogue-card-footer a{color:#ffd20a}.finder{background:#210944;border-color:#4f247f}.finder>div{border-color:#4f247f}.finder input,.catalogue-controls input,.catalogue-pagination button{background:#130625;color:#fff;border-color:#4f247f}.thumb,.catalogue-product-image,.main-media,.media-strip{background:#1a0734}.detail-page,.subpage{background:#11051f}.detail-info h1,.detail-card h2,.subpage h1,.long-article h2{color:#fff}.detail-info>p:not(.eyebrow),.detail-card p:not(.eyebrow),.subpage .lead,.media-label span,.qc-empty{color:#c9bddd}.primary-link{background:#ffd20a;color:#1b092e}.qc-thumbs button{background:#1b0938;border-color:#4f247f}.qc-thumbs button.selected{border-color:#ffd20a;box-shadow:0 0 0 2px #ffd20a33}.continuous-media{border-color:#4f247f}.home-faq-grid p,.trust-grid p,.guide-grid p{color:#c9bddd}.home-faq-grid h3,.trust-grid h3,.guide-grid h3{color:#fff}.contact h2{color:#1b092e}footer{background:#090212;color:#d8caee}footer a,footer span,.footer-brand p{color:#d8caee}footer h3,.footer-brand{color:#fff}
+  @media(max-width:980px){.nav nav{display:none}.mini-records{grid-template-columns:repeat(2,1fr)}.detail-top{grid-template-columns:1fr;gap:29px}.detail-info{max-width:620px}}
+  @media(max-width:600px){.nav{height:54px;padding:0 14px}.nav .wordmark>span.flame-crop,.flame-crop img{width:112px!important}.nav-actions{gap:7px}.languages{display:none}.register{font-size:9px;padding:8px 9px}.intro-without-image{padding:30px 18px 34px}.intro h1{font-size:32px}.intro-copy>p:not(.eyebrow){margin:14px 0;font-size:13px}.categories,.evidence,.trust,.guides,.faq,.contact{padding:30px 18px}.category-grid{grid-template-columns:repeat(5,minmax(112px,1fr));gap:7px;overflow-x:auto;padding-bottom:3px}.category-grid>a,.category-page a{min-height:68px;padding:9px}.category-grid>a span,.category-page a span{font-size:10px}.section-title h2,.section-head h2{font-size:27px}.trust,.faq{grid-template-columns:1fr;gap:18px}.trust-grid{grid-template-columns:repeat(2,1fr);gap:13px}.trust-grid h3{margin:5px 0;font-size:12px}.trust-grid p{font-size:10px}.guide-grid,.home-faq-grid{display:flex;overflow-x:auto;gap:10px;padding-bottom:4px}.guide-grid article,.home-faq-grid article{min-width:210px}.guide-art{height:70px;margin:8px 0;font-size:34px}.guide-grid p{min-height:0;font-size:11px}.home-faq{padding-top:30px!important;padding-bottom:30px!important}.home-faq .section-head{padding:0!important;margin-bottom:15px}.home-faq-grid{padding:0!important}.home-faq-grid article{padding:14px}.home-faq-grid h3{font-size:13px}.home-faq-grid p{font-size:11px;line-height:1.45}.contact{grid-template-columns:1fr;gap:15px}.contact h2{font-size:30px}.contact>p{font-size:12px}.subpage,.detail-page{padding:34px 18px 46px}.detail-card{grid-template-columns:1fr;gap:25px}.mini-records{grid-template-columns:repeat(2,1fr)}.detail-top{padding-bottom:38px}.media-label{display:block}.media-label span{display:block;margin-top:10px}}
+</style>
+<style is:global>
+  /* The language menu needs an unclipped header.  The earlier full-bleed
+     clip-path cut off an absolutely-positioned menu as soon as it opened. */
+  @media (min-width:981px){.nav{max-width:1160px;margin:0 auto;padding:0 18px;box-shadow:0 0 0 100vmax #ffd20a;clip-path:none;overflow:visible}}
+</style>
+<style is:global>
+  /* Keep every standalone route as a centred reading frame rather than a full-width canvas. */
+  .subpage,.detail-page{width:100%;max-width:1190px;margin-right:auto;margin-left:auto;padding:58px 26px 82px}
+  .subpage.editorial,.faq-page{max-width:1190px!important;margin-right:auto;margin-left:auto}
+  .category-directory{background:#11051f!important}
+  .faq-page .faq-topic,.faq-page .faq-answer-card,.faq-page .faq-boundary{color:#111}
+  .faq-page .faq-topic h2,.faq-page .faq-answer-card h3,.faq-page .faq-answer-card p,.faq-page .faq-boundary,.faq-page .faq-boundary strong{color:#111!important;font-family:Arial,Helvetica,sans-serif;font-weight:700}
+  /* One durable product-detail frame for both the client-rendered catalogue route
+     and every generated /products/:id route.  The product facts deliberately
+     live in their own visible column, so media sizing can never push title, ID,
+     price or the purchase action out of the layout. */
+  .detail-page{min-width:0}
+  .detail-page .back-link{display:inline-flex;margin:0 0 18px;color:#fff;font-size:13px;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+  .detail-top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.72fr);align-items:start;gap:34px;padding:0 0 42px;border-bottom:1px solid #4f247f}
+  .detail-media{display:grid;min-width:0;gap:12px}
+  .main-media{display:grid;min-height:300px;overflow:hidden;border:1px solid #4f247f;background:#1a0734}
+  .main-media img{display:block;width:100%;height:auto;max-height:680px;object-fit:contain;background:#fff}
+  .qc-thumbs{display:flex;min-width:0;gap:9px;overflow-x:auto;padding:2px 2px 7px;scroll-snap-type:x proximity}
+  .qc-thumbs button{display:block;flex:0 0 104px;overflow:hidden;padding:0;border:2px solid #4f247f;cursor:pointer;scroll-snap-align:start}
+  .qc-thumbs button img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+  .qc-empty{margin:0;padding:13px;border:1px dashed #6a438e;font-size:12px;line-height:1.55}
+  .detail-info{display:block;min-width:0;padding:25px;border:1px solid #4f247f;background:#250b4c;box-shadow:0 16px 32px #05000f42}
+  .detail-info .eyebrow{margin:0 0 13px;color:#ffd20a;font-size:10px;line-height:1.55;overflow-wrap:anywhere}
+  .detail-info h1{display:block;margin:0 0 22px;color:#fff;font-size:clamp(25px,2.8vw,41px);line-height:1.06;letter-spacing:-.055em;overflow-wrap:anywhere}
+  .detail-price{display:grid;gap:5px;margin:0 0 19px;padding:17px 0;border-top:1px solid #5f328c;border-bottom:1px solid #5f328c}
+  .detail-price strong{color:#ffd20a;font-size:27px;line-height:1;letter-spacing:-.045em}
+  .detail-price span{color:#e0d2f1;font-size:12px;font-weight:700;line-height:1.45}
+  .detail-info>p:not(.eyebrow){display:block;margin:0 0 21px;color:#e0d2f1;font-size:13px;line-height:1.65}
+  .primary-link{display:flex;align-items:center;justify-content:center;min-height:45px;padding:12px 16px;color:#1b092e!important;font-size:13px;font-weight:950;text-decoration:none}
+  .primary-link:hover{filter:brightness(1.07)}
+  .continuous-media{display:block;min-width:0;margin:0;padding:37px 0 0;border:0}
+  .media-label{display:flex;align-items:end;justify-content:space-between;gap:22px;margin:0 0 17px}
+  .media-label .eyebrow{margin:0 0 7px;color:#ffd20a}
+  .media-label h2{margin:0;color:#fff;font-size:25px;letter-spacing:-.035em}
+  .media-label span{max-width:390px;font-size:12px;line-height:1.5;text-align:right}
+  /* The stream is a single uninterrupted column: Weidian originals first,
+     then product-owned QC photos, all kept at their native aspect ratio. */
+  .media-strip{display:grid;gap:0;overflow:hidden;border:1px solid #4f247f}
+  .media-strip img{display:block;width:100%;height:auto;margin:0;background:#fff}
+  @media(max-width:980px){.detail-top{grid-template-columns:1fr;gap:24px}.detail-info{max-width:none}.main-media img{max-height:760px}.media-label{align-items:start;flex-direction:column;gap:5px}.media-label span{text-align:left}}
+  @media(max-width:600px){.subpage,.detail-page{width:100%;padding:34px 18px 46px}.subpage.editorial{width:100%}}
+  @media(max-width:600px){.detail-page .back-link{margin-bottom:15px;font-size:12px}.detail-top{gap:18px;padding-bottom:28px}.main-media{min-height:180px}.qc-thumbs{gap:7px}.qc-thumbs button{flex-basis:78px}.detail-info{padding:19px}.detail-info h1{font-size:28px}.detail-price strong{font-size:25px}.continuous-media{padding-top:27px}.media-label h2{font-size:21px}}
+</style>
+<style is:global>
+  /* Grass green / deep coffee palette.  This layer intentionally changes
+     only colour tokens and colour treatments; all layout and content rules
+     remain as they were. */
+  :root{--ink:#3d2a1f;--sub:#705d50;--blue:#6f9638;--pale:#eff3e7;--line:#ced9bd;--warm:#a87540;--white:#fffdf8}
+  body{background:#fffdf8!important;color:#3d2a1f!important}
+  .nav{background:#e2ebd3!important;color:#3d2a1f!important;box-shadow:0 1px 0 #ced9bd!important}
+  .nav nav a.active,.languages summary{color:#52742d!important}.register{background:#3d2a1f!important;color:#fff!important}.languages[open]>div{border-color:#ced9bd!important;background:#fffdf8!important;color:#3d2a1f!important;box-shadow:0 12px 28px #3d2a1f1f!important}.languages a:hover{background:#eff3e7!important}
+  @media (min-width:981px){.nav{box-shadow:0 0 0 100vmax #e2ebd3!important}}
+  .intro-without-image{background:radial-gradient(circle at 78% 0,#cfe0b5 0,transparent 30%),linear-gradient(135deg,#fffdf8 0%,#f1f5e9 52%,#dce8ca 100%)!important}.intro h1,.section-title h2,.section-head h2,.contact h2,.detail-info h1,.detail-card h2,.subpage h1,.long-article h2{color:#3d2a1f!important}.intro-copy>p:not(.eyebrow),.section-head>div>p:last-child,.section-title>p:last-child,.subpage .lead{color:#705d50!important}
+  .categories,.trust,.faq{background:#eff3e7!important}.evidence,.guides,.detail-page,.subpage,.category-directory{background:#fffdf8!important}.intro-buttons a,.primary-link{background:#6f9638!important;color:#fff!important}.intro-buttons a+ a{background:#e5ecd9!important;color:#3d2a1f!important}
+  .category-grid>a,.category-page a,.catalogue-product-card,.home-faq-grid article,.guide-grid article,.article-list article{background:#fffdf8!important;color:#3d2a1f!important;border-color:#ced9bd!important;box-shadow:0 8px 18px #3d2a1f0a}.category-grid>a i,.category-page a i{color:#8b967c!important}.category-grid>a b,.category-page a b,.catalogue-product-body p,.catalogue-card-footer a{color:#6f9638!important}
+  .finder{background:#edf3e3!important;border-color:#ced9bd!important}.finder>div{border-color:#ced9bd!important}.finder input,.catalogue-controls input,.catalogue-pagination button{background:#fffdf8!important;color:#3d2a1f!important;border-color:#ced9bd!important}
+  .thumb,.catalogue-product-image,.main-media,.media-strip{background:#eff3e7!important}.catalogue-product-body h2,.catalogue-product-body strong{color:#3d2a1f!important}.catalogue-product-body small,.catalogue-controls label,.catalogue-controls p,.catalogue-pagination span{color:#705d50!important}
+  .guide-art{background:#dfeacb!important;color:#52742d!important}.art-1{background:#eee5d6!important;color:#765332!important}.art-2{background:#d9e6c5!important;color:#4d6d2a!important}.guide-grid p,.home-faq-grid p,.trust-grid p{color:#705d50!important}.guide-grid h3,.home-faq-grid h3,.trust-grid h3{color:#3d2a1f!important}
+  .contact{background:linear-gradient(125deg,#3d2a1f,#6f9638)!important;color:#fff!important}.contact .eyebrow,.contact>p{color:#eef5e4!important}.contact a{background:#fffdf8!important;color:#3d2a1f!important}
+  .detail-page .back-link{color:#6f9638!important}.detail-top{border-color:#ced9bd!important}.main-media{border-color:#ced9bd!important}.qc-thumbs button{background:#eff3e7!important;border-color:#ced9bd!important}.qc-thumbs button.selected{border-color:#6f9638!important;box-shadow:0 0 0 2px #6f96382b!important}.qc-empty{color:#705d50!important;border-color:#a9bb91!important}.detail-info{background:#fffdf8!important;border-color:#ced9bd!important;box-shadow:0 16px 32px #3d2a1f12!important}.detail-info .eyebrow,.detail-price strong,.media-label .eyebrow{color:#6f9638!important}.detail-price{border-color:#d9e3ca!important}.detail-price span,.detail-info>p:not(.eyebrow),.media-label span{color:#705d50!important}.media-label h2{color:#3d2a1f!important}.media-strip{border-color:#ced9bd!important}
+  .article-index,.keyword-line,.editor-note{background:#eff3e7!important;border-color:#ced9bd!important;color:#3d2a1f!important}.article-index a{color:#6f9638!important}.long-article{border-color:#ced9bd!important}.long-article h3{color:#3d2a1f!important}.long-article section p,.article-dek{color:#705d50!important}.keyword-line{border-left-color:#6f9638!important}
+  .faq-page .faq-topic,.faq-page .faq-answer-card{background:#fffdf8!important;border-color:#ced9bd!important}.faq-page .faq-boundary{background:#e8f0da!important}.faq-jump a{background:#fffdf8!important;border-color:#ced9bd!important;color:#3d2a1f!important}.faq-jump a:hover{border-color:#6f9638!important;color:#6f9638!important}
+  footer{background:#2c1c13!important;color:#f0eadf!important}footer a,footer span,.footer-brand p{color:#ded2c1!important}footer h3,.footer-brand{color:#fff!important}
+</style>
+<style is:global>
+  /* Reading-space pass: wider desktop canvases, larger type and deliberately
+     generous cards. It keeps the compact mobile layout intact. */
+  @media(min-width:801px){
+    .nav{max-width:1360px!important;height:72px!important;padding-left:34px!important;padding-right:34px!important}.nav nav{gap:20px!important}.nav nav a,.languages summary,.register{font-size:11px!important}.register{padding:10px 14px!important}
+    .intro{max-width:1360px!important;min-height:500px!important;padding:48px 46px 72px!important}.intro-without-image .intro-copy{width:min(760px,100%)!important}.intro h1{font-size:clamp(48px,5vw,70px)!important}.intro-copy>p:not(.eyebrow){max-width:670px!important;font-size:18px!important;line-height:1.72!important}.intro-buttons a{padding:15px 19px!important;font-size:14px!important}
+    .categories,.evidence,.trust,.guides,.faq,.contact{padding:88px max(42px,calc((100vw - 1288px)/2))!important}.section-title h2,.section-head h2{font-size:43px!important}.section-head>div>p:last-child,.section-title>p:last-child{max-width:690px!important;font-size:16px!important;line-height:1.7!important}
+    .category-grid{gap:18px!important;margin-top:38px!important}.category-grid>a,.category-page a{position:relative;display:flex!important;min-height:124px!important;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:20px!important;border-radius:10px!important;text-decoration:none!important}.category-grid>a i,.category-page a i{font-size:12px!important}.category-grid>a span,.category-page a span{font-size:17px!important;line-height:1.25!important}.category-grid>a b,.category-page a b{right:20px!important;bottom:16px!important;font-size:22px!important}
+    .finder{margin-top:38px!important}.finder>div{min-height:126px!important;padding:22px!important}.finder label{font-size:11px!important}.finder input{padding:13px!important;font-size:13px!important}.count{font-size:13px!important}
+    .all-product-browser{margin-top:48px!important}.catalogue-controls label{font-size:11px!important}.catalogue-controls input{width:min(430px,72vw)!important;padding:13px!important;font-size:14px!important}.catalogue-controls p{font-size:13px!important}.catalogue-card-grid{gap:20px!important}.catalogue-product-body{padding:18px!important}.catalogue-product-body h2{height:42px!important;font-size:16px!important}.catalogue-product-body p{font-size:10px!important}.catalogue-product-body strong{font-size:25px!important}.catalogue-product-body small,.catalogue-card-footer a{font-size:10px!important}.catalogue-card-footer{margin-top:16px!important;padding-top:13px!important}
+    .subpage,.detail-page,.subpage.editorial,.faq-page{width:100%!important;max-width:1360px!important;padding:68px 34px 92px!important}.subpage .lead{max-width:850px!important;font-size:18px!important;line-height:1.72!important}.detail-page .back-link{margin-bottom:26px!important;font-size:15px!important}.detail-top{grid-template-columns:minmax(0,1.12fr) minmax(370px,.78fr)!important;gap:48px!important;padding-bottom:54px!important}.detail-info{padding:32px!important}.detail-info h1{font-size:clamp(34px,3vw,50px)!important}.detail-info>p:not(.eyebrow){font-size:15px!important;line-height:1.72!important}.detail-price strong{font-size:33px!important}.detail-price span{font-size:14px!important}.primary-link{min-height:52px!important;font-size:15px!important}.main-media{min-height:380px!important}.qc-thumbs{gap:12px!important}.qc-thumbs button{flex-basis:126px!important}.continuous-media{padding-top:48px!important}.media-label h2{font-size:31px!important}.media-label span{font-size:14px!important}
+    .guide-grid{gap:23px!important}.guide-grid article{padding:22px!important}.guide-grid h3{font-size:21px!important}.guide-grid p{font-size:14px!important;line-height:1.7!important}.home-faq-grid{gap:18px!important}.home-faq-grid article{padding:25px!important}.home-faq-grid h3{font-size:19px!important}.home-faq-grid p{font-size:14px!important;line-height:1.72!important}
+    footer{padding:62px max(42px,calc((100vw - 1288px)/2))!important}footer a,footer span{font-size:13px!important}footer h3{font-size:14px!important}.footer-brand b{font-size:17px!important}.footer-brand p{max-width:310px!important;font-size:13px!important}
+  }
+</style>
+<style is:global>
+  /* A single vertical language list keeps every available locale readable.
+     The supported locales stay unchanged so each choice still has a complete
+     in-site translation, instead of exposing an unfinished tenth locale. */
+  .languages[open]>div{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-auto-rows:minmax(34px,auto)!important;gap:2px!important;min-width:172px!important;padding:6px!important;overflow:visible!important}
+  .languages[open] a{display:flex!important;align-items:center!important;padding:8px 10px!important;color:#3d2a1f!important;font-size:12px!important;line-height:1.2!important;white-space:nowrap!important;border-radius:3px!important}
+  @media(min-width:801px){.nav{clip-path:none!important;overflow:visible!important}.languages[open]>div{top:30px!important;z-index:1000!important}}
+</style>

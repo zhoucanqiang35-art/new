@@ -1,0 +1,32 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+---
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>LitBuy Product Details</title></head><body>
+<SiteNav active="detail" /><main class="detail-page"><a class="back-link" href="/product-details/">← All product details</a><div id="product-view" class="generic-product-view" aria-live="polite">Loading source product…</div></main>
+<script is:inline>
+const outlet=document.querySelector('#product-view');const id=new URLSearchParams(location.search).get('id');const t=window.__sheetI18n?.t||((value)=>value);
+const usd=value=>{const n=Number(String(value||'').replace(/[^\d.]/g,''));return Number.isFinite(n)&&n>0?`${new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2}).format(n/6.6743)} USD`:t('See source')};
+const webp=(url,width)=>`${url}${url.includes('?')?'&':'?'}format=webp&w=${width}`;const unique=items=>[...new Set(items.filter(Boolean))];
+const makeImage=(url,width,alt,eager=false)=>{const node=document.createElement('img');node.src=webp(url,width);node.alt=alt;node.loading=eager?'eager':'lazy';node.decoding='async';return node};
+const loadData=async path=>{const response=await fetch(`${path}.gz`,{cache:'force-cache'});if(!response.ok||!response.body||typeof DecompressionStream==='undefined')throw new Error('catalogue unavailable');return new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).json()};
+Promise.all([loadData('/data/findspreadsheet-export.json'),loadData('/data/findspreadsheet-media.json')]).then(([catalogue,media])=>{
+ return {catalogue,media};
+}).then(({catalogue,media: mediaIndex})=>{
+ const product=catalogue.products.find(item=>item.id===id);if(!product){outlet.textContent=t('This product is not in the current FindSpreadsheet export.');return}
+ const sourceMedia=mediaIndex.products.find(item=>item.id===id)||{};
+ // Read-only, product-owned FindSpreadsheet media only. When there is no
+ // separate QC response, the product's own source photos remain switchable;
+ // unrelated recommendations are never used as a fallback.
+ const weidianImages=unique((sourceMedia.weidianImages||product.weidianImages||[product.image]).slice(0,12));
+ const qcImages=unique(sourceMedia.qcImages||product.qcImages||product.gallery||[]);
+ const thumbnails=qcImages.length?qcImages:weidianImages;
+ const continuousImages=unique([...weidianImages,...qcImages]);
+ const top=document.createElement('section');top.className='detail-top';const media=document.createElement('div');media.className='detail-media';const mainMedia=document.createElement('div');mainMedia.className='main-media';const main=makeImage(weidianImages[0],1200,product.title,true);main.id='main-image';mainMedia.append(main);media.append(mainMedia);
+ const thumbs=document.createElement('div');thumbs.className='qc-thumbs';thumbs.setAttribute('aria-label',t('QC image thumbnails'));
+ if(thumbnails.length){const buttons=[];thumbnails.forEach((url,index)=>{const button=document.createElement('button');button.type='button';button.dataset.image=webp(url,1200);button.setAttribute('aria-label',`${t('Show')} ${qcImages.length?'QC':t('source')} ${t('image')} ${index+1}`);button.append(makeImage(url,160,`${product.title} ${qcImages.length?'QC':t('source')} ${t('image')} ${index+1}`));button.addEventListener('click',()=>{main.src=button.dataset.image;buttons.forEach(item=>item.classList.toggle('selected',item===button));main.scrollIntoView({behavior:'smooth',block:'nearest'})});buttons.push(button);thumbs.append(button)});buttons[0].classList.add('selected');}else{thumbs.classList.add('qc-empty');thumbs.textContent=t('No additional product-owned media is currently available from FindSpreadsheet.')}media.append(thumbs);
+ const info=document.createElement('div');info.className='detail-info';const eyebrow=document.createElement('p');eyebrow.className='eyebrow';eyebrow.textContent=`${String(product.category||'').replaceAll('-',' ')} · ${t('PRODUCT ID')} ${product.id}`;const title=document.createElement('h1');title.textContent=product.title;const price=document.createElement('div');price.className='detail-price';price.innerHTML=`<strong>${usd(product.price)}</strong><span>CNY ¥${product.price} ${t('source price')} · ${t('USD estimate')}</span>`;const note=document.createElement('p');note.textContent=t('Product information and every image in this sequence are supplied by FindSpreadsheet. Review the source details before opening the final LitBuy route.');const buy=document.createElement('a');buy.className='primary-link';buy.href=`https://litbuy.com/product/weidian/${product.weidianId||product.id}`;buy.rel='noreferrer';buy.textContent=t('Continue to LitBuy ↗');info.append(eyebrow,title,price,note,buy);top.append(media,info);
+ const stream=document.createElement('section');stream.id='source-media';stream.className='continuous-media';const label=document.createElement('div');label.className='media-label';label.innerHTML=`<div><p class="eyebrow">${t('CONTINUOUS IMAGE SEQUENCE')}</p><h2>${t(qcImages.length?'Weidian originals and QC images':'Weidian originals')}</h2></div><span>${weidianImages.length} ${t(weidianImages.length===1?'product-owned original':'product-owned originals')}${qcImages.length?` · ${qcImages.length} QC ${t(qcImages.length===1?'image':'images')}`:''}</span>`;const strip=document.createElement('div');strip.className='media-strip';continuousImages.forEach((url,index)=>strip.append(makeImage(url,1280,`${product.title} ${t('source')} ${t('image')} ${index+1}`,index===0)));stream.append(label,strip);outlet.replaceChildren(top,stream);
+}).catch(()=>outlet.textContent=t('The FindSpreadsheet catalogue could not be loaded.'));
+</script></body></html>

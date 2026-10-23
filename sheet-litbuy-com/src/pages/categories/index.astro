@@ -1,0 +1,11 @@
+---
+import '../../styles/global.css';
+import SiteNav from '../../components/SiteNav.astro';
+import AllProductBrowser from '../../components/AllProductBrowser.astro';
+const categories = [
+  ['All Products', ''], ['ShortSets', 'ShortSets'], ['Shoes', 'shoes'], ['Accessories', 'accessories'], ['Hoodies Sweaters', 'hoodies-sweaters'],
+  ['Pants Shorts', 'pants-shorts'], ['Electronics', 'electronics'], ['T Shirts', 't-shirts'], ['Jackets', 'jackets'], ['Headwear', 'headwear'],
+];
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width" /><title>LitBuy Product Categories</title></head><body><SiteNav active="categories" /><main><section class="category-directory"><div class="subpage category-directory-inner"><p class="eyebrow">COMPLETE PRODUCT DIRECTORY</p><h1>Product Categories</h1><p class="lead">Browse a main category or continue directly to the complete internally displayed FindSpreadsheet catalogue.</p><div class="category-grid category-page">{categories.map(([name, slug], index) => <a href={slug ? '/categories/?category=' + encodeURIComponent(slug) + '#all-products' : '#all-products'}><i>{String(index + 1).padStart(2,'0')}</i><span>{name}</span><b>→</b></a>)}</div></div></section><section id="all-products" class="subpage category-products"><p class="eyebrow">ALL FINDSHEETSPREADSHEET PRODUCTS</p><h2>All Products</h2><p class="lead">The full source catalogue stays inside this site. This first page shows 60 products in a 6 × 10 grid; use internal search and pagination for every remaining record.</p><AllProductBrowser perPage={60} sixColumns /></section></main></body></html>
+<style is:global>.category-directory{background:#fff5f3}.category-directory-inner{padding-top:56px;padding-bottom:56px}.category-directory .lead{margin-bottom:32px}.category-products{padding-top:65px}.category-products h2{margin:0;font-size:clamp(37px,5vw,62px);letter-spacing:-.06em}</style>
