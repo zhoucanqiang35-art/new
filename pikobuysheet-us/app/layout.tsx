@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   },
   description:
     "Independent PikoBuy spreadsheet research for product links, category comparison, QC photo checks and practical parcel planning.",
+  keywords: [
+    "pikobuy spreadsheet",
+    "pikobuy product links",
+    "pikobuy QC photos",
+    "pikobuy shipping weight",
+    "pikobuy spreadsheet guide",
+  ],
   alternates: {
     canonical: "/",
   },
