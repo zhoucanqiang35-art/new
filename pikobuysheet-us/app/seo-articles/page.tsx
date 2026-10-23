@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { LanguageSelect } from "../../components/language-select";
+import { seoArticles } from "../../components/seo-article-data";
+
+export const metadata: Metadata = {
+  title: "PikoBuy Spreadsheet Guides: Links, QC Photos & Shipping",
+  description: "Independent PikoBuy spreadsheet guides for product links, QC photos, shipping weight, parcel planning and practical order research.",
+  alternates: { canonical: "/seo-articles" },
+};
 
 const sections = [
   {
@@ -52,7 +60,23 @@ const sections = [
 ];
 
 export default function SeoArticles() {
-  return <main className="route-shell"><Header />
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "PikoBuy Spreadsheet Guides",
+    url: "https://pikobuysheet.us/seo-articles",
+    description: "Independent guides for product-link comparison, QC photos and responsible parcel planning.",
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: seoArticles.map((article, position) => ({
+        "@type": "ListItem",
+        position: position + 1,
+        name: article.title,
+        url: `https://pikobuysheet.us/seo-articles/${article.slug}`,
+      })),
+    },
+  };
+  return <main className="route-shell"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><Header />
     <section className="route-hero"><p className="eyebrow"><span></span> SEO ARTICLE · ORDER &amp; SHIPPING</p><h1>How the PikoBuy order flow works—<br /><em>and what to check at each step.</em></h1><p>Published as a practical buyer guide using PikoBuy’s current public beginner, shipping and returns information.</p></section>
     <article className="route-content longform-article">
       <p className="article-kicker">Independent research guide · approximately 1,520 words</p>
@@ -60,7 +84,12 @@ export default function SeoArticles() {
       {sections.map((section, index) => <section key={section.heading}><p className="article-number">0{index + 1}</p><h2>{section.heading}</h2>{section.body.map(paragraph => <p key={paragraph}>{paragraph}</p>)}</section>)}
       <aside className="source-note"><strong>Research basis.</strong> This article reflects PikoBuy’s publicly available Beginner’s Guide, Shipping Terms, Returns &amp; Exchanges policy and shipping-estimate interface, reviewed September 5, 2026. Policies and route availability can change; verify the current terms before payment.</aside>
       <a className="article-database" href="https://findspreadsheet.com">Open the product database <span>↗</span></a>
-    </article><Footer />
+    </article>
+    <section className="route-content category-catalog" aria-labelledby="related-guides">
+      <div className="section-top"><div><p className="eyebrow"><span></span> RELATED GUIDES</p><h2 id="related-guides">Continue the research.</h2></div><p className="section-note">Each guide answers one practical question without treating a listing, QC image or estimate as a guarantee.</p></div>
+      <div className="category-grid">{seoArticles.map((article) => <article className="category-card" key={article.slug}><div className="category-icon" aria-hidden="true">↗</div><h3>{article.title}</h3><p>{article.description}</p><a href={`/seo-articles/${article.slug}`}>Read guide <span>↗</span></a></article>)}</div>
+    </section>
+    <Footer />
   </main>
 }
 
