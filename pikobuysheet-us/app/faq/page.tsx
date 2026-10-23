@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { LanguageSelect } from "../../components/language-select";
+
+export const metadata: Metadata = {
+  title: "PikoBuy FAQ: QC, Returns, Shipping & Tracking",
+  description: "Fact-based PikoBuy FAQ covering product links, warehouse QC photos, return timing, shipping estimates, routes and parcel tracking.",
+  alternates: { canonical: "/faq" },
+};
 
 const questions = [
   ["What can PikoBuy help a shopper do?", "PikoBuy says shoppers can search directly on its platform or submit product links, images or sourcing requests. It describes a buy-for-me service, warehouse inspection and international shipping from its China warehouse. These are platform services; the shopper should still confirm the exact product variant and seller conditions before payment."],
