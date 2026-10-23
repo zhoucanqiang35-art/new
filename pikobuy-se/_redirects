@@ -3,6 +3,7 @@
 /budget-finds/  /budget-finds.html  200
 /designer-finds/  /designer-finds.html  200
 /qc-guide/  /qc-guide.html  200
+/seo-articles/  /articles.html  200
 /:topic/site.css  /site.css  200
 /:topic/site.js  /site.js  200
 /:topic/topic-pages.js  /topic-pages.js  200

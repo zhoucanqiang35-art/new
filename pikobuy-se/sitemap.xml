@@ -8,6 +8,16 @@
   <url><loc>https://pikobuysheet.se/designer-finds/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pikobuysheet.se/qc-guide/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://pikobuysheet.se/details.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://pikobuysheet.se/articles.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pikobuysheet.se/seo-articles/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/spreadsheet/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/qc-photos/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/shipping-cost/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/how-it-works/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/shipping-estimate/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/returns/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/source-links/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/shoes/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/hoodies/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://pikobuysheet.se/guides/safety/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://pikobuysheet.se/faq.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
