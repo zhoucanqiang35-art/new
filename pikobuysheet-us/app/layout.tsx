@@ -4,13 +4,19 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://pikobuysheet.us"),
   title: {
-    default: "PikoBuy Sheet | Better finds, clearer checks",
+    default: "PikoBuy Spreadsheet: Product Links, QC Photos & Shipping Guide",
     template: "%s | PikoBuy Sheet",
   },
   description:
-    "An independent research hub for comparing product categories, QC details, and buying routes before continuing to FindSpreadsheet.",
-  other: {
-    "codex-preview": "development",
+    "Independent PikoBuy spreadsheet research for product links, category comparison, QC photo checks and practical parcel planning.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "PikoBuy Spreadsheet: Product Links, QC Photos & Shipping Guide",
+    description: "Independent research for product links, QC photo checks and responsible parcel planning.",
   },
   icons: {
     icon: "/favicon.svg",
