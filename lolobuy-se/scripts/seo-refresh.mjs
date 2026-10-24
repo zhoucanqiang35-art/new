@@ -128,8 +128,8 @@ const articles = [
 function esc(value) {
   return value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 }
-function normalise(path) { return path === '/' ? '/' : `/${path.replace(/^\/+|\/+$/g, '')}/`; }
-function pageUrl(path) { return `${origin}${normalise(path)}`; }
+function normalise(path) { return !path || path === '/' ? '/' : `/${path.replace(/^\/+|\/+$/g, '')}/`; }
+function pageUrl(path) { return path === '/' ? origin : `${origin}${normalise(path)}`; }
 function head({ title, description, path, type = 'website' }) {
   const url = pageUrl(path);
   return `<meta name="robots" content="index,follow,max-image-preview:large" />
@@ -162,6 +162,10 @@ async function refreshExisting(path) {
   const file = join(root, path, 'index.html');
   let html = await readFile(file, 'utf8');
   html = html.replace(/<meta name="robots" content="noindex,nofollow"\s*\/>/g, '<meta name="robots" content="index,follow,max-image-preview:large" />');
+  // Only declare alternates for URLs that actually exist. Query-string UI translation
+  // is not a separately indexable language page, so it must not be advertised here.
+  html = html.replace(/\s*<link rel="alternate" hreflang="[^"]+" href="[^"]+"\s*\/>/g, '');
+  html = html.replaceAll('https://lolobuy.se//', 'https://lolobuy.se/');
   if (!html.includes('rel="canonical"')) {
     const title = (html.match(/<title>([^<]+)<\/title>/i)?.[1] || 'LoloBuy research').trim();
     const description = html.match(/<meta\s+name="description"\s+content="([^"]+)"/i)?.[1] || 'Independent LoloBuy product research, QC and parcel-planning information.';
