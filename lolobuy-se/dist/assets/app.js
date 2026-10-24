@@ -271,7 +271,8 @@ function applyHomepageCopy(lang) {
   });
 }
 function currentLanguage() {
-  return (new URLSearchParams(location.search).get("lang") || localStorage.getItem("lb-lang") || "en").toLowerCase();
+  const routeLanguage = location.pathname.split('/').filter(Boolean)[0];
+  return (window.__INITIAL_LOCALE__ || new URLSearchParams(location.search).get("lang") || (['de','fr','es','it','pt','nl','pl','sv'].includes(routeLanguage) ? routeLanguage : '') || localStorage.getItem("lb-lang") || "en").toLowerCase();
 }
 function rememberEnglishPage() {
   if (pageLocale.nodes.length) return;
@@ -322,11 +323,7 @@ async function applyLanguage(lang) {
   applyHomepageCopy(lang);
 }
 function init() {
-  const lang = (
-    new URLSearchParams(location.search).get("lang") ||
-    localStorage.getItem("lb-lang") ||
-    "en"
-  ).toLowerCase();
+  const lang = currentLanguage();
   document.documentElement.lang = lang;
   updateNavigation(lang);
   rememberEnglishPage();
@@ -348,9 +345,11 @@ function init() {
       try {
         await applyLanguage(next);
         localStorage.setItem("lb-lang", next);
-        const u = new URL(location.href);
-        u.searchParams.set("lang", next);
-        history.replaceState({}, "", u);
+        const known = ['de','fr','es','it','pt','nl','pl','sv'];
+        const parts = location.pathname.split('/').filter(Boolean);
+        if (known.includes(parts[0])) parts.shift();
+        const tail = parts.length ? `/${parts.join('/')}/` : '/';
+        location.href = next === 'en' ? tail : `/${next}${tail}`;
       } finally {
         select.disabled = false;
       }
