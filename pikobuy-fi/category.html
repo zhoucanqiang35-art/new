@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Products | PikoBuy Finland</title>
+  <link rel="icon" href="https://www.pikobuy.com/images/common/pikobuy-icon-192.png"><link rel="stylesheet" href="/internal-pages.css">
+  <style>.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{border:1px solid var(--line);background:#fff;border-radius:15px;overflow:hidden}.product img{display:block;width:100%;aspect-ratio:1;object-fit:cover;background:#edf7f4}.product div{padding:14px}.product small{color:#377964;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.product h2{font-size:1rem;line-height:1.25;margin:7px 0;min-height:2.5em}.price{font-weight:900;color:var(--blue)}.product a{display:inline-block;margin-top:10px;color:var(--blue);font-weight:800;font-size:.88rem}.count{color:var(--muted);font-size:.9rem}@media(max-width:800px){.product-grid{grid-template-columns:repeat(2,1fr);gap:10px}.product div{padding:11px}.product h2{font-size:.9rem}}</style>
+</head>
+<body>
+  <header class="shell header"><a class="brand" href="index.html"><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy"></a><nav class="nav"><a data-i18n="home" href="index.html">Home</a><a href="categories.html">Categories</a><a class="active" data-i18n="products" href="category.html?category=all">Product Details</a><a href="checklist.html">Checklist</a><a data-i18n="seo" href="seo-articles.html">SEO Articles</a><a data-i18n="faq" href="faq.html">FAQ</a></nav><select class="language-select" aria-label="Language"><option value="en">Language · EN</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="nl">Nederlands</option><option value="pl">Polski</option><option value="sv">Svenska</option></select><a data-i18n="register" class="register" target="_blank" rel="nofollow" href="https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716">Register ↗</a></header>
+  <main><section class="hero"><div class="shell"><span class="eyebrow">PikoBuy product catalogue</span><h1 id="title">All Products</h1><p id="summary">Loading the matching category.</p></div></section><section class="shell section"><p class="count" id="count"></p><div class="product-grid" id="grid"></div></section></main>
+  <footer><div class="shell">Independent PikoBuy spreadsheet discovery and product-guide project.</div></footer>
+  <script>
+    const labels={all:'All Products',shoes:'Shoes','hoodies-sweaters':'Hoodies & Sweaters','t-shirts':'T-Shirts',jackets:'Jackets','pants-shorts':'Pants & Shorts',headwear:'Headwear',accessories:'Accessories',jersey:'Jerseys',electronics:'Electronics','other-stuff':'Other Finds'};
+    const params=new URLSearchParams(location.search), c=params.get('category')||'all', q=(params.get('search')||'').trim().toLowerCase();
+    const esc=v=>String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+    document.querySelector('#title').textContent=q?'Search results':(labels[c]||'All Products');
+    fetch('/products.json').then(r=>r.json()).then(data=>{
+      const list=data.products.filter(p=>{const categoryMatch=c==='all'||p.category===c;const searchMatch=!q||[p.title,p.id,p.weidianId,p.categoryLabel].join(' ').toLowerCase().includes(q);return categoryMatch&&searchMatch});
+      document.querySelector('#summary').textContent=q?`Results for “${params.get('search')}” within this site.`:'Showing imported product data and child-site product details.';
+      document.querySelector('#count').textContent=list.length+' products currently imported';
+      document.querySelector('#grid').innerHTML=list.map(p=>`<article class="product"><img loading="lazy" src="${p.image}" alt="${esc(p.title)}"><div><small>${esc(p.categoryLabel)}</small><h2>${esc(p.title)}</h2><span class="price">$${(Number(p.price||0)*.14).toFixed(2)}</span><br><a href="product.html?id=${encodeURIComponent(p.id)}">View product details →</a></div></article>`).join('')||'<p>No products matched this search. Try a different product name or category.</p>';
+    }).catch(()=>{document.querySelector('#summary').textContent='The product export is temporarily unavailable.'});
+  </script><script src="/site.js" defer></script>
+</body>
+</html>
