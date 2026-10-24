@@ -3,13 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Independent PikoBuy research guides covering Tmall, Taobao and 1688 buying, packaging, tracking, payments, customs, QC, returns and shipping.">
-    <title>PikoBuy Articles | PikoBuy China</title>
+    <meta name="description" content="PikoBuy Spreadsheet research guides for searchable finds, QC photos, Weidian, Yupoo, shipping estimates, size charts and EU customs planning.">
+    <title>PikoBuy Spreadsheet Guides: QC Photos, Finds & Shipping Research</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body data-page="articles">
     <div id="app"></div>
     <script src="/content.js"></script>
+    <script src="/new-articles.js"></script>
     <script src="/app.js"></script>
     <script>
       const article = document.querySelector(".article");
@@ -19,6 +20,7 @@
         more.innerHTML = `
           <div class="section-top"><div><span class="meta">Research library</span><h2>More PikoBuy research guides</h2></div></div>
           <div class="list">
+            ${['weidian','yupoo','weight','size','euvat'].map(key=>{const item=getLocalArticle(key,lang);const path={weidian:'pikobuy-weidian-guide.html',yupoo:'pikobuy-yupoo-guide.html',weight:'pikobuy-volumetric-weight-guide.html',size:'pikobuy-size-chart-guide.html',euvat:'pikobuy-eu-vat-customs-guide.html'}[key];return `<a class="card" href="/${path}?lang=${lang}"><span class="meta">New · 24 October 2026</span><h3>${item.title}</h3><p>${item.lead}</p></a>`}).join('')}
             <a class="card" href="/pikobuy-tmall-buying-guide.html"><span class="meta">New · 3 October 2026</span><h3>How to Buy from Tmall with PikoBuy</h3><p>Separate marketplace signals from item evidence, match the exact variant and verify visible warehouse facts before shipping.</p></a>
             <a class="card" href="/pikobuy-taobao-buying-guide.html"><span class="meta">29 September 2026</span><h3>How to Buy from Taobao with PikoBuy</h3><p>Preserve the seller, exact option and size evidence, then verify the warehouse item before international shipping.</p></a>
             <a class="card" href="/pikobuy-packaging-guide.html"><span class="meta">27 September 2026</span><h3>PikoBuy Packaging Guide</h3><p>Choose between minimal and reinforced packaging only after inspection, return decisions and protection review.</p></a>

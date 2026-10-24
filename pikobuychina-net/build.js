@@ -27,12 +27,19 @@ for (const file of [
   'pikobuy-packaging-guide.html',
   'pikobuy-taobao-buying-guide.html',
   'pikobuy-tmall-buying-guide.html',
+  'pikobuy-weidian-guide.html',
+  'pikobuy-yupoo-guide.html',
+  'pikobuy-volumetric-weight-guide.html',
+  'pikobuy-size-chart-guide.html',
+  'pikobuy-eu-vat-customs-guide.html',
   'faq.html',
   'styles.css',
   'content.js',
+  'new-articles.js',
   'app.js',
   'sitemap.xml',
-  'robots.txt'
+  'robots.txt',
+  '_redirects'
 ]) {
   fs.copyFileSync(path.join(__dirname, file), path.join(out, file));
 }
