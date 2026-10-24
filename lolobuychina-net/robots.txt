@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 Sitemap: https://lolobuychina.net/sitemap.xml
 Sitemap: https://lolobuychina.net/sitemap.txt
+Sitemap: https://lolobuychina.net/priority-sitemap.xml
