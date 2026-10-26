@@ -32,3 +32,6 @@ $('search-form').addEventListener('submit',e=>{e.preventDefault();const q=$('sea
 document.head.insertAdjacentHTML('beforeend','<link rel="stylesheet" href="compact.css">');
 document.head.insertAdjacentHTML('beforeend','<link rel="stylesheet" href="compact-3cm.css">');
 render();
+/* The public domain is live: keep client-rendered language titles out of preview mode. */
+document.title=`${copy[lang].title} | Pikobuy Spreadsheet`;
+const baseHomeRender=render;render=function(){baseHomeRender();document.title=`${copy[lang].title} | Pikobuy Spreadsheet`;};
