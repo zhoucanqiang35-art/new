@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { messages, validLocale } from '../../lib/i18n';
+const locale=validLocale(Astro.params.locale); const t=messages[locale];
+---
+<BaseLayout locale={locale} title={`${t.guideTitle} | ${t.hero}`} description={t.guideBody}><section class="reading page-head"><p class="eyebrow">SEO · QC · SHIPPING</p><h1>{t.guideTitle}</h1><p>{t.guideBody}</p><h2>QC photos</h2><p>{t.research} QC photos help compare received-item details; they do not guarantee authenticity, stock, delivery, customs, returns or final quality.</p><h2>Shipping context</h2><p>Use price and package weight as comparison context. Final carrier selection, estimates and tracking belong to the agent and the active order.</p></section></BaseLayout>

@@ -8,7 +8,7 @@ An independent English-first PikoBuy finds and research site for the `pikobuy.nl
 
 ## Non-negotiable rules
 
-- Framework: current Astro (7.4.2 at project creation), static SSG output. SSR may be introduced only when a documented FindSpreadsheet API can provide server-side data safely.
+- Framework: current Astro, Cloudflare-compatible SSR. The server requests FindSpreadsheet only at page request time; there is no local database, cache store, product JSON, queue or back-office.
 - Product records, search results, product imagery, QC imagery, prices, IDs and ranking must originate from **findspreadsheet.com**. Do not hand-copy, synthesize or maintain a separate product catalogue here.
 - Official PikoBuy brand assets are referenced from the official public paths: `/images/header/pikobuy-logo-figma.png` and `/images/common/pikobuy-icon-192.png`.
 - Default language is English. No language redirect based on browser settings.
@@ -32,14 +32,13 @@ Content must describe PikoBuy's published flow accurately: select/paste a source
 
 ## Current architecture
 
-- `src/lib/findspreadsheet.ts` is the sole integration boundary. It builds FindSpreadsheet lookup URLs and PikoBuy purchase URLs.
-- No seed products are included. This prevents stale, duplicated or invented inventory.
-- `src/pages/search.astro` keeps search on the subsite until the visitor explicitly opens the FindSpreadsheet source lookup.
-- Dynamic source-data rendering needs a documented FindSpreadsheet JSON endpoint or a permitted export. Add that endpoint only in `findspreadsheet.ts`; do not scrape HTML pages.
+- `src/lib/findspreadsheet.ts` is the sole integration boundary. It requests the public FindSpreadsheet category, search and product pages at runtime, transforms only the response for display, and builds PikoBuy purchase URLs.
+- Do not store, pre-render, export, mirror, cache or seed products. Every card, image, price, view count, QC/gallery image and sort result is fetched from FindSpreadsheet for the live request.
+- Search, categories and detail pages stay on the `pikobuy.nl` URL. Only the user-selected PikoBuy purchase action leaves the site.
+- Languages: EN, DE, FR, ES, IT, PT, NL, PL and SV. The language selector preserves the current internal route/query; UI, SEO guide and FAQ text use the selected locale. Source product fields are passed through exactly as received.
 
 ## Next approved work
 
-1. Obtain the documented FindSpreadsheet data/search endpoint and field mapping.
-2. Add a server adapter only if live results must render on `pikobuy.nl` rather than opening the source lookup.
-3. Add category, product and QC pages from source IDs after the integration contract is known.
-4. Add Dutch and other locales only with complete equal-length content across every page.
+1. Monitor the FindSpreadsheet markup/API contract before changing parsers.
+2. Add more category/guide landing pages only when every language has equivalent content.
+3. Keep the internal proxy lightweight: no database, dashboard, generated images or duplicate inventory.

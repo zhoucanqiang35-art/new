@@ -1,0 +1,8 @@
+---
+import type { Product } from '../lib/findspreadsheet';
+import { route, type Locale } from '../lib/i18n';
+const { products, locale, label } = Astro.props as { products: Product[]; locale: Locale; label: string };
+---
+<section class="product-section"><div class="section-heading"><p class="eyebrow">{label}</p><span>FindSpreadsheet</span></div><div class="product-grid">
+  {products.map((product) => <article class="product-card"><a href={`${route(locale, 'product')}?path=${encodeURIComponent(product.sourcePath)}`}><img src={product.image} alt={product.title} loading="lazy" /><h3>{product.title}</h3></a><div class="product-meta"><strong>{product.price}</strong><span>{product.views} views</span></div></article>)}
+</div></section>

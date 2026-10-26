@@ -1,0 +1,5 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'; import { messages, validLocale } from '../../lib/i18n';
+const locale=validLocale(Astro.params.locale); const t=messages[locale];
+---
+<BaseLayout locale={locale} title={`${t.faqTitle} | ${t.hero}`} description={t.faqTitle}><section class="reading page-head"><p class="eyebrow">FAQ</p><h1>{t.faqTitle}</h1><h2>What is a PikoBuy spreadsheet?</h2><p>{t.faqOne}</p><h2>How are products, images and sorting handled?</h2><p>{t.source}. No product database, task images or copied product catalogue is kept on this site.</p><h2>What should I check before buying?</h2><p>{t.faqTwo}</p></section></BaseLayout>

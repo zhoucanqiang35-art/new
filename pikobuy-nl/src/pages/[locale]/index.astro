@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductGrid from '../../components/ProductGrid.astro';
+import { latestProducts, pikobuyRegisterUrl, type Product } from '../../lib/findspreadsheet';
+import { messages, route, validLocale } from '../../lib/i18n';
+const locale = validLocale(Astro.params.locale); const t = messages[locale];
+let products: Product[] = []; let failed = false; try { products = await latestProducts(); } catch { failed = true; }
+---
+<BaseLayout locale={locale} title={`${t.hero} | Live Finds, QC & Guides`} description={t.heroText}>
+  <section class="hero"><p class="eyebrow">{t.source}</p><h1>{t.hero}</h1><p>{t.heroText}</p><form class="search" action={route(locale, 'search')}><input name="q" placeholder={t.placeholder} required /><button>{t.search}</button></form><div class="hero-actions"><a class="button quiet" href={route(locale, 'categories')}>{t.browse}</a><a class="button" href={pikobuyRegisterUrl()} rel="nofollow sponsored">{t.register}</a></div></section>
+  {failed ? <p class="notice">{t.noResults}</p> : <ProductGrid products={products} locale={locale} label={t.latest} />}
+  <section class="reading"><p class="eyebrow">PIKOBUY SPREADSHEET</p><h2>{t.guideTitle}</h2><p>{t.guideBody}</p><p>{t.research}</p></section>
+</BaseLayout>

@@ -1,9 +1,13 @@
 ---
 import '../styles.css';
+import { languageNames, locales, messages, route, type Locale } from '../lib/i18n';
 
-interface Props { title: string; description: string; }
-const { title, description } = Astro.props;
+interface Props { locale: Locale; title: string; description: string; }
+const { locale, title, description } = Astro.props;
+const t = messages[locale];
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const rest = Astro.url.pathname.replace(new RegExp(`^/${locale}`), '') || '/';
+const query = Astro.url.search;
 ---
 <!doctype html>
 <html lang="en">
@@ -20,21 +24,22 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="/" aria-label="PikoBuy Spreadsheet home">
+      <a class="brand" href={route(locale)} aria-label="PikoBuy Spreadsheet home">
         <img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy" width="158" height="38" />
         <span>Spreadsheet</span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/finds">Finds</a>
-        <a href="/guides">Guides</a>
-        <a href="/faq">FAQ</a>
+        <a href={route(locale)}>{t.home}</a>
+        <a href={route(locale, 'categories')}>{t.categories}</a>
+        <a href={route(locale, 'guides')}>{t.guides}</a>
+        <a href={route(locale, 'faq')}>{t.faq}</a>
       </nav>
+      <details class="language"><summary>{t.language} · {locale.toUpperCase()}</summary><div>{locales.map((target) => <a href={`/${target}${rest}${query}`}>{languageNames[target]}</a>)}</div></details>
     </header>
     <main><slot /></main>
     <footer>
-      <p><strong>PikoBuy Spreadsheet</strong> is an independent research and discovery site. It is not affiliated with PikoBuy, FindSpreadsheet, Taobao, Weidian or 1688.</p>
-      <p>Product records and source lookups are provided by FindSpreadsheet. Confirm price, options and availability before ordering.</p>
+      <p><strong>PikoBuy Spreadsheet</strong> — {t.independent}</p>
+      <p>{t.source}. {t.research}</p>
     </footer>
   </body>
 </html>

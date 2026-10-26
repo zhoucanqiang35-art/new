@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { pikobuyOrderUrl, productDetail } from '../../lib/findspreadsheet';
+import { messages, validLocale } from '../../lib/i18n';
+const locale=validLocale(Astro.params.locale); const t=messages[locale]; const path=Astro.url.searchParams.get('path') ?? '';
+let product; let failed=false; if(path) try { product=await productDetail(path); } catch { failed=true; }
+---
+<BaseLayout locale={locale} title={`${product?.title ?? t.productTitle} | ${t.hero}`} description={t.productTitle}>
+ {product ? <section class="product-detail"><div class="gallery">{product.gallery.map((image) => <img src={image} alt={product.title} loading="lazy" />)}</div><aside><p class="eyebrow">{t.source}</p><h1>{product.title}</h1><p class="price">{product.price}</p><p>Source ID: {product.productId}</p><p>{product.views} views</p><a class="button" href={pikobuyOrderUrl(product.productId)} rel="nofollow sponsored">{t.buy}</a><p class="small">{t.research}</p></aside></section> : <section class="page-head"><h1>{t.productTitle}</h1><p class="notice">{failed ? t.noResults : t.search}</p></section>}
+</BaseLayout>

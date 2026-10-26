@@ -1,6 +1,6 @@
 # pikobuy.nl
 
-Astro 7 static project for an independent PikoBuy discovery site.
+Astro SSR project for an independent PikoBuy discovery site.
 
 ## Commands
 
@@ -12,8 +12,8 @@ npm run build
 
 ## Data boundary
 
-FindSpreadsheet is the data source of truth. Do not add scraped, copied or generated product data to this project. Connect a documented JSON/API/export integration only through `src/lib/findspreadsheet.ts`.
+FindSpreadsheet is the data source of truth. Every product card, category, search, sort result, product gallery and QC image is requested live from it through `src/lib/findspreadsheet.ts`. Do not add a database, JSON product dump, cache, seeded product or placeholder image to this project.
 
 ## Deploy
 
-The project lives in the repository directory `pikobuy-nl`. For a static host, publish `pikobuy-nl/dist` after `npm run build` from this directory. Set `PUBLIC_FINDSPREADSHEET_ORIGIN` only if the source origin changes.
+The project lives in the repository directory `pikobuy-nl`. Deploy the Cloudflare worker emitted by `npm run build`; it uses SSR to call FindSpreadsheet at request time.
