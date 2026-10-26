@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pikobuy-fi.pages.dev/sitemap.xml
+Sitemap: https://pikobuy.fi/sitemap.xml
