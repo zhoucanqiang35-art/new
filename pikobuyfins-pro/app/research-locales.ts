@@ -12,10 +12,37 @@ const copy: Record<Exclude<Lang,"en">,{titles:string[];a:string;b:string}> = {
   sv:{titles:["Förstå PikoBuys orderflöde före köp","QC-bilder, frakt och returer: checklista"],a:"Den här svenska versionen beskriver PikoBuys offentliga flöde med samma kontrollpunkter som det engelska originalet. Kontrollera källänk, variant, lagerbilder, vikt och fraktlinje var för sig. Plattformens information hjälper beslutet men ersätter inte bekräftelse från säljare, transportör eller myndighet.",b:"Spara synliga fakta: ursprunglig annons, val, bilder, mått, uppskattning och datum. Inspektion och bilder ger jämförelsematerial, men garanterar inte äkthet, dolda fel, leverans eller återbetalning. Kontrollera tidskänsliga returregler före internationell frakt."}
 };
 
+const localizedTitles: Record<Exclude<Lang,"en">, Record<string,string>> = {
+  de:{
+    "pikobuy-order-flow-explained":"PikoBuy-Bestellablauf vor dem Kauf verstehen", "qc-photos-shipping-returns-checklist":"QC-Fotos, Versand und Rückgaben: Prüfliste", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: Links, QC-Fotos und Versandchecks", "pikobuy-shipping-weight-parcel-guide":"PikoBuy Versandgewicht: Paketgröße, Schätzung und Routencheck", "pikobuy-source-links-taobao-weidian-1688-guide":"PikoBuy-Quelllinks: Taobao, Weidian, 1688 und Yupoo prüfen", "pikobuy-size-guide-measurements":"PikoBuy-Größenleitfaden: Maße vor der Bestellung vergleichen"
+  },
+  fr:{
+    "pikobuy-order-flow-explained":"Comprendre le parcours de commande PikoBuy avant d’acheter", "qc-photos-shipping-returns-checklist":"Photos QC, livraison et retours : checklist", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026 : liens, photos QC et vérifications d’expédition", "pikobuy-shipping-weight-parcel-guide":"Poids d’expédition PikoBuy : colis, estimation et choix de ligne", "pikobuy-source-links-taobao-weidian-1688-guide":"Liens source PikoBuy : vérifier Taobao, Weidian, 1688 et Yupoo", "pikobuy-size-guide-measurements":"Guide des tailles PikoBuy : comparer les mesures avant commande"
+  },
+  es:{
+    "pikobuy-order-flow-explained":"Cómo entender el flujo de pedido de PikoBuy antes de comprar", "qc-photos-shipping-returns-checklist":"Fotos QC, envío y devoluciones: lista de comprobación", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: enlaces, fotos QC y comprobaciones de envío", "pikobuy-shipping-weight-parcel-guide":"Peso de envío PikoBuy: paquete, estimaciones y rutas", "pikobuy-source-links-taobao-weidian-1688-guide":"Enlaces fuente PikoBuy: revisar Taobao, Weidian, 1688 y Yupoo", "pikobuy-size-guide-measurements":"Guía de tallas PikoBuy: compara medidas antes de pedir"
+  },
+  it:{
+    "pikobuy-order-flow-explained":"Capire il flusso d’ordine PikoBuy prima dell’acquisto", "qc-photos-shipping-returns-checklist":"Foto QC, spedizione e resi: checklist", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: link, foto QC e controlli di spedizione", "pikobuy-shipping-weight-parcel-guide":"Peso di spedizione PikoBuy: pacco, stime e rotte", "pikobuy-source-links-taobao-weidian-1688-guide":"Link sorgente PikoBuy: verificare Taobao, Weidian, 1688 e Yupoo", "pikobuy-size-guide-measurements":"Guida taglie PikoBuy: confrontare le misure prima dell’ordine"
+  },
+  pt:{
+    "pikobuy-order-flow-explained":"Como entender o fluxo de pedido PikoBuy antes de comprar", "qc-photos-shipping-returns-checklist":"Fotos QC, envio e devoluções: checklist", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: links, fotos QC e verificações de envio", "pikobuy-shipping-weight-parcel-guide":"Peso de envio PikoBuy: pacote, estimativas e rotas", "pikobuy-source-links-taobao-weidian-1688-guide":"Links de origem PikoBuy: verificar Taobao, Weidian, 1688 e Yupoo", "pikobuy-size-guide-measurements":"Guia de tamanhos PikoBuy: comparar medidas antes de encomendar"
+  },
+  nl:{
+    "pikobuy-order-flow-explained":"De PikoBuy-bestelstroom begrijpen vóór aankoop", "qc-photos-shipping-returns-checklist":"QC-foto’s, verzending en retouren: checklist", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: links, QC-foto’s en verzendchecks", "pikobuy-shipping-weight-parcel-guide":"PikoBuy-verzendgewicht: pakket, schatting en routecontrole", "pikobuy-source-links-taobao-weidian-1688-guide":"PikoBuy-bronlinks: Taobao, Weidian, 1688 en Yupoo controleren", "pikobuy-size-guide-measurements":"PikoBuy-maatgids: maten vergelijken vóór bestellen"
+  },
+  pl:{
+    "pikobuy-order-flow-explained":"Jak rozumieć proces zamówienia PikoBuy przed zakupem", "qc-photos-shipping-returns-checklist":"Zdjęcia QC, wysyłka i zwroty: lista kontrolna", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: linki, zdjęcia QC i kontrola wysyłki", "pikobuy-shipping-weight-parcel-guide":"Waga wysyłki PikoBuy: paczka, wyceny i trasy", "pikobuy-source-links-taobao-weidian-1688-guide":"Linki źródłowe PikoBuy: sprawdzanie Taobao, Weidian, 1688 i Yupoo", "pikobuy-size-guide-measurements":"Przewodnik rozmiarów PikoBuy: porównaj wymiary przed zamówieniem"
+  },
+  sv:{
+    "pikobuy-order-flow-explained":"Förstå PikoBuys orderflöde före köp", "qc-photos-shipping-returns-checklist":"QC-bilder, frakt och returer: checklista", "pikobuy-spreadsheet-2026-checklist":"PikoBuy Spreadsheet 2026: länkar, QC-bilder och fraktkontroller", "pikobuy-shipping-weight-parcel-guide":"PikoBuy fraktvikt: paket, uppskattningar och ruttkontroller", "pikobuy-source-links-taobao-weidian-1688-guide":"PikoBuy källänkar: kontrollera Taobao, Weidian, 1688 och Yupoo", "pikobuy-size-guide-measurements":"PikoBuy storleksguide: jämför mått före beställning"
+  }
+};
+
 export function localizeArticle(article:Article,lang:Lang):Article{
   if(lang==="en") return article;
-  const t=copy[lang], index=article.slug.includes("order-flow")?0:1;
-  return {...article,title:t.titles[index],dek:t.a,sections:article.sections.map((section,i)=>({heading:`${t.titles[index]} · ${i+1}`,paragraphs:[t.a,t.b]}))};
+  const t=copy[lang], title=localizedTitles[lang][article.slug] ?? t.titles[1];
+  return {...article,title,dek:t.a,sections:article.sections.map((section,i)=>({heading:`${title} · ${i+1}`,paragraphs:[t.a,t.b]}))};
 }
 
 export function localizeFaq(faq:string[][],lang:Lang):string[][]{

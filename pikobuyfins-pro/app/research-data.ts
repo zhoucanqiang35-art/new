@@ -82,6 +82,106 @@ export const articles: Article[] = [
         "Use this site to compare rows and organise those checks, then open the relevant FindSpreadsheet result when you are ready to research an item. The site is independent: it does not receive payment, create orders, manage parcels or decide refunds. Those boundaries are not a weakness; they are what keep the information clear."
       ] }
     ]
+  },
+  {
+    slug: "pikobuy-spreadsheet-2026-checklist",
+    title: "PikoBuy Spreadsheet 2026: Links, QC Photos and Shipping Checks",
+    dek: "A practical PikoBuy spreadsheet workflow for narrowing a large list into a small, explainable shortlist.",
+    sections: [
+      { heading: "What a useful spreadsheet should do", paragraphs: [
+        "A PikoBuy spreadsheet is most useful when it helps a buyer compare rather than rush. A row should preserve enough context to be checked again: the original source URL, the selected variation, visible photos, sizing notes, a price snapshot and a weight note. A row that only repeats a popular name or a copied price is not evidence; it is only a reminder to research further.",
+        "Start by choosing the category you actually want. Shoes, clothing, bags and electronics require different checks, so a mixed scrolling list hides important differences. A category-first view makes it easier to notice when a listing has no measurements, an incomplete source link, vague photos or an estimate that does not match the intended parcel." ] },
+      { heading: "Read source links before you save a row", paragraphs: [
+        "A source link is a starting point, not a permanent product record. Before saving it, check whether the title, option, visible photos and stated price still describe the same item. Marketplace pages can change variants, stock and notes. Record the specific colour, size or configuration you are considering rather than assuming that every option under a listing is interchangeable.",
+        "Keep raw source clues separate. Taobao, Weidian, 1688 and Yupoo pages can play different roles in research, and an album or image page is not automatically an order page. If the source cannot be tied to a clear item and option, mark the row as incomplete. A smaller set of explainable rows is more useful than a large folder of claims." ] },
+      { heading: "Use QC photos for visible comparisons", paragraphs: [
+        "Warehouse photos are valuable because they let a buyer compare an arrived item against the record made from the source listing. Use a fixed check: visible colour and option first, then category-specific details, then obvious damage or missing parts. For clothing, look for the size label and important measurements. For electronics, confirm visible model markings, ports and included accessories where shown.",
+        "Photos do not prove authenticity, internal performance, material composition or long-term durability. Treat a detail that is not visible as unknown, not as confirmed. When a specific missing view matters, frame a narrow question around that visible uncertainty instead of turning a photo set into a broad quality promise." ] },
+      { heading: "Add size and weight context early", paragraphs: [
+        "Letter sizes are not enough for a reliable spreadsheet note. Store the seller's measurements and compare them with an item that already fits the buyer. This is especially important when a listing uses its own chart or when several cuts share one product page. Measurements make a row more useful without pretending that fit can be guaranteed online.",
+        "Weight awareness belongs beside the item, not only at the shipping stage. Material, packaging and the number of items can all change a parcel decision. Keep an estimate or an unknown-weight flag, then reassess once warehouse measurements are available. This prevents a low item price from being mistaken for a complete value comparison." ] },
+      { heading: "Turn browsing into a short decision record", paragraphs: [
+        "Write one plain-language reason for every row you keep: a clear source, useful photos, a measurement match, a specific material detail or a sensible comparison with similar items. If you cannot explain why the row belongs in the shortlist, it is probably too early to save it. This simple rule reduces duplicate links and makes a later review faster.",
+        "Use dates as well. A source page, visible price, warehouse photo and shipping estimate are all time-sensitive observations. Recording when you checked them avoids presenting an old screenshot as a current promise. It also gives a reader a method they can repeat, which is more useful than a one-line recommendation." ] },
+      { heading: "The research boundary", paragraphs: [
+        "An independent spreadsheet guide can help a buyer compare public information, but it cannot confirm stock, act as a seller, submit a parcel or decide a refund. Keep those responsibilities distinct. Platform, seller, carrier and customs decisions should not be rewritten as guarantees in a category card or article.",
+        "The strongest PikoBuy spreadsheet is therefore not the longest one. It is the one that makes uncertainty visible, directs a user toward the right evidence and gives every saved link a reason to exist. That approach supports better decisions and creates content that remains useful after a trend changes." ] }
+    ]
+  },
+  {
+    slug: "pikobuy-shipping-weight-parcel-guide",
+    title: "PikoBuy Shipping Weight Guide: Parcel Size, Estimates and Route Checks",
+    dek: "How to use item weight, dimensions and route conditions as planning inputs without turning an estimate into a delivery promise.",
+    sections: [
+      { heading: "Separate an item total from a parcel decision", paragraphs: [
+        "An item price and an international parcel are different decisions. The price visible on a source listing may be only one part of the eventual amount a buyer considers. Warehouse services, packaging, parcel dimensions, destination and route rules can matter later. A useful spreadsheet keeps those questions separate instead of calling a low listed price a complete deal.",
+        "Make an early note beside each item: a likely weight range when known, bulky-packaging risk and whether the item needs protective handling. The note is not a final quote. Its purpose is to stop a shortlist from filling with items that only look economical before parcel context is considered." ] },
+      { heading: "Why dimensions matter as much as kilograms", paragraphs: [
+        "A parcel can be priced using more than its scale weight, depending on the route and its published billing method. Bulky shoes, boxed goods and reinforced packaging can change the dimensions even when the item itself is light. That is why one buyer's screenshot is a poor estimate for another buyer's parcel.",
+        "When comparing a shipping estimate, keep the destination, product type, stated weight, length, width and height together. If any of those values change after items are combined or repacked, revisit the estimate. A comparison becomes more honest when its inputs are visible." ] },
+      { heading: "Build a parcel plan from the warehouse evidence", paragraphs: [
+        "Wait for warehouse information before treating a plan as final. Once items are together, check which ones are fragile, unusually shaped or likely to need retained packaging. A buyer can then decide whether compact packaging or additional protection matches the actual risk. The decision should be tied to the item, not copied from a generic haul video.",
+        "Keep a parcel record with the item list, observed photos, selected route, measured details and date of the estimate. This makes it easier to understand what changed if a later total differs. It also makes any support question more specific than a general complaint about a price." ] },
+      { heading: "Compare routes by conditions, not slogans", paragraphs: [
+        "A route should be compared using its stated destination coverage, billing basis, limitations, tracking expectations and current estimate. The fastest-sounding label or lowest initial number may not be the best fit for a particular parcel. Read the conditions that apply to the destination rather than relying on a claim made for another country.",
+        "Do not describe a shipping option as customs-safe, guaranteed or fixed-time. Cross-border delivery includes third-party carrier and customs factors that a spreadsheet cannot control. Accurate content explains the inputs a buyer can compare and leaves outcomes outside the buyer's control clearly labelled." ] },
+      { heading: "Use estimates to decide, then check again", paragraphs: [
+        "An estimate is useful when it helps compare alternatives before a parcel is submitted. It is less useful when it is copied into a guide as if it applies forever. Save the date, inputs and route used for each estimate, then repeat the check when the warehouse details are known.",
+        "This habit is especially useful for a multi-item parcel. Removing one bulky box, separating a fragile item or changing a destination can change the meaningful comparison. The best result is not a universal shipping number; it is a buyer who understands what the number depends on." ] },
+      { heading: "A concise pre-submit checklist", paragraphs: [
+        "Before submitting a parcel, confirm the item list, selected options, warehouse photos, visible condition, parcel measurements, route restrictions and estimate date. Save the parcel reference once it is available. These records do not guarantee an outcome, but they reduce avoidable uncertainty.",
+        "Use a guide such as this one to organise the checks. Use the official order channel for account, payment, route availability, tracking and after-sales questions. Keeping that boundary clear makes the article more credible and helps a buyer ask the right question in the right place." ] }
+    ]
+  },
+  {
+    slug: "pikobuy-source-links-taobao-weidian-1688-guide",
+    title: "PikoBuy Source Links: How to Check Taobao, Weidian, 1688 and Yupoo",
+    dek: "A source-link checklist for identifying what a listing actually says before it becomes a spreadsheet recommendation.",
+    sections: [
+      { heading: "The source page is the first evidence", paragraphs: [
+        "A spreadsheet row should begin with a source page that can be understood, not just opened. Before saving a link, identify the seller-facing title, visible product type, available options, price context and photos. If those elements are unclear, the row cannot responsibly claim that it represents a particular item.",
+        "Save the exact variation being considered. One link may include several colours, sizes, materials or configurations. A product name copied into a spreadsheet without the selected option makes the later QC comparison much weaker." ] },
+      { heading: "Treat platform names as source clues", paragraphs: [
+        "Taobao, Weidian and 1688 listings may each show product information differently, while Yupoo is often used as a visual catalogue. Their names alone do not prove product quality, stock, seller identity or price stability. They are useful clues that tell a buyer where to look next.",
+        "Do not turn a seller album, a search result or an image into a claim that an item can be purchased exactly as shown. Look for the link between the visual reference, the option and the orderable listing. When that link is missing, write 'needs source confirmation' rather than filling the gap with confidence." ] },
+      { heading: "Check options before you compare prices", paragraphs: [
+        "Price comparison only makes sense when the options match. A lower number may refer to a smaller size, a different configuration, an accessory-only choice or a placeholder variation. Read the option labels and visible notes before describing one row as better value than another.",
+        "For items where fit or configuration matters, write the source measurement or model specification beside the price. That transforms a row from a loose recommendation into a comparison a reader can audit. It also makes a later warehouse photo more useful." ] },
+      { heading: "Use images to ask narrower questions", paragraphs: [
+        "Listing images can show colour, shape, visible branding, accessories or product variants, but they cannot answer every question. Use them to identify which view needs confirmation later. For example, a clothing image may make a size chart important; an electronics image may make a port layout or included accessory important.",
+        "Avoid language that claims an image proves authenticity, materials, internal parts or long-term performance. A better note separates what is visible from what is still unknown. This protects a reader from treating a polished listing image as evidence of a delivered item." ] },
+      { heading: "Keep links current and explainable", paragraphs: [
+        "Source listings change. A link that worked when it was added may later show a different option, price or availability. Add a checked date and revisit high-priority rows before sharing them. If a link is dead or no longer matches its description, remove it or mark it outdated instead of keeping it for a large item count.",
+        "A concise reason for each row is more durable than a broad endorsement: clear measurements, useful photos, a coherent option or a relevant comparison. That gives readers a way to decide whether the link deserves their own review." ] },
+      { heading: "A research-first standard", paragraphs: [
+        "The purpose of a PikoBuy source-link guide is not to certify sellers or tell a buyer what to order. It is to make source information legible before a decision is made. Direct a buyer to verify the original listing, selected option and current conditions in the appropriate official channel.",
+        "When a row makes its limits clear, it is more valuable to both readers and search engines. It describes a repeatable method—source, option, images, measurements, weight context and date—rather than a claim that cannot be checked later." ] }
+    ]
+  },
+  {
+    slug: "pikobuy-size-guide-measurements",
+    title: "PikoBuy Size Guide: Compare Measurements Before You Order",
+    dek: "A measurement-first method for clothing, shoes and accessories that avoids treating a size label as a guarantee.",
+    sections: [
+      { heading: "Why labels alone are not enough", paragraphs: [
+        "A letter size is a shortcut, not a measurement. Different sellers can use the same label for different cuts, fabrics and intended fits. A PikoBuy spreadsheet becomes more useful when it stores the dimensions shown by the source listing rather than treating S, M, L or a shoe number as a universal answer.",
+        "Start with an item the buyer already owns and likes. Measure it consistently, then compare those measurements with the source chart. This method does not guarantee fit, but it gives a buyer a concrete comparison rather than an assumption based on a familiar label." ] },
+      { heading: "Record the measurement that matters to the item", paragraphs: [
+        "For tops, chest width, shoulder width, garment length and sleeve length may be more useful than a generic size name. For trousers and shorts, check waist, rise, inseam and leg opening where listed. For shoes, note the size system and any stated insole or outsole measurement. For bags and accessories, dimensions and strap length can matter more than a clothing-style size.",
+        "Copy the unit exactly as it is presented, then convert only when needed for a comparison. Do not hide uncertainty created by an incomplete chart. A row can say that a key measurement is missing; that is more helpful than guessing." ] },
+      { heading: "Compare cut, fabric and intended use", paragraphs: [
+        "Measurements tell more when they are paired with the visible cut and material description. A loose outer layer, a stretch fabric and a rigid jacket can respond differently even when one width looks similar on paper. Write down the intended fit—close, regular, relaxed or oversized—if the source makes it clear.",
+        "A listing image can add context, but it should not replace the chart. Pose, camera distance and styling can change how a garment appears. Use the image to identify the cut, then make the decision from the source measurements and the buyer's own reference item." ] },
+      { heading: "Use warehouse photos as a second comparison", paragraphs: [
+        "Warehouse photos can help confirm visible labels, proportions and any measurement view that is provided. Compare them with the original notes you saved. If a relevant label, dimension or option is not visible, treat it as an unanswered question rather than an implied match.",
+        "This is also the point to notice obvious differences between the recorded option and the arrived item. A clear record of the source size, selected variation and needed measurement makes that review more precise and keeps a request focused on observable details." ] },
+      { heading: "Avoid false certainty in size content", paragraphs: [
+        "No independent guide can promise a fit from a chart or photograph. Bodies, preferences, production variation and measuring method all matter. Avoid claims such as 'true to size' unless you explain the source and limits of the observation; even then, it is safer to direct readers back to measurements.",
+        "The most useful size article teaches a repeatable process: choose a comparable owned item, measure it, read the source chart, record the selected option, compare the visible warehouse evidence and decide before parcel submission. This is practical advice without a false guarantee." ] },
+      { heading: "What to keep in a spreadsheet row", paragraphs: [
+        "A size-ready row includes the product category, source URL, selected variation, source chart values, unit, the buyer's comparison note and the date checked. For shoes and accessories, include the relevant length or dimension. For clothing, make the key garment measurements easy to scan.",
+        "This compact structure helps readers compare similar items and return to a source page with a purpose. It also prevents a popular label from being confused with a verified fit. When the evidence is incomplete, the right next step is more checking—not stronger wording." ] }
+    ]
   }
 ];
 
