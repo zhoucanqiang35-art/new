@@ -55,7 +55,7 @@
     render(safe);
   };
   const init=()=>{
-    const selected=new URLSearchParams(location.search).get('lang')||localStorage.getItem('pikobuychina-language')||'en';
+    const selected=new URLSearchParams(location.search).get('lang')||'en';
     const top=document.querySelector('.top .wrap,.top .bar');
     const old=top?.querySelector('.database');
     if(old){old.outerHTML=`<label class="language-switch" aria-label="Language"><span aria-hidden="true">◎</span><select id="site-language">${Object.entries(locales).map(([code,name])=>`<option value="${code}">${name}</option>`).join('')}</select></label>`;}
