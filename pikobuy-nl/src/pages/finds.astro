@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="PikoBuy Finds | Source Catalogue" description="Search PikoBuy-ready product records using the FindSpreadsheet data source.">
+  <section class="page-intro">
+    <p class="eyebrow">FINDS</p>
+    <h1>Find products from the source of truth</h1>
+    <p>Every future product card, image, QC gallery, price and sorting signal on this project must be served from FindSpreadsheet. Until its supported data endpoint is connected, use the source-led search below instead of a copied inventory.</p>
+    <form class="search" action="/search" method="get"><label class="sr-only" for="finds-q">Search source catalogue</label><input id="finds-q" name="q" placeholder="Enter a product, brand, category or source ID" required /><button type="submit">Search</button></form>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+import '../styles.css';
+
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="https://www.pikobuy.com/images/common/pikobuy-icon-192.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="PikoBuy Spreadsheet home">
+        <img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="PikoBuy" width="158" height="38" />
+        <span>Spreadsheet</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/finds">Finds</a>
+        <a href="/guides">Guides</a>
+        <a href="/faq">FAQ</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+    <footer>
+      <p><strong>PikoBuy Spreadsheet</strong> is an independent research and discovery site. It is not affiliated with PikoBuy, FindSpreadsheet, Taobao, Weidian or 1688.</p>
+      <p>Product records and source lookups are provided by FindSpreadsheet. Confirm price, options and availability before ordering.</p>
+    </footer>
+  </body>
+</html>
