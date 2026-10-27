@@ -1,19 +1,28 @@
-# pikobuy.nl
+# Sites Worker ESM starter
 
-Astro SSR project for an independent PikoBuy discovery site.
+Use this starter for a static microsite, click counter, or simple internal UI whose state is browser-scoped. It has no dependencies and needs no install.
 
-## Commands
+Edit `worker/index.js`, then publish through the Sites hosting workflow with this starter's build and validation in `commands`.
 
-```bash
-npm install
-npm run check
-npm run build
+The build copies only `worker/index.js` and `.openai/hosting.json`. Do not add standalone asset files. Embed any essential raster bytes in `worker/index.js` and serve or reference them as a data URL.
+
+Pass these argument arrays as `commands`:
+
+```json
+[
+  ["bash", "scripts/build.sh"],
+  ["node", "scripts/validate-artifact.mjs"]
+]
 ```
 
-## Data boundary
+The deterministic build produces:
 
-FindSpreadsheet is the data source of truth. Every product card, category, search, sort result, product gallery and QC image is requested live from it through `src/lib/findspreadsheet.ts`. Do not add a database, JSON product dump, cache, seeded product or placeholder image to this project.
+```text
+dist/
+├── .openai/
+│   └── hosting.json
+└── server/
+    └── index.js
+```
 
-## Deploy
-
-The project lives in the repository directory `pikobuy-nl`. Deploy the Cloudflare worker emitted by `npm run build`; it uses SSR to call FindSpreadsheet at request time.
+`dist/server/index.js` is an ES module with a default export containing `fetch(request, env, ctx)`. Edit `worker/index.js`, not the generated file under `dist/`.
