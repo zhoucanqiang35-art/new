@@ -46,13 +46,13 @@
   }).join('');
   const search = (t,lang) => '<form class="search" id="database-search"><input id="search-input" placeholder="'+esc(t.home.search)+'" aria-label="'+esc(t.home.search)+'" autocomplete="off"><button type="submit">'+esc(labels[lang][5])+'</button></form>';
   function home(t,lang) {
-    const pageLinks=['index.html','categories.html','product-details.html','seo-articles.html','faq.html'];
+    const pageLinks=['/','/categories','/product-details','/seo-articles','/faq'];
     const routes=labels[lang].slice(0,5).map((name,i)=>'<a class="card" href="'+pageLinks[i]+'"><span class="num">'+String(i+1).padStart(2,'0')+'</span><div><h3>'+esc(name)+'</h3><p>'+esc(t.guide.cards[i % t.guide.cards.length][1])+'</p></div><span class="go">'+esc(name)+' →</span></a>').join('')+'<a class="card" href="'+db+'"><span class="num">06</span><div><h3>'+esc(labels[lang][5])+'</h3><p>'+esc(t.home.facts[1][1])+'</p></div><span class="go">'+esc(labels[lang][5])+' →</span></a>';
     const steps=t.guide.cards.slice(0,3).map((item,i)=>'<div class="step"><span class="badge">'+(i+1)+'</span><div><strong>'+esc(item[0])+'</strong><p>'+esc(item[1])+'</p></div></div>').join('');
     const markets=t.home.signal.map(item=>'<span>'+esc(item)+'</span>').join('');
     return '<section class="hero"><img src="hero.jpg" alt="International shopping research parcel and product categories"><div class="shell hero-copy"><div class="eyebrow">'+esc(t.home.ey)+'</div><h1>'+t.home.h+'</h1><p>'+esc(t.home.lead)+'</p>'+search(t,lang)+'<div class="hero-note">'+esc(t.footer)+'</div></div></section>'+
       '<section class="section tint"><div class="shell"><div class="section-head"><div class="eyebrow">'+esc(t.categories.ey)+'</div><h2>'+esc(t.categories.title)+'</h2><p>'+esc(t.categories.intro)+'</p></div><div class="grid">'+routes+'</div></div></section>'+
-      '<section class="section tint"><div class="shell"><div class="section-head"><div class="eyebrow">'+esc(t.categories.ey)+'</div><h2>'+esc(t.categories.title)+'</h2><p>'+esc(t.categories.intro)+'</p></div><div class="grid">'+cards(lang,t)+'</div><p style="margin:26px 0 0"><a class="button" href="categories.html">'+esc(labels[lang][1])+'</a></p></div></section>'+
+      '<section class="section tint"><div class="shell"><div class="section-head"><div class="eyebrow">'+esc(t.categories.ey)+'</div><h2>'+esc(t.categories.title)+'</h2><p>'+esc(t.categories.intro)+'</p></div><div class="grid">'+cards(lang,t)+'</div><p style="margin:26px 0 0"><a class="button" href="/categories">'+esc(labels[lang][1])+'</a></p></div></section>'+
       '<section class="section"><div class="shell framework"><div><div class="section-head"><div class="eyebrow">'+esc(t.guide.ey)+'</div><h2>'+esc(t.guide.title)+'</h2><p>'+esc(t.guide.intro)+'</p></div><div class="steps">'+steps+'</div></div><aside class="side-note"><div class="eyebrow">'+esc(t.home.signal[0])+'</div><h3>'+esc(t.home.facts[0][0])+'</h3><p>'+esc(t.home.facts[0][1])+'</p><div class="market">'+markets+'</div></aside></div></section>'+
       '<section class="section"><div class="shell callout"><div><div class="eyebrow">'+esc(t.quality.ey)+'</div><h2>'+esc(t.quality.title)+'</h2><p>'+esc(t.quality.intro)+'</p></div><a class="button" href="'+db+'">'+esc(labels[lang][5])+'</a></div></section>';
   }
@@ -63,24 +63,13 @@
     const steps=t.quality.rules.slice(0,3).map((rule,i)=>'<div class="step"><span class="badge">'+(i+1)+'</span><div><strong>'+esc(t.guide.cards[i][0])+'</strong><p>'+esc(rule)+'</p></div></div>').join('');
     return '<section class="section"><div class="shell framework"><article><div class="section-head"><div class="eyebrow">'+esc(labels[lang][2])+'</div><h1>'+esc(t.quality.title)+'</h1><p>'+esc(t.quality.intro)+'</p></div><div class="steps">'+steps+'</div></article><aside class="side-note"><div class="eyebrow">'+esc(t.categories.ey)+'</div><h3>'+esc(t.categories.title)+'</h3><p>'+esc(t.categories.intro)+'</p><p><a class="button" href="'+db+'">'+esc(labels[lang][5])+'</a></p></aside></div></section>';
   }
+  const buyerChecklist = {"en":"Before you buy, compare the exact variant and measurements, review available QC photos for visible defects, and budget for parcel weight and dimensions as well as the item price. Confirm current shipping and return terms before payment.","de":"Vergleiche vor dem Kauf die genaue Variante und Maße, prüfe vorhandene QC-Fotos auf sichtbare Mängel und berücksichtige neben dem Artikelpreis auch Paketgewicht und Maße. Prüfe vor der Zahlung die aktuellen Versand- und Rückgabebedingungen.","fr":"Avant l’achat, comparez la variante et les mesures, examinez les photos QC disponibles pour repérer les défauts visibles et prévoyez le poids et les dimensions du colis en plus du prix. Vérifiez les conditions actuelles de livraison et de retour avant de payer.","es":"Antes de comprar, compara la variante y las medidas, revisa las fotos QC disponibles para detectar defectos visibles y ten en cuenta el peso y las dimensiones del paquete además del precio. Confirma las condiciones actuales de envío y devolución antes de pagar.","it":"Prima di acquistare, confronta variante e misure, controlla le foto QC disponibili per individuare difetti visibili e considera peso e dimensioni del pacco oltre al prezzo. Verifica le condizioni attuali di spedizione e reso prima di pagare.","pt":"Antes de comprar, compare a variante e as medidas, veja as fotos QC disponíveis para identificar defeitos visíveis e considere o peso e as dimensões da encomenda além do preço. Confirme as condições atuais de envio e devolução antes de pagar.","nl":"Vergelijk vóór aankoop de gekozen uitvoering en maten, bekijk beschikbare QC-foto’s op zichtbare gebreken en houd naast de prijs rekening met het gewicht en de afmetingen van het pakket. Controleer vóór betaling de actuele verzend- en retourvoorwaarden.","pl":"Przed zakupem porównaj wybrany wariant i wymiary, sprawdź dostępne zdjęcia QC pod kątem widocznych wad i uwzględnij wagę oraz rozmiary paczki oprócz ceny produktu. Przed zapłatą sprawdź aktualne warunki wysyłki i zwrotów.","sv":"Jämför före köp den valda varianten och måtten, granska tillgängliga QC-bilder efter synliga fel och räkna med paketets vikt och mått utöver varans pris. Kontrollera aktuella leverans- och returvillkor innan du betalar."};
   function seo(facts,t,lang) {
     const article=facts.article;
-    const sourceWords=[article.title,article.deck,...article.sections.flatMap(item=>[item[0],...item[1]])].join(' ').trim().split(/\s+/).length;
-    let expandedWords=sourceWords;
-    const sectionRepeats=article.sections.map(()=>[]);
-    let repeatIndex=0;
-    while(lang!=='en' && expandedWords<1400 && repeatIndex<90) {
-      const sectionIndex=repeatIndex%article.sections.length;
-      const source=article.sections[sectionIndex][1];
-      const text=source[Math.floor(repeatIndex/article.sections.length)%source.length];
-      sectionRepeats[sectionIndex].push(text);
-      expandedWords+=text.trim().split(/\s+/).length;
-      repeatIndex++;
-    }
     const sections=article.sections.map((item,i)=>{
-      return '<div class="step"><span class="badge">'+String(i+1).padStart(2,'0')+'</span><div><h2>'+esc(item[0])+'</h2>'+[...item[1],...sectionRepeats[i]].map(text=>'<p>'+esc(text)+'</p>').join('')+'</div></div>';
+      return '<div class="step"><span class="badge">'+String(i+1).padStart(2,'0')+'</span><div><h2>'+esc(item[0])+'</h2>'+item[1].map(text=>'<p>'+esc(text)+'</p>').join('')+'</div></div>';
     }).join('');
-    return '<article class="section"><div class="shell" style="max-width:900px"><div class="section-head"><div class="eyebrow">'+esc(article.meta)+'</div><h1>'+esc(article.title)+'</h1><p>'+esc(article.deck)+'</p></div><section class="steps">'+sections+'</section><aside class="side-note"><div class="eyebrow">'+esc(t.journal.ey)+'</div><h3>'+esc(t.journal.title)+'</h3><p>'+esc(t.footer)+'</p><p><a class="button" href="'+db+'">'+esc(labels[lang][5])+'</a></p></aside></div></article>';
+    return '<article class="section"><div class="shell" style="max-width:900px"><div class="section-head"><div class="eyebrow">'+esc(article.meta)+'</div><h1>'+esc(article.title)+'</h1><p>'+esc(article.deck)+'</p><p>'+esc(buyerChecklist[lang])+'</p></div><section class="steps">'+sections+'</section><aside class="side-note"><div class="eyebrow">'+esc(t.journal.ey)+'</div><h3>'+esc(t.journal.title)+'</h3><p>'+esc(t.footer)+'</p><p><a class="button" href="'+db+'">'+esc(labels[lang][5])+'</a></p></aside></div></article>';
   }
   function faq(facts,t,lang) {
     const items=[...facts.faq.items,...t.home.facts.slice(0,3)];
@@ -112,7 +101,7 @@
     const main=document.querySelector('main'); if(!main) return;
     const current=page();
     main.innerHTML=current==='categories'?categories(t,lang):current==='details'?details(t,lang):current==='seo'?seo(facts,t,lang):current==='faq'?faq(facts,t,lang):home(t,lang);
-    document.title=current==='seo'?facts.article.title:current==='faq'?facts.faq.title:'PikoBuy Sheet — '+labels[lang][0];
+    document.title=current==='seo'?facts.article.title:current==='faq'?facts.faq.title:current==='home'&&lang==='en'?'PikoBuy Spreadsheet: Finds, QC Photos & Shipping Guide':'PikoBuy Sheet — '+labels[lang][current==='categories'?1:current==='details'?2:0];
     bindSearch();
   }
   document.addEventListener('DOMContentLoaded',()=>{
