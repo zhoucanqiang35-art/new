@@ -6,6 +6,10 @@ Edit `worker/index.js`, then publish through the Sites hosting workflow with thi
 
 The build copies only `worker/index.js` and `.openai/hosting.json`. Do not add standalone asset files. Embed any essential raster bytes in `worker/index.js` and serve or reference them as a data URL.
 
+## Cloudflare Pages Git build
+
+For the `pikobuy-nl` directory in the shared repository, use the `None` framework preset, set the build command to `npm run build`, the build output directory to `dist`, and the root directory to `pikobuy-nl`. The build emits `dist/_worker.js`, which Cloudflare Pages Advanced Mode uses for every site route.
+
 Pass these argument arrays as `commands`:
 
 ```json
