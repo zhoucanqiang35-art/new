@@ -287,4 +287,5 @@ Content must describe PikoBuy's published flow accurately: select/paste a source
 # 2026-10-27 — GitHub delivery target
 
 - The deployable source is mirrored in `zhoucanqiang35-art/new` under the exact repository directory `pikobuy-nl`. The Worker entry point remains `worker/index.js`; `npm run build` emits `dist/server/index.js`.
+- The build script treats the ChatGPT Sites hosting manifest as optional, so the GitHub mirror builds without carrying preview-environment identity or credentials.
 
