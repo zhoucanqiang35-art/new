@@ -10,6 +10,8 @@ The build copies only `worker/index.js` and `.openai/hosting.json`. Do not add s
 
 For the `pikobuy-nl` directory in the shared repository, use the `None` framework preset, set the build command to `npm run build`, the build output directory to `dist`, and the root directory to `pikobuy-nl`. The build emits `dist/_worker.js`, which Cloudflare Pages Advanced Mode uses for every site route.
 
+Last Pages build refresh: 2026-10-28.
+
 Pass these argument arrays as `commands`:
 
 ```json
