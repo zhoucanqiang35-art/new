@@ -291,3 +291,8 @@ Content must describe PikoBuy's published flow accurately: select/paste a source
 - For Cloudflare Pages Git builds, the same script also emits `dist/_worker.js` in Pages Advanced Mode. This is the module Worker entry that handles every route; use `npm run build` with `dist` as the Pages output directory.
 - 2026-10-28: a documentation-only GitHub refresh was committed to re-trigger the connected Cloudflare Pages build; no page visual or product-data behavior changed.
 
+# 2026-10-28 — Crawl endpoints and priority indexing
+
+- Added dynamic `/sitemap.xml` and `/robots.txt` endpoints. The sitemap emits stable, crawlable routes for all nine locales: home, guides, FAQ, checklist, shipping, all-products category, the nine category filters and the category-details entry point, with `hreflang` alternates and an EN `x-default`.
+- Live product-detail and search-result URLs are intentionally excluded because the underlying FindSpreadsheet records and query states change. This prevents the sitemap from advertising stale parameterized URLs while retaining internal discovery for every live product.
+
