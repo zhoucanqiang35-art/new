@@ -289,4 +289,5 @@ Content must describe PikoBuy's published flow accurately: select/paste a source
 - The deployable source is mirrored in `zhoucanqiang35-art/new` under the exact repository directory `pikobuy-nl`. The Worker entry point remains `worker/index.js`; `npm run build` emits `dist/server/index.js`.
 - The build script treats the ChatGPT Sites hosting manifest as optional, so the GitHub mirror builds without carrying preview-environment identity or credentials.
 - For Cloudflare Pages Git builds, the same script also emits `dist/_worker.js` in Pages Advanced Mode. This is the module Worker entry that handles every route; use `npm run build` with `dist` as the Pages output directory.
+- 2026-10-28: a documentation-only GitHub refresh was committed to re-trigger the connected Cloudflare Pages build; no page visual or product-data behavior changed.
 
