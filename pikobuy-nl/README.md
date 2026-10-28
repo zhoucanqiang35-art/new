@@ -25,6 +25,7 @@ The deterministic build produces:
 
 ```text
 dist/
+├── _worker.js
 ├── .openai/
 │   └── hosting.json
 └── server/
