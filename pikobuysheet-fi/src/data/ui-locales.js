@@ -1,0 +1,12 @@
+const labels={
+ en:['Search product or ID','Search','All categories','Source order','Price: low to high','Price: high to low','Load more','Choose a category to explore its finds.','Browse a selection from the FindSpreadsheet export.','Explore all 8,911 products'],
+ de:['Produkt oder ID suchen','Suchen','Alle Kategorien','Quellreihenfolge','Preis: aufsteigend','Preis: absteigend','Mehr laden','Wähle eine Kategorie, um Produkte zu entdecken.','Durchsuche eine Auswahl aus dem FindSpreadsheet-Export.','Alle 8.911 Produkte ansehen'],
+ fr:['Rechercher un produit ou un ID','Rechercher','Toutes les catégories','Ordre source','Prix croissant','Prix décroissant','Afficher plus','Choisissez une catégorie pour découvrir ses produits.','Parcourez une sélection de l’export FindSpreadsheet.','Voir les 8 911 produits'],
+ es:['Buscar producto o ID','Buscar','Todas las categorías','Orden original','Precio: menor a mayor','Precio: mayor a menor','Cargar más','Elige una categoría para descubrir sus productos.','Explora una selección de la exportación de FindSpreadsheet.','Ver los 8.911 productos'],
+ it:['Cerca prodotto o ID','Cerca','Tutte le categorie','Ordine originale','Prezzo crescente','Prezzo decrescente','Carica altro','Scegli una categoria per esplorare i prodotti.','Sfoglia una selezione dell’esportazione FindSpreadsheet.','Esplora tutti gli 8.911 prodotti'],
+ pt:['Buscar produto ou ID','Buscar','Todas as categorias','Ordem original','Preço: menor para maior','Preço: maior para menor','Carregar mais','Escolha uma categoria para explorar os produtos.','Explore uma seleção da exportação do FindSpreadsheet.','Ver todos os 8.911 produtos'],
+ nl:['Zoek product of ID','Zoeken','Alle categorieën','Bronvolgorde','Prijs: laag naar hoog','Prijs: hoog naar laag','Meer laden','Kies een categorie om producten te bekijken.','Bekijk een selectie uit de FindSpreadsheet-export.','Bekijk alle 8.911 producten'],
+ pl:['Szukaj produktu lub ID','Szukaj','Wszystkie kategorie','Kolejność źródłowa','Cena: od najniższej','Cena: od najwyższej','Załaduj więcej','Wybierz kategorię, aby przeglądać produkty.','Przeglądaj wybór z eksportu FindSpreadsheet.','Zobacz wszystkie 8 911 produktów'],
+ fi:['Hae tuotetta tai tunnusta','Hae','Kaikki kategoriat','Alkuperäinen järjestys','Hinta: halvin ensin','Hinta: kallein ensin','Lataa lisää','Valitse kategoria ja selaa tuotteita.','Selaa valikoimaa FindSpreadsheet-vientitiedoista.','Selaa kaikkia 8 911 tuotetta']
+};
+export function ui(lang){return labels[lang]||labels.en}

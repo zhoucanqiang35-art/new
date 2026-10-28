@@ -1,0 +1,36 @@
+---
+import {categoryNames} from '../data/category-locales.js';
+import {common} from '../data/common-locales.js';
+const { categories, lang, home = false } = Astro.props;
+const c=common(lang);
+// Decorative editorial category artwork; individual product images come from the export.
+const photos = {
+  shoes: '/assets/category-shoes-white.webp',
+  'hoodies-sweaters': '/assets/category-hoodies-white.webp',
+  't-shirts': '/assets/category-tshirts-white.webp',
+  jackets: '/assets/category-jackets-white.webp',
+  'pants-shorts': '/assets/category-pants-white.webp',
+  accessories: '/assets/category-accessories-white.webp',
+  jersey: '/assets/category-jerseys-white.webp',
+  electronics: '/assets/category-electronics-white.webp',
+  headwear: '/assets/category-headwear-white.webp',
+  ShortSets: '/assets/category-sets-white.webp',
+  'other-stuff': '/assets/category-other-white.webp',
+  all: '/assets/category-all-white.webp',
+};
+const cards = [...categories, ['', categoryNames(lang)[11], '12']];
+---
+<div class="photo-category-grid">
+  {cards.map(([slug,name,n]) => home ? (
+    <button class="photo-category" type="button" data-category={slug}>
+      <img src={photos[slug || 'all']} alt="" loading="lazy" />
+      <span class="photo-category-copy"><small>{n} / {c[0]}</small><strong>{name}</strong><i aria-hidden="true">↗</i></span>
+    </button>
+  ) : (
+    <a class="photo-category" href={slug ? `/${lang}/discover/?category=${encodeURIComponent(slug)}` : `/${lang}/discover/`}>
+      <img src={photos[slug || 'all']} alt="" loading="lazy" />
+      <span class="photo-category-copy"><small>{n} / {c[0]}</small><strong>{name}</strong><i aria-hidden="true">↗</i></span>
+    </a>
+  ))}
+</div>
+<p class="category-art-note">{c[1]}</p>

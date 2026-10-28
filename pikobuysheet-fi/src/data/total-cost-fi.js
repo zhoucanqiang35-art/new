@@ -1,0 +1,58 @@
+export const totalCostFi = {
+ slug:'pikobuy-total-cost-explained',
+ title:'PikoBuyn kokonaiskustannukset: mitä maksat ennen kansainvälistä toimitusta',
+ deck:'Käytännön tapa arvioida tuotteen hintaa, myyjän toimitusta, varaston valintoja, paketin mittoja, kansainvälistä kuljetusta ja kassasivun ulkopuolelle mahdollisesti jääviä kuluja.',
+ sections:[
+ {title:'Ilmoituksen hinta on vasta ensimmäinen luku',paragraphs:[
+ 'Edullinen tuotehinta auttaa vertailemaan löytöjä, mutta se ei ole PikoBuyn kokonaiskustannus. Ulkomaille toimitettavan tuotteen hinta muodostuu useista vaiheista: tuotetilauksesta, mahdollisesta myyjän Kiinan sisäisestä toimituksesta, varastotarkastuksesta, lisäkuvista tai pakkauksesta, pakatusta lähetyksestä, kansainvälisestä kuljetuksesta ja mahdollisista kohdemaan maksuista. Osa näkyy ennen ostoa, osa selviää vasta tuotteen saavuttua varastoon.',
+ 'Ajankohdalla on merkitystä. Taulukon rivi voi näyttää lähdesivun nykyisen hinnan ja auttaa tunnistamaan tuotteen, mutta se ei tiedä lopullista pakkauspainoa, maahan saatavia kuljetusreittejä, tullikäsittelyä tai maksupalvelun käyttämää valuuttakurssia. Kysy, mitkä kulut voit vahvistaa nyt, mitkä selviävät varastossa ja mitkä jäävät PikoBuyn vaikutusvallan ulkopuolelle.'
+ ]},
+ {title:'1. Ymmärrä kaksi maksuvaihetta',paragraphs:[
+ 'PikoBuyn aloittelijan oppaassa vaiheet erotetaan toisistaan. Kolmannessa vaiheessa ostaja valitsee värin, koon ja määrän, lähettää ostotilauksen ja maksaa ensimmäisen maksun. Tuotteen saavuttua varastoon PikoBuy kertoo kirjaavansa sen sisään, ottavansa vahvistuskuvat ja tarkastavansa näkyviä virheitä. Viidennessä vaiheessa ostaja valitsee kuljetusreitin, lähettää paketin ja maksaa kansainvälisen toimituksen.',
+ 'Siksi yksi löytövaiheessa näytetty kassasumman kaltainen kokonaisluku olisi harhaanjohtava. Ensimmäinen maksu siirtää tuotteen myyjältä varastoon; myöhempi maksu siirtää hyväksytyn ja pakatun lähetyksen varastolta määränpäähän. Jälkimmäinen riippuu tiedoista, joita ei välttämättä ole vielä ensimmäisen maksun hetkellä: mitatusta painosta, mitoista, tuoteluokituksesta ja kohteeseen saatavista reiteistä.'
+ ]},
+ {title:'2. Laske tuotteeseen liittyvä välisumma ennen tilausta',paragraphs:[
+ 'Aloita taulukko täsmällisestä tuotteesta ja sen versiosta, älä pyöristetystä otsikkohinnasta. Kirjaa valitun värin, koon ja määrän hinta lähdesivulla, mahdollinen näytetty myyjän kotimaan toimitusmaksu sekä tietoisesti valitsemasi lisäpalvelut. Tallenna näytetty päivämäärä ja valuutta. PikoBuyn oppaan mukaan lopullinen hinta perustuu todelliseen ostoon ja loppuunmyyty tilaus hyvitetään, joten ajantasainen tilaussivu on vanhaa taulukkokuvaa tärkeämpi.',
+ 'Jätä epävarmat kohdat tyhjiksi tai merkitse ne arvioiksi. Älä keksi kotimaan toimitushintaa, jota myyjä ei näytä, äläkä oleta dollarimuunnoksen vastaavan lopullista korttiveloitusta. Selkeässä välisummassa on kolme saraketta: nyt vahvistettu, suunnittelua varten arvioitu ja myöhemmin selviävä. Näin arvio ei huomaamatta muutu lupaukseksi tuotteita vertailtaessa.'
+ ]},
+ {title:'3. Käytä varastoa kustannusten tarkistuspisteenä',paragraphs:[
+ 'Varastoon saapuminen ei ole vain tauko kahden maksun välissä. Silloin tilauksesta saadaan mitattavaa tietoa ja kallis virhe voi vielä olla vältettävissä. PikoBuy kertoo kirjaavansa tuotteen, kuvaavansa sen ja tarkastavansa näkyvät viat. Vertaa kuvia tilattuun versioon ja tuoteryhmän QC-tarkistuslistaan. Jos koko, väri, määrä tai näkyvä kunto on väärä, selvitä asia ennen kansainvälisen paketin kokoamista.',
+ 'Varastossa voi myös tehdä valintoja. PikoBuyn opas mainitsee esimerkiksi vähäisen tai vahvistetun pakkauksen pyytämisen. Lisäkuvista voi olla hyötyä, jos vakiokuvat eivät vastaa ostopäätökseen vaikuttavaan kysymykseen. Jokaisella lisävaiheella tulisi olla tarkoitus, kuten pohjallisen mitan vahvistaminen, herkän muodon suojaaminen tai tarpeettoman tilavuuden vähentäminen. Enemmän ei automaattisesti ole parempi, jos se lisää hintaa vähentämättä epävarmuutta tai suojaamatta tuotetta.'
+ ]},
+ {title:'4. Laske uudelleen, kun usean myyjän tuotteet yhdistetään',paragraphs:[
+ 'PikoBuyn yhteydenottosivun mukaan eri myyjien tuotteita voi yhdistää yhteen pakettiin. Yhdistäminen voi poistaa tarpeen lähettää monta erillistä kansainvälistä pakettia, mutta säästöä ei pidä luvata varmasti. Yhdistetyllä paketilla on oma pakattu painonsa, ulkomittansa, sisältönsä ja käytettävissä olevat reittinsä. Suuren laatikon lisääminen kevyisiin vaatteisiin voi muuttaa tulosta tavalla, jota tuotteiden hinnat eivät paljasta.',
+ 'Vertaa varaston sallimissa rajoissa ainakin kahta realistista pakkaussuunnitelmaa: aiottua yhdistettyä lähetystä ja järkevää vaihtoehtoa, kuten tarpeettoman ulkopakkauksen poistamista tai rajoitetun tuotteen erottamista. Älä jaa yhtä rahtiarviota tasan kaikille tuotteille. Parempi tuotekohtainen arvio huomioi painon, käytetyn tilan ja sen, pakottaako jokin tuote valitsemaan toisen reitin. Tavoitteena on tunnistaa pakettipäätöstä muuttava tuote, ei luoda näennäisen tarkkaa jakoa.'
+ ]},
+ {title:'5. Käytä laskurissa varaston tasoisia lähtötietoja',paragraphs:[
+ 'PikoBuyn julkinen toimituslaskuri kysyy kohdemaan tai alueen, tuotetyypin, painon kilogrammoina sekä paketin pituuden, leveyden ja korkeuden senttimetreinä. Kentät osoittavat, miksi tuotteen hinta ei yksin ennusta toimituskuluja. Kohde ja luokitus vaikuttavat tarjottaviin reitteihin, kun taas paino ja mitat kuvaavat kuljetettavaa lähetystä.',
+ 'Tee tarvittaessa alustava budjettiarvio, mutta kirjaa kaikki oletukset. Myyjän ilmoittama tuotepaino ei välttämättä ole pakattu paino, eivätkä tuotteen mitat ole paketin mittoja. Kun varastotiedot ovat saatavilla, korvaa arviot mitatuilla luvuilla ja hae uudelleen. Vertaa vain kyseiselle paketille ja kohteelle tarjottuja reittejä. Virallisen oppaan mukaan reittien toimitusajat ja laskutustavat eroavat, joten halvinta lukua on arvioitava yhdessä reitin ehtojen kanssa.'
+ ]},
+ {title:'6. Erota hallittavat kulut ulkoisista riskeistä',paragraphs:[
+ 'Joitakin päätöksiä voi hallita suoraan: mitkä tuotteet pakettiin lisätään, pyydetäänkö lisäpakkausta ja mikä käytettävissä oleva reitti valitaan. Muita summia voi jäädä tuote- ja toimitusruutujen ulkopuolelle. Valuutanvaihto voi vaihdella maksupalvelun mukaan, ja kohdemaan viranomaiset voivat määrätä veroja, tulleja, tullaus- tai käsittelymaksuja maan, tuotteen ja lähetyksen sääntöjen perusteella. Tarkista ajantasainen kassa ja paikalliset viranomaisohjeet sen sijaan, että kopioisit prosenttiluvun toisesta lähetyksestä.',
+ 'PikoBuyn toimitusehtojen mukaan kansainvälisiä paketteja kuljettavat kolmannen osapuolen logistiikkayritykset. Ehdoissa mainitaan rajat ylittävinä riskeinä tullitoimet, vahingot, katoaminen ja sesonkiviiveet. Kustannussuunnitelmaan kuuluu siksi riskipäätös, ei keksitty yleinen lisämaksu. Kysy, onko paketin arvo hyväksyttävä valitun reitin nykyisten suojaehtojen puitteissa ja tekisikö odottamaton kohdemaan maksu ostosta sopimattoman. Jos tekisi, budjetti on jo liian tiukka.'
+ ]},
+ {title:'7. Huomioi myös mielen muuttamisen kulut',paragraphs:[
+ 'Palautuksesta ennen kansainvälistä lähetystä voi silti syntyä kuluja. PikoBuyn palautussivun mukaan kelpoisuusehdot täyttävä pyyntö on yleensä tehtävä viiden päivän kuluessa siitä, kun tilaksi vaihtuu In Warehouse. Aika alkaa seuraavasta tunnista ja määritellään 120 tunniksi. Kelpoisuus riippuu myös myyjän palautuskäytännöstä, myyntikelpoisesta kunnosta, pakkausehdoista ja tuotekohtaisista poikkeuksista. PikoBuyn mukaan palautus edellyttää myyjän suostumusta.',
+ 'Julkaistussa käytännössä ehdoitta tehtävästä palautuksesta mainitaan kuljetus takaisin myyjälle, myyjän alkuperäinen toimitusmaksu ja viiden RMB:n palvelumaksu; myös alun perin ilmainen myyjän toimitus voidaan joutua korvaamaan. Vastuut voivat poiketa väärän tuotteen tai dokumentoidun laatuongelman tapauksessa. Siksi nopealla QC-tarkastuksella on rahallista merkitystä. Epävarman tuotteen hyväksyminen ja kansainvälisen rahdin maksaminen voi muuttaa kotimaisen jälkimyyntiasian huomattavasti vaikeammaksi rajat ylittäväksi ongelmaksi.'
+ ]},
+ {title:'8. Käytä vaihteluväliä virheellisen tarkan summan sijaan',paragraphs:[
+ 'Laske ennen varastointia suunnittelua varten vaihteluväli yhden vaikuttavalta näyttävän luvun sijaan. Alaraja voi sisältää vahvistetun tuotteen välisumman ja varovaisen reittiarvion uskottavilla paino- ja mittatiedoilla. Ylärajan pitäisi huomioida mahdollinen pakkaus- tai mittaepävarmuus sekä kohdemaan maksut, jotka voidaan perustella ajantasaisilla paikallisilla säännöillä. Tuntematon ei tarkoita nollaa, vaan sitä, ettei tarkkaa summaa vielä voida laskea.',
+ 'Tarkenna vaihteluväliä varastoinnin jälkeen. Vahvista saatu versio, mitatut tiedot, pakkaussuunnitelma ja saatavilla olevat reitit. Tallenna reitin nimi, päivämäärä ja oletukset, sillä hinnat ja saatavuus voivat muuttua. Tässä vaiheessa näytetty summa ei silti ole pysyvä julkinen hinnasto, vaan tilauskohtainen havainto. Hyvä opas opettaa laskentatavan väittämättä, että yhden lukijan pakettihinta pätee toiseen maahan, tuotetyyppiin tai ajankohtaan.'
+ ]},
+ {title:'9. Käytännön kokonaiskustannustaulukko',paragraphs:[
+ 'Käytä seitsemää riviä: valitun tuotteen hinta; myyjän toimitus Kiinassa; vahvistetut varaston lisäpalvelut; pakattu paino ja mitat; valittu kansainvälinen reitti; valuutanvaihdon erotus; sekä mahdollinen kohdemaan vero, tulli tai käsittelymaksu. Lisää erillinen rivi palautusriskille tuotteen ollessa Kiinassa. Merkitse kunkin rivin lähde: myyjän ilmoitus, PikoBuyn tilaussivu, varaston mittaus, PikoBuyn laskuri, reittisivu, maksupalvelu tai kohdemaan viranomainen.',
+ 'Taulukko on hyödyllisempi kuin sisällöntuottajan oman lähetyksen hinnan kopioiminen, koska se paljastaa heikot lähtötiedot. Jos kansainvälinen rahti perustuu arvattuihin mittoihin, se näkyy taulukossa. Jos tullimaksua ei tunneta, se jää kohdemaan selvitettäväksi kysymykseksi. Jos palautusaika on käynnissä mutta kuvat ovat epäselviä, seuraava askel on lisätieto tai jälkimyyntipyyntö, ei automaattisesti toisen vaiheen maksu.'
+ ]},
+ {title:'10. Kymmenen minuutin tarkistus ennen kansainvälistä maksua',paragraphs:[
+ 'Avaa ennen paketin lähettämistä ajantasaiset tilaus- ja reittisivut. Varmista, että varastossa oleva tuote vastaa ostettua versiota, palautukseen vaikuttavat kysymykset on selvitetty ja pakkauspyyntö sopii juuri kyseiselle tuotteelle yleisen mieltymyksen sijaan. Syötä mitattu paino ja mitat, jos ne ovat saatavilla, vertaa tarjottuja reittejä ja lue niiden laskutus- ja rajoitusehdot. Tarkista vastaanotto-osoite ja jätä riittävästi varaa valuutanvaihdolle ja mahdollisille asianmukaisille kohdemaan maksuille.',
+ 'PikoBuyn lopullinen kokonaiskustannus ei ole luku, jonka taulukko voi taata etukäteen. Se on dokumentoitu kulujen ja päätösten ketju. Toimiva menetelmä erottaa ensimmäisen tuotemaksun myöhemmästä kansainvälisen toimituksen maksusta, korvaa arvaukset varaston tiedoilla ja merkitsee ulkoiset maksut rehellisesti. Se ei tee jokaisesta paketista halpaa, mutta tekee päätöksestä ymmärrettävän ennen kuin vaikeimmin peruttavat kulut syntyvät.'
+ ],bullets:[
+ 'Valittu tuote, väri, koko ja määrä vastaavat edelleen ajantasaista tilausta.',
+ 'Varaston kuvat ja mitat vastaavat kysymyksiin, jotka voisivat johtaa palautukseen.',
+ '120 tunnin pyyntöaika ja myyjän ehdot on tarkistettu tarvittaessa.',
+ 'Toimitusarviossa käytetään oikeaa kohdetta, tuotetyyppiä, painoa ja mittoja.',
+ 'Valittua reittiä arvioidaan rajoitusten, laskutustavan ja riskin, ei vain hinnan, perusteella.',
+ 'Valuutanvaihtoa ja mahdollisia kohdemaan maksuja ei piiloteta näennäisesti taattuun kokonaishintaan.'
+ ]}
+ ]
+};

@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import Home from '../../components/Home.astro';
+import CategoryCards from '../../components/CategoryCards.astro';
+import {categoryNames} from '../../data/category-locales.js';
+import {ui} from '../../data/ui-locales.js';
+import {common,commonShell,discoverCopy} from '../../data/common-locales.js';
+import {editorialUi} from '../../data/editorial-ui.js';
+import {langs,slugs,details as sourceDetails} from '../../content.js';
+import {detailsFor,hasGuideTranslation} from '../../data/faq-locales.js';
+import {articles as sourceArticles,articlesFor,officialSources} from '../../data/articles.js';
+export function getStaticPaths(){return Object.keys(langs).flatMap(lang=>[...slugs.map(page=>({params:{lang,page:page||undefined}})),...sourceArticles.map(article=>({params:{lang,page:`articles/${article.slug}`}}))]);}
+const {lang,page=''}=Astro.params; const t=langs[lang]; const details=detailsFor(lang,sourceDetails); const articles=articlesFor(lang); const d=page==='articles'?null:details[page]; const article=page==='articles'?articles[0]:page.startsWith('articles/')?articles.find(a=>a.slug===page.slice(9)):null; const signup='https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716';
+const u=ui(lang); const c=common(lang); const shell=commonShell(lang); const editorial=editorialUi(lang); const discover=discoverCopy(lang); const names=categoryNames(lang); const categories=['shoes','hoodies-sweaters','t-shirts','jackets','pants-shorts','accessories','jersey','electronics','headwear','ShortSets','other-stuff'].map((slug,i)=>[slug,names[i],String(i+1).padStart(2,'0')]);
+---
+<Base lang={lang} page={page} title={article ? article.title : page ? t[slugs.indexOf(page)+1] : 'Pikobuy Spreadsheet'} description={article?.deck}>
+{!page && <Home lang={lang} t={t} categories={categories} details={details} signup={signup} />}
+{page==='discover' && <section class="section inner"><p class="eyebrow dark">{discover[0]}</p><h1>{discover[1]}<span class="dot">.</span></h1><p class="lead">{discover[2]}</p><div class="filters"><input id="search" type="search" placeholder={u[0]}/><select id="category"><option value=""> {u[2]}</option>{categories.map(([slug,name])=><option value={slug}>{name}</option>)}</select><select id="sort"><option value="default"> {u[3]}</option><option value="low"> {u[4]}</option><option value="high"> {u[5]}</option></select></div><p class="fine">{discover[3]}</p><div id="catalog" data-mode="all" data-lang={lang}></div><button id="more" class="btn darkbtn"> {u[6]} ↓</button></section>}
+{page==='categories' && <section class="section inner"><p class="eyebrow dark">{c[2]}</p><h1>{c[3]}</h1><p class="lead">{c[4]}</p><div class="allcats"><CategoryCards categories={categories} lang={lang} /></div></section>}
+{article && <section class="section inner editorial"><div class="article-head"><p class="eyebrow dark">{editorial[4]}</p><h1>{article.title}</h1><p class="lead">{article.deck}</p><p class="fine">{editorial[5]}{!article.translated?` · ${editorial[6]}`:''}</p></div><div class="article-grid article-reading-layout" id="article-content"><aside class="article-directory" aria-label={c[11]}><b>{c[11]}</b><div class="article-directory-links">{articles.map((item,i)=><a href={`/${lang}/articles/${item.slug}/#article-content`} aria-current={item.slug===article.slug?'page':undefined}><span>{String(i+1).padStart(2,'0')}</span><span>{item.title}</span></a>)}</div><a class="side-cta" href={signup} target="_blank" rel="sponsored noopener"> {c[12]} ↗</a></aside><div class="article-reading-body"><h2 class="article-reading-title">{article.title}</h2>{article.sections.map((section,i)=><article id={`article-section-${i}`}><div class="article-num">{String(i+1).padStart(2,'0')}</div><div><h2>{section.title}</h2>{section.paragraphs.map(p=><p>{p}</p>)}{section.bullets && <ul>{section.bullets.map(b=><li>{b}</li>)}</ul>}</div></article>)}<div class="official-sources"><h2>{c[10]}</h2><p>{editorial[7]}</p>{officialSources.map((_,i)=><p>{editorial[10+i]}</p>)}</div><div class="endcard"><small>{editorial[8]}</small><h2>{editorial[9]}</h2><a class="btn white" href={`/${lang}/articles/`}> {c[11]} ↗</a></div></div></div></section>}
+{d && <section class="section inner editorial"><div class="article-head"><p class="eyebrow dark">{d.ey}</p><h1>{d.title}<span class="dot">.</span></h1><p class="lead">{d.intro}</p>{!hasGuideTranslation(lang,page) && <p class="fine">Detailed guide is currently available in English. Navigation is available in {t[0]}.</p>}</div><div class="article-grid"><aside><b>{shell[0]}</b>{d.sections.map(([h],i)=><a href={`#section-${i}`}>{String(i+1).padStart(2,'0')} / {h}</a>)}<a class="side-cta" href={signup} target="_blank" rel="sponsored noopener"> {c[12]} ↗</a></aside><div>{d.sections.map(([h,p],i)=><article id={`section-${i}`}><div class="article-num">{String(i+1).padStart(2,'0')}</div><div><h2>{h}</h2><p>{p}</p></div></article>)}<div class="endcard"><small>{shell[1]}</small><h2>{shell[2]}</h2><a class="btn white" href={`/${lang}/discover/`}> {shell[3]} ↗</a></div></div></div></section>}
+<script is:inline>
+  (() => {
+    const directory = document.querySelector('.article-directory-links');
+    if (!directory) return;
+    let request = 0;
+    async function showArticle(url, addHistory) {
+      const currentRequest = ++request;
+      try {
+        const response = await fetch(url, { credentials: 'same-origin', cache: 'no-store' });
+        if (!response.ok) throw new Error('Article unavailable');
+        const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+        const nextBody = doc.querySelector('.article-reading-body');
+        const nextHead = doc.querySelector('.article-head');
+        if (!nextBody || !nextHead) throw new Error('Article unavailable');
+        if (currentRequest !== request) return;
+        document.querySelector('.article-reading-body').replaceWith(nextBody);
+        document.querySelector('.editorial .article-head').replaceWith(nextHead);
+        document.title = doc.title;
+        const description = document.querySelector('meta[name="description"]');
+        const newDescription = doc.querySelector('meta[name="description"]');
+        if (description && newDescription) description.content = newDescription.content;
+        directory.querySelectorAll('a').forEach(link => {
+          if (new URL(link.href).pathname === new URL(url).pathname) link.setAttribute('aria-current', 'page');
+          else link.removeAttribute('aria-current');
+        });
+        const newLanguages = doc.querySelectorAll('.language a');
+        document.querySelectorAll('.language a').forEach((link, i) => {
+          if (newLanguages[i]) link.href = newLanguages[i].href;
+        });
+        if (addHistory) history.pushState({ article: true }, '', url);
+        document.querySelector('#article-content').scrollIntoView({ block: 'start' });
+      } catch (error) {
+        if (currentRequest === request) location.assign(url);
+      }
+    }
+    directory.addEventListener('click', event => {
+      const link = event.target.closest('a');
+      if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      showArticle(link.href, true);
+    });
+    window.addEventListener('popstate', () => showArticle(location.href, false));
+  })();
+</script>
+</Base>

@@ -1,0 +1,20 @@
+---
+import {langs,slugs} from '../content.js';
+import {commonShell} from '../data/common-locales.js';
+import {categoryNames} from '../data/category-locales.js';
+import '../styles/main.css';
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {join} from 'node:path';
+const version = path => createHash('sha256').update(readFileSync(join(process.cwd(),'public',path))).digest('hex').slice(0,12);
+const catalogVersion=version('data/catalog.json'), featuredVersion=version('data/featured.json');
+const purchaseVersion=version('purchase.js'), appVersion=version('app.js'), allVersion=version('all-catalog.js');
+const {lang='en',page='',title='Pikobuy Spreadsheet',description='Explore Pikobuy spreadsheet finds, categories, QC and shipping guides.'}=Astro.props;
+const t=langs[lang];
+const shell=commonShell(lang);
+const categoryLabels=Object.fromEntries(['shoes','hoodies-sweaters','t-shirts','jackets','pants-shorts','accessories','jersey','electronics','headwear','ShortSets','other-stuff'].map((slug,i)=>[slug,categoryNames(lang)[i]]));
+const signup='https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716';
+---
+<!doctype html><html lang={lang}><head><meta charset="utf-8"/><meta http-equiv="Cache-Control" content="no-store, max-age=0, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>{title} | PikoBuy Spreadsheet</title><meta name="description" content={description}/><link rel="icon" href="https://www.pikobuy.com/images/common/pikobuy-icon-192.png"/></head><body data-catalog-version={catalogVersion} data-featured-version={featuredVersion} data-category-labels={JSON.stringify(categoryLabels)}>
+<header class="single-header"><a class="brand" href={`/${lang}/`}><img src="https://www.pikobuy.com/images/header/pikobuy-logo-figma.png" alt="Pikobuy"/><span>SPREADSHEET<span class="dot">.</span></span></a><nav aria-label="Main navigation">{slugs.map((s,i)=><a href={`/${lang}/${s?s+'/':''}`} aria-current={page===s?'page':undefined}>{t[i+1]}</a>)}</nav><details class="language"><summary>◎ {lang.toUpperCase()}⌄</summary><div>{Object.entries(langs).map(([code,v])=><a href={`/${code}/${page?page+'/':''}`}>{v[0]}</a>)}</div></details><a class="signup single-signup" href={signup} target="_blank" rel="sponsored noopener noreferrer">{t[12]} ↗</a></header>
+<main id="top"><slot/></main><footer class="single-footer"><div><a class="footerbrand" href={`/${lang}/`}>PIKO<span>·</span>SPREADSHEET</a><p>{shell[4]}</p></div><div><b>{shell[5]}</b>{slugs.slice(1).map((s,i)=><a href={`/${lang}/${s}/`}>{t[i+2]}</a>)}</div><small>© 2026 PIKOBUY SPREADSHEET · REVIEW PREVIEW</small></footer><script is:inline>document.querySelectorAll('.language a').forEach(a=>{const url=new URL(a.href);url.search=location.search;url.hash=location.hash;a.href=url.href;});</script><script src={`/purchase.js?v=${purchaseVersion}`} is:inline></script><script src={`/app.js?v=${appVersion}`} is:inline></script><script src={`/all-catalog.js?v=${allVersion}`} is:inline></script></body></html>
