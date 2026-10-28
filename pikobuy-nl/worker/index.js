@@ -2161,3 +2161,45 @@ const completeLocaleShell = shell;
 shell = function (lang, title, body) {
   return completeLocaleShell(lang, title, body).replace('</style>', `.locale-continuation{margin:14px 0 0 !important;padding-top:12px;border-top:1px solid #b9e7f5;color:#477488 !important}.faq-full-item,.research-route-detail-grid article{min-height:260px !important}@media(max-width:700px){.faq-full-item,.research-route-detail-grid article{min-height:0 !important}}</style>`);
 };
+
+// Crawlable, stable routes only.  Product cards are live FindSpreadsheet
+// records and can change at the source, so they deliberately stay out of the
+// sitemap; this avoids submitting stale, parameter-only product URLs.
+const SITEMAP_PATHS = [
+  ['/', '1.0'],
+  ['/guides', '0.9'],
+  ['/faq', '0.9'],
+  ['/checklist', '0.9'],
+  ['/shipping', '0.9'],
+  ['/categories?category=all-products', '0.9'],
+  ...cats.filter(category => category !== 'all-products').map(category => [`/categories?category=${encodeURIComponent(category)}`, '0.8']),
+  ['/category-details?category=all-products', '0.7']
+];
+
+function xmlEscape(value) {
+  return String(value).replace(/[<>&'\"]/g, character => ({'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','\"':'&quot;'}[character]));
+}
+
+function sitemapXml(origin) {
+  const base = origin.replace(/\/$/, '');
+  const today = new Date().toISOString().slice(0, 10);
+  const urls = Object.keys(LOCALES).flatMap(language => SITEMAP_PATHS.map(([path, priority]) => {
+    const location = `${base}/${language}${path}`;
+    const alternates = Object.keys(LOCALES).map(other => `<xhtml:link rel="alternate" hreflang="${other}" href="${xmlEscape(`${base}/${other}${path}`)}"/>`).join('');
+    return `<url><loc>${xmlEscape(location)}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${base}/en${path}`)}"/><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`;
+  })).join('');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`;
+}
+
+// This wraps the final route implementation so these public SEO endpoints
+// work in both the preview host and the Cloudflare Pages production host.
+const crawlableSiteRender = render;
+render = async function (url) {
+  if (url.pathname === '/sitemap.xml') {
+    return new Response(sitemapXml(url.origin), {headers:{'content-type':'application/xml; charset=UTF-8','cache-control':'public, max-age=3600'}});
+  }
+  if (url.pathname === '/robots.txt') {
+    return new Response(`User-agent: *\nAllow: /\nSitemap: ${url.origin}/sitemap.xml\n`, {headers:{'content-type':'text/plain; charset=UTF-8','cache-control':'public, max-age=3600'}});
+  }
+  return crawlableSiteRender(url);
+};
