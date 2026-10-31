@@ -1,3 +1,4 @@
+import { spanish as joyagooSpanish } from './spanish-expanded.mjs';
 import { french as joyagooFrench } from './french-expanded.mjs';
 import { extra as joyagooGermanExtra } from './german-extra.mjs';
 import { qcGerman } from './qc-german-expanded.mjs';
@@ -295,7 +296,7 @@ seoArticle=(l,slug)=>{
   const slugs=['qc-photo-review','warehouse-storage','actual-vs-volumetric-weight','tracking-status','customs-declaration','after-sales-evidence'];
   const order=[[3,2,4,5,6,7,14],[8,2,3,4,9,10,14],[10,11,9,8,13,12,14],[12,13,14,9,11,2,3],[13,10,11,9,12,14,3],[14,4,5,6,7,12,13]][slugs.indexOf(slug)];
   const d=localeDepth[l],focus=joyagooTopicTranslations[l][slugs.indexOf(slug)];
-  const expanded=l==='fr'?joyagooFrench[slug]:null;
+  const expanded=l==='fr'?joyagooFrench[slug]:l==='es'?joyagooSpanish[slug]:null;
   return page(l,a[1],`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${esc(a[1])}</p><section class="section"><span class="eyebrow">Joyagoo · ${x.articles}</span><h1>${esc(a[1])}</h1><p>${esc(a[2])}</p>${expanded?expanded.map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join(''):`<p>${esc(focus)}</p>`}${slug==='qc-photo-review'&&expanded?'':order.map(i=>`<h2>${esc(d.q[i])}</h2><p>${esc(d.a[i])}</p>`).join('')}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,a[2]);
  }
  const sections=(slug==='qc-photo-review')?(l==='en'?qcEnglish:qcGerman):(l==='de'?joyagooGermanArticles:joyagooEnglishArticles)[slug];
