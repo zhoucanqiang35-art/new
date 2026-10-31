@@ -1,3 +1,6 @@
+import { german as joyagooGermanArticles } from './joyagoo-de-draft.mjs';
+import { english as joyagooEnglishArticles } from './joyagoo-research-draft.mjs';
+import { faqCorrections } from './joyagoo-faq-corrections.mjs';
 import { mkdirSync, writeFileSync, rmSync, cpSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 
@@ -264,6 +267,23 @@ function localizedPikoLong(l){const v=localPage(l),d=localeDepth[l].a,sections=[
 function localizedSeoArticle(l,slug){if(l==='en')return originalSeoArticle(l,slug);const t=langs[l],x=labels[l],a=articles[l].find(v=>v[0]===slug);return page(l,a[1],`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${a[1]}</p><section class="section"><span class="eyebrow">${x.articles}</span><h1>${a[1]}</h1><p>${a[2]}</p></section>${localizedPikoLong(l)}<section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,a[2])}
 function localizedFaq(l){if(l==='en')return originalFaq(l);const t=langs[l],v=localPage(l),d=localeDepth[l];return page(l,v.faqTitle,`<section class="section faq"><span class="eyebrow">${t.faq} · ${v.guide}</span><h1>${v.faqTitle}</h1><p class="muted">${v.faqIntro}</p>${d.q.map((question,i)=>`<details ${i===0?'open':''}><summary>${question}</summary><p>${d.a[i]}</p></details>`).join('')}<div class="case"><h2>${v.guide}</h2><p>${d.a[14]}</p><p>${d.a[10]}</p></div></section>`,v.faqIntro)}
 productDetails=localizedProductDetails;category=localizedCategory;guide=localizedGuide;seoArticle=localizedSeoArticle;faq=localizedFaq;
+// Joyagoo-specific content overrides the former cross-platform research.
+for (const l of Object.keys(langs)) {
+  const fixes=faqCorrections[l], indices=[0,4,5,6,7,8,12];
+  if (l==='en') for (let j=0;j<indices.length;j++) pikoFaq[indices[j]]=[fixes.q[j],fixes.a[j]];
+  else for (let j=0;j<indices.length;j++) {localeDepth[l].q[indices[j]]=fixes.q[j];localeDepth[l].a[indices[j]]=fixes.a[j];}
+}
+const oldFaq=faq;
+faq=(l)=>{
+ if(l!=='en')return oldFaq(l);
+ const t=langs[l];return page(l,'Joyagoo FAQ',`<section class="section faq"><span class="eyebrow">FAQ · Joyagoo</span><h1>Joyagoo buying questions</h1><p class="muted">Policies, routes and fees may change. Check the current order or parcel before paying.</p>${pikoFaq.map(([q,a],i)=>`<details ${i===0?'open':''}><summary>${esc(q.replace(/PIKOBUY/g,'Joyagoo'))}</summary><p>${esc(a.replace(/PIKOBUY/g,'Joyagoo'))}</p></details>`).join('')}</section>`,t.intro)
+};
+const oldSeoArticle=seoArticle;
+seoArticle=(l,slug)=>{
+ if(l!=='en' && l!=='de')return oldSeoArticle(l,slug);
+ const t=langs[l],x=labels[l],a=articles[l].find(v=>v[0]===slug),sections=(l==='de'?joyagooGermanArticles:joyagooEnglishArticles)[slug];
+ return page(l,a[1],`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${a[1]}</p><section class="section"><span class="eyebrow">${l==='de'?'Joyagoo-Recherche · geprüft am 31. Oktober 2026':'Joyagoo research · reviewed 31 October 2026'}</span><h1>${a[1]}</h1><p>${a[2]}</p>${sections.map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join('')}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,a[2]);
+};
 home=homeV8;
 for(const l of Object.keys(langs)){pathWrite(`${l}/index.html`,home(l));pathWrite(`${l}/categories/index.html`,page(l,'Product research categories',`<section class="section"><span class="eyebrow">${langs[l].cats}</span><h1>Choose a category, then choose the right QC question</h1><div class="grid">${cats.map(c=>`<article class="card"><h3>${c[1]}</h3><p>${c[3]}</p><a href="/${l}/categories/${c[0]}/">${langs[l].view} →</a></article>`).join('')}</div></section>`,langs[l].intro));for(const c of cats)pathWrite(`${l}/categories/${c[0]}/index.html`,category(l,c));pathWrite(`${l}/product-details/index.html`,productDetails(l));pathWrite(`${l}/seo-articles/index.html`,seoArticles(l));for(const a of articles[l])pathWrite(`${l}/seo-articles/${a[0]}/index.html`,seoArticle(l,a[0]));for(const g of ['how-to-order','qc-workflow','shipping-cost','country-support'])pathWrite(`${l}/guides/${g}/index.html`,guide(l,g));pathWrite(`${l}/faq/index.html`,faq(l));}
 pathWrite('index.html',home('en'));pathWrite('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${siteOrigin}/sitemap.xml\n`);const urls=Object.keys(langs).flatMap(l=>['','categories/','product-details/','seo-articles/','faq/','guides/how-to-order/','guides/qc-workflow/','guides/shipping-cost/','guides/country-support/',...articles[l].map(a=>`seo-articles/${a[0]}/`),...cats.map(c=>`categories/${c[0]}/`)].map(p=>`${siteOrigin}/${l}/${p}`));pathWrite('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls.map(u=>`<url><loc>${u}</loc></url>`).join('')}</urlset>`);
