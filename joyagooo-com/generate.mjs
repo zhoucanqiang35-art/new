@@ -1,3 +1,4 @@
+import { localized as newLocalizedDepth } from './new-guides-localized-depth.mjs';
 import { depth as newEnglishDepth } from './new-guides-en-depth.mjs';
 import { guideData as newGuideData } from './new-guides.mjs';
 import { depth as remainingDepth } from './remaining-depth.mjs';
@@ -318,7 +319,7 @@ seoArticle=(l,slug)=>{
  const pairs=l==='en'?pikoFaq:localeDepth[l].q.map((q,n)=>[q,localeDepth[l].a[n]]);
  const order=[[1,2,3,4,9,10,14],[9,7,10,11,13,14],[2,3,4,5,7,10,14]][i];
  const more=order.map(n=>`<h2>${esc(pairs[n][0].replace(/PIKOBUY/g,'Joyagoo'))}</h2><p>${esc(pairs[n][1].replace(/PIKOBUY/g,'Joyagoo'))}</p>`).join('');
- return page(l,title,`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${esc(title)}</p><section class="section"><span class="eyebrow">Joyagoo · ${x.articles}</span><h1>${esc(title)}</h1><p>${esc(description)}</p>${sections.map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join('')}${l==='en'?newEnglishDepth[i].map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join(''):''}${more}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,description);
+ return page(l,title,`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${esc(title)}</p><section class="section"><span class="eyebrow">Joyagoo · ${x.articles}</span><h1>${esc(title)}</h1><p>${esc(description)}</p>${sections.map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join('')}${(l==='en'?newEnglishDepth[i]:newLocalizedDepth[l][i]).map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join('')}${more}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,description);
 };
 home=homeV8;
 langs.en.hero='Joyagoo Spreadsheet: Product Finds, QC & Buying Guides';
