@@ -1,3 +1,4 @@
+import { extra as joyagooEnglishExtra } from './english-extra.mjs';
 import { qcEnglish } from './qc-english-expanded.mjs';
 import { topics as joyagooTopicTranslations } from './joyagoo-topic-translations.mjs';
 import { german as joyagooGermanArticles } from './joyagoo-de-draft.mjs';
@@ -294,6 +295,7 @@ seoArticle=(l,slug)=>{
   return page(l,a[1],`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${esc(a[1])}</p><section class="section"><span class="eyebrow">Joyagoo · ${x.articles}</span><h1>${esc(a[1])}</h1><p>${esc(a[2])}</p><p>${esc(focus)}</p>${order.map(i=>`<h2>${esc(d.q[i])}</h2><p>${esc(d.a[i])}</p>`).join('')}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,a[2]);
  }
  const sections=(l==='en' && slug==='qc-photo-review')?qcEnglish:(l==='de'?joyagooGermanArticles:joyagooEnglishArticles)[slug];
+ if(l==='en' && joyagooEnglishExtra[slug]) sections.push(...joyagooEnglishExtra[slug]);
  return page(l,a[1],`<p class="crumb"><a href="/${l}/">${t.home}</a> / <a href="/${l}/seo-articles/">${x.articles}</a> / ${a[1]}</p><section class="section"><span class="eyebrow">${l==='de'?'Joyagoo-Recherche · geprüft am 31. Oktober 2026':'Joyagoo research · reviewed 31 October 2026'}</span><h1>${a[1]}</h1><p>${a[2]}</p>${sections.map(([h,p])=>`<h2>${esc(h)}</h2><p>${esc(p)}</p>`).join('')}</section><section class="section"><a class="button" href="https://findspreadsheet.com/AllProducts/">${t.db}</a></section>`,a[2]);
 };
 home=homeV8;
