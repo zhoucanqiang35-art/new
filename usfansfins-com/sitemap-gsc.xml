@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://usfansfins.com/</loc>
-    <lastmod>2026-10-07</lastmod>
-  </url>
+  <url><loc>https://usfansfins.com/</loc></url>
+  <url><loc>https://usfansfins.com/categories/</loc></url>
+  <url><loc>https://usfansfins.com/how-it-works/</loc></url>
+  <url><loc>https://usfansfins.com/guides/</loc></url>
+  <url><loc>https://usfansfins.com/faq/</loc></url>
+  <url><loc>https://usfansfins.com/articles/usfans-spreadsheet-beginners-guide/</loc></url>
+  <url><loc>https://usfansfins.com/articles/usfans-qc-photos-guide/</loc></url>
+  <url><loc>https://usfansfins.com/articles/usfans-shipping-costs/</loc></url>
+  <url><loc>https://usfansfins.com/articles/usfans-shoes-clothing-finds/</loc></url>
+  <url><loc>https://usfansfins.com/articles/usfans-warehouse-returns/</loc></url>
 </urlset>
