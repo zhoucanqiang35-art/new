@@ -26,7 +26,7 @@
     const category = main.querySelector('#categories');
     const heading = category?.querySelector('.section-head');
     if (!heading || heading.children.length < 2) return;
-    heading.children[0].innerHTML = `<p class="eyebrow">FindSpreadsheet / USFans</p><h2>${copy.legacyHero || copy.hero || 'Find with a little more certainty.'}</h2>`;
+    heading.children[0].innerHTML = `<p class="eyebrow">FindSpreadsheet / USFans</p><h1 class="home-primary-heading">${copy.legacyHero || copy.hero || 'Find with a little more certainty.'}</h1>`;
     heading.children[1].innerHTML = `<p>${copy.legacyIntro || copy.intro || ''}</p><form class="canonical-home-search" id="legacySearch"><input type="search" placeholder="${copy.legacySearch || copy.search || ''}" required><button>${copy.legacyGo || copy.go || 'Search ↗'}</button></form><p class="canonical-home-hint">${copy.legacyHint || copy.hint || ''}</p>`;
     sendSearch(heading.querySelector('#legacySearch'));
   }
@@ -34,3 +34,4 @@
   restoreCanonicalHero();
   document.addEventListener('usfans-rendered', restoreCanonicalHero);
 })();
+

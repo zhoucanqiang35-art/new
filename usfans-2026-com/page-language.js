@@ -4,7 +4,7 @@
   const supported=new Set(['en','de','fr','es','it','pt','nl','pl','sv']);
   let sequence=0;
   const ignored=new Set(['SCRIPT','STYLE','NOSCRIPT','TEXTAREA','OPTION','CODE','PRE']);
-  const cacheKey=(locale,text)=>`usfans-text-v2:${locale}:${btoa(unescape(encodeURIComponent(text))).slice(0,220)}`;
+  const cacheKey=(locale,text)=>`usfans-text-v4-auto:${locale}:${btoa(unescape(encodeURIComponent(text)))}`;
   function textNodes(root){
     const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(node){
       if(!node.nodeValue.trim()||ignored.has(node.parentElement?.tagName)||node.parentElement?.closest('[data-no-translate]'))return NodeFilter.FILTER_REJECT;
@@ -12,11 +12,11 @@
     }});const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);return nodes;
   }
   async function request(text,locale){
-    const key=cacheKey(locale,text),stored=sessionStorage.getItem(key);if(stored)return stored;
+    const key=cacheKey(locale,text);let stored;try{stored=sessionStorage.getItem(key)}catch{}if(stored)return stored;
     const url=`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${encodeURIComponent(locale)}&dt=t&q=${encodeURIComponent(text)}`;
     const response=await fetch(url,{credentials:'omit',cache:'force-cache'});if(!response.ok)throw new Error('translation unavailable');
     const data=await response.json(),translated=(data?.[0]||[]).map(part=>part?.[0]||'').join('');if(!translated)throw new Error('empty translation');
-    sessionStorage.setItem(key,translated);return translated;
+    try{sessionStorage.setItem(key,translated)}catch{}return translated;
   }
   async function translate(locale){
     if(!supported.has(locale)||locale==='en')return;
@@ -32,3 +32,4 @@
   window.usfansTranslatePage=translate;
   const saved=localStorage.getItem('usfans-lang');if(saved&&saved!=='en')setTimeout(()=>translate(saved),0);
 })();
+
