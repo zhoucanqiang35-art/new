@@ -148,7 +148,15 @@ function faq(){let f=L.faq||locales.EN.faq;return `<main class="page"><span clas
 function completeFaq(){if(L.faq)return; const prefix={DE:['Ist USFANSSS eine offizielle USFans-Seite?','Nein. USFANSSS ist ein unabhängiger Rechercheführer. Für Konto, Zahlung, Bestellung und Regeln nutze offizielle Kanäle.'],FR:['USFANSSS est-il un site officiel USFans ?','Non. USFANSSS est un guide indépendant. Pour compte, paiement, commande et règles, utilisez les canaux officiels.'],ES:['¿USFANSSS es una web oficial de USFans?','No. USFANSSS es una guía independiente. Para cuenta, pagos, pedidos y normas usa canales oficiales.'],IT:['USFANSSS è un sito ufficiale USFans?','No. USFANSSS è una guida indipendente. Per conto, pagamenti, ordini e regole usa i canali ufficiali.'],PT:['USFANSSS é um site oficial da USFans?','Não. USFANSSS é um guia independente. Para conta, pagamento, pedidos e regras use canais oficiais.'],NL:['Is USFANSSS een officiële USFans-site?','Nee. USFANSSS is een onafhankelijke gids. Gebruik officiële kanalen voor account, betaling, orders en regels.'],PL:['Czy USFANSSS jest oficjalną stroną USFans?','Nie. USFANSSS jest niezależnym przewodnikiem. W sprawach konta, płatności, zamówień i zasad używaj oficjalnych kanałów.']}[lang];if(prefix){L.faq=[prefix,...faqQuestions[lang].map((q,i)=>[q,long[lang][Math.min(i,long[lang].length-1)]])];}}
 completeFaq();
 document.documentElement.lang=lang.toLowerCase();
-document.title=(route==='faq.html'?L.nav[4]:route==='seo-articles.html'||route==='article-usfans-warehouse-qc.html'?L.nav[3]:route==='category.html'?L.nav[1]:route==='product-details.html'||route==='product.html'?L.nav[2]:L.nav[0])+' | USFANSSS';
+const seoTitle = route==='article-usfans-warehouse-qc.html' ? articleMeta.title.replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim() : route==='index.html' ? 'USFans Spreadsheet | '+L.nav[1]+' & '+L.nav[3] : route==='faq.html' ? L.nav[4]+' — USFans QC & Shipping' : route==='seo-articles.html' ? L.nav[3]+' — USFans QC & Shipping' : route==='category.html' ? L.nav[1]+' — USFans Spreadsheet' : route==='product-details.html'||route==='product.html' ? L.nav[2]+' — USFans Spreadsheet' : L.nav[0];
+document.title=seoTitle+' | USFANSSS';
+const canonicalPath={'index.html':'/','category.html':'/categories','product-details.html':'/product-catalog','seo-articles.html':'/seo-articles','article-usfans-warehouse-qc.html':'/article-usfans-warehouse-qc','faq.html':'/faq'}[route];
+if(canonicalPath){
+  const address=code=>'https://usfanssss.com'+canonicalPath+(code==='EN'?'':'?lang='+code);
+  const canonical=document.createElement('link');canonical.rel='canonical';canonical.href=address(lang);document.head.append(canonical);
+  for(const code of ['EN','DE','FR','ES','IT','PT','NL','PL']){const link=document.createElement('link');link.rel='alternate';link.hreflang=code.toLowerCase();link.href=address(code);document.head.append(link)}
+  const fallback=document.createElement('link');fallback.rel='alternate';fallback.hreflang='x-default';fallback.href=address('EN');document.head.append(fallback);
+}
 function renderLocalizedPage(){
   const h=document.querySelector('#site-header');
   if(h)h.innerHTML=header();
@@ -167,6 +175,8 @@ function renderLocalizedPage(){
 /* Every document loads this at the end of its body. One complete render avoids
    a later event replacing a translated independent page with its static copy. */
 renderLocalizedPage();
+/* Cloudflare serves extensionless pages; link to those directly to avoid a redirect. */
+document.querySelectorAll('a[href]').forEach(a=>{if(a.hasAttribute('data-l'))return;const u=new URL(a.getAttribute('href'),location.href);if(u.origin!==location.origin)return;const aliases={'/index.html':'/','/category.html':'/categories','/categories.html':'/categories','/product-details.html':'/product-catalog','/product-catalog.html':'/product-catalog','/seo-articles.html':'/seo-articles','/article-usfans-warehouse-qc.html':'/article-usfans-warehouse-qc','/faq.html':'/faq'};if(aliases[u.pathname]){u.pathname=aliases[u.pathname];u.searchParams.set('lang',lang);a.href=u.pathname+u.search+u.hash}});
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-l]');
   if(b){
