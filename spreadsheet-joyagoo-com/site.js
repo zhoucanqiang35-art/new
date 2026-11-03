@@ -27,7 +27,7 @@
   else{[...menu.querySelectorAll('button')].forEach((item,index)=>{item.dataset.lang=Object.keys(names)[index];item.removeAttribute('onclick');item.onclick=null;});}
   const render=(lang)=>{
     const d=labels[lang]||labels.en; document.documentElement.lang=lang;
-    nav.querySelectorAll('a').forEach(a=>{const key=({"index.html":"home","categories.html":"categories","products.html":"products","seo.html":"seo","faq.html":"faq","new.html":"new"})[a.getAttribute('href')]; if(key)a.textContent=d[key];});
+    nav.querySelectorAll('a').forEach(a=>{const key=({"/":"home","/categories":"categories","/products":"products","/seo":"seo","/faq":"faq","/new":"new"})[a.getAttribute('href')]; if(key)a.textContent=d[key];});
     const word=chooser.querySelector('.language-word'); if(word)word.textContent=d.language;
     chooser.querySelector('#code').textContent=lang.toUpperCase(); chooser.classList.remove('open');
     const page=document.body.dataset.page; if(page&&head[page]){const copy=head[page][lang]||head[page].en; const h=document.querySelector('[data-page-title]'); const p=document.querySelector('[data-page-deck]'); if(h)h.innerHTML=copy[0]; if(p)p.textContent=copy[1];}
