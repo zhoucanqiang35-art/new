@@ -327,7 +327,7 @@ const editorialEditionsScript = `window.__litbuyEditorial=${JSON.stringify(edito
     };
     const setArticle = (article, copy) => {
       if (!article || !copy) return;
-      const title = article.querySelector('header h1, header h2');
+      const title = article.querySelector('header h1, header h2 a, header h2');
       const description = article.querySelector('header > p:not(.eyebrow)');
       if (title) title.textContent = copy.title;
       if (description) description.textContent = copy.description;

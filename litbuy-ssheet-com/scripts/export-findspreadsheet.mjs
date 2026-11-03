@@ -1,10 +1,10 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 
 const source = 'https://findspreadsheet.com';
 const output = resolve(process.cwd(), 'public/data/findspreadsheet-export.json');
 const concurrency = 4;
-const pageUrl = (page) => page === 1 ? `${source}/AllProducts/` : `${source}/AllProducts/list_42_${page}/`;
+const pageUrl = (page) => `${source}/AllProducts/list_42_${page}/`;
 
 const decode = (value = '') => value
   .replaceAll('&amp;', '&')
@@ -76,6 +76,7 @@ async function main() {
     while (cursor < pages.length) {
       const page = pages[cursor++];
       const products = readProducts(await getPage(page));
+      if (!products.length) throw new Error(`Source page ${page} returned no records; leaving the previous export untouched.`);
       records.push(...products);
       process.stdout.write(`Exported page ${page}/${lastPage} (${products.length} products)\n`);
     }
@@ -83,6 +84,19 @@ async function main() {
   await Promise.all(Array.from({ length: Math.min(concurrency, pages.length) }, worker));
   const unique = [...new Map(records.map((product) => [product.id, product])).values()]
     .sort((a, b) => Number(b.id) - Number(a.id));
+  // Preserve source-specific enriched media only when the identifying source record still matches.
+  let previous = [];
+  try { previous = JSON.parse(await readFile(output, 'utf8')).products || []; } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  const prior = new Map(previous.map((product) => [product.id, product]));
+  for (const product of unique) {
+    const old = prior.get(product.id);
+    if (old && old.sourcePath === product.sourcePath && old.weidianId === product.weidianId) {
+      if (old.weidianImages?.length > 1) product.weidianImages = old.weidianImages;
+      if (old.qcImages?.length) product.qcImages = old.qcImages;
+    }
+  }
   const payload = { source, exportedAt: new Date().toISOString(), total: unique.length, products: unique };
   await mkdir(dirname(output), { recursive: true });
   await writeFile(output, `${JSON.stringify(payload)}\n`);
