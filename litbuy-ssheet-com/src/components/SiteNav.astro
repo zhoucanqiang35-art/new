@@ -5,6 +5,13 @@ const navItems = [['Home', '/'], ['Product categories', '/categories/'], ['SEO a
 const languages = [['EN', 'English', 'en'], ['DE', 'Deutsch', 'de'], ['FR', 'Français', 'fr'], ['ES', 'Español', 'es'], ['IT', 'Italiano', 'it'], ['PT', 'Português', 'pt'], ['NL', 'Nederlands', 'nl'], ['PL', 'Polski', 'pl'], ['RU', 'Русский', 'ru']];
 const editorialEditionsScript = `window.__litbuyEditorial=${JSON.stringify(editorialEditions)};`;
 ---
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-KGCDHGGSWJ"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-KGCDHGGSWJ');
+</script>
 <header class="finder-nav">
   <a class="finder-brand" href="/" aria-label="LitBuy Spreadsheet home"><span class="official-mark"><img src="/assets/logo-Litbuy-2.png" alt="" /></span><strong>LITBUY</strong></a>
   <nav aria-label="Primary navigation">{navItems.map(([label, href]) => <a href={href} data-l10n={label}>{label}</a>)}</nav>
