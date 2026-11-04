@@ -105,4 +105,5 @@ else if(page==='seo')main=title(T[4],localResearch[lang]?localResearch[lang].sub
 else if(page==='article')main=fullBuyerArticle();
 else main=title(T[24],localResearch[lang]?localResearch[lang].sub:'Facts to check before you choose')+localizedFaq();
 document.getElementById('app').innerHTML=nav()+main+footer();
+if(lang!=='en'){const ai=articleSlugs.indexOf(document.body.dataset.article),ci=categoryData.findIndex(c=>c[0]===document.body.dataset.category),ni=keys.indexOf(page);const label=page==='article'&&ai>=0?articleData[lang][ai].title:page==='category'&&ci>=0?categoryNames[ci]:ni>=0?T[ni]:T[5];document.title=label+' | Hipobuy Fins';}
 function go(e){e.preventDefault();location.href=FS+'/search.html?channelid=2&keywords='+encodeURIComponent(new FormData(e.target).get('q'))}function changeLang(v){localStorage.hfLang=v;location.reload()}
