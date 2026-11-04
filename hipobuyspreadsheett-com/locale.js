@@ -1,1 +1,41 @@
-(()=>{const key='hipo-language',path=location.pathname.includes('/categories/')?'../':'',skip=n=>['SCRIPT','STYLE','OPTION'].includes(n.parentElement?.tagName)||!n.nodeValue.trim(),clean=s=>s.replace(/\s+/g,' ').trim(),q=s=>encodeURIComponent(s);let active=false;async function one(t,l){const k='hipo-t-'+l+'-'+t;if(localStorage[k])return localStorage[k];const u='https:'+'//translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+l+'&dt=t&q='+q(t);const j=await fetch(u).then(r=>r.json());const v=j[0].map(x=>x[0]).join('');localStorage[k]=v;return v}async function pool(list,l){let i=0;const workers=Array.from({length:5},async()=>{while(i<list.length){const n=list[i++];try{n.nodeValue=await one(clean(n.nodeValue),l)}catch{}}});await Promise.all(workers)}async function apply(l){if(active||l==='en')return;active=true;document.documentElement.lang=l;const w=document.createTreeWalker(document.getElementById('app'),NodeFilter.SHOW_TEXT);const n=[];while(w.nextNode())if(!skip(w.currentNode))n.push(w.currentNode);await pool(n,l);const attrs=[...document.querySelectorAll('[placeholder],[aria-label],[alt]')];await Promise.all(attrs.map(async e=>{for(const a of ['placeholder','aria-label','alt'])if(e.hasAttribute(a)){const v=e.getAttribute(a);if(v&&v!=='HIPOBUY')try{e.setAttribute(a,await one(v,l))}catch{}}}));active=false}document.addEventListener('change',e=>{if(e.target?.id==='language'){localStorage.setItem(key,e.target.value);location.reload()}},true);setTimeout(()=>apply(localStorage.getItem(key)||'en'),0)})();
+(()=>{
+  const key='hipo-language';
+  const path=location.pathname.includes('/categories/')?'../':'';
+  const clean=s=>s.replace(/\s+/g,' ').trim();
+  const translateNode=(node,dict)=>{
+    if(['SCRIPT','STYLE','OPTION'].includes(node.parentElement?.tagName)||node.parentElement?.closest('[data-guide-local]'))return;
+    const raw=node.nodeValue, text=clean(raw), translated=dict[text];
+    if(!text||!translated)return;
+    const leading=raw.match(/^\s*/)[0], trailing=raw.match(/\s*$/)[0];
+    node.nodeValue=leading+translated+trailing;
+  };
+  async function apply(){
+    const lang=localStorage.getItem(key)||'en';
+    document.documentElement.lang=lang;
+    if(lang==='en')return;
+    try{
+      const response=await fetch(path+'translations.json');
+      if(!response.ok)throw new Error('translation file unavailable');
+      const dict=(await response.json())[lang];
+      if(!dict)return;
+      const walker=document.createTreeWalker(document.getElementById('app'),NodeFilter.SHOW_TEXT);
+      while(walker.nextNode())translateNode(walker.currentNode,dict);
+      for(const el of document.querySelectorAll('[placeholder],[aria-label],[alt]')){
+        if(el.closest('[data-guide-local]'))continue;
+        for(const attr of ['placeholder','aria-label','alt']){
+          if(!el.hasAttribute(attr))continue;
+          const value=el.getAttribute(attr), translated=dict[clean(value||'')];
+          if(translated)el.setAttribute(attr,translated);
+        }
+      }
+    }catch(error){console.error('Unable to load local translations:',error)}
+  }
+  document.addEventListener('change',e=>{
+    if(e.target?.id==='language'){
+      localStorage.setItem(key,e.target.value);
+      location.reload();
+    }
+  },true);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});
+  else apply();
+})();
