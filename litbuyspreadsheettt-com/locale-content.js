@@ -1185,11 +1185,78 @@
     "Вывод: выбирайте по точным названиям вариантов и измерениям, а не по общим фото или привычным буквам размера."
   ]
 };
+  const guideFiveTranslations = {
+  "de": [
+    "Wenn Angebote ähnlich aussehen, ist der Preis ein Anlass zur Prüfung, kein Urteil. Ein niedriger Betrag kann eine andere Größe, ein anderes Material, ein Teilset, einen anderen Händler oder einen veralteten Preis bedeuten. Vergleichen Sie zuerst gleiche Option, ähnliche Maße, angegebenes Material und Menge; sonst ist der Unterschied nicht aussagekräftig.",
+    "Erstellen Sie eine Vergleichskarte mit Produkt-ID, genauer Option, angezeigter USD-Schätzung, Bildzahl, wichtigen Maßen, angegebenem Material, sichtbarem Lieferumfang und Prüfdatum. Ergänzen Sie eine offene Frage: ‘günstiger, aber keine Maße’ ist hilfreicher als ‘vielleicht’. So bleibt Unsicherheit sichtbar.",
+    "Belohnen Sie professionelle Fotos nicht automatisch. Händlerbilder können bearbeitet, zwischen Shops geteilt oder vorteilhaft beleuchtet sein. Prüfen Sie die innere Übereinstimmung: Passen Titel und Optionsnamen zusammen, entsprechen Maße der Form, erscheinen Details aus mehreren Winkeln? Ein weniger attraktives Angebot mit klaren Angaben kann leichter zu beurteilen sein.",
+    "Führen Sie Produktpreis und spätere Paketkosten getrennt. LitBuy beschreibt Inlandskauf und internationalen Versand als separate Schritte; der Schätzer fragt nach Ziel, Gewicht und Maßen. Eine Preisersparnis kann durch Paketmerkmale oder gewählte Dienste aufgebraucht werden. Bis aktuelle Zahlen vorliegen, notieren Sie ‘unbekannt’ statt eine Summe zu erfinden.",
+    "Oft ist das Angebot mit den klarsten Informationen besser geeignet als das mit dem niedrigsten Anfangspreis. Eine eindeutige Konfiguration, passende Maße, aussagekräftige Bilder und eine zum Budget passende Restunsicherheit können das Risiko verringern.",
+    "Fazit: Vergleichen Sie Gleiches mit Gleichem, notieren Sie fehlende Angaben und trennen Sie Produktpreis und spätere Paketentscheidung."
+  ],
+  "fr": [
+    "Quand plusieurs annonces se ressemblent, le prix invite à vérifier, il ne tranche pas. Un montant inférieur peut correspondre à une autre taille, matière, partie de lot, vendeur ou ancien prix. Comparez d’abord la même option, des dimensions, une matière déclarée et une quantité similaires ; sinon l’écart n’a pas de sens.",
+    "Créez une fiche comparative : identifiant, option exacte, estimation USD affichée, nombre d’images, mesures clés, matière annoncée, éléments visibles et date de contrôle. Ajoutez une question ouverte : « moins cher, mais dimensions absentes » est plus utile que « peut-être ». L’incertitude reste ainsi visible.",
+    "Ne récompensez pas automatiquement une photographie soignée. Les images peuvent être retouchées, partagées entre boutiques ou éclairées avantageusement. Vérifiez la cohérence : titre et options concordent-ils, les dimensions correspondent-elles à la forme, les détails apparaissent-ils sous plusieurs angles ? Une annonce moins séduisante mais précise peut être plus facile à évaluer.",
+    "Séparez le prix de l’article du coût ultérieur du colis. LitBuy décrit l’achat intérieur et l’envoi international comme deux étapes ; son estimateur demande destination, poids et dimensions. Une économie sur l’article peut disparaître selon le colis ou les services choisis. Sans chiffres actuels, indiquez « inconnu » plutôt qu’un total inventé.",
+    "Le meilleur choix est souvent l’option la mieux renseignée plutôt que la moins chère au départ. Configuration explicite, dimensions adaptées, images utiles et incertitude compatible avec votre budget peuvent réduire le risque.",
+    "À retenir : comparez des options équivalentes, notez les informations manquantes et séparez le prix de l’article de la décision de colis."
+  ],
+  "es": [
+    "Cuando varios anuncios parecen iguales, el precio invita a investigar, no decide. Un importe menor puede corresponder a otra talla, material, parte de un conjunto, vendedor o precio antiguo. Compara primero la misma opción y medidas, material declarado y cantidad similares; de otro modo la diferencia no es significativa.",
+    "Crea una ficha comparativa: ID, opción exacta, estimación USD mostrada, número de imágenes, medidas clave, material declarado, contenido visible y fecha de comprobación. Añade una duda: «más barato, pero sin medidas» sirve más que «quizá». Así la incertidumbre queda visible.",
+    "No premies automáticamente una fotografía cuidada. Las imágenes pueden estar editadas, compartidas entre tiendas o iluminadas favorablemente. Comprueba coherencia: ¿coinciden título y opciones, corresponden las medidas con la forma y se repiten detalles desde varios ángulos? Un anuncio menos vistoso pero claro puede ser más fácil de evaluar.",
+    "Separa el precio del artículo del coste posterior del paquete. LitBuy describe compra nacional y envío internacional como etapas distintas; su estimador pide destino, peso y dimensiones. Un ahorro en el producto puede desaparecer por las características del paquete o los servicios elegidos. Sin cifras actuales, escribe «desconocido» en vez de inventar un total.",
+    "A menudo conviene la opción con información más clara, no la más barata inicialmente. Una configuración explícita, medidas adecuadas, imágenes útiles e incertidumbre compatible con el presupuesto pueden reducir el riesgo.",
+    "Conclusión: compara opciones equivalentes, registra datos ausentes y separa el precio del producto de la decisión posterior de envío."
+  ],
+  "it": [
+    "Quando più annunci sembrano simili, il prezzo invita a indagare, non decide. Una cifra inferiore può indicare un’altra taglia, materiale, parte di un set, venditore o un prezzo vecchio. Confronta prima la stessa opzione e misure, materiale dichiarato e quantità simili; altrimenti la differenza non è significativa.",
+    "Crea una scheda: ID, opzione esatta, stima USD mostrata, numero di immagini, misure principali, materiale dichiarato, contenuto visibile e data del controllo. Aggiungi una domanda aperta: «meno caro, ma senza misure» è più utile di «forse». L’incertezza rimane visibile.",
+    "Non premiare automaticamente foto curate. Le immagini possono essere modificate, condivise tra negozi o illuminate in modo favorevole. Verifica la coerenza: titolo e opzioni concordano, le misure corrispondono alla forma, i dettagli compaiono da più angoli? Un annuncio meno appariscente ma chiaro può essere più facile da valutare.",
+    "Tieni separati prezzo dell’articolo e costo successivo del pacco. LitBuy descrive acquisto nazionale e spedizione internazionale come fasi distinte; lo stimatore richiede destinazione, peso e dimensioni. Il risparmio iniziale può essere annullato dalle caratteristiche del pacco o dai servizi scelti. Senza cifre aggiornate scrivi «sconosciuto», non inventare un totale.",
+    "Spesso la scelta migliore è quella con informazioni più chiare, non il prezzo iniziale più basso. Configurazione esplicita, misure adatte, immagini utili e incertezza compatibile con il budget possono ridurre il rischio.",
+    "Conclusione: confronta opzioni equivalenti, annota le informazioni mancanti e separa prezzo del prodotto e decisione successiva sul pacco."
+  ],
+  "pt": [
+    "Quando vários anúncios parecem iguais, o preço convida à investigação, não decide. Um valor inferior pode significar outro tamanho, material, parte de um conjunto, vendedor ou preço antigo. Compare primeiro a mesma opção e medidas, material indicado e quantidade semelhantes; caso contrário a diferença não é significativa.",
+    "Crie uma ficha comparativa: ID, opção exata, estimativa USD apresentada, número de imagens, medidas principais, material indicado, conteúdo visível e data de verificação. Acrescente uma dúvida: «mais barato, mas sem medidas» é mais útil do que «talvez». Assim a incerteza fica visível.",
+    "Não premie automaticamente fotos cuidadas. As imagens podem ser editadas, partilhadas entre lojas ou iluminadas favoravelmente. Verifique a coerência: título e opções concordam, as medidas correspondem à forma e os detalhes aparecem em vários ângulos? Um anúncio menos vistoso mas claro pode ser mais fácil de avaliar.",
+    "Separe o preço do artigo do custo posterior do pacote. A LitBuy descreve compra nacional e envio internacional como etapas distintas; o estimador pede destino, peso e dimensões. A poupança inicial pode desaparecer devido às características do pacote ou serviços escolhidos. Sem valores atuais, escreva «desconhecido» em vez de inventar um total.",
+    "Muitas vezes a melhor opção é a mais clara, não a mais barata inicialmente. Configuração explícita, medidas adequadas, imagens úteis e incerteza compatível com o orçamento podem reduzir o risco.",
+    "Conclusão: compare opções equivalentes, registe dados em falta e separe o preço do produto da decisão posterior de envio."
+  ],
+  "nl": [
+    "Als aanbiedingen op elkaar lijken, is de prijs een reden om te onderzoeken, geen oordeel. Een lager bedrag kan een andere maat, materiaal, deelset, verkoper of oude prijs betekenen. Vergelijk eerst dezelfde optie en vergelijkbare afmetingen, opgegeven materiaal en aantallen; anders is het verschil niet betekenisvol.",
+    "Maak een vergelijkingskaart met product-ID, exacte optie, getoonde USD-schatting, aantal beelden, kernmaten, opgegeven materiaal, zichtbare inhoud en controledatum. Voeg een open vraag toe: ‘goedkoper, maar geen maten’ helpt meer dan ‘misschien’. Zo blijft onzekerheid zichtbaar.",
+    "Beloon verzorgde fotografie niet automatisch. Bronbeelden kunnen bewerkt, tussen winkels gedeeld of gunstig belicht zijn. Controleer samenhang: passen titel en opties bij elkaar, kloppen maten met de vorm en zijn details vanuit meerdere hoeken zichtbaar? Een minder opvallende maar duidelijke aanbieding kan eenvoudiger te beoordelen zijn.",
+    "Houd productprijs en latere pakketkosten apart. LitBuy beschrijft binnenlandse aankoop en internationale verzending als afzonderlijke fasen; de schatter vraagt bestemming, gewicht en afmetingen. Een besparing kan verdwijnen door pakketkenmerken of gekozen diensten. Schrijf zonder actuele cijfers ‘onbekend’ in plaats van een totaal te verzinnen.",
+    "De beste keuze is vaak de duidelijkst beschreven optie, niet de laagste startprijs. Een expliciete uitvoering, passende maten, bruikbare beelden en onzekerheid die binnen je budget past kunnen het risico verminderen.",
+    "Conclusie: vergelijk gelijke opties, noteer ontbrekende gegevens en scheid productprijs van de latere pakketbeslissing."
+  ],
+  "pl": [
+    "Gdy oferty wyglądają podobnie, cena zachęca do sprawdzenia, ale nie rozstrzyga. Niższa kwota może oznaczać inny rozmiar, materiał, część zestawu, sprzedawcę albo dawną cenę. Najpierw porównaj tę samą opcję oraz podobne wymiary, deklarowany materiał i ilość; inaczej różnica nie ma znaczenia.",
+    "Utwórz kartę porównawczą: ID, dokładna opcja, wyświetlana kwota szacunkowa USD, liczba zdjęć, kluczowe wymiary, deklarowany materiał, widoczna zawartość i data kontroli. Dopisz pytanie: ‘taniej, ale brak wymiarów’ pomaga bardziej niż ‘może’. Niepewność pozostaje widoczna.",
+    "Nie premiuj automatycznie efektownych zdjęć. Obrazy źródłowe mogą być edytowane, współdzielone przez sklepy lub korzystnie oświetlone. Sprawdź spójność: czy tytuł pasuje do opcji, wymiary do kształtu, a szczegóły widać z kilku stron? Mniej efektowną, lecz jasną ofertę łatwiej ocenić.",
+    "Oddziel cenę produktu od późniejszego kosztu paczki. LitBuy opisuje zakup krajowy i wysyłkę międzynarodową jako osobne etapy; kalkulator wymaga miejsca docelowego, wagi i wymiarów. Oszczędność może zniknąć przez cechy paczki lub wybrane usługi. Bez aktualnych danych wpisz ‘nieznane’, zamiast wymyślać sumę.",
+    "Najlepsza jest często opcja z najczytelniejszymi informacjami, nie najniższą ceną początkową. Jasna konfiguracja, odpowiednie wymiary, przydatne obrazy i niepewność mieszcząca się w budżecie mogą ograniczyć ryzyko.",
+    "Wniosek: porównuj równoważne opcje, zapisuj braki i oddziel cenę produktu od późniejszej decyzji o paczce."
+  ],
+  "ru": [
+    "Когда объявления похожи, цена — повод для проверки, а не готовый вывод. Низкая сумма может означать другой размер, материал, часть комплекта, продавца или устаревшую цену. Сначала сравните одинаковый вариант, сходные размеры, заявленный материал и количество; иначе разница не показательна.",
+    "Создайте карточку сравнения: ID, точный вариант, показанная оценка USD, число изображений, основные размеры, заявленный материал, видимая комплектация и дата проверки. Добавьте открытый вопрос: «дешевле, но размеры не указаны» полезнее, чем «возможно». Так неопределённость остаётся заметной.",
+    "Не оценивайте предложение выше только за красивые фото. Исходные изображения могут редактироваться, использоваться разными магазинами или сниматься при выгодном освещении. Проверьте согласованность: совпадают ли название и варианты, соответствуют ли размеры форме, видны ли детали с разных сторон? Менее эффектное, но понятное объявление бывает легче оценить.",
+    "Отдельно записывайте цену товара и будущую стоимость посылки. LitBuy описывает внутреннюю покупку и международную отправку как разные этапы; калькулятор запрашивает направление, вес и размеры. Экономию могут перекрыть особенности посылки или выбранные услуги. Без актуальных цифр укажите «неизвестно», не придумывая итог.",
+    "Часто лучше вариант с наиболее ясной информацией, а не самой низкой начальной ценой. Чёткая конфигурация, подходящие размеры, полезные изображения и допустимая для бюджета неопределённость могут снизить риск.",
+    "Вывод: сравнивайте равноценные варианты, записывайте пробелы и отделяйте цену товара от решения о будущей посылке."
+  ]
+};
   const articleText = (c, lang, i, p) => {
     if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     if (i === 1 && guideTwoTranslations[lang]) return guideTwoTranslations[lang][p];
     if (i === 2 && guideThreeTranslations[lang]) return guideThreeTranslations[lang][p];
     if (i === 3 && guideFourTranslations[lang]) return guideFourTranslations[lang][p];
+    if (i === 4 && guideFiveTranslations[lang]) return guideFiveTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
