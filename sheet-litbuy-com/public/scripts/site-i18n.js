@@ -19,6 +19,17 @@
     sv: { Home:'Hem', 'Product Categories':'Produktkategorier', 'Product Details':'Produktdetaljer', 'SEO Articles':'SEO-artiklar', FAQ:'Vanliga frågor', Language:'Språk', Register:'Registrera', 'All Products':'Alla produkter', 'Search all product sheets':'Sök i alla produktblad', 'Title, category or product ID':'Titel, kategori eller produkt-ID', 'Loading the FindSpreadsheet catalogue…':'Läser in FindSpreadsheet-katalogen…', 'QC / source photos +':'QC- / källbilder +', 'View details →':'Visa detaljer →', 'See source':'Visa källa', 'source price':'källpris', '← Previous':'← Föregående', 'Next →':'Nästa →', 'All product details':'Alla produktdetaljer', 'Loading source product…':'Läser in källprodukt…', 'Continue to LitBuy ↗':'Fortsätt till LitBuy ↗', 'Frequently Asked Questions':'Vanliga frågor', 'Read guides':'Läs guider', 'Browse all products':'Bläddra bland produkter', 'Create LitBuy account ↗':'Skapa LitBuy-konto ↗', 'Navigate':'Navigera', Source:'Källa' }
   };
   const pack = strings[lang] || {};
+  const commonLabels = {
+    de: ['Registrieren ↗','10 Themen','10 ausführliche Artikel','eine vollständige Leseseite'],
+    fr: ["S’inscrire ↗",'10 sujets','10 articles détaillés','une page de lecture complète'],
+    es: ['Registrarse ↗','10 temas','10 artículos detallados','una página de lectura completa'],
+    it: ['Registrati ↗','10 argomenti','10 articoli approfonditi','un’unica pagina di lettura'],
+    pt: ['Registar ↗','10 temas','10 artigos detalhados','uma página de leitura completa'],
+    nl: ['Registreren ↗','10 onderwerpen','10 uitgebreide artikelen','één complete leespagina'],
+    pl: ['Zarejestruj się ↗','10 tematów','10 szczegółowych artykułów','jedna kompletna strona do czytania'],
+    sv: ['Registrera ↗','10 ämnen','10 utförliga artiklar','en komplett lässida']
+  };
+  if (commonLabels[lang]) ['Register ↗','10 topics','10 long-form articles','one complete reading page'].forEach((key,i)=>pack[key]=commonLabels[lang][i]);
   const t = (value) => pack[value] || value;
   const internal = (href) => {
     if (!href || href.startsWith('#') || /^(https?:|mailto:|tel:)/.test(href)) return href;
@@ -41,11 +52,8 @@
     const body=document.body;
     if (!body.dataset.page) body.dataset.page = location.pathname.startsWith('/seo-articles') ? 'seo' : (location.pathname.startsWith('/faq') ? 'faq' : '');
     if (!['seo','faq'].includes(body.dataset.page)) return;
-    const editions=await fetch('/data/editorial-editions.json.gz',{cache:'force-cache'}).then(async r=>{
-      if(!r.ok||!r.body||typeof DecompressionStream==='undefined')return null;
-      return new Response(r.body.pipeThrough(new DecompressionStream('gzip'))).json();
-    }).catch(()=>null);
-    const edition=editions?.[lang]; if(!edition) return;
+    const edition=await fetch(`/data/editorial/${lang}.json?v=20261104`).then(r=>r.ok?r.json():null).catch(()=>null);
+    if(!edition) return;
     const editorialLabels = {
       de:{guides:'10 RECHERCHIERTE LITBUY-LEITFÄDEN',seoLead:'Zehn ausführliche Leitfäden stehen auf dieser Seite. Sie orientieren sich an praktischen LitBuy-Suchen, nutzen öffentliche LitBuy-Materialien als Faktenbasis und trennen Recherche von Versprechen über Bestand, Qualität, Preise oder Lieferung.',label:'AUSFÜHRLICHER LEITFADEN',note:'Redaktioneller Hinweis: Dieser unabhängige Leitfaden wird nicht von LitBuy betrieben. Richtlinien, Preise, Bestand, Verfügbarkeit und Ziellandregeln können sich ändern; prüfen Sie aktuelle Informationen vor Zahlung oder Versand.',faqLead:'Ein einfacher Überblick: Produkt finden, Lagernachweise prüfen und dann über das Paket entscheiden. Jede Karte nennt zuerst die Antwort und dann den wichtigen Vorbehalt.',answer:'BEACHTEN SIE:'},
       fr:{guides:'10 GUIDES LITBUY DOCUMENTÉS',seoLead:'Dix guides détaillés figurent sur cette page. Ils suivent une intention de recherche LitBuy concrète, s’appuient sur les informations publiques de LitBuy et distinguent la recherche des promesses de stock, qualité, prix ou livraison.',label:'GUIDE DÉTAILLÉ',note:'Note éditoriale : ce guide indépendant n’est pas géré par LitBuy. Les politiques, tarifs, stocks, disponibilité et règles de destination peuvent changer ; vérifiez les informations en direct avant paiement ou expédition.',faqLead:'Un aperçu simple : trouver un produit, examiner les preuves de l’entrepôt, puis décider pour le colis. Chaque carte donne la réponse puis la réserve importante.',answer:'À RETENIR :'},
@@ -53,13 +61,14 @@
       it:{guides:'10 GUIDE LITBUY DOCUMENTATE',seoLead:'Questa pagina contiene dieci guide approfondite. Seguono una concreta intenzione di ricerca LitBuy, usano i materiali pubblici di LitBuy come limite fattuale e distinguono la ricerca dalle promesse su disponibilità, qualità, prezzi o consegna.',label:'GUIDA APPROFONDITA',note:'Nota editoriale: questa guida indipendente non è gestita da LitBuy. Politiche, tariffe, disponibilità e regole di destinazione possono cambiare; verifica le informazioni aggiornate prima di pagare o spedire.',faqLead:'Una panoramica semplice: trova un prodotto, esamina le prove di magazzino e poi decidi il pacco. Ogni scheda dà prima la risposta e poi la cautela importante.',answer:'DA RICORDARE:'},
       pt:{guides:'10 GUIAS LITBUY PESQUISADOS',seoLead:'Esta página reúne dez guias longos. Seguem uma intenção de pesquisa prática sobre LitBuy, usam os materiais públicos da LitBuy como limite factual e distinguem pesquisa de promessas sobre stock, qualidade, preço ou entrega.',label:'GUIA DETALHADO',note:'Nota editorial: este guia independente não é operado pela LitBuy. Políticas, tarifas, stock, disponibilidade e regras de destino podem mudar; confirme a informação atual antes de pagar ou enviar.',faqLead:'Uma visão simples: encontre um produto, reveja a evidência do armazém e depois decida sobre a encomenda. Cada cartão dá primeiro a resposta e depois a ressalva importante.',answer:'TENHA EM MENTE:'},
       nl:{guides:'10 ONDERZOCHTE LITBUY-GIDSEN',seoLead:'Op deze pagina staan tien uitgebreide gidsen. Ze volgen een praktische LitBuy-zoekintentie, gebruiken openbare LitBuy-materialen als feitelijke grens en onderscheiden onderzoek van beloften over voorraad, kwaliteit, prijzen of levering.',label:'UITGEBREIDE GIDS',note:'Redactionele opmerking: deze onafhankelijke gids wordt niet beheerd door LitBuy. Beleid, tarieven, voorraad, beschikbaarheid en bestemmingsregels kunnen veranderen; controleer actuele informatie vóór betaling of verzending.',faqLead:'Een eenvoudig overzicht: zoek een product, bekijk magazijnbewijs en beslis daarna over het pakket. Elke kaart geeft eerst het antwoord en daarna de belangrijke kanttekening.',answer:'ONTHOUD:'},
-      pl:{guides:'10 ZBADANYCH PRZEWODNIKÓW LITBUY',seoLead:'Ta strona zawiera dziesięć długich przewodników. Kierują się praktyczną intencją wyszukiwania LitBuy, opierają się na publicznych materiałach LitBuy i odróżniają badanie od obietnic dotyczących dostępności, jakości, cen lub dostawy.',label:'DŁUGI PRZEWODNIK',note:'Uwaga redakcyjna: ten niezależny przewodnik nie jest prowadzony przez LitBuy. Zasady, stawki, dostępność i reguły kraju docelowego mogą się zmienić; potwierdź aktualne informacje przed płatnością lub wysyłką.',faqLead:'Prosty przegląd: znajdź produkt, sprawdź dowody magazynowe, a potem zdecyduj o paczce. Każda karta najpierw podaje odpowiedź, a potem ważne zastrzeżenie.',answer:'PAMIĘTAJ:'}
+      pl:{guides:'10 ZBADANYCH PRZEWODNIKÓW LITBUY',seoLead:'Ta strona zawiera dziesięć długich przewodników. Kierują się praktyczną intencją wyszukiwania LitBuy, opierają się na publicznych materiałach LitBuy i odróżniają badanie od obietnic dotyczących dostępności, jakości, cen lub dostawy.',label:'DŁUGI PRZEWODNIK',note:'Uwaga redakcyjna: ten niezależny przewodnik nie jest prowadzony przez LitBuy. Zasady, stawki, dostępność i reguły kraju docelowego mogą się zmienić; potwierdź aktualne informacje przed płatnością lub wysyłką.',faqLead:'Prosty przegląd: znajdź produkt, sprawdź dowody magazynowe, a potem zdecyduj o paczce. Każda karta najpierw podaje odpowiedź, a potem ważne zastrzeżenie.',answer:'PAMIĘTAJ:'},
+      sv:{guides:'10 RESEARCHADE LITBUY-GUIDER',seoLead:'Den här sidan innehåller tio praktiska guider om LitBuy. De skiljer research från löften om lager, kvalitet, priser och leverans.',label:'UTFÖRLIG GUIDE',note:'Redaktionell anmärkning: Den här oberoende guiden drivs inte av LitBuy. Villkor, avgifter, lagerstatus och destinationsregler kan ändras; kontrollera aktuella uppgifter före betalning eller leverans.',faqLead:'En enkel översikt: hitta en produkt, granska lagerbilder och besluta sedan om paketet. Varje kort ger ett svar och en viktig reservation.',answer:'TÄNK PÅ:'}
     };
     const labels = editorialLabels[lang];
     if (body.dataset.page === 'seo') {
       const seoRoot = document.querySelector('.editorial');
       if (seoRoot && labels) { const bits=seoRoot.children; if(bits[0])bits[0].textContent=labels.guides; if(bits[2])bits[2].textContent=labels.seoLead; }
-      const copies=Object.values(edition.articles || {});
+      const copies=edition.articles || [];
       document.querySelectorAll('.long-article').forEach((article,index) => {
         const copy=copies[index]; if(!copy) return;
         const h=article.querySelector('h2'); const d=article.querySelector('.article-dek'); const k=article.querySelector('.keyword-line'); const eyebrow=article.querySelector('.eyebrow'); const note=article.querySelector('.editor-note');
@@ -83,39 +92,36 @@
           }
         }
         if(eyebrow && labels) eyebrow.textContent=`${String(index+1).padStart(2,'0')} · ${labels.label}`; if(note && labels) note.textContent=labels.note;
-        // Localized editorial copy is authored as a complete set of sections.
-        // Render every heading and every paragraph as authored: joining it into
-        // the shorter English paragraph layout made a translated article look
-        // truncated even when the source text had been fetched successfully.
         const bodyCopy=article.querySelector('.article-body');
-        const sections=(copy.sections||[]).filter(section=>(section.paragraphs||[]).length);
-        if(bodyCopy && sections.length){
+        if(bodyCopy && Array.isArray(copy.paragraphs)) {
           const fragment=document.createDocumentFragment();
-          sections.forEach(section=>{
-            if(section.heading){ const heading=document.createElement('h3'); heading.textContent=section.heading; fragment.appendChild(heading); }
-            (section.paragraphs||[]).forEach(paragraph=>{ const p=document.createElement('p'); p.textContent=paragraph; fragment.appendChild(p); });
-          });
+          copy.paragraphs.forEach(paragraph=>{const p=document.createElement('p');p.textContent=paragraph;fragment.appendChild(p);});
           bodyCopy.replaceChildren(fragment);
         }
       });
       document.querySelectorAll('.article-index a').forEach((a,index)=>{const copy=copies[index];if(copy)a.textContent=`${String(index+1).padStart(2,'0')} · ${copy.title}`;});
     }
     if (body.dataset.page === 'faq') {
-      const faqRoot=document.querySelector('.faq-page'); if(faqRoot && labels) { const lead=faqRoot.querySelector('.lead');if(lead)lead.textContent=labels.faqLead; }
-      const topics=[edition.faq?.[0]?.question,edition.faq?.[4]?.question,edition.faq?.[7]?.question];
-      if(faqRoot){ const eyebrow=faqRoot.querySelector(':scope > .eyebrow');if(eyebrow)eyebrow.textContent='FAQ'; document.querySelectorAll('.faq-jump a').forEach((a,index)=>{if(topics[index])a.textContent=`${String(index+1).padStart(2,'0')} · ${topics[index]}`;}); document.querySelectorAll('.faq-topic').forEach((topic,index)=>{const heading=topic.querySelector('h2');const step=topic.querySelector('header .eyebrow');if(heading&&topics[index])heading.textContent=topics[index];if(step)step.textContent=`${String(index+1).padStart(2,'0')} · FAQ`;}); }
-      const cards=[...document.querySelectorAll('.faq-answer-card')];
-      cards.forEach((card,index)=>{ const copy=edition.faq?.[index];if(!copy)return;const h=card.querySelector('h3');const ps=card.querySelectorAll('p');if(h)h.textContent=copy.question;
-        // One card gets exactly one translated answer. Split that answer over
-        // the existing answer/caution fields so every language keeps the same
-        // 9 cards and 18 paragraphs, without inserting a second FAQ answer.
-        const sentences=String(copy.answer||'').match(/[^.!?]+[.!?]+|[^.!?]+$/g)||[copy.answer||'']; const split=Math.max(1,Math.ceil(sentences.length/2)); const first=sentences.slice(0,split).join('').trim(); const second=sentences.slice(split).join('').trim()||first;
-        if(ps[0])ps[0].textContent=first;
-        const strong=card.querySelector('strong');if(strong&&labels)strong.textContent=labels.answer;
-        if(ps[1]){if(strong)ps[1].replaceChildren(strong,document.createTextNode(` ${second}`));else ps[1].textContent=second;}
+      const faqRoot=document.querySelector('.faq-page');
+      if(faqRoot && labels) { const lead=faqRoot.querySelector('.lead');if(lead)lead.textContent=labels.faqLead; }
+      const topics=edition.faqs || [];
+      document.querySelectorAll('.faq-jump a').forEach((a,index)=>{if(topics[index])a.textContent=`${String(index+1).padStart(2,'0')} · ${topics[index].title}`;});
+      document.querySelectorAll('.faq-topic').forEach((section,index)=>{
+        const topic=topics[index];if(!topic)return;
+        const heading=section.querySelector('header h2');const intro=section.querySelector('header .eyebrow');
+        if(heading)heading.textContent=topic.title;
+        if(intro)intro.textContent=`${String(index+1).padStart(2,'0')} · ${topic.intro}`;
+        section.querySelectorAll('.faq-answer-card').forEach((card,i)=>{
+          const copy=topic.items?.[i];if(!copy||copy.length!==3)return;
+          const heading=card.querySelector('h3');const ps=card.querySelectorAll('p');const strong=card.querySelector('strong');
+          if(heading)heading.textContent=copy[0];if(ps[0])ps[0].textContent=copy[1];
+          if(strong&&labels)strong.textContent=labels.answer;
+          if(ps[1]){if(strong)ps[1].replaceChildren(strong,document.createTextNode(` ${copy[2]}`));else ps[1].textContent=copy[2];}
+        });
       });
     }
   };
   const start=()=>{document.documentElement.lang=lang;document.documentElement.dataset.locale=lang;document.body.dataset.locale=lang;localStorage.setItem('sheet-litbuy-language',lang);document.querySelectorAll('[data-current-language]').forEach(el=>el.textContent=code);decorate();updateLangLinks();editorial();new MutationObserver(records=>records.forEach(r=>r.addedNodes.forEach(node=>{if(node.nodeType===1)decorate(node)}))).observe(document.body,{childList:true,subtree:true});};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
 })();
+

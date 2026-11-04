@@ -16,7 +16,15 @@ const registerUrl = 'https://litbuy.com/register?inviteCode=E32JME4UQ';
     <a class="register" href={registerUrl} rel="noreferrer">Register ↗</a>
   </div>
 </header>
-<script is:inline src="/scripts/site-i18n.js"></script>
+<script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XRNGL5MFSR"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){window.dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XRNGL5MFSR', {send_page_view: false});
+  gtag('event', 'page_view', {page_location: location.origin + location.pathname, page_title: document.title});
+</script>
+<script is:inline src="/scripts/site-i18n.js?v=20261104b"></script>
 <script is:inline src="/scripts/site-i18n-full.js"></script>
 <style is:global>
   :root{--ink:#f9f5ff;--sub:#c9bddd;--blue:#ffd20a;--pale:#1c0a3b;--line:#4f247f;--warm:#ff7900;--white:#fff}
@@ -116,3 +124,4 @@ const registerUrl = 'https://litbuy.com/register?inviteCode=E32JME4UQ';
   .languages[open] a{display:flex!important;align-items:center!important;padding:8px 10px!important;color:#3d2a1f!important;font-size:12px!important;line-height:1.2!important;white-space:nowrap!important;border-radius:3px!important}
   @media(min-width:801px){.nav{clip-path:none!important;overflow:visible!important}.languages[open]>div{top:30px!important;z-index:1000!important}}
 </style>
+

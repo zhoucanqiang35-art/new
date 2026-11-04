@@ -1,0 +1,72 @@
+[
+  [
+    "Try a specific search before browsing widely: enter a product type, then refine by a visible name or product ID. Open the result and compare its category, image and source price. If two cards look alike, save both IDs so you can revisit the intended record.",
+    "A catalogue is a starting point rather than a live-stock guarantee. Review the selected colour, size and quantity on the current order page, because an exported title and thumbnail do not establish which variation is in stock.",
+    "To compare two candidates, record their CNY reference, displayed USD estimate and the exact variation being considered. A lower starting price may belong to a deposit or accessory; only compare equivalent options after checking the live listing.",
+    "Product images and QC images answer different questions. A seller image illustrates the listing; order-specific warehouse images show visible details of one arrived item. Neither is evidence of authenticity or a promise about the final shipment.",
+    "For a first order, build a small shortlist and check one item at a time. Keep the product and order IDs, save the chosen options, and revisit the active listing before payment. Use the QC, shipping and returns guides for the decisions that follow."
+  ],
+  [
+    "Start with the order number and the specific option you chose. A photo is useful only when it belongs to the item being reviewed; compare it against that order instead of relying on a similar-looking catalogue image.",
+    "For clothing, check the visible size label, colour, seams and obvious marks. A measuring tape in a picture can help you compare a dimension, but the measurement method and angle can affect what you see.",
+    "For shoes, check whether both shoes, the selected size and colour are visible. Inspect the outsole, toe and stitching where the camera shows them. A missing angle is an unanswered question, not evidence that a detail is correct.",
+    "For accessories or electronics, compare the configuration and visible included parts with the order. A photo cannot establish electrical safety, material composition, authenticity or long-term performance.",
+    "If the available images do not answer a material question, identify the missing view and check the current options for further inspection or support. Consider the live return and exchange terms before the item is packed for international shipping."
+  ],
+  [
+    "A shipping estimate should separate seller-to-warehouse delivery from the international parcel. The cost of the goods, any domestic shipping or service charges, packing, international transport and possible taxes are different figures.",
+    "Collect the destination, actual weight, package dimensions and item types before comparing routes. Some lines charge by volumetric weight where a parcel is large for its weight; the relevant divisor and eligible contents depend on the current line.",
+    "For an illustrative comparison, calculate goods plus domestic shipping first, then add the current international quote and any known charges. Do not present the result as a guaranteed final price: packing, currency conversion and destination charges can change.",
+    "Delivery times have several stages: the seller sends the goods, the warehouse receives and processes them, and the carrier transports the parcel. A route's transit estimate does not necessarily include the earlier stages or customs processing.",
+    "Before submission, compare the actual parcel inventory and destination with the current available services. Review the final charge and the relevant tax, insurance and restrictions information shown for that specific route."
+  ],
+  [
+    "A marketplace URL identifies a listing, not necessarily the selected size or colour. Record the full source link and any product ID, then compare the live title and image before choosing a variation.",
+    "If a link no longer opens or leads to a different item, do not substitute a visually similar listing automatically. Recheck the identifier and search for a current source record; prices and seller availability can change.",
+    "Weidian, Taobao and 1688 listings may display several variations under one title. Check the option name, quantity, included pieces and the amount for that exact selection in the live LitBuy order flow.",
+    "Keep a record of when the listing was checked and whether its price is a deposit, accessory or complete item. The internal USD figure is a browsing estimate and does not settle later shipping or tax charges.",
+    "Once an item reaches the warehouse, review its order-specific inspection photos separately from the seller images. If a visible detail does not match the selected option, check current support and return conditions before shipping."
+  ],
+  [
+    "The source amount in CNY and a displayed USD estimate serve different purposes. The first records the listing reference; the second makes browsing comparisons easier. Neither alone represents the full landed cost.",
+    "A comparison is meaningful only when the size, colour, quantity and included pieces match. A low price may belong to a deposit, replacement part or single component rather than the complete item pictured.",
+    "A simple budget has separate lines for goods, seller-to-warehouse shipping, any service charges, international shipping, payment conversion and potential import charges. Some amounts are unknown until the live checkout or parcel stage.",
+    "For example, write down each of those categories beside a proposed order rather than copying a single price from a screenshot. Recalculate with the actual selection and current quote before payment.",
+    "Save the date of the comparison and recheck prices when you return. Exchange rates, marketplace options and shipping availability may change; the current order screen is the reference for the amount due."
+  ],
+  [
+    "Begin with a product type such as shoes, hoodies or jackets. Choose the broad category first, then search for the title fragment or ID. Use the all-products view if a category is uncertain.",
+    "Open the individual result to review its source ID, visible imagery and source price. Similar pictures or names can appear on different records, so keep the exact ID with your shortlist.",
+    "Compare like categories carefully: a set and an individual garment may appear close together but contain different pieces. Check the current option labels and quantities rather than deciding from the cover picture.",
+    "Category names are navigation labels, not independent checks on seller reputation, stock, materials or authenticity. Check the current listing and any available order-specific evidence before deciding.",
+    "Return to search with the saved ID when a page or title changes. The QC, size and shipping guides provide further checks once a suitable candidate has been identified."
+  ],
+  [
+    "Locate the seller's current size chart and note its units. Compare the listed garment measurements with a similar item you already own; a size label alone is not a reliable fit prediction.",
+    "Measure in the same way the chart describes. For example, distinguish a flat garment width from a full chest circumference, and check whether lengths are measured from shoulder, collar or waistband.",
+    "A seller may state a measuring tolerance, while fabric stretch, cut and measuring method can produce differences. Treat measurements as guidance rather than a promise of fit.",
+    "Read every live option label before paying: colour, size, configuration, quantity and included pieces can share a single listing. Save the exact wording with the product ID and price for that variation.",
+    "When warehouse images are available, compare the visible label and any measurement photos with your selected option. If a needed detail is not visible, check the current inspection or support options before shipping."
+  ],
+  [
+    "Make an inventory containing each order ID, quantity, warehouse status and unresolved inspection question. Compare it with the items selected on the parcel screen before moving to a shipping line.",
+    "Review the destination, contents and current route restrictions together. Batteries, liquids, oversized goods and other categories can be treated differently by line; storage in one warehouse does not itself make every item eligible for the same parcel.",
+    "Check both scale weight and dimensions. A carrier may use a volumetric-weight calculation, so removing packaging or combining items can affect a quote; check the live options and their trade-offs before choosing.",
+    "For customs declarations, use accurate item descriptions, quantities and values according to the destination and current carrier requirements. Do not copy a universal per-kilogram amount or assume that any route guarantees clearance.",
+    "Before submitting, review the address, contents, declared information, final quote and available protection. Save the parcel and tracking identifiers; the final decision and the live charges belong to the current shipping interface."
+  ],
+  [
+    "An item order, a warehouse parcel and a carrier tracking number represent different stages. Keep each identifier with the destination and date to avoid confusing several orders.",
+    "Read an event with its timestamp and carrier name. An initial label creation may mean that a number exists before a physical handover; the exact wording and sequence depend on the carrier.",
+    "A gap between scans does not by itself explain a delay. Holidays, transfers, processing and incomplete tracking feeds are possible explanations, but the status alone may not establish the cause.",
+    "If a status requests action or remains unclear, save the exact message, tracking number and date, then use the current LitBuy or carrier support route. Do not include account passwords in a support request.",
+    "Transit estimates are not guaranteed delivery dates. Include seller dispatch, warehouse preparation and destination processing when planning, and use current carrier information for the specific parcel."
+  ],
+  [
+    "Check the live order stage and the current return or exchange terms before assuming that a request is available. Eligibility can depend on the seller, item, reason and timing.",
+    "Describe the concern precisely: include the order ID, selected size or configuration, the visible mismatch and the relevant image. An unclear or absent angle is a request for clarification, not proof of a defect.",
+    "Review whether any return shipping or service cost may apply and whether an item has already been included in a parcel. The current policy and the response for the specific order determine the available process.",
+    "Keep records of the request and relevant dates. If a refund is offered, check the current method, amount and timing in the official order or support interface instead of relying on a general example.",
+    "Before international shipping, resolve any important open question that can still be checked. After the parcel moves to the carrier, the issue and the appropriate support channel may be different."
+  ]
+]
