@@ -14,7 +14,7 @@
     document.documentElement.lang=lang;
     if(lang==='en')return;
     try{
-      const response=await fetch(path+'translations.json');
+      const response=await fetch(path+'translations.json?v=20261104-1');
       if(!response.ok)throw new Error('translation file unavailable');
       const dict=(await response.json())[lang];
       if(!dict)return;
