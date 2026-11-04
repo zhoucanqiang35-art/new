@@ -1119,10 +1119,77 @@
     "Вывод: фотографии объявления показывают предложенный товар; QC-фотографии могут документировать полученный. Ни те ни другие сами по себе не доказывают подлинность."
   ]
 };
+  const guideFourTranslations = {
+  "de": [
+    "Viele vermeidbare Fehlkäufe entstehen bei der Optionswahl, nicht beim Hauptbild. Händler verwenden oft dieselben Fotos für Farben, Größen, Materialien oder Sets. Der Titel kann eine Reihe nennen; die Optionsliste enthält die eigentliche Auswahl. Notieren Sie vor dem Kauf die genaue Bezeichnung auf der aktuellen Seite: ‘klein, schwarz, matte Beschläge’ ist hilfreicher als ‘schwarze Tasche’.",
+    "Prüfen Sie, ob Optionen dasselbe Foto verwenden, ob sich der Preis ändert und ob die Bezeichnung Farbe, Größe, Version oder Menge meint. Lösen Sie Unklarheiten nicht durch Raten anhand einer Miniatur: Bilder können wiederverwendet oder durch Licht verfärbt sein. Dokumentieren Sie die Unsicherheit und wählen Sie bei entscheidenden fehlenden Angaben ein klareres Angebot.",
+    "Vergleichen Sie Kleidung nach Maßen statt nach vertrauten Buchstabengrößen. Messen Sie ein gut passendes Kleidungsstück und vergleichen Sie Schulter, Brust, Länge, Taille, Leibhöhe und Innenbein mit der Tabelle. Bei Schuhen hilft die gemessene Fußlänge. Bei Taschen prüfen Sie Breite, Höhe, Tiefe, Öffnung und Riemenlänge. Ein gestyltes Foto zeigt nicht, ob Ihre Dinge hineinpassen.",
+    "Nutzen Sie ein Nachrichtenfeld, falls vorhanden, nur für eine präzise sachliche Frage; eine Nachricht garantiert weder Änderung noch Antwort. ‘Bitte Option B, Größe 38 bestätigen’ ist klarer als ‘die gute Version senden’. Speichern Sie Optionstext und Prüfzeitpunkt; die Verfügbarkeit kann sich vor der Zahlung ändern.",
+    "Größe, Farbe und Ausführung bleiben veränderlich. Das Spreadsheet bewahrt Ihre Fragen, doch nur die aktuelle Kaufseite zeigt den momentanen Selektor. Prüfen Sie unmittelbar vor der Zahlung erneut und behandeln Sie fehlende Maße als unbekannt statt als wahrscheinliche Passform.",
+    "Fazit: Wählen Sie anhand exakter Optionsbezeichnungen und Maße, nicht anhand gemeinsam genutzter Bilder oder vertrauter Größenbuchstaben."
+  ],
+  "fr": [
+    "Beaucoup d’erreurs évitables se produisent dans le choix d’option, pas sur l’image principale. Un vendeur peut utiliser les mêmes photos pour plusieurs couleurs, tailles, matières ou lots. Le titre décrit parfois une gamme ; le sélecteur porte la décision. Avant achat, notez le libellé exact sur la page actuelle : « petit, noir, métal mat » est plus précis que « sac noir ».",
+    "Vérifiez si les options partagent les photos, si leur prix change et si le libellé désigne couleur, taille, version ou quantité. Ne devinez pas à partir d’une miniature : l’image peut être réutilisée ou modifiée par l’éclairage. Notez le doute et choisissez une annonce plus claire si l’information est déterminante.",
+    "Pour les vêtements, comparez les mesures plutôt que les lettres habituelles. Mesurez un vêtement qui vous va et comparez épaules, poitrine, longueur, taille, hauteur de fourche et entrejambe au tableau. Pour les chaussures, mesurez si possible le pied. Pour un sac, vérifiez largeur, hauteur, profondeur, ouverture et longueur de bandoulière. Une photo portée ne dit pas si vos affaires entrent.",
+    "Utilisez un champ de message, s’il existe, pour une demande factuelle précise, sans supposer une réponse ou une modification garantie. « Confirmer l’option B, taille 38 » est plus clair que « envoyer la bonne version ». Conservez le texte et la date de vérification ; la disponibilité peut changer avant paiement.",
+    "Taille, couleur et configuration évoluent. Le tableau conserve vos questions, mais seul le sélecteur actuel montre les options disponibles. Vérifiez juste avant paiement et considérez une mesure absente comme inconnue, non comme une taille probablement adaptée.",
+    "À retenir : choisissez selon les libellés exacts et les mesures, pas selon une photo partagée ou une lettre familière."
+  ],
+  "es": [
+    "Muchos errores evitables ocurren al elegir opciones, no en la imagen principal. Un vendedor puede usar las mismas fotos para varios colores, tallas, materiales o conjuntos. El título puede describir una gama; la lista contiene la decisión real. Antes de comprar, anota la etiqueta exacta en la página actual: «pequeño, negro, herrajes mates» es más preciso que «bolso negro».",
+    "Comprueba si las opciones comparten fotos, si cambia el precio y si el texto indica color, talla, versión o cantidad. No resuelvas dudas adivinando por una miniatura: la imagen puede reutilizarse o verse alterada por la luz. Anota la incertidumbre y elige un anuncio más claro cuando el dato sea decisivo.",
+    "Para ropa compara medidas en lugar de letras habituales. Mide una prenda que te quede bien y compara hombros, pecho, largo, cintura, tiro y entrepierna con la tabla. Para calzado, mide el pie si es posible. Para bolsos, revisa ancho, alto, profundidad, abertura y caída de la correa. Una foto de estilo no muestra si caben tus objetos.",
+    "Si existe un campo de mensaje, úsalo para una petición concreta y factual, sin suponer que garantiza respuesta o cambio. «Confirma opción B, talla 38» es más claro que «envía la buena versión». Guarda el texto y la fecha de comprobación; la disponibilidad puede cambiar antes del pago.",
+    "Talla, color y configuración cambian. La hoja conserva tus preguntas, pero solo el selector actual muestra las opciones vigentes. Compruébalo justo antes de pagar y considera desconocida una medida ausente, en vez de asumir que encajará.",
+    "Conclusión: elige por etiquetas exactas y medidas, no por fotos compartidas o letras de talla familiares."
+  ],
+  "it": [
+    "Molti errori evitabili avvengono nel selettore, non nell’immagine principale. Un venditore può usare le stesse foto per colori, taglie, materiali o set diversi. Il titolo può indicare una gamma; l’elenco contiene la scelta effettiva. Prima dell’acquisto annota l’etichetta esatta sulla pagina aggiornata: «piccola, nera, ferramenta opaca» è più preciso di «borsa nera».",
+    "Verifica se le opzioni condividono le foto, se il prezzo cambia e se il nome indica colore, taglia, versione o quantità. Non risolvere un dubbio indovinando dalla miniatura: la foto può essere riutilizzata o alterata dalla luce. Registra l’incertezza e scegli un annuncio più chiaro quando il dettaglio è decisivo.",
+    "Per l’abbigliamento confronta le misure invece delle lettere familiari. Misura un capo che ti veste bene e confronta spalle, torace, lunghezza, vita, cavallo e interno gamba con la tabella. Per le scarpe misura il piede, se possibile. Per una borsa controlla larghezza, altezza, profondità, apertura e lunghezza della tracolla. Una foto indossata non mostra se gli oggetti entrano.",
+    "Se disponibile, usa il campo messaggio per una richiesta precisa e fattuale, senza presumere una risposta o modifica garantita. «Confermare opzione B, taglia 38» è più chiaro di «mandare la versione buona». Conserva testo e data della verifica: la disponibilità può cambiare prima del pagamento.",
+    "Taglia, colore e configurazione possono cambiare. Il foglio conserva le domande, ma solo il selettore aggiornato mostra le opzioni correnti. Ricontrolla subito prima di pagare e considera sconosciuta una misura mancante, senza presumere che vesta bene.",
+    "Conclusione: scegli in base a etichette e misure esatte, non a foto condivise o lettere di taglia familiari."
+  ],
+  "pt": [
+    "Muitos erros evitáveis acontecem no seletor de opções, não na imagem principal. Um vendedor pode usar as mesmas fotos para cores, tamanhos, materiais ou conjuntos diferentes. O título pode indicar uma gama; a lista contém a escolha efetiva. Antes de comprar, registe o nome exato na página atual: «pequena, preta, ferragens mate» é mais preciso do que «mala preta».",
+    "Verifique se as opções partilham fotos, se o preço muda e se o nome indica cor, tamanho, versão ou quantidade. Não resolva dúvidas adivinhando pela miniatura: a imagem pode ser reutilizada ou alterada pela luz. Registe a incerteza e escolha um anúncio mais claro quando o detalhe for decisivo.",
+    "Na roupa compare medidas em vez de letras familiares. Meça uma peça que lhe sirva e compare ombros, peito, comprimento, cintura, gancho e entrepernas com a tabela. No calçado meça o pé, se possível. Numa mala confira largura, altura, profundidade, abertura e comprimento da alça. Uma foto de estilo não mostra se os seus objetos cabem.",
+    "Se existir um campo de mensagem, use-o para um pedido factual preciso, sem presumir resposta ou alteração garantida. «Confirme a opção B, tamanho 38» é mais claro do que «envie a versão boa». Guarde o texto e a data da verificação; a disponibilidade pode mudar antes do pagamento.",
+    "Tamanho, cor e configuração podem mudar. A folha conserva as perguntas, mas só o seletor atual mostra as opções vigentes. Verifique imediatamente antes de pagar e trate uma medida ausente como desconhecida, sem presumir que servirá.",
+    "Conclusão: escolha pelas etiquetas e medidas exatas, não por fotos partilhadas ou letras de tamanho familiares."
+  ],
+  "nl": [
+    "Veel vermijdbare fouten ontstaan bij de optiekeuze, niet bij de hoofdfoto. Een verkoper kan dezelfde beelden gebruiken voor meerdere kleuren, maten, materialen of sets. De titel kan een reeks noemen; de keuzelijst bevat de werkelijke beslissing. Noteer vóór aankoop de exacte optie op de actuele pagina: ‘klein, zwart, mat beslag’ is duidelijker dan ‘zwarte tas’.",
+    "Controleer of opties foto’s delen, of de prijs verandert en of de naam kleur, maat, versie of aantal betekent. Los onduidelijkheid niet op door naar een miniatuur te gokken: beelden kunnen worden hergebruikt of door licht anders lijken. Noteer de onzekerheid en kies een duidelijkere aanbieding als het detail doorslaggevend is.",
+    "Vergelijk kleding op afmetingen in plaats van bekende maatletters. Meet een goed passend kledingstuk en vergelijk schouders, borst, lengte, taille, kruis en binnenbeen met de tabel. Meet bij schoenen zo mogelijk de voetlengte. Controleer bij tassen breedte, hoogte, diepte, opening en riemlengte. Een gestileerde foto toont niet of je spullen passen.",
+    "Gebruik een beschikbaar berichtveld alleen voor een precieze feitelijke vraag en verwacht niet dat een bericht antwoord of wijziging garandeert. ‘Bevestig optie B, maat 38’ is duidelijker dan ‘stuur de goede versie’. Bewaar optietekst en controletijd; beschikbaarheid kan vóór betaling veranderen.",
+    "Maat, kleur en uitvoering kunnen veranderen. De spreadsheet bewaart je vragen, maar alleen de actuele keuzelijst toont de huidige opties. Controleer vlak vóór betaling opnieuw en behandel een ontbrekende maat als onbekend in plaats van aan te nemen dat het past.",
+    "Conclusie: kies op basis van exacte optienamen en afmetingen, niet op gedeelde foto’s of vertrouwde maatletters."
+  ],
+  "pl": [
+    "Wiele możliwych do uniknięcia błędów powstaje przy wyborze opcji, nie przy oglądaniu głównego zdjęcia. Sprzedawca może używać tych samych zdjęć dla kolorów, rozmiarów, materiałów lub zestawów. Tytuł może opisywać serię, a lista opcji zawiera właściwy wybór. Przed zakupem zapisz dokładną nazwę z aktualnej strony: ‘mała, czarna, matowe okucia’ mówi więcej niż ‘czarna torba’.",
+    "Sprawdź, czy opcje korzystają z tych samych zdjęć, czy cena się zmienia i czy nazwa oznacza kolor, rozmiar, wersję czy liczbę. Nie zgaduj na podstawie miniatury: zdjęcie może być ponownie użyte lub zmienione przez światło. Zapisz niepewność i wybierz jaśniejszą ofertę, gdy szczegół ma decydujące znaczenie.",
+    "Ubrania porównuj według wymiarów, nie znajomych liter rozmiaru. Zmierz dobrze pasującą rzecz i porównaj ramiona, klatkę, długość, talię, stan i długość nogawki z tabelą. Przy butach zmierz stopę, jeśli to możliwe. Przy torbie sprawdź szerokość, wysokość, głębokość, otwór i długość paska. Stylizowane zdjęcie nie pokaże, czy rzeczy się zmieszczą.",
+    "Jeśli dostępne jest pole wiadomości, użyj go do precyzyjnego pytania o fakt, bez zakładania gwarantowanej odpowiedzi lub zmiany. ‘Potwierdź opcję B, rozmiar 38’ jest jaśniejsze niż ‘wyślij dobrą wersję’. Zachowaj tekst opcji i czas sprawdzenia; dostępność może zmienić się przed płatnością.",
+    "Rozmiar, kolor i konfiguracja mogą się zmieniać. Arkusz przechowuje pytania, ale tylko aktualny selektor pokazuje obecne opcje. Sprawdź go tuż przed płatnością, a brakujący wymiar uznaj za nieznany zamiast zakładać dopasowanie.",
+    "Wniosek: wybieraj według dokładnych nazw opcji i wymiarów, a nie wspólnych zdjęć lub znajomych liter rozmiaru."
+  ],
+  "ru": [
+    "Многих ошибок можно избежать: они возникают при выборе варианта, а не при просмотре главного фото. Продавец может использовать одну серию для разных цветов, размеров, материалов или комплектов. Название может описывать всю линейку, а точный выбор находится в списке. Перед покупкой запишите точную подпись на актуальной странице: «маленькая, чёрная, матовая фурнитура» точнее, чем «чёрная сумка».",
+    "Проверьте, общие ли фотографии у вариантов, меняется ли цена и означает ли название цвет, размер, версию или количество. Не угадывайте по миниатюре: изображение могут использовать повторно, а освещение меняет цвет. Запишите неопределённость и выберите более понятное объявление, если деталь решающая.",
+    "Для одежды сравнивайте измерения, а не привычные буквенные размеры. Измерьте подходящую вещь и сравните плечи, грудь, длину, талию, высоту посадки и внутренний шов с таблицей. Для обуви по возможности измерьте стопу. Для сумки проверьте ширину, высоту, глубину, отверстие и длину ремня. Постановочное фото не покажет, поместятся ли ваши вещи.",
+    "Если поле сообщения доступно, используйте его для точного фактического вопроса, не предполагая гарантированного ответа или изменения. «Подтвердите вариант B, размер 38» яснее, чем «отправьте хорошую версию». Сохраните текст и время проверки: наличие может измениться до оплаты.",
+    "Размер, цвет и конфигурация могут меняться. Таблица сохраняет вопросы, но только актуальный селектор показывает текущие варианты. Проверьте его непосредственно перед оплатой, а отсутствующее измерение считайте неизвестным, не предполагая, что вещь подойдёт.",
+    "Вывод: выбирайте по точным названиям вариантов и измерениям, а не по общим фото или привычным буквам размера."
+  ]
+};
   const articleText = (c, lang, i, p) => {
     if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     if (i === 1 && guideTwoTranslations[lang]) return guideTwoTranslations[lang][p];
     if (i === 2 && guideThreeTranslations[lang]) return guideThreeTranslations[lang][p];
+    if (i === 3 && guideFourTranslations[lang]) return guideFourTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
