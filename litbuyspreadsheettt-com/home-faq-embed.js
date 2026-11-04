@@ -1,7 +1,7 @@
 (() => {
   const target = document.querySelector('#homeFaqContent');
   if (!target) return;
-  fetch('faq.html', { credentials: 'same-origin' })
+  fetch('/faq', { credentials: 'same-origin' })
     .then(response => {
       if (!response.ok) throw new Error('FAQ source unavailable');
       return response.text();

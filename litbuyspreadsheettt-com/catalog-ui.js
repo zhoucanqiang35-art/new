@@ -6,8 +6,8 @@
   const pageSize = 36;
   const $ = selector => document.querySelector(selector);
   const plural = count => `${count.toLocaleString()} products`;
-  const productUrl = product => `product-detail.html?product=${encodeURIComponent(product.key)}`;
-  const categoryUrl = category => `categories.html?category=${encodeURIComponent(category)}`;
+  const productUrl = product => `/product-detail?product=${encodeURIComponent(product.key)}`;
+  const categoryUrl = category => `/categories?category=${encodeURIComponent(category)}`;
   const text = value => String(value || '').trim();
   // Source catalog prices are in CNY; the subsite displays one consistent USD estimate.
   const cnyToUsd = 0.1495;
@@ -130,7 +130,7 @@
     const controls = document.createElement('div');
     controls.className = 'catalog-controls';
     const searchLink = document.createElement('a');
-    searchLink.href = 'search.html';
+    searchLink.href = '/search';
     searchLink.textContent = 'Search catalog';
     const select = document.createElement('select');
     select.setAttribute('aria-label', 'Sort products');
@@ -145,13 +145,13 @@
       const next = new URLSearchParams();
       if (category) next.set('category', category);
       if (select.value !== 'latest') next.set('sort', select.value);
-      location.href = `categories.html?${next.toString()}`;
+      location.href = `/categories?${next.toString()}`;
     });
     controls.append(searchLink, select);
     toolbar.append(resultNote, controls);
     const from = (current - 1) * pageSize;
     renderProductList($('#catalogProducts'), list.slice(from, from + pageSize), 'No products were found in this category.');
-    renderPager($('#catalogPager'), list.length, current, page => `categories.html?${new URLSearchParams({ ...(category ? { category } : {}), ...(sort !== 'latest' ? { sort } : {}), page }).toString()}`);
+    renderPager($('#catalogPager'), list.length, current, page => `/categories?${new URLSearchParams({ ...(category ? { category } : {}), ...(sort !== 'latest' ? { sort } : {}), page }).toString()}`);
   }
 
   function renderSearch() {
@@ -165,7 +165,7 @@
     $('#searchMeta').textContent = query ? `${plural(matched.length)} match this local search.` : `${plural(products.length)} ready to search inside this subsite.`;
     const from = (current - 1) * pageSize;
     renderProductList($('#searchProducts'), matched.slice(from, from + pageSize), 'No matching local products. Try a category, product name, or ID.');
-    renderPager($('#searchPager'), matched.length, current, page => `search.html?${new URLSearchParams({ ...(query ? { q: query } : {}), page }).toString()}`);
+    renderPager($('#searchPager'), matched.length, current, page => `/search?${new URLSearchParams({ ...(query ? { q: query } : {}), page }).toString()}`);
   }
 
   function renderDetail() {
@@ -173,7 +173,7 @@
     const product = productFromParams() || (!requested ? products[0] : null);
     const host = $('#productDetail');
     if (!product) {
-      host.innerHTML = '<p class="catalog-empty">This product record is not in the imported catalog. Use the local directory to find it.</p><a class="button" href="search.html">Open local search</a>';
+      host.innerHTML = '<p class="catalog-empty">This product record is not in the imported catalog. Use the local directory to find it.</p><a class="button" href="/search">Open local search</a>';
       return;
     }
     document.title = `${product.name} | LitBuy Spreadsheet`;

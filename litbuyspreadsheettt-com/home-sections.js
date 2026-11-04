@@ -15,7 +15,7 @@
     categoryList.replaceChildren(...catalog.categories.map(category => {
       const count = products.filter(product => product.category === category.slug).length;
       const link = document.createElement('a');
-      link.href = `categories.html?category=${encodeURIComponent(category.slug)}`;
+      link.href = `/categories?category=${encodeURIComponent(category.slug)}`;
       link.innerHTML = `<span>${category.label}</span><b>${count.toLocaleString()} items</b><i>Explore →</i>`;
       return link;
     }));
@@ -25,7 +25,7 @@
       products.filter((product) => product.category === category.slug).slice(0, 2),
     );
     subsiteDirectory.replaceChildren(...directoryProducts.map((product) => {
-      const detailUrl = `product-detail.html?product=${encodeURIComponent(product.key)}`;
+      const detailUrl = `/product-detail?product=${encodeURIComponent(product.key)}`;
       const purchaseId = product.purchaseId || product.id;
       const card = document.createElement('article');
       card.className = 'subsite-product-card';
@@ -35,7 +35,7 @@
   }
   const product = products.find(item => item.id === '7735') || products[0];
   if (product && productCard) {
-    const url = `product-detail.html?product=${encodeURIComponent(product.key)}`;
+    const url = `/product-detail?product=${encodeURIComponent(product.key)}`;
     productCard.innerHTML = `<a class="home-product-image" href="${url}"><img src="${homepageVisual(product)}" alt="${product.name}"></a><div class="home-product-copy"><p>${product.categoryLabel}</p><h3>${product.name}</h3><dl><div><dt>Estimated price</dt><dd>${price(product)}</dd></div><div><dt>Product ID</dt><dd>${product.purchaseId || product.id}</dd></div></dl><a class="button" href="${url}">Open this product detail →</a></div>`;
   }
 })();
