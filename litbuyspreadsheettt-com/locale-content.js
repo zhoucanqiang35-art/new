@@ -1383,6 +1383,72 @@
     "Вывод: сохраняйте причину выбора, ограничивайте активные варианты и архивируйте старые записи, не считая их текущим наличием."
   ]
 };
+  const guideEightTranslations = {
+  "de": [
+    "Eine angezeigte USD-Schätzung hilft beim Produktvergleich, ist aber kein vollständiges Angebot für die Gesamtkosten. LitBuy beschreibt einen Inlandskauf bis zum Lager und eine spätere internationale Paketphase. Der Frachtschätzer fragt nach Ziel, Gewicht, Produkttyp und Maßen. Versandplanung kann daher nicht allein auf Bild oder Grundpreis beruhen.",
+    "Planen Sie in Schichten: genauer Artikelpreis, beim Checkout angezeigte Inlandskosten, spätere internationale Versandschätzung und gegebenenfalls Reserve für Steuern, Währungsumrechnung oder optionale Dienste. Erfinden Sie keine festen Gebühren; tragen Sie bis zur aktuellen Angabe ‘unbekannt’ ein.",
+    "Gewicht und Volumen zählen. Zwei gleich teure Artikel können sehr unterschiedliche Paketkosten verursachen, wenn einer sperrig, starr oder groß verpackt ist. Beachten Sie Maße besonders bei Schuhen, Gepäck, Oberbekleidung und Zerbrechlichem. Eine Schätzung bleibt eine Schätzung, ist aber aussagekräftiger als die Annahme, ein niedriger Artikelpreis bleibe nach internationalem Versand niedrig.",
+    "LitBuy wirbt öffentlich mit bis zu 120 Tagen Lagerung und erklärt die ersten 90 Tage als kostenlos. Das Help Center enthält die aktuellen Angaben. Prüfen Sie diese veränderliche Richtlinie bei Nutzung einschließlich der Regeln nach der Gratiszeit. Lagerung ist nützlich, sollte aber kein realistisches Paketbudget auf unbestimmte Zeit aufschieben.",
+    "Passt ein Artikel nur bei den niedrigsten denkbaren Versandkosten ins Budget, ist er noch nicht budgetiert. Bleibt er trotz ehrlicher Unsicherheit tragbar, ist er ein stärkerer Kandidat. Ein gestuftes Budget ist weniger aufregend als ein niedriger Einzelpreis, verhindert aber Entscheidungen ohne Blick auf offene Kosten.",
+    "Fazit: Notieren Sie den Produktpreis und entscheiden Sie mit einem gestuften Budget; unbekannte Kosten bleiben bis zur aktuellen Angabe unbekannt."
+  ],
+  "fr": [
+    "Un montant estimé en USD aide à comparer les produits, mais ne constitue pas un devis complet rendu à destination. LitBuy décrit un achat intérieur jusqu’à l’entrepôt puis un colis international. Son estimateur demande destination, poids, type de produit et dimensions : le transport ne peut donc pas être planifié à partir de la seule image ou du prix de base.",
+    "Construisez un budget par couches : prix exact, frais intérieurs affichés au paiement, estimation internationale ultérieure et, si applicable, marge pour taxes, conversion ou services facultatifs. N’inventez pas de frais fixes ; indiquez « inconnu » tant que le service ne fournit pas de chiffre actuel.",
+    "Poids et volume comptent. Deux articles au même prix peuvent coûter très différemment à expédier si l’un est encombrant, rigide ou emballé dans une grande boîte. Examinez les dimensions des chaussures, bagages, manteaux et objets fragiles. Une estimation reste approximative, mais vaut mieux que supposer qu’un prix bas restera bas après transport international.",
+    "LitBuy annonce publiquement jusqu’à 120 jours de stockage, dont les 90 premiers gratuits. Son centre d’aide donne les informations en vigueur. Vérifiez cette politique susceptible de changer, y compris après la période gratuite. Le stockage est utile mais ne doit pas reporter indéfiniment un budget de colis réaliste.",
+    "Si l’article ne rentre dans le budget qu’avec le transport le plus bas imaginable, il n’est pas encore abordable. S’il reste acceptable malgré une incertitude honnête, il constitue une meilleure option. Un budget par couches évite d’acheter sans comprendre les coûts encore inconnus.",
+    "À retenir : notez le prix et décidez avec un budget par étapes ; les coûts inconnus restent inconnus jusqu’à confirmation actuelle."
+  ],
+  "es": [
+    "Una cifra estimada en USD sirve para comparar productos, pero no es un presupuesto completo puesto en destino. LitBuy describe una compra nacional hasta el almacén y una fase posterior de paquete internacional. Su estimador pide destino, peso, tipo de producto y dimensiones: no se puede planificar el envío solo con la foto o el precio base.",
+    "Construye un presupuesto por capas: precio exacto, cargos nacionales mostrados al pagar, estimación internacional posterior y, cuando corresponda, margen para impuestos, conversión o servicios opcionales. No inventes tarifas fijas; escribe «desconocido» hasta que el servicio dé una cifra actual.",
+    "Peso y volumen importan. Dos artículos de precio similar pueden tener costes de paquete muy distintos si uno es voluminoso, rígido o lleva caja grande. Revisa dimensiones de calzado, equipaje, abrigos y objetos frágiles. Una estimación sigue siendo aproximada, pero es mejor que suponer que un precio bajo seguirá siéndolo tras el envío internacional.",
+    "LitBuy anuncia públicamente hasta 120 días de almacenamiento y afirma que los primeros 90 son gratis. Su centro de ayuda contiene la información vigente. Verifica esta política cambiante al utilizarla, incluidas las reglas posteriores al período gratis. El almacenamiento es útil, pero no debe aplazar indefinidamente un presupuesto realista.",
+    "Si el artículo solo encaja con el envío más barato imaginable, todavía no entra en el presupuesto. Si sigue siendo viable con incertidumbre honesta, es mejor candidato. Un presupuesto por capas evita comprar sin entender los costes aún desconocidos.",
+    "Conclusión: registra el precio y decide con un presupuesto por etapas; los costes desconocidos siguen así hasta recibir datos actuales."
+  ],
+  "it": [
+    "Una stima in USD aiuta a confrontare prodotti, ma non è un preventivo completo fino a destinazione. LitBuy descrive l’acquisto nazionale fino al magazzino e una successiva fase di spedizione internazionale. Lo stimatore richiede destinazione, peso, tipo di prodotto e dimensioni: non si può pianificare il trasporto solo da foto o prezzo base.",
+    "Costruisci un budget a livelli: prezzo esatto, eventuali costi nazionali mostrati al pagamento, stima internazionale successiva e, se applicabile, margine per tasse, conversione o servizi facoltativi. Non inventare tariffe fisse: indica «sconosciuto» finché il servizio non fornisce dati aggiornati.",
+    "Peso e volume contano. Due articoli di prezzo simile possono avere costi di pacco diversi se uno è ingombrante, rigido o in una scatola grande. Considera le misure di scarpe, bagagli, capispalla e oggetti fragili. Una stima resta tale, ma è più utile che presumere che un prezzo basso resti basso dopo la spedizione internazionale.",
+    "LitBuy pubblicizza fino a 120 giorni di deposito e indica gratuiti i primi 90. Il centro assistenza contiene le informazioni correnti. Verifica questa politica variabile quando la usi, incluse le regole dopo il periodo gratuito. Il deposito è utile, ma non deve rimandare indefinitamente un budget realistico per il pacco.",
+    "Se l’articolo rientra nel budget solo con la spedizione più economica immaginabile, non è ancora sostenibile. Se resta accettabile considerando l’incertezza, è un candidato migliore. Un budget a livelli evita acquisti senza comprendere i costi ancora sconosciuti.",
+    "Conclusione: annota il prezzo e decidi con un budget per fasi; i costi ignoti restano tali fino alla verifica aggiornata."
+  ],
+  "pt": [
+    "Uma estimativa apresentada em USD ajuda a comparar produtos, mas não é um orçamento completo até ao destino. A LitBuy descreve a compra nacional até ao armazém e uma fase posterior de pacote internacional. O estimador pede destino, peso, tipo de produto e dimensões: não se pode planear o envio apenas pela imagem ou preço base.",
+    "Construa um orçamento por camadas: preço exato, eventuais custos nacionais mostrados no pagamento, estimativa internacional posterior e, quando aplicável, margem para impostos, conversão ou serviços opcionais. Não invente taxas fixas; escreva «desconhecido» até o serviço fornecer valores atuais.",
+    "Peso e volume importam. Dois artigos de preço semelhante podem ter custos de pacote muito diferentes se um for volumoso, rígido ou vier numa caixa grande. Considere as dimensões de calçado, bagagem, casacos e objetos frágeis. Uma estimativa continua aproximada, mas é melhor do que presumir que um preço baixo continuará baixo após o envio internacional.",
+    "A LitBuy anuncia publicamente até 120 dias de armazenamento e indica que os primeiros 90 são gratuitos. O centro de ajuda contém as informações atuais. Verifique esta política variável ao utilizá-la, incluindo as regras após o período gratuito. O armazenamento é útil, mas não deve adiar indefinidamente um orçamento realista.",
+    "Se o artigo só couber no orçamento com o envio mais barato imaginável, ainda não está dentro do orçamento. Se continuar viável perante uma incerteza honesta, é melhor candidato. Um orçamento por camadas evita comprar sem compreender os custos ainda desconhecidos.",
+    "Conclusão: registe o preço e decida com um orçamento por etapas; custos desconhecidos permanecem assim até à confirmação atual."
+  ],
+  "nl": [
+    "Een getoonde USD-schatting helpt producten vergelijken, maar is geen volledige prijs tot aan de bestemming. LitBuy beschrijft binnenlandse aankoop tot het magazijn en daarna een internationale pakketfase. De vrachtschatter vraagt bestemming, gewicht, producttype en afmetingen: verzending is dus niet alleen op foto of basisprijs te plannen.",
+    "Bouw het budget in lagen op: exacte artikelprijs, eventuele binnenlandse kosten bij afrekenen, latere internationale schatting en waar van toepassing ruimte voor belastingen, omrekening of optionele diensten. Verzin geen vaste kosten; noteer ‘onbekend’ totdat de actuele dienst cijfers geeft.",
+    "Gewicht en volume tellen. Twee even dure artikelen kunnen heel verschillende pakketkosten hebben als één groot, star of in een grote doos verpakt is. Let op afmetingen van schoenen, bagage, jassen en breekbare goederen. Een schatting blijft een schatting, maar is beter bewijs dan aannemen dat een lage artikelprijs na internationale verzending laag blijft.",
+    "LitBuy adverteert publiekelijk tot 120 dagen opslag en noemt de eerste 90 dagen gratis. Het helpcentrum bevat actuele informatie. Controleer dit veranderlijke beleid bij gebruik, inclusief regels na de gratis periode. Opslag is nuttig, maar mag een realistisch pakketbudget niet onbeperkt uitstellen.",
+    "Past het artikel alleen bij de laagst denkbare verzendkosten in je budget, dan is het nog niet betaalbaar. Blijft het met eerlijke onzekerheid haalbaar, dan is het een sterkere kandidaat. Een gelaagd budget voorkomt aankopen zonder begrip van onbekende kosten.",
+    "Conclusie: noteer de artikelprijs en beslis met een gelaagd budget; onbekende kosten blijven onbekend tot actuele bevestiging."
+  ],
+  "pl": [
+    "Wyświetlana szacunkowa kwota USD pomaga porównać produkty, lecz nie jest pełną wyceną kosztu do miejsca dostawy. LitBuy opisuje zakup krajowy do magazynu i późniejszą wysyłkę międzynarodową. Kalkulator wymaga miejsca docelowego, wagi, rodzaju produktu i wymiarów: wysyłki nie da się planować tylko na podstawie zdjęcia lub ceny bazowej.",
+    "Buduj budżet warstwowo: dokładna cena, opłaty krajowe pokazane przy płatności, późniejsza wycena wysyłki międzynarodowej oraz w razie potrzeby rezerwa na podatki, przewalutowanie lub usługi dodatkowe. Nie wymyślaj stałych opłat; wpisz ‘nieznane’, dopóki usługa nie poda aktualnej kwoty.",
+    "Waga i objętość mają znaczenie. Dwa podobnie wycenione produkty mogą mieć różne koszty paczki, gdy jeden jest duży, sztywny lub zapakowany w wielkie pudełko. Sprawdź wymiary butów, bagażu, kurtek i rzeczy delikatnych. Szacunek nadal jest przybliżeniem, ale daje więcej podstaw niż założenie, że niska cena pozostanie niska po wysyłce międzynarodowej.",
+    "LitBuy publicznie reklamuje do 120 dni przechowywania i pierwsze 90 dni za darmo. Centrum pomocy zawiera aktualne informacje. Sprawdź zmienną politykę w chwili korzystania, także zasady po okresie bezpłatnym. Magazynowanie pomaga, ale nie powinno bez końca odsuwać realistycznego budżetu paczki.",
+    "Jeśli produkt mieści się w budżecie tylko przy najniższym wyobrażalnym koszcie wysyłki, jeszcze nie jest na niego miejsce. Jeśli pozostaje osiągalny mimo uczciwie uwzględnionej niepewności, jest lepszym kandydatem. Warstwowy budżet zapobiega zakupowi bez zrozumienia nieznanych kosztów.",
+    "Wniosek: zapisz cenę i podejmuj decyzję z budżetem etapowym; nieznane koszty pozostają nieznane do aktualnego potwierdzenia."
+  ],
+  "ru": [
+    "Показанная оценка в USD помогает сравнить товары, но не является полной стоимостью до места назначения. LitBuy описывает внутреннюю покупку до склада и последующий этап международной посылки. Калькулятор запрашивает направление, вес, тип товара и размеры: планировать доставку только по фото или базовой цене нельзя.",
+    "Стройте бюджет слоями: точная цена, внутренние сборы при оплате, последующая оценка международной доставки и при необходимости резерв на налоги, конвертацию или дополнительные услуги. Не выдумывайте фиксированные сборы: указывайте «неизвестно», пока сервис не даст актуальные цифры.",
+    "Вес и объём важны. Два товара сходной цены могут давать разные расходы на посылку, если один громоздкий, жёсткий или упакован в большую коробку. Учитывайте размеры обуви, багажа, верхней одежды и хрупких вещей. Оценка остаётся приблизительной, но она полезнее предположения, что низкая цена останется низкой после международной доставки.",
+    "LitBuy публично рекламирует хранение до 120 дней и указывает первые 90 дней бесплатными. Актуальные сведения находятся в центре помощи. Проверяйте изменяемую политику при использовании, включая правила после бесплатного периода. Хранение полезно, но не должно бесконечно откладывать реалистичный бюджет посылки.",
+    "Если товар вписывается в бюджет только при самой низкой вообразимой доставке, пока он не по бюджету. Если он остаётся доступным с честным учётом неопределённости, это лучший кандидат. Послойный бюджет помогает не покупать, не понимая оставшихся неизвестных расходов.",
+    "Вывод: запишите цену и принимайте решение по поэтапному бюджету; неизвестные расходы остаются неизвестными до актуального подтверждения."
+  ]
+};
   const articleText = (c, lang, i, p) => {
     if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     if (i === 1 && guideTwoTranslations[lang]) return guideTwoTranslations[lang][p];
@@ -1391,6 +1457,7 @@
     if (i === 4 && guideFiveTranslations[lang]) return guideFiveTranslations[lang][p];
     if (i === 5 && guideSixTranslations[lang]) return guideSixTranslations[lang][p];
     if (i === 6 && guideSevenTranslations[lang]) return guideSevenTranslations[lang][p];
+    if (i === 7 && guideEightTranslations[lang]) return guideEightTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
