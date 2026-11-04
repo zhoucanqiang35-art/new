@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://hipobuyfins.com/</loc></url>
-  <url><loc>https://hipobuyfins.com/categories.html</loc></url>
-  <url><loc>https://hipobuyfins.com/products.html</loc></url>
-  <url><loc>https://hipobuyfins.com/guides.html</loc></url>
-  <url><loc>https://hipobuyfins.com/seo.html</loc></url>
-  <url><loc>https://hipobuyfins.com/faq.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/shoes.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/t-shirts.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/hoodies.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/jackets.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/pants.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/bags.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/electronics.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/headwear.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/accessories.html</loc></url>
-  <url><loc>https://hipobuyfins.com/categories/more-finds.html</loc></url>
+  <url><loc>https://hipobuyfins.com/categories</loc></url>
+  <url><loc>https://hipobuyfins.com/products</loc></url>
+  <url><loc>https://hipobuyfins.com/guides</loc></url>
+  <url><loc>https://hipobuyfins.com/seo</loc></url>
+  <url><loc>https://hipobuyfins.com/faq</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/shoes</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/t-shirts</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/hoodies</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/jackets</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/pants</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/bags</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/electronics</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/headwear</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/accessories</loc></url>
+  <url><loc>https://hipobuyfins.com/categories/more-finds</loc></url>
+  <url><loc>https://hipobuyfins.com/guides/how-to-use-hipobuy</loc></url>
+  <url><loc>https://hipobuyfins.com/guides/hipobuy-qc-photos</loc></url>
+  <url><loc>https://hipobuyfins.com/guides/hipobuy-shipping-guide</loc></url>
+  <url><loc>https://hipobuyfins.com/guides/hipobuy-shoes-guide</loc></url>
+  <url><loc>https://hipobuyfins.com/guides/hipobuy-clothing-guide</loc></url>
 </urlset>
+
