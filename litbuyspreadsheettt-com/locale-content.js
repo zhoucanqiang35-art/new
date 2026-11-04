@@ -921,7 +921,74 @@
    * preserves the source page's reading density while keeping the ten guides
    * about ten different buyer decisions.
    */
+  const guideOneTranslations = {
+  "de": [
+    "Ein nützliches LitBuy-Spreadsheet verkürzt die Suche, den Vergleich und das erneute Öffnen von Produktdaten. Es ist weder Laden, Händlergarantie noch Bestandsverwaltung. Eine Karte kann nützlich bleiben, obwohl der Verkäufer Varianten oder Preise ändert oder das Angebot entfernt. Das Verzeichnis beginnt die Entscheidung; vor der Zahlung prüfen Sie auf der aktuellen Kaufseite Option und Bedingungen.",
+    "Beginnen Sie mit einer schriftlichen Beschreibung: „schwarze Schultertasche, schmaler Riemen, Platz für Handy und Brille“ hilft mehr als „Taschen“. Ergänzen Sie unverzichtbares Material, ungefähre Maße, Farbe, Budget und Verwendungszweck. Suchen Sie nach stabilen Begriffen und grenzen Sie über Kategorien ein. Die erste Suche soll eine Auswahl liefern, keinen Sieger: Drei bis acht Kandidaten lassen sich meist sorgfältig vergleichen.",
+    "Notieren Sie vor der Stilbewertung vier Angaben je Kandidat: Kategorie, angezeigte USD-Schätzung, Produkt-ID und Bilder auf der Detailseite. Die ID ist besonders nützlich, weil Titel übersetzt, gekürzt oder wiederholt sein können. Sie verbindet Notizen mit demselben Eintrag. Ähnlich aussehende Karten mit verschiedenen IDs gelten als unterschiedliche Angebote, bis die aktuelle Kaufseite etwas anderes zeigt.",
+    "Trennen Sie Belege von Annahmen. Belege sind der angezeigte Preis, sichtbare Optionsnamen, Bilder und das Prüfdatum. Annahmen sind etwa „es passt“, „die Farbe stimmt“, „der Verkäufer hat Bestand“ oder „der Versand ist günstig“. So wird ein ordentlicher Eintrag nicht sicherer dargestellt als das Angebot. Markieren Sie den Stand als untersuchen, vergleichen, prüfbereit oder verwerfen.",
+    "LitBuy beschreibt öffentlich eine Kauf- und Lagerphase sowie eine spätere internationale Paketphase. Das Verzeichnis unterstützt beide: Grenzen Sie zuerst Produkte ein und prüfen Sie anschließend aktuelle Bestell- und Paketangaben beim Dienst. Das beste Spreadsheet hat nicht die meisten Links, sondern genug Kontext für die nächste Entscheidung, ohne die Recherche neu beginnen zu müssen.",
+    "Fazit: Nutzen Sie das Spreadsheet, um Optionen einzugrenzen und zu dokumentieren. Prüfen Sie auf der aktuellen Kaufseite Variante, Preis und Bedingungen."
+  ],
+  "fr": [
+    "Un tableau LitBuy utile réduit le temps nécessaire pour trouver, comparer et retrouver une fiche produit. Ce n’est ni une boutique, ni une garantie du vendeur, ni un système de stock. Une fiche peut rester utile alors que le vendeur modifie une variante ou un prix, ou retire l’annonce. L’annuaire sert à commencer la décision ; avant paiement, vérifiez l’option et les conditions sur la page d’achat actuelle.",
+    "Commencez par une description écrite : « sac noir à bandoulière fine, pouvant contenir téléphone et lunettes » aide davantage que « sacs ». Ajoutez matière, dimensions approximatives, couleur, budget et usage indispensables. Recherchez les termes stables puis filtrez par catégorie. Le premier tri doit créer une sélection, pas désigner un gagnant : trois à huit options suffisent généralement pour un examen sérieux.",
+    "Pour chaque option, notez avant le style quatre éléments : catégorie, estimation affichée en USD, identifiant produit et images de la fiche. L’identifiant est utile car les titres peuvent être traduits, abrégés ou répétés ; il relie vos notes à la même fiche. Deux cartes semblables portant des identifiants différents représentent des annonces distinctes jusqu’à vérification contraire sur la page actuelle.",
+    "Séparez preuves et suppositions. Les preuves sont le prix indiqué, le nom visible de l’option, les images et la date de vérification. « Cela ira », « la couleur correspondra », « le vendeur a du stock » ou « l’envoi sera bon marché » restent des suppositions. Cette distinction évite de donner trop de certitude à une fiche. Classez-la : à examiner, à comparer, à vérifier ou à écarter.",
+    "LitBuy décrit publiquement une étape d’achat et d’arrivée en entrepôt, puis une étape de colis international. L’annuaire aide aux deux : réduisez d’abord votre sélection, puis vérifiez les informations actuelles de commande et de colis auprès du service. Le meilleur tableau n’est pas celui qui contient le plus de liens, mais celui qui garde assez de contexte pour décider sans recommencer la recherche.",
+    "À retenir : utilisez le tableau pour sélectionner et documenter les options, puis vérifiez variante, prix et conditions sur la page d’achat actuelle."
+  ],
+  "es": [
+    "Una hoja LitBuy útil reduce el tiempo necesario para encontrar, comparar y volver a abrir una ficha. No es una tienda, una garantía del vendedor ni un sistema de inventario. Una ficha puede seguir siendo útil aunque el vendedor cambie variantes o precios o retire el anuncio. El directorio inicia la decisión; antes de pagar, confirma la opción y las condiciones en la página de compra actual.",
+    "Empieza por una descripción escrita: «bolso negro de hombro, correa estrecha, con espacio para teléfono y gafas» ayuda más que «bolsos». Añade material, medidas aproximadas, color, presupuesto y uso imprescindibles. Busca los términos estables y filtra por categoría. La primera búsqueda debe generar una selección, no un ganador: normalmente basta con comparar cuidadosamente de tres a ocho candidatos.",
+    "Antes de valorar el estilo, registra cuatro datos de cada candidato: categoría, estimación mostrada en USD, ID del producto e imágenes de la ficha. El ID es útil porque los títulos pueden traducirse, abreviarse o repetirse; permite relacionar las notas con la misma ficha. Dos tarjetas parecidas con ID distintos son anuncios diferentes hasta que la página actual demuestre lo contrario.",
+    "Separa pruebas de suposiciones. Son pruebas el precio mostrado, el nombre visible de la opción, las imágenes y la fecha de comprobación. «Me quedará bien», «coincidirá el color», «hay existencias» o «el envío será barato» son suposiciones. Esta separación evita dar una seguridad excesiva a la ficha. Marca cada opción como investigar, comparar, lista para verificar o descartar.",
+    "LitBuy describe públicamente una fase de compra y llegada al almacén y otra posterior de paquete internacional. El directorio ayuda en ambas: reduce primero las opciones y después revisa en el servicio los datos actuales del pedido y del paquete. La mejor hoja no es la que tiene más enlaces, sino la que conserva contexto suficiente para decidir sin empezar de cero.",
+    "Conclusión: usa la hoja para seleccionar y documentar opciones; confirma variante, precio y condiciones en la página de compra actual."
+  ],
+  "it": [
+    "Un foglio LitBuy utile riduce il tempo necessario per trovare, confrontare e riaprire una scheda prodotto. Non è un negozio, una garanzia del venditore o un sistema di magazzino. Una scheda può restare utile anche se il venditore cambia varianti o prezzi oppure rimuove l’annuncio. La directory avvia la scelta; prima del pagamento verifica opzione e condizioni sulla pagina di acquisto aggiornata.",
+    "Inizia con una descrizione scritta: «borsa nera a tracolla sottile, con spazio per telefono e occhiali» è più utile di «borse». Aggiungi materiale, misure approssimative, colore, budget e uso irrinunciabili. Cerca i termini stabili e filtra per categoria. Il primo passaggio deve creare una selezione, non un vincitore: di solito tre-otto candidati sono sufficienti per un confronto accurato.",
+    "Prima dello stile registra quattro dati per ogni candidato: categoria, stima visualizzata in USD, ID prodotto e immagini nella scheda. L’ID è utile perché i titoli possono essere tradotti, abbreviati o ripetuti; collega gli appunti alla stessa scheda. Due carte simili con ID diversi sono annunci distinti finché la pagina aggiornata non dimostra il contrario.",
+    "Separa prove e supposizioni. Sono prove il prezzo indicato, il nome visibile dell’opzione, le immagini e la data del controllo. «Mi starà bene», «il colore corrisponderà», «c’è disponibilità» o «la spedizione costerà poco» sono supposizioni. Distinguendole non si attribuisce alla scheda una certezza eccessiva. Segna ogni voce come da esaminare, confrontare, verificare o scartare.",
+    "LitBuy descrive pubblicamente una fase di acquisto e arrivo in magazzino e una successiva di spedizione internazionale. La directory aiuta in entrambe: restringi prima le scelte, poi controlla nel servizio i dati aggiornati dell’ordine e del pacco. Il foglio migliore non ha necessariamente più link: conserva il contesto per decidere senza ricominciare la ricerca.",
+    "In sintesi: usa il foglio per selezionare e documentare le opzioni; verifica variante, prezzo e condizioni sulla pagina di acquisto aggiornata."
+  ],
+  "pt": [
+    "Uma folha LitBuy útil reduz o tempo necessário para encontrar, comparar e voltar a abrir uma ficha de produto. Não é uma loja, uma garantia do vendedor nem um sistema de stock. Uma ficha pode continuar útil quando o vendedor altera variantes ou preços ou remove o anúncio. O diretório inicia a decisão; antes de pagar, confirme a opção e as condições na página de compra atual.",
+    "Comece com uma descrição escrita: «mala preta de ombro, alça estreita, com espaço para telemóvel e óculos» ajuda mais do que «malas». Acrescente material, medidas aproximadas, cor, orçamento e uso indispensáveis. Pesquise os termos estáveis e filtre por categoria. A primeira pesquisa deve criar uma seleção, não um vencedor: três a oito candidatos costumam bastar para comparar com cuidado.",
+    "Antes de avaliar o estilo, registe quatro dados de cada candidato: categoria, estimativa apresentada em USD, ID do produto e imagens da ficha. O ID é útil porque os títulos podem ser traduzidos, abreviados ou repetidos; liga as notas à mesma ficha. Dois cartões semelhantes com IDs diferentes são anúncios distintos até a página atual demonstrar o contrário.",
+    "Separe provas de suposições. São provas o preço indicado, o nome visível da opção, as imagens e a data da verificação. «Vai servir», «a cor será igual», «há stock» ou «o envio será barato» são suposições. Esta distinção evita dar certeza excessiva à ficha. Classifique cada opção: investigar, comparar, pronta para verificar ou descartar.",
+    "A LitBuy descreve publicamente uma fase de compra e chegada ao armazém e outra posterior de envio internacional. O diretório ajuda nas duas: reduza primeiro as opções e depois reveja no serviço os dados atuais da encomenda e do pacote. A melhor folha não é a que tem mais ligações, mas a que conserva contexto suficiente para decidir sem recomeçar a pesquisa.",
+    "Conclusão: use a folha para selecionar e documentar opções; confirme variante, preço e condições na página de compra atual."
+  ],
+  "nl": [
+    "Een nuttige LitBuy-spreadsheet verkort de tijd om een product te vinden, vergelijken en terug te openen. Het is geen winkel, verkopersgarantie of voorraadsysteem. Een kaart kan bruikbaar blijven wanneer een verkoper een variant of prijs wijzigt of een aanbieding verwijdert. De gids is het begin van je keuze; controleer vóór betaling de actuele optie en voorwaarden op de aankooppagina.",
+    "Begin met een schriftelijke omschrijving: ‘zwarte schoudertas, smalle band, ruimte voor telefoon en bril’ helpt meer dan ‘tassen’. Noteer onmisbaar materiaal, afmetingen bij benadering, kleur, budget en gebruik. Zoek op vaste kenmerken en filter via categorieën. De eerste ronde levert een selectie op, geen winnaar: drie tot acht kandidaten zijn doorgaans zorgvuldig te vergelijken.",
+    "Leg vóór de stijlbeoordeling vier gegevens per kandidaat vast: categorie, getoonde USD-schatting, product-ID en afbeeldingen op de detailpagina. De ID is nuttig omdat titels vertaald, ingekort of herhaald kunnen zijn; zo koppel je notities aan dezelfde vermelding. Vergelijkbare kaarten met verschillende ID’s zijn aparte aanbiedingen totdat de actuele pagina anders bevestigt.",
+    "Scheid bewijs van aannames. Bewijs bestaat uit de getoonde prijs, zichtbare optienaam, afbeeldingen en controledatum. ‘Het past’, ‘de kleur klopt’, ‘er is voorraad’ en ‘verzending is goedkoop’ zijn aannames. Dat onderscheid voorkomt schijnzekerheid. Markeer elke keuze als onderzoeken, vergelijken, klaar voor controle of afwijzen.",
+    "LitBuy beschrijft publiekelijk een aankoop- en magazijnfase en daarna een internationale pakketfase. De gids helpt bij beide: beperk eerst je keuze en controleer daarna de actuele bestel- en pakketinformatie bij de dienst. De beste spreadsheet heeft niet de meeste links, maar genoeg context om de volgende beslissing te nemen zonder opnieuw te beginnen.",
+    "Kortom: gebruik de spreadsheet om keuzes te beperken en vast te leggen; controleer actuele variant, prijs en voorwaarden op de aankooppagina."
+  ],
+  "pl": [
+    "Przydatny arkusz LitBuy skraca czas wyszukiwania, porównywania i ponownego otwierania karty produktu. Nie jest sklepem, gwarancją sprzedawcy ani systemem stanów magazynowych. Karta może nadal pomagać, gdy sprzedawca zmieni wariant lub cenę albo usunie ofertę. Katalog rozpoczyna decyzję; przed płatnością sprawdź aktualną opcję i warunki na stronie zakupu.",
+    "Zacznij od pisemnego opisu: „czarna torba na ramię, wąski pasek, miejsce na telefon i okulary” pomaga bardziej niż „torby”. Dodaj niezbędny materiał, przybliżone wymiary, kolor, budżet i zastosowanie. Szukaj stałych cech i zawężaj wyniki kategoriami. Pierwszy etap ma utworzyć listę, nie wyłonić zwycięzcę: zwykle można dokładnie porównać od trzech do ośmiu propozycji.",
+    "Przed oceną wyglądu zapisz cztery informacje o każdej propozycji: kategorię, wyświetlaną kwotę szacunkową w USD, ID produktu i zdjęcia ze strony szczegółów. ID pomaga, bo tytuły bywają tłumaczone, skracane lub powtarzane; łączy notatki z tą samą kartą. Podobne karty z różnymi ID traktuj jako osobne oferty, dopóki aktualna strona nie potwierdzi inaczej.",
+    "Oddziel dowody od założeń. Dowodami są podana cena, widoczna nazwa opcji, zdjęcia i data sprawdzenia. „Będzie pasować”, „kolor się zgodzi”, „produkt jest dostępny” i „wysyłka będzie tania” to założenia. Rozróżnienie zapobiega nadmiernej pewności. Oznacz wybór: do zbadania, porównania, weryfikacji albo odrzucenia.",
+    "LitBuy publicznie opisuje etap zakupu i przyjęcia do magazynu oraz późniejszy etap przesyłki międzynarodowej. Katalog pomaga w obu: najpierw zawęź wybór, potem sprawdź w usłudze aktualne dane zamówienia i paczki. Najlepszy arkusz nie ma najwięcej linków, lecz zachowuje kontekst potrzebny do decyzji bez rozpoczynania badań od nowa.",
+    "Wniosek: używaj arkusza do zawężania i dokumentowania wyboru; aktualny wariant, cenę i warunki sprawdź na stronie zakupu."
+  ],
+  "ru": [
+    "Полезная таблица LitBuy сокращает время поиска, сравнения и повторного открытия карточки товара. Это не магазин, не гарантия продавца и не система складских остатков. Карточка может оставаться полезной, даже если продавец изменит вариант или цену либо удалит объявление. Каталог лишь начинает выбор; перед оплатой проверьте актуальные вариант и условия на странице покупки.",
+    "Начните с письменного описания: «чёрная сумка на плечо с узким ремнём, куда помещаются телефон и очки» полезнее слова «сумки». Запишите обязательные материал, примерные размеры, цвет, бюджет и назначение. Ищите устойчивые признаки и сужайте результаты по категориям. Первый этап создаёт список, а не определяет победителя: обычно достаточно внимательно сравнить от трёх до восьми вариантов.",
+    "До оценки внешнего вида сохраните четыре сведения о каждом варианте: категорию, указанную оценку в USD, ID товара и изображения на странице подробностей. ID важен, поскольку названия могут переводиться, сокращаться или повторяться; он связывает заметки с той же карточкой. Похожие карточки с разными ID считайте разными объявлениями, пока актуальная страница не подтвердит обратное.",
+    "Отделяйте доказательства от предположений. Доказательства — указанная цена, видимое название варианта, изображения и дата проверки. «Подойдёт», «цвет совпадёт», «товар есть в наличии» и «доставка будет дешёвой» — предположения. Различие не позволяет считать карточку достовернее исходного объявления. Помечайте варианты: изучить, сравнить, готов к проверке или отклонить.",
+    "LitBuy публично описывает этап покупки и поступления на склад, а затем этап международной посылки. Каталог помогает на обоих: сначала сузьте выбор, затем проверьте актуальные сведения о заказе и посылке в сервисе. Лучшая таблица не та, где больше ссылок, а та, где сохранено достаточно контекста для следующего решения без повторения поиска с нуля.",
+    "Вывод: используйте таблицу для отбора и записи вариантов; актуальные вариант, цену и условия проверяйте на странице покупки."
+  ]
+};
   const articleText = (c, lang, i, p) => {
+    if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
@@ -939,7 +1006,7 @@
     '<section class="page-head"><p class="label">RESEARCH LIBRARY</p><h1 class="page-title">' +
     c.seo +
     '</h1></section><div class="research-wrap"><p class="research-intro">' +
-    articleText(c, lang, 0, 0) +
+    c.guide +
     '</p><nav class="research-index">' +
     c.titles
       .map(
@@ -973,7 +1040,7 @@
       )
       .join("") +
     '<section class="source-strip"><strong>Source boundary.</strong> ' +
-    articleText(c, lang, 0, 3) +
+    P[lang].limit +
     "</section></div>";
 
   const faqDetail = (c, lang, x, i) => {
