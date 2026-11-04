@@ -1251,12 +1251,79 @@
     "Вывод: сравнивайте равноценные варианты, записывайте пробелы и отделяйте цену товара от решения о будущей посылке."
   ]
 };
+  const guideSixTranslations = {
+  "de": [
+    "QC-Fotos helfen am meisten, wenn vorher feststeht, welche Fragen sie beantworten sollen. Speichern Sie das Händlerbild des wichtigen Merkmals und erstellen Sie eine kurze Prüfliste: richtige Option, ungefähre Farbe, sichtbare Maße, wichtige Beschläge und enthaltene Teile. Die Liste soll konkret sein, aber keine unmögliche Garantie voraussetzen.",
+    "Wenn Prüfbilder vorliegen, klären Sie zuerst die Identität: Vergleichen Sie Produkt-ID, Optionsnotizen und grobe Form. Prüfen Sie dann vom Großen zum Kleinen: Modell, Farbfamilie, Taschen, Verschlüsse und Riemen vor Nähten, Textur oder Druckausrichtung. Ein deutlicher Größenfehler, fehlendes Teil, kaputter Verschluss oder falsche Option ist wichtiger als ein kleiner Lichtunterschied.",
+    "Fotos haben blinde Flecken: Geruch, Haptik, innere Verstärkung, exaktes Gewicht, Haltbarkeit und alle Seiten sind möglicherweise nicht sichtbar. Ein nicht sichtbarer Fehler ist kein Beweis für Fehlerfreiheit; ein schwacher Fleck kann Schatten oder Kompression sein. Ist ein entscheidendes Merkmal nicht zu sehen, bleibt es ungeklärt.",
+    "Formulieren Sie Supportanfragen sachlich: Artikel, erwartete Option, beobachtete Abweichung und zugehöriges Bild. Behaupten Sie keine Echtheit ohne unabhängige Belege und passende Richtlinie. LitBuy erklärt, Qualität oder Echtheit fremder Waren nicht verifizieren zu können. QC betrifft daher sichtbaren Zustand und Übereinstimmung, keine Zertifizierung.",
+    "LitBuys veröffentlichter Ablauf trennt Lagerankunft und spätere internationale Sendung. Nutzen Sie die Lagerzeit als Prüfpunkt: Sichten Sie vorhandene Belege, verstehen Sie die nächste Paketentscheidung und reichen Sie erst ein, wenn die verbleibende Unsicherheit für Sie akzeptabel ist.",
+    "Fazit: QC prüft sichtbare Merkmale; verborgene Qualität, langfristige Leistung und Echtheit sind damit nicht garantiert."
+  ],
+  "fr": [
+    "Les photos QC sont plus utiles si vous décidez d’abord à quelles questions elles doivent répondre. Conservez l’image vendeur montrant le détail important et préparez une liste : bonne option, couleur générale, mesures visibles si possible, pièces métalliques et éléments inclus. Soyez précis sans supposer une garantie impossible.",
+    "Lorsque les images existent, vérifiez d’abord l’identité : identifiant, notes sur l’option et silhouette générale. Allez ensuite du général au détail : modèle, famille de couleur, poches, fermetures et sangles avant coutures, texture ou alignement d’un imprimé. Une mauvaise taille visible, une pièce manquante, une fermeture cassée ou une mauvaise option compte davantage qu’une légère variation de lumière.",
+    "Les photos ont des angles morts : odeur, toucher, renfort interne, poids exact, durabilité ou toutes les faces peuvent manquer. L’absence d’un défaut visible ne prouve pas son absence ; une marque légère peut être une ombre ou une compression. Si un détail décisif n’est pas visible, laissez-le non résolu.",
+    "Adressez au support une demande factuelle : article, option attendue, différence observée et image. Ne revendiquez pas l’authenticité sans preuve indépendante et politique applicable. LitBuy dit ne pouvoir vérifier qualité ou authenticité des biens tiers ; le QC porte donc sur l’état visible et la conformité, pas sur une certification.",
+    "Le parcours public de LitBuy sépare l’arrivée à l’entrepôt de l’expédition internationale. Profitez du stockage pour examiner les éléments disponibles, comprendre la prochaine décision de colis et ne soumettre que lorsque l’incertitude restante vous convient.",
+    "À retenir : le QC examine les éléments visibles ; il ne garantit ni qualité cachée, ni performance durable, ni authenticité."
+  ],
+  "es": [
+    "Las fotos QC son más útiles si decides antes qué deben responder. Guarda la imagen del vendedor que mejor muestra el detalle importante y prepara una lista: opción correcta, color general, medidas visibles si es posible, herrajes y piezas incluidas. Sé concreto sin suponer una garantía imposible.",
+    "Cuando haya imágenes, comprueba primero la identidad: ID, notas de la opción y silueta general. Después revisa de lo grande a lo pequeño: modelo, familia de color, bolsillos, cierres y correas antes de costuras, textura o alineación del estampado. Una talla claramente incorrecta, pieza ausente, cierre roto u opción equivocada importa más que una leve diferencia de luz.",
+    "Las fotos tienen puntos ciegos: pueden no mostrar olor, tacto, refuerzo interior, peso exacto, durabilidad o todos los lados. No ver un defecto no demuestra que no exista; una marca tenue puede ser sombra o compresión. Si un detalle decisivo no se ve, déjalo sin resolver.",
+    "Solicita ayuda con hechos: artículo, opción esperada, diferencia observada e imagen. No afirmes autenticidad sin pruebas independientes y una política aplicable. LitBuy dice que no puede verificar calidad ni autenticidad de bienes de terceros; el QC se centra en estado visible y correspondencia, no en certificar.",
+    "El proceso público de LitBuy separa la llegada al almacén del envío internacional posterior. Usa el almacenamiento como punto de control: revisa las pruebas disponibles, comprende la siguiente decisión del paquete y presenta el envío solo cuando aceptes la incertidumbre restante.",
+    "Conclusión: el QC revisa características visibles; no garantiza calidad oculta, rendimiento duradero ni autenticidad."
+  ],
+  "it": [
+    "Le foto QC sono più utili se stabilisci prima a quali domande devono rispondere. Salva l’immagine del venditore che mostra il dettaglio importante e prepara una lista: opzione corretta, colore generale, misure visibili se possibile, ferramenta e parti incluse. Sii preciso senza presumere una garanzia impossibile.",
+    "Quando le immagini sono disponibili, verifica prima l’identità: ID, appunti sull’opzione e sagoma generale. Procedi dal grande al piccolo: modello, famiglia di colore, tasche, chiusure e cinghie prima di cuciture, texture o allineamento della stampa. Taglia visibilmente errata, pezzo mancante, chiusura rotta o opzione sbagliata meritano più attenzione di una lieve differenza di luce.",
+    "Le foto hanno punti ciechi: potrebbero non mostrare odore, tatto, rinforzi interni, peso esatto, durata o tutti i lati. Non vedere un difetto non prova che sia assente; un segno lieve può essere ombra o compressione. Se una caratteristica decisiva non è visibile, lasciala irrisolta.",
+    "Fai richieste fattuali all’assistenza: articolo, opzione attesa, differenza osservata e immagine. Non affermare autenticità senza prove indipendenti e una politica applicabile. LitBuy dichiara di non poter verificare qualità o autenticità di beni terzi; il QC riguarda condizioni visibili e conformità, non certificazione.",
+    "Il percorso pubblico LitBuy separa l’arrivo in magazzino dalla successiva spedizione internazionale. Usa la permanenza come punto di controllo: esamina le prove disponibili, comprendi la prossima decisione sul pacco e invia solo quando l’incertezza restante è accettabile.",
+    "Conclusione: il QC controlla caratteristiche visibili; non garantisce qualità nascosta, durata o autenticità."
+  ],
+  "pt": [
+    "As fotos QC são mais úteis quando decide primeiro que perguntas devem responder. Guarde a imagem do vendedor que melhor mostra o detalhe importante e prepare uma lista: opção correta, cor geral, medidas visíveis se possível, ferragens e peças incluídas. Seja específico sem presumir uma garantia impossível.",
+    "Quando houver imagens, confirme primeiro a identidade: ID, notas da opção e silhueta geral. Depois avance do maior para o menor: modelo, família de cor, bolsos, fechos e alças antes de costuras, textura ou alinhamento da estampa. Tamanho visivelmente errado, peça em falta, fecho partido ou opção incorreta merece mais atenção do que uma pequena diferença de luz.",
+    "As fotos têm pontos cegos: podem não mostrar cheiro, toque, reforço interno, peso exato, durabilidade ou todos os lados. Não ver uma falha não prova que ela não existe; uma marca ligeira pode ser sombra ou compressão. Se um detalhe decisivo não estiver visível, mantenha-o por resolver.",
+    "Faça pedidos factuais ao apoio: artigo, opção esperada, diferença observada e imagem. Não afirme autenticidade sem prova independente e política aplicável. A LitBuy diz não poder verificar qualidade ou autenticidade de bens de terceiros; o QC trata de estado visível e conformidade, não de certificação.",
+    "O processo público da LitBuy separa a chegada ao armazém do envio internacional posterior. Use a permanência como ponto de controlo: reveja as provas disponíveis, compreenda a próxima decisão do pacote e submeta apenas quando a incerteza restante for aceitável.",
+    "Conclusão: o QC examina características visíveis; não garante qualidade oculta, desempenho duradouro nem autenticidade."
+  ],
+  "nl": [
+    "QC-foto’s helpen het meest als je vooraf bepaalt welke vragen ze moeten beantwoorden. Bewaar de verkopersfoto van het belangrijke kenmerk en maak een lijst: juiste optie, globale kleur, zichtbare maten indien mogelijk, belangrijk beslag en meegeleverde onderdelen. Wees specifiek zonder een onmogelijke garantie te verwachten.",
+    "Controleer bij beschikbare beelden eerst de identiteit: product-ID, optienotities en globaal silhouet. Werk daarna van groot naar klein: model, kleurgroep, zakken, sluitingen en banden vóór naden, textuur of uitlijning van een print. Een duidelijk verkeerde maat, ontbrekend onderdeel, kapotte sluiting of verkeerde optie verdient meer aandacht dan een klein lichtverschil.",
+    "Foto’s hebben blinde vlekken: geur, gevoel, interne versteviging, exact gewicht, duurzaamheid of alle zijden zijn mogelijk niet zichtbaar. Een onzichtbaar gebrek is geen bewijs dat het ontbreekt; een lichte vlek kan schaduw of compressie zijn. Is een beslissend kenmerk niet zichtbaar, laat het dan onopgelost.",
+    "Vraag support feitelijk om hulp: artikel, verwachte optie, waargenomen verschil en beeld. Claim geen echtheid zonder onafhankelijk bewijs en toepasselijk beleid. LitBuy zegt kwaliteit en echtheid van goederen van derden niet te kunnen verifiëren; QC gaat dus over zichtbare staat en overeenstemming, niet certificering.",
+    "LitBuy’s openbare proces scheidt aankomst in het magazijn van latere internationale verzending. Gebruik opslag als controlepunt: bekijk het beschikbare bewijs, begrijp de volgende pakketbeslissing en dien pas in als de resterende onzekerheid aanvaardbaar is.",
+    "Conclusie: QC beoordeelt zichtbare kenmerken en garandeert geen verborgen kwaliteit, duurzaamheid of echtheid."
+  ],
+  "pl": [
+    "Zdjęcia QC pomagają najbardziej, gdy wcześniej określisz pytania, na które mają odpowiedzieć. Zachowaj zdjęcie sprzedawcy pokazujące ważny szczegół i przygotuj listę: właściwa opcja, ogólny kolor, widoczne wymiary, jeśli możliwe, okucia i dołączone części. Bądź precyzyjny, nie zakładając niemożliwej gwarancji.",
+    "Gdy zdjęcia są dostępne, najpierw sprawdź tożsamość: ID, notatki o opcji i ogólny kształt. Następnie przechodź od dużych cech do małych: model, grupa koloru, kieszenie, zamknięcia i paski przed szwami, fakturą lub ustawieniem nadruku. Wyraźnie zły rozmiar, brak części, uszkodzone zamknięcie lub zła opcja są ważniejsze niż niewielka różnica światła.",
+    "Zdjęcia mają martwe pola: mogą nie pokazać zapachu, dotyku, wewnętrznych wzmocnień, dokładnej wagi, trwałości lub wszystkich stron. Brak widocznej wady nie dowodzi jej braku; słaby ślad może być cieniem albo kompresją. Jeśli decydującej cechy nie widać, pozostaje niewyjaśniona.",
+    "Do obsługi pisz rzeczowo: przedmiot, oczekiwana opcja, zauważona różnica i zdjęcie. Nie twierdź, że rzecz jest autentyczna bez niezależnego dowodu i odpowiednich zasad. LitBuy podaje, że nie weryfikuje jakości ani autentyczności towarów stron trzecich; QC dotyczy więc widocznego stanu i zgodności, nie certyfikacji.",
+    "Publiczny proces LitBuy oddziela przyjęcie do magazynu od późniejszej wysyłki międzynarodowej. Wykorzystaj magazynowanie jako punkt kontroli: obejrzyj dostępne dowody, zrozum następną decyzję o paczce i zgłoś wysyłkę dopiero po zaakceptowaniu pozostałej niepewności.",
+    "Wniosek: QC ocenia widoczne cechy; nie gwarantuje ukrytej jakości, trwałego działania ani autentyczności."
+  ],
+  "ru": [
+    "QC-фотографии полезнее, когда заранее определено, на какие вопросы они должны ответить. Сохраните фото продавца с важной деталью и составьте список: правильный вариант, общий цвет, видимые размеры по возможности, фурнитура и комплектующие. Будьте конкретны, не предполагая невозможной гарантии.",
+    "При наличии снимков сначала проверьте идентичность: ID, записи о варианте и общий силуэт. Затем двигайтесь от крупного к мелкому: модель, группа цвета, карманы, застёжки и ремни до швов, фактуры или расположения принта. Явно неверный размер, отсутствующая деталь, сломанная застёжка или другой вариант важнее небольшой разницы освещения.",
+    "У фотографий есть слепые зоны: они могут не показать запах, ощущения, внутреннее усиление, точный вес, долговечность или все стороны. Невидимый дефект не доказывает его отсутствия; слабая отметина может быть тенью или сжатием. Если решающую деталь не видно, оставьте вопрос открытым.",
+    "Обращайтесь в поддержку с фактами: товар, ожидаемый вариант, замеченное отличие и фото. Не утверждайте подлинность без независимых доказательств и применимых условий. LitBuy сообщает, что не может проверить качество и подлинность товаров третьих лиц; поэтому QC касается видимого состояния и соответствия, а не сертификации.",
+    "Публичный процесс LitBuy отделяет поступление на склад от последующей международной отправки. Используйте хранение как контрольный этап: изучите доступные доказательства, поймите следующее решение по посылке и отправляйте только когда оставшаяся неопределённость приемлема.",
+    "Вывод: QC проверяет видимые признаки; он не гарантирует скрытое качество, долговечность или подлинность."
+  ]
+};
   const articleText = (c, lang, i, p) => {
     if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     if (i === 1 && guideTwoTranslations[lang]) return guideTwoTranslations[lang][p];
     if (i === 2 && guideThreeTranslations[lang]) return guideThreeTranslations[lang][p];
     if (i === 3 && guideFourTranslations[lang]) return guideFourTranslations[lang][p];
     if (i === 4 && guideFiveTranslations[lang]) return guideFiveTranslations[lang][p];
+    if (i === 5 && guideSixTranslations[lang]) return guideSixTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
