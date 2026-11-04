@@ -1317,6 +1317,72 @@
     "Вывод: QC проверяет видимые признаки; он не гарантирует скрытое качество, долговечность или подлинность."
   ]
 };
+  const guideSevenTranslations = {
+  "de": [
+    "Stöbern ist leicht, eine brauchbare Vorauswahl braucht Absicht. Nutzen Sie Kategorien für bekannte Produkttypen und Stichwörter für Material, Form oder Funktion. Speichern Sie nur passende Kandidaten mit richtiger Kategorie, genügend Bildkontext, keinem offensichtlichen Titelwiderspruch und später überprüfbarem Produktweg. Hundert attraktive Karten sind nicht hundert kaufbereite Optionen.",
+    "Nutzen Sie drei Stufen: eine aktive Liste mit höchstens fünf ernsthaften Kandidaten, eine Vergleichsreserve für Alternativen mit offenen Fragen und eine Inspirationsliste für schöne, noch nicht beurteilbare Ideen. So wirkt nicht alles gleich entscheidungsreif.",
+    "Geben Sie jedem aktiven Artikel einen klaren Grund: angegebene Maße, bessere Bilder, eine bestimmte Funktion oder ein vergleichbarer Preis. Können Sie ihn nicht in einem Satz nennen, verschieben Sie den Artikel in die Reserve. Das reduziert spontane Speicherungen und beschleunigt den Vergleich.",
+    "Lokale Suche und Kategorien sind eine Orientierung, kein Nachweis aktueller Verfügbarkeit. Die Suche bleibt auf dieser Unterseite; der Kaufknopf führt bewusst zur aktuellen Prüfung. Markieren Sie Einträge als ‘heute geprüft’, ‘live prüfen’ oder ‘Archiv’. Eine kleine aktuelle Liste ist besser als eine große veraltete.",
+    "Eine Vorauswahl soll keinen Zeitdruck erzeugen. Sie bewahrt Aufmerksamkeit für Maße, Optionsnamen, Bildbelege und Budget. So wird ein Spreadsheet vom Bilderkatalog zum Entscheidungshilfsmittel.",
+    "Fazit: Halten Sie den Auswahlgrund fest, begrenzen Sie aktive Kandidaten und archivieren Sie alte Einträge, statt sie als verfügbaren Bestand zu behandeln."
+  ],
+  "fr": [
+    "Parcourir est facile ; une sélection utile demande une intention. Utilisez les catégories pour un type d’objet connu et les mots-clés pour une matière, une forme ou une fonction. Ne gardez qu’une fiche pertinente : bonne catégorie, contexte visuel suffisant, titre sans contradiction évidente et lien vérifiable plus tard. Cent cartes séduisantes ne sont pas cent achats prêts.",
+    "Utilisez trois niveaux : une liste active de cinq articles maximum réellement envisagés, une réserve d’alternatives nécessitant des informations et une liste d’inspiration pour les styles encore impossibles à évaluer. Tout ne paraît ainsi pas également prêt à être acheté.",
+    "Donnez à chaque article actif une raison précise : mesures indiquées, images plus utiles, fonction particulière ou prix comparable. Si vous ne pouvez l’expliquer en une phrase, placez-le en réserve. Cette règle limite les enregistrements impulsifs et accélère le comparatif.",
+    "La recherche et les catégories locales sont une carte, pas une preuve de disponibilité actuelle. La découverte reste sur ce sous-site ; le bouton d’achat est l’étape volontaire de vérification en direct. Marquez les fiches « vérifiée aujourd’hui », « à vérifier » ou « archive ». Une petite liste actuelle vaut mieux qu’une grande liste périmée.",
+    "Une sélection ne doit pas créer d’urgence. Elle préserve l’attention pour les mesures, libellés d’option, preuves visuelles et budget. Le tableau devient ainsi un outil de décision plutôt qu’une galerie.",
+    "À retenir : conservez la raison de chaque choix, limitez les candidats actifs et archivez les fiches anciennes sans les considérer comme du stock actuel."
+  ],
+  "es": [
+    "Navegar es fácil; una selección útil requiere intención. Usa categorías si conoces el tipo de objeto y palabras clave para material, forma o función. Guarda solo candidatos relevantes: categoría correcta, contexto visual suficiente, título sin contradicción evidente y ruta verificable después. Cien tarjetas atractivas no son cien compras preparadas.",
+    "Usa tres niveles: lista activa de un máximo de cinco artículos que considerarías de verdad; reserva de alternativas con información pendiente; e inspiración para estilos que todavía no puedes evaluar. Así no todo parece igualmente listo para comprar.",
+    "Da a cada artículo activo una razón concreta: medidas indicadas, mejores imágenes, función específica o precio comparable. Si no puedes explicarla en una frase, pásalo a reserva. Esta regla reduce guardados impulsivos y agiliza la comparación.",
+    "La búsqueda y categorías locales son un mapa, no prueba de disponibilidad actual. El descubrimiento permanece en el sitio; el botón de compra es el punto deliberado para comprobar datos actuales. Marca las fichas «comprobada hoy», «requiere verificación» o «archivo». Una lista pequeña actual supera una grande desactualizada.",
+    "Una selección no debe crear urgencia. Conserva atención para medidas, etiquetas de opciones, pruebas visuales y presupuesto. Así la hoja pasa de galería a herramienta de decisión.",
+    "Conclusión: conserva el motivo de cada elección, limita candidatos activos y archiva fichas antiguas sin tratarlas como existencias actuales."
+  ],
+  "it": [
+    "Sfogliare è facile; una selezione utile richiede intenzione. Usa le categorie per un tipo di oggetto noto e le parole chiave per materiale, forma o funzione. Salva solo candidati pertinenti: categoria corretta, contesto visivo sufficiente, titolo senza evidenti contraddizioni e percorso verificabile in seguito. Cento schede attraenti non sono cento acquisti pronti.",
+    "Usa tre livelli: una lista attiva di massimo cinque articoli realmente considerati, una riserva di alternative che richiedono informazioni e una raccolta di ispirazione per stili non ancora valutabili. Così non tutto sembra ugualmente pronto all’acquisto.",
+    "Assegna a ogni articolo attivo un motivo preciso: misure dichiarate, immagini più utili, funzione specifica o prezzo confrontabile. Se non riesci a spiegarlo in una frase, spostalo nella riserva. La regola limita i salvataggi impulsivi e velocizza il confronto.",
+    "Ricerca e categorie locali sono una mappa, non una prova di disponibilità attuale. La scoperta resta sul sito; il pulsante di acquisto è il punto scelto per verificare i dati aggiornati. Segna le schede come «verificata oggi», «da verificare» o «archivio». Una piccola lista aggiornata è migliore di una grande lista vecchia.",
+    "Una selezione non deve creare urgenza. Conserva attenzione per misure, etichette delle opzioni, immagini e budget. Così il foglio diventa uno strumento decisionale, non solo una galleria.",
+    "Conclusione: conserva il motivo della scelta, limita i candidati attivi e archivia le schede vecchie senza considerarle disponibilità attuale."
+  ],
+  "pt": [
+    "Navegar é fácil; uma seleção útil exige intenção. Use categorias para um tipo de objeto conhecido e palavras-chave para material, forma ou função. Guarde apenas candidatos relevantes: categoria certa, contexto visual suficiente, título sem contradição evidente e rota verificável mais tarde. Cem cartões atraentes não são cem compras prontas.",
+    "Use três níveis: lista ativa de até cinco artigos realmente considerados; reserva de alternativas que exigem informação; e inspiração para estilos ainda não avaliáveis. Assim nem tudo parece igualmente pronto para comprar.",
+    "Dê a cada artigo ativo uma razão concreta: medidas indicadas, imagens mais úteis, função específica ou preço comparável. Se não conseguir explicá-la numa frase, mova-o para a reserva. A regra reduz escolhas impulsivas e acelera a comparação.",
+    "A pesquisa e as categorias locais são um mapa, não prova de disponibilidade atual. A descoberta fica neste site; o botão de compra é o ponto deliberado para verificar dados atuais. Marque as fichas como «verificada hoje», «precisa de verificação» ou «arquivo». Uma lista pequena e atual vale mais do que uma grande e antiga.",
+    "Uma seleção não deve criar urgência. Preserva atenção para medidas, nomes das opções, imagens e orçamento. Assim a folha passa de galeria a ferramenta de decisão.",
+    "Conclusão: guarde o motivo da escolha, limite os candidatos ativos e arquive fichas antigas sem as tratar como stock atual."
+  ],
+  "nl": [
+    "Rondkijken is gemakkelijk; een bruikbare shortlist vraagt aandacht. Gebruik categorieën voor een bekend type en zoekwoorden voor materiaal, vorm of functie. Bewaar alleen relevante kandidaten met juiste categorie, voldoende beeldcontext, geen duidelijke tegenspraak in de titel en een later te controleren route. Honderd aantrekkelijke kaarten zijn geen honderd aankoopklare keuzes.",
+    "Gebruik drie niveaus: een actieve lijst van hoogstens vijf serieuze kandidaten, een vergelijkingsreserve met open vragen en inspiratie voor stijlen die je nog niet kunt beoordelen. Zo lijkt niet alles even koopklaar.",
+    "Geef elk actief artikel één duidelijke reden: opgegeven maten, nuttigere beelden, een functie of vergelijkbare prijs. Kun je die niet in één zin uitleggen, zet het dan in reserve. Dat beperkt impulsief bewaren en versnelt de vergelijking.",
+    "Lokale zoek- en categorieroutes zijn een kaart, geen bewijs van actuele voorraad. Ontdekken blijft op deze site; de koopknop is het bewuste moment om actuele gegevens te controleren. Markeer ‘vandaag gecontroleerd’, ‘live controleren’ of ‘archief’. Een kleine actuele lijst is beter dan een grote verouderde.",
+    "Een shortlist moet geen haast veroorzaken. Hij bewaart aandacht voor maten, optienamen, beeldbewijs en budget. Zo wordt de spreadsheet een hulpmiddel voor beslissingen in plaats van een galerij.",
+    "Conclusie: bewaar de reden van elke keuze, beperk actieve kandidaten en archiveer oude vermeldingen zonder ze als actuele voorraad te behandelen."
+  ],
+  "pl": [
+    "Przeglądanie jest łatwe; użyteczna lista wymaga celu. Używaj kategorii, gdy znasz typ przedmiotu, a słów kluczowych dla materiału, kształtu lub funkcji. Zapisuj tylko trafne opcje: właściwa kategoria, wystarczający kontekst zdjęć, brak oczywistej sprzeczności w tytule i możliwość późniejszej weryfikacji. Sto atrakcyjnych kart nie oznacza stu ofert gotowych do zakupu.",
+    "Użyj trzech poziomów: aktywnej listy najwyżej pięciu poważnych kandydatów, rezerwy alternatyw wymagających informacji oraz inspiracji dla stylów, których jeszcze nie da się ocenić. Dzięki temu nie wszystko wygląda na równie gotowe do zakupu.",
+    "Podaj jeden jasny powód dla każdej aktywnej pozycji: podane wymiary, lepsze zdjęcia, konkretną funkcję lub porównywalną cenę. Jeśli nie umiesz wyjaśnić go jednym zdaniem, przenieś rzecz do rezerwy. Zasada ogranicza impulsywne zapisywanie i przyspiesza porównanie.",
+    "Lokalna wyszukiwarka i kategorie są mapą, nie dowodem aktualnej dostępności. Wyszukiwanie pozostaje na stronie; przycisk zakupu jest świadomym momentem sprawdzenia bieżących danych. Oznacz wpisy ‘sprawdzono dziś’, ‘sprawdzić aktualnie’ lub ‘archiwum’. Mała aktualna lista jest lepsza niż duża nieaktualna.",
+    "Lista nie powinna wywoływać pośpiechu. Pozwala skupić się na wymiarach, nazwach opcji, zdjęciach i budżecie. Dzięki temu arkusz staje się narzędziem decyzji, a nie galerią.",
+    "Wniosek: zachowaj powód wyboru, ogranicz aktywnych kandydatów i archiwizuj stare wpisy zamiast traktować je jako aktualny stan."
+  ],
+  "ru": [
+    "Просматривать легко, но полезный список требует цели. Используйте категории для известного типа вещи, а ключевые слова — для материала, формы или функции. Сохраняйте подходящие варианты: верная категория, достаточно изображений, отсутствие явного противоречия в названии и возможность позже проверить страницу. Сто привлекательных карточек не означают сто готовых покупок.",
+    "Используйте три уровня: активный список максимум из пяти действительно рассматриваемых товаров, резерв альтернатив с открытыми вопросами и вдохновение для стилей, которые пока нельзя оценить. Тогда не всё будет выглядеть одинаково готовым к покупке.",
+    "Укажите одну ясную причину для каждой активной позиции: заявленные размеры, более полезные изображения, конкретная функция или сопоставимая цена. Если её нельзя объяснить одним предложением, перенесите товар в резерв. Это сокращает импульсивные сохранения и ускоряет сравнение.",
+    "Локальный поиск и категории — карта, а не доказательство текущего наличия. Поиск остаётся на сайте; кнопка покупки — сознательный переход к проверке актуальных данных. Отмечайте записи «проверено сегодня», «проверить актуальность» или «архив». Маленький актуальный список лучше большого устаревшего.",
+    "Список не должен создавать спешку. Он сохраняет внимание для размеров, подписей вариантов, изображений и бюджета. Так таблица становится инструментом решения, а не просто галереей.",
+    "Вывод: сохраняйте причину выбора, ограничивайте активные варианты и архивируйте старые записи, не считая их текущим наличием."
+  ]
+};
   const articleText = (c, lang, i, p) => {
     if (i === 0 && guideOneTranslations[lang]) return guideOneTranslations[lang][p];
     if (i === 1 && guideTwoTranslations[lang]) return guideTwoTranslations[lang][p];
@@ -1324,6 +1390,7 @@
     if (i === 3 && guideFourTranslations[lang]) return guideFourTranslations[lang][p];
     if (i === 4 && guideFiveTranslations[lang]) return guideFiveTranslations[lang][p];
     if (i === 5 && guideSixTranslations[lang]) return guideSixTranslations[lang][p];
+    if (i === 6 && guideSevenTranslations[lang]) return guideSevenTranslations[lang][p];
     const theme = (T[lang] || [])[i] || c.titles[i];
     const relatedTheme = (T[lang] || [])[(i + p + 1) % 10] || c.titles[(i + p + 1) % 10];
     const fact = c.faqA[evidence[i] % c.faqA.length];
