@@ -5,9 +5,8 @@
   try { localStorage.removeItem("litbuy-language"); } catch (_) {}
   const L = {
     de: {
-      hero: "Jede Route auf einer Startseite.",
-      intro:
-        "Durchsuchen Sie Kategorien, Produktdetails, Leitfäden und Antworten direkt in diesem Verzeichnis. Jede Überschrift besitzt weiterhin eine eigene lokale Seite.",
+      hero: "LitBuy Spreadsheet: Produkte finden und bewusster einkaufen.",
+      intro: "Durchsuchen Sie Produktkategorien und vergleichen Sie Angebote in diesem unabhängigen Verzeichnis. Unsere Leitfäden helfen bei QC-Fotos, Größen und Versandkosten, bevor Sie die aktuellen Kaufdetails prüfen.",
       search: "Ein Produkt auf dieser Unterseite finden.",
       cat: "Alle Kategorien – hier sichtbar.",
       detail: "Produktdetailseite direkt auf der Startseite.",
@@ -63,9 +62,8 @@
       ],
     },
     fr: {
-      hero: "Tous les parcours, sur une seule page d’accueil.",
-      intro:
-        "Parcourez les catégories, fiches produit, guides et réponses dans cet annuaire. Chaque rubrique garde aussi sa propre page locale.",
+      hero: "LitBuy Spreadsheet : trouver des produits et acheter en connaissance de cause.",
+      intro: "Parcourez les catégories et comparez les annonces dans cet annuaire indépendant. Consultez les guides sur les photos QC, les tailles et les frais de livraison avant de vérifier les conditions d’achat actuelles.",
       search: "Trouver un produit sur ce sous-site.",
       cat: "Toutes les catégories, visibles ici.",
       detail: "Fiche produit présentée directement.",
@@ -121,9 +119,8 @@
       ],
     },
     es: {
-      hero: "Todas las rutas, en una sola página de inicio.",
-      intro:
-        "Explora categorías, fichas, guías y respuestas dentro de este directorio. Cada sección también conserva su propia página local.",
+      hero: "LitBuy Spreadsheet: encuentra productos y compra con criterio.",
+      intro: "Explora categorías y compara anuncios en este directorio independiente. Consulta las guías de fotos QC, tallas y gastos de envío antes de comprobar los datos actuales de compra.",
       search: "Encuentra un producto en este subsite.",
       cat: "Todas las categorías, visibles aquí.",
       detail: "Ficha de producto mostrada en la portada.",
@@ -179,9 +176,8 @@
       ],
     },
     it: {
-      hero: "Ogni percorso, in un’unica homepage.",
-      intro:
-        "Sfoglia categorie, schede prodotto, guide e risposte in questa directory. Ogni sezione mantiene anche la propria pagina locale.",
+      hero: "LitBuy Spreadsheet: trova prodotti e acquista con consapevolezza.",
+      intro: "Esplora le categorie e confronta gli annunci in questa directory indipendente. Consulta le guide su foto QC, taglie e costi di spedizione prima di verificare i dettagli di acquisto aggiornati.",
       search: "Trova un prodotto in questo sottosito.",
       cat: "Tutte le categorie, visibili qui.",
       detail: "Scheda prodotto mostrata nella homepage.",
@@ -237,9 +233,8 @@
       ],
     },
     pt: {
-      hero: "Todas as rotas, numa única página inicial.",
-      intro:
-        "Explore categorias, fichas de produto, guias e respostas neste diretório. Cada secção também mantém a sua página local.",
+      hero: "LitBuy Spreadsheet: encontre produtos e compre com informação.",
+      intro: "Explore as categorias e compare anúncios neste diretório independente. Consulte os guias de fotografias QC, tamanhos e custos de envio antes de verificar os detalhes atuais da compra.",
       search: "Encontre um produto neste subsite.",
       cat: "Todas as categorias, visíveis aqui.",
       detail: "Página de produto apresentada na página inicial.",
@@ -295,9 +290,8 @@
       ],
     },
     nl: {
-      hero: "Elke route, op één homepage.",
-      intro:
-        "Bekijk categorieën, productdetails, gidsen en antwoorden in deze directory. Elke rubriek behoudt ook een eigen lokale pagina.",
+      hero: "LitBuy Spreadsheet: vind producten en koop weloverwogen.",
+      intro: "Bekijk productcategorieën en vergelijk aanbiedingen in deze onafhankelijke gids. Lees de uitleg over QC-foto’s, maten en verzendkosten voordat je de actuele aankoopgegevens controleert.",
       search: "Vind een product op deze subsite.",
       cat: "Alle categorieën, hier zichtbaar.",
       detail: "Productdetailpagina op de homepage.",
@@ -353,9 +347,8 @@
       ],
     },
     pl: {
-      hero: "Wszystkie ścieżki na jednej stronie głównej.",
-      intro:
-        "Przeglądaj kategorie, szczegóły produktów, poradniki i odpowiedzi w tym katalogu. Każda sekcja zachowuje też własną stronę lokalną.",
+      hero: "LitBuy Spreadsheet: znajdź produkty i kupuj świadomie.",
+      intro: "Przeglądaj kategorie i porównuj oferty w tym niezależnym katalogu. Zapoznaj się z poradnikami o zdjęciach QC, rozmiarach i kosztach wysyłki, a następnie sprawdź aktualne warunki zakupu.",
       search: "Znajdź produkt w tej witrynie.",
       cat: "Wszystkie kategorie widoczne tutaj.",
       detail: "Strona szczegółów produktu na stronie głównej.",
@@ -411,9 +404,8 @@
       ],
     },
     ru: {
-      hero: "Все маршруты — на одной главной странице.",
-      intro:
-        "Просматривайте категории, карточки товаров, руководства и ответы в этом каталоге. У каждого раздела остаётся отдельная локальная страница.",
+      hero: "LitBuy Spreadsheet: находите товары и покупайте осознанно.",
+      intro: "Изучайте категории и сравнивайте предложения в этом независимом каталоге. Перед проверкой актуальных условий покупки ознакомьтесь с руководствами по QC-фотографиям, размерам и стоимости доставки.",
       search: "Найдите товар на этом поддомене.",
       cat: "Все категории показаны здесь.",
       detail: "Карточка товара прямо на главной.",
