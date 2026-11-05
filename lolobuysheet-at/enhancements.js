@@ -117,7 +117,7 @@
   }
   const categoryData=()=>keys.map((key,i)=>({key,name:names[lang()][i],description:descriptions[lang()][i],mark:marks[i]}));
   function cardsMarkup(){const w=wording[lang()];return categoryData().map(c=>`<a class="catalog-card" href="${categoryTarget[c.key]||defaultTarget}"><span class="catalog-icon" aria-hidden="true">${c.mark}</span><strong>${escape(c.name)}</strong><small>${escape(c.description)}</small><span class="card-markers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="sr-only">${w.open}: ${escape(c.name)}</span></a>`).join('');}
-  function catalogMarkup(onlyCards=false){const w=wording[lang()];return `<section class="catalog-wrap${onlyCards?' catalog-only':''}">${onlyCards?'':`<p class="tag">${w.browse}</p><h2 class="catalog-title">${w.heading}</h2>`}<div class="catalog">${cardsMarkup()}</div></section>`;}
+  function catalogMarkup(onlyCards=false){const w=wording[lang()];return `<section class="catalog-wrap${onlyCards?' catalog-only':''}">${onlyCards?`<h1 class="sr-only">${w.browse}</h1>`:`<p class="tag">${w.browse}</p><h2 class="catalog-title">${w.heading}</h2>`}<div class="catalog">${cardsMarkup()}</div></section>`;}
   function searchBox(){
     const actions=document.querySelector('.hero .actions');if(!actions||document.querySelector('#siteSearch'))return;const w=wording[lang()];
     actions.insertAdjacentHTML('beforebegin',`<section class="search-panel"><label for="siteSearchInput">${w.browse} · FindSpreadsheet</label><form id="siteSearch"><input id="siteSearchInput" name="keywords" placeholder="${w.discover}" required><button type="submit">${w.action}</button></form></section>`);
