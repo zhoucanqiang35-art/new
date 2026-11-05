@@ -33,18 +33,27 @@
   function current(){ return new URLSearchParams(location.search).get('lang') || localStorage.getItem('lsfi-lang') || 'en'; }
   function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
   function renderLocalizedArticle(lang){
-    if(lang==='en' || !location.pathname.includes('/seo-articles/') || location.pathname==='/seo-articles/') return;
-    const corpus=window.LoloEditorial;
-    const article=corpus&&corpus.localizedArticles&&corpus.localizedArticles[lang];
-    if(!article) return;
-    const continuations=corpus.localizedArticleContinuations&&corpus.localizedArticleContinuations[lang]||[];
-    const additions=corpus.localizedArticleDetailAdditions&&corpus.localizedArticleDetailAdditions[lang]||[];
-    const main=document.querySelector('main.prose'); if(!main) return;
-    const sections=article.sections.map((section,index)=>{
-      const paragraphs=[...section.paragraphs,continuations[index],additions[index]].filter(Boolean);
-      return '<h2>'+escapeHtml(section.heading)+'</h2>'+paragraphs.map(p=>'<p>'+escapeHtml(p)+'</p>').join('');
-    }).join('');
-    main.innerHTML='<p class="crumb">'+escapeHtml(article.reviewed)+'</p><h1>'+escapeHtml(article.title)+'</h1><p class="intro">'+escapeHtml(article.intro)+'</p>'+sections+'<div class="panel"><h2>FindSpreadsheet</h2><p>Independent product research guide.</p><a class="button" href="https://findspreadsheet.com/">Open FindSpreadsheet</a></div>';
+    if (lang === 'en') return;
+    const path = location.pathname.replace(/\/+$/, '');
+    const main = document.querySelector('main.prose');
+    if (!main) return;
+    const translations = window.LoloArticleTranslations;
+    const entries = translations && translations[path] && translations[path][lang];
+    const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (node.nodeValue.trim()) nodes.push(node);
+    }
+    // A translation is accepted only when every text node has a counterpart.
+    // This preserves the original paragraphs, links, buttons and page design.
+    if (!Array.isArray(entries) || entries.length !== nodes.length ||
+        entries.some(entry => typeof entry !== 'string' || !entry.trim())) {
+      main.lang = 'en';
+      return;
+    }
+    nodes.forEach((node, index) => { node.nodeValue = entries[index]; });
+    main.lang = lang;
   }
   function wire(lang){
     const set = locales[lang] || locales.en;
