@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { UkShippingGuide } from "@/components/uk-shipping-guide";
 import { SiteHeader } from "@/components/site-header";
 import type { SeoArticle } from "@/lib/seo-article-content";
 import { productLinkResearchArticle } from "@/lib/seo-article-content";
@@ -75,9 +76,11 @@ export default function Articles() {
         <nav aria-label="Article contents" className="article">
           <h2>Guide contents</h2>
           <ol>
+            <UkShippingGuide contentsLink />
             {articles.map((article) => <li key={article.slug}><a href={`#${article.slug}`}>{article.title}</a></li>)}
           </ol>
         </nav>
+        <UkShippingGuide />
         {articles.map((article) => (
           <section key={article.slug} id={article.slug} className="article">
             <p className="eyebrow">{article.researchDate.toUpperCase()}</p>
