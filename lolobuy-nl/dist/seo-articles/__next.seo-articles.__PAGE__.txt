@@ -1,0 +1,104 @@
+1:"$Sreact.fragment"
+2:I[73478,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/044y5pxp1o2-3.js"],"SiteNav"]
+3:I[73478,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/044y5pxp1o2-3.js"],"DatabaseSearch"]
+8:I[5014,["/_next/static/chunks/0dbhjjzl8qfwv.js","/_next/static/chunks/044y5pxp1o2-3.js"],"default"]
+9:I[97367,["/_next/static/chunks/0dbhjjzl8qfwv.js"],"OutletBoundary"]
+a:"$Sreact.suspense"
+4:T2a48,<p class="article-meta">Product research and QC · 11 minute read</p>
+      <h2>Use LoloBuy QC photo measurements as evidence, not a fit guarantee</h2>
+
+      <p>A LoloBuy QC photo measurement can answer a narrow question: what dimension appears in a warehouse photograph when the item is measured between clearly defined points? It cannot guarantee that clothing will fit your body, that a shoe will feel comfortable or that a seller’s material claim is correct.</p>
+
+      <p>LoloBuy’s current web application separates ordinary QC photos from HD or fine photos. The order and warehouse views can display a quality-inspection report, inspection photos, an inspector label, recorded weight or volume data and paid value-added photo requests. The fine-photo request form accepts a written instruction and an optional reference image for each requested shot.</p>
+
+      <p>This checklist shows how to compare three different records—the ordered specification, the label visible on the received item and a photographed physical measurement—before deciding whether to keep, question or return an item.</p>
+
+      <h3>1. Begin with the ordered specification</h3>
+
+      <p>Open the order detail and record exactly what was purchased: colour, size, model, version, bundle and quantity. Use the platform’s SKU text rather than memory. If the seller used a code such as “Style 2” or “Size 3,” keep that code alongside any translated description.</p>
+
+      <p>Next, reopen the seller listing or the saved product-page evidence from the date of purchase. Capture the seller’s size table, measurement diagram and method notes. A “length” value may mean back length, centre-front length or total length including a collar. Without the seller’s endpoints, the number alone is ambiguous.</p>
+
+      <p>Do not compare a warehouse photo with a generic chart from another seller. Two products carrying the same nominal size can use different patterns, lasts or measurement methods.</p>
+
+      <h3>2. Check what the standard QC photos already prove</h3>
+
+      <p>Review every ordinary QC image at full size. Look for the overall item, front and back, visible size or model label, colour, quantity and obvious external differences. LoloBuy’s current quality-report interface groups QC photos and HD photos separately and allows buyers to preview or download available images.</p>
+
+      <p>A label photo can support that the received item carries a particular printed or sewn size. It does not prove the physical dimensions or how that size compares with another brand. An overall photo can reveal the product shape, but perspective and distance make it unsuitable for precise measurement.</p>
+
+      <p>If the existing photos already show the wrong colour, model or label, preserve them before requesting anything else. The issue may be a specification mismatch, not a measurement question.</p>
+
+      <h3>3. Decide whether a new measurement photo is necessary</h3>
+
+      <p>Request an additional image only when it can change your decision. Useful questions include whether a garment’s chest width matches the seller method, whether a bag fits a specific object or whether a shoe’s external length corresponds with the listing. “Take more photos” is not a measurable request.</p>
+
+      <p>The LoloBuy fine-photo form supports separate written instructions and optional reference images. Use one instruction for one clearly defined view. A reference image can mark the starting point, ending point and direction of the measurement without relying on a long translated explanation.</p>
+
+      <p>Do not assume a request is free, automatically accepted or completed within a fixed time. The interface uses configurable service information, limits and account pricing. Review the live request screen before confirming.</p>
+
+      <h3>4. Write an instruction with fixed endpoints</h3>
+
+      <p>A useful instruction names the item, surface, starting point, ending point and required evidence in the frame. For example: “Lay the jacket flat. Measure straight across the chest from the lower edge of one underarm seam to the other. Show both endpoints and the complete tape scale in one photo.”</p>
+
+      <p>Avoid phrases such as “measure the shirt” or “check if size L is correct.” Those ask the photographer to interpret the seller’s sizing rather than record evidence. If the seller’s size diagram uses a different method, copy that method precisely and attach the diagram as the reference image.</p>
+
+      <p>Ask that the tape or ruler remain flat, straight and readable. A close crop that hides one endpoint cannot prove the full dimension. A diagonal tape, folded product or strong camera angle can distort the apparent result.</p>
+
+      <h3>5. Choose product-specific measurements</h3>
+
+      <p>For tops and jackets, common checks can include pit-to-pit width, back length from a named seam, shoulder width between seam points and sleeve length using the seller’s stated method. For trousers, possible checks include waistband width when laid flat, rise, inseam and total outseam. State whether a stretch panel should be relaxed rather than pulled.</p>
+
+      <p>For shoes, a photograph can record an outsole or another accessible external dimension. Do not instruct staff to remove or alter a component unless the live service explicitly allows it. For bags, define width, height and depth separately and identify whether handles or protruding parts are excluded. For rigid products, request the exact edge-to-edge dimension that matters to your use.</p>
+
+      <p>These are instruction patterns, not universal size standards. Use only the dimensions that the seller’s page defines or that answer your own compatibility question.</p>
+
+      <h3>6. Read the photographed scale carefully</h3>
+
+      <p>When the image arrives, first confirm that it shows your item and the requested orientation. Identify the zero point, the far endpoint, the unit and the direction of the scale. Zoom in without cropping away context. If the ruler begins after zero, record the start and end readings and calculate the difference rather than treating the end reading as the length.</p>
+
+      <p>Perspective matters. A ruler closer to the camera than the item can appear longer; a tape bending over fabric can show a different path from a straight-line seller measurement. If an endpoint, unit or scale marking is unreadable, mark the result as inconclusive instead of estimating between blurred pixels.</p>
+
+      <p>Keep the original file when possible. A compressed screenshot may remove the detail needed to read small increments.</p>
+
+      <h3>7. Compare like with like</h3>
+
+      <p>Create a three-column check: ordered specification, seller size-table value and warehouse photo result. Add a fourth column for method notes. Only compare values when the endpoints, orientation and units match.</p>
+
+      <p>Do not compare circumference with flat width without explicitly applying the correct relationship, and do not double a value if the seller chart already gives circumference. Convert units carefully and retain the original value. Rounding too early can create a difference that was not present in the source data.</p>
+
+      <p>Seller charts may state their own measurement method or variation notice. Use the seller’s current evidence rather than importing a universal tolerance from another shop, category or guide.</p>
+
+      <h3>8. Separate measurement from fit</h3>
+
+      <p>A warehouse photo records the item, not the wearer. Fit depends on body measurements, intended ease, pattern, stretch, cut, layering and personal preference. Two garments with the same chest width can fit differently because the shoulder, armhole or fabric behaviour differs.</p>
+
+      <p>Likewise, external shoe length is not the same as internal usable length, and a printed shoe size does not prove width or comfort. A bag’s outer dimensions do not prove that a rigid object will pass through a smaller opening.</p>
+
+      <p>Use measurement evidence to reject clear incompatibilities or investigate inconsistencies. Do not publish or rely on a claim that the photos guarantee true-to-size fit.</p>
+
+      <h3>9. Know what photos cannot verify</h3>
+
+      <p>QC images cannot establish authenticity, fibre composition, hidden construction, electronics performance, long-term durability, odour, comfort or future colourfastness. A photograph of a material label shows what the label says; it does not independently test the material.</p>
+
+      <p>LoloBuy’s public guidance describes warehouse inspection and product-photo service in visual terms. The current application also records weight and volume data, but those logistics measurements should not be confused with detailed garment dimensions requested in a fine photo.</p>
+
+      <p>Keep your conclusion proportional to the evidence: “the photographed width appears to be X using this method” is defensible; “the item will fit everyone who wears size X” is not.</p>
+
+      <h3>10. Turn a mismatch into an auditable question</h3>
+
+      <p>If the measured value appears inconsistent, preserve the order specification, seller chart, measurement diagram, QC images and full fine-photo result. Note the order number, item number, displayed size label, measurement method, unit, start reading and end reading.</p>
+
+      <p>Write support a factual message: “Order [number], item [number], was ordered as [specification]. The seller chart shows [value] measured from [point] to [point]. The attached warehouse photo appears to show [start] to [end] in [unit]. Please confirm the measurement method and advise which current order option applies.”</p>
+
+      <p>Do not assume that every difference qualifies for return or exchange. Eligibility can depend on the seller, item, current status, platform rules and available evidence. Ask before submitting the item in an international parcel, because shipping it onward changes the stage of the transaction.</p>
+
+      <h3>Final LoloBuy QC photo measurement checklist</h3>
+
+      <p>Start with the exact ordered SKU and the seller’s own diagram. Review ordinary QC photos for the item, label and visible specification. If a physical dimension can change your decision, request one clearly defined measurement per photo, name both endpoints and ask for the full readable scale in frame.</p>
+
+      <p>When the result arrives, verify the item, unit, zero point, endpoint and camera angle. Compare only matching methods, keep measurement separate from fit and record any uncertainty rather than guessing. A careful QC measurement does not guarantee product quality, but it can replace a vague sizing concern with evidence that support and the buyer can evaluate before shipping.</p>0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"children":[["$","$L2",null,{}],["$","section",null,{"className":"page-hero shell","children":[["$","p",null,{"className":"kicker","children":"SEO articles"}],["$","h1",null,{"children":"LoloBuy QC photo measurement: check size before shipping"}],["$","p",null,{"children":"Compare the seller specification, product label and photographed measurement before you submit the item in a parcel."}],["$","$L3",null,{}]]}],["$","article",null,{"className":"long-article shell","children":[["$","p",null,{"children":["$","a",null,{"className":"text-link","href":"/guides/lolobuy-spreadsheet","children":"Read the LoloBuy Spreadsheet product research guide →"}]}],["$","p",null,{"children":["$","a",null,{"className":"text-link","href":"/guides/lolobuy-netherlands-shipping","children":"Read the Netherlands shipping, costs and customs guide →"}]}],["$","div",null,{"dangerouslySetInnerHTML":{"__html":"$4"}}],"$L5"]}]]}],["$L6"],"$L7"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"CG4t7b29IXveAQK--eTjM"}
+5:["$","div",null,{"className":"article-cta","children":[["$","div",null,{"children":[["$","p",null,{"className":"kicker","children":"Research before ordering"}],["$","h3",null,{"children":"Browse product categories in the live database."}]]}],["$","a",null,{"className":"button primary","href":"https://findspreadsheet.com/AllProducts/","children":["Open database ",["$","$L8",null,{"iconNode":[["path",{"d":"M5 12h14","key":"1ays0h"}],["path",{"d":"m12 5 7 7-7 7","key":"xquz4c"}]],"className":"lucide-arrow-right","size":17}]]}]]}]
+6:["$","script","script-0",{"src":"/_next/static/chunks/044y5pxp1o2-3.js","async":true}]
+7:["$","$L9",null,{"children":["$","$a",null,{"name":"Next.MetadataOutlet","children":"$@b"}]}]
+b:null
