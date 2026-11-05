@@ -10,7 +10,7 @@
     pl:['Strona główna','Kategorie','Szczegóły produktu','Jak to działa','Artykuły SEO','Research','FAQ'],
     sv:['Hem','Kategorier','Produktdetaljer','Så fungerar det','SEO-artiklar','Research','FAQ']
   };
-  const navLinks=['/','/categories.html','/product-details.html','/how-it-works.html','/seo-articles.html','/research.html','/faq.html'];
+  const navLinks=['/','/categories','/product-details','/how-it-works','/seo-articles','/research','/faq'];
   const names={
     en:['Shoes','Hoodies & sweaters','T-shirts','Jackets','Pants & shorts','Headwear','Accessories','Jerseys','Electronics','Other finds'],
     de:['Schuhe','Hoodies & Pullover','T-Shirts','Jacken','Hosen & Shorts','Kopfbedeckung','Accessoires','Trikots','Elektronik','Weitere Funde'],
@@ -117,7 +117,7 @@
   }
   const categoryData=()=>keys.map((key,i)=>({key,name:names[lang()][i],description:descriptions[lang()][i],mark:marks[i]}));
   function cardsMarkup(){const w=wording[lang()];return categoryData().map(c=>`<a class="catalog-card" href="${categoryTarget[c.key]||defaultTarget}"><span class="catalog-icon" aria-hidden="true">${c.mark}</span><strong>${escape(c.name)}</strong><small>${escape(c.description)}</small><span class="card-markers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="sr-only">${w.open}: ${escape(c.name)}</span></a>`).join('');}
-  function catalogMarkup(onlyCards=false){const w=wording[lang()];return `<section class="catalog-wrap${onlyCards?' catalog-only':''}">${onlyCards?'':`<p class="tag">${w.browse}</p><h2 class="catalog-title">${w.heading}</h2>`}<div class="catalog">${cardsMarkup()}</div></section>`;}
+  function catalogMarkup(onlyCards=false){const w=wording[lang()];return `<section class="catalog-wrap${onlyCards?' catalog-only':''}">${onlyCards?`<h1 class="sr-only">${w.browse}</h1>`:`<p class="tag">${w.browse}</p><h2 class="catalog-title">${w.heading}</h2>`}<div class="catalog">${cardsMarkup()}</div></section>`;}
   function searchBox(){
     const actions=document.querySelector('.hero .actions');if(!actions||document.querySelector('#siteSearch'))return;const w=wording[lang()];
     actions.insertAdjacentHTML('beforebegin',`<section class="search-panel"><label for="siteSearchInput">${w.browse} · FindSpreadsheet</label><form id="siteSearch"><input id="siteSearchInput" name="keywords" placeholder="${w.discover}" required><button type="submit">${w.action}</button></form></section>`);
@@ -125,7 +125,7 @@
   }
   function categoryCards(){const anchor=document.querySelector('.numbers');if(!anchor||document.querySelector('.catalog-wrap'))return;anchor.insertAdjacentHTML('afterend',catalogMarkup());}
   function titlePage(title,lede,body,kicker){document.querySelector('#app').innerHTML=`<section class="page-hero"><p class="kicker">LoloBuy Sheet AT · ${kicker||wording[lang()].kicker}</p><h1 class="page-title">${title}</h1><p>${lede}</p></section>${body}`;}
-  function categoryPage(){const w=wording[lang()];const requested=new URLSearchParams(location.search).get('category');const index=keys.indexOf(requested);const valid=index>=0?index:0;const key=keys[valid];const name=names[lang()][valid];const target=categoryTarget[key]||defaultTarget;titlePage(`${name} · ${w.categoryTitle}`,w.categoryLede,`<section class="detail-grid"><article class="category-copy"><p class="tag">${w.focus}</p><h2>${escape(name)}</h2><p>${escape(descriptions[lang()][valid])}</p><p>${w.focusText}</p><a class="back-link" href="/categories.html">← ${w.back}</a></article><article class="category-action"><div><p class="tag">${w.route}</p><h2>${escape(name)}</h2><p>${w.routeText}</p></div><a class="btn primary" href="${target}">${w.button.replace('{name}',escape(name))}</a></article></section>`);}
+  function categoryPage(){const w=wording[lang()];const requested=new URLSearchParams(location.search).get('category');const index=keys.indexOf(requested);const valid=index>=0?index:0;const key=keys[valid];const name=names[lang()][valid];const target=categoryTarget[key]||defaultTarget;titlePage(`${name} · ${w.categoryTitle}`,w.categoryLede,`<section class="detail-grid"><article class="category-copy"><p class="tag">${w.focus}</p><h2>${escape(name)}</h2><p>${escape(descriptions[lang()][valid])}</p><p>${w.focusText}</p><a class="back-link" href="/categories">← ${w.back}</a></article><article class="category-action"><div><p class="tag">${w.route}</p><h2>${escape(name)}</h2><p>${w.routeText}</p></div><a class="btn primary" href="${target}">${w.button.replace('{name}',escape(name))}</a></article></section>`);}
   function productPage(){const p=fashionProduct[lang()],d=fashionDossier[lang()];const cards=d.sections.map(([title,copy],i)=>`<article class="product-detail-card"><span>0${i+1}</span><h2>${escape(title)}</h2><p>${escape(copy)}</p></article>`).join('');const signals=d.signals.map(x=>`<span>${escape(x)}</span>`).join('');titlePage(p.name,d.lede,`<section class="product-profile"><article class="product-profile-intro"><p class="tag">${escape(d.kicker)}</p><p class="product-reference">${escape(d.reference)}</p><p class="product-description">${escape(p.description)}</p><div class="product-signal-row">${signals}</div></article><section class="product-detail-grid">${cards}</section><aside class="product-search-card"><div><p class="tag">${escape(d.searchTitle)}</p><h2>${escape(p.name)}</h2><p>${escape(d.searchTerms)}</p></div><a class="btn primary" href="${defaultTarget}">${escape(d.cta)}</a></aside></section>`,d.kicker);}
   const editorialArticles={
     spreadsheet:{
@@ -290,11 +290,1178 @@
     pl:{headings:['Doprecyzuj pytanie','Zapisz punkt wyjścia','Porównaj aktualne informacje','Sprawdź widoczne szczegóły','Jasno określ ograniczenia','Zakończ jasną decyzją'],guidance:['Zacznij od konkretnego pytania, a nie szerokiego oczekiwania. Zapisz, jaka informacja rzeczywiście zmieniłaby decyzję, a jaki fakt jest tylko interesujący.','Zachowaj link źródłowy, wybraną opcję i datę weryfikacji. Możliwa do odtworzenia notatka pomaga oddzielić to, co widoczne, od własnej interpretacji.','Porównuj zawsze te same punkty. Aktualna oferta, wybrana opcja, widoczny rozmiar lub kolor oraz jasny link są użyteczniejsze niż ogólne wrażenie.','Opisuj tylko to, co jest widoczne lub wyraźnie podane. Zdjęcie nie dowodzi trwałości, autentyczności, końcowego dopasowania ani przyszłej dostępności.','Gdy brakuje ważnej informacji, oznacz ją jako niepotwierdzoną. Otwarte pytanie jest bardziej użyteczne niż pozytywne twierdzenie bez źródła i zapobiega zmianie badania w reklamę.','Zakończ krótkim uzasadnieniem: co jest potwierdzone, co pozostaje otwarte oraz dlaczego kolejny krok ma sens albo powinien poczekać.'],standards:['Sprawdź aktualne informacje platformy ponownie przed płatnością. Warunki, opcje i strony produktu mogą się zmienić; stara notatka nie jest trwałą obietnicą.','Wyraźnie oddziel fakty, preferencje i niepewność. Ta prosta struktura czyni wybór zrozumiałym i utrzymuje badanie przy punktach, które naprawdę się liczą.','Otwórz bazę danych dopiero wtedy, gdy terminy wyszukiwania i minimalne wymagania są jasne. Kolejne wyszukiwanie zwróci wtedy porównywalne rekordy zamiast przypadkowej listy.'],articles:{spreadsheet:{title:'Jak używać arkusza produktów przed wyszukiwaniem',deck:'Uporządkowana metoda zmiany szerokiego pomysłu modowego w możliwy do sprawdzenia wybór.',kicker:'Badanie przed wyszukaniem produktu',topic:'Arkusz nie służy do zbierania jak największej liczby linków: służy do postawienia jasnego pytania, utworzenia sprawdzalnego rekordu i uzasadnienia wyboru.'},qc:{title:'Praktyczna lista kontroli w magazynie',deck:'Metoda oparta na faktach do odczytywania kontroli, otwartych punktów i świadomych decyzji.',kicker:'Kontrola bez wymyślonych gwarancji',topic:'Przy kontroli magazynowej zachowaj oficjalny zakres: widoczne wady, rozmiar, kolor i inne szczegóły to punkt kontroli, a nie uniwersalna gwarancja.'},shipping:{title:'Co sprawdzić przed porównaniem informacji o wysyłce',deck:'Ostrożna metoda czytania aktualnych informacji bez wymyślania tras lub obietnic.',kicker:'Badanie wysyłki bez obietnic',topic:'Porównanie wysyłki wymaga osobnego sprawdzenia destynacji, aktualnej paczki i aktualnych warunków; kontrola magazynowa nie zastępuje obietnicy wysyłki.'}}},
     sv:{headings:['Förtydliga frågan','Spara utgångspunkten','Jämför aktuell information','Kontrollera synliga detaljer','Beskriv gränserna tydligt','Avsluta med ett tydligt beslut'],guidance:['Börja med en konkret fråga, inte en bred förväntan. Notera vilken information som faktiskt skulle ändra ditt beslut och vilken uppgift som bara är intressant.','Spara källänken, det valda alternativet och granskningsdatumet. En spårbar anteckning hjälper dig att skilja det som syns från din egen tolkning.','Jämför alltid samma punkter. En aktuell annons, valt alternativ, synlig storleks- eller färginformation och en tydlig länk är mer användbara än ett allmänt intryck.','Beskriv endast det som syns eller uttryckligen anges. Ett foto bevisar inte hållbarhet, äkthet, slutlig passform eller framtida tillgänglighet.','Om viktig information saknas, markera den som obekräftad. En öppen fråga är mer användbar än ett positivt påstående utan källa och hindrar research från att bli reklam.','Avsluta med en kort motivering: vad som är bekräftat, vad som är öppet och varför nästa steg är rimligt eller bör vänta.'],standards:['Kontrollera aktuell plattformsinformation igen före betalning. Villkor, alternativ och produktsidor kan ändras; en äldre anteckning är inget varaktigt löfte.','Håll fakta, preferenser och osäkerhet synligt åtskilda. Den enkla strukturen gör urvalet begripligt och håller research fokuserad på det som betyder något.','Öppna databasen först när söktermer och minimikrav är tydliga. Nästa sökning ger då jämförbara poster i stället för en slumpmässig lista.'],articles:{spreadsheet:{title:'Så använder du ett produktspreadsheet före sökning',deck:'En strukturerad metod för att förvandla en bred modeidé till ett kontrollerbart urval.',kicker:'Research före produktsökning',topic:'Ett spreadsheet handlar inte om att samla flest länkar: det hjälper dig att formulera en tydlig fråga, skapa en kontrollerbar post och motivera ett urval.'},qc:{title:'Praktisk checklista för kontroll i lagret',deck:'En faktabaserad metod för att tolka kontroller, öppna frågor och medvetna beslut.',kicker:'Kontroll utan påhittade garantier',topic:'Vid kontroll i lager bör du hålla dig till den officiella omfattningen: synliga fel, storlek, färg och andra detaljer är en kontrollpunkt, inte en universell garanti.'},shipping:{title:'Vad du ska kontrollera före jämförelse av fraktinformation',deck:'En försiktig metod för att läsa aktuell information utan påhittade rutter eller löften.',kicker:'Fraktresearch utan löften',topic:'Att jämföra frakt kräver att destination, aktuellt paket och aktuella villkor kontrolleras var för sig; en kontroll i lagret ersätter inget fraktlöfte.'}}}
   };
-  function localizedArticle(key){const locale=lang();if(locale==='en')return editorialArticles[key];const c=localizedArticleContent[locale],a=c.articles[key];return {title:a.title,deck:a.deck,kicker:a.kicker,sections:c.headings.map((heading,i)=>[heading,[`${a.topic} ${c.guidance[i]}`,c.standards[i%3],c.standards[(i+1)%3],c.standards[(i+2)%3]]])};}
-  function articleMarkup(article){const u=translatedEditorial[lang()]||translatedEditorial.en;return `<article class="article"><p class="meta">${u.meta}</p><div class="fact-box"><strong>${u.factLabel}</strong> ${u.factText}</div>${article.sections.map(([heading,paras])=>`<section><h2>${heading}</h2>${paras.map(p=>`<p>${p}</p>`).join('')}</section>`).join('')}<p class="article-action"><a class="btn primary" href="${defaultTarget}">${u.action}</a></p></article>`;}
+  const spreadsheetSteps={
+    en:['Before searching, define your budget, intended use and non-negotiable features. This creates a short list of comparable options.','Save the original product address, item ID, selected variant and date so your choice remains clear if a link changes.','Compare the same details for each result: price, available sizes, stated material and visible information. Recheck current details before ordering.','Measure a garment that fits and compare chest width, length and sleeves with the specific listing’s size chart. Different measurement methods can produce variation.','A catalog image is not a warehouse photo of your item or proof of authenticity or durability. Note missing views and resolve essential questions before paying.','Record why each candidate made the shortlist and what remains unknown. Open the matching category or product and reconfirm price, availability and variant.'],
+  de:['Definieren Sie vor der Suche Budget, Verwendungszweck und die Eigenschaften, auf die Sie nicht verzichten möchten. So lässt sich eine kurze, vergleichbare Auswahl erstellen.','Speichern Sie ursprüngliche Produktadresse, Artikelkennung, ausgewählte Variante und Datum. Wenn ein Link später geändert wird, bleibt Ihre Auswahl nachvollziehbar.','Vergleichen Sie bei jedem Treffer dieselben Merkmale: Preis, erhältliche Größen, Materialangaben und den Umfang der sichtbaren Informationen. Prüfen Sie die aktuellen Angaben erneut, bevor Sie bestellen.','Messen Sie ein passendes Kleidungsstück und vergleichen Sie Brustweite, Länge und Ärmel mit der Größentabelle des konkreten Angebots. Unterschiedliche Messmethoden können Abweichungen verursachen.','Ein Listenbild ist weder ein Lagerfoto Ihres Artikels noch ein Nachweis für Echtheit oder Haltbarkeit. Markieren Sie fehlende Ansichten und klären Sie wichtige Fragen vor dem Bezahlen.','Notieren Sie für jeden Kandidaten den Grund für Ihre Wahl und offene Punkte. Öffnen Sie anschließend die passende Kategorie oder das Produkt und bestätigen Sie Preis, Bestand und Variante erneut.'],
+  fr:['Avant la recherche, définissez le budget, l’usage et les caractéristiques indispensables. Vous pourrez ainsi constituer une sélection courte et comparable.','Conservez l’adresse d’origine, l’identifiant, la variante choisie et la date. Votre sélection restera compréhensible même si le lien change.','Comparez les mêmes critères pour chaque résultat : prix, tailles disponibles, matière indiquée et informations visibles. Revérifiez les données actuelles avant de commander.','Mesurez un vêtement qui vous va et comparez largeur de poitrine, longueur et manches avec le tableau de l’offre précise. Les méthodes de mesure peuvent entraîner des écarts.','Une image de catalogue n’est ni une photo d’entrepôt de votre article ni une preuve d’authenticité ou de durabilité. Signalez les vues manquantes et clarifiez les points essentiels avant paiement.','Notez pour chaque candidat les raisons de votre choix et les points ouverts. Ouvrez ensuite la catégorie ou le produit adapté et confirmez à nouveau prix, stock et variante.'],
+  es:['Antes de buscar, defina presupuesto, uso y características imprescindibles. Así podrá crear una selección breve y comparable.','Guarde la dirección original, el identificador, la variante elegida y la fecha. Su selección seguirá siendo comprensible si el enlace cambia.','Compare los mismos criterios en cada resultado: precio, tallas disponibles, material indicado e información visible. Revise los datos actuales antes de pedir.','Mida una prenda que le quede bien y compare ancho de pecho, largo y mangas con la tabla de esa oferta concreta. Los métodos de medición pueden producir diferencias.','Una imagen de catálogo no es una foto de almacén de su artículo ni una prueba de autenticidad o duración. Señale las vistas que faltan y aclare los puntos importantes antes de pagar.','Anote por qué elige cada candidato y qué queda pendiente. Abra la categoría o el producto correspondiente y confirme de nuevo precio, existencias y variante.'],
+  it:['Prima di cercare, definisci budget, utilizzo e caratteristiche indispensabili. Potrai così creare una selezione breve e confrontabile.','Conserva indirizzo originale, identificativo, variante scelta e data. La selezione resterà comprensibile anche se il link cambia.','Confronta gli stessi aspetti per ogni risultato: prezzo, taglie disponibili, materiale dichiarato e informazioni visibili. Ricontrolla i dati attuali prima di ordinare.','Misura un capo che ti veste bene e confronta larghezza del petto, lunghezza e maniche con la tabella dell’offerta specifica. Metodi di misurazione diversi possono produrre scarti.','Una foto di catalogo non è una foto del tuo articolo in magazzino né una prova di autenticità o durata. Segnala le viste mancanti e chiarisci i punti importanti prima del pagamento.','Annota perché hai scelto ogni articolo e quali dubbi restano. Apri la categoria o il prodotto pertinente e conferma nuovamente prezzo, disponibilità e variante.'],
+  pt:['Antes de pesquisar, defina orçamento, utilização e características indispensáveis. Assim poderá criar uma seleção curta e comparável.','Guarde o endereço original, o identificador, a variante escolhida e a data. A seleção continuará compreensível se a ligação mudar.','Compare os mesmos aspetos em cada resultado: preço, tamanhos disponíveis, material indicado e informações visíveis. Confirme os dados atuais antes de encomendar.','Meça uma peça que lhe sirva e compare largura do peito, comprimento e mangas com a tabela da oferta específica. Métodos de medição diferentes podem causar desvios.','Uma imagem de catálogo não é uma fotografia do seu artigo no armazém nem prova de autenticidade ou durabilidade. Identifique as vistas em falta e esclareça pontos importantes antes de pagar.','Registe por que escolheu cada opção e o que permanece por esclarecer. Abra a categoria ou produto correspondente e volte a confirmar preço, disponibilidade e variante.'],
+  nl:['Bepaal vóór het zoeken uw budget, gebruik en onmisbare kenmerken. Zo maakt u een korte lijst met vergelijkbare opties.','Bewaar de oorspronkelijke productlink, het artikelnummer, de gekozen variant en de datum. Uw keuze blijft herkenbaar als de link later verandert.','Vergelijk bij elk resultaat dezelfde punten: prijs, beschikbare maten, opgegeven materiaal en zichtbare informatie. Controleer actuele gegevens opnieuw voordat u bestelt.','Meet een goed passend kledingstuk en vergelijk borstbreedte, lengte en mouwen met de maattabel van de specifieke aanbieding. Meetmethoden kunnen verschillen veroorzaken.','Een catalogusfoto is geen magazijnfoto van uw artikel en bewijst geen echtheid of duurzaamheid. Noteer ontbrekende beelden en verduidelijk belangrijke punten vóór betaling.','Schrijf per kandidaat op waarom u die kiest en welke vragen openstaan. Open daarna de passende categorie of het product en controleer prijs, voorraad en variant opnieuw.'],
+  pl:['Przed wyszukiwaniem określ budżet, zastosowanie i niezbędne cechy. Dzięki temu przygotujesz krótką listę porównywalnych opcji.','Zapisz oryginalny adres produktu, identyfikator, wybrany wariant i datę. Wybór będzie czytelny także po zmianie linku.','Porównuj przy każdym wyniku te same elementy: cenę, dostępne rozmiary, opis materiału i widoczne informacje. Sprawdź aktualne dane przed zamówieniem.','Zmierz dobrze pasujące ubranie i porównaj szerokość klatki, długość oraz rękawy z tabelą konkretnej oferty. Różne metody pomiaru mogą powodować odchylenia.','Zdjęcie katalogowe nie jest zdjęciem Twojego produktu z magazynu ani dowodem autentyczności czy trwałości. Zaznacz brakujące ujęcia i wyjaśnij ważne kwestie przed płatnością.','Zapisz powód wyboru każdej opcji i otwarte pytania. Otwórz odpowiednią kategorię lub produkt i ponownie potwierdź cenę, dostępność oraz wariant.'],
+  sv:['Bestäm budget, användning och nödvändiga egenskaper innan du söker. Då kan du skapa en kort lista med jämförbara alternativ.','Spara ursprunglig produktlänk, artikel-ID, vald variant och datum. Ditt val går att förstå även om länken ändras senare.','Jämför samma uppgifter för varje resultat: pris, tillgängliga storlekar, angivet material och synlig information. Kontrollera aktuella uppgifter igen före beställning.','Mät ett plagg som passar och jämför bröstbredd, längd och ärmar med storlekstabellen för det aktuella erbjudandet. Olika mätmetoder kan ge avvikelser.','En katalogbild är inte en lagerbild av din vara och bevisar inte äkthet eller hållbarhet. Notera saknade vyer och klargör viktiga frågor före betalning.','Skriv ned varför du väljer varje alternativ och vad som fortfarande är oklart. Öppna sedan rätt kategori eller produkt och kontrollera pris, lager och variant på nytt.']
+  };
+  const germanArticleDetails={
+    spreadsheet:[
+      ['Ein solcher Suchtreffer ist ein Ausgangspunkt und noch kein Beleg dafür, dass der Artikel zu Ihnen passt.','Notieren Sie ein oder zwei Ausschlusskriterien, damit attraktive, aber ungeeignete Treffer nicht die Auswahl bestimmen.','Auch die auswählbare Variante und das spätere Aussehen müssen am aktuellen Produkt selbst geprüft werden.','Ein Beispiel ist eine schwarze Hemdjacke, für die eine eindeutige Variante und eine sichtbare Größenreferenz notwendig sind.'],
+      ['Ein kurzer eigener Grund ist nützlicher als eine selbstbewusst klingende Werbebeschreibung.','So lässt sich später erkennen, welches Bild oder welche Angabe den Treffer für Ihre Frage relevant machte.','Eine leere Zelle kann ein Versehen sein; ein ausdrücklich offener Punkt zeigt dagegen, dass die Information fehlte.','Wenige konsistente Felder genügen, sofern Sie Quelle, Auswahl und wichtige Unsicherheiten wiederfinden.'],
+      ['Beschreibende Suchwörter geben Ihnen Merkmale, die Sie anschließend am Angebot überprüfen können.','Wenn ein Synonym häufig unpassende Treffer liefert, streichen Sie es statt immer mehr Begriffe gleichzeitig hinzuzufügen.','Ein Bekleidungsstück und ein Accessoire sollten nicht allein wegen ähnlicher Bilder anhand derselben Passformkriterien bewertet werden.','Ein hilfreicher Treffer kann neue Begriffe liefern, mit denen Sie verwandte Alternativen gezielter finden.'],
+      ['Prüfen Sie bei allen Einträgen auch, ob Material und Verarbeitung beschrieben, sichtbar oder unbekannt sind.','Ein Eintrag kann Ihnen gefallen und dennoch für die Entscheidung zu wenig belastbare Angaben enthalten.','Formulieren Sie Beobachtungen entsprechend vorsichtig, etwa dass eine Kontrastnaht auf dem bereitgestellten Bild sichtbar erscheint.','Die bessere Wahl kann der nachvollziehbarere Eintrag sein, auch wenn beide Bilder ähnlich attraktiv wirken.'],
+      ['Die Aussage beschreibt einen Kontrollpunkt und beantwortet nicht automatisch jede Frage zu einem bestimmten Angebot.','Legen Sie vor der Entscheidung fest, welche sichtbare Abweichung für Sie eine Nachfrage auslösen würde.','Wenn eine offene Frage wichtig ist, nutzen Sie aktuelle offizielle Bedingungen oder wenden Sie sich an den zuständigen Support.','Eine gute Ausgangsnotiz erleichtert es, einen relevanten Unterschied später überhaupt zu erkennen.'],
+      ['Wenn Sie dafür viele Tabs erneut öffnen müssen, ist der gespeicherte Datensatz möglicherweise noch nicht ausreichend klar.','Eine mögliche Regel ist, höchstens drei geeignete Einträge zu vergleichen oder beim ersten Treffer mit allen Pflichtmerkmalen aufzuhören.','Eine dokumentierte Unsicherheit zeigt, dass Sie eine Wissenslücke bewusst berücksichtigt statt übersehen haben.','Wichtiger als die Anzahl gesammelter Links ist der nachvollziehbare Weg von der Frage über die Belege zum nächsten Schritt.']
+    ],
+    qc:[
+      ['Prüfen Sie die Angaben erneut, wenn Sie eine konkrete Bestellung bearbeiten, denn Leistungen und Bedingungen können sich ändern.','Die Aussage bestätigt insbesondere keine umfassende Materialanalyse, Verkäuferzuverlässigkeit, erfolgreiche Zustellung oder Entschädigung.','Ein Hoodie, ein Schuh und elektronisches Zubehör haben unterschiedliche relevante Merkmale und benötigen daher unterschiedliche Fragen.','Schreiben Sie die Fragen möglichst vor der Bildprüfung auf, damit eine ansprechende Ansicht fehlende Angaben nicht überdeckt.'],
+      ['Halten Sie bei ähnlichen Optionen beispielsweise die genaue Bezeichnung der Farbe, den Verschluss und die angezeigte Größe gemeinsam fest.','Vage Angaben wie „die zweite blaue Variante“ können unbrauchbar werden, wenn die Reihenfolge einer Seite geändert wird.','Ist ein Optionsname unklar, schreiben Sie dies als ungeklärten Punkt auf, statt eine nicht belegte Präzisierung zu erfinden.','Entscheiden Sie auch vorab, ob etwa eine kleine optische Abweichung oder eine andere Größenkennzeichnung Ihre Wahl ändern würde.'],
+      ['Für ein Kleidungsstück können sichtbare Löcher, Flecken, lose Nähte oder versetzte Teile relevant sein; bei Schuhen zusätzlich Paar und Sohle.','Bei Zubehör oder Elektronik lassen sich gegebenenfalls sichtbare Anschlüsse oder beiliegende Teile prüfen, nicht aber deren gesamte Funktion.','Priorisieren Sie die wenigen Punkte, von denen Ihre Entscheidung tatsächlich abhängt, bevor Sie weitere Wünsche ergänzen.','Vergleichen Sie die sichtbaren Angaben mit Ihrer ursprünglichen Auswahl statt mit einer unzuverlässigen Erinnerung.'],
+      ['Speichern Sie eine vorhandene Größentabelle oder notieren Sie ausdrücklich, dass zum Prüfzeitpunkt keine sichtbar war.','Benennen Sie die Farbe wie im Angebot und unterscheiden Sie diese Bezeichnung von Ihrer eigenen Wahrnehmung auf dem Bildschirm.','Bei ähnlichen Farb- oder Versionsnamen kann eine sichtbare Artikel- oder Optionskennung bei der eindeutigen Zuordnung helfen.','Sind Größe oder Farbe nicht erkennbar, benennen Sie die konkrete offene Frage, bevor Sie fortfahren.'],
+      ['Prüfen Sie die jeweils aktuellen Kontakt- und Rückgabemöglichkeiten, da der geeignete nächste Schritt vom Bestellstatus abhängen kann.','Fragen Sie zum Beispiel nach einer sichtbaren Größenmarkierung oder einem bestimmten fehlenden Bestandteil statt nur nach „guter Qualität“.','Eine allgemeine positive Bewertung löst keine konkrete Unstimmigkeit bei Farbe, Größe oder Zubehör.','Ihre Notizen zeigen später, ob die Unsicherheit aus dem ursprünglichen Angebot, einer Auswahl oder einer fehlenden Ansicht entstand.'],
+      ['Bei „fortfahren“ halten Sie den entscheidenden Nachweis fest; bei „pausieren“ nennen Sie den ungeklärten Punkt.','Ein Prüfdatum ordnet Ihre Beobachtung zeitlich ein, ohne sie zu einer dauerhaften Zusage zu machen.','Die sichtbare Lagerkontrolle ersetzt nicht das Lesen der aktuellen Bedingungen und Ihrer eigenen Anforderungen.','Das Ziel ist eine begründete Entscheidung mit bekannten und unbekannten Punkten, nicht die Behauptung vollständiger Gewissheit.']
+    ],
+    shipping:[
+      ['Die geprüfte Aussage zur Lagerkontrolle nennt für sich genommen auch keinen konkreten Transporteur oder garantierten Ausgang.','Ein unabhängiger Leitfaden sollte diese Lücken nicht mit allgemeinen Werbeaussagen füllen.','Ein sich noch ändernder Paketinhalt macht Angebote schwer vergleichbar; klären Sie daher offene Produktfragen möglichst zuerst.','Halten Sie fest, welche konkrete Bedingung für Sie entscheidend ist, statt spätere Ereignisse vorherzusagen.'],
+      ['Unterschiedliche Waren können verschiedene Fragen zu Größe, Verpackung oder Zulässigkeit aufwerfen.','Bei unvollständigen Angaben ist „noch unbekannt“ genauer als eine aus einem fremden Screenshot übernommene Zahl.','Prüfen Sie die derzeitige Verfügbarkeit für Ihr Ziel direkt und speichern Sie die Angaben, die Ihre Entscheidung beeinflussen.','Eine kleine Änderung des Inhalts kann den Vergleich verändern und macht eine erneute Prüfung sinnvoll.'],
+      ['Ähnlich benannte Optionen können unterschiedliche Einschränkungen oder Leistungen aufweisen.','Wenn der angegebene Zeitraum für Sie wichtig ist, entscheiden Sie anhand der angezeigten Spanne, nicht anhand eines erfundenen Durchschnitts.','Lesen Sie insbesondere Ausschlüsse und Voraussetzungen für eine mögliche Entschädigung in den aktuellen Bedingungen.','Eine Vergleichstabelle mit ausdrücklich offenen Feldern ist aussagekräftiger als eine unbelegte positive Annahme.'],
+      ['Welche Waren eingeführt werden dürfen und welche Abgaben entstehen können, ist eine Frage des konkreten Ziels.','Notieren Sie, was Sie wann geprüft haben und welche lokalen Pflichten für Sie weiterhin offen sind.','Eine eindeutige Beschreibung von Inhalt und Menge hilft, passende Anforderungen zu ermitteln.','Bei Unsicherheit kann es richtig sein, das Paket noch nicht einzureichen.'],
+      ['Ein kurzer Satz mit Gründen zeigt, ob Sie Ziel, Leistung und angezeigte Zeitspanne wirklich verstanden haben.','Sichern Sie die zum Zeitpunkt der Entscheidung angezeigten Angaben statt sie später als unveränderlich darzustellen.','Prüfen Sie auch, ob ein bei der Qualitätskontrolle entdecktes Problem Ihren Paketplan ändern sollte.','Aktualisieren Sie den Vergleich, wenn sich Inhalt, Ziel oder verfügbare Bedingungen ändern.'],
+      ['Auch Lagerleistungen oder konkrete Abhilfen müssen anhand der aktuellen Plattforminformationen für die Bestellung geprüft werden.','So bleibt die Prüfung auf den tatsächlichen Inhalt und die angezeigten Wahlmöglichkeiten konzentriert.','Die Übersicht kann ebenso ein Prüfdatum und noch fehlende Antworten festhalten, statt ein Ergebnis zu garantieren.','Fakt, persönliche Präferenz und ungeprüfter Punkt erfüllen verschiedene Rollen und sollten nicht vermischt werden.']
+    ]
+  };
+  const frenchArticleDetails={
+    spreadsheet:[
+      ['Un résultat de recherche est un point de départ, pas une preuve que l’article vous convient.','Notez un ou deux critères éliminatoires afin que des images attirantes ne remplacent pas vos besoins.','La disponibilité de la variante et l’aspect final doivent être vérifiés sur l’offre actuelle.','Par exemple, une surchemise noire peut exiger une variante clairement nommée et une référence de taille visible.'],
+      ['Une raison formulée avec vos mots est plus utile qu’une description publicitaire rassurante.','Vous pourrez retrouver quelle image ou indication rendait ce résultat pertinent pour votre question.','Une case vide peut être un oubli ; une mention explicite indique que l’information manquait.','Quelques champs cohérents suffisent si vous pouvez retrouver source, option et incertitudes importantes.'],
+      ['Des termes descriptifs donnent des caractéristiques à vérifier ensuite sur l’annonce.','Si un synonyme attire surtout des résultats sans rapport, retirez-le au lieu d’ajouter des mots au hasard.','Un vêtement et un accessoire ne doivent pas être comparés selon les mêmes critères de coupe seulement parce que leurs images se ressemblent.','Une bonne annonce peut vous apprendre un vocabulaire utile pour trouver des options voisines.'],
+      ['Vérifiez aussi si matière et fabrication sont décrites, visibles ou inconnues pour chaque candidat.','Un produit peut vous plaire tout en manquant de données suffisantes pour décider.','Formulez les observations prudemment : une couture contrastée peut paraître visible sans que sa qualité soit établie.','Le meilleur candidat peut être celui dont les informations sont les plus claires, même si les images sont aussi attirantes.'],
+      ['Cette déclaration décrit une étape de contrôle et ne répond pas à chaque question sur une offre donnée.','Décidez à l’avance quelle différence visible nécessiterait une demande de précision.','Si une question est importante, consultez les conditions officielles actuelles ou le service d’assistance compétent.','Une bonne fiche initiale aide à reconnaître ensuite un écart pertinent.'],
+      ['Si vous devez rouvrir de nombreux onglets pour expliquer le choix, la fiche manque peut-être de clarté.','Vous pouvez comparer trois candidats ou retenir le premier qui remplit tous les critères indispensables.','Une incertitude notée montre que vous avez pris en compte une limite au lieu de l’oublier.','Le chemin entre la question, les preuves et l’action compte davantage que le nombre de liens enregistrés.']
+    ],
+    qc:[
+      ['Revérifiez les indications au moment de la commande : services et conditions peuvent changer.','La déclaration ne confirme pas une analyse complète des matières, la fiabilité du vendeur, la livraison ou une indemnisation.','Un sweat, une chaussure et un accessoire électronique présentent des points de contrôle différents.','Préparez les questions avant de voir les photos pour qu’une image attirante ne masque pas une donnée manquante.'],
+      ['Pour des options proches, conservez ensemble le nom exact de la couleur, la fermeture et la taille affichée.','Une formule vague comme « la deuxième bleue » devient peu fiable si l’ordre des options change.','Si un libellé est ambigu, notez la question au lieu d’inventer une précision non étayée.','Décidez aussi si un petit défaut visuel ou une taille différente modifierait votre choix.'],
+      ['Pour un vêtement, trous, taches, coutures lâches ou pièces décalées peuvent compter ; pour une chaussure, vérifiez aussi paire et semelle.','Des accessoires ou appareils peuvent présenter des connecteurs ou éléments visibles, sans que toutes leurs fonctions soient démontrées.','Priorisez les quelques points qui déterminent réellement votre décision.','Comparez les détails observés à la commande initiale plutôt qu’à votre seul souvenir.'],
+      ['Conservez le tableau des tailles disponible ou notez qu’aucun n’était visible lors de la vérification.','Distinguez le nom de couleur indiqué sur l’offre de votre perception sur un écran.','Un identifiant d’article ou d’option visible peut aider à distinguer des versions proches.','Si taille ou couleur ne sont pas lisibles, formulez la question avant de poursuivre.'],
+      ['Vérifiez les possibilités actuelles de contact et de retour : la marche à suivre dépend parfois du statut de commande.','Demandez par exemple une marque de taille ou une pièce précise plutôt qu’une appréciation générale de qualité.','Une appréciation positive générale ne résout pas une différence de couleur, de taille ou d’accessoire.','Vos notes peuvent montrer ensuite si le doute vient de l’offre, du choix ou d’une vue manquante.'],
+      ['Pour continuer, indiquez la preuve décisive ; pour suspendre, nommez le point non résolu.','Une date situe votre observation sans en faire une promesse permanente.','Le contrôle visuel ne remplace pas la lecture des conditions actuelles et de vos propres exigences.','Le but est une décision motivée avec ses limites, pas une certitude totale inventée.']
+    ],
+    shipping:[
+      ['La déclaration examinée sur l’entrepôt ne nomme pas non plus de transporteur précis ni de résultat garanti pour votre colis.','Un guide indépendant ne devrait pas combler ces lacunes par des promesses commerciales générales.','Un contenu encore changeant rend les devis difficiles à comparer : clarifiez d’abord les questions produit ouvertes.','Notez la condition concrète déterminante plutôt que de prédire des événements futurs.'],
+      ['Différents articles peuvent soulever des questions distinctes de volume, emballage et admissibilité.','Lorsque les données manquent, « encore inconnu » est plus exact qu’un chiffre repris d’une capture étrangère.','Vérifiez directement la disponibilité actuelle pour votre destination et conservez les détails décisifs.','Une modification même modeste du contenu peut rendre nécessaire un nouveau comparatif.'],
+      ['Des options aux noms proches peuvent avoir des limites ou prestations différentes.','Si le délai compte, décidez à partir de la fourchette affichée plutôt que d’une moyenne inventée.','Lisez notamment les exclusions et les exigences d’une éventuelle indemnisation dans les conditions actuelles.','Un tableau qui montre les champs inconnus vaut mieux qu’une hypothèse favorable sans preuve.'],
+      ['Les marchandises autorisées et les frais possibles dépendent de la destination précise.','Notez ce que vous avez vérifié, la date et les obligations locales encore à clarifier.','Une description claire du contenu et des quantités aide à identifier les exigences applicables.','En cas de doute, ne pas soumettre le colis immédiatement peut être la bonne décision.'],
+      ['Une phrase expliquant votre choix permet de vérifier votre compréhension de la destination, du service et du délai indiqué.','Conservez les indications affichées lors de la décision plutôt que de les présenter ensuite comme immuables.','Vérifiez aussi si un problème découvert au contrôle qualité doit modifier le contenu du colis.','Actualisez le comparatif si le contenu, la destination ou les conditions disponibles changent.'],
+      ['Les services d’entrepôt et recours précis doivent également être vérifiés pour la commande dans les informations actuelles.','La comparaison reste ainsi centrée sur le contenu réel et les choix effectivement affichés.','Le tableau peut conserver dates et réponses manquantes sans promettre un résultat.','Fait, préférence personnelle et point non vérifié jouent des rôles différents et ne doivent pas être confondus.']
+    ]
+  };
+  const spanishArticleDetails={
+    spreadsheet:[
+      ['Un resultado es un punto de partida, no una prueba de que el artículo le convenga.','Anote uno o dos criterios de descarte para que una foto atractiva no sustituya sus necesidades.','La variante disponible y el aspecto final deben comprobarse en la oferta actual.','Por ejemplo, una sobrecamisa negra puede requerir una variante clara y una referencia visible de talla.'],
+      ['Una razón escrita con sus palabras es más útil que una descripción publicitaria tranquilizadora.','Así podrá recordar qué imagen o dato hacía relevante el resultado para su pregunta.','Una casilla vacía puede ser un olvido; una nota explícita indica que faltaba información.','Unos pocos campos coherentes bastan si puede recuperar origen, opción e incertidumbres importantes.'],
+      ['Los términos descriptivos le dan características para comprobar después en el anuncio.','Si un sinónimo atrae resultados irrelevantes, retírelo en vez de añadir palabras al azar.','Una prenda y un accesorio no deben compararse con el mismo criterio de ajuste solo porque sus imágenes se parezcan.','Un buen resultado puede enseñarle vocabulario para encontrar alternativas relacionadas.'],
+      ['Compruebe también si material y fabricación están descritos, son visibles o siguen siendo desconocidos.','Un producto puede gustarle y aun así carecer de datos suficientes para decidir.','Describa las observaciones con prudencia: una costura contrastada puede parecer visible sin que se haya probado su calidad.','El mejor candidato puede ser aquel con información más clara aunque ambos tengan fotos atractivas.'],
+      ['La declaración describe un punto de control y no responde a cada pregunta sobre una oferta concreta.','Decida de antemano qué diferencia visible justificaría pedir aclaración.','Si una cuestión es importante, consulte las condiciones oficiales actuales o el soporte competente.','Un buen registro inicial ayuda a reconocer después una discrepancia relevante.'],
+      ['Si debe reabrir muchas pestañas para explicar la elección, quizá falte claridad en el registro.','Puede comparar tres candidatos o elegir el primero que cumpla todos los requisitos esenciales.','Anotar la incertidumbre muestra que tuvo en cuenta una limitación en vez de olvidarla.','El camino entre pregunta, evidencia y siguiente acción importa más que el número de enlaces guardados.']
+    ],
+    qc:[
+      ['Vuelva a comprobar las indicaciones al tramitar el pedido: servicios y condiciones pueden cambiar.','La declaración no confirma análisis completo de materiales, fiabilidad del vendedor, entrega ni indemnización.','Una sudadera, un zapato y un accesorio electrónico presentan puntos de revisión distintos.','Prepare las preguntas antes de ver las fotos para que una imagen atractiva no oculte datos ausentes.'],
+      ['Para opciones similares guarde juntos nombre exacto del color, cierre y talla mostrada.','Una fórmula vaga como «la segunda azul» deja de ser fiable si cambia el orden.','Si un nombre es ambiguo, anote la duda en vez de inventar una precisión no respaldada.','Decida también si una pequeña diferencia visual o una talla distinta modificaría su elección.'],
+      ['En ropa pueden importar agujeros, manchas, costuras sueltas o piezas desplazadas; en zapatos también el par y la suela.','En accesorios o aparatos se pueden observar conectores o piezas visibles sin demostrar todas sus funciones.','Priorice los pocos puntos de los que depende realmente su decisión.','Compare los detalles observados con el pedido original y no solo con su memoria.'],
+      ['Guarde la tabla de tallas disponible o anote que no era visible al revisar.','Distinga el nombre del color del anuncio de su propia percepción en una pantalla.','Un identificador visible de artículo u opción puede ayudar a distinguir versiones parecidas.','Si talla o color no se leen, formule la duda concreta antes de continuar.'],
+      ['Compruebe las opciones actuales de contacto y devolución: el paso adecuado puede depender del estado del pedido.','Pregunte por una marca de talla o una pieza concreta en lugar de una valoración general de calidad.','Una valoración positiva general no resuelve una diferencia de color, talla o accesorio.','Sus notas pueden mostrar si la duda surgió del anuncio, la elección o una vista ausente.'],
+      ['Para continuar, indique la prueba decisiva; para pausar, nombre el punto pendiente.','Una fecha sitúa la observación sin convertirla en una promesa permanente.','La inspección visual no sustituye la lectura de las condiciones actuales ni de sus propios requisitos.','El objetivo es una decisión fundamentada con sus límites, no una certeza total inventada.']
+    ],
+    shipping:[
+      ['La declaración revisada sobre almacén tampoco identifica un transportista concreto ni garantiza el resultado del paquete.','Una guía independiente no debería llenar esas lagunas con promesas comerciales generales.','Un contenido que todavía cambia dificulta comparar presupuestos: aclare primero las dudas del producto.','Anote la condición concreta decisiva en vez de predecir acontecimientos futuros.'],
+      ['Artículos distintos pueden plantear preguntas diferentes sobre volumen, embalaje y admisión.','Cuando faltan datos, «aún desconocido» es más preciso que una cifra de una captura ajena.','Compruebe directamente la disponibilidad actual para su destino y guarde los detalles decisivos.','Incluso un cambio pequeño de contenido puede exigir una nueva comparación.'],
+      ['Opciones de nombres parecidos pueden tener límites o prestaciones diferentes.','Si el plazo importa, decida según el intervalo mostrado y no según una media inventada.','Lea en particular las exclusiones y requisitos de una posible indemnización en las condiciones actuales.','Una tabla con campos desconocidos es más fiable que una suposición favorable sin prueba.'],
+      ['Los productos permitidos y los costes posibles dependen del destino concreto.','Anote qué comprobó, cuándo y qué obligaciones locales quedan por aclarar.','Una descripción clara del contenido y las cantidades ayuda a identificar los requisitos aplicables.','Ante una duda puede ser correcto no presentar el paquete todavía.'],
+      ['Una frase que explique la elección permite comprobar si entiende destino, servicio y plazo indicado.','Guarde los datos mostrados al decidir en vez de presentarlos luego como inmutables.','Compruebe también si un problema detectado en calidad debe cambiar el contenido del paquete.','Actualice la comparación si cambian contenido, destino o condiciones disponibles.'],
+      ['Los servicios de almacén y soluciones concretas también deben verificarse para el pedido en la información actual.','Así la comparación se centra en el contenido real y las opciones efectivamente mostradas.','La hoja puede guardar fechas y respuestas pendientes sin prometer un resultado.','Hecho, preferencia personal y punto no verificado cumplen funciones diferentes y no deben confundirse.']
+    ]
+  };
+  const italianArticleDetails={
+    spreadsheet:[
+      ['Un risultato è un punto di partenza, non la prova che l’articolo sia adatto a te.','Annota uno o due criteri di esclusione affinché una foto attraente non sostituisca le tue esigenze.','Variante disponibile e aspetto finale vanno verificati nell’offerta attuale.','Per esempio, una sovracamicia nera può richiedere una variante chiara e un riferimento di taglia visibile.'],
+      ['Una motivazione scritta con parole tue è più utile di una descrizione pubblicitaria rassicurante.','Potrai ricordare quale immagine o dato rendeva il risultato pertinente alla tua domanda.','Una casella vuota può essere una dimenticanza; una nota esplicita indica che mancava l’informazione.','Pochi campi coerenti bastano se puoi ritrovare origine, opzione e incertezze importanti.'],
+      ['Termini descrittivi indicano caratteristiche da controllare successivamente nell’annuncio.','Se un sinonimo attira risultati estranei, eliminalo invece di aggiungere parole a caso.','Un indumento e un accessorio non vanno confrontati con gli stessi criteri di vestibilità solo perché le immagini si somigliano.','Un buon risultato può insegnarti vocaboli utili per trovare alternative correlate.'],
+      ['Verifica anche se materiale e lavorazione sono descritti, visibili o sconosciuti.','Un prodotto può piacerti e tuttavia non avere dati sufficienti per decidere.','Descrivi le osservazioni con cautela: una cucitura a contrasto può sembrare visibile senza provarne la qualità.','Il candidato migliore può avere informazioni più chiare anche se entrambe le immagini sono attraenti.'],
+      ['La dichiarazione descrive una fase di controllo e non risponde a ogni domanda su una specifica offerta.','Decidi in anticipo quale differenza visibile richiederebbe un chiarimento.','Se una questione è importante, consulta le condizioni ufficiali attuali o l’assistenza competente.','Una buona scheda iniziale aiuta a riconoscere una discrepanza rilevante.'],
+      ['Se devi riaprire molte schede per spiegare la scelta, la registrazione potrebbe non essere abbastanza chiara.','Puoi confrontare tre candidati o scegliere il primo che soddisfa tutti i requisiti essenziali.','Annotare l’incertezza dimostra che hai considerato un limite invece di dimenticarlo.','Il percorso tra domanda, prove e azione conta più del numero di link salvati.']
+    ],
+    qc:[
+      ['Ricontrolla le indicazioni al momento dell’ordine: servizi e condizioni possono cambiare.','La dichiarazione non conferma analisi completa dei materiali, affidabilità del venditore, consegna o indennizzo.','Una felpa, una scarpa e un accessorio elettronico presentano punti di controllo diversi.','Prepara le domande prima di vedere le foto affinché un’immagine attraente non nasconda dati mancanti.'],
+      ['Per opzioni simili conserva insieme nome esatto del colore, chiusura e taglia mostrata.','Una frase vaga come «la seconda blu» non è affidabile se cambia l’ordine delle opzioni.','Se una dicitura è ambigua, annota il dubbio invece di inventare dettagli non supportati.','Decidi anche se un piccolo difetto visivo o una taglia diversa cambierebbe la tua scelta.'],
+      ['Per i vestiti possono contare buchi, macchie, cuciture allentate o pannelli spostati; per le scarpe anche paio e suola.','Per accessori o dispositivi si possono osservare connettori o pezzi visibili senza dimostrarne tutte le funzioni.','Dai priorità ai pochi punti da cui dipende davvero la decisione.','Confronta i dettagli osservati con l’ordine originale e non solo con la memoria.'],
+      ['Conserva la tabella taglie disponibile oppure annota che non era visibile alla verifica.','Distingui il nome del colore nell’offerta dalla tua percezione sullo schermo.','Un identificativo visibile dell’articolo o dell’opzione può distinguere versioni simili.','Se taglia o colore non si leggono, formula il dubbio preciso prima di proseguire.'],
+      ['Verifica le attuali possibilità di contatto e reso: il passo adatto può dipendere dallo stato dell’ordine.','Chiedi una marcatura di taglia o un pezzo specifico invece di una valutazione generica della qualità.','Un giudizio positivo generale non risolve una differenza di colore, taglia o accessorio.','Le note possono mostrare se il dubbio nasce dall’offerta, dalla scelta o da una vista mancante.'],
+      ['Per procedere indica la prova decisiva; per sospendere nomina il punto irrisolto.','Una data colloca l’osservazione nel tempo senza farne una promessa permanente.','Il controllo visivo non sostituisce la lettura delle condizioni attuali e dei tuoi requisiti.','Lo scopo è una decisione motivata con i suoi limiti, non una certezza totale inventata.']
+    ],
+    shipping:[
+      ['La dichiarazione esaminata sul magazzino non identifica nemmeno un vettore specifico né garantisce il risultato del pacco.','Una guida indipendente non dovrebbe colmare queste lacune con promesse commerciali generiche.','Un contenuto ancora variabile rende difficile confrontare i preventivi: chiarisci prima i dubbi sui prodotti.','Annota la condizione concreta decisiva invece di prevedere eventi futuri.'],
+      ['Articoli diversi possono sollevare questioni differenti di volume, imballaggio e ammissibilità.','Quando mancano dati, «ancora sconosciuto» è più preciso di un numero ripreso da uno screenshot altrui.','Verifica direttamente la disponibilità attuale per la destinazione e conserva i dettagli decisivi.','Anche una piccola modifica del contenuto può richiedere un nuovo confronto.'],
+      ['Opzioni con nomi simili possono avere limiti o prestazioni differenti.','Se il tempo conta, decidi in base all’intervallo mostrato e non a una media inventata.','Leggi soprattutto esclusioni e requisiti di eventuali indennizzi nelle condizioni attuali.','Una tabella con campi sconosciuti è più affidabile di un’ipotesi favorevole senza prove.'],
+      ['Merci consentite e costi possibili dipendono dalla destinazione specifica.','Annota cosa hai verificato, quando e quali obblighi locali restano da chiarire.','Una descrizione chiara di contenuto e quantità aiuta a individuare i requisiti applicabili.','In caso di dubbio, non inviare subito il pacco può essere la decisione corretta.'],
+      ['Una frase che spiega la scelta aiuta a verificare la comprensione di destinazione, servizio e tempo indicato.','Conserva i dati mostrati quando decidi invece di presentarli poi come immutabili.','Verifica anche se un problema emerso nel controllo qualità debba cambiare il contenuto del pacco.','Aggiorna il confronto se cambiano contenuto, destinazione o condizioni disponibili.'],
+      ['Anche servizi di magazzino e rimedi specifici vanno verificati per l’ordine nelle informazioni attuali.','Il confronto resta così concentrato sul contenuto reale e sulle scelte effettivamente mostrate.','Il foglio può conservare date e risposte mancanti senza promettere un risultato.','Fatto, preferenza personale e punto non verificato svolgono ruoli diversi e non vanno confusi.']
+    ]
+  };
+  const portugueseArticleDetails={
+    spreadsheet:[
+      ['Um resultado é um ponto de partida, não prova de que o artigo lhe serve.','Registe um ou dois critérios de exclusão para que uma imagem atraente não substitua as suas necessidades.','A variante disponível e o aspeto final devem ser verificados na oferta atual.','Por exemplo, uma sobrecamisa preta pode exigir uma variante clara e uma referência de tamanho visível.'],
+      ['Uma razão escrita por si é mais útil do que uma descrição publicitária tranquilizadora.','Assim poderá recordar que imagem ou dado tornava o resultado pertinente para a sua pergunta.','Uma célula vazia pode ser um esquecimento; uma nota explícita indica que faltava informação.','Poucos campos coerentes bastam se conseguir recuperar origem, opção e incertezas importantes.'],
+      ['Termos descritivos indicam características a verificar depois no anúncio.','Se um sinónimo trouxer resultados irrelevantes, retire-o em vez de acrescentar palavras ao acaso.','Uma peça de roupa e um acessório não devem ser comparados pelo mesmo critério de ajuste apenas porque as imagens se parecem.','Um bom resultado pode ensinar vocabulário útil para encontrar alternativas relacionadas.'],
+      ['Verifique também se material e construção estão descritos, visíveis ou desconhecidos.','Um produto pode agradar-lhe e ainda assim não ter dados suficientes para decidir.','Descreva observações com cautela: uma costura contrastante pode parecer visível sem que a qualidade esteja comprovada.','O melhor candidato pode ter informação mais clara mesmo que ambas as imagens sejam atraentes.'],
+      ['A declaração descreve uma etapa de controlo e não responde a todas as perguntas sobre uma oferta específica.','Decida antecipadamente que diferença visível exigiria esclarecimento.','Se uma questão for importante, consulte as condições oficiais atuais ou o apoio competente.','Um bom registo inicial ajuda a reconhecer posteriormente uma discrepância relevante.'],
+      ['Se precisar de reabrir muitos separadores para explicar a escolha, o registo pode não ser suficientemente claro.','Pode comparar três candidatos ou escolher o primeiro que satisfaça todos os requisitos essenciais.','Registar a incerteza mostra que considerou uma limitação em vez de a esquecer.','O percurso entre pergunta, prova e ação importa mais do que o número de ligações guardadas.']
+    ],
+    qc:[
+      ['Volte a verificar as indicações ao tratar da encomenda: serviços e condições podem mudar.','A declaração não confirma análise integral de materiais, fiabilidade do vendedor, entrega ou indemnização.','Uma camisola, um sapato e um acessório eletrónico apresentam pontos de controlo diferentes.','Prepare as perguntas antes de ver as fotografias para que uma imagem atraente não esconda dados em falta.'],
+      ['Para opções semelhantes guarde em conjunto o nome exato da cor, o fecho e o tamanho apresentado.','Uma expressão vaga como «a segunda azul» deixa de ser fiável se a ordem mudar.','Se um nome for ambíguo, registe a dúvida em vez de inventar detalhes sem apoio.','Decida também se um pequeno defeito visual ou um tamanho diferente alteraria a escolha.'],
+      ['Na roupa podem importar furos, manchas, costuras soltas ou painéis deslocados; no calçado também o par e a sola.','Em acessórios ou aparelhos podem observar-se conectores ou peças visíveis sem demonstrar todas as funções.','Dê prioridade aos poucos pontos dos quais depende realmente a decisão.','Compare os detalhes observados com a encomenda original e não apenas com a memória.'],
+      ['Guarde a tabela de tamanhos disponível ou anote que não estava visível na verificação.','Separe o nome da cor no anúncio da sua perceção no ecrã.','Um identificador visível do artigo ou da opção pode distinguir versões semelhantes.','Se tamanho ou cor não forem legíveis, formule a dúvida concreta antes de prosseguir.'],
+      ['Verifique as possibilidades atuais de contacto e devolução: o passo adequado pode depender do estado da encomenda.','Pergunte por uma marca de tamanho ou peça específica em vez de uma avaliação geral da qualidade.','Uma avaliação positiva geral não resolve uma diferença de cor, tamanho ou acessório.','As notas podem mostrar se a dúvida surgiu do anúncio, da escolha ou de uma vista ausente.'],
+      ['Para avançar indique a prova decisiva; para pausar nomeie o ponto por resolver.','Uma data situa a observação sem a transformar numa promessa permanente.','A inspeção visual não substitui a leitura das condições atuais e dos seus requisitos.','O objetivo é uma decisão fundamentada com os seus limites, não uma certeza total inventada.']
+    ],
+    shipping:[
+      ['A declaração analisada sobre o armazém também não identifica uma transportadora específica nem garante o resultado da encomenda.','Um guia independente não deve preencher essas lacunas com promessas comerciais genéricas.','Um conteúdo ainda variável dificulta a comparação dos orçamentos: esclareça primeiro as dúvidas sobre os produtos.','Registe a condição concreta decisiva em vez de prever acontecimentos futuros.'],
+      ['Artigos diferentes podem levantar questões distintas de volume, embalagem e elegibilidade.','Quando faltam dados, «ainda desconhecido» é mais preciso do que um número retirado da captura de outra pessoa.','Verifique diretamente a disponibilidade atual para o destino e guarde os detalhes decisivos.','Mesmo uma pequena alteração do conteúdo pode exigir nova comparação.'],
+      ['Opções com nomes semelhantes podem ter limites ou prestações diferentes.','Se o prazo for importante, decida pelo intervalo apresentado e não por uma média inventada.','Leia sobretudo exclusões e requisitos de eventual indemnização nas condições atuais.','Uma tabela com campos desconhecidos é mais fiável do que uma hipótese favorável sem prova.'],
+      ['Mercadorias permitidas e custos possíveis dependem do destino concreto.','Registe o que verificou, quando e que obrigações locais ainda precisam de esclarecimento.','Uma descrição clara do conteúdo e das quantidades ajuda a identificar os requisitos aplicáveis.','Em caso de dúvida, pode ser correto não submeter já a encomenda.'],
+      ['Uma frase explicando a escolha ajuda a verificar se compreende destino, serviço e prazo indicado.','Guarde os dados apresentados ao decidir em vez de os apresentar depois como imutáveis.','Verifique também se um problema detetado no controlo de qualidade deve alterar o conteúdo.','Atualize a comparação se mudarem conteúdo, destino ou condições disponíveis.'],
+      ['Serviços de armazém e soluções específicas também devem ser verificados para a encomenda na informação atual.','Assim a comparação mantém-se focada no conteúdo real e nas opções efetivamente apresentadas.','A folha pode guardar datas e respostas em falta sem prometer um resultado.','Facto, preferência pessoal e ponto não verificado têm funções diferentes e não devem ser confundidos.']
+    ]
+  };
+  const dutchArticleDetails={
+    spreadsheet:[
+      ['Een zoekresultaat is een beginpunt, geen bewijs dat het artikel bij u past.','Noteer één of twee uitsluitingscriteria zodat een aantrekkelijke foto uw eisen niet vervangt.','Beschikbare variant en uiteindelijke uitstraling moeten bij de actuele aanbieding worden gecontroleerd.','Een zwart overshirt kan bijvoorbeeld een duidelijk benoemde variant en zichtbare maatverwijzing vereisen.'],
+      ['Een reden in uw eigen woorden is nuttiger dan geruststellende reclame.','Zo kunt u terugvinden welke afbeelding of informatie het resultaat relevant maakte.','Een leeg veld kan een vergissing zijn; een expliciete notitie toont dat informatie ontbrak.','Enkele consistente velden volstaan als bron, optie en belangrijke onzekerheden terug te vinden zijn.'],
+      ['Beschrijvende zoekwoorden geven kenmerken die u daarna in de aanbieding kunt controleren.','Levert een synoniem vooral irrelevante resultaten op, verwijder het dan in plaats van willekeurig woorden toe te voegen.','Kleding en accessoires moeten niet op dezelfde pasvormcriteria worden vergeleken enkel omdat hun foto’s lijken.','Een goed resultaat kan woorden opleveren om verwante alternatieven te vinden.'],
+      ['Controleer ook of materiaal en afwerking beschreven, zichtbaar of onbekend zijn.','Een product kan u aanspreken en toch onvoldoende gegevens bevatten om te beslissen.','Formuleer voorzichtig: een contrasterende naad kan zichtbaar lijken zonder dat de kwaliteit is bewezen.','De beste kandidaat kan duidelijkere informatie hebben, ook wanneer beide afbeeldingen aantrekkelijk zijn.'],
+      ['De verklaring beschrijft een controlepunt en beantwoordt niet elke vraag over een specifieke aanbieding.','Bepaal vooraf welk zichtbaar verschil aanleiding is om verduidelijking te vragen.','Raadpleeg bij een belangrijke vraag de actuele officiële voorwaarden of de bevoegde ondersteuning.','Een goed eerste record helpt later een relevante afwijking herkennen.'],
+      ['Moet u veel tabbladen heropenen om uw keuze uit te leggen, dan is het record mogelijk niet duidelijk genoeg.','U kunt drie kandidaten vergelijken of de eerste kiezen die aan alle essentiële eisen voldoet.','Een genoteerde onzekerheid toont dat u een beperking hebt meegewogen in plaats van vergeten.','De weg van vraag via bewijs naar actie is belangrijker dan het aantal opgeslagen links.']
+    ],
+    qc:[
+      ['Controleer de informatie opnieuw bij de bestelling: diensten en voorwaarden kunnen veranderen.','De verklaring bevestigt geen volledige materiaalanalyse, betrouwbaarheid van de verkoper, levering of vergoeding.','Een hoodie, schoen en elektronisch accessoire hebben verschillende controlepunten.','Bereid vragen vóór het bekijken van foto’s voor zodat een aantrekkelijke afbeelding ontbrekende gegevens niet verhult.'],
+      ['Bewaar bij vergelijkbare opties exacte kleurnaam, sluiting en weergegeven maat bij elkaar.','Een vage omschrijving als «de tweede blauwe» is onbetrouwbaar als de volgorde verandert.','Noteer een onduidelijke optie als vraag in plaats van onbewezen details te verzinnen.','Bepaal ook of een klein zichtbaar gebrek of andere maat uw keuze zou veranderen.'],
+      ['Bij kleding kunnen gaten, vlekken, losse naden of verschoven delen tellen; bij schoenen ook paar en zool.','Bij accessoires of apparaten kunt u zichtbare aansluitingen of onderdelen zien zonder alle functies aan te tonen.','Geef voorrang aan de paar punten waarvan uw beslissing werkelijk afhangt.','Vergelijk waarnemingen met de oorspronkelijke bestelling en niet alleen met uw geheugen.'],
+      ['Bewaar de beschikbare maattabel of noteer dat deze tijdens controle niet zichtbaar was.','Scheid de kleurnaam in de aanbieding van uw eigen waarneming op een scherm.','Een zichtbaar artikel- of optie-ID kan vergelijkbare uitvoeringen onderscheiden.','Formuleer de concrete vraag voordat u doorgaat als maat of kleur niet leesbaar is.'],
+      ['Controleer actuele contact- en retourmogelijkheden: de juiste stap kan van de bestelstatus afhangen.','Vraag naar een maatmarkering of specifiek onderdeel in plaats van een algemeen kwaliteitsoordeel.','Een algemene positieve beoordeling lost geen verschil in kleur, maat of accessoire op.','Uw notities kunnen laten zien of de onzekerheid ontstond door de aanbieding, keuze of ontbrekende foto.'],
+      ['Noem bij doorgaan het doorslaggevende bewijs en bij pauzeren het open punt.','Een datum plaatst de waarneming in de tijd zonder er een blijvende belofte van te maken.','Visuele inspectie vervangt het lezen van actuele voorwaarden en uw eigen eisen niet.','Het doel is een beargumenteerde beslissing met grenzen, geen verzonnen volledige zekerheid.']
+    ],
+    shipping:[
+      ['De bekeken magazijnverklaring noemt ook geen specifieke vervoerder en garandeert geen uitkomst voor uw pakket.','Een onafhankelijke gids moet die leemtes niet vullen met algemene commerciële beloften.','Een nog veranderende inhoud maakt offertes moeilijk vergelijkbaar: los productvragen eerst op.','Noteer de concrete doorslaggevende voorwaarde in plaats van toekomstige gebeurtenissen te voorspellen.'],
+      ['Verschillende artikelen kunnen andere vragen over volume, verpakking en toelating oproepen.','Bij ontbrekende gegevens is «nog onbekend» nauwkeuriger dan een getal uit een screenshot van iemand anders.','Controleer actuele beschikbaarheid voor uw bestemming rechtstreeks en bewaar doorslaggevende details.','Ook een kleine wijziging van de inhoud kan een nieuwe vergelijking vereisen.'],
+      ['Opties met vergelijkbare namen kunnen verschillende beperkingen of diensten hebben.','Is tijd belangrijk, beslis dan op basis van het getoonde bereik en niet een verzonnen gemiddelde.','Lees vooral uitsluitingen en eisen voor mogelijke vergoeding in de actuele voorwaarden.','Een tabel met onbekende velden is betrouwbaarder dan een gunstige aanname zonder bewijs.'],
+      ['Toegestane goederen en mogelijke kosten hangen af van de specifieke bestemming.','Noteer wat u wanneer controleerde en welke lokale verplichtingen nog verduidelijking vragen.','Een duidelijke omschrijving van inhoud en aantallen helpt toepasselijke eisen vinden.','Bij twijfel kan het juist zijn het pakket nog niet in te dienen.'],
+      ['Een zin over uw keuze helpt controleren of u bestemming, dienst en aangegeven termijn begrijpt.','Bewaar de gegevens die tijdens het beslissen werden getoond in plaats van ze later onveranderlijk te noemen.','Controleer ook of een kwaliteitsprobleem de pakketinhoud moet veranderen.','Werk de vergelijking bij wanneer inhoud, bestemming of beschikbare voorwaarden veranderen.'],
+      ['Ook magazijndiensten en specifieke oplossingen moeten voor de bestelling in actuele informatie worden gecontroleerd.','Zo blijft de vergelijking gericht op de werkelijke inhoud en daadwerkelijk getoonde opties.','De spreadsheet kan data en ontbrekende antwoorden bewaren zonder een uitkomst te beloven.','Feit, persoonlijke voorkeur en ongecontroleerd punt hebben verschillende rollen en mogen niet worden verward.']
+    ]
+  };
+  const polishArticleDetails={
+    spreadsheet:[
+      ['Wynik wyszukiwania to punkt wyjścia, a nie dowód dopasowania.','Zapisz wymagania, które wykluczają produkt, niezależnie od atrakcyjności zdjęcia.','Sprawdź aktualną ofertę i dostępny wariant przed podjęciem decyzji.','Na przykład koszula może wymagać potwierdzenia koloru i oznaczenia rozmiaru.'],
+      ['Własne uzasadnienie wyboru pomaga wrócić do decyzji.','Zapisz zdjęcie lub informację, która zwróciła Twoją uwagę.','Brak danych oznacz jako niepewność, a nie domniemany fakt.','Kilka spójnych pól wystarczy do porównania źródła, wariantu i pytań.'],
+      ['Opisowe frazy ułatwiają sprawdzenie cech w aktualnej ofercie.','Jeśli synonim daje nieistotne wyniki, usuń go lub doprecyzuj.','Różne kategorie wymagają różnych kryteriów porównania.','Przydatny wynik może podpowiedzieć kolejne określenia do wyszukiwania.'],
+      ['Oddziel materiał opisany przez sprzedawcę od tego, co rzeczywiście widać.','Atrakcyjne zdjęcie nie uzupełnia brakujących danych.','Widoczny szew nie jest sam w sobie dowodem trwałości.','Lepszy kandydat może mieć po prostu bardziej przejrzystą ofertę.'],
+      ['Ogólne wskazówki nie zastępują sprawdzenia konkretnej oferty.','Ustal, jaka różnica skłoni Cię do zadania pytania.','Ważne warunki sprawdzaj w aktualnych informacjach lub u obsługi.','Początkowe notatki pomagają później rozpoznać rozbieżność.'],
+      ['Jeśli nie pamiętasz powodu wyboru, uzupełnij notatkę.','Porównaj kilka kandydatów według tych samych wymagań.','Zapisanie niepewności pozwala uwzględnić ją w decyzji.','Liczba linków jest mniej istotna niż sposób ich oceny.']
+    ],
+    qc:[
+      ['Usługi i warunki mogą się zmieniać, więc sprawdź je przy zamówieniu.','Zdjęcia nie dowodzą pełnego składu, trwałości ani wyniku dostawy.','Odzież, buty i akcesoria wymagają różnych kontroli.','Przygotuj pytania, zanim ocenisz fotografie.'],
+      ['Zapisz nazwę koloru, rozmiar i wybrany wariant razem.','Określenie „drugi niebieski” może być niejednoznaczne po zmianie kolejności.','Brakujące informacje oznacz jako pytanie.','Ustal, czy dana wada lub inny rozmiar zmieni decyzję.'],
+      ['Przy ubraniu sprawdź widoczne plamy i szwy, a przy butach także parę i podeszwy.','Widoczność elementu elektronicznego nie potwierdza jego działania.','Nadaj pierwszeństwo cechom istotnym dla Twojej decyzji.','Porównuj zdjęcia z zapisanym zamówieniem, nie tylko z pamięcią.'],
+      ['Zachowaj dostępną tabelę rozmiarów lub zapisz, że jej nie znaleziono.','Oddziel nazwę koloru w ofercie od obrazu na ekranie.','Oznaczenie produktu może pomóc rozróżnić podobne warianty.','Jeśli szczegół jest nieczytelny, sformułuj konkretne pytanie.'],
+      ['Sprawdź bieżące możliwości kontaktu i zwrotu dla etapu zamówienia.','Poproś o wyjaśnienie konkretnego wymiaru lub elementu.','Ogólna pozytywna ocena nie wyjaśnia różnicy w wariancie.','Notatki pomagają wskazać źródło niepewności.'],
+      ['Zapisz powód kontynuowania lub kwestię wymagającą wyjaśnienia.','Data umieszcza obserwację w czasie, nie tworząc gwarancji.','Kontrola wizualna nie zastępuje aktualnych warunków.','Celem jest świadoma decyzja, a nie obietnica pełnej pewności.']
+    ],
+    shipping:[
+      ['Dostępność trasy i warunki sprawdzaj dla konkretnej przesyłki.','Nie zakładaj jednakowych cen, terminów ani zasad dla wszystkich krajów.','Zawartość i miejsce dostawy wpływają na porównanie opcji.','Zapisz źródło informacji oraz datę sprawdzenia.'],
+      ['Masa i wymiary paczki mogą mieć znaczenie dla wyceny.','Sprawdź, czy podano ograniczenia dotyczące zawartości.','Dane szacunkowe i ostateczna oferta mogą się różnić.','Nie traktuj przykładowej kwoty jako gwarantowanej ceny.'],
+      ['Porównuj usługi dostępne dla tego samego miejsca i zawartości.','Zwróć uwagę na sposób śledzenia i ograniczenia usługi.','Termin szacowany nie jest obietnicą dostarczenia.','Pytania o brakujące dane wyjaśnij przed wyborem.'],
+      ['Sprawdź bieżące obowiązki celne i podatkowe dla miejsca dostawy.','Zasady deklaracji zależą od sytuacji i właściwych przepisów.','Nie zakładaj automatycznego zwolnienia z opłat.','Zachowaj informacje potrzebne do prawidłowego zgłoszenia.'],
+      ['Zapisz, dlaczego wybrana opcja odpowiada Twoim potrzebom.','Przy zmianie zawartości lub adresu ponownie sprawdź porównanie.','Problem wykryty podczas kontroli może zmienić zawartość paczki.','Ostateczne warunki potwierdź w aktualnym podsumowaniu.'],
+      ['Dodatkowe usługi magazynowe sprawdź osobno dla zamówienia.','Zanotuj daty i pytania bez obiecywania określonego wyniku.','Oddziel potwierdzone informacje od własnych preferencji.','Nieznane warunki oznacz jako wymagające sprawdzenia.']
+    ]
+  };
+  const polishSpreadsheetSections=[
+    ['Zacznij od decyzji',[
+      'Arkusz jest przede wszystkim listą. Przed przeglądaniem wyników określ pytanie, na przykład ciemna bluza o konkretnym kroju i akceptowalnej cenie.',
+      'Zapisz kategorię, zastosowanie i cechy, które wykluczyłyby produkt. Przy butach ważne mogą być odniesienie do rozmiaru i dokładny kolor.',
+      'Lista pomaga znaleźć terminy i kategorie, ale nie potwierdza bieżącego stanu ani późniejszej zgodności z oczekiwaniami. To pytania do konkretnej oferty.',
+      'Zapisz, czego szukasz, jakiego dowodu potrzebujesz i kiedy zakończysz porównanie. Dzięki temu ocenisz kandydatów według tych samych wymagań.'
+    ]],
+    ['Utwórz zapis, do którego wrócisz',[
+      'Zachowaj link źródłowy, nazwę, kategorię, wariant i datę sprawdzenia. Dopisz krótko, dlaczego produkt trafił na listę.',
+      'Nazwa może być niejasna lub powtarzana. Wybrana opcja, opis rozmiaru i koloru oraz widoczne wymiary nadają jej kontekst.',
+      'Brakujące informacje oznacz jako „nie pokazano podczas sprawdzania”. Deklaracja sprzedawcy pozostaje deklaracją, dopóki nie zostanie potwierdzona.',
+      'Ogranicz zapis do danych potrzebnych do decyzji. Ma ułatwiać porównanie, a nie tworzyć drugie badanie.'
+    ]],
+    ['Szukaj za pomocą sprawdzalnych określeń',[
+      'Zacznij od kategorii i dodaj cechę materiału, kroju lub koloru. „Bluza z zamkiem” jest łatwiejsza do sprawdzenia niż „najlepsza bluza”.',
+      'Próbuj synonimów osobno i zapisuj, które dają trafne wyniki. Usuwaj określenia prowadzące głównie do niepowiązanych produktów.',
+      'Zacznij od najbliższej kategorii i w razie potrzeby rozszerz wyszukiwanie. Różne rodzaje produktów często wymagają różnych dowodów.',
+      'Wykorzystaj trafne określenia z dobrych wyników w kolejnym wyszukiwaniu. Celem jest lepszy opis potrzeby, a nie bezrefleksyjne kopiowanie sprzedawcy.'
+    ]],
+    ['Porównuj dowody zamiast wrażeń',[
+      'Zadaj każdemu kandydatowi te same pytania: czy wariant jest rozpoznawalny, czy jest odniesienie do rozmiaru i czy kolor odróżnia opcje?',
+      'Oddziel osobiste upodobanie od sprawdzalnej informacji. Atrakcyjne zdjęcie może uzasadnić zapisanie produktu, ale nie zastępuje jasnych opcji ani wymiarów.',
+      'Opisuj to, co widać. Zdjęcie może pokazać szew, ale nie dowodzi gramatury materiału, trwałości ani autentyczności.',
+      'Przy podobnych produktach porównaj także ryzyko niejasnych informacji. Jednoznaczna opcja i użyteczna tabela rozmiarów mogą przesądzić o wyborze.'
+    ]],
+    ['Korzystaj z informacji platformy w podanym zakresie',[
+      'Strona główna LoloBuy sprawdzona na potrzeby poradnika opisuje kontrolę wad, rozmiaru, koloru i innych szczegółów po przyjęciu do magazynu. Nie odpowiada to automatycznie na każde pytanie o produkt.',
+      'Przygotuj konkretną listę: rozmiar, widoczny kolor i szwy odzieży; para, oznaczenie rozmiaru i widoczny stan butów.',
+      'Nie zmieniaj ogólnej kontroli w gwarancję autentyczności, materiału, dopasowania, dostawy lub zwrotu pieniędzy. Przed płatnością sprawdź aktualne warunki.',
+      'Kontrola magazynowa uzupełnia staranny wybór i czytelny zapis. Nie zastępuje ich i nie rozwiązuje każdego pytania.'
+    ]],
+    ['Wiedz, kiedy zakończyć poszukiwania',[
+      'Badanie jest gotowe do kolejnego kroku, gdy potrafisz wyjaśnić wybór, dokładną opcję, najważniejsze dowody i pozostałe niewiadome.',
+      'Ustal rozsądny limit, na przykład liczbę porównywanych produktów. Dalsze szukanie niewiele pomaga, jeśli kryteria już się nie zmieniają.',
+      'Ponownie sprawdź link źródłowy, wariant, odniesienie do rozmiaru, kolor i datę. Świadomie zapisz zaakceptowane niepewności.',
+      'Następnie otwórz odpowiedni wpis w bazie i sprawdź aktualne dane. Decyzja zakupowa zależy od faktycznie widocznej oferty.'
+    ]]
+  ];
+  const swedishArticleDetails={
+    spreadsheet:[
+      ['Ett sökresultat är en startpunkt, inte ett bevis på att varan passar.','Skriv ned vilka krav som kan utesluta en vara trots en tilltalande bild.','Kontrollera aktuell annons och tillgänglig variant före beslutet.','En skjorta kan till exempel kräva kontroll av färg och storleksmärkning.'],
+      ['En egen motivering gör valet lättare att följa upp.','Notera vilken bild eller uppgift som gjorde alternativet intressant.','Markera saknade uppgifter som osäkra i stället för att anta ett svar.','Några konsekventa fält räcker för källa, variant och frågor.'],
+      ['Beskrivande sökord ger egenskaper att kontrollera i annonsen.','Ta bort eller precisera synonymer som mest ger irrelevanta resultat.','Olika produktkategorier behöver olika jämförelsekriterier.','Ett relevant resultat kan ge ord för att hitta liknande alternativ.'],
+      ['Skilj säljarens materialbeskrivning från det som faktiskt syns.','En attraktiv bild ersätter inte saknad information.','En synlig söm bevisar inte i sig hur hållbar varan är.','Ett alternativ kan vara bättre dokumenterat trots liknande bilder.'],
+      ['Allmän vägledning ersätter inte kontroll av den enskilda annonsen.','Bestäm vilken skillnad som skulle få dig att ställa en fråga.','Kontrollera viktiga villkor i aktuell information eller med supporten.','Tidiga anteckningar gör det lättare att upptäcka en avvikelse senare.'],
+      ['Komplettera anteckningen om du inte kan förklara ditt val.','Jämför några kandidater mot samma krav.','En noterad osäkerhet kan vägas in i beslutet.','Hur länkarna bedöms är viktigare än hur många de är.']
+    ],
+    qc:[
+      ['Tjänster och villkor kan ändras, så kontrollera dem vid beställningen.','Bilder bevisar inte fullständig materialsammansättning, hållbarhet eller leverans.','Kläder, skor och tillbehör kräver olika kontroller.','Förbered dina frågor innan du granskar bilderna.'],
+      ['Spara färgnamn, storlek och vald variant tillsammans.','Beskrivningen ”den andra blå” kan bli oklar om ordningen ändras.','Markera saknade uppgifter som frågor.','Avgör om en viss defekt eller annan storlek skulle ändra ditt beslut.'],
+      ['Kontrollera synliga fläckar och sömmar på kläder samt par och sulor på skor.','Synliga delar på en elektronisk vara bevisar inte att den fungerar.','Prioritera de egenskaper som faktiskt påverkar ditt beslut.','Jämför bilderna med den sparade beställningen, inte bara minnet.'],
+      ['Spara tillgänglig storlekstabell eller notera att den saknades.','Skilj annonsens färgnamn från hur färgen ser ut på skärmen.','En produktmärkning kan hjälpa dig skilja liknande varianter åt.','Formulera en konkret fråga om en detalj inte går att läsa.'],
+      ['Kontrollera aktuella kontakt- och returvillkor för beställningens skede.','Fråga om ett visst mått eller en viss del.','Ett allmänt positivt omdöme förklarar inte en variant som skiljer sig.','Anteckningar hjälper dig hitta orsaken till osäkerheten.'],
+      ['Notera varför du går vidare eller vilken fråga som återstår.','Ett datum placerar observationen i tiden utan att skapa en garanti.','En visuell kontroll ersätter inte aktuella villkor.','Målet är ett välgrundat beslut, inte en påhittad säkerhet.']
+    ],
+    shipping:[
+      ['Kontrollera tillgängliga fraktalternativ och villkor för det aktuella paketet.','Anta inte att pris, leveranstid eller regler är lika för alla länder.','Innehåll och destination påverkar vilka alternativ som kan jämföras.','Spara källan och datumet för kontrollen.'],
+      ['Paketets vikt och mått kan påverka prisberäkningen.','Kontrollera eventuella begränsningar för innehållet.','En uppskattning kan skilja sig från det slutliga erbjudandet.','Behandla inte ett exempelpris som en garanterad kostnad.'],
+      ['Jämför tjänster som är tillgängliga för samma destination och innehåll.','Kontrollera spårning och eventuella begränsningar.','En uppskattad leveranstid är inget löfte om leverans.','Red ut saknade uppgifter innan du väljer.'],
+      ['Kontrollera aktuella tull- och skatteregler för destinationen.','Deklarationskraven beror på situationen och tillämpliga regler.','Anta inte att en försändelse automatiskt är avgiftsfri.','Spara uppgifter som behövs för en korrekt deklaration.'],
+      ['Anteckna varför alternativet passar dina behov.','Jämför på nytt om innehåll eller adress ändras.','Ett problem vid kvalitetskontrollen kan ändra paketets innehåll.','Bekräfta de slutliga villkoren i den aktuella sammanställningen.'],
+      ['Kontrollera eventuella lagertjänster separat för beställningen.','Anteckna datum och obesvarade frågor utan att lova ett visst resultat.','Skilj bekräftade uppgifter från personliga önskemål.','Markera okända villkor som sådant som behöver kontrolleras.']
+    ]
+  };
+  const swedishSpreadsheetSections=[
+    ['Börja med ett beslut',[
+      'Ett spreadsheet är först en lista. Definiera frågan innan du bläddrar: exempelvis en mörk hoodie med viss passform och en rimlig budget.',
+      'Notera kategori, användning och de egenskaper som skulle få dig att välja bort en vara. För skor kan storleksreferens och exakt färg vara viktiga.',
+      'Listan hjälper dig att hitta ord och kategorier men bekräftar inte aktuellt lager eller framtida överensstämmelse med dina förväntningar. Det gäller den konkreta annonsen.',
+      'Skriv vad du söker, vilket underlag du behöver och när du slutar jämföra. Då kan kandidater bedömas efter samma krav.'
+    ]],
+    ['Skapa en post som går att hitta igen',[
+      'Spara källänk, namn, kategori, variant och granskningsdatum. Lägg kort till varför varan hamnade på listan.',
+      'Ett namn kan vara vagt eller återanvändas. Valt alternativ, storleks- och färgtext och synliga mått ger sammanhang.',
+      'Markera saknade uppgifter som ”visades inte vid granskning”. Ett säljarpåstående förblir ett påstående tills det har bekräftats.',
+      'Begränsa posten till det som hjälper beslutet. Den ska förenkla jämförelsen, inte bli ett andra forskningsprojekt.'
+    ]],
+    ['Sök med kontrollerbara ord',[
+      'Börja med kategorin och lägg till en egenskap för material, modell eller färg. ”Hoodie med dragkedja” går lättare att kontrollera än ”bästa hoodie”.',
+      'Prova synonymer var för sig och notera vilka som ger relevanta resultat. Ta bort ord som mest ger orelaterade träffar.',
+      'Börja i närmaste kategori och bredda vid behov. Olika produkttyper kräver ofta olika underlag.',
+      'Använd relevanta ord från bra träffar i en andra sökning. Målet är att beskriva behovet bättre, inte att okritiskt kopiera säljaren.'
+    ]],
+    ['Jämför underlag i stället för intryck',[
+      'Ställ samma frågor för varje kandidat: går varianten att identifiera, finns en storleksreferens och skiljer färgen alternativen åt?',
+      'Skilj personlig smak från verifierbar information. En tilltalande bild kan motivera en sparad träff men ersätter inte tydliga alternativ eller mått.',
+      'Beskriv det som syns. En bild kan visa en söm men bevisar inte tygvikt, hållbarhet eller äkthet.',
+      'För liknande kandidater jämför du även risken med oklar information. Ett tydligt alternativ och en användbar storlekstabell kan avgöra.'
+    ]],
+    ['Använd plattformsinformation inom dess omfattning',[
+      'LoloBuys startsida som granskats för guiden beskriver kontroll vid ankomst av fel, storlek, färg och andra detaljer. Det besvarar inte automatiskt alla frågor om en produkt.',
+      'Gör en konkret lista: storlek, synlig färg och sömmar för kläder; paret, storleksmärkning och synligt skick för skor.',
+      'Gör inte en allmän inspektion till garanti för äkthet, material, passform, leverans eller återbetalning. Kontrollera aktuella villkor före betalning.',
+      'Lagerkontrollen kompletterar ett noggrant val och en tydlig post. Den ersätter dem inte och löser inte varje öppen fråga.'
+    ]],
+    ['Vet när sökningen är klar',[
+      'Researchen är redo för nästa steg när du kan förklara kandidaten, det exakta alternativet, avgörande underlag och återstående osäkerhet.',
+      'Sätt en rimlig gräns, till exempel hur många kandidater du jämför. Fortsatt sökning hjälper föga om kriterierna inte längre ändras.',
+      'Kontrollera källänk, variant, storleksreferens, färgtext och datum en sista gång. Notera medvetet vilken osäkerhet du accepterar.',
+      'Öppna därefter rätt post i databasen och kontrollera aktuella uppgifter igen. Köpbeslutet beror på det erbjudande som faktiskt visas.'
+    ]]
+  ];
+  const portugueseSpreadsheetSections=[
+    ['Começar por uma decisão',[
+      'Uma folha é antes de mais uma lista. Antes de percorrer resultados, defina a pergunta: por exemplo, uma camisola escura, um corte específico e um orçamento aceitável.',
+      'Registe categoria, utilização e características que levariam a excluir um artigo. No calçado podem ser a referência de tamanho e a cor exata.',
+      'A lista ajuda a descobrir termos e categorias, mas não confirma disponibilidade atual nem correspondência futura às suas expectativas. Essas questões pertencem ao anúncio concreto.',
+      'Escreva o que procura, que prova necessita e quando deixará de comparar. Assim poderá avaliar candidatos pelos mesmos requisitos.'
+    ]],
+    ['Criar um registo que possa recuperar',[
+      'Guarde ligação de origem, nome, categoria, variante e data de verificação. Acrescente brevemente por que o artigo entrou na seleção.',
+      'Um nome pode ser vago ou repetido. A opção escolhida, os textos de tamanho e cor e as medidas visíveis fornecem contexto.',
+      'Assinale dados ausentes como «não apresentados na verificação». Uma afirmação do vendedor continua a ser uma afirmação até ser confirmada.',
+      'Limite o registo ao que ajuda a decidir. Deve facilitar a comparação e não tornar-se uma segunda pesquisa.'
+    ]],
+    ['Pesquisar com termos verificáveis',[
+      'Comece pela categoria e acrescente uma característica de material, corte ou cor. «Camisola com fecho» é mais verificável do que «melhor camisola».',
+      'Experimente sinónimos separadamente e registe quais produzem resultados pertinentes. Retire termos que tragam sobretudo resultados irrelevantes.',
+      'Comece na categoria mais próxima e alargue quando necessário. Tipos de produto diferentes requerem frequentemente provas diferentes.',
+      'Use termos pertinentes dos melhores resultados numa segunda pesquisa. O objetivo é descrever melhor a necessidade, não copiar cegamente o vendedor.'
+    ]],
+    ['Comparar provas em vez de impressões',[
+      'Faça as mesmas perguntas para cada candidato: a variante é identificável, existe referência de tamanho e a cor distingue as opções?',
+      'Separe preferência pessoal de dado verificável. Uma imagem atraente pode justificar guardar um resultado, mas não substitui opções claras nem medidas.',
+      'Descreva o que é visível. Uma fotografia pode mostrar uma costura, mas não prova peso do tecido, durabilidade ou autenticidade.',
+      'Entre candidatos semelhantes, compare também o risco de informação ambígua. Uma opção bem identificada e uma tabela de tamanhos utilizável podem ser decisivas.'
+    ]],
+    ['Usar a informação da plataforma no seu âmbito',[
+      'A página inicial da LoloBuy analisada para este guia descreve controlo à chegada de defeitos, tamanho, cor e outros detalhes. Isso não responde automaticamente a todas as questões sobre um produto.',
+      'Prepare uma lista específica: tamanho, cor visível e costuras para roupa; par, indicação de tamanho e estado visível para calçado.',
+      'Não transforme uma inspeção geral em garantia de autenticidade, material, ajuste, entrega ou reembolso. Verifique as condições atuais antes de pagar.',
+      'O controlo no armazém complementa uma escolha cuidadosa e um registo claro. Não os substitui nem resolve todas as dúvidas.'
+    ]],
+    ['Saber quando terminar a pesquisa',[
+      'A pesquisa está pronta para avançar quando consegue explicar o candidato, a opção exata, as provas decisivas e as dúvidas restantes.',
+      'Defina um limite razoável, por exemplo o número de candidatos a comparar. Continuar a pesquisar ajuda pouco se já não altera os critérios.',
+      'Volte a verificar ligação original, variante, referência de tamanho, cor e data. Registe conscientemente as incertezas aceites.',
+      'Abra depois a ficha correspondente na base e confirme novamente os dados atuais. A decisão depende da oferta efetivamente visível.'
+    ]]
+  ];
+  const dutchSpreadsheetSections=[
+    ['Begin met een beslissing',[
+      'Een spreadsheet is eerst een lijst. Bepaal vóór het bladeren de vraag: bijvoorbeeld een donkere hoodie met een bepaalde pasvorm en een aanvaardbaar budget.',
+      'Noteer categorie, gebruik en kenmerken waardoor u een artikel zou afwijzen. Bij schoenen kunnen maatverwijzing en exacte kleur belangrijk zijn.',
+      'De lijst helpt termen en categorieën vinden, maar bevestigt geen actuele voorraad of toekomstige overeenstemming met uw verwachtingen. Dat hoort bij de concrete aanbieding.',
+      'Schrijf op wat u zoekt, welk bewijs nodig is en wanneer u stopt met vergelijken. Zo beoordeelt u kandidaten volgens dezelfde eisen.'
+    ]],
+    ['Maak een terugvindbaar record',[
+      'Bewaar bronlink, naam, categorie, variant en controledatum. Voeg kort toe waarom het artikel op de shortlist staat.',
+      'Een naam kan vaag zijn of vaker voorkomen. Gekozen optie, maat- en kleurtekst en zichtbare afmetingen geven context.',
+      'Markeer ontbrekende gegevens als «niet getoond bij controle». Een uitspraak van de verkoper blijft een uitspraak totdat deze is bevestigd.',
+      'Beperk het record tot informatie die helpt beslissen. Het moet de vergelijking eenvoudiger maken, geen tweede onderzoek worden.'
+    ]],
+    ['Zoek met controleerbare termen',[
+      'Begin met de categorie en voeg een kenmerk van materiaal, model of kleur toe. «Hoodie met rits» is beter te controleren dan «beste hoodie».',
+      'Probeer synoniemen afzonderlijk en noteer welke relevante resultaten opleveren. Verwijder termen die vooral ongerelateerde resultaten geven.',
+      'Begin in de dichtstbijzijnde categorie en verbreed indien nodig. Verschillende producttypen vragen vaak om verschillend bewijs.',
+      'Gebruik bruikbare termen uit sterke resultaten voor een tweede zoekopdracht. Het doel is uw behoefte beter beschrijven, niet verkoperstekst blind kopiëren.'
+    ]],
+    ['Vergelijk bewijs in plaats van indrukken',[
+      'Stel bij elke kandidaat dezelfde vragen: is de variant herkenbaar, is er een maatverwijzing en onderscheidt de kleur de opties voldoende?',
+      'Scheid persoonlijke voorkeur van controleerbare gegevens. Een aantrekkelijke foto kan een reden zijn om iets te bewaren, maar vervangt geen duidelijke opties of maten.',
+      'Beschrijf wat zichtbaar is. Een foto kan een naad tonen, maar bewijst geen stofgewicht, duurzaamheid of echtheid.',
+      'Vergelijk bij vergelijkbare kandidaten ook het risico van onduidelijke informatie. Een helder benoemde optie en bruikbare maattabel kunnen het verschil maken.'
+    ]],
+    ['Gebruik platforminformatie binnen de aangegeven grenzen',[
+      'De voor deze gids bekeken LoloBuy-homepage beschrijft controle bij aankomst op gebreken, maat, kleur en andere details. Dat beantwoordt niet automatisch elke productvraag.',
+      'Maak een specifieke lijst: maat, zichtbare kleur en naden voor kleding; paar, maatmarkering en zichtbare staat voor schoenen.',
+      'Maak van een algemene inspectie geen garantie voor echtheid, materiaal, pasvorm, levering of terugbetaling. Controleer actuele voorwaarden vóór betaling.',
+      'Magazijncontrole vult een zorgvuldige keuze en een duidelijk record aan. Ze vervangt die niet en lost niet elke open vraag op.'
+    ]],
+    ['Weet wanneer het onderzoek klaar is',[
+      'Het onderzoek is klaar voor de volgende stap wanneer u kandidaat, exacte optie, doorslaggevend bewijs en resterende onzekerheid kunt uitleggen.',
+      'Stel een redelijke grens, bijvoorbeeld hoeveel kandidaten u vergelijkt. Verder zoeken helpt weinig wanneer uw criteria niet meer veranderen.',
+      'Controleer bronlink, variant, maatverwijzing, kleurtekst en datum nog één keer. Noteer bewust welke onzekerheid u accepteert.',
+      'Open daarna het passende record in de database en controleer actuele gegevens opnieuw. De aankoopbeslissing hangt af van de daadwerkelijk zichtbare aanbieding.'
+    ]]
+  ];
+  const spanishSpreadsheetSections=[
+    ['Empezar con una decisión',[
+      'Una hoja es primero una lista. Antes de recorrer resultados, defina la pregunta: por ejemplo, una sudadera oscura con un ajuste concreto y un presupuesto aceptable.',
+      'Anote categoría, uso y características que le harían descartar un artículo. En calzado pueden ser la referencia de talla y el color exacto.',
+      'La lista ayuda a descubrir términos y categorías, pero no confirma las existencias actuales ni que el producto final cumpla sus expectativas. Esas cuestiones pertenecen al anuncio concreto.',
+      'Escriba qué busca, qué evidencia necesita y cuándo dejará de comparar. Así podrá evaluar candidatos con los mismos requisitos.'
+    ]],
+    ['Crear un registro que pueda recuperar',[
+      'Guarde enlace de origen, nombre, categoría, variante y fecha de revisión. Añada brevemente por qué el artículo entró en la selección.',
+      'Un nombre puede ser impreciso o repetirse. La opción elegida, el texto de talla y color y las medidas visibles aportan contexto.',
+      'Marque los datos ausentes como «no mostrados al revisar». Una afirmación del vendedor sigue siendo una afirmación hasta que se confirme.',
+      'Limite el registro a la información útil para decidir. Debe facilitar la comparación, no convertirse en otra investigación.'
+    ]],
+    ['Buscar con términos comprobables',[
+      'Empiece por la categoría y añada un rasgo de material, corte o color. «Sudadera con cremallera» es más comprobable que «la mejor sudadera».',
+      'Pruebe sinónimos por separado y anote cuáles producen resultados pertinentes. Retire términos que traigan sobre todo resultados ajenos.',
+      'Empiece por la categoría más cercana y amplíe si hace falta. Distintos tipos de producto suelen requerir pruebas distintas.',
+      'Use términos pertinentes de los mejores resultados para una segunda búsqueda. El objetivo es describir mejor su necesidad, no copiar ciegamente al vendedor.'
+    ]],
+    ['Comparar evidencias y no impresiones',[
+      'Haga las mismas preguntas para cada candidato: ¿se identifica la variante?, ¿hay referencia de talla? y ¿el color se distingue de otras opciones?',
+      'Separe preferencia personal y dato verificable. Una imagen atractiva puede justificar guardar un resultado, pero no sustituye opciones claras ni medidas.',
+      'Describa lo que se ve. Una imagen puede mostrar una costura, pero no prueba el peso de la tela, su durabilidad ni su autenticidad.',
+      'Entre candidatos parecidos, compare también el riesgo de datos ambiguos. Una opción bien nombrada y una tabla de tallas útil pueden marcar la diferencia.'
+    ]],
+    ['Usar la información de la plataforma dentro de su alcance',[
+      'La página inicial de LoloBuy revisada para esta guía describe un control al llegar al almacén de defectos, talla, color y otros detalles. Eso no responde automáticamente a todas las preguntas sobre un producto.',
+      'Prepare una lista específica: talla, color visible y costuras para ropa; el par, la marca de talla y el estado visible para calzado.',
+      'No convierta una inspección general en una garantía de autenticidad, material, ajuste, entrega o reembolso. Revise las condiciones actuales antes de pagar.',
+      'El control en almacén complementa una selección cuidadosa y un registro claro. No los sustituye ni resuelve todas las dudas pendientes.'
+    ]],
+    ['Saber cuándo terminar la búsqueda',[
+      'La investigación está lista para avanzar cuando puede explicar el candidato, la opción exacta, las pruebas decisivas y las dudas restantes.',
+      'Fije un límite razonable, por ejemplo un número de candidatos para comparar. Seguir buscando ayuda poco si ya no cambia sus criterios.',
+      'Revise una última vez enlace original, variante, referencia de talla, color y fecha. Anote conscientemente las incertidumbres aceptadas.',
+      'Abra después la ficha correspondiente en la base y compruebe de nuevo los datos actuales. La decisión depende de la oferta que realmente vea.'
+    ]]
+  ];
+  const italianSpreadsheetSections=[
+    ['Partire da una decisione',[
+      'Un foglio è anzitutto una lista. Prima di scorrere i risultati definisci la domanda: per esempio una felpa scura, una vestibilità precisa e un budget accettabile.',
+      'Annota categoria, utilizzo e caratteristiche che ti farebbero escludere un articolo. Per le scarpe possono essere riferimento di taglia e colore esatto.',
+      'La lista aiuta a trovare termini e categorie, ma non conferma disponibilità attuale né corrispondenza futura alle tue aspettative. Queste domande riguardano l’annuncio specifico.',
+      'Scrivi cosa cerchi, quale prova ti serve e quando fermerai il confronto. Potrai valutare i candidati con gli stessi requisiti.'
+    ]],
+    ['Creare una scheda ritrovabile',[
+      'Conserva link di origine, nome, categoria, variante e data di verifica. Aggiungi brevemente perché l’articolo è nella selezione.',
+      'Un nome può essere vago o ripetuto. Opzione scelta, diciture di taglia e colore e misure visibili forniscono il contesto necessario.',
+      'Segnala i dati mancanti come «non mostrati alla verifica». Un’affermazione del venditore resta tale finché non viene confermata.',
+      'Limita la scheda agli elementi utili per decidere. Deve facilitare il confronto, non diventare una seconda ricerca.'
+    ]],
+    ['Cercare con termini verificabili',[
+      'Inizia dalla categoria e aggiungi un tratto di materiale, taglio o colore. «Felpa con zip» è più verificabile di «migliore felpa».',
+      'Prova i sinonimi separatamente e annota quelli che producono risultati pertinenti. Elimina i termini che portano soprattutto risultati estranei.',
+      'Parti dalla categoria più vicina e amplia se necessario. Tipi di prodotto diversi richiedono spesso prove diverse.',
+      'Usa termini pertinenti dei risultati migliori per una seconda ricerca. Lo scopo è descrivere meglio il bisogno, non copiare ciecamente il venditore.'
+    ]],
+    ['Confrontare prove invece di impressioni',[
+      'Poni le stesse domande a ogni candidato: la variante è identificabile, esiste un riferimento di taglia e il colore distingue le opzioni?',
+      'Separa preferenza personale e dato verificabile. Una foto attraente può giustificare una selezione, ma non sostituisce opzioni chiare o misure.',
+      'Descrivi ciò che è visibile. Una foto può mostrare una cucitura, ma non prova peso del tessuto, durata o autenticità.',
+      'Fra candidati simili confronta anche il rischio di informazioni ambigue. Un’opzione ben denominata e una tabella taglie utilizzabile possono fare la differenza.'
+    ]],
+    ['Usare le informazioni della piattaforma nel loro ambito',[
+      'La pagina iniziale LoloBuy esaminata per questa guida descrive un controllo all’arrivo su difetti, taglia, colore e altri dettagli. Non risponde automaticamente a ogni domanda sul prodotto.',
+      'Prepara una lista specifica: taglia, colore visibile e cuciture per un capo; paio, indicazione di taglia e stato visibile per le scarpe.',
+      'Non trasformare un’ispezione generale in garanzia di autenticità, materiale, vestibilità, consegna o rimborso. Verifica le condizioni attuali prima di pagare.',
+      'Il controllo in magazzino integra una scelta accurata e una scheda chiara. Non le sostituisce né risolve ogni domanda aperta.'
+    ]],
+    ['Sapere quando terminare la ricerca',[
+      'La ricerca è pronta per il passo successivo quando sai spiegare candidato, opzione esatta, prove decisive e incertezze residue.',
+      'Stabilisci un limite ragionevole, per esempio il numero di candidati da confrontare. Cercare ancora serve poco se non cambia più i criteri.',
+      'Ricontrolla link originale, variante, riferimento di taglia, colore e data. Annota consapevolmente le incertezze accettate.',
+      'Apri quindi la scheda pertinente nel database e verifica ancora i dati attuali. La decisione d’acquisto dipende dall’offerta effettivamente visibile.'
+    ]]
+  ];
+  const germanSpreadsheetSections=[
+    ['Mit einer Entscheidung beginnen',[
+      'Ein Spreadsheet ist zunächst eine Liste. Legen Sie vor dem Durchsehen fest, welche Frage Sie beantworten möchten: etwa ein dunkler Hoodie mit bestimmter Passform und einem vertretbaren Budget.',
+      'Notieren Sie Kategorie, Einsatzzweck und die Eigenschaften, bei denen Sie einen Artikel ausschließen würden. Bei Schuhen können dies Größenreferenz und konkrete Farbvariante sein.',
+      'Die Liste hilft bei Begriffen und Kategorien, bestätigt aber weder aktuellen Bestand noch die spätere Übereinstimmung mit Ihren Erwartungen. Diese Fragen gehören zum konkreten Angebot.',
+      'Halten Sie kurz fest, was Sie suchen, welchen Nachweis Sie benötigen und wann Sie abbrechen. So werden Kandidaten anhand derselben Anforderungen vergleichbar.'
+    ]],
+    ['Einen nachvollziehbaren Datensatz anlegen',[
+      'Speichern Sie Quellenlink, Produktname, Kategorie, gewählte Variante und Prüfdatum. Ergänzen Sie knapp, warum der Artikel auf Ihrer Merkliste steht.',
+      'Ein Produktname allein kann ungenau oder mehrfach verwendet sein. Größen- und Farbfeld, sichtbare Maße und die genaue Option geben dem Namen den nötigen Kontext.',
+      'Kennzeichnen Sie fehlende Angaben ausdrücklich als „bei Prüfung nicht gezeigt“. Eine Verkäuferbehauptung bleibt eine Behauptung, solange sie nicht unabhängig bestätigt ist.',
+      'Beschränken Sie die Notiz auf entscheidungsrelevante Informationen. Sie soll das spätere Vergleichen erleichtern und keine zweite Recherche erzeugen.'
+    ]],
+    ['Mit überprüfbaren Begriffen suchen',[
+      'Beginnen Sie mit der Kategorie und ergänzen Sie ein Merkmal wie Material, Schnitt oder Farbe. „Hoodie mit Reißverschluss“ lässt sich konkreter prüfen als „bester Hoodie“.',
+      'Probieren Sie Synonyme nacheinander aus und merken Sie sich, welche relevante Treffer liefern. Entfernen Sie Begriffe, die hauptsächlich unpassende Ergebnisse erzeugen.',
+      'Starten Sie in der nächsten passenden Kategorie und erweitern Sie die Suche bei Bedarf. Unterschiedliche Produktarten benötigen oft unterschiedliche Nachweise.',
+      'Nutzen Sie passende Begriffe aus guten Treffern für eine zweite Suche. Ziel ist eine genauere Beschreibung Ihres Bedarfs, nicht das unkritische Kopieren von Verkäufertexten.'
+    ]],
+    ['Nachweise statt Eindrücke vergleichen',[
+      'Stellen Sie für jeden Kandidaten dieselben Fragen: Ist die Variante erkennbar, gibt es eine Größenreferenz und ist die Farbe ausreichend genau bezeichnet?',
+      'Trennen Sie persönliche Vorlieben von überprüfbaren Angaben. Ein attraktives Bild kann einen Treffer interessant machen, ersetzt aber keine klaren Optionen oder Maße.',
+      'Beschreiben Sie nur Sichtbares. Ein Foto kann eine Naht zeigen, belegt aber weder Stoffgewicht noch Haltbarkeit, Echtheit oder denselben Farbton bei jedem Licht.',
+      'Bei ähnlichen Kandidaten berücksichtigen Sie auch das Risiko unklarer Angaben. Eine eindeutig benannte Variante und brauchbare Größentabelle können entscheidend sein.'
+    ]],
+    ['Plattformangaben im genannten Umfang nutzen',[
+      'Die für diesen Leitfaden geprüfte LoloBuy-Startseite beschreibt eine Kontrolle eingehender Artikel auf Mängel sowie Größe, Farbe und weitere Details. Daraus folgen keine Aussagen über jede einzelne Produkteigenschaft.',
+      'Erstellen Sie für Ihren Artikel eine konkrete Liste: bei Kleidung etwa Größe, sichtbare Farbe und Nähte, bei Schuhen Paar, Größenkennzeichnung und sichtbarer Zustand.',
+      'Machen Sie aus einer allgemeinen Prüfung keine Garantie für Echtheit, Material, Passform, Lieferung oder Erstattung. Prüfen Sie aktuelle Bedingungen und klären Sie wichtige Fragen vor der Zahlung.',
+      'Die Lagerprüfung ergänzt eine sorgfältige Auswahl und einen klaren Datensatz. Sie ersetzt beides nicht und löst nicht automatisch jede offene Frage.'
+    ]],
+    ['Den richtigen Abschluss finden',[
+      'Die Recherche ist bereit für den nächsten Schritt, wenn Sie Kandidat, genaue Option, entscheidende Nachweise und verbleibende Unsicherheit erklären können.',
+      'Legen Sie eine sinnvolle Abbruchregel fest, etwa den Vergleich einer begrenzten Zahl von Kandidaten. Weiteres Suchen hilft wenig, wenn es Ihre Kriterien nicht mehr verändert.',
+      'Kontrollieren Sie Quellenlink, Variante, Größenreferenz, Farbbezeichnung und Datum ein letztes Mal. Notieren Sie bewusst akzeptierte Unsicherheit.',
+      'Öffnen Sie anschließend den passenden Datenbankeintrag und überprüfen Sie aktuelle Angaben erneut. Die Kaufentscheidung sollte auf dem tatsächlich sichtbaren Angebot beruhen.'
+    ]]
+  ];
+  const frenchSpreadsheetSections=[
+    ['Commencer par une décision',[
+      'Un tableau est d’abord une liste. Avant de parcourir les résultats, définissez la question : par exemple un sweat sombre, une coupe précise et un budget acceptable.',
+      'Notez catégorie, usage et caractéristiques qui vous feraient écarter un article. Pour des chaussures, la référence de taille et la couleur exacte peuvent être essentielles.',
+      'La liste aide à trouver des termes et des catégories, mais ne confirme ni le stock actuel ni la conformité future à vos attentes. Ces points concernent l’annonce précise.',
+      'Écrivez ce que vous cherchez, la preuve nécessaire et votre critère d’arrêt. Les candidats deviennent ainsi comparables selon les mêmes exigences.'
+    ]],
+    ['Créer une fiche retrouvable',[
+      'Conservez lien source, nom, catégorie, variante et date de vérification. Ajoutez brièvement pourquoi l’article figure dans votre sélection.',
+      'Un nom peut être vague ou utilisé plusieurs fois. Option choisie, libellés de taille et couleur et mesures visibles lui donnent le contexte nécessaire.',
+      'Signalez explicitement une donnée absente comme « non indiquée lors de la vérification ». Une affirmation du vendeur reste une affirmation tant qu’elle n’est pas confirmée.',
+      'Limitez la fiche aux éléments utiles à la décision. Elle doit faciliter la comparaison plutôt que devenir une seconde recherche.'
+    ]],
+    ['Chercher avec des termes vérifiables',[
+      'Commencez par la catégorie puis ajoutez une caractéristique de matière, coupe ou couleur. « Sweat zippé » se vérifie plus facilement que « meilleur sweat ».',
+      'Essayez les synonymes séparément et notez ceux qui donnent des résultats pertinents. Retirez les termes qui produisent surtout des résultats sans rapport.',
+      'Partez de la catégorie la plus proche et élargissez si nécessaire. Des types de produits différents demandent souvent des preuves différentes.',
+      'Utilisez les termes pertinents des meilleurs résultats pour une seconde recherche. Le but est de mieux décrire votre besoin, pas de recopier aveuglément le vendeur.'
+    ]],
+    ['Comparer les preuves plutôt que les impressions',[
+      'Posez les mêmes questions à chaque candidat : variante identifiable, référence de taille disponible et couleur suffisamment précise pour la distinguer des autres.',
+      'Séparez préférence personnelle et donnée vérifiable. Une image attirante peut justifier une sélection, mais ne remplace ni option claire ni mesure.',
+      'Décrivez ce qui est visible. Une image peut montrer une couture mais ne prouve ni le poids du tissu, ni sa durabilité, ni son authenticité.',
+      'Pour deux candidats proches, comparez aussi le risque lié aux informations ambiguës. Une option bien nommée et un tableau de tailles utilisable peuvent faire la différence.'
+    ]],
+    ['Respecter le périmètre des informations de la plateforme',[
+      'La page d’accueil de LoloBuy examinée pour ce guide décrit un contrôle à l’arrivée sur les défauts, la taille, la couleur et d’autres détails. Cela ne répond pas automatiquement à toutes les questions sur un produit.',
+      'Préparez une liste adaptée : taille, couleur visible et coutures pour un vêtement ; paire, marquage de taille et état visible pour des chaussures.',
+      'Ne transformez pas une inspection générale en garantie d’authenticité, de matière, de coupe, de livraison ou de remboursement. Vérifiez les conditions actuelles avant paiement.',
+      'Le contrôle en entrepôt complète une sélection attentive et une fiche claire. Il ne les remplace pas et ne résout pas toutes les questions ouvertes.'
+    ]],
+    ['Savoir quand terminer la recherche',[
+      'La recherche est prête pour l’étape suivante lorsque vous pouvez expliquer le candidat, l’option exacte, les preuves décisives et les incertitudes restantes.',
+      'Fixez une limite raisonnable, par exemple un nombre de candidats à comparer. Continuer à chercher aide peu si cela ne modifie plus vos critères.',
+      'Revérifiez lien source, variante, référence de taille, libellé de couleur et date. Notez consciemment les incertitudes acceptées.',
+      'Ouvrez ensuite la fiche adaptée dans la base et vérifiez à nouveau les données actuelles. La décision d’achat dépend de l’offre effectivement visible.'
+    ]]
+  ];
+  const dutchShippingSections=[
+    ['Feiten en open vragen scheiden',[
+      'Begin met controleerbare informatie. De voor deze gids bekeken verklaring op de LoloBuy-homepage betreft inspectie bij aankomst in het magazijn; zij bevestigt op zichzelf geen bestemmingen, prijzen, levertijden of douanebehandeling.',
+      'Een uitspraak over inspectie bewijst geen verzendvoorwaarden. Vermijd algemene beloften van snelle of veilige levering zonder actuele voorwaarden voor uw pakket.',
+      'Vergelijk wanneer de productkeuze vaststaat: welke artikelen en varianten gaan mee en welke kwaliteitsvragen zijn opgelost?',
+      'Noteer welke informatie uw keuze kan veranderen. Een gedocumenteerde vergelijking helpt meer dan een voorspelling zonder duidelijke basis.'
+    ]],
+    ['Het pakket vóór vergelijking beschrijven',[
+      'Noteer de artikelen en het bestemmingsland. Een grote schoenendoos, kledingstuk en klein accessoire kunnen andere vragen over verpakking en toelating oproepen.',
+      'Beschrijf wat bekend is en markeer definitief gewicht en afmetingen als onbekend zolang het pakket niet klaar is. Leid geen eindprijs af uit een oud voorbeeld van iemand anders.',
+      'Controleer actuele bestemmingen, beperkingen en diensten rechtstreeks voor uw zending. Deze gids bevestigt geen blijvende dekking van alle landen.',
+      'Voegt u een artikel toe of verwijdert u er een, werk de lijst bij en vergelijk opnieuw. Anders kunnen offertes op verschillende inhoud slaan.'
+    ]],
+    ['Dezelfde voorwaarden vergelijken',[
+      'Vergelijk voor hetzelfde pakket en dezelfde bestemming de weergegeven totaalkosten en wat inbegrepen is. Noteer beperkingen voor gewicht en afmetingen en eventuele trackinginformatie.',
+      'Beschouw de weergegeven levertijd als een schatting en bewaar datum en bereik. Een oude ervaring garandeert geen levertijd voor uw zending.',
+      'Lees bij bescherming of verzekering welke gevallen inbegrepen en uitgesloten zijn en welke voorwaarden gelden. De naam alleen bepaalt de dekking niet.',
+      'De laagste prijs is slechts één criterium. De dienst moet bij het werkelijke pakket passen; ontbrekende gegevens blijven onbekend.'
+    ]],
+    ['Douane en lokale regels apart controleren',[
+      'Belastingen, invoerrechten en beperkingen hangen af van bestemming en goederen. Raadpleeg actuele officiële informatie en controleer of invoer van de artikelen is toegestaan.',
+      'Wees voorzichtig met beloften dat een methode altijd inspectie, vertraging, belastingen of verlies voorkomt. Zij vervangen geen actuele controle.',
+      'Bewaar een duidelijke omschrijving van artikelen, varianten en aantallen. Een nauwkeurige lijst helpt de toepasselijke vereisten vinden.',
+      'Blijft een regel onduidelijk, stel uw keuze uit en zoek een bevoegd officieel antwoord. Een forumgerucht neemt de onzekerheid niet weg.'
+    ]],
+    ['De uiteindelijke keuze vastleggen',[
+      'Noteer waarom de actuele voorwaarden bij bestemming en pakket passen en of de aangegeven termijn aanvaardbaar is. Kunt u ze niet uitleggen, controleer ze opnieuw.',
+      'Bewaar datum, gekozen dienst en belangrijke voorwaarden. Een keuze op basis van één scherm maakt die informatie geen permanent platformbeleid.',
+      'Vergelijk product- en pakketlijst: zijn alle artikelen aanwezig, kloppen varianten en adres en staat er nog een kwaliteitsprobleem open?',
+      'Verandert nieuwe gecontroleerde informatie uw beoordeling, pas het plan aan. Eerder onderzoek verplicht niet tot een ongeschikte keuze.'
+    ]],
+    ['Beperkingen zichtbaar houden',[
+      'Deze gids bevestigt geen actuele tarieven, bestemmingen, termijnen of vergoedingen. Controleer die dienstvragen rechtstreeks voor uw zending vóór betaling.',
+      'Richt u op bestemming, werkelijke inhoud, getoonde opties en actuele voorwaarden. Een algemeen voorbeeld vervangt die gegevens niet.',
+      'Een spreadsheet helpt keuzes, controles, vragen en data bewaren. Het creëert zelf geen actuele garantie van de vervoerder.',
+      'Onderscheid gecontroleerde feiten, eigen behoeften en onbekende punten. Beslis wanneer u de belangrijke voorwaarden voor uw pakket begrijpt.'
+    ]]
+  ];
+  const polishShippingSections=[
+    ['Oddziel sprawdzone fakty od pytań',[
+      'Zacznij od informacji możliwych do sprawdzenia. Przeanalizowane na potrzeby poradnika stwierdzenie strony głównej LoloBuy dotyczy kontroli po przyjęciu do magazynu; samo nie potwierdza kierunków, cen, czasu ani obsługi celnej.',
+      'Informacja o kontroli nie dowodzi warunków transportu. Unikaj ogólnych obietnic szybkiej lub bezpiecznej dostawy bez aktualnych warunków dla Twojej paczki.',
+      'Porównuj, gdy wybór produktów jest stabilny: jakie artykuły i warianty trafią do paczki oraz które kwestie kontroli jakości wyjaśniono?',
+      'Zapisz, jaka informacja mogłaby zmienić decyzję. Udokumentowane porównanie jest przydatniejsze niż prognoza bez znanej podstawy.'
+    ]],
+    ['Określ paczkę przed porównaniem',[
+      'Wypisz planowane artykuły i kraj docelowy. Duże pudełko butów, ubranie i mały dodatek mogą wymagać różnych ustaleń dotyczących pakowania i dopuszczalności.',
+      'Zapisz znane dane, a ostateczną wagę i wymiary oznacz jako nieznane, jeśli paczka nie jest przygotowana. Nie wyliczaj końcowej ceny ze starego przykładu innej osoby.',
+      'Sprawdź bezpośrednio aktualne kierunki, ograniczenia i usługi dla swojej przesyłki. Poradnik nie potwierdza stałej obsługi wszystkich krajów.',
+      'Po dodaniu lub usunięciu produktu popraw listę i porównaj ponownie. W przeciwnym razie wyceny mogą dotyczyć różnej zawartości.'
+    ]],
+    ['Porównuj te same warunki',[
+      'Dla tej samej paczki i celu porównaj wyświetlony koszt całkowity oraz jego zakres. Zapisz limity wymiarów i wagi oraz informacje o śledzeniu, jeśli są dostępne.',
+      'Traktuj podany czas jako szacunek i zachowaj datę oraz przedział. Dawne doświadczenie kupującego nie gwarantuje czasu Twojej przesyłki.',
+      'Przy ochronie lub ubezpieczeniu przeczytaj przypadki objęte i wyłączone oraz wymagania. Sama nazwa usługi nie określa zakresu ochrony.',
+      'Najniższa cena jest tylko jednym kryterium. Usługa musi pasować do rzeczywistej paczki, a brakujące dane powinny pozostać oznaczone jako nieznane.'
+    ]],
+    ['Oddzielnie sprawdź cło i przepisy lokalne',[
+      'Podatki, cła i ograniczenia zależą od kraju i towarów. Sprawdź aktualne oficjalne informacje oraz dopuszczalność importu artykułów.',
+      'Ostrożnie traktuj obietnice, że metoda zawsze pozwoli uniknąć kontroli, opóźnienia, podatku lub utraty. Nie zastępują aktualnej weryfikacji.',
+      'Zachowaj czytelny opis artykułów, wariantów i liczby sztuk. Dokładna lista pomaga ustalić wymagania dla przesyłki.',
+      'Jeśli zasada pozostaje niejasna, odłóż decyzję i poszukaj odpowiedzi właściwego urzędu. Pogłoska z forum nie usuwa tej niepewności.'
+    ]],
+    ['Udokumentuj ostateczny wybór',[
+      'Zapisz, dlaczego aktualne warunki pasują do celu i paczki oraz czy podany czas jest dla Ciebie akceptowalny. Jeśli nie umiesz ich wyjaśnić, sprawdź ponownie.',
+      'Zachowaj datę, wybraną usługę i ważne warunki. Decyzja oparta na jednym ekranie nie ustanawia stałej zasady platformy.',
+      'Porównaj listy produktów i paczki: czy wszystkie artykuły są obecne, warianty i adres poprawne, a problemy jakości rozwiązane?',
+      'Jeśli nowa sprawdzona informacja zmieni ocenę, popraw plan. Czas poświęcony na poszukiwania nie zobowiązuje do niewłaściwego wyboru.'
+    ]],
+    ['Zachowaj widoczność ograniczeń',[
+      'Poradnik nie potwierdza aktualnych stawek, kierunków, terminów ani odszkodowań. Przed płatnością sprawdź je bezpośrednio dla swojej przesyłki.',
+      'Skup się na celu, rzeczywistej zawartości, wyświetlonych opcjach i aktualnych warunkach. Ogólny przykład ich nie zastępuje.',
+      'Arkusz pomaga zachować wybory, kontrole, pytania i daty. Sam nie tworzy aktualnej gwarancji przewoźnika.',
+      'Oddziel sprawdzone fakty, własne potrzeby i niewiadome. Podejmij decyzję po zrozumieniu warunków ważnych dla Twojej paczki.'
+    ]]
+  ];
+  const swedishShippingSections=[
+    ['Skilj kontrollerade fakta från öppna frågor',[
+      'Börja med verifierbar information. Uttalandet på LoloBuys startsida som granskats för guiden gäller kontroll vid ankomst till lagret; det bekräftar inte i sig destinationer, priser, tider eller tullhantering.',
+      'Ett uttalande om inspektion bevisar inte fraktvillkor. Undvik allmänna löften om snabb eller säker leverans utan aktuella villkor för ditt paket.',
+      'Jämför när produktvalet är stabilt: vilka varor och varianter ska ingå och vilka kvalitetsfrågor är lösta?',
+      'Anteckna vilken information som kan ändra beslutet. En dokumenterad jämförelse är mer användbar än en prognos utan känd grund.'
+    ]],
+    ['Beskriv paketet före jämförelsen',[
+      'Lista planerade varor och destinationsland. En stor skokartong, ett klädesplagg och en liten accessoar kan medföra olika frågor om emballage och tillåtlighet.',
+      'Beskriv det du vet och markera slutlig vikt och mått som okända om paketet inte är packat. Räkna inte fram ett slutpris från någon annans gamla exempel.',
+      'Kontrollera aktuella destinationer, begränsningar och tjänster direkt för din försändelse. Guiden bekräftar inte permanent täckning i alla länder.',
+      'Om du lägger till eller tar bort en vara, uppdatera listan och jämför igen. Annars kan offerterna avse olika innehåll.'
+    ]],
+    ['Jämför samma villkor',[
+      'För samma paket och destination jämför du visad totalkostnad och vad som ingår. Notera vikt- och storleksgränser samt eventuell spårningsinformation.',
+      'Behandla leveranstiden som en uppskattning och spara datum och intervall. En gammal köparupplevelse garanterar inte tiden för din försändelse.',
+      'Vid skydd eller försäkring läser du vilka fall som ingår eller undantas och vilka krav som gäller. Tjänstens namn definierar inte täckningen.',
+      'Lägsta pris är bara ett kriterium. Tjänsten måste passa det verkliga paketet och saknade uppgifter ska förbli markerade som okända.'
+    ]],
+    ['Kontrollera tull och lokala regler separat',[
+      'Skatter, tull och begränsningar beror på destination och varor. Läs aktuella officiella uppgifter och kontrollera att varorna får importeras.',
+      'Var försiktig med löften om att en metod alltid undviker kontroll, försening, skatt eller förlust. De ersätter inte aktuell kontroll.',
+      'Spara en tydlig beskrivning av varor, varianter och antal. En noggrann lista hjälper dig att hitta kraven för försändelsen.',
+      'Om en regel är oklar, skjut upp beslutet och sök ett behörigt officiellt svar. Ett forumrykte löser inte osäkerheten.'
+    ]],
+    ['Dokumentera det slutliga valet',[
+      'Notera varför de aktuella villkoren passar destination och paket och om den angivna tiden är acceptabel. Kan du inte förklara dem, kontrollera igen.',
+      'Spara datum, vald tjänst och viktiga villkor. Ett beslut utifrån en viss skärm fastställer ingen permanent plattformsregel.',
+      'Stäm av produkt- och paketlistor: finns alla varor med, är varianter och adress rätt och återstår någon kvalitetsfråga?',
+      'Om ny verifierad information ändrar bedömningen, justera planen. Tid som redan lagts på research tvingar dig inte att välja ett olämpligt alternativ.'
+    ]],
+    ['Behåll begränsningarna synliga',[
+      'Guiden bekräftar inte aktuella priser, destinationer, tider eller ersättningar. Kontrollera tjänstefrågorna direkt för din försändelse före betalning.',
+      'Fokusera på destination, verkligt innehåll, visade alternativ och aktuella villkor. Ett allmänt exempel ersätter inte dessa uppgifter.',
+      'Ett spreadsheet hjälper dig att spara val, kontroller, öppna frågor och datum. Det skapar inte en aktuell garanti från transportören.',
+      'Skilj verifierade fakta, egna behov och okända uppgifter åt. Besluta när du förstår de villkor som är viktiga för ditt paket.'
+    ]]
+  ];
+  const italianShippingSections=[
+    ['Separare fatti verificati e domande aperte',[
+      'Inizia dalle informazioni verificabili. La dichiarazione della pagina iniziale LoloBuy esaminata per questa guida riguarda il controllo all’arrivo in magazzino; da sola non conferma destinazioni, prezzi, tempi o trattamento doganale.',
+      'Una dichiarazione sull’ispezione non prova le condizioni di trasporto. Evita promesse generiche di consegna rapida o sicura senza condizioni attuali applicabili al tuo pacco.',
+      'Confronta quando la scelta dei prodotti è stabile: quali articoli e varianti includerai e quali dubbi sul controllo qualità sono risolti?',
+      'Annota quali informazioni potrebbero cambiare la decisione. Un confronto documentato è più utile di una previsione dalla base incerta.'
+    ]],
+    ['Definire il pacco prima del confronto',[
+      'Elenca articoli previsti e paese di destinazione. Una scatola di scarpe ingombrante, un indumento e un piccolo accessorio possono porre questioni diverse di imballaggio e ammissibilità.',
+      'Descrivi ciò che conosci e segna come incogniti peso e dimensioni finali se il pacco non è ancora preparato. Non ricavare un prezzo definitivo da un vecchio esempio altrui.',
+      'Verifica direttamente destinazioni, restrizioni e servizi attuali per la tua spedizione. Questa guida non conferma una copertura permanente di tutti i paesi.',
+      'Se aggiungi o togli un articolo, aggiorna la lista e confronta di nuovo. Altrimenti i preventivi possono riferirsi a contenuti diversi.'
+    ]],
+    ['Confrontare le stesse condizioni',[
+      'Per lo stesso pacco e la stessa destinazione confronta il costo totale mostrato e ciò che include. Annota limiti di peso o dimensioni e informazioni di tracciamento quando presenti.',
+      'Considera il tempo mostrato una stima e salva data e intervallo. Una vecchia esperienza di un acquirente non garantisce i tempi della tua spedizione.',
+      'Per protezione o assicurazione leggi casi inclusi ed esclusi e requisiti. Il solo nome del servizio non ne definisce la copertura.',
+      'Il prezzo più basso è soltanto un criterio. L’opzione deve adattarsi al pacco reale e i dati mancanti devono rimanere indicati come sconosciuti.'
+    ]],
+    ['Verificare separatamente dogana e norme locali',[
+      'Imposte, dazi e restrizioni dipendono dalla destinazione e dalle merci. Consulta informazioni ufficiali attuali e verifica che gli articoli possano essere importati.',
+      'Diffida delle promesse secondo cui un metodo eviterebbe sempre controlli, ritardi, imposte o perdite. Non sostituiscono una verifica attuale.',
+      'Conserva una descrizione chiara degli articoli, delle varianti e delle quantità. Una lista precisa aiuta a individuare i requisiti applicabili alla spedizione.',
+      'Se una norma resta incerta, rinvia la decisione e cerca una risposta ufficiale competente. Una voce su un forum non risolve il dubbio.'
+    ]],
+    ['Documentare la scelta finale',[
+      'Annota perché le condizioni attuali corrispondono alla destinazione e al pacco e se il tempo indicato è accettabile. Se non riesci a spiegarle, controlla ancora.',
+      'Conserva data, servizio scelto e condizioni importanti. Una decisione basata su una schermata non stabilisce una regola permanente della piattaforma.',
+      'Confronta liste di prodotti e pacco: ci sono tutti gli articoli, varianti e indirizzo sono corretti e rimane qualche problema di qualità?',
+      'Se nuove informazioni verificate cambiano la valutazione, modifica il piano. Il tempo già dedicato alla ricerca non obbliga a scegliere un’opzione inadatta.'
+    ]],
+    ['Mantenere visibili i limiti',[
+      'Questa guida non conferma tariffe, destinazioni, tempi o indennizzi attuali. Verifica direttamente questi aspetti per la tua spedizione prima di pagare.',
+      'Concentrati su destinazione, contenuto reale, opzioni mostrate e condizioni attuali. Un esempio generale non sostituisce questi dati.',
+      'Un foglio aiuta a conservare scelta dei prodotti, controlli, domande aperte e date. Non crea da solo una garanzia attuale del vettore.',
+      'Distingui fatti verificati, tue esigenze e incognite. Decidi quando comprendi le condizioni importanti per il tuo pacco.'
+    ]]
+  ];
+  const portugueseShippingSections=[
+    ['Separar factos verificados de questões em aberto',[
+      'Comece pelas informações que consegue verificar. A declaração da página inicial da LoloBuy analisada neste guia refere-se à inspeção na chegada ao armazém; por si só não confirma destinos, preços, prazos ou tratamento aduaneiro.',
+      'Uma declaração sobre inspeção não prova condições de transporte. Evite promessas gerais de entrega rápida ou segura sem condições atuais aplicáveis à sua encomenda.',
+      'Compare quando a seleção dos produtos estiver estável: quais os artigos e variantes incluídos e que dúvidas do controlo de qualidade estão resolvidas?',
+      'Registe que informação poderia alterar a sua decisão. Uma comparação documentada é mais útil do que uma previsão sem fundamento conhecido.'
+    ]],
+    ['Definir a encomenda antes da comparação',[
+      'Liste os artigos previstos e o país de destino. Uma caixa de sapatos volumosa, uma peça de roupa e um pequeno acessório podem levantar questões diferentes de embalagem e elegibilidade.',
+      'Descreva o que sabe e assinale como desconhecidos o peso e as dimensões finais se a encomenda ainda não estiver preparada. Não deduza um preço definitivo de um exemplo antigo de outra pessoa.',
+      'Verifique diretamente destinos, restrições e serviços atuais para o seu envio. Este guia não confirma cobertura permanente de todos os países.',
+      'Se adicionar ou retirar um artigo, atualize a lista e compare novamente. Caso contrário, os orçamentos podem referir-se a conteúdos diferentes.'
+    ]],
+    ['Comparar as mesmas condições',[
+      'Para a mesma encomenda e destino, compare o custo total apresentado e o que inclui. Registe limites de tamanho ou peso e informação de acompanhamento quando apresentados.',
+      'Trate o prazo apresentado como estimativa e guarde a data e o intervalo. Uma experiência antiga não garante o prazo do seu envio.',
+      'Para proteção ou seguro, leia os casos incluídos e excluídos e os requisitos. O nome do serviço, por si só, não define a cobertura.',
+      'O preço mais baixo é apenas um critério. A opção deve corresponder à encomenda real e os dados em falta devem continuar identificados como desconhecidos.'
+    ]],
+    ['Verificar alfândega e regras locais separadamente',[
+      'Impostos, direitos e restrições dependem do destino e das mercadorias. Consulte informação oficial atual e confirme se os artigos podem ser importados.',
+      'Desconfie de promessas de que um método evitará sempre inspeções, atrasos, impostos ou perdas. Não substituem uma verificação atual.',
+      'Guarde uma descrição clara dos artigos, variantes e quantidades. Uma lista precisa ajuda a identificar os requisitos aplicáveis ao envio.',
+      'Se uma regra continuar incerta, adie a decisão e procure uma resposta oficial competente. Um rumor de fórum não resolve essa dúvida.'
+    ]],
+    ['Documentar a escolha final',[
+      'Registe por que as condições atuais correspondem ao destino e à encomenda e se o prazo indicado é aceitável. Se não conseguir explicá-las, verifique novamente.',
+      'Guarde data, serviço escolhido e condições importantes. Uma decisão baseada num ecrã específico não estabelece uma regra permanente da plataforma.',
+      'Compare listas de produtos e encomenda: estão presentes todos os artigos, as variantes e a morada estão corretas e existe algum problema de qualidade por resolver?',
+      'Se informação recém-verificada alterar a avaliação, ajuste o plano. O tempo já gasto na pesquisa não obriga a escolher uma opção inadequada.'
+    ]],
+    ['Manter visíveis os limites',[
+      'Este guia não confirma tarifas, destinos, prazos ou indemnizações atuais. Verifique diretamente esses aspetos para o seu envio antes de pagar.',
+      'Concentre-se no destino, conteúdo real, opções apresentadas e condições atuais. Um exemplo geral não substitui esses dados.',
+      'Uma folha ajuda a guardar escolhas, verificações, dúvidas e datas. Por si só, não cria uma garantia atual da transportadora.',
+      'Separe factos verificados, necessidades próprias e incógnitas. Decida quando compreender as condições importantes para a sua encomenda.'
+    ]]
+  ];
+  const spanishShippingSections=[
+    ['Separar hechos comprobados y preguntas pendientes',[
+      'Empiece por los datos que realmente puede verificar. La declaración de la página principal de LoloBuy revisada para esta guía se refiere a la inspección al llegar al almacén; por sí sola no confirma destinos, precios, plazos ni tratamiento aduanero.',
+      'Una afirmación sobre inspección no demuestra las condiciones de transporte. Evite promesas generales de entrega rápida o segura sin condiciones actuales aplicables a su paquete.',
+      'Compare cuando la selección sea estable: qué artículos y variantes incluirá y qué dudas del control de calidad están resueltas.',
+      'Anote qué información podría cambiar su decisión. Una comparación documentada es más útil que una predicción sin fundamento conocido.'
+    ]],
+    ['Definir el paquete antes de comparar',[
+      'Enumere los artículos y el país de destino. Una caja de zapatos voluminosa, una prenda y un accesorio pequeño pueden plantear preguntas distintas sobre embalaje y admisión.',
+      'Describa lo conocido y marque peso y dimensiones finales como pendientes si el paquete aún no está preparado. No deduzca un precio definitivo de un ejemplo antiguo de otro comprador.',
+      'Compruebe directamente los destinos, restricciones y servicios actuales para su envío. Esta guía no confirma una cobertura permanente de todos los países.',
+      'Si añade o retira un artículo, actualice la lista y vuelva a comparar. De otro modo los presupuestos pueden corresponder a contenidos diferentes.'
+    ]],
+    ['Comparar las mismas condiciones',[
+      'Para el mismo destino y paquete, compare el coste total mostrado y qué incluye. Anote límites de tamaño o peso y datos de seguimiento cuando aparezcan.',
+      'Trate el plazo mostrado como estimación y guarde la fecha y el intervalo. Una experiencia antigua no garantiza el plazo de su propio envío.',
+      'Si hay protección o seguro, lea los casos incluidos y excluidos y sus requisitos. El nombre del servicio por sí solo no define la cobertura.',
+      'El precio más bajo es solo un criterio. La opción debe ajustarse al paquete real y los datos ausentes deben permanecer identificados como desconocidos.'
+    ]],
+    ['Revisar aduanas y normas locales por separado',[
+      'Los impuestos, aranceles y restricciones dependen del destino y de los productos. Consulte información oficial actual y confirme que los artículos pueden importarse.',
+      'Desconfíe de promesas de que un método evitará siempre inspecciones, demoras, impuestos o pérdidas. No sustituyen una comprobación actual.',
+      'Conserve una descripción clara de los artículos, variantes y cantidades. Una lista precisa ayuda a identificar los requisitos de su envío.',
+      'Si una norma sigue sin estar clara, posponga la decisión y busque una respuesta oficial competente. Un rumor de foro no resuelve esa incertidumbre.'
+    ]],
+    ['Documentar la elección final',[
+      'Anote por qué las condiciones actuales encajan con destino y paquete, y si el plazo indicado es aceptable. Si no puede explicarlas, revíselas.',
+      'Guarde fecha, servicio elegido y condiciones importantes. Una decisión basada en una pantalla concreta no establece una regla permanente de la plataforma.',
+      'Cruce las listas de productos y paquete: ¿están todos los artículos, son correctas variantes y dirección y queda pendiente algún problema de calidad?',
+      'Si nueva información verificada cambia su valoración, ajuste el plan. Haber dedicado tiempo a investigar no obliga a elegir una opción inadecuada.'
+    ]],
+    ['Mantener visibles los límites',[
+      'Esta guía no confirma tarifas, destinos, plazos ni indemnizaciones actuales. Revise estas cuestiones directamente para su envío antes de pagar.',
+      'Céntrese en el destino, contenido real, opciones mostradas y condiciones actuales. Un ejemplo general no sustituye esos datos.',
+      'Una hoja ayuda a conservar selección, comprobaciones, dudas y fechas. Por sí sola no crea una garantía vigente del transportista.',
+      'Distinga hechos comprobados, necesidades propias e incógnitas. Decida cuando comprenda las condiciones importantes para su paquete.'
+    ]]
+  ];
+  const germanShippingSections=[
+    ['Gesicherte Angaben und offene Fragen trennen',[
+      'Beginnen Sie einen Versandvergleich mit den Informationen, die Sie tatsächlich belegen können. Die für diesen Leitfaden geprüfte Aussage auf der LoloBuy-Startseite betrifft die Lagerkontrolle bei Eingang; sie bestätigt für sich genommen weder Zielgebiete noch Preise, Laufzeiten oder Zollbehandlung.',
+      'Eine Aussage zur Warenprüfung ist deshalb kein Nachweis für eine bestimmte Versandzusage. Vermeiden Sie pauschale Versprechen zu schneller oder sicherer Lieferung, solange die aktuellen Bedingungen dies nicht für Ihr Paket belegen.',
+      'Vergleichen Sie erst, wenn Ihre Produktauswahl möglichst feststeht: welche Artikel und Varianten gehören hinein, und welche Fragen aus der Qualitätsprüfung sind bereits geklärt?',
+      'Schreiben Sie auf, welche Information Ihre Entscheidung ändern würde. Ein nachvollziehbarer Vergleich ist hilfreicher als eine Prognose, deren Grundlage Sie nicht kennen.'
+    ]],
+    ['Das Paket vor dem Vergleich beschreiben',[
+      'Listen Sie die vorgesehenen Artikel und das Zielland auf. Ein großer Schuhkarton, ein Kleidungsstück und ein kleines Zubehörteil können unterschiedliche Fragen zu Verpackung und Zulässigkeit aufwerfen.',
+      'Halten Sie bekannte Eigenschaften sachlich fest und markieren Sie endgültiges Gewicht oder Abmessungen als offen, wenn das Paket noch nicht gepackt ist. Leiten Sie daraus keinen endgültigen Preis aus einem fremden Beispiel ab.',
+      'Prüfen Sie aktuelle Zielgebiete, Beschränkungen und verfügbare Leistungen direkt für Ihre Sendung. Dieser Leitfaden bestätigt keine dauerhafte Länderabdeckung.',
+      'Wenn Sie später Artikel hinzufügen oder entfernen, aktualisieren Sie die Paketnotiz und vergleichen Sie erneut. Sonst beziehen sich Angebote möglicherweise auf unterschiedliche Inhalte.'
+    ]],
+    ['Angebote anhand derselben Bedingungen vergleichen',[
+      'Vergleichen Sie den angezeigten Gesamtpreis und den beschriebenen Leistungsumfang für dasselbe Ziel und Paket. Notieren Sie auch Größen- und Gewichtsbeschränkungen sowie Angaben zur Sendungsverfolgung, soweit sie angezeigt werden.',
+      'Behandeln Sie eine angezeigte Lieferzeit als Schätzung und notieren Sie Datum und Spanne. Ein älterer Erfahrungsbericht ist keine aktuelle Zusage für Ihre Sendung.',
+      'Lesen Sie bei Schutz oder Versicherung, welche Fälle eingeschlossen oder ausgeschlossen sind und welche Voraussetzungen gelten. Eine Bezeichnung allein erklärt den Leistungsumfang nicht.',
+      'Der niedrigste angezeigte Preis ist nur ein Vergleichspunkt. Ein Angebot ist erst sinnvoll einzuordnen, wenn seine Bedingungen zum tatsächlichen Paket passen und fehlende Informationen als unbekannt gekennzeichnet sind.'
+    ]],
+    ['Zoll und lokale Regeln gesondert prüfen',[
+      'Einfuhrabgaben, Steuern und Beschränkungen hängen vom Zielgebiet und den Waren ab. Prüfen Sie vor der Bestellung aktuelle Informationen der zuständigen Behörden und ob Ihre Artikel eingeführt werden dürfen.',
+      'Seien Sie vorsichtig bei Versprechen, eine Versandmethode vermeide garantiert Prüfung, Verzögerung, Steuern oder Verlust. Solche Zusagen ersetzen keine aktuelle Prüfung.',
+      'Bewahren Sie verständliche Angaben zu Inhalt, Variante und Menge auf. Eine klare Produktliste hilft, die für Ihre Sendung relevanten Anforderungen zu identifizieren.',
+      'Wenn eine geltende Regel unklar bleibt, verschieben Sie die Entscheidung und suchen Sie eine zuständige offizielle Auskunft. Ungeprüfte Forenbehauptungen sollten diese Lücke nicht füllen.'
+    ]],
+    ['Die endgültige Auswahl dokumentieren',[
+      'Halten Sie kurz fest, warum ein aktuelles Angebot zu Ziel und Paket passt und ob die angezeigte Zeitspanne für Sie akzeptabel ist. Können Sie die Bedingungen nicht erklären, prüfen Sie sie erneut.',
+      'Speichern Sie Datum, gewählte Leistung und maßgebliche Bedingungen. Eine Entscheidung auf Grundlage einer damaligen Anzeige ist keine dauerhafte Aussage über die Plattform.',
+      'Gleichen Sie Produkt- und Paketliste ab: Sind alle gewünschten Artikel enthalten, stimmen Varianten und Zieladresse, und ist ein Qualitätsproblem noch offen?',
+      'Ändert neue, überprüfte Information Ihre Einschätzung, passen Sie den Plan an. Frühere Recherche verpflichtet nicht dazu, eine unpassende Option zu wählen.'
+    ]],
+    ['Grenzen der Einschätzung sichtbar halten',[
+      'Dieser Leitfaden bestätigt keine aktuellen Tarife, Länderabdeckung, Laufzeiten oder Entschädigungsbedingungen. Prüfen Sie diese Servicefragen vor der Zahlung direkt für Ihre Sendung.',
+      'Konzentrieren Sie sich auf Ihr aktuelles Ziel, den konkreten Paketinhalt, die tatsächlich angezeigten Optionen und deren Bedingungen. Ein allgemeines Beispiel kann diese Angaben nicht ersetzen.',
+      'Ein Spreadsheet hilft dabei, Produktauswahl, Prüfschritte, offene Fragen und Datum zusammenzuhalten. Es kann eine aktuelle Zusage des Versanddienstes nicht selbst erzeugen.',
+      'Trennen Sie abschließend belegte Angaben, Ihre eigenen Anforderungen und ungeklärte Punkte. Entscheiden Sie erst, wenn Sie die für Ihr Paket wichtigen Bedingungen verstehen.'
+    ]]
+  ];
+  const frenchShippingSections=[
+    ['Séparer les faits vérifiés des questions ouvertes',[
+      'Commencez par les informations réellement vérifiées. La déclaration de la page d’accueil de LoloBuy examinée pour ce guide concerne le contrôle à l’arrivée en entrepôt ; elle ne confirme pas à elle seule les destinations, prix, délais ou traitements douaniers.',
+      'Une affirmation sur l’inspection n’est donc pas une preuve de conditions de transport. Évitez les promesses générales de livraison rapide ou sûre sans conditions actuelles applicables à votre colis.',
+      'Comparez lorsque votre sélection est suffisamment stable : quels articles et variantes seront inclus, et quelles questions du contrôle qualité sont résolues ?',
+      'Notez les informations susceptibles de changer votre choix. Une comparaison documentée est plus utile qu’une prévision dont la base est inconnue.'
+    ]],
+    ['Définir le colis avant de comparer',[
+      'Listez les articles prévus et le pays de destination. Une grande boîte de chaussures, un vêtement et un petit accessoire peuvent poser des questions différentes d’emballage ou d’admissibilité.',
+      'Décrivez ce que vous savez et indiquez comme inconnus le poids et les dimensions définitifs si le colis n’est pas encore préparé. Ne déduisez pas un prix final d’un ancien exemple trouvé ailleurs.',
+      'Vérifiez directement les destinations, restrictions et services actuels pour votre envoi. Ce guide ne confirme pas une couverture permanente de tous les pays.',
+      'Si vous ajoutez ou retirez un article, mettez la liste à jour et comparez à nouveau. Autrement, les devis peuvent concerner des contenus différents.'
+    ]],
+    ['Comparer les mêmes conditions',[
+      'Pour le même colis et la même destination, comparez le montant total affiché et ce qu’il comprend. Notez aussi les limites de taille ou de poids et les informations de suivi lorsqu’elles sont indiquées.',
+      'Traitez le délai affiché comme une estimation ; conservez sa date et sa fourchette. Une ancienne expérience d’acheteur ne garantit pas le délai de votre envoi.',
+      'Pour une protection ou une assurance, lisez les cas inclus et exclus ainsi que les conditions nécessaires. Le nom du service ne suffit pas à définir sa couverture.',
+      'Le prix le plus bas n’est qu’un critère. Une offre doit correspondre au colis réel et les informations absentes doivent rester signalées comme inconnues.'
+    ]],
+    ['Vérifier séparément les règles locales et douanières',[
+      'Taxes, droits et restrictions dépendent de la destination et des marchandises. Consultez les informations officielles actuelles et vérifiez que les articles peuvent être importés.',
+      'Méfiez-vous des promesses selon lesquelles une méthode éviterait forcément contrôle, retard, taxes ou perte. Elles ne remplacent pas une vérification actuelle.',
+      'Conservez une description claire des articles, variantes et quantités. Une liste précise aide à repérer les exigences concernant votre envoi.',
+      'Si une règle applicable reste incertaine, différez votre décision et recherchez une réponse officielle compétente. Une rumeur de forum ne comble pas cette lacune.'
+    ]],
+    ['Documenter le choix final',[
+      'Notez pourquoi les conditions actuelles correspondent à votre destination et à votre colis, et si le délai annoncé vous convient. Si vous ne pouvez pas expliquer ces conditions, vérifiez-les de nouveau.',
+      'Conservez la date, le service choisi et les conditions déterminantes. Une décision fondée sur un affichage donné n’établit pas une règle permanente de la plateforme.',
+      'Comparez la liste des produits et celle du colis : tous les articles voulus sont-ils présents, les variantes et l’adresse sont-elles exactes, et reste-t-il un problème de contrôle qualité ?',
+      'Si une information nouvellement vérifiée change votre appréciation, adaptez le plan. Le temps déjà consacré à la recherche ne vous oblige pas à choisir une option inadéquate.'
+    ]],
+    ['Garder visibles les limites de la comparaison',[
+      'Ce guide ne confirme pas les tarifs, destinations, délais ou indemnisations actuels. Vérifiez ces questions de service directement pour votre envoi avant de payer.',
+      'Concentrez-vous sur votre destination, le contenu réel, les options effectivement affichées et leurs conditions. Un exemple général ne remplace pas ces données.',
+      'Un tableau aide à conserver les choix de produits, contrôles, questions ouvertes et dates. Il ne crée pas lui-même une garantie actuelle du transporteur.',
+      'Distinguez enfin les faits vérifiés, vos besoins et les points encore inconnus. Décidez lorsque vous comprenez les conditions importantes pour votre colis.'
+    ]]
+  ];
+  const swedishQcSections=[
+    ['Vad lagerkontrollen kan visa',[
+      'Börja med omfattningen av den tjänst som faktiskt erbjuds. LoloBuys startsida beskriver kontroll av bland annat synliga fel, storlek och färg; kontrollera vilka bilder och tjänster som finns för din order.',
+      'Beskrivningen garanterar inte att varje detalj undersöks. En bild ger synliga ledtrådar men bevisar inte äkthet eller hållbarhet.',
+      'Bestäm före bildgranskningen vilka skillnader som skulle ändra ditt beslut. En konkret lista hjälper när flera liknande varor finns i lagret.',
+      'Anteckna också begränsningarna i informationen. En öppen fråga kräver en riktad följdfråga och är inte en bekräftelse.'
+    ]],
+    ['Jämför beställning och variant',[
+      'Jämför produkttyp, antal, färg och utförande med den sparade beställningen. Exakt alternativnamn och artikel-ID hjälper dig att skilja liknande varianter åt.',
+      'Kontrollera att den synliga storleken motsvarar beställningen. För ett set eller ett par bör alla delar finnas och storlekarna stämma överens.',
+      'Ljussättning och skärmar kan förändra färger. Bedöm viktiga skillnader från flera tillgängliga vinklar och notera det som är oklart.',
+      'Spara den ursprungliga produktlänken och datumet för ditt val. En annons kan ändras och en senare bild visar inte alltid vilken variant du valde.'
+    ]],
+    ['Kläder: mått och synligt utförande',[
+      'Jämför bröstbredd, längd och ärmar med ett plagg som passar dig. En storleksbokstav räcker inte för att jämföra olika erbjudanden.',
+      'Granska mätpunkterna: båda ändarna av måttbandet bör synas. Mätmetod och tygets placering kan orsaka skillnader.',
+      'Titta på synliga sömmar, dragkedjor, fickor, tryck och eventuella fläckar eller hål. Ett lagerveck bedöms annorlunda än en tydlig skada.',
+      'En bild bekräftar inte exakt fibersammansättning, värme eller livslängd. Markera sådant som okontrollerat och läs den aktuella beskrivningen.'
+    ]],
+    ['Skor och accessoarer: användbara vinklar',[
+      'För skor jämför du båda sidorna, storleksmärkning, form och sulor. De två delarna i ett par bör höra ihop.',
+      'Varje vinkel besvarar olika frågor: ovanifrån syns formen, från sidan fogar och underifrån det synliga sulmönstret.',
+      'För väskor och accessoarer kontrollerar du synliga spännen, medföljande delar och mått. En bild av elektronik bevisar inte att den fungerar.',
+      'Saknas en viktig vy kan du be om en specifik bild eller mätning. Bekräfta först tillgänglighet och eventuell kostnad för din order.'
+    ]],
+    ['Klargör frågor före frakt',[
+      'Jämför varje avvikelse med den ursprungliga beställningen och ställ en precis fråga. Om färgen motsvarar vald variant är lättare att besvara än en allmän kvalitetsfråga.',
+      'Spara relevanta bilder, orderreferens och meddelanden. Då kan du beskriva en skillnad utan att dra för stora slutsatser av en suddig bild.',
+      'Kontrollera aktuella retur- och ändringsvillkor innan du bestämmer dig. Möjligheter, tidsfrister och kostnader kan bero på säljare och orderstatus.',
+      'En förfrågan är inte en godkänd retur. Vänta på ett konkret svar och väg in eventuella kostnader innan du godkänner internationell frakt.'
+    ]],
+    ['Dokumentera beslutet',[
+      'Avsluta med en tydlig notering: fortsätt, begär förtydligande eller fortsätt inte. Ange de synliga skälen till ditt val.',
+      'Notera också det som fortfarande är okänt, exempelvis ett saknat mått eller en insida som inte har fotograferats. Begränsningen är viktig även om du fortsätter.',
+      'Kontrollera aktuell lagerstatus och jämför det packade paketet och visat pris innan du begär internationell leverans.',
+      'Noggrann bildgranskning minskar en del osäkerhet men garanterar inte äkthet, funktion eller hållbarhet. Kontrollera de aktuella villkoren för din order igen.'
+    ]]
+  ];
+  const dutchQcSections=[
+    ['Wat de magazijncontrole kan beoordelen',[
+      'Begin bij de omvang van de beschikbare dienst. De homepage van LoloBuy beschrijft controle op onder meer zichtbare gebreken, maat en kleur; kijk bij uw bestelling welke foto’s en diensten beschikbaar zijn.',
+      'Die beschrijving garandeert niet dat elk detail wordt onderzocht. Een foto geeft zichtbare aanwijzingen, maar bewijst geen echtheid of duurzaamheid.',
+      'Bepaal vooraf welke verschillen uw beslissing zouden veranderen. Een concrete lijst helpt wanneer meerdere vergelijkbare artikelen in het magazijn liggen.',
+      'Noteer ook de grenzen van de beschikbare informatie. Een open vraag vraagt om een gerichte toelichting en is geen bevestiging.'
+    ]],
+    ['Bestelling en variant vergelijken',[
+      'Vergelijk producttype, aantal, kleur en uitvoering met de opgeslagen bestelling. De exacte optienaam en artikelcode helpen vergelijkbare varianten onderscheiden.',
+      'Controleer of de zichtbare maat overeenkomt met de bestelling. Kijk bij een set of paar of alle onderdelen aanwezig zijn en de maten overeenkomen.',
+      'Licht en schermen kunnen kleuren veranderen. Bekijk belangrijke verschillen vanuit meerdere beschikbare hoeken en noteer wat onduidelijk blijft.',
+      'Bewaar de oorspronkelijke productlink en de datum van uw keuze. Een aanbieding kan veranderen en een latere afbeelding toont niet altijd de geselecteerde variant.'
+    ]],
+    ['Kleding: maten en zichtbare afwerking',[
+      'Vergelijk borstbreedte, lengte en mouwen met een kledingstuk dat goed past. Een maatletter alleen is onvoldoende om verschillende aanbiedingen te vergelijken.',
+      'Let op de meetpunten: beide uiteinden van het meetlint moeten zichtbaar zijn. Meetmethode en ligging van de stof kunnen verschillen veroorzaken.',
+      'Bekijk zichtbare naden, ritsen, zakken, opdrukken en eventuele vlekken of scheuren. Een opslagvouw is anders dan duidelijke schade.',
+      'Een foto bevestigt de exacte vezelsamenstelling, warmte of levensduur niet. Houd die punten als onbevestigd bij en raadpleeg de actuele productbeschrijving.'
+    ]],
+    ['Schoenen en accessoires: nuttige aanzichten',[
+      'Vergelijk bij schoenen beide kanten, maataanduidingen, vorm en zolen. De twee schoenen van een paar moeten bij elkaar passen.',
+      'Elke hoek beantwoordt een andere vraag: van boven ziet u de vorm, vanaf de zijkant verbindingen en van onderen het zichtbare zoolprofiel.',
+      'Controleer bij tassen en accessoires zichtbare sluitingen, meegeleverde onderdelen en afmetingen. Een foto van elektronica bewijst niet dat deze werkt.',
+      'Ontbreekt een belangrijk aanzicht, vraag dan om een specifieke foto of meting. Controleer vooraf of die mogelijk is en wat deze voor uw bestelling kost.'
+    ]],
+    ['Onduidelijkheden vóór verzending oplossen',[
+      'Vergelijk elke afwijking met de oorspronkelijke bestelling en stel een gerichte vraag. Of de kleur bij de gekozen variant past, is concreter dan of alles goed is.',
+      'Bewaar relevante foto’s, bestelreferentie en berichten. Zo beschrijft u een verschil zonder te veel conclusies uit een onscherpe afbeelding te trekken.',
+      'Controleer vóór uw beslissing de actuele retour- en wijzigingsvoorwaarden. Mogelijkheden, termijnen en kosten kunnen afhangen van verkoper en bestelstatus.',
+      'Een verzoek is nog geen geaccepteerde retour. Wacht op een duidelijk antwoord en houd rekening met eventuele kosten vóór internationale verzending.'
+    ]],
+    ['De beslissing vastleggen',[
+      'Eindig met een duidelijke notitie: doorgaan, verduidelijking vragen of niet doorgaan. Vermeld de zichtbare redenen voor uw keuze.',
+      'Noteer ook wat onbekend blijft, zoals een ontbrekende maat of niet gefotografeerde binnenkant. Die beperking telt ook als u verdergaat.',
+      'Controleer de actuele magazijnstatus en vergelijk het ingepakte pakket en de weergegeven prijs voordat u internationale levering aanvraagt.',
+      'Zorgvuldige fotocontrole vermindert onzekerheid, maar garandeert geen echtheid, werking of duurzaamheid. Controleer de actuele voorwaarden van uw bestelling opnieuw.'
+    ]]
+  ];
+  const polishQcSections=[
+    ['Co obejmuje kontrola w magazynie',[
+      'Zacznij od zakresu faktycznie dostępnej usługi. Strona główna LoloBuy opisuje kontrolę między innymi widocznych wad, rozmiaru i koloru; sprawdź w zamówieniu dostępne zdjęcia i usługi.',
+      'Opis ten nie gwarantuje sprawdzenia każdego szczegółu. Zdjęcie dostarcza widocznych wskazówek, lecz nie potwierdza autentyczności ani trwałości.',
+      'Przed obejrzeniem zdjęć ustal, które różnice zmieniłyby Twoją decyzję. Konkretna lista pomaga, gdy w magazynie znajdują się podobne produkty.',
+      'Zapisz również ograniczenia dostępnych informacji. Otwarta kwestia wymaga konkretnego pytania i nie jest potwierdzeniem.'
+    ]],
+    ['Porównanie zamówienia i wariantu',[
+      'Porównaj rodzaj produktu, liczbę sztuk, kolor i wersję z zapisanym zamówieniem. Dokładna nazwa opcji i identyfikator pomagają odróżnić podobne warianty.',
+      'Sprawdź, czy widoczny rozmiar odpowiada zamówieniu. Przy komplecie lub parze upewnij się, że wszystkie części są obecne, a rozmiary zgodne.',
+      'Oświetlenie i ekrany mogą zmieniać wygląd kolorów. Oceniaj istotne różnice na kilku dostępnych ujęciach i zapisz to, co pozostaje niejasne.',
+      'Zachowaj oryginalny link i datę wyboru. Oferta może się zmienić, a późniejsze zdjęcie nie zawsze wskazuje wybrany wariant.'
+    ]],
+    ['Odzież: wymiary i widoczne wykonanie',[
+      'Porównaj szerokość klatki, długość i rękawy z dobrze pasującym ubraniem. Sama litera rozmiaru nie wystarcza do porównania różnych ofert.',
+      'Zwróć uwagę na punkty pomiaru: oba końce miarki powinny być widoczne. Metoda i ułożenie materiału mogą powodować różnice.',
+      'Obejrzyj widoczne szwy, zamki, kieszenie, nadruki oraz ewentualne plamy lub rozdarcia. Zagniecenie magazynowe ocenia się inaczej niż wyraźne uszkodzenie.',
+      'Zdjęcie nie potwierdza dokładnego składu, ciepła ani trwałości tkaniny. Oznacz te kwestie jako niesprawdzone i przeczytaj aktualny opis.'
+    ]],
+    ['Buty i akcesoria: przydatne ujęcia',[
+      'W butach porównaj obie strony, oznaczenia rozmiaru, kształt i podeszwy. Obie sztuki pary powinny do siebie pasować.',
+      'Każdy kąt odpowiada na inne pytanie: widok z góry pokazuje kształt, boczny łączenia, a spód widoczny bieżnik.',
+      'Przy torbach i akcesoriach sprawdź widoczne zapięcia, dołączone części i wymiary. Zdjęcie urządzenia elektronicznego nie potwierdza jego działania.',
+      'Jeśli brakuje ważnego ujęcia, poproś o konkretne zdjęcie lub pomiar. Najpierw potwierdź dostępność i ewentualną opłatę dla Twojego zamówienia.'
+    ]],
+    ['Wyjaśnienie wątpliwości przed wysyłką',[
+      'Porównaj każdą niezgodność z pierwotnym zamówieniem i zadaj konkretne pytanie. Zgodność koloru z wybranym wariantem łatwiej sprawdzić niż ogólne pytanie o jakość.',
+      'Zachowaj odpowiednie zdjęcia, numer zamówienia i korespondencję. Pozwoli to opisać różnicę bez nadmiernych wniosków z nieostrego zdjęcia.',
+      'Przed decyzją sprawdź aktualne warunki zwrotu lub zmiany. Możliwości, terminy i koszty mogą zależeć od sprzedawcy oraz statusu zamówienia.',
+      'Zgłoszenie nie oznacza przyjętego zwrotu. Poczekaj na konkretną odpowiedź i uwzględnij możliwe koszty przed zatwierdzeniem wysyłki międzynarodowej.'
+    ]],
+    ['Zapisanie decyzji',[
+      'Zakończ krótką notatką: kontynuować, poprosić o wyjaśnienie lub nie kontynuować. Podaj widoczne przesłanki decyzji.',
+      'Zapisz również nieznane elementy, na przykład brak wymiaru lub zdjęcia wnętrza. Ograniczenia mają znaczenie także wtedy, gdy decydujesz się kontynuować.',
+      'Sprawdź aktualny status magazynowy oraz porównaj przygotowaną paczkę i wyświetloną cenę przed zleceniem dostawy międzynarodowej.',
+      'Uważna analiza zdjęć zmniejsza część niepewności, ale nie gwarantuje autentyczności, działania ani trwałości. Ponownie sprawdź aktualne warunki zamówienia.'
+    ]]
+  ];
+  const italianQcSections=[
+    ['Che cosa può verificare il controllo in magazzino',[
+      'Inizia dall’ambito del servizio effettivamente disponibile. La pagina iniziale di LoloBuy descrive un controllo di difetti visibili, taglia e colore; verifica nel tuo ordine quali foto e servizi sono disponibili.',
+      'Questa descrizione non garantisce che ogni dettaglio venga esaminato. Una foto offre indizi visibili, ma non dimostra autenticità o durata nel tempo.',
+      'Prima di aprire le immagini, stabilisci quali differenze cambierebbero la tua decisione. Una lista precisa aiuta quando in magazzino ci sono articoli simili.',
+      'Annota anche i limiti delle informazioni disponibili. Un dubbio richiede una domanda specifica e non deve diventare una conferma presunta.'
+    ]],
+    ['Confrontare ordine e variante',[
+      'Confronta tipo di prodotto, quantità, colore e versione con l’ordine salvato. Nome esatto dell’opzione e identificativo aiutano a distinguere varianti simili.',
+      'Controlla che la taglia visibile corrisponda a quella ordinata. Per un set o un paio verifica che siano presenti tutti i pezzi e che le taglie siano coerenti.',
+      'Luce e schermi possono alterare i colori. Valuta le differenze importanti su più viste disponibili e annota ciò che non è chiaro.',
+      'Conserva il link originale e la data della scelta. Un annuncio può cambiare e una foto successiva non identifica sempre la variante selezionata.'
+    ]],
+    ['Abbigliamento: misure e dettagli visibili',[
+      'Confronta larghezza del petto, lunghezza e maniche con un capo che ti veste bene. Una lettera di taglia non basta per confrontare offerte diverse.',
+      'Controlla i punti di misurazione: dovrebbero vedersi entrambi gli estremi del metro. Metodo e posizione del tessuto possono causare differenze.',
+      'Esamina cuciture visibili, zip, tasche, stampe e possibili macchie o strappi. Una piega da magazzino va valutata diversamente da un danno evidente.',
+      'Una foto non conferma composizione esatta, calore o durata del tessuto. Segna questi aspetti come non verificati e consulta la descrizione attuale.'
+    ]],
+    ['Scarpe e accessori: viste utili',[
+      'Per le scarpe confronta entrambi i lati, le indicazioni di taglia, la forma e le suole. I due pezzi del paio devono corrispondere.',
+      'Ogni angolazione risponde a una domanda: dall’alto si vede la forma, dai lati le giunzioni e dalla suola il disegno visibile.',
+      'Per borse e accessori controlla chiusure, componenti inclusi e dimensioni visibili. La foto di un dispositivo elettronico non ne dimostra il funzionamento.',
+      'Se manca una vista essenziale, chiedi un’immagine o una misura specifica. Conferma prima disponibilità ed eventuale costo per il tuo ordine.'
+    ]],
+    ['Chiarire i dubbi prima della spedizione',[
+      'Confronta ogni anomalia con l’ordine originale e formula una domanda precisa. Chiedere se il colore corrisponde alla variante scelta facilita una risposta verificabile.',
+      'Conserva immagini pertinenti, riferimento dell’ordine e comunicazioni. Potrai descrivere una differenza senza trarre troppe conclusioni da una foto sfocata.',
+      'Prima di decidere, controlla le condizioni attuali di reso o modifica. Opzioni, scadenze e costi possono dipendere dal venditore e dallo stato dell’ordine.',
+      'Una richiesta non equivale a un reso accettato. Attendi una risposta concreta e considera eventuali costi prima di autorizzare la spedizione internazionale.'
+    ]],
+    ['Documentare la decisione',[
+      'Concludi con una nota chiara: procedere, chiedere chiarimenti o non procedere. Indica gli elementi visibili che motivano la decisione.',
+      'Annota anche ciò che rimane sconosciuto, come una misura mancante o una parte interna non fotografata. Questi limiti contano anche se scegli di continuare.',
+      'Verifica lo stato attuale in magazzino e confronta il pacco preparato e il prezzo mostrato prima di richiedere la consegna internazionale.',
+      'Un esame attento delle foto riduce parte dell’incertezza, ma non garantisce autenticità, funzionamento o durata. Ricontrolla le condizioni applicabili al tuo ordine.'
+    ]]
+  ];
+  const portugueseQcSections=[
+    ['O que a inspeção no armazém pode verificar',[
+      'Comece pelo âmbito do serviço realmente disponível. A página inicial da LoloBuy descreve uma inspeção de defeitos visíveis, tamanho e cor; consulte a sua encomenda para saber quais fotografias e serviços estão disponíveis.',
+      'Essa descrição não garante a análise de cada detalhe. Uma imagem fornece indícios visíveis, mas não comprova autenticidade nem durabilidade.',
+      'Antes de abrir as fotografias, defina que diferenças alterariam a sua decisão. Uma lista concreta ajuda quando há vários artigos semelhantes no armazém.',
+      'Registe também os limites da informação disponível. Uma dúvida pede uma pergunta específica e não deve transformar-se numa confirmação presumida.'
+    ]],
+    ['Comparar encomenda e variante',[
+      'Compare tipo de artigo, quantidade, cor e versão com a encomenda guardada. O nome exato da opção e o identificador ajudam a distinguir variantes semelhantes.',
+      'Confirme que o tamanho visível corresponde ao escolhido. Num conjunto ou par, verifique a presença de todas as peças e a coerência dos tamanhos.',
+      'A iluminação e os ecrãs podem alterar as cores. Avalie diferenças importantes em várias vistas disponíveis e registe o que não for claro.',
+      'Guarde a ligação original e a data da escolha. Um anúncio pode mudar e uma imagem posterior nem sempre identifica a variante selecionada.'
+    ]],
+    ['Roupa: medidas e acabamentos visíveis',[
+      'Compare largura do peito, comprimento e mangas com uma peça que lhe sirva. Uma letra de tamanho não basta para comparar ofertas diferentes.',
+      'Observe os pontos de medição: devem ser visíveis ambas as extremidades da fita. O método e a posição do tecido podem causar diferenças.',
+      'Examine costuras visíveis, fechos, bolsos, estampados e possíveis manchas ou rasgões. Uma dobra de armazenamento é diferente de um dano evidente.',
+      'Uma fotografia não confirma composição exata, capacidade térmica ou durabilidade do tecido. Marque esses pontos como não verificados e consulte a descrição atual.'
+    ]],
+    ['Calçado e acessórios: vistas úteis',[
+      'No calçado, compare ambos os lados, as indicações de tamanho, a forma e as solas. As duas peças de um par devem corresponder.',
+      'Cada ângulo responde a uma pergunta: a vista superior mostra a forma, as laterais mostram uniões e a sola mostra o padrão visível.',
+      'Em malas ou acessórios, confira fechos, peças incluídas e dimensões visíveis. Uma fotografia de equipamento eletrónico não comprova o seu funcionamento.',
+      'Se faltar uma vista essencial, peça uma imagem ou medida específica. Confirme antes a disponibilidade e eventuais custos para a sua encomenda.'
+    ]],
+    ['Esclarecer dúvidas antes do envio',[
+      'Compare cada anomalia com a encomenda original e faça uma pergunta precisa. Perguntar se a cor corresponde à variante escolhida facilita uma resposta verificável.',
+      'Guarde imagens pertinentes, referência da encomenda e comunicações. Assim pode descrever uma diferença sem retirar conclusões excessivas de uma imagem desfocada.',
+      'Antes de decidir, consulte as condições atuais de devolução ou alteração. Opções, prazos e custos podem depender do vendedor e do estado da encomenda.',
+      'Um pedido não equivale a uma devolução aceite. Aguarde uma resposta concreta e considere eventuais custos antes de autorizar o envio internacional.'
+    ]],
+    ['Documentar a decisão',[
+      'Termine com uma nota clara: avançar, pedir esclarecimentos ou não avançar. Indique os elementos visíveis que fundamentam a decisão.',
+      'Registe também o que permanece desconhecido, como uma medida em falta ou uma parte interior não fotografada. Esses limites importam mesmo que decida continuar.',
+      'Verifique o estado atual no armazém e compare a encomenda preparada e o preço apresentado antes de solicitar a entrega internacional.',
+      'Uma análise cuidadosa das fotografias reduz alguma incerteza, mas não garante autenticidade, funcionamento ou durabilidade. Volte a consultar as condições aplicáveis à sua encomenda.'
+    ]]
+  ];
+  const spanishQcSections=[
+    ['Qué permite comprobar la inspección',[
+      'Empiece por el alcance del servicio realmente disponible. La página principal de LoloBuy describe una inspección de defectos visibles, talla y color; revise en su pedido qué fotografías y servicios se ofrecen.',
+      'Esa descripción no garantiza que se examine cada detalle. Una imagen aporta indicios visibles, pero no demuestra la autenticidad ni la duración del artículo.',
+      'Antes de abrir las fotos, defina qué diferencias cambiarían su decisión. Una lista concreta ayuda cuando hay varios artículos parecidos en el almacén.',
+      'Anote también los límites de la información. Una duda pendiente requiere una pregunta específica y no debe convertirse en una confirmación imaginada.'
+    ]],
+    ['Comparar pedido y variante',[
+      'Compare tipo de artículo, cantidad, color y versión con el pedido guardado. El nombre exacto de la opción y el identificador ayudan a distinguir variantes similares.',
+      'Compruebe que la talla visible coincida con la opción solicitada. En un conjunto o un par, verifique que estén todas las piezas y que las tallas sean coherentes.',
+      'La iluminación y las pantallas alteran el aspecto de los colores. Examine diferencias importantes en varias vistas disponibles y anote lo que no resulte claro.',
+      'Guarde el enlace original y la fecha de selección. Una publicación puede cambiar y una imagen posterior no siempre identifica la variante elegida.'
+    ]],
+    ['Ropa: medidas y acabados visibles',[
+      'Compare ancho de pecho, largo y mangas con una prenda que le quede bien. Una letra de talla no basta para comparar ofertas distintas.',
+      'Observe los puntos de medición: conviene ver ambos extremos de la cinta. El método y la posición de la tela pueden causar diferencias.',
+      'Revise costuras visibles, cierres, bolsillos, estampados y posibles manchas o roturas. Un pliegue de almacenamiento se valora de forma distinta a un daño claro.',
+      'Una foto no confirma la composición exacta, el abrigo ni la durabilidad del tejido. Mantenga esos puntos como no verificados y consulte la descripción actual.'
+    ]],
+    ['Calzado y accesorios: vistas útiles',[
+      'En zapatos, compare ambos lados, las marcas de talla, la forma y las suelas. Las dos piezas del par deben corresponder entre sí.',
+      'Cada ángulo responde a una pregunta: la vista superior muestra la forma general, los lados las uniones y la suela el dibujo visible.',
+      'En bolsos o accesorios, compruebe cierres, piezas incluidas y medidas visibles. Una foto de un aparato electrónico no demuestra que funcione.',
+      'Si falta una vista esencial, solicite una imagen o medida específica. Confirme antes si está disponible y si tiene algún coste para su pedido.'
+    ]],
+    ['Aclarar dudas antes del envío',[
+      'Compare cada anomalía con el pedido original y formule una pregunta precisa. Preguntar si el color corresponde a la variante elegida facilita una respuesta comprobable.',
+      'Conserve imágenes pertinentes, referencia del pedido y conversaciones. Así podrá describir una diferencia sin sacar conclusiones excesivas de una foto borrosa.',
+      'Revise las condiciones actuales de devolución o modificación antes de decidir. Las opciones, plazos y costes pueden depender del vendedor y del estado del pedido.',
+      'Una solicitud no equivale a una devolución aceptada. Espere una respuesta concreta y considere los costes posibles antes de autorizar el envío internacional.'
+    ]],
+    ['Documentar la decisión',[
+      'Termine con una nota clara: continuar, pedir información o no continuar. Indique los detalles visibles que fundamentan su decisión.',
+      'Anote también lo que sigue sin conocerse, como una medida ausente o una parte interior sin fotografiar. Estas limitaciones importan incluso si decide seguir.',
+      'Compruebe el estado actual en almacén y compare el paquete preparado y el precio mostrado antes de solicitar el transporte internacional.',
+      'Una revisión cuidadosa de fotos reduce parte de la incertidumbre; no garantiza autenticidad, funcionamiento ni durabilidad. Vuelva a consultar las condiciones de su pedido.'
+    ]]
+  ];
+  const frenchQcSections=[
+    ['Ce que permet le contrôle en entrepôt',[
+      'Commencez par vérifier le périmètre du service réellement proposé. La page d’accueil de LoloBuy décrit notamment un contrôle des défauts visibles, de la taille et de la couleur. Consultez votre commande pour connaître les photos et services disponibles.',
+      'Cette description est un point de départ, pas la promesse que chaque détail sera examiné. Une image apporte des indices visibles, mais ne démontre ni la durabilité à long terme ni l’authenticité.',
+      'Avant de consulter les images, déterminez les différences qui changeraient votre décision. Une liste précise reste utile lorsque plusieurs articles similaires sont stockés.',
+      'Notez également les limites des informations disponibles. Une question ouverte appelle une demande ciblée ; elle ne doit pas devenir une confirmation supposée.'
+    ]],
+    ['Comparer la commande et la variante',[
+      'Comparez le type d’article, la quantité, la couleur et la version avec la commande enregistrée. Le nom exact de l’option et l’identifiant aident à distinguer des variantes proches.',
+      'Vérifiez que la taille visible correspond à l’option commandée. Pour un ensemble ou une paire, contrôlez la présence de chaque élément et la cohérence des tailles.',
+      'L’éclairage et les écrans modifient l’apparence des couleurs. Examinez les écarts marqués sur plusieurs vues disponibles et notez ce qui reste incertain.',
+      'Conservez le lien source et la date du choix. Les annonces peuvent changer : une image consultée plus tard ne permet pas toujours de retrouver la variante choisie.'
+    ]],
+    ['Vêtements : mesures et finitions visibles',[
+      'Comparez la largeur de poitrine, la longueur et les manches avec un vêtement qui vous va. Une lettre de taille ne suffit pas pour comparer des offres différentes.',
+      'Regardez les points de mesure : les deux extrémités du ruban devraient être visibles. La méthode et la position du tissu peuvent produire des écarts.',
+      'Examinez les coutures visibles, fermetures, poches, impressions et éventuelles taches ou déchirures. Un pli de stockage se juge différemment d’un dommage clairement visible.',
+      'Une photo ne permet pas de confirmer la composition exacte, la chaleur ou la durée de vie du tissu. Laissez ces points non vérifiés et consultez la description actuelle.'
+    ]],
+    ['Chaussures et accessoires : vues utiles',[
+      'Pour des chaussures, comparez les deux côtés, les indications de taille, la forme et les semelles. Les deux éléments d’une paire doivent correspondre.',
+      'Chaque angle répond à une question : le dessus montre la forme générale, les côtés les assemblages, et la semelle le profil visible.',
+      'Pour un sac ou un accessoire, contrôlez les fermetures, pièces incluses et dimensions visibles. Une photo d’un appareil électronique ne démontre pas son fonctionnement.',
+      'Si une vue essentielle manque, demandez une image ou une mesure précise. Confirmez d’abord sa disponibilité et tout coût applicable à votre commande.'
+    ]],
+    ['Clarifier les doutes avant l’envoi',[
+      'Comparez chaque anomalie à votre commande initiale et formulez une question précise. Demander si la couleur correspond à la variante choisie facilite une réponse vérifiable.',
+      'Conservez les images pertinentes, la référence de commande et les échanges. Ces éléments permettent de décrire un écart sans tirer d’une image floue une conclusion excessive.',
+      'Consultez les conditions actuelles de retour ou de modification avant de décider. Les possibilités, délais et frais peuvent dépendre du vendeur et de l’état de la commande.',
+      'Une demande n’est pas un retour accepté. Attendez une réponse concrète et tenez compte des frais éventuels avant d’autoriser l’expédition internationale.'
+    ]],
+    ['Documenter la décision',[
+      'Terminez par une note claire : continuer, demander des précisions ou ne pas continuer. Indiquez les éléments visibles qui motivent cette décision.',
+      'Mentionnez aussi ce qui reste inconnu, par exemple une mesure absente ou une partie intérieure non photographiée. Ces limites comptent même si vous choisissez de poursuivre.',
+      'Vérifiez le statut actuel en entrepôt, puis comparez le colis préparé et le prix affiché avant de demander la livraison internationale.',
+      'Un examen attentif des photos réduit certaines incertitudes ; il ne garantit ni l’authenticité, ni le fonctionnement, ni la durabilité. Revérifiez les conditions applicables à votre commande.'
+    ]]
+  ];
+  const germanQcSections=[
+    ['Was eine Lagerprüfung leisten kann',[
+      'Eine Prüfung beginnt mit dem Umfang der tatsächlich angebotenen Kontrolle. LoloBuy beschreibt auf seiner Startseite eine Prüfung unter anderem auf sichtbare Mängel, Größe und Farbe. Welche Bilder und Zusatzleistungen für Ihre Bestellung verfügbar sind, prüfen Sie im aktuellen Konto.',
+      'Diese Angaben sind ein Ausgangspunkt und keine Zusage, dass jedes Detail untersucht wird. Eine Aufnahme kann sichtbare Hinweise liefern, aber nicht dauerhaftes Trageverhalten oder die Echtheit eines Artikels nachweisen.',
+      'Legen Sie vorab fest, welche Abweichungen für Sie entscheidend wären. Eine konkrete Prüfliste erleichtert die Entscheidung, auch wenn später mehrere ähnliche Artikel im Lager liegen.',
+      'Notieren Sie ebenso die Grenzen der verfügbaren Informationen. Eine offene Frage ist ein Grund für eine gezielte Nachfrage, nicht für eine erfundene Bestätigung.'
+    ]],
+    ['Bestellung und Variante abgleichen',[
+      'Vergleichen Sie Produktart, Anzahl, Farbe und Ausführung mit dem gespeicherten Auftrag. Bei mehreren ähnlichen Varianten helfen die ursprüngliche Auswahlbezeichnung und Artikelkennung.',
+      'Prüfen Sie, ob die Größenangabe auf dem Artikel zur bestellten Option passt. Bei einem Set oder einem Paar sollten alle Teile vorhanden und die jeweiligen Größen plausibel sein.',
+      'Farben können durch Beleuchtung und Bildschirm unterschiedlich erscheinen. Bewerten Sie deutliche Unterschiede anhand mehrerer verfügbarer Ansichten und dokumentieren Sie, was nicht eindeutig erkennbar ist.',
+      'Halten Sie den ursprünglichen Produktlink und das Datum Ihrer Auswahl fest. Angebote ändern sich; ein späteres Bild allein erklärt nicht immer, welche Option ursprünglich ausgewählt wurde.'
+    ]],
+    ['Kleidung: Maße und sichtbare Verarbeitung',[
+      'Vergleichen Sie Brustbreite, Gesamtlänge und Ärmellänge mit einem Kleidungsstück, das Ihnen bereits passt. Ein Größenbuchstabe allein erlaubt keinen zuverlässigen Vergleich zwischen Angeboten.',
+      'Achten Sie auf die Messpunkte: Ein Foto sollte Anfang und Ende des Maßbands erkennen lassen. Unterschiedliche Messmethoden und die Lage des Stoffes können zu Abweichungen führen.',
+      'Prüfen Sie sichtbare Nähte, Reißverschlüsse, Taschen, Druckposition und mögliche Flecken oder Risse. Gewöhnliche Lagerfalten sind anders zu beurteilen als ein klar sichtbarer Schaden.',
+      'Materialzusammensetzung, Wärme und Haltbarkeit lassen sich aus einer Aufnahme nicht sicher bestimmen. Kennzeichnen Sie solche Punkte als ungeprüft und ziehen Sie die aktuelle Produktbeschreibung hinzu.'
+    ]],
+    ['Schuhe und Zubehör gezielt betrachten',[
+      'Vergleichen Sie bei Schuhen beide Seiten, Größenmarkierungen, Form und Sohlen. Bei einem Paar ist wichtig, dass beide Artikel zusammenpassen und sichtbare Unterschiede erklärt werden.',
+      'Verschiedene Perspektiven beantworten verschiedene Fragen: Eine Draufsicht hilft bei der Gesamtform, Seitenansichten zeigen Verbindungen und eine Ansicht der Laufsohle das sichtbare Profil.',
+      'Prüfen Sie bei Taschen oder Zubehör die sichtbaren Verschlüsse, mitgelieferten Teile und Abmessungen. Bei Elektronik zeigt ein Foto äußere Anschlüsse, aber nicht zuverlässig deren Funktion.',
+      'Wenn eine wichtige Ansicht fehlt, fragen Sie gezielt nach dem benötigten Bild oder Maß. Ob dies möglich ist und welche Kosten gelten, muss für die konkrete Bestellung bestätigt werden.'
+    ]],
+    ['Unklarheiten vor dem Versand klären',[
+      'Vergleichen Sie jede Auffälligkeit mit Ihrer ursprünglichen Bestellung und notieren Sie eine konkrete Frage. „Ist die Farbe die gewählte Variante?“ ist leichter zu prüfen als „Ist alles gut?“.',
+      'Speichern Sie relevante Bilder, Bestellnummer und Kommunikation. Diese Unterlagen helfen, eine Abweichung nachvollziehbar zu beschreiben, ohne aus einer unscharfen Aufnahme mehr abzuleiten, als sie zeigt.',
+      'Prüfen Sie die aktuellen Rückgabe- und Änderungsbedingungen, bevor Sie eine Entscheidung treffen. Verfügbarkeit, Fristen und Kosten können vom Verkäufer und Bestellstatus abhängen.',
+      'Eine Anfrage ist noch keine bestätigte Rückgabe. Warten Sie auf die konkrete Antwort und berücksichtigen Sie eventuelle Kosten, bevor Sie den Artikel für den internationalen Versand freigeben.'
+    ]],
+    ['Entscheidung dokumentieren',[
+      'Schließen Sie die Prüfung mit einer klaren Notiz ab: fortfahren, weitere Informationen anfordern oder nicht fortfahren. Nennen Sie die sichtbaren Gründe für Ihre Entscheidung.',
+      'Halten Sie daneben fest, was offenbleibt, etwa ein fehlendes Maß oder eine nicht gezeigte Innenseite. Auch bei einer positiven Entscheidung sind solche Grenzen wichtig.',
+      'Kontrollieren Sie den aktuellen Lagerstatus und vergleichen Sie das fertige Paket sowie den angezeigten Versandpreis, bevor Sie die internationale Zustellung veranlassen.',
+      'Eine sorgfältige Fotoprüfung reduziert Unsicherheit, ersetzt aber keine Garantie für Echtheit, Funktion oder Haltbarkeit. Prüfen Sie die aktuellen Bedingungen für Ihre Bestellung erneut.'
+    ]]
+  ];
+  function localizedArticleBase(key){const locale=lang();if(locale==='en'){const a=editorialArticles[key];return key==='spreadsheet'?{...a,sections:a.sections.map(([h,p],i)=>[h,[...p,spreadsheetSteps.en[i]]])}:a;}const c=localizedArticleContent[locale],a=c.articles[key];if(key==='spreadsheet'&&['de','fr','es','it','pt','nl','pl','sv'].includes(locale)){const sections={de:germanSpreadsheetSections,fr:frenchSpreadsheetSections,es:spanishSpreadsheetSections,it:italianSpreadsheetSections,pt:portugueseSpreadsheetSections,nl:dutchSpreadsheetSections,pl:polishSpreadsheetSections,sv:swedishSpreadsheetSections}[locale];return {...a,sections:sections.map(([h,p],i)=>[h,[...p,spreadsheetSteps[locale][i]]])};}if(key==='shipping'&&locale==='de')return {...a,sections:germanShippingSections};if(key==='shipping'&&locale==='fr')return {...a,sections:frenchShippingSections};if(key==='shipping'&&locale==='es')return {...a,sections:spanishShippingSections};if(key==='shipping'&&locale==='it')return {...a,sections:italianShippingSections};if(key==='shipping'&&locale==='pt')return {...a,sections:portugueseShippingSections};if(key==='shipping'&&locale==='nl')return {...a,sections:dutchShippingSections};if(key==='shipping'&&locale==='pl')return {...a,sections:polishShippingSections};if(key==='shipping'&&locale==='sv')return {...a,sections:swedishShippingSections};if(key==='qc'&&locale==='de')return {...a,sections:germanQcSections};if(key==='qc'&&locale==='fr')return {...a,sections:frenchQcSections};if(key==='qc'&&locale==='es')return {...a,sections:spanishQcSections};if(key==='qc'&&locale==='it')return {...a,sections:italianQcSections};if(key==='qc'&&locale==='pt')return {...a,sections:portugueseQcSections};if(key==='qc'&&locale==='nl')return {...a,sections:dutchQcSections};if(key==='qc'&&locale==='pl')return {...a,sections:polishQcSections};if(key==='qc'&&locale==='sv')return {...a,sections:swedishQcSections};return {title:a.title,deck:a.deck,kicker:a.kicker,sections:c.headings.map((heading,i)=>[heading,[`${a.topic} ${c.guidance[i]}`,c.standards[i%3],c.standards[(i+1)%3],c.standards[(i+2)%3],...(key==='spreadsheet'?[spreadsheetSteps[locale][i]]:[])]])};}
+  function localizedArticle(key){const article=localizedArticleBase(key),details={de:germanArticleDetails,fr:frenchArticleDetails,es:spanishArticleDetails,it:italianArticleDetails,pt:portugueseArticleDetails,nl:dutchArticleDetails,pl:polishArticleDetails,sv:swedishArticleDetails}[lang()];if(!details||!details[key])return article;return {...article,sections:article.sections.map(([heading,paragraphs],i)=>[heading,paragraphs.map((paragraph,j)=>j<4?paragraph+' '+details[key][i][j]:paragraph)])};}
+  const austriaShipping={
+  en:['Shipping to Austria: what to check','Compare offers for the same destination and the same packed parcel. Check whether the service accepts every item, whether actual or dimensional weight is used, and whether protection or handling costs are included.','Keep the product cost, domestic delivery, international shipping, import VAT, possible customs duty and clearance charges in separate lines. Confirm current rules and amounts with the carrier and the relevant Austrian authorities before payment.','Save the selected service, estimate and parcel reference. Delivery windows and available routes can change; compare the final quote for your own parcel rather than relying on another buyer’s screenshot.'],
+  de:['Versand nach Österreich: Das sollten Sie prüfen','Vergleichen Sie Angebote für dasselbe Zielland und dasselbe fertig gepackte Paket. Prüfen Sie Warenbeschränkungen, tatsächliches oder Volumengewicht sowie enthaltene Verpackungs- und Bearbeitungskosten.','Erfassen Sie Warenpreis, Inlandsversand, internationalen Versand, Einfuhrumsatzsteuer, möglichen Zoll und Abfertigungsgebühren getrennt. Prüfen Sie aktuelle Regeln und Beträge vor der Zahlung beim Transporteur und den zuständigen österreichischen Stellen.','Bewahren Sie Angebot, gewählte Versandart und Paketnummer auf. Lieferfenster und Routen können sich ändern; vergleichen Sie das endgültige Angebot für Ihr eigenes Paket statt fremder Screenshots.'],
+  fr:['Expédition vers l’Autriche : points à vérifier','Comparez les offres pour la même destination et le même colis emballé. Vérifiez les restrictions, le poids réel ou volumétrique et les frais de protection ou de traitement inclus.','Séparez le prix des articles, le transport intérieur, le transport international, la TVA à l’importation, les droits éventuels et les frais de dédouanement. Vérifiez les règles et les montants actuels auprès du transporteur et des autorités autrichiennes compétentes avant de payer.','Conservez le service choisi, le devis et la référence du colis. Les délais et les itinéraires peuvent changer : comparez le devis final de votre propre colis plutôt que la capture d’un autre acheteur.'],
+  es:['Envío a Austria: qué comprobar','Compare ofertas para el mismo destino y el mismo paquete embalado. Revise las restricciones de los artículos, el peso real o volumétrico y si incluye protección o gestión.','Separe el precio del producto, el transporte nacional, el envío internacional, el IVA de importación, los posibles aranceles y los gastos de despacho. Confirme las normas y cantidades actuales con el transportista y las autoridades austríacas antes de pagar.','Guarde el servicio elegido, la estimación y la referencia del paquete. Los plazos y rutas pueden cambiar; compare el presupuesto final de su propio paquete, no la captura de otro comprador.'],
+  it:['Spedizione in Austria: cosa verificare','Confronta offerte per la stessa destinazione e lo stesso pacco imballato. Controlla restrizioni, peso effettivo o volumetrico e costi di protezione o gestione inclusi.','Separa prezzo dei prodotti, spedizione interna, trasporto internazionale, IVA all’importazione, eventuali dazi e spese di sdoganamento. Verifica regole e importi aggiornati con il vettore e le autorità austriache competenti prima di pagare.','Conserva servizio scelto, preventivo e riferimento del pacco. Tempi e rotte possono cambiare: confronta il preventivo finale del tuo pacco, non lo screenshot di un altro acquirente.'],
+  pt:['Envio para a Áustria: o que verificar','Compare ofertas para o mesmo destino e a mesma encomenda embalada. Verifique restrições dos artigos, peso real ou volumétrico e custos de proteção ou tratamento incluídos.','Separe o preço dos produtos, transporte interno, envio internacional, IVA de importação, eventuais direitos aduaneiros e taxas de desalfandegamento. Confirme regras e valores atuais com a transportadora e as autoridades austríacas competentes antes de pagar.','Guarde o serviço escolhido, a estimativa e a referência da encomenda. Prazos e rotas podem mudar; compare o preço final da sua encomenda, não a captura de outro comprador.'],
+  nl:['Verzending naar Oostenrijk: wat controleren','Vergelijk offertes voor dezelfde bestemming en hetzelfde ingepakte pakket. Controleer productbeperkingen, werkelijk of volumegewicht en inbegrepen beschermings- of verwerkingskosten.','Noteer productprijs, binnenlands vervoer, internationale verzending, invoer-btw, eventuele invoerrechten en inklaringskosten apart. Controleer actuele regels en bedragen vóór betaling bij de vervoerder en de bevoegde Oostenrijkse instanties.','Bewaar de gekozen dienst, offerte en pakketreferentie. Levertijden en routes kunnen veranderen; vergelijk de definitieve prijs van uw eigen pakket in plaats van een screenshot van een andere koper.'],
+  pl:['Wysyłka do Austrii: co sprawdzić','Porównuj oferty dla tego samego kraju i tej samej zapakowanej paczki. Sprawdź ograniczenia towarów, wagę rzeczywistą lub gabarytową oraz uwzględnione koszty zabezpieczenia i obsługi.','Osobno zapisz cenę towarów, transport krajowy, wysyłkę międzynarodową, VAT importowy, ewentualne cło i opłaty za odprawę. Przed zapłatą sprawdź aktualne zasady i kwoty u przewoźnika oraz właściwych władz austriackich.','Zachowaj wybraną usługę, wycenę i numer paczki. Terminy i trasy mogą się zmieniać; porównaj ostateczną wycenę własnej paczki, a nie zrzut ekranu innego kupującego.'],
+  sv:['Frakt till Österrike: kontrollera detta','Jämför erbjudanden för samma destination och samma färdigpackade paket. Kontrollera varubegränsningar, faktisk vikt eller volymvikt samt inkluderade skydds- och hanteringskostnader.','Redovisa produktpris, inrikes transport, internationell frakt, importmoms, eventuell tull och klareringsavgifter separat. Kontrollera aktuella regler och belopp hos transportören och ansvariga österrikiska myndigheter före betalning.','Spara vald tjänst, uppskattning och paketreferens. Leveranstider och rutter kan ändras; jämför slutpriset för ditt eget paket i stället för en annan köpares skärmbild.']
+  };
+  const qcPractical={
+  en:['QC photo checks before shipping','Match the item and selected size, colour and quantity to the original order record. A familiar product photo alone does not establish that the correct variant arrived.','For clothing, compare visible measurements and seams; for shoes, check both sides, size markings and soles. Ask for a specific missing view or measurement when available, and check any charge first.','Photos cannot prove authenticity, durability or electronic function. Record unresolved concerns and check the current return options before deciding to ship.'],
+  de:['QC-Fotos vor dem Versand prüfen','Vergleichen Sie Artikel, Größe, Farbe und Menge mit der ursprünglichen Bestellung. Ein bekanntes Produktfoto beweist nicht, dass die richtige Variante angekommen ist.','Prüfen Sie bei Kleidung sichtbare Maße und Nähte, bei Schuhen beide Seiten, Größenangaben und Sohlen. Fragen Sie bei Bedarf nach einer konkreten Ansicht oder Messung und klären Sie mögliche Kosten vorab.','Fotos belegen weder Echtheit noch Haltbarkeit oder Elektronikfunktionen. Halten Sie offene Fragen fest und prüfen Sie aktuelle Rückgabemöglichkeiten vor der Versandentscheidung.'],
+  fr:['Vérifier les photos QC avant l’envoi','Comparez l’article, la taille, la couleur et la quantité avec la commande initiale. Une photo familière ne prouve pas que la bonne variante est arrivée.','Pour les vêtements, examinez les mesures visibles et les coutures ; pour les chaussures, les deux côtés, les pointures et les semelles. Demandez une vue ou une mesure précise si elle est disponible et vérifiez d’abord son coût.','Les photos ne prouvent ni l’authenticité, ni la durabilité, ni le fonctionnement électronique. Notez les points incertains et vérifiez les possibilités de retour avant l’envoi.'],
+  es:['Revisar fotos QC antes del envío','Compare artículo, talla, color y cantidad con el pedido original. Una foto conocida no demuestra que haya llegado la variante correcta.','En ropa, revise medidas visibles y costuras; en calzado, ambos lados, la talla y las suelas. Solicite una vista o medida concreta si está disponible y compruebe antes cualquier coste.','Las fotos no prueban autenticidad, durabilidad ni funcionamiento electrónico. Anote las dudas y revise las opciones actuales de devolución antes de enviar.'],
+  it:['Controllare le foto QC prima della spedizione','Confronta articolo, taglia, colore e quantità con l’ordine originale. Una foto familiare non dimostra che sia arrivata la variante corretta.','Per i vestiti controlla misure visibili e cuciture; per le scarpe, entrambi i lati, la taglia e le suole. Chiedi una vista o misura specifica se disponibile e verifica prima eventuali costi.','Le foto non provano autenticità, durata o funzionamento elettronico. Annota i dubbi e controlla le opzioni di reso attuali prima di spedire.'],
+  pt:['Verificar fotografias QC antes do envio','Compare artigo, tamanho, cor e quantidade com o pedido original. Uma imagem familiar não prova que chegou a variante correta.','Na roupa, confira medidas visíveis e costuras; no calçado, ambos os lados, o tamanho e as solas. Peça uma vista ou medida específica, se disponível, e verifique previamente eventuais custos.','As fotografias não provam autenticidade, durabilidade nem funcionamento eletrónico. Registe as dúvidas e consulte as opções atuais de devolução antes de enviar.'],
+  nl:['QC-foto’s controleren vóór verzending','Vergelijk artikel, maat, kleur en aantal met de oorspronkelijke bestelling. Een vertrouwde productfoto bewijst niet dat de juiste variant is aangekomen.','Controleer bij kleding zichtbare maten en naden; bij schoenen beide kanten, de maataanduiding en zolen. Vraag zo mogelijk om een specifieke extra foto of meting en controleer eerst de kosten.','Foto’s bewijzen geen echtheid, duurzaamheid of elektronische werking. Noteer onduidelijkheden en bekijk de actuele retourmogelijkheden vóór verzending.'],
+  pl:['Sprawdź zdjęcia QC przed wysyłką','Porównaj produkt, rozmiar, kolor i liczbę sztuk z pierwotnym zamówieniem. Znane zdjęcie nie dowodzi, że dotarł właściwy wariant.','W ubraniach sprawdź widoczne wymiary i szwy, a w butach obie strony, oznaczenia rozmiaru i podeszwy. Jeśli to możliwe, poproś o konkretny widok lub pomiar i wcześniej sprawdź koszt.','Zdjęcia nie potwierdzają autentyczności, trwałości ani działania elektroniki. Zapisz wątpliwości i sprawdź aktualne możliwości zwrotu przed wysyłką.'],
+  sv:['Granska QC-bilder före frakt','Jämför vara, storlek, färg och antal med den ursprungliga beställningen. En välbekant produktbild bevisar inte att rätt variant har kommit fram.','Kontrollera synliga mått och sömmar på kläder samt båda sidor, storleksmärkning och sulor på skor. Be om en bestämd extra bild eller mätning om det är möjligt och kontrollera kostnaden först.','Bilder bevisar inte äkthet, hållbarhet eller elektronisk funktion. Notera olösta frågor och kontrollera aktuella returalternativ innan du skickar.']
+  };
+  const relatedPaths=['/article-spreadsheet-guide','/article-qc-checklist','/article-shipping-guide','/categories'];
+  const related={
+    en:['Explore related guides','Product spreadsheet','QC checklist','Shipping guide','Categories'],
+    de:['Weitere Anleitungen','Produkt-Spreadsheet','QC-Checkliste','Versandratgeber','Kategorien'],
+    fr:['Guides associés','Tableau de produits','Liste de contrôle qualité','Guide de livraison','Catégories'],
+    es:['Guías relacionadas','Hoja de productos','Lista de control de calidad','Guía de envío','Categorías'],
+    it:['Guide correlate','Foglio prodotti','Lista di controllo qualità','Guida alla spedizione','Categorie'],
+    pt:['Guias relacionados','Planilha de produtos','Lista de controlo de qualidade','Guia de envio','Categorias'],
+    nl:['Gerelateerde gidsen','Productoverzicht','QC-checklist','Verzendgids','Categorieën'],
+    pl:['Powiązane poradniki','Arkusz produktów','Lista kontroli jakości','Poradnik wysyłki','Kategorie'],
+    sv:['Relaterade guider','Produktöversikt','QC-checklista','Fraktguide','Kategorier']
+  };
+  function articleMarkup(article){const u=translatedEditorial[lang()]||translatedEditorial.en;return `<article class="article"><p class="meta">${u.meta}</p><div class="fact-box"><strong>${u.factLabel}</strong> ${u.factText}</div>${article.sections.map(([heading,paras])=>`<section><h2>${heading}</h2>${paras.map(p=>`<p>${p}</p>`).join('')}</section>`).join('')}${location.pathname.includes("article-qc-checklist")?`<section><h2>${qcPractical[lang()][0]}</h2>${qcPractical[lang()].slice(1).map(p=>`<p>${p}</p>`).join("")}</section>`:""}${location.pathname.includes("article-shipping-guide")?`<section><h2>${austriaShipping[lang()][0]}</h2>${austriaShipping[lang()].slice(1).map(p=>`<p>${p}</p>`).join("")}</section>`:""}<p class="article-action"><a class="btn primary" href="${defaultTarget}">${u.action}</a></p><nav aria-label="${related[lang()][0]}"><strong>${related[lang()][0]}: </strong>${related[lang()].slice(1).map((label,i)=>`<a href="${relatedPaths[i]}">${label}</a>`).join(" · ")}</nav></article>`;}
   function faqPage(){const c=faqContent[lang()]||faqContent.en,u=translatedEditorial[lang()]||translatedEditorial.en;titlePage(c.title,c.lede,`<section class="faq factual-faq"><p class="meta">${u.faqMeta}</p>${c.items.map(([q,a],i)=>`<details${i===0?' open':''}><summary>${q}</summary><p>${a}</p></details>`).join('')}</section>`);}
-  function applyBaseTranslation(){const u=translatedEditorial[lang()]||translatedEditorial.en,path=location.pathname;if(path==='/'||path.endsWith('/index.html')){const hero=document.querySelector('.hero .kicker');if(hero)hero.textContent=u.homeKicker;document.querySelectorAll('.numbers span').forEach((el,i)=>{if(u.numbers[i])el.textContent=u.numbers[i]});const feature=document.querySelector('.research .feature .tag');if(feature)feature.textContent=u.homeLabels[0];const stack=document.querySelectorAll('.research .stack h3');if(stack[0])stack[0].textContent=u.homeLabels[1];if(stack[1])stack[1].textContent=u.homeLabels[2];}else if(path.includes('/how-it-works')){const title=document.querySelector('.page-title'),notice=document.querySelector('.notice');if(title)title.textContent=u.routeTitles.how;if(notice)notice.textContent=u.notice;}else if(path.includes('/research')){const title=document.querySelector('.page-title'),notice=document.querySelector('.notice');if(title)title.textContent=u.routeTitles.research;if(notice)notice.textContent=u.notice;}}
-  function specialPage(){const path=location.pathname;const isRoute=name=>path===`/${name}`||path.endsWith(`/${name}.html`);if(isRoute('categories')){document.querySelector('#app').innerHTML=catalogMarkup(true);}else if(isRoute('category-details'))categoryPage();else if(isRoute('product-details'))productPage();else if(isRoute('faq'))faqPage();else if(isRoute('seo-articles')){const u=translatedEditorial[lang()]||translatedEditorial.en;const list=['spreadsheet','qc','shipping'].map((key,i)=>{const article=localizedArticle(key);return [article.title,['article-spreadsheet-guide.html','article-qc-checklist.html','article-shipping-guide.html'][i],article.deck];});titlePage(u.seoTitle,u.seoLead,`<section class="article-scope"><strong>${u.rule}</strong> ${u.ruleText}</section><section class="detail-grid">${list.map(([name,href,desc],i)=>`<article><p class="tag">Guide 0${i+1}</p><h2>${name}</h2><p>${desc}</p><a class="btn" href="/${href}">${u.read}</a></article>`).join('')}</section>`,u.seoTitle);}else if(path.includes('/article-')){const key=path.includes('qc')?'qc':path.includes('shipping')?'shipping':'spreadsheet';const article=localizedArticle(key);titlePage(article.title,article.deck,articleMarkup(article),article.kicker);}}
+  const baseLabels={en:['Independent guide','Editorial standard'],de:['Unabhängiger Leitfaden','Redaktioneller Standard'],fr:['Guide indépendant','Norme éditoriale'],es:['Guía independiente','Criterio editorial'],it:['Guida indipendente','Standard editoriale'],pt:['Guia independente','Padrão editorial'],nl:['Onafhankelijke gids','Redactionele standaard'],pl:['Niezależny przewodnik','Standard redakcyjny'],sv:['Oberoende guide','Redaktionell standard']};
+  function applyBaseTranslation(){const u=translatedEditorial[lang()]||translatedEditorial.en,path=location.pathname;if(path==='/'||path.endsWith('/index.html')){const hero=document.querySelector('.hero .kicker');if(hero)hero.textContent=u.homeKicker;document.querySelectorAll('.numbers span').forEach((el,i)=>{if(u.numbers[i])el.textContent=u.numbers[i]});const feature=document.querySelector('.research .feature .tag');if(feature)feature.textContent=u.homeLabels[0];const stack=document.querySelectorAll('.research .stack h3');if(stack[0])stack[0].textContent=u.homeLabels[1];if(stack[1])stack[1].textContent=u.homeLabels[2];}else if(path.includes('/how-it-works')||path.includes('/research')){const title=document.querySelector('.page-title'),notice=document.querySelector('.notice'),kicker=document.querySelector('.page-hero .kicker'),tag=document.querySelector('.list > article:last-child .tag'),labels=baseLabels[lang()]||baseLabels.en;if(title)title.textContent=path.includes('/how-it-works')?u.routeTitles.how:u.routeTitles.research;if(notice)notice.textContent=u.notice;if(kicker)kicker.textContent='LoloBuy Sheet AT · '+labels[0];if(tag)tag.textContent=labels[1];}}
+  function specialPage(){const path=location.pathname;const isRoute=name=>path===`/${name}`||path.endsWith(`/${name}.html`);if(isRoute('categories')){document.querySelector('#app').innerHTML=catalogMarkup(true);}else if(isRoute('category-details'))categoryPage();else if(isRoute('product-details'))productPage();else if(isRoute('faq'))faqPage();else if(isRoute('seo-articles')){const u=translatedEditorial[lang()]||translatedEditorial.en;const list=['spreadsheet','qc','shipping'].map((key,i)=>{const article=localizedArticle(key);return [article.title,['article-spreadsheet-guide','article-qc-checklist','article-shipping-guide'][i],article.deck];});titlePage(u.seoTitle,u.seoLead,`<section class="article-scope"><strong>${u.rule}</strong> ${u.ruleText}</section><section class="detail-grid">${list.map(([name,href,desc],i)=>`<article><p class="tag">Guide 0${i+1}</p><h2>${name}</h2><p>${desc}</p><a class="btn" href="/${href}">${u.read}</a></article>`).join('')}</section>`,u.seoTitle);}else if(path.includes('/article-')){const key=path.includes('qc')?'qc':path.includes('shipping')?'shipping':'spreadsheet';const article=localizedArticle(key);titlePage(article.title,article.deck,articleMarkup(article),article.kicker);}}
   function refresh(){buildHeader();specialPage();applyBaseTranslation();if(location.pathname==='/'||location.pathname.endsWith('/index.html')){searchBox();categoryCards();}}
   const languageControl=document.querySelector('#language');
   if(languageControl)languageControl.addEventListener('change',()=>setTimeout(refresh,0));
