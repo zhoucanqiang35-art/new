@@ -2182,11 +2182,10 @@ function xmlEscape(value) {
 
 function sitemapXml(origin) {
   const base = origin.replace(/\/$/, '');
-  const today = new Date().toISOString().slice(0, 10);
   const urls = Object.keys(LOCALES).flatMap(language => SITEMAP_PATHS.map(([path, priority]) => {
     const location = `${base}/${language}${path}`;
     const alternates = Object.keys(LOCALES).map(other => `<xhtml:link rel="alternate" hreflang="${other}" href="${xmlEscape(`${base}/${other}${path}`)}"/>`).join('');
-    return `<url><loc>${xmlEscape(location)}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${base}/en${path}`)}"/><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`;
+    return `<url><loc>${xmlEscape(location)}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${base}/en${path}`)}"/><priority>${priority}</priority></url>`;
   })).join('');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`;
 }
@@ -2203,3 +2202,53 @@ render = async function (url) {
   }
   return crawlableSiteRender(url);
 };
+
+// Emit stable page metadata from the actual requested route. Search and other
+// transient query results must not become a stream of indexable duplicates.
+const SEO_DESCRIPTIONS = {
+  en:'Browse PikoBuy product finds by category, compare source images and read practical QC and shipping guides before ordering.',
+  de:'PikoBuy-Produkte nach Kategorie entdecken, Quellbilder vergleichen und Hinweise zu QC und Versand vor der Bestellung lesen.',
+  fr:'Parcourez les produits PikoBuy par catégorie, comparez les images source et consultez les guides QC et livraison avant de commander.',
+  es:'Explora productos PikoBuy por categoría, compara imágenes de origen y consulta guías de control QC y envío antes de pedir.',
+  it:'Esplora i prodotti PikoBuy per categoria, confronta le immagini originali e leggi le guide QC e spedizione prima di ordinare.',
+  pt:'Explore produtos PikoBuy por categoria, compare imagens de origem e leia os guias de QC e envio antes de encomendar.',
+  nl:'Bekijk PikoBuy-producten per categorie, vergelijk bronafbeeldingen en lees vóór het bestellen over QC en verzending.',
+  pl:'Przeglądaj produkty PikoBuy według kategorii, porównuj zdjęcia źródłowe i sprawdź poradniki QC oraz wysyłki przed zamówieniem.',
+  sv:'Bläddra bland PikoBuy-produkter per kategori, jämför källbilder och läs om QC och frakt före beställning.'
+};
+const SEO_HOME_TITLES = {
+  en:'PikoBuy Spreadsheet | Product Finds, QC & Shipping Guides',
+  de:'PikoBuy Spreadsheet | Produkte, QC und Versandratgeber',
+  fr:'PikoBuy Spreadsheet | Produits, QC et guides de livraison',
+  es:'PikoBuy Spreadsheet | Productos, QC y guías de envío',
+  it:'PikoBuy Spreadsheet | Prodotti, QC e guide di spedizione',
+  pt:'PikoBuy Spreadsheet | Produtos, QC e guias de envio',
+  nl:'PikoBuy Spreadsheet | Producten, QC en verzendgidsen',
+  pl:'PikoBuy Spreadsheet | Produkty, QC i poradniki wysyłki',
+  sv:'PikoBuy Spreadsheet | Produkter, QC och fraktguider'
+};
+const indexedRoutes = new Set(['', 'guides', 'faq', 'checklist', 'shipping', 'categories', 'category-details']);
+const seoMetadataRender = render;
+render = async function (url) {
+  const result = await seoMetadataRender(url);
+  if (typeof result !== 'string') return result;
+  const [, locale, page = ''] = url.pathname.split('/');
+  if (!LOCALES[locale]) return result;
+  const isCategory = page === 'categories' || page === 'category-details';
+  const selected = url.searchParams.get('category');
+  const isIndexable = indexedRoutes.has(page) && !url.searchParams.has('offset') &&
+    (!isCategory || !selected || cats.includes(selected));
+  const path = page ? `/${page}` : '/';
+  const categoryQuery = isCategory && selected && cats.includes(selected) ? `?category=${encodeURIComponent(selected)}` : '';
+  const canonicalPath = `/${locale}${path}${categoryQuery}`;
+  const canonical = `https://pikobuy.nl${canonicalPath}`;
+  const alternates = isIndexable ? Object.keys(LOCALES).map(other =>
+    `<link rel="alternate" hreflang="${other}" href="https://pikobuy.nl/${other}${path}${categoryQuery}">`).join('') +
+    `<link rel="alternate" hreflang="x-default" href="https://pikobuy.nl/en${path}${categoryQuery}">` : '';
+  const metadata = `<meta name="description" content="${esc(SEO_DESCRIPTIONS[locale])}">` +
+    `<link rel="canonical" href="${esc(canonical)}">${alternates}` +
+    (isIndexable ? '' : '<meta name="robots" content="noindex,follow">');
+  const withTitle = page === '' ? result.replace(/<title>[^<]*<\/title>/, `<title>${esc(SEO_HOME_TITLES[locale])}</title>`) : result;
+  return withTitle.replace('<title>', `${metadata}<title>`);
+};
+
