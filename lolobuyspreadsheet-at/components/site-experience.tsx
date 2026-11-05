@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { buyerGuides } from "@/components/buyer-guides";
+import { categoryNotes } from "@/components/category-notes";
+import { FormEvent, useEffect, useState } from "react";
 import { factualFaq, localizedArticleContinuations, localizedArticleDetailAdditions, localizedArticles, seoArticle } from "@/components/editorial-content";
 
 type Page = "home" | "categories" | "details" | "guides" | "articles" | "faq";
@@ -18,7 +20,7 @@ pl:{name:"Polski",code:"PL",nav:["Start","Kategorie","Szczegóły produktu","Por
 pt:{name:"Português",code:"PT",nav:["Início","Categorias","Detalhes","Guias","Artigos","FAQ"],eyebrow:"Guia independente de descoberta",title:"Encontre melhores artigos. Verifique antes de comprar.",intro:"Um percurso centrado no comprador, da descoberta a decisões ponderadas. Explore categorias, compare contexto e abra o FindSpreadsheet quando estiver pronto.",explore:"Explorar a base",search:"Pesquisar no FindSpreadsheet",note:"Edição de pré-visualização · não é o site oficial da LoloBuy",section:"Explorar por categoria",sectionBody:"Comece de forma ampla e abra depois a base com uma intenção clara.",guide:"Planeie uma encomenda com calma",guideBody:"Compare o contexto, verifique tamanho e notas QC e consulte opções para o destino no checkout.",article:"Guia recente",articleBody:"Fluxo LoloBuy: link de produto, revisão no armazém e entrega internacional—o que confirmar em cada fase.",faq:"Antes de abrir um produto",faqBody:"A página do produto é a fonte principal. Disponibilidade, preço, linhas de envio e regras variam conforme o destino.",source:"Base de pesquisa: LoloBuy apresenta-se publicamente como serviço global com idiomas, moedas e envio internacional. Este guia não promete resultados de entrega ou alfândega.",independent:"Um site independente de descoberta para FindSpreadsheet.",focus:"Mercados prioritários",countries:["Países Baixos","Alemanha","França","Espanha","Itália","Polónia","Portugal","Suécia","Mercados de língua inglesa"]},
 sv:{name:"Svenska",code:"SV",nav:["Hem","Kategorier","Produktdetaljer","Guider","Artiklar","FAQ"],eyebrow:"Oberoende upptäcktsguide",title:"Hitta bättre produkter. Kontrollera före köp.",intro:"En köparfokuserad väg från produktupptäckt till genomtänkta beslut. Utforska kategorier, jämför sammanhang och öppna FindSpreadsheet när du är redo.",explore:"Utforska databasen",search:"Sök i FindSpreadsheet",note:"Förhandsvisning · inte LoloBuys officiella webbplats",section:"Bläddra efter kategori",sectionBody:"Börja brett och öppna sedan databasen med en tydlig produktavsikt.",guide:"Planera en beställning lugnare",guideBody:"Jämför produktkontext, kontrollera storlek och QC-notiser och se alternativ för din destination i kassan.",article:"Senaste guiden",articleBody:"LoloBuy-flödet: produktlänk, lagerkontroll och internationell leverans—vad du ska bekräfta i varje steg.",faq:"Innan du öppnar en produkt",faqBody:"Produktsidan är din huvudsakliga källa. Tillgänglighet, pris, fraktlinjer och regler varierar per destination.",source:"Forskningsgrund: LoloBuy beskriver sig offentligt som en global shoppingtjänst med språk, valutor och internationell frakt. Den här guiden lovar inte leverans- eller tullresultat.",independent:"En oberoende upptäcktssida för FindSpreadsheet.",focus:"Prioriterade marknader",countries:["Nederländerna","Tyskland","Frankrike","Spanien","Italien","Polen","Portugal","Sverige","Engelskspråkiga marknader"]}
 };
-const routes = ["/","/categories","/details","/guides","/articles","/faq"];
+const routes = ["/","/categories/","/details/","/guides/","/articles/","/faq/"];
 const routeKeys: Page[] = ["home","categories","details","guides","articles","faq"];
 const seoNavigation: Record<string,string> = {en:"SEO Articles",nl:"SEO-artikelen",de:"SEO-Artikel",fr:"Articles SEO",es:"Artículos SEO",it:"Articoli SEO",pl:"Artykuły SEO",pt:"Artigos SEO",sv:"SEO-artiklar"};
 const categories = ["Shoes","Hoodies","T-Shirts","Jackets","Pants","Headwear","Bags","Watches","Electronics","Accessories"];
@@ -43,7 +45,7 @@ const categoryDestination: Record<string,string> = {
   pants:"https://findspreadsheet.com/pants-shorts/",
   headwear:"https://findspreadsheet.com/headwear/",
   bags:"https://findspreadsheet.com/search.html?keywords=Bags&channelid=2",
-  watches:"https://findspreadsheet.com/electronics/",
+  watches:"https://findspreadsheet.com/search.html?keywords=Watches&channelid=2",
   electronics:"https://findspreadsheet.com/electronics/",
   accessories:"https://findspreadsheet.com/accessories/"
 };
@@ -59,12 +61,29 @@ const categoryDetailCopy: Record<string,{label:string;checks:string[];on:string;
   sv:{label:"Kategoridetaljer",checks:["Kontrollera produktanteckningar innan du lägger till en artikel.","Jämför mått och tillgängliga alternativ.","Använd den aktuella produktsidan för pris och tillgänglighet."],on:"på",open:"Öppna"}
 };
 
+function usePreferredLocale() {
+  const [locale, setLocale] = useState("en");
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("lolobuyspreadsheet-at-language");
+      if (saved && Object.hasOwn(copy, saved)) setLocale(saved);
+    } catch { /* Storage may be unavailable in private browsing. */ }
+  }, []);
+  useEffect(() => { document.documentElement.lang = locale; }, [locale]);
+  const changeLocale = (value:string) => {
+    if (!Object.hasOwn(copy, value)) return;
+    setLocale(value);
+    try { window.localStorage.setItem("lolobuyspreadsheet-at-language", value); } catch { /* Keep the current session usable. */ }
+  };
+  return [locale, changeLocale] as const;
+}
+
 function Brand() {
   return <Link className="brand logo-brand notranslate" href="/" aria-label="LoloBuy home"><span className="reference-logo" aria-hidden="true" /></Link>;
 }
 
 export default function SiteExperience({page}:{page:Page}) {
-  const [locale,setLocale]=useState("en"); const [query,setQuery]=useState(""); const t=copy[locale];
+  const [locale,setLocale]=usePreferredLocale(); const [query,setQuery]=useState(""); const t=copy[locale];
   const l=pageLabels[locale] ?? pageLabels.en;
   const article=localizedArticles[locale] ?? seoArticle;
   const articleContinuations=localizedArticleContinuations[locale] ?? [];
@@ -76,19 +95,19 @@ export default function SiteExperience({page}:{page:Page}) {
   return <main className="site-shell" translate="no">
     <header className="nav"><Brand /><nav>{routes.map((r,i)=><a key={r} className={i===pageIndex?"active":""} href={r} aria-current={i===pageIndex?"page":undefined}>{navLabels[i]}</a>)}</nav><select aria-label="Language" value={locale} onChange={e=>setLocale(e.target.value)}>{Object.entries(copy).map(([k,v])=><option key={k} value={k}>{v.code} · {v.name}</option>)}</select></header>
     <section className={page==="home"?"hero":"hero compact"}>{page==="home"&&<div className="hero-visual" aria-hidden="true"/>}<div className="hero-copy"><p className="eyebrow">{t.eyebrow}</p><h1>{title}</h1><p className="lede">{intro}</p><div className="actions"><form className="hero-search" onSubmit={search}><input value={query} onChange={event=>setQuery(event.target.value)} placeholder={t.search} aria-label={t.search}/><button type="submit">{t.search} →</button></form><a className="outline" href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet</a></div><small>{t.note}</small></div></section>
-    {page==="home"&&<><section className="signal"><div><p className="kicker">01 / {l.check}</p><h2>{t.faq}</h2></div><p>{t.faqBody}</p></section><section className="section"><div className="head"><div><p className="kicker">02 / {l.discover}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l}/></section><section className="blue"><p className="kicker">03 / {l.plan}</p><h2>{t.guide}</h2><p>{t.guideBody}</p><Link href="/guides">{t.nav[3]} →</Link></section></>}
-    {page==="categories"&&<section className="section"><div className="head"><div><p className="kicker">{l.categoryCount}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l}/></section>}
+    {page==="home"&&<><section className="signal"><div><p className="kicker">01 / {l.check}</p><h2>{t.faq}</h2></div><p>{t.faqBody}</p></section><section className="section"><div className="head"><div><p className="kicker">02 / {l.discover}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l} locale={locale}/></section><section className="blue"><p className="kicker">03 / {l.plan}</p><h2>{t.guide}</h2><p>{t.guideBody}</p><Link href="/guides/">{t.nav[3]} →</Link></section></>}
+    {page==="categories"&&<section className="section"><div className="head"><div><p className="kicker">{l.categoryCount}</p><h2>{t.section}</h2></div><p>{t.sectionBody}</p></div><CategoryGrid t={t} labels={l} locale={locale}/></section>}
     {page==="details"&&<section className="section details"><div><p className="kicker">{l.buyerCheck}</p><h2>{t.faq}</h2><p>{t.faqBody}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet →</a></div><div className="cards">{l.detailCards.map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3><p>{t.faqBody}</p></article>)}</div></section>}
     {page==="guides"&&<section className="section guides"><p className="kicker">{l.workflow}</p><h2>{t.guide}</h2><p className="wide">{t.guideBody}</p>{l.guideSteps.map((x,i)=><article key={x}><span>0{i+1}</span><h3>{x}</h3><p>{i===2?t.source:t.faqBody}</p></article>)}</section>}
-    {page==="articles"&&<section className="section articles article-page"><p className="kicker">{l.reading}</p><article className="seo-article"><span>{article.reviewed}</span><h2>{article.title}</h2><p className="article-intro">{article.intro}</p>{article.sections.map((section,index)=><section key={section.heading}><h3>{section.heading}</h3>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{articleContinuations[index]&&<p>{articleContinuations[index]} {articleDetails[index]}</p>}</section>)}<p className="article-source">{l.articleSource}</p></article></section>}
+    {page==="articles"&&<section className="section articles article-page"><p className="kicker">{l.reading}</p><article className="seo-article"><span>{article.reviewed}</span><h2>{article.title}</h2><p className="article-intro">{article.intro}</p>{article.sections.map((section,index)=><section key={section.heading}><h3>{section.heading}</h3>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}{articleContinuations[index]&&<p>{articleContinuations[index]} {articleDetails[index]}</p>}</section>)}<p className="article-source">{l.articleSource}</p></article>{buyerGuides[locale].map(guide=><article className="seo-article" key={guide.title}><h2>{guide.title}</h2>{guide.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</article>)}</section>}
     {page==="faq"&&<section className="section faq"><p className="kicker">{l.answers}</p><h2>{t.faq}</h2>{(factualFaq[locale] ?? factualFaq.en).map((item,i)=><details key={item.question} open={i===0}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>}
     <footer><Brand /><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>
   </main>
 }
-function CategoryGrid({t,labels}:{t:Copy;labels:PageLabels}){return <div className="grid">{categories.map((x,i)=><Link key={x} href={`/categories/${categorySlug(x)}`}><span>0{i+1}</span><h3>{labels.categoryNames[i]}</h3><p>{t.sectionBody}</p><b>→</b></Link>)}</div>}
+function CategoryGrid({t,labels,locale}:{t:Copy;labels:PageLabels;locale:string}){return <div className="grid">{categories.map((x,i)=><Link key={x} href={`/categories/${categorySlug(x)}/`}><span>0{i+1}</span><h3>{labels.categoryNames[i]}</h3><p>{categoryNotes[locale][i]}</p><b>→</b></Link>)}</div>}
 
 export function CategoryDetail({slug}:{slug:string}) {
-  const [locale,setLocale]=useState("en"); const t=copy[locale];
+  const [locale,setLocale]=usePreferredLocale(); const t=copy[locale];
   const l=pageLabels[locale] ?? pageLabels.en;
   const navLabels=t.nav.map((label,index)=>index===4?(seoNavigation[locale] ?? seoNavigation.en):label);
   const detail=categoryDetailCopy[locale];
@@ -99,7 +118,7 @@ export function CategoryDetail({slug}:{slug:string}) {
     <header className="nav"><Brand /><nav>{routes.map((r,i)=><a key={r} className={i===1?"active":""} href={r} aria-current={i===1?"page":undefined}>{navLabels[i]}</a>)}</nav><select aria-label="Language" value={locale} onChange={e=>setLocale(e.target.value)}>{Object.entries(copy).map(([k,v])=><option key={k} value={k}>{v.code} · {v.name}</option>)}</select></header>
     <section className="category-hero"><p className="eyebrow">{t.section}</p><h1>{name}</h1><p>{t.sectionBody}</p></section>
     <section className="category-detail">
-      <article className="category-copy"><p className="kicker">{detail.label}</p><h2>{name}</h2><p>{t.faqBody}</p><ul>{detail.checks.map(check=><li key={check}>{check}</li>)}</ul></article>
+      <article className="category-copy"><p className="kicker">{detail.label}</p><h2>{name}</h2><p>{categoryNotes[locale][categoryIndex] ?? t.faqBody}</p><ul>{detail.checks.map(check=><li key={check}>{check}</li>)}</ul></article>
       <a className="category-action" href={destination} target="_blank" rel="noopener noreferrer" aria-label={`${detail.open} ${name}`}><p>{t.explore}</p><h3>{name} {detail.on} FindSpreadsheet</h3><span className="category-open">{detail.open} {name} →</span><small>{t.independent}</small></a>
     </section>
     <footer><Brand /><p>{t.source}</p><a href="https://findspreadsheet.com" target="_blank" rel="noopener noreferrer">FindSpreadsheet ↗</a></footer>

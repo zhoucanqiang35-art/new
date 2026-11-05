@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://lolobuyspreadsheet.at/</loc></url>
-  <url><loc>https://lolobuyspreadsheet.at/categories</loc></url>
-  <url><loc>https://lolobuyspreadsheet.at/details</loc></url>
-  <url><loc>https://lolobuyspreadsheet.at/guides</loc></url>
-  <url><loc>https://lolobuyspreadsheet.at/articles</loc></url>
-  <url><loc>https://lolobuyspreadsheet.at/faq</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/shoes/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/hoodies/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/t-shirts/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/jackets/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/pants/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/headwear/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/bags/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/watches/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/electronics/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/categories/accessories/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/details/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/guides/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/articles/</loc></url>
+  <url><loc>https://lolobuyspreadsheet.at/faq/</loc></url>
 </urlset>
