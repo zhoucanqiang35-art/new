@@ -500,6 +500,30 @@ const directoryCopy = {
   sv:{kicker:'LIVEKATALOG · FINDSPREADSHEET-KÄLLA',title:'Din PikoBuy Spreadsheet-katalog',intro:'Bläddra bland aktuella fynd, jämför källbilder och öppna produktposten innan du går vidare till PikoBuy.',browse:'Bläddra per kategori',browseText:'Utforska kategorier direkt från FindSpreadsheet.',features:'Varför denna katalog?',featureText:['Produktposter i realtid','Sökning och källbilder','QC- / galleribevis','Intern produktresearch'],featureCopy:['Kort laddas från FindSpreadsheet vid besök.','Sökning stannar här och använder liveindexet.','Öppna en post för att granska källbilder.','Jämför kategori, titel, pris och synlig kontext.'],how:'Så fungerar det',stepText:['Bläddra i katalogen','Öppna produktdetaljer','Fortsätt till PikoBuy','Kontrollera källan'],stepCopy:['Börja med en kategori eller livesökning.','Granska bilder och fält från källan.','Använd den officiella köprutten när du är redo.','Bilder och poster är bevis, inte garantier.'],picks:'Senaste produktposter',seoTitle:'Vad är ett PikoBuy spreadsheet?',seo:'En spreadsheet-katalog hjälper dig från en produktidé till en källpost. Den här oberoende sajten säljer inga varor och lovar ingen kvalitet: den visar live-data från FindSpreadsheet för att jämföra sammanhang.',faq:'Korta researchpåminnelser',faqText:'Kontrollera titel, källbilder, pris och alternativ. Lager, frakt, tull och slutkostnad kan ändras; bekräfta detaljer på destinationen före beställning.',cta:'Redo att undersöka fynd?',ctaText:'Sök liveposter från FindSpreadsheet utan att lämna katalogen.',ctaButton:'Utforska kategorier'}
 };
 
+// Product cards open the corresponding PikoBuy purchase page directly.
+// Describe that handoff consistently in every locale without changing links.
+const DIRECT_PURCHASE_COPY = {
+ en:['Browse current finds and compare the available source images, then open the matching product on PikoBuy.','Available product images','Inspect the available images on the card; opening it takes you to PikoBuy.','Open on PikoBuy','Confirm item options','Select a card to open its matching PikoBuy product page.','Check the current size, colour and price on PikoBuy before paying.'],
+ de:['Durchsuche aktuelle Funde und vergleiche verfügbare Quellbilder; öffne anschließend das passende Produkt bei PikoBuy.','Verfügbare Produktbilder','Prüfe die verfügbaren Bilder auf der Karte; ein Klick führt zu PikoBuy.','Bei PikoBuy öffnen','Artikeloptionen prüfen','Öffne über die Karte das passende Produkt bei PikoBuy.','Prüfe vor der Zahlung aktuelle Größe, Farbe und Preis bei PikoBuy.'],
+ fr:['Parcourez les trouvailles, comparez les images source disponibles puis ouvrez le produit correspondant sur PikoBuy.','Images produit disponibles','Examinez les images disponibles sur la carte ; son ouverture mène à PikoBuy.','Ouvrir sur PikoBuy','Vérifier les options','Ouvrez le produit correspondant sur PikoBuy depuis sa carte.','Vérifiez taille, couleur et prix actuels sur PikoBuy avant paiement.'],
+ es:['Explora los hallazgos, compara las imágenes de origen disponibles y abre el producto correspondiente en PikoBuy.','Imágenes disponibles','Revisa las imágenes de la tarjeta; al abrirla irás a PikoBuy.','Abrir en PikoBuy','Confirmar opciones','Abre desde la tarjeta el producto correspondiente en PikoBuy.','Comprueba talla, color y precio actuales en PikoBuy antes de pagar.'],
+ it:['Sfoglia i prodotti, confronta le immagini disponibili e apri il prodotto corrispondente su PikoBuy.','Immagini disponibili','Esamina le immagini nella scheda; aprendola passerai a PikoBuy.','Apri su PikoBuy','Conferma le opzioni','Apri dalla scheda il prodotto corrispondente su PikoBuy.','Controlla taglia, colore e prezzo attuali su PikoBuy prima di pagare.'],
+ pt:['Explore os produtos, compare as imagens de origem disponíveis e abra o produto correspondente no PikoBuy.','Imagens disponíveis','Veja as imagens no cartão; ao abri-lo irá para o PikoBuy.','Abrir no PikoBuy','Confirmar opções','Abra pelo cartão o produto correspondente no PikoBuy.','Confirme tamanho, cor e preço atuais no PikoBuy antes de pagar.'],
+ nl:['Bekijk actuele vondsten en beschikbare bronafbeeldingen en open daarna het bijbehorende product op PikoBuy.','Beschikbare productafbeeldingen','Bekijk de beschikbare afbeeldingen op de kaart; openen leidt naar PikoBuy.','Open op PikoBuy','Controleer de opties','Open via de kaart het bijbehorende product op PikoBuy.','Controleer vóór betaling de actuele maat, kleur en prijs op PikoBuy.'],
+ pl:['Przeglądaj produkty, porównuj dostępne zdjęcia źródłowe, a następnie otwórz odpowiedni produkt w PikoBuy.','Dostępne zdjęcia produktu','Sprawdź dostępne zdjęcia na karcie; jej otwarcie prowadzi do PikoBuy.','Otwórz w PikoBuy','Sprawdź opcje','Otwórz z karty odpowiedni produkt w PikoBuy.','Przed płatnością sprawdź w PikoBuy aktualny rozmiar, kolor i cenę.'],
+ sv:['Bläddra bland fynd och jämför tillgängliga källbilder, öppna sedan motsvarande produkt på PikoBuy.','Tillgängliga produktbilder','Granska bilderna på kortet; när du öppnar det går du till PikoBuy.','Öppna på PikoBuy','Kontrollera alternativen','Öppna motsvarande produkt på PikoBuy via kortet.','Kontrollera aktuell storlek, färg och pris på PikoBuy före betalning.']
+};
+for (const [language, copy] of Object.entries(DIRECT_PURCHASE_COPY)) {
+  const page = directoryCopy[language];
+  page.intro = copy[0];
+  page.featureText[2] = copy[1];
+  page.featureCopy[2] = copy[2];
+  page.stepText[1] = copy[3];
+  page.stepText[2] = copy[4];
+  page.stepCopy[1] = copy[5];
+  page.stepCopy[2] = copy[6];
+}
+
 const referenceInspiredRender = render;
 render = async function (url) {
   const [, maybeLang, page = ''] = url.pathname.split('/');
@@ -651,13 +675,26 @@ const GUIDE_PARAGRAPHS = {
   sv:s=>[`Den här artikeln handlar om ${s[0]}. Kontrollera den aktuella källposten i stället för att förlita dig på en enda förhandsbild.`,`Jämförelsen gäller ${s[1]}. Stäm av detta mot vald variant och synliga bilder.`,`Vid beslutet gäller: ${s[2]}. Lagerstatus, säljarvillkor, frakt och slutkostnad kan ändras.`]
 };
 
+// Keep guide subjects aligned with the corresponding English articles.
+// Each localized row supplies the subject, evidence to compare and decision.
+const GUIDE_SIGNAL_CORRECTIONS = {
+ de:[['Lagerkontrolle vor Paketversand','Bestellvariante, Zustand und Lagerfotos','Unklarheiten vor dem Versand klären'],['Rückgabe und Fristen im Lager','Verkäuferbedingungen, Zustand und mögliche Gebühren','die für die Bestellung angezeigte Frist prüfen'],['Probeverpackung eines Pakets','Gewicht, Maße, Schutz und Routen','die endgültigen Paketdaten erneut prüfen'],['internationalem Versand und Sendungsverfolgung','Ziellandregeln, erlaubten Inhalt und Sendungsdaten','keine feste Lieferzeit oder Zollabfertigung versprechen'],['Sicherheit vor der Zahlung','Plattformbedingungen, Verkäufer und sichtbare Nachweise','unklare Angaben vor einer Zahlung prüfen'],['Einkaufsagent und Direktkauf','Quellangebot, Varianten, Kosten und Bestellweg','den passenden Weg erst nach dem Vergleich wählen']],
+ fr:[['contrôle en entrepôt avant expédition','variante commandée, état et photos','clarifier les écarts avant l’envoi'],['retours et délais en entrepôt','conditions du vendeur, état et frais éventuels','vérifier le délai indiqué pour la commande'],['préparation estimative du colis','poids, dimensions, protection et routes','revérifier les données finales du colis'],['livraison internationale et suivi','règles de destination, contenu autorisé et suivi','ne pas promettre de date ni de dédouanement'],['sécurité avant paiement','conditions de la plateforme, vendeur et preuves visibles','vérifier tout point incertain avant paiement'],['agent d’achat et achat direct','offre source, variantes, coûts et processus','choisir après comparaison des options']],
+ es:[['revisión de almacén antes del envío','variante pedida, estado y fotografías','aclarar diferencias antes del envío'],['devoluciones y plazos en almacén','condiciones del vendedor, estado y posibles gastos','revisar el plazo indicado en el pedido'],['preparación estimada del paquete','peso, medidas, protección y rutas','volver a comprobar los datos finales'],['envío internacional y seguimiento','reglas de destino, contenido permitido y seguimiento','no prometer fechas ni despacho aduanero'],['seguridad antes de pagar','condiciones de la plataforma, vendedor y pruebas visibles','aclarar dudas antes del pago'],['agente de compras y compra directa','oferta de origen, variantes, costes y proceso','elegir tras comparar las opciones']],
+ it:[['controllo in magazzino prima della spedizione','variante ordinata, condizioni e foto','chiarire le differenze prima della spedizione'],['resi e termini in magazzino','condizioni del venditore, stato e possibili costi','verificare il termine indicato per l’ordine'],['preparazione stimata del pacco','peso, dimensioni, protezione e rotte','ricontrollare i dati finali del pacco'],['spedizione internazionale e tracciamento','regole di destinazione, contenuto consentito e tracking','non promettere date o sdoganamento'],['sicurezza prima del pagamento','condizioni della piattaforma, venditore e prove visibili','chiarire i dubbi prima di pagare'],['agente d’acquisto e acquisto diretto','offerta originale, varianti, costi e procedura','scegliere dopo aver confrontato le opzioni']],
+ pt:[['verificação no armazém antes do envio','variante encomendada, estado e fotografias','esclarecer diferenças antes do envio'],['devoluções e prazos no armazém','condições do vendedor, estado e possíveis custos','verificar o prazo indicado na encomenda'],['preparação estimada do pacote','peso, dimensões, proteção e rotas','rever os dados finais do pacote'],['envio internacional e rastreio','regras do destino, conteúdo permitido e rastreio','não prometer datas nem desalfandegamento'],['segurança antes do pagamento','condições da plataforma, vendedor e provas visíveis','esclarecer dúvidas antes de pagar'],['agente de compras e compra direta','anúncio de origem, variantes, custos e processo','escolher após comparar as opções']],
+ nl:[['magazijncontrole vóór verzending','bestelde variant, staat en magazijnfoto’s','verschillen vóór verzending ophelderen'],['retouren en termijnen in het magazijn','verkopersvoorwaarden, staat en mogelijke kosten','de termijn bij de bestelling controleren'],['proefverpakking van een pakket','gewicht, afmetingen, bescherming en routes','de definitieve pakketgegevens opnieuw controleren'],['internationale verzending en tracking','bestemmingsregels, toegestane inhoud en tracking','geen vaste leverdatum of inklaring beloven'],['veiligheid vóór betaling','platformvoorwaarden, verkoper en zichtbaar bewijs','onduidelijkheden vóór betaling onderzoeken'],['koopagent en rechtstreeks kopen','bronaanbieding, varianten, kosten en bestelproces','de opties vergelijken vóór de keuze']],
+ pl:[['kontroli magazynowej przed wysyłką','zamówiony wariant, stan i zdjęcia','wyjaśnić rozbieżności przed wysyłką'],['zwrotów i terminów magazynowych','warunki sprzedawcy, stan i możliwe opłaty','sprawdzić termin widoczny przy zamówieniu'],['próbnego pakowania paczki','waga, wymiary, zabezpieczenie i trasy','ponownie sprawdzić końcowe dane paczki'],['wysyłki międzynarodowej i śledzenia','zasady kraju, dozwolona zawartość i śledzenie','nie obiecywać daty dostawy ani odprawy'],['bezpieczeństwa przed płatnością','warunki platformy, sprzedawca i widoczne dowody','wyjaśnić wątpliwości przed płatnością'],['agenta zakupowego i zakupu bezpośredniego','oferta źródłowa, warianty, koszty i procedura','porównać opcje przed wyborem']],
+ sv:[['lagerkontroll före frakt','beställd variant, skick och lagerbilder','reda ut skillnader före frakt'],['returer och tidsfrister i lagret','säljarvillkor, skick och möjliga avgifter','kontrollera tidsfristen för beställningen'],['provpackning av paket','vikt, mått, skydd och rutter','kontrollera slutliga paketdata igen'],['internationell frakt och spårning','destinationsregler, tillåtet innehåll och spårning','inte lova leveransdatum eller tullklarering'],['säkerhet före betalning','plattformsvillkor, säljare och synliga underlag','reda ut oklarheter före betalning'],['inköpsagent och direktköp','källannons, varianter, kostnader och process','jämföra alternativen före valet']]
+};
+
 function editorialArticles(lang) {
   if (lang === 'en') return SEO_ARTICLES;
   const copy = EDITORIAL_LOCALES[lang] || EDITORIAL_LOCALES.de;
   const signals = GUIDE_SIGNALS[lang] || GUIDE_SIGNALS.de;
   const paragraphFor = GUIDE_PARAGRAPHS[lang] || GUIDE_PARAGRAPHS.de;
   return SEO_ARTICLES.map((article, index) => {
-    const signal = signals[index] || signals[0];
+    const signal = GUIDE_SIGNAL_CORRECTIONS[lang]?.[index - 4] || signals[index] || signals[0];
     const paragraphs = paragraphFor(signal);
     return [
       `PikoBuy · ${signal[0]}`,
@@ -675,12 +712,86 @@ function editorialFaq(lang) {
   return copy.faqQ.map((question, index) => [question, copy.faqA[index]]);
 }
 
+// Matched decision examples deepen the same four guides in every language.
+// They are shared by the homepage and the standalone guide page.
+const GUIDE_EXAMPLES = {
+ en:[
+  'For example, compare two similar shoe listings by the exact size, colour, seller, source images and listed price. Keep the original link and selected option together; a thumbnail alone cannot establish stock, authenticity or final cost.',
+  'A first order has two separate decisions: select the exact item and pay for the purchase, then review the warehouse photos before choosing and paying for international delivery. Check the final order screen at each stage and keep the order reference.',
+  'For shoes, compare both sides, the sole, heel and size label; for clothing, request a clear measurement of the relevant dimensions when needed. Compare the photos with the saved option, and raise a specific concern while any eligible return remains possible.',
+  'For a parcel to the Netherlands, enter the destination, product type, estimated weight and all three dimensions in the current shipping estimator. Compare routes using the same packed measurements, then check the final parcel quotation, restrictions and any destination charges before paying.'
+ ],
+ de:[
+  'Vergleiche etwa zwei ähnliche Schuhe anhand von Größe, Farbe, Verkäufer, Quellbildern und angezeigtem Preis. Speichere Originallink und gewählte Variante zusammen; ein Vorschaubild belegt weder Bestand noch Echtheit oder Endpreis.',
+  'Bei der ersten Bestellung gibt es zwei Entscheidungen: Artikel und Variante auswählen und den Kauf bezahlen; danach Lagerfotos prüfen sowie internationalen Versand auswählen und bezahlen. Kontrolliere jeweils die endgültige Bestellübersicht und bewahre die Bestellnummer auf.',
+  'Vergleiche bei Schuhen beide Seiten, Sohle, Ferse und Größenetikett; bei Kleidung helfen bei Bedarf klare Maßfotos. Gleiche die Fotos mit der gespeicherten Variante ab und melde konkrete Abweichungen, solange eine zulässige Rückgabe noch möglich ist.',
+  'Für ein Paket in die Niederlande gib Ziel, Produktart, geschätztes Gewicht und alle drei Maße in den aktuellen Versandkostenrechner ein. Vergleiche Routen mit denselben Verpackungsmaßen und prüfe vor Zahlung Endpreis, Einschränkungen und mögliche Kosten am Ziel.'
+ ],
+ fr:[
+  'Comparez par exemple deux paires similaires selon taille, couleur, vendeur, images source et prix affiché. Conservez ensemble le lien original et l’option choisie ; une vignette ne prouve ni le stock, ni l’authenticité, ni le coût final.',
+  'Une première commande comporte deux décisions : choisir l’article exact et payer son achat, puis vérifier les photos d’entrepôt avant de choisir et payer la livraison internationale. Contrôlez chaque écran final et conservez la référence de commande.',
+  'Pour des chaussures, comparez les deux côtés, la semelle, le talon et l’étiquette de taille ; pour les vêtements, demandez au besoin une photo des mesures utiles. Comparez-les à l’option enregistrée et signalez tout écart pendant la période de retour applicable.',
+  'Pour un colis vers les Pays-Bas, indiquez destination, type de produit, poids estimé et trois dimensions dans le calculateur actuel. Comparez les routes avec les mêmes mesures emballées, puis vérifiez le devis final, les restrictions et les frais éventuels à destination.'
+ ],
+ es:[
+  'Por ejemplo, compara dos pares similares por talla, color, vendedor, imágenes de origen y precio mostrado. Guarda juntos el enlace original y la opción elegida; una miniatura no demuestra disponibilidad, autenticidad ni coste final.',
+  'Una primera compra tiene dos decisiones: elegir el artículo exacto y pagar su compra; después revisar las fotos del almacén antes de elegir y pagar el envío internacional. Comprueba cada pantalla final y guarda la referencia del pedido.',
+  'En zapatos compara ambos lados, suela, talón y etiqueta de talla; en ropa pide cuando sea necesario una foto clara de las medidas relevantes. Contrasta las fotos con la opción guardada y comunica diferencias mientras sea posible una devolución admitida.',
+  'Para un paquete a los Países Bajos, introduce destino, tipo de producto, peso estimado y las tres dimensiones en la calculadora actual. Compara rutas con las mismas medidas embaladas y revisa presupuesto final, restricciones y posibles gastos de destino antes de pagar.'
+ ],
+ it:[
+  'Per esempio, confronta due scarpe simili per taglia, colore, venditore, immagini originali e prezzo indicato. Conserva insieme link originale e opzione scelta: una miniatura non prova disponibilità, autenticità o costo finale.',
+  'Il primo ordine comporta due decisioni: scegliere l’articolo esatto e pagare l’acquisto, poi controllare le foto di magazzino prima di scegliere e pagare la spedizione internazionale. Verifica ogni schermata finale e conserva il riferimento dell’ordine.',
+  'Per le scarpe confronta entrambi i lati, suola, tallone ed etichetta della taglia; per gli indumenti chiedi se necessario una foto chiara delle misure. Confronta le foto con l’opzione salvata e segnala differenze entro l’eventuale termine di reso.',
+  'Per un pacco nei Paesi Bassi inserisci destinazione, tipo di prodotto, peso stimato e tre dimensioni nel calcolatore attuale. Confronta le rotte con le stesse misure imballate e verifica preventivo finale, restrizioni ed eventuali costi a destinazione.'
+ ],
+ pt:[
+  'Por exemplo, compare dois pares semelhantes por tamanho, cor, vendedor, imagens de origem e preço indicado. Guarde juntos o link original e a opção escolhida; uma miniatura não comprova stock, autenticidade ou custo final.',
+  'Uma primeira encomenda tem duas decisões: escolher o artigo exato e pagar a compra; depois rever as fotos do armazém antes de escolher e pagar o envio internacional. Confirme cada ecrã final e guarde a referência da encomenda.',
+  'Em calçado compare ambos os lados, sola, calcanhar e etiqueta de tamanho; em roupa peça, quando necessário, uma foto clara das medidas relevantes. Compare as fotos com a opção guardada e comunique diferenças enquanto uma devolução elegível ainda for possível.',
+  'Para um pacote para os Países Baixos, introduza destino, tipo de produto, peso estimado e as três dimensões no calculador atual. Compare rotas com as mesmas medidas embaladas e confirme orçamento final, restrições e eventuais custos no destino.'
+ ],
+ nl:[
+  'Vergelijk bijvoorbeeld twee vergelijkbare schoenen op maat, kleur, verkoper, bronfoto’s en vermelde prijs. Bewaar de oorspronkelijke link samen met de gekozen variant; een miniatuur bewijst geen voorraad, echtheid of eindprijs.',
+  'Een eerste bestelling heeft twee beslissingen: kies het juiste artikel en betaal de aankoop; controleer daarna de magazijnfoto’s voordat je internationale verzending kiest en betaalt. Controleer beide definitieve schermen en bewaar het bestelnummer.',
+  'Vergelijk bij schoenen beide zijkanten, zool, hiel en maatlabel; vraag bij kleding zo nodig een duidelijke foto van de relevante maten. Leg de foto’s naast de opgeslagen variant en meld een concreet verschil zolang een mogelijke retour nog openstaat.',
+  'Vul voor een pakket naar Nederland bestemming, producttype, geschat gewicht en alle drie afmetingen in de actuele verzendcalculator in. Vergelijk routes met dezelfde verpakte maten en controleer vóór betaling de definitieve offerte, beperkingen en eventuele bestemmingskosten.'
+ ],
+ pl:[
+  'Porównaj na przykład dwie podobne pary butów pod kątem rozmiaru, koloru, sprzedawcy, zdjęć źródłowych i podanej ceny. Zachowaj razem oryginalny link i wariant; miniatura nie potwierdza dostępności, autentyczności ani kosztu końcowego.',
+  'Pierwsze zamówienie obejmuje dwie decyzje: wybór dokładnego produktu i opłacenie zakupu, a następnie sprawdzenie zdjęć z magazynu przed wyborem i opłaceniem wysyłki międzynarodowej. Sprawdź oba końcowe ekrany i zachowaj numer zamówienia.',
+  'W butach porównaj oba boki, podeszwę, piętę i metkę rozmiaru; przy odzieży poproś w razie potrzeby o czytelne zdjęcie istotnych wymiarów. Porównaj fotografie z zapisanym wariantem i zgłoś różnicę, dopóki możliwy jest uprawniony zwrot.',
+  'Dla paczki do Niderlandów podaj cel, typ produktu, szacowaną wagę i trzy wymiary w aktualnym kalkulatorze. Porównuj trasy dla tych samych wymiarów opakowania, a przed płatnością sprawdź końcową wycenę, ograniczenia i możliwe koszty docelowe.'
+ ],
+ sv:[
+  'Jämför till exempel två liknande skor efter storlek, färg, säljare, källbilder och angivet pris. Spara originallänk och valt alternativ tillsammans; en miniatyr visar inte säkert lagerstatus, äkthet eller slutkostnad.',
+  'En första beställning innebär två beslut: välj rätt vara och betala köpet, granska sedan lagerbilderna innan du väljer och betalar internationell frakt. Kontrollera båda slutliga skärmarna och spara orderreferensen.',
+  'För skor, jämför båda sidor, sula, häl och storleksetikett; för kläder kan du vid behov begära en tydlig bild av relevanta mått. Jämför bilderna med det sparade valet och anmäl konkreta avvikelser medan en möjlig retur fortfarande är öppen.',
+  'För ett paket till Nederländerna, ange destination, produkttyp, uppskattad vikt och alla tre måtten i den aktuella fraktkalkylatorn. Jämför rutter med samma packade mått och kontrollera slutpris, begränsningar och möjliga destinationskostnader före betalning.'
+ ]
+};
+const GUIDE_FURTHER_EXAMPLES = {
+ en:['When the order reaches the warehouse, compare the item count, chosen option and visible condition against the saved listing. Record the order ID and raise a specific discrepancy before preparing the parcel.','If an item appears wrong, check the return deadline shown for that order, whether the seller accepts returns and any applicable charges. Keep the source listing and photos together; eligibility is not automatic.','For a rehearsal, compare the measured parcel before and after a packing change, including protection, dimensions and the available routes. A rehearsal is an estimate; confirm the final quotation before payment.','For international delivery, check destination restrictions and provide accurate parcel information. Save the carrier, tracking number and dispatch date; a pause between scans does not itself prove loss or customs clearance.','Before a first payment, read the current service terms and compare the original seller listing with the agent order screen. Start with an item you understand and retain the order details; no directory can guarantee authenticity or seller performance.','When comparing an agent with buying directly, list product price, domestic delivery, payment charges, inspection options and international shipping separately. Check which party handles support and returns before deciding.'],
+ de:['Vergleiche nach dem Lagereingang Anzahl, gewählte Variante und sichtbaren Zustand mit dem gespeicherten Angebot. Notiere die Bestellnummer und kläre konkrete Abweichungen vor dem Verpacken.','Prüfe bei einem Fehler die angezeigte Rückgabefrist, die Zustimmung des Verkäufers und mögliche Gebühren. Bewahre Angebot und Fotos zusammen auf; eine Rückgabe ist nicht automatisch möglich.','Vergleiche bei einer Probeverpackung gemessene Maße, Schutz und Routen vor und nach einer Verpackungsänderung. Sie liefert eine Schätzung; prüfe vor Zahlung das endgültige Angebot.','Prüfe beim internationalen Versand Ziellandregeln und gib korrekte Paketdaten an. Bewahre Transporteur, Sendungsnummer und Versanddatum auf; eine Scanpause beweist weder Verlust noch Zollfreigabe.','Lies vor der ersten Zahlung die aktuellen Bedingungen und vergleiche das Verkäuferangebot mit der Agentenbestellung. Beginne mit einem bekannten Artikel und sichere die Bestelldaten; ein Verzeichnis garantiert weder Echtheit noch Verkäuferleistung.','Stelle beim Vergleich von Agent und Direktkauf Artikelpreis, Inlandsversand, Zahlungsgebühren, Inspektion und internationalen Versand getrennt gegenüber. Prüfe vor der Wahl, wer Support und Rückgaben bearbeitet.'],
+ fr:['À l’arrivée en entrepôt, comparez quantité, option choisie et état visible à l’annonce enregistrée. Notez le numéro de commande et signalez tout écart précis avant de préparer le colis.','En cas d’erreur, vérifiez le délai affiché pour la commande, l’accord du vendeur et les frais éventuels. Conservez annonce et photos ensemble : le retour n’est pas automatique.','Pour une préparation estimative, comparez dimensions mesurées, protection et routes avant et après modification de l’emballage. Il s’agit d’une estimation : vérifiez le devis final avant paiement.','Pour l’envoi international, contrôlez les restrictions de destination et fournissez des données exactes. Gardez transporteur, numéro de suivi et date ; une pause entre deux scans ne prouve ni perte ni dédouanement.','Avant le premier paiement, lisez les conditions actuelles et comparez l’annonce du vendeur à la commande auprès de l’agent. Commencez avec un article connu et conservez les détails ; un annuaire ne garantit ni authenticité ni prestation du vendeur.','Pour comparer agent et achat direct, séparez prix du produit, livraison locale, frais de paiement, inspection et transport international. Vérifiez qui traite le support et les retours avant de choisir.'],
+ es:['Al llegar al almacén, compara cantidad, opción elegida y estado visible con el anuncio guardado. Anota el número de pedido y comunica cualquier diferencia concreta antes de preparar el paquete.','Si hay un error, comprueba el plazo indicado para ese pedido, la aceptación del vendedor y los posibles gastos. Guarda anuncio y fotos juntos; la devolución no es automática.','En una preparación estimada compara medidas, protección y rutas antes y después de cambiar el embalaje. Es una estimación: confirma el presupuesto final antes de pagar.','Para el envío internacional revisa restricciones de destino y proporciona datos exactos. Guarda transportista, seguimiento y fecha; una pausa entre escaneos no demuestra pérdida ni despacho de aduanas.','Antes del primer pago lee las condiciones actuales y compara el anuncio del vendedor con el pedido del agente. Empieza con un artículo conocido y conserva los datos; un directorio no garantiza autenticidad ni cumplimiento del vendedor.','Al comparar agente y compra directa, separa precio del producto, transporte interno, gastos de pago, inspección y envío internacional. Comprueba quién gestiona soporte y devoluciones antes de elegir.'],
+ it:['All’arrivo in magazzino confronta quantità, opzione scelta e stato visibile con l’annuncio salvato. Annota il numero d’ordine e segnala differenze specifiche prima di preparare il pacco.','Se qualcosa non va, controlla il termine indicato per l’ordine, l’accettazione del venditore e gli eventuali costi. Conserva annuncio e foto insieme: il reso non è automatico.','Per una preparazione stimata confronta misure, protezione e rotte prima e dopo la modifica dell’imballaggio. È una stima: verifica il preventivo finale prima di pagare.','Per la spedizione internazionale controlla le restrizioni e fornisci dati corretti. Conserva corriere, tracciamento e data; una pausa tra scansioni non prova perdita o sdoganamento.','Prima del primo pagamento leggi i termini attuali e confronta l’annuncio del venditore con l’ordine dell’agente. Inizia da un articolo noto e conserva i dati; una directory non garantisce autenticità o prestazioni del venditore.','Nel confronto tra agente e acquisto diretto separa prezzo, consegna interna, costi di pagamento, ispezione e spedizione internazionale. Verifica chi gestisce assistenza e resi prima di scegliere.'],
+ pt:['Quando chegar ao armazém, compare quantidade, opção escolhida e estado visível com o anúncio guardado. Anote o número da encomenda e comunique diferenças concretas antes de preparar o pacote.','Se houver um problema, verifique o prazo dessa encomenda, a aceitação do vendedor e possíveis custos. Guarde anúncio e fotos juntos; a devolução não é automática.','Numa preparação estimada compare medidas, proteção e rotas antes e depois da mudança de embalagem. É uma estimativa: confirme o orçamento final antes de pagar.','No envio internacional verifique restrições do destino e forneça dados corretos. Guarde transportadora, rastreio e data; uma pausa entre leituras não prova perda nem desalfandegamento.','Antes do primeiro pagamento leia os termos atuais e compare o anúncio do vendedor com a encomenda no agente. Comece com um artigo conhecido e guarde os dados; um diretório não garante autenticidade nem desempenho do vendedor.','Ao comparar agente e compra direta, separe preço, entrega interna, custos de pagamento, inspeção e envio internacional. Confirme quem trata apoio e devoluções antes de escolher.'],
+ nl:['Vergelijk na aankomst in het magazijn het aantal, de gekozen variant en de zichtbare staat met de opgeslagen aanbieding. Noteer het bestelnummer en meld een concreet verschil vóór het inpakken.','Controleer bij een fout de retourtermijn van die bestelling, de toestemming van de verkoper en mogelijke kosten. Bewaar aanbieding en foto’s samen; retour is niet automatisch toegestaan.','Vergelijk bij een proefverpakking de gemeten afmetingen, bescherming en routes vóór en na een verpakkingswijziging. Het blijft een schatting: controleer de definitieve offerte vóór betaling.','Controleer voor internationale verzending de bestemmingsregels en geef correcte pakketgegevens op. Bewaar vervoerder, trackingnummer en verzenddatum; een pauze tussen scans bewijst geen verlies of inklaring.','Lees vóór de eerste betaling de actuele voorwaarden en vergelijk de verkopersaanbieding met het bestelscherm van de agent. Begin met een bekend artikel en bewaar de gegevens; een directory garandeert geen echtheid of levering door de verkoper.','Vergelijk bij een agent en rechtstreeks kopen apart de productprijs, binnenlandse levering, betaalkosten, inspectie en internationale verzending. Controleer wie support en retouren behandelt vóór je kiest.'],
+ pl:['Po przyjęciu do magazynu porównaj liczbę, wybrany wariant i widoczny stan z zapisaną ofertą. Zanotuj numer zamówienia i zgłoś konkretną różnicę przed pakowaniem.','W razie błędu sprawdź termin dla zamówienia, zgodę sprzedawcy i możliwe opłaty. Zachowaj ofertę i zdjęcia razem; zwrot nie jest automatyczny.','Przy próbnym pakowaniu porównaj zmierzone wymiary, ochronę i trasy przed zmianą opakowania i po niej. To estymacja: sprawdź końcową wycenę przed płatnością.','Przy wysyłce międzynarodowej sprawdź ograniczenia kraju i podaj prawidłowe dane. Zachowaj przewoźnika, numer śledzenia i datę; przerwa między skanami nie dowodzi zaginięcia ani odprawy.','Przed pierwszą płatnością przeczytaj aktualne warunki i porównaj ofertę sprzedawcy z zamówieniem u agenta. Zacznij od znanego produktu i zachowaj dane; katalog nie gwarantuje autentyczności ani realizacji przez sprzedawcę.','Porównując agenta i zakup bezpośredni, osobno zapisz cenę produktu, dostawę krajową, koszty płatności, inspekcję i wysyłkę międzynarodową. Sprawdź, kto obsługuje pomoc i zwroty.'],
+ sv:['När varan når lagret, jämför antal, valt alternativ och synligt skick med den sparade annonsen. Spara ordernumret och anmäl en konkret avvikelse före packning.','Vid ett fel, kontrollera tidsfristen för ordern, säljarens godkännande och möjliga avgifter. Spara annons och bilder tillsammans; retur är inte automatisk.','Vid provpackning jämför uppmätta mått, skydd och rutter före och efter en ändring av emballaget. Det är en uppskattning: kontrollera slutofferten före betalning.','Vid internationell frakt, kontrollera destinationsregler och ange korrekta paketuppgifter. Spara transportör, spårningsnummer och datum; en paus mellan skanningar bevisar inte förlust eller tullklarering.','Läs aktuella villkor före första betalningen och jämför säljarens annons med agentens orderskärm. Börja med en vara du förstår och spara orderuppgifter; en katalog garanterar inte äkthet eller säljarens leverans.','När du jämför agent och direktköp, notera varupris, inrikesfrakt, betalavgifter, inspektion och internationell frakt separat. Kontrollera vem som hanterar support och returer innan du väljer.']
+};
+function guideExample(lang, index) {
+  const example = index < 4 ? GUIDE_EXAMPLES[lang]?.[index] : GUIDE_FURTHER_EXAMPLES[lang]?.[index - 4];
+  return example ? `<p>${esc(example)}</p>` : '';
+}
+
 function seoGuideMarkup(lang) {
   const copy = EDITORIAL_LOCALES[lang];
   const articles = editorialArticles(lang);
   const heading = copy ? copy.guidesTitle : 'PikoBuy guides';
   const intro = copy ? copy.guidesIntro : 'Ten practical research guides built around PikoBuy link ordering, warehouse checks, returns and international shipping.';
-  return `<section class="page seo-page"><p class="ey">PIKOBUY SPREADSHEET · ${copy ? copy.guide.toUpperCase() : 'RESEARCH GUIDES'}</p><h1>${esc(heading)}</h1><p class="note">${esc(intro)}</p><div class="seo-guides">${articles.map((article, index) => `<article class="seo-article" id="guide-${index + 1}"><p class="seo-number">${copy ? copy.guide.toUpperCase() : 'GUIDE'} ${String(index + 1).padStart(2, '0')} · ${esc(article[1])}</p><h2>${esc(article[0])}</h2><p>${esc(article[2])}</p><p>${esc(article[3])}</p><p>${esc(article[4])}</p></article>`).join('')}</div></section>`;
+  return `<section class="page seo-page"><p class="ey">PIKOBUY SPREADSHEET · ${copy ? copy.guide.toUpperCase() : 'RESEARCH GUIDES'}</p><h1>${esc(heading)}</h1><p class="note">${esc(intro)}</p><div class="seo-guides">${articles.map((article, index) => `<article class="seo-article" id="guide-${index + 1}"><p class="seo-number">${copy ? copy.guide.toUpperCase() : 'GUIDE'} ${String(index + 1).padStart(2, '0')} · ${esc(article[1])}</p><h2>${esc(article[0])}</h2><p>${esc(article[2])}</p><p>${esc(article[3])}</p><p>${esc(article[4])}</p>${guideExample(lang,index)}</article>`).join('')}</div></section>`;
 }
 
 function faqMarkup(lang) {
@@ -764,7 +875,7 @@ function homeEditorialMarkup(lang) {
     <article class="home-editorial-article" id="home-guide-${index + 1}">
       <p class="seo-number">${copy ? copy.guide.toUpperCase() : 'GUIDE'} ${String(index + 1).padStart(2, '0')} · ${esc(article[1])}</p>
       <h3>${esc(article[0])}</h3>
-      <p>${esc(article[2])}</p><p>${esc(article[3])}</p><p>${esc(article[4])}</p>
+      <p>${esc(article[2])}</p><p>${esc(article[3])}</p><p>${esc(article[4])}</p>${guideExample(lang,index)}
     </article>`).join('');
   const faqCards = faqs.map(([question, answer]) => `
     <article class="home-faq-item"><h3>${esc(question)}</h3><p>${esc(answer)}</p></article>`).join('');
@@ -2182,11 +2293,10 @@ function xmlEscape(value) {
 
 function sitemapXml(origin) {
   const base = origin.replace(/\/$/, '');
-  const today = new Date().toISOString().slice(0, 10);
   const urls = Object.keys(LOCALES).flatMap(language => SITEMAP_PATHS.map(([path, priority]) => {
     const location = `${base}/${language}${path}`;
     const alternates = Object.keys(LOCALES).map(other => `<xhtml:link rel="alternate" hreflang="${other}" href="${xmlEscape(`${base}/${other}${path}`)}"/>`).join('');
-    return `<url><loc>${xmlEscape(location)}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${base}/en${path}`)}"/><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>${priority}</priority></url>`;
+    return `<url><loc>${xmlEscape(location)}</loc>${alternates}<xhtml:link rel="alternate" hreflang="x-default" href="${xmlEscape(`${base}/en${path}`)}"/><priority>${priority}</priority></url>`;
   })).join('');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${urls}</urlset>`;
 }
@@ -2203,3 +2313,78 @@ render = async function (url) {
   }
   return crawlableSiteRender(url);
 };
+
+// Emit stable page metadata from the actual requested route. Search and other
+// transient query results must not become a stream of indexable duplicates.
+const SEO_DESCRIPTIONS = {
+  en:'Browse PikoBuy product finds by category, compare source images and read practical QC and shipping guides before ordering.',
+  de:'PikoBuy-Produkte nach Kategorie entdecken, Quellbilder vergleichen und Hinweise zu QC und Versand vor der Bestellung lesen.',
+  fr:'Parcourez les produits PikoBuy par catégorie, comparez les images source et consultez les guides QC et livraison avant de commander.',
+  es:'Explora productos PikoBuy por categoría, compara imágenes de origen y consulta guías de control QC y envío antes de pedir.',
+  it:'Esplora i prodotti PikoBuy per categoria, confronta le immagini originali e leggi le guide QC e spedizione prima di ordinare.',
+  pt:'Explore produtos PikoBuy por categoria, compare imagens de origem e leia os guias de QC e envio antes de encomendar.',
+  nl:'Bekijk PikoBuy-producten per categorie, vergelijk bronafbeeldingen en lees vóór het bestellen over QC en verzending.',
+  pl:'Przeglądaj produkty PikoBuy według kategorii, porównuj zdjęcia źródłowe i sprawdź poradniki QC oraz wysyłki przed zamówieniem.',
+  sv:'Bläddra bland PikoBuy-produkter per kategori, jämför källbilder och läs om QC och frakt före beställning.'
+};
+const SEO_HOME_TITLES = {
+  en:'PikoBuy Spreadsheet | Product Finds, QC & Shipping Guides',
+  de:'PikoBuy Spreadsheet | Produkte, QC und Versandratgeber',
+  fr:'PikoBuy Spreadsheet | Produits, QC et guides de livraison',
+  es:'PikoBuy Spreadsheet | Productos, QC y guías de envío',
+  it:'PikoBuy Spreadsheet | Prodotti, QC e guide di spedizione',
+  pt:'PikoBuy Spreadsheet | Produtos, QC e guias de envio',
+  nl:'PikoBuy Spreadsheet | Producten, QC en verzendgidsen',
+  pl:'PikoBuy Spreadsheet | Produkty, QC i poradniki wysyłki',
+  sv:'PikoBuy Spreadsheet | Produkter, QC och fraktguider'
+};
+const indexedRoutes = new Set(['', 'guides', 'faq', 'checklist', 'shipping', 'categories', 'category-details']);
+const seoMetadataRender = render;
+render = async function (url) {
+  const result = await seoMetadataRender(url);
+  if (typeof result !== 'string') return result;
+  const [, locale, page = ''] = url.pathname.split('/');
+  if (!LOCALES[locale]) return result;
+  const isCategory = page === 'categories' || page === 'category-details';
+  const selected = url.searchParams.get('category');
+  const isIndexable = indexedRoutes.has(page) && !url.searchParams.has('offset') &&
+    (!isCategory || !selected || cats.includes(selected));
+  const path = page ? `/${page}` : '/';
+  const categoryQuery = isCategory && selected && cats.includes(selected) ? `?category=${encodeURIComponent(selected)}` : '';
+  const canonicalPath = `/${locale}${path}${categoryQuery}`;
+  const canonical = `https://pikobuy.nl${canonicalPath}`;
+  const alternates = isIndexable ? Object.keys(LOCALES).map(other =>
+    `<link rel="alternate" hreflang="${other}" href="https://pikobuy.nl/${other}${path}${categoryQuery}">`).join('') +
+    `<link rel="alternate" hreflang="x-default" href="https://pikobuy.nl/en${path}${categoryQuery}">` : '';
+  const routeCopy = RESEARCH_ROUTE_COPY[locale];
+  const guideCopy = EDITORIAL_LOCALES[locale];
+  const categoryLabel = isCategory ? (CATALOG_UI[locale]?.labels[selected || 'all-products'] || LOCALES[locale][2]) : '';
+  const routeTitles = {
+    guides: `${guideCopy?.guidesTitle || 'PikoBuy Guides'} | PikoBuy Spreadsheet`,
+    faq: `${guideCopy?.faqTitle || 'Frequently Asked Questions'} | PikoBuy Spreadsheet`,
+    checklist: `${routeCopy.checkTitle} | PikoBuy Spreadsheet`,
+    shipping: `${routeCopy.shipTitle} | PikoBuy Spreadsheet`,
+    categories: `${categoryLabel} | PikoBuy Spreadsheet`,
+    'category-details': `${categoryLabel} | PikoBuy Spreadsheet`
+  };
+  const routeDescription = page === 'shipping' ? routeCopy.shipIntro : page === 'checklist' ? routeCopy.checkIntro :
+    page === 'guides' ? (guideCopy?.guidesIntro || 'Research PikoBuy product links, warehouse checks, returns and international shipping before ordering.') :
+    page === 'faq' ? (guideCopy?.faqIntro || 'Answers to common questions about PikoBuy orders, warehouse checks, returns and shipping.') : SEO_DESCRIPTIONS[locale];
+  const metadata = `<meta name="description" content="${esc(routeDescription)}">` +
+    `<link rel="canonical" href="${esc(canonical)}">${alternates}` +
+    (isIndexable ? '' : '<meta name="robots" content="noindex,follow">');
+  const searchTitle = page === '' ? SEO_HOME_TITLES[locale] : routeTitles[page];
+  const withTitle = searchTitle ? result.replace(/<title>[^<]*<\/title>/, `<title>${esc(searchTitle)}</title>`) : result;
+  return withTitle.replace('<title>', `${metadata}<title>`);
+};
+
+// Load the site's GA4 stream only for production HTML; omit search parameters
+// from the initial page location to avoid sending the user's search string.
+const analyticsRender = render;
+render = async function (url) {
+  const result = await analyticsRender(url);
+  if (typeof result !== 'string' || url.hostname !== 'pikobuy.nl') return result;
+  const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-WEN9QP2LY8"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WEN9QP2LY8',{page_location:location.origin+location.pathname});</script>`;
+  return result.replace('<title>', `${analytics}<title>`);
+};
+
