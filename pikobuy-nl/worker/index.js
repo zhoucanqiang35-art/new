@@ -1080,7 +1080,7 @@ const samePageLanguageScript = `<script>(function(){
       function internalProductPath(path){
         try{
           var sourcePath=new URL(path,'https://findspreadsheet.com').pathname;
-          if(!/^\/[a-z0-9/_-]+\.html$/i.test(sourcePath))return '';
+          if(!/^\\/[a-z0-9/_-]+\\.html$/i.test(sourcePath))return '';
           var language=(location.pathname.split('/')[1]||'en');
           return '/'+language+'/product?path='+encodeURIComponent(sourcePath);
         }catch(error){return ''}
@@ -1100,7 +1100,7 @@ const samePageLanguageScript = `<script>(function(){
       }
       function nextSourcePage(page){
         var anchors=Array.prototype.slice.call(page.querySelectorAll('a[href]'));
-        var next=anchors.map(function(anchor){return anchor.getAttribute('href')||''}).filter(function(href){return /^\/AllProducts\/list_\d+_\d+\/?$/i.test(href)});
+        var next=anchors.map(function(anchor){return anchor.getAttribute('href')||''}).filter(function(href){return /^\\/AllProducts\\/list_\\d+_\\d+\\/?$/i.test(href)});
         return next.length?new URL(next[next.length-1],'https://findspreadsheet.com').href:'';
       }
       function renderDirectCards(records){
