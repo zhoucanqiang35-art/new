@@ -14,7 +14,7 @@ function prefixed(locale: string, path: string) {
 export function Logo({ locale = "en" }: { locale?: string }) {
   const copy = localeUiCopy[locale] || localeUiCopy.en;
   return (
-    <Link className="elite-logo" href={prefixed(locale, "/")} aria-label={copy.homeLabel}>
+    <Link className="elite-logo" href={prefixed(locale, "/")} aria-label={copy.homeLabel} data-site-build="20261106">
       <img className="brand-logo-image" src="/lolobuy-logo.webp?v=20260810-3" alt="" width="200" height="200" />
       <span className="logo-word">LOLOBUY<span>.US</span></span>
       <small>{copy.brandLine}</small>

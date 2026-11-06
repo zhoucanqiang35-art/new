@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --sans:var(--font-geist-sans),Arial,sans-serif; --mono:var(--font-geist-mono),monospace; }
+:root { --site-build:20261106; --sans:var(--font-geist-sans),Arial,sans-serif; --mono:var(--font-geist-mono),monospace; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:#0a0a0a; font-family:var(--sans); color:#111; }
