@@ -2388,7 +2388,7 @@ render = async function (url) {
   const routeDescription = page === 'shipping' ? routeCopy.shipIntro : page === 'checklist' ? routeCopy.checkIntro :
     page === 'guides' ? (guideCopy?.guidesIntro || 'Research PikoBuy product links, warehouse checks, returns and international shipping before ordering.') :
     page === 'faq' ? (guideCopy?.faqIntro || 'Answers to common questions about PikoBuy orders, warehouse checks, returns and shipping.') : SEO_DESCRIPTIONS[locale];
-  const metadata = `<meta name="description" content="${esc(routeDescription)}">` +
+  const metadata = `<meta name="msvalidate.01" content="E34A6C20A8A058592D1DC4B20523F6CB"><meta name="description" content="${esc(routeDescription)}">` +
     `<link rel="canonical" href="${esc(canonical)}">${alternates}` +
     (isIndexable ? '' : '<meta name="robots" content="noindex,follow">');
   const searchTitle = page === '' ? SEO_HOME_TITLES[locale] : routeTitles[page];
