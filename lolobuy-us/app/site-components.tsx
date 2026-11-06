@@ -3,6 +3,9 @@ import Image from "next/image";
 import { Badge, Cpu, Crown, Footprints, Layers3, PackageOpen, Ruler, Shield, Shirt, Watch, type LucideIcon } from "lucide-react";
 import { categories, contentPages, faqs, homeDetailCopy, homeSectionCopy, localeCopy, localeUiCopy, productHighlights, type ContentPage, type HomeDetailCopy, type ProductHighlight } from "./site-data";
 import { Logo, SiteHeader } from "./site-header";
+import { LiveProductRail } from "./live-product-rail";
+import { categoryLabels } from "./category-labels";
+import { shippingUsCopy } from "./shipping-us-copy";
 import { localizedPage, translatedPairs, tx } from "./content-i18n";
 
 export function Arrow() { return <span aria-hidden="true">↗</span>; }
@@ -70,8 +73,8 @@ function resolvedHomeDetail(locale: string): HomeDetailCopy {
 export function SearchBox({ compact = false, locale = "en" }: { compact?: boolean; locale?: string }) {
   const copy = localeUiCopy[locale] || localeUiCopy.en;
   return (
-    <form className={`elite-search ${compact ? "compact-search" : ""}`} action="https://findspreadsheet.com/search.html" method="get" target="_blank">
-      <input type="hidden" name="channelid" value="2" />
+    <form className={`elite-search ${compact ? "compact-search" : ""}`} action={prefixed(locale, "/search")} method="get">
+      
       <label><span className="sr-only">{copy.searchLabel}</span><input name="keywords" placeholder={copy.searchPlaceholder} required /></label>
       <button type="submit">{copy.searchAction} <Arrow /></button>
     </form>
@@ -88,13 +91,13 @@ function CategoryGrid({ locale = "en" }: { locale?: string }) {
   return (
     <div className="cobalt-category-grid">
       {categories.map((category, index) => (
-        <a href={category.href} target="_blank" rel="noreferrer" key={category.name}>
+        <Link href={prefixed(locale, `/categories/${["shoes","hoodies-sweaters","t-shirts","jackets","pants-shorts","headwear","accessories","jersey","electronics","other-stuff"][index]}`)} key={category.name}>
           <span className="category-media"><Image src={category.image} alt={category.imageAlt} fill sizes="(max-width: 620px) 50vw, (max-width: 1150px) 25vw, 20vw" loading="eager" unoptimized /></span>
           <span className="category-shade" aria-hidden="true" />
           <span className="category-top"><span>{category.number}</span><i aria-hidden="true"><CategoryIcon name={category.icon} /></i></span>
-          <span className="category-copy"><b>{detail.categoryNames[index] || category.name}</b><small>{detail.categoryLenses[index] || category.lens}</small></span>
+          <span className="category-copy"><b>{categoryLabels[locale]?.[index] || detail.categoryNames[index] || category.name}</b><small>{detail.categoryLenses[index] || category.lens}</small></span>
           <Arrow />
-        </a>
+        </Link>
       ))}
     </div>
   );
@@ -134,7 +137,7 @@ function ProductRail({ locale = "en" }: { locale?: string }) {
       <div className="product-rail-heading">
         <div><span>{copy.labels[0]} / 10 AUG 2026</span><h2 id="latest-products-title">{copy.product[0]}</h2></div>
         <p>{copy.product[1]}</p>
-        <a href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noreferrer">{copy.product[2]} <Arrow /></a>
+        <a href={prefixed(locale, "/search")}>{copy.product[2]} <Arrow /></a>
       </div>
       <div className="product-rail-window" aria-label="Auto-scrolling latest product details; hover, focus or swipe to pause and inspect">
         <div className="product-rail-track">
@@ -225,12 +228,12 @@ export function CobaltHome({ locale = "en" }: { locale?: string }) {
         </div>
       </section>
 
-      <ProductRail locale={locale} />
+      <LiveProductRail locale={locale} />
 
       <section className="cobalt-bento" aria-label={sections.labels[1]}>
-        <article className="bento-lead"><p>{sections.labels[1]}</p><h2>{sections.intelligence}</h2><a href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noreferrer">{copy.browse.toUpperCase()} <Arrow /></a></article>
+        <article className="bento-lead"><p>{sections.labels[1]}</p><h2>{sections.intelligence}</h2><a href={prefixed(locale, "/search")}>{copy.browse.toUpperCase()} <Arrow /></a></article>
         <div className="bento-steps">
-          <article className="bento-search"><span>{detail.cards[0][0]}</span><h3>{detail.cards[0][1]}</h3><p>{detail.cards[0][2]}</p><ol className="search-handoff" aria-label="Search workflow"><li><span>01</span><b>{ui.searchAction}</b></li><li><span>02</span><b>{sections.product[2]}</b></li><li><span>03</span><b>{sections.categories[0]}</b></li></ol><a className="text-link" href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noreferrer">{detail.cards[0][3]} <Arrow /></a></article>
+          <article className="bento-search"><span>{detail.cards[0][0]}</span><h3>{detail.cards[0][1]}</h3><p>{detail.cards[0][2]}</p><ol className="search-handoff" aria-label="Search workflow"><li><span>01</span><b>{ui.searchAction}</b></li><li><span>02</span><b>{sections.product[2]}</b></li><li><span>03</span><b>{sections.categories[0]}</b></li></ol><a className="text-link" href={prefixed(locale, "/search")}>{detail.cards[0][3]} <Arrow /></a></article>
           <article className="bento-verify"><span>{detail.cards[1][0]}</span><div className="radar"><i /><i /><i /><b>QC</b></div><h3>{detail.cards[1][1]}</h3><p>{detail.cards[1][2]}</p><Link className="text-link" href={`${prefixed(locale, "/guides/qc-photos")}#section-1`}>{detail.cards[1][3]} <Arrow /></Link></article>
           <article className="bento-route"><span>{detail.cards[2][0]}</span><div className="route-line"><i>CN</i><b /><i>WH</i><b /><i>US</i></div><h3>{detail.cards[2][1]}</h3><p>{detail.cards[2][2]}</p><Link className="text-link" href={`${prefixed(locale, "/guides/shipping")}#section-1`}>{detail.cards[2][3]} <Arrow /></Link></article>
         </div>
@@ -238,7 +241,7 @@ export function CobaltHome({ locale = "en" }: { locale?: string }) {
       </section>
 
       <section className="cobalt-categories">
-        <div className="cobalt-section-head"><div><p>{sections.labels[2]}</p><h2>{sections.categories[0]}</h2></div><p>{sections.categories[1]}</p></div>
+        <div className="cobalt-section-head"><div><p>{sections.labels[2]}</p><h2>{sections.categories[0]}</h2></div><p>{locale === "zh" ? "选择分类，在本网站浏览来自 FindSpreadsheet 的商品。" : "Select a category to browse FindSpreadsheet products on this site."}</p></div>
         <CategoryGrid locale={locale} />
       </section>
 
@@ -278,8 +281,7 @@ export function SiteFooter({ locale = "en" }: { locale?: string }) {
         },
         {
           title: copy.footerLinks[1],
-          href: "https://findspreadsheet.com/",
-          external: true,
+          href: prefixed(locale, "/search"),
         },
         {
           title: copy.footerLinks[2],
@@ -333,9 +335,7 @@ export function SiteFooter({ locale = "en" }: { locale?: string }) {
           <b>{group.label}</b>
           {group.items.map((item) => {
             const body = <><strong>{item.title}</strong><Arrow /></>;
-            return item.external
-              ? <a className="footer-guide-link" key={item.href} href={item.href} target="_blank" rel="noreferrer">{body}</a>
-              : <Link className="footer-guide-link" key={item.href} href={item.href}>{body}</Link>;
+            return <Link className="footer-guide-link" key={item.href} href={item.href}>{body}</Link>;
           })}
         </section>)}
       </nav>
@@ -353,7 +353,11 @@ export function SiteFooter({ locale = "en" }: { locale?: string }) {
 }
 
 export function ContentPageView({ page, locale = "en" }: { page: ContentPage; locale?: string }) {
-  const translatedPage = localizedPage(page, locale);
+  const translatedPage = { ...localizedPage(page, locale) };
+  if (page === contentPages["guides/shipping"]) {
+    const [heading, paragraph] = shippingUsCopy[locale] || shippingUsCopy.en;
+    translatedPage.sections = [...translatedPage.sections, { id: "shipping-to-usa", heading, paragraphs: [paragraph] }];
+  }
   const words = wordCount(page);
   const isSourcesPage = page === contentPages.sources;
   const displayParagraph = (paragraph: string, originalParagraph: string) => {
@@ -374,7 +378,7 @@ export function ContentPageView({ page, locale = "en" }: { page: ContentPage; lo
       <div className="content-layout">
         <aside className="content-rail"><span>{tx(locale, "ON THIS PAGE")}</span>{translatedPage.sections.map((section, index) => <a key={section.heading} href={`#${section.id || `section-${index + 1}`}`}><b>{String(index + 1).padStart(2, "0")}</b>{section.heading}</a>)}</aside>
         <article className={`article-body ${isSourcesPage ? "sources-body" : ""}`}>
-          {translatedPage.sections.map((section, index) => <section id={section.id || `section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><h2>{section.heading}</h2>{section.paragraphs.map((paragraph, paragraphIndex) => <p key={paragraph}>{displayParagraph(paragraph, page.sections[index].paragraphs[paragraphIndex])}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</section>)}
+          {translatedPage.sections.map((section, index) => <section id={section.id || `section-${index + 1}`} key={section.heading}><span>{String(index + 1).padStart(2, "0")}</span><h2>{section.heading}</h2>{section.paragraphs.map((paragraph, paragraphIndex) => <p key={paragraph}>{displayParagraph(paragraph, page.sections[index]?.paragraphs[paragraphIndex] || paragraph)}</p>)}{section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}</section>)}
           {translatedPage.sources && <section className="source-register" id="official-sources"><span>SRC</span><h2>{tx(locale, "Claim-by-claim evidence for this guide")}</h2><p>{tx(locale, "Platform facts are sourced. Independent guidance is labeled by context and avoids guarantees.")} {tx(locale, "Changing platform details are dated and should be rechecked before purchase.")}</p><div className="source-notes" aria-label={tx(locale, "Claim-by-claim evidence for this guide")}>{translatedPage.sources.map((source) => <p key={source.label}><b>{source.label}</b><small>{source.note}</small></p>)}</div></section>}
         </article>
       </div>
@@ -386,7 +390,7 @@ export function ContentPageView({ page, locale = "en" }: { page: ContentPage; lo
 
 function MoreReading({ locale }: { locale: string }) {
   const copy = localeUiCopy[locale] || localeUiCopy.en;
-  return <section className="more-reading"><span>{tx(locale, "CONTINUE ON THE MAIN PRODUCT SITE")}</span><a className="more-reading-main" href="https://findspreadsheet.com/" target="_blank" rel="noreferrer"><small>FINDSPREADSHEET.COM</small><b>{tx(locale, "Browse the current product database, categories and latest additions on the main site.")}</b><strong>{copy.footerLinks[1].toUpperCase()} <Arrow /></strong></a></section>;
+  return <section className="more-reading"><span>{tx(locale, "CONTINUE ON THE MAIN PRODUCT SITE")}</span><a className="more-reading-main" href={prefixed(locale, "/search")}><small>FINDSPREADSHEET.COM</small><b>{tx(locale, "Browse the current product database, categories and latest additions on the main site.")}</b><strong>{copy.footerLinks[1].toUpperCase()} <Arrow /></strong></a></section>;
 }
 
 function SpreadsheetEndcap({ locale }: { locale: string }) {
@@ -403,7 +407,7 @@ function SpreadsheetEndcap({ locale }: { locale: string }) {
           <small>{tx(locale, "CONTINUE ON THE MAIN PRODUCT SITE")}</small>
           <p>{tx(locale, "Browse the current product database, categories and latest additions on the main site.")}</p>
         </div>
-        <a href="https://findspreadsheet.com/" target="_blank" rel="noreferrer">{buttonLabel} <Arrow /></a>
+        <a href={prefixed(locale, "/search")}>{buttonLabel} <Arrow /></a>
       </div>
     </section>
   );
@@ -415,8 +419,8 @@ export function SpreadsheetPage({ locale = "en" }: { locale?: string }) {
     <main className="elite-site cobalt-site content-site" lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} />
       <section className="spreadsheet-hero"><div><p>{tx(locale, "PRODUCT INDEX / TEN DEPARTMENTS")}</p><h1>{tx(locale, "LoloBuy spreadsheet,")}<br /><em>{tx(locale, "with a review lens.")}</em></h1><p>{tx(locale, "Search the wider FindSpreadsheet database or start with a department. Every outbound route is clearly marked; no product card is invented for this preview.")}</p><SearchBox locale={locale} /></div><div className="index-orbit"><i>10</i><b>{tx(locale, "DEPARTMENTS")}</b><span>{tx(locale, "SEARCH → CHECK → COMPARE")}</span></div></section>
-      <section className="spreadsheet-search"><span>{tx(locale, "ONE SEARCH, ONE CLEAR RESULT PAGE")}</span><div className="spreadsheet-search-copy"><b>{tx(locale, "Use the search box above once.")}</b><p>{tx(locale, "Your exact keyword is submitted to FindSpreadsheet's live product search. The result page opens in a new tab, where you can compare matching rows and their current detail pages.")}</p><a href="https://findspreadsheet.com/AllProducts/" target="_blank" rel="noreferrer">{copy.footerLinks[1].toUpperCase()} <Arrow /></a></div></section>
-      <section className="department-section"><div className="cobalt-section-head"><div><p>{tx(locale, "CATEGORY DIRECTORY")}</p><h2>{tx(locale, "Choose a department.")}</h2></div><p>{tx(locale, "Each link opens a matching search on FindSpreadsheet. Use the review lens as a category-specific reminder, not as a product certification.")}</p></div><CategoryGrid locale={locale} /></section>
+      <section className="spreadsheet-search"><span>{tx(locale, "ONE SEARCH, ONE CLEAR RESULT PAGE")}</span><div className="spreadsheet-search-copy"><b>{tx(locale, "Use the search box above once.")}</b><p>{locale === "zh" ? "输入关键词，在本站查看匹配的商品。" : "Search the imported product catalog and view matching products on this site."}</p><a href={prefixed(locale, "/search")}>{copy.footerLinks[1].toUpperCase()} <Arrow /></a></div></section>
+      <section className="department-section"><div className="cobalt-section-head"><div><p>{tx(locale, "CATEGORY DIRECTORY")}</p><h2>{tx(locale, "Choose a department.")}</h2></div><p>{locale === "zh" ? "选择分类，在本站浏览对应商品。" : "Select a department to browse products on this site."}</p></div><CategoryGrid locale={locale} /></section>
       <SpreadsheetEndcap locale={locale} />
       <SiteFooter locale={locale} />
     </main>
@@ -458,7 +462,6 @@ export function UpdatesPage({ locale = "en" }: { locale?: string }) {
 
 export function ArticlesPage({ locale = "en" }: { locale?: string }) {
   const articles = [
-    ["CHECKLIST", "How to use a LoloBuy spreadsheet without skipping the checks that matter", "/seo-articles/lolobuy-spreadsheet-order-checklist", "12 MIN"],
     ["BEGINNER", "How LoloBuy works: the complete product-link-to-parcel guide", "/guides/how-lolobuy-works", "15 MIN"],
     ["QC", "A seven-frame method for reading warehouse photos", "/guides/qc-photos", "16 MIN"],
     ["SHIPPING", "Plan a parcel without relying on stale route claims", "/guides/shipping", "15 MIN"],
@@ -469,7 +472,8 @@ export function ArticlesPage({ locale = "en" }: { locale?: string }) {
     <main className="elite-site cobalt-site content-site" lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <SiteHeader locale={locale} />
       <section className="updates-hero"><p>{tx(locale, "EDITORIAL LIBRARY / SOURCE-LED")}</p><h1>{tx(locale, "Research written for humans,")}<br /><em>{tx(locale, "structured for search.")}</em></h1><p>{tx(locale, "Each guide targets one useful question, cites its factual basis and avoids invented customer experiences.")}</p></section>
-      <section className="article-index">{articles.map(([tag, title, path, time], index) => { const page = contentPages[path.slice(1)]; const words = page ? wordCount(page) : 0; return <Link href={prefixed(locale, path)} key={path}><span>{String(index + 1).padStart(2, "0")}</span><small>{tx(locale, tag)} / {tx(locale, time)} / {words.toLocaleString(locale)} {tx(locale, "WORDS")}</small><h2>{tx(locale, title)}</h2><Arrow /></Link>; })}</section>
+      <section className="article-index">{([ ["shoes", 0], ["hoodies", 1] ] as const).map(([slug, i]) => <Link key={slug} href={prefixed(locale, `/guides/${slug}-spreadsheet`)}><span>{String(i+1).padStart(2,"0")}</span><small>LOLOBUY SPREADSHEET</small><h2>{(categoryLabels[locale] || categoryLabels.en)[i]} · LoloBuy Spreadsheet</h2><Arrow /></Link>)}</section>
+      <section className="article-index">{articles.map(([tag, title, path, time], index) => { const page = contentPages[path.slice(1)]; const words = page ? wordCount(page) : 0; return <Link href={prefixed(locale, path)} key={path}><span>{String(index + 3).padStart(2, "0")}</span><small>{tx(locale, tag)} / {tx(locale, time)} / {words.toLocaleString(locale)} {tx(locale, "WORDS")}</small><h2>{tx(locale, title)}</h2><Arrow /></Link>; })}</section>
       <MoreReading locale={locale} />
       <SiteFooter locale={locale} />
     </main>

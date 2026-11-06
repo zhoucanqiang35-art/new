@@ -14,8 +14,8 @@ function prefixed(locale: string, path: string) {
 export function Logo({ locale = "en" }: { locale?: string }) {
   const copy = localeUiCopy[locale] || localeUiCopy.en;
   return (
-    <Link className="elite-logo" href={prefixed(locale, "/")} aria-label={copy.homeLabel} data-site-build="20261106">
-      <img className="brand-logo-image" src="/lolobuy-logo.webp?v=20260810-3" alt="" width="200" height="200" />
+    <Link className="elite-logo" href={prefixed(locale, "/")} aria-label={copy.homeLabel}>
+      <img className="official-brand-logo" src="/lolobuy-official-logo.svg" alt="LoloBuy" />
       <span className="logo-word">LOLOBUY<span>.US</span></span>
       <small>{copy.brandLine}</small>
     </Link>
@@ -74,6 +74,7 @@ export function SiteHeader({ locale = "en" }: { locale?: string }) {
         <summary>{copy.menu} <span aria-hidden="true">+</span></summary>
         <div>{navItems.map(([label, path]) => <Link onClick={() => mobileMenu.current?.removeAttribute("open")} key={path} href={prefixed(locale, path)}>{label}<Arrow /></Link>)}</div>
       </details>
+      <div className="header-actions"><a className="register-affiliate" href="https://www.lolobuy.com/index?inviteCode=199df" target="_blank" rel="sponsored noopener noreferrer">{locale === "zh" ? "注册 LoloBuy ↗" : "Register ↗"}</a>
       <details className="language-menu" ref={languageMenu}>
         <summary aria-label={copy.languageLabel}>{locale.toUpperCase()} / 24 <Arrow /></summary>
         <div>
@@ -90,7 +91,7 @@ export function SiteHeader({ locale = "en" }: { locale?: string }) {
             </Link>
           ))}
         </div>
-      </details>
+      </details></div>
     </header>
   );
 }
