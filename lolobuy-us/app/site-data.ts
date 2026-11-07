@@ -39,7 +39,7 @@ export const categories: Category[] = [
 ];
 
 // The order mirrors the public "Latest Products" section on FindSpreadsheet.
-// CNY source prices and item IDs are checked on the linked product pages; replacement products checked on 6 Nov 2026.
+// CNY source prices and item IDs were checked on the linked product pages on 10 Aug 2026.
 // USD display estimates use 1 CNY = US$0.1482, the 10 Aug 2026 market rate.
 // Inclusion is not a quality, authenticity, stock or popularity guarantee.
 export const productHighlights: ProductHighlight[] = [
@@ -54,13 +54,13 @@ export const productHighlights: ProductHighlight[] = [
     reviewLens: "Compare waist, inseam and visible finishing.",
   },
   {
-    name: "Cotton-Wreath Denim Collection",
+    name: "Burberry Jacket listing",
     category: "Jackets",
-    sourcePriceCny: "330",
-    priceUsd: "48.91",
-    productId: "7869128363",
-    image: "https://findspreadsheet.com/uploads/allimg/20261009/1-261009114A1119.webp",
-    href: "https://findspreadsheet.com/jackets/cotton-wreath-print-denim-jacket-and-jeans-collection-8573.html",
+    sourcePriceCny: "148",
+    priceUsd: "21.93",
+    productId: "7714490692",
+    image: "/products/burberry-jacket.webp",
+    href: "https://findspreadsheet.com/jackets/high-quality-burberry-jacket-3131.html",
     reviewLens: "Check lining, zipper, measurements and construction.",
   },
   {
@@ -88,9 +88,9 @@ export const productHighlights: ProductHighlight[] = [
     category: "T-Shirts",
     sourcePriceCny: "118",
     priceUsd: "17.49",
-    productId: "7711451421",
-    image: "https://findspreadsheet.com/uploads/allimg/20260319/1-2603191515021A.webp",
-    href: "https://findspreadsheet.com/t-shirts/cp-company-t-shirt-2993.html",
+    productId: "7714478764",
+    image: "/products/cp-tshirt.webp",
+    href: "https://findspreadsheet.com/t-shirts/cp-company-t-shirt-2999.html",
     reviewLens: "Review chest width, body length and visible graphics.",
   },
   {
@@ -198,7 +198,7 @@ export const localeUiCopy: Record<string, LocaleUiCopy> = {
 };
 
 export const localeCopy: Record<string, { title: string; accent: string; lede: string; browse: string; source: string }> = {
-  en: { title: "Find the signal.", accent: "Check the detail.", lede: "An independent LoloBuy spreadsheet, QC and parcel-planning guide for shoppers in the United States and Europe.", browse: "Browse the spreadsheet", source: "Official process checked" },
+  en: { title: "LoloBuy Spreadsheet", accent: "Finds & buying guide.", lede: "An independent LoloBuy spreadsheet, QC and parcel-planning guide for shoppers in the United States and Europe.", browse: "Browse the spreadsheet", source: "Official process checked" },
   de: { title: "Finde das Signal.", accent: "Prüfe die Details.", lede: "Ein unabhängiger LoloBuy-Spreadsheet-, QC- und Paketplanungsleitfaden für Käufer in den USA und Europa.", browse: "Spreadsheet durchsuchen", source: "Offiziellen Ablauf geprüft" },
   fr: { title: "Trouvez le signal.", accent: "Vérifiez le détail.", lede: "Un guide indépendant LoloBuy pour les produits, le contrôle qualité et la préparation des colis aux États-Unis et en Europe.", browse: "Parcourir le tableau", source: "Processus officiel vérifié" },
   es: { title: "Encuentra la señal.", accent: "Comprueba el detalle.", lede: "Una guía independiente de LoloBuy para productos, control de calidad y planificación de paquetes en Estados Unidos y Europa.", browse: "Explorar la hoja", source: "Proceso oficial revisado" },
