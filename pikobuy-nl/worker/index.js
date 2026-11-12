@@ -2402,7 +2402,7 @@ const analyticsRender = render;
 render = async function (url) {
   const result = await analyticsRender(url);
   if (typeof result !== 'string' || url.hostname !== 'pikobuy.nl') return result;
-  const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-WEN9QP2LY8"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WEN9QP2LY8',{page_location:location.origin+location.pathname});</script>`;
+  const analytics = `<script async src="https://www.googletagmanager.com/gtag/js?id=G-WEN9QP2LY8"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-WEN9QP2LY8',{page_location:location.origin+location.pathname});gtag('config','G-2GWT1RHP59',{page_location:location.origin+location.pathname});</script>`;
   return result.replace('<title>', `${analytics}<title>`);
 };
 
