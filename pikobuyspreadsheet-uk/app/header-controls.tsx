@@ -26,6 +26,9 @@ export function HeaderControls({ locale, route, labels }: Props) {
   const displayNames = new Intl.DisplayNames(locale, { type: "currency" });
   const rate = currencies.find(([code]) => code === currency)?.[1] ?? 1;
   const value = new Intl.NumberFormat(locale, { style: "currency", currency }).format(100 * rate);
+  const ratesDate = new Intl.DateTimeFormat(locale, {
+    dateStyle: "medium", timeZone: "UTC",
+  }).format(new Date(currencyData.date));
 
   useEffect(() => {
     try {
@@ -97,7 +100,7 @@ export function HeaderControls({ locale, route, labels }: Props) {
           <p className="currency-estimate" dir="auto">
             {labels.estimate}<br />
             <bdi>100 CNY ≈ {value}</bdi><br />
-            <small>{labels.dated} <time dateTime={currencyData.date}>{currencyData.date}</time></small>
+            <small>{labels.dated} <time dateTime={currencyData.date}>{ratesDate}</time></small>
           </p>
           <div className="header-option-grid">
             {currencies.map(([code]) => (
