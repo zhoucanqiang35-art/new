@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Site } from "../site";
 import { seoArticles } from "../seo-content";
 import { discoverySeoArticles } from "../discovery-articles";
-import localized from "../localized.generated.json";
+import languages from "../locales.json";
+import { getLocale } from "../translations";
 
 type Props = { params: Promise<{ slug?: string[] }> };
-const supported = new Set(["en", "fr", "de", "es", "it", "pt", "nl", "pl", "ro"]);
+const supported = new Set(languages.map(({ code }) => code));
 const staticRoutes = ["categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
 const allSeoArticles = [...seoArticles, ...discoverySeoArticles].filter((article, index, list) => list.findIndex((item) => item.slug === article.slug) === index);
 
@@ -25,21 +26,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const lang = supported.has(parts[0]) ? parts[0] : "en";
   const route = supported.has(parts[0]) ? parts[1] ?? "home" : parts[0] ?? "home";
   const names: Record<string, string> = { home:"PikoBuy Spreadsheet: Product Finds, QC Photos & Guides", categories:"PikoBuy Product Categories", products:"PikoBuy Product Details", guide:"PikoBuy Guide: Products, QC, Shipping and Returns", qc:"PikoBuy QC Checklist", shipping:"PikoBuy Shipping Guide", articles:"PikoBuy Research Articles", faq:"PikoBuy Spreadsheet FAQ", seo:"PikoBuy Spreadsheet SEO Articles" };
-  const languageBundle=(localized as Record<string,{copy:{pageTitles:Record<string,string>;intro:string};articles:typeof seoArticles}>)[lang];
-  const articles=allSeoArticles.map((base) => {
-    const translated = languageBundle?.articles.find((item) => item.slug === base.slug);
-    return translated ? {
-      ...translated,
-      updated: base.updated,
-      published: base.published,
-      author: base.author,
-      primaryKeyword: base.primaryKeyword,
-      secondaryKeywords: base.secondaryKeywords,
-      methodology: base.methodology,
-    } : base;
-  });
-  const article = articles.find(item => item.slug === route);
-  const localizedTitle=languageBundle?.copy.pageTitles[route];
+  const languageBundle=getLocale(lang);
+  const baseArticle = allSeoArticles.find((item) => item.slug === route);
+  const translated = languageBundle?.articles.find((item) => item.slug === route);
+  const article = baseArticle && { ...baseArticle, ...translated };
+  const copy = languageBundle?.copy;
+  const localizedTitle = route === "home" ? copy?.title : copy?.pageTitles[route as keyof NonNullable<typeof copy>["pageTitles"]];
   const title = article?.title ?? localizedTitle ?? names[route] ?? names.home;
   const description = article?.description ?? languageBundle?.copy.intro ?? "An independent, evidence-led PikoBuy spreadsheet guide for product discovery, QC checks, parcel planning and safer use of FindSpreadsheet.";
   const canonical = `https://pikobuyspreadsheet.uk/${lang}${route === "home" ? "/" : `/${route}/`}`;

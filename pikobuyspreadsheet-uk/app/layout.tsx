@@ -5,8 +5,8 @@ export const metadata: Metadata = {
   title: "PikoBuy Spreadsheet | Product Finds, QC Photos & Guides",
   description: "Research PikoBuy product finds by category, source link and option. Compare QC photos, measurements and parcel factors with an independent FindSpreadsheet guide.",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/pikobuy-icon.png",
+    shortcut: "/pikobuy-icon.png",
   },
   other: {
     google: "notranslate",

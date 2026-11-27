@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 
 const domain = "https://pikobuyspreadsheet.uk";
-const languages = ["en", "fr", "de", "es", "it", "pt", "nl", "pl", "ro"];
+const languages = JSON.parse(await readFile(new URL("../app/locales.json", import.meta.url), "utf8")).map(({ code }) => code);
 const staticRoutes = ["", "categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
 const source = [
   await readFile(new URL("../app/seo-content.ts", import.meta.url), "utf8"),

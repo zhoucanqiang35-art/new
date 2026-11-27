@@ -197,3 +197,42 @@
  .long-article .inner-hero>p:last-of-type{font-size:15px;line-height:1.55}
  .long-article>.cta{margin-top:10px;margin-bottom:4px}
 }
+
+/* Locale, currency and registration controls */
+.topbar { direction: ltr; gap: 16px; }
+.topbar .brand { flex: 0 0 auto; min-width: 0; }
+.topbar .brand img { width: 160px; }
+.topbar nav { min-width: 0; gap: clamp(8px, 1vw, 17px); }
+.topbar nav a { text-wrap: balance; white-space: normal; text-align: center; }
+.header-controls { display: flex; align-items: center; gap: 6px; margin-left: auto; position: relative; flex: 0 0 auto; }
+.header-control, .join-pikobuy { min-height: 38px; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 6px 9px; border: 1px solid var(--line); border-radius: 5px; background: #fff; color: var(--ink); font-weight: 700; font-size: 12px; cursor: pointer; white-space: nowrap; }
+.join-pikobuy { color: #fff; background: var(--ink); border-color: var(--ink); }
+.header-control:hover, .header-control[aria-expanded="true"] { background: var(--mint2); }
+.header-control .locale-short-name { display: none; }
+.join-pikobuy:hover { background: #245650; }
+.header-popover { position: absolute; top: calc(100% + 7px); right: 0; z-index: 30; width: min(300px, calc(100vw - 24px)); padding: 7px; border: 1px solid var(--line); border-radius: 7px; background: #fff; box-shadow: 0 12px 30px #183d3529; }
+.header-option-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); max-height: min(230px, 43vh); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; gap: 5px; padding: 3px; }
+.header-option-grid :is(a, button) { display: grid; place-content: center; min-height: 38px; padding: 5px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--ink); font-size: 12px; text-align: center; overflow-wrap: anywhere; cursor: pointer; }
+.header-option-grid button span { color: var(--muted); font-size: 11px; }
+.header-option-grid :is(a, button):hover,
+.header-option-grid [aria-current="page"],
+.header-option-grid [aria-pressed="true"] { border-color: #49978a; background: var(--mint2); }
+.header-controls :is(a, button):focus-visible { outline: 2px solid #245650; outline-offset: 1px; }
+.currency-estimate { margin: 3px 3px 6px; font-size: 12px; line-height: 1.45; }
+.currency-estimate small { color: var(--muted); }
+.control-announcement { position: absolute; width: 1px; height: 1px; padding: 0; clip-path: inset(50%); overflow: hidden; white-space: nowrap; }
+.search-box input::placeholder { color: #57706d; opacity: 1; }
+@media (max-width: 1100px) {
+  .topbar nav a { white-space: nowrap; }
+}
+@media (max-width: 520px) {
+  .topbar { gap: 5px; padding-inline: 8px; }
+  .topbar .brand img { width: clamp(80px, 27vw, 116px); }
+  .header-controls { gap: 4px; }
+  .header-control, .join-pikobuy { min-height: 34px; padding: 4px 6px; font-size: 10px; }
+  .header-control svg { width: 13px; }
+  .header-control .locale-full-name, .header-control svg:last-child { display: none; }
+  .header-control .locale-short-name { display: inline; }
+  .topbar nav a { white-space: normal; }
+  .search-box input { font-size: 12px; }
+}
