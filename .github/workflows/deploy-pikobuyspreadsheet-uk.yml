@@ -2,10 +2,6 @@ name: Deploy PikoBuy Spreadsheet UK manually
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/deploy-pikobuyspreadsheet-uk.yml"
 
 permissions:
   contents: read
@@ -34,9 +30,9 @@ jobs:
       - run: npm run build
       - name: Deploy UK static pages to Cloudflare
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.PIKOBUY_UK_CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.PIKOBUY_UK_CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing CLOUDFLARE_API_TOKEN repository secret" >&2; exit 1; }
-          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing CLOUDFLARE_ACCOUNT_ID repository secret" >&2; exit 1; }
+          test -n "$CLOUDFLARE_API_TOKEN" || { echo "Missing PIKOBUY_UK_CLOUDFLARE_API_TOKEN repository secret" >&2; exit 1; }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || { echo "Missing PIKOBUY_UK_CLOUDFLARE_ACCOUNT_ID repository secret" >&2; exit 1; }
           npm exec -- wrangler pages deploy dist/client --project-name pikobuyspreadsheet-uk --branch main --commit-hash "$GITHUB_SHA"
