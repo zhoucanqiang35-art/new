@@ -2,7 +2,6 @@ import { BaggageClaim, BookOpen, Boxes, ChartNoAxesCombined, Check, CircleHelp, 
 import languages from "./locales.json";
 import { getLocale, phrase } from "./translations";
 import { HeaderControls } from "./header-controls";
-import { Analytics } from "./analytics";
 import { CatalogCards, CatalogSearch, ProductDetail } from "./catalog-ui";
 import { catalogCategories, catalogHref } from "./catalog-model";
 import { catalogLabels } from "./catalog-labels";
@@ -113,7 +112,6 @@ export function Site({ lang, route }: { lang: string; route: string }) {
           <a href="https://findspreadsheet.com/">FindSpreadsheet <ExternalLink size={12} /></a>
         </div>
       </footer>
-      <Analytics locale={code} />
     </div>
   );
 }

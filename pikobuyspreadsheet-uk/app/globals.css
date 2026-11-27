@@ -666,34 +666,3 @@
 }
 
 .product-initial .product-main-image:not([src]) { display: none; }
-
-.analytics-settings {
-  max-width: 1210px;
-  margin-inline: auto;
-  padding: 0 16px 16px;
-}
-.analytics-settings button {
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--ink);
-  font-size: .875rem;
-  cursor: pointer;
-}
-.analytics-settings button:hover { border-color: #49978a; background: var(--mint2); }
-.analytics-panel {
-  position: fixed;
-  z-index: 40;
-  inset-inline-end: 12px;
-  inset-block-end: 12px;
-  width: min(390px, calc(100% - 24px));
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 8px 28px #183d3529;
-}
-.analytics-panel p { margin: 0 0 9px; font-size: .875rem; line-height: 1.5; }
-.analytics-panel > div { display: flex; flex-wrap: wrap; gap: 8px; }
-.analytics-panel button { min-height: 40px; }
