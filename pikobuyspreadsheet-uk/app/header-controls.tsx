@@ -20,7 +20,7 @@ export function HeaderControls({ locale, route, labels }: Props) {
   const language = languages.find(({ code }) => code === locale) ?? languages[0];
   const storageKey = currencyStorageKey(locale);
   const [currency, setCurrency] = useState(language.currency);
-  const [query, setQuery] = useState("");
+  const [locationSuffix, setLocationSuffix] = useState("");
   const [panel, setPanel] = useState<Panel | null>(null);
   const controls = useRef<HTMLDivElement>(null);
   const languageButton = useRef<HTMLButtonElement>(null);
@@ -34,10 +34,9 @@ export function HeaderControls({ locale, route, labels }: Props) {
 
   useEffect(() => {
     setCurrency(preferredCurrency(locale));
-    if (route === "product" || route === "products") setQuery(window.location.search);
     document.documentElement.lang = locale;
     document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-  }, [locale, route]);
+  }, [locale]);
 
   useEffect(() => {
     if (!panel) return;
@@ -57,6 +56,12 @@ export function HeaderControls({ locale, route, labels }: Props) {
     };
   }, [panel]);
 
+  function toggleLanguages() {
+    const { search, hash } = window.location;
+    setLocationSuffix(search + hash);
+    setPanel(panel === "language" ? null : "language");
+  }
+
   function chooseCurrency(code: string) {
     setCurrency(code);
     try {
@@ -73,14 +78,14 @@ export function HeaderControls({ locale, route, labels }: Props) {
     <div className="header-controls" ref={controls}>
       <button ref={languageButton} className="header-control" type="button"
         aria-label={`${labels.language}: ${language.name}`} aria-expanded={panel === "language"}
-        aria-controls="piko-languages" onClick={() => setPanel(panel === "language" ? null : "language")}>
+        aria-controls="piko-languages" onClick={toggleLanguages}>
         <Globe2 size={16} /><span className="locale-full-name">{language.name}</span><span className="locale-short-name">{locale.toUpperCase()}</span><ChevronDown size={13} />
       </button>
       {panel === "language" && (
         <div className="header-popover" id="piko-languages" role="group" aria-label={labels.language}>
           <div className="header-option-grid">
             {languages.map(({ code, name }) => (
-              <a key={code} href={`/${code}/${route === "home" ? "" : route + "/"}${query}`}
+              <a key={code} href={`/${code}/${route === "home" ? "" : route + "/"}${locationSuffix}`}
                 hrefLang={code} lang={code} dir="auto" aria-current={code === locale ? "page" : undefined}>
                 {name}
               </a>

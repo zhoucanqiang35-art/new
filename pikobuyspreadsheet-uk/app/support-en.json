@@ -1,0 +1,339 @@
+{
+  "guideTitle": "PikoBuy buying guides",
+  "guideIntro": "Follow the UK catalog from the first search through product checks, warehouse inspection and international delivery.",
+  "faqTitle": "PikoBuy FAQ",
+  "faqIntro": "Answers for UK catalog shoppers, checked against PikoBuy’s public guide, returns policy, shipping terms and estimator.",
+  "sources": "Official PikoBuy sources",
+  "screenshot": "Screenshot from the UK subsite",
+  "back": "All buying guides",
+  "previousPhoto": "Previous photo",
+  "nextPhoto": "Next photo",
+  "guideNames": [
+    "Shopping guide",
+    "Shipping estimate",
+    "Shipping policy",
+    "Returns & exchanges",
+    "Terms of service",
+    "Contact PikoBuy"
+  ],
+  "cards": [
+    "Follow the buying steps with real screenshots.",
+    "Read detailed answers on orders, QC, shipping and returns.",
+    "Explore articles about products, sizing and delivery."
+  ],
+  "guides": [
+    {
+      "title": "Find a product in the UK catalog",
+      "intro": "Start here if you have a product name, a shop link or a Weidian item number.",
+      "caption": "Search the UK catalog and open the matching product card.",
+      "steps": [
+        [
+          "Search",
+          "Enter a keyword such as hoodie or bag, paste a Weidian product link, or enter the item number. The screenshot uses 7711451421. Results appear on the UK subsite."
+        ],
+        [
+          "Narrow the results",
+          "Use the category buttons if several products match. A keyword may return multiple variants of a similar product."
+        ],
+        [
+          "Check the item",
+          "Open the product card and match the title, photos and Weidian number. Save the UK product link if you want to return to the same page."
+        ],
+        [
+          "Use another source when needed",
+          "If the item is outside this catalog, PikoBuy’s official guide recommends entering the source link or keyword on PikoBuy. Confirm the seller and option before ordering."
+        ]
+      ]
+    },
+    {
+      "title": "Choose options and order on PikoBuy",
+      "intro": "Compare the seller’s photos and choices, then open the official purchasing page for the same item.",
+      "caption": "Check the product number, available options and the Buy on PikoBuy button.",
+      "steps": [
+        [
+          "Review the gallery",
+          "Use the arrows or swipe through the photo strip. Click a thumbnail to enlarge it. Selecting a style with a photo updates the main image."
+        ],
+        [
+          "Check style, size and price",
+          "Read the seller’s option labels. The price on the UK subsite is a catalog estimate shown in your selected currency. Check the live price and availability on PikoBuy."
+        ],
+        [
+          "Open the official product page",
+          "Select Buy on PikoBuy. On PikoBuy, confirm the source listing, color, size and quantity. Other purchasing platforms links to the identical Weidian number through a different agent."
+        ],
+        [
+          "Review the first payment",
+          "Follow the official order review for item price, seller-to-warehouse shipping and any displayed charges. The international parcel has a separate shipping payment."
+        ]
+      ]
+    },
+    {
+      "title": "Review QC and request a return",
+      "intro": "Use the seller gallery for comparison and review your own warehouse inspection photos before releasing the parcel.",
+      "caption": "Find the photo section below the product gallery. Its heading identifies the photo source.",
+      "steps": [
+        [
+          "Identify the photo source",
+          "The UK product page labels warehouse images as QC photos when its source provides them. Listing photos are seller images you can use as a comparison."
+        ],
+        [
+          "Check your warehouse order",
+          "After warehouse check-in, open the inspection photos in your PikoBuy account. Check the selected style and size tag, count the pieces and inspect obvious damage or missing accessories."
+        ],
+        [
+          "Ask for extra evidence",
+          "If the standard photos do not show the issue, ask support whether closer images or measurements are available. The forwarding policy describes an option to purchase additional detail photos."
+        ],
+        [
+          "Apply promptly if eligible",
+          "PikoBuy’s returns policy gives eligible items a 120-hour application window starting from the next hour after the status changes to In Warehouse. Keep the packaging and tags, add clear evidence, and confirm the seller’s conditions and fees before shipping internationally."
+        ]
+      ]
+    },
+    {
+      "title": "Estimate shipping and track delivery",
+      "intro": "Plan the second payment once your items and final parcel measurements are available.",
+      "caption": "Use the product details and seller listing to identify the item before opening the official shipping estimate.",
+      "steps": [
+        [
+          "Record the parcel inputs",
+          "After warehouse packing, collect the destination country, item type, parcel weight and outer dimensions. Use the packaging measurements from the warehouse where available."
+        ],
+        [
+          "Compare routes",
+          "Open the official shipping estimate. Enter weight in kilograms and length, width and height in centimetres. Compare available routes for the actual item type, rates and billing method."
+        ],
+        [
+          "Submit the parcel",
+          "Select matching warehouse items in PikoBuy, verify the address and selected route, review restrictions and insurance, and pay the international shipping charge when ready."
+        ],
+        [
+          "Track and report issues",
+          "Use the parcel number once shipped. The official guide says tracking should become available within three days of dispatch. Save the carrier’s latest event and timestamp if contacting support."
+        ]
+      ]
+    },
+    {
+      "title": "Register or sign in before you buy",
+      "intro": "Open the official registration page from the UK site and use your PikoBuy account when you reach the purchase page.",
+      "caption": "Select Join pikobuy in the UK site header to open official registration.",
+      "steps": [
+        [
+          "Open the registration link",
+          "Select Join pikobuy at the top right. The link opens PikoBuy’s official registration with the invitation parameters already included."
+        ],
+        [
+          "Complete setup on PikoBuy",
+          "Check the address bar for pikobuy.com before entering account information. Follow the official account form and read any invitation terms shown there."
+        ],
+        [
+          "Return to the same item",
+          "Keep the UK product page open or save its link. When you have an account, reopen the item, choose Buy on PikoBuy, and confirm the seller and specifications on the official page."
+        ]
+      ]
+    },
+    {
+      "title": "Compare agents and save the product link",
+      "intro": "Use the same Weidian listing when checking a second agent or sharing a product for later.",
+      "caption": "Open Other purchasing platforms to see the scrollable agent list beside Copy product link.",
+      "steps": [
+        [
+          "Check the source number",
+          "On the UK product page, record the Weidian number below the title. Open Original Weidian listing if you want to check the seller’s own photos and specifications."
+        ],
+        [
+          "Compare another agent",
+          "Open Other purchasing platforms and scroll through the logo tiles. Choose an agent and confirm that the purchase page uses the same item number. Compare live options and any listed domestic postage before deciding."
+        ],
+        [
+          "Save the exact UK page",
+          "Use Copy product link to save the UK detail page. Write down the color and size separately if you intend to buy later. Verify them again on the agent before placing an order."
+        ]
+      ]
+    },
+    {
+      "title": "Switch currency and compare the first payment",
+      "intro": "Use your preferred currency for comparing catalog prices, then verify the amount in the official checkout.",
+      "caption": "Open the currency control to compare GBP, USD or another supported display currency.",
+      "steps": [
+        [
+          "Open the currency menu",
+          "Select the currency button next to the language selector. Scroll to the currency you want, for example GBP for a UK comparison."
+        ],
+        [
+          "Check the updated display price",
+          "Return to the price beside the product title. This is the converted catalog amount. Use the same currency when comparing items for your shortlist."
+        ],
+        [
+          "Check both payment stages",
+          "On PikoBuy, confirm the first payment on the purchase order. Plan the international parcel fee separately using the destination and packed dimensions when you know them."
+        ]
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "title": "Getting started",
+      "items": [
+        [
+          "What is PikoBuy and how does this UK site fit in?",
+          "PikoBuy is a purchasing and forwarding agent. This UK catalog helps you find and compare products, then opens PikoBuy or another agent for the transaction. Registration, payment, warehouse orders and support are handled by the chosen agent."
+        ],
+        [
+          "Can I buy directly from the UK subsite?",
+          "Use Buy on PikoBuy to open the official item page. This catalog supplies product information and links. The seller’s current price, options, availability and final terms appear in the selected agent’s checkout."
+        ],
+        [
+          "What can I enter in the search box?",
+          "Search by a product keyword, Weidian item number, or full product link. Category filters help when a broad term matches many products. An item that is not in our catalog can still be checked through PikoBuy’s own search."
+        ],
+        [
+          "Which marketplaces does PikoBuy’s beginner guide cover?",
+          "The guide names Taobao, Tmall, 1688, Weidian and Yupoo as shopping sources. Submit the actual product link or a clear keyword on PikoBuy and confirm the seller before proceeding."
+        ],
+        [
+          "How do I register and use the invitation link?",
+          "Use Join pikobuy to open the official registration page with the invitation values already included. Complete registration on PikoBuy and read any eligibility or promotion terms shown in your account."
+        ],
+        [
+          "Why do other purchasing platforms appear next to PikoBuy?",
+          "Each platform tile takes you to a different agent for the same Weidian item number. Their pricing, inspection, order rules and shipping methods are set by each agent and can vary."
+        ]
+      ]
+    },
+    {
+      "title": "Orders, options and payments",
+      "items": [
+        [
+          "What do the color and size buttons do here?",
+          "They help you preview the seller’s options and photos. Reconfirm the option and quantity in PikoBuy before placing the order, since the selection on this preview does not submit an order."
+        ],
+        [
+          "What if my preferred size is missing or the listing differs?",
+          "Reopen the original listing, compare the item number, check the seller’s current size chart, and confirm availability with the agent. Do not infer size from a photo or order a similar-looking option by default."
+        ],
+        [
+          "Why are there usually two payments?",
+          "The first is for purchasing the item from the seller and any associated charges shown at order review. The second is for dispatching the warehouse parcel internationally after you choose a route."
+        ],
+        [
+          "Is the amount on this site the checkout price?",
+          "It is an estimate based on the catalog amount and selected currency. The live purchasing quote, seller postage, change in exchange rate, and shipping or other charges can change the total. Confirm the amount in your PikoBuy account."
+        ],
+        [
+          "Which payment methods can I use?",
+          "The public footer shows examples of supported payment brands. Check the methods offered in your checkout for your account, country and payment stage. If a payment fails, check the order and payment status before trying again."
+        ],
+        [
+          "What happens when an item is out of stock?",
+          "The official guide says the purchase is refunded when the item is out of stock. Check the purchase order’s status and the payment record for how the refund is handled in your account."
+        ]
+      ]
+    },
+    {
+      "title": "Warehouse inspection and QC",
+      "items": [
+        [
+          "When does warehouse inspection happen?",
+          "PikoBuy describes checking in the parcel, photographing it and looking for defects after the seller’s goods arrive. Wait for warehouse confirmation before treating the item as available to ship."
+        ],
+        [
+          "Are QC photos the same as the listing images?",
+          "Listing images show what the seller advertises. QC images show what arrived at a warehouse. For your own order, use the photos linked to that order and compare the identifiers, color, size and visible condition."
+        ],
+        [
+          "What if the UK page only shows Listing photos?",
+          "You are seeing seller imagery. Warehouse photos for the product may not be available in the catalog. After your purchase reaches PikoBuy, check the inspection record in your own account."
+        ],
+        [
+          "Can I ask for close-ups or additional measurements?",
+          "PikoBuy’s forwarding terms describe paid detail photos. Ask whether a specific close-up, equipment check or measurement is available before relying on it. Specialist inspection may be unavailable."
+        ],
+        [
+          "What do I do if a parcel arrives at the warehouse missing an item?",
+          "Keep the expected item list, seller tracking number, parcel photos and warehouse check-in information. For forwarding orders, the shipping policy directs users to check with the sender if quantities do not match."
+        ],
+        [
+          "Can I request different packaging?",
+          "The official beginner guide mentions packaging requests such as simpler or reinforced packaging. Check what the current parcel form provides and how any change can affect the packed weight or size."
+        ]
+      ]
+    },
+    {
+      "title": "Returns, exchanges and support",
+      "items": [
+        [
+          "When does the return application window close?",
+          "For eligible warehouse purchases, PikoBuy’s policy describes 120 hours starting from the next hour after the status changes to In Warehouse. Check the timestamp in your account and apply promptly with photos if there is a problem."
+        ],
+        [
+          "Is every product eligible for a return?",
+          "Eligibility is seller-specific and depends on resale condition and timing. The official examples of exclusions include custom and second-hand goods, certain sealed or intimate products, and items with tags or packaging removed on request."
+        ],
+        [
+          "Who pays for a change-of-mind return?",
+          "The published policy lists return shipping, original seller shipping and a RMB 5 service fee for customer-choice returns. Confirm the item’s quote before applying, including treatment of the original shipping line."
+        ],
+        [
+          "What if the seller sent the wrong size or there is a defect?",
+          "Capture the order option and the corresponding warehouse photo, then select the actual reason for the request. PikoBuy’s policy treats verified seller errors differently from buyer-choice returns, with the outcome subject to verification and seller agreement."
+        ],
+        [
+          "Is there a fee if the seller has not shipped?",
+          "The official returns FAQ says fees are not charged in the not-shipped example. Check the order status and ask support to confirm cancellation before assuming the order has stopped."
+        ],
+        [
+          "Can PikoBuy handle after-sales for a self-purchased forwarding parcel?",
+          "The forwarding policy directs users to the sender or seller for after-sales on forwarded purchases. It describes assistance with return shipment, rather than standard purchasing after-sales."
+        ],
+        [
+          "How should I contact support about an order?",
+          "Use the official ticket route or support contact. Include the order number or parcel number, the relevant timestamp and clear photos or screenshots where useful. Keep any requested evidence in the support channel for the order."
+        ]
+      ]
+    },
+    {
+      "title": "International shipping and tracking",
+      "items": [
+        [
+          "What do I enter into the shipping estimator?",
+          "Choose your destination and the actual product type. Enter kilograms and the outer dimensions in centimetres. Use the measurements of the packed parcel when they are available."
+        ],
+        [
+          "Why can two parcels of the same weight cost different amounts?",
+          "Route billing methods can differ, and the parcel’s dimensions, destination or item type may affect eligibility and charged weight. Compare using the final parcel information and the route terms displayed at submission."
+        ],
+        [
+          "Can I combine products from different sellers?",
+          "PikoBuy’s contact page describes combining items into one parcel. Before submitting, check that the combined products are accepted on the route and compare the estimate with separate parcels if restrictions differ."
+        ],
+        [
+          "Can I ship items with batteries, liquids or other restricted contents?",
+          "Eligibility is route-specific. Check the actual item type and the platform’s allowed route list, and ask support if the item is not clearly described. Use accurate contents and measurements in the parcel form."
+        ],
+        [
+          "Can I self-purchase and forward through PikoBuy?",
+          "The forwarding policy explains getting the warehouse address, submitting a forwarding form, waiting for warehouse receipt and then creating an international parcel. Obtain the live address and instructions from PikoBuy before sending anything."
+        ],
+        [
+          "When should tracking show up after shipment?",
+          "The beginner guide says tracking should become available within three days after dispatch. Distinguish the seller-to-warehouse parcel from the international parcel and use the correct tracking number."
+        ],
+        [
+          "What should I do when tracking has stopped moving?",
+          "Save the last scan, date, time, carrier and parcel number. Check the carrier’s page and submit a ticket through PikoBuy if you need an update or instructions for the route."
+        ],
+        [
+          "Does the estimate include all duties, taxes and possible fees?",
+          "The estimate predicts shipping using the supplied parcel information. PikoBuy’s terms say cross-border transactions may carry separate duties, taxes, brokerage or other charges. Check the route terms and current checkout for what is included."
+        ],
+        [
+          "Does PikoBuy guarantee delivery or customs clearance?",
+          "The shipping terms describe third-party logistics and cross-border risks, including possible delays or loss. Review the selected route’s terms, insurance and claims process before committing to a parcel."
+        ]
+      ]
+    }
+  ],
+  "example": "View the example product"
+}

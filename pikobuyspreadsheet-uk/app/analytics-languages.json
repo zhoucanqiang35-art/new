@@ -1,0 +1,134 @@
+{
+  "en": [
+    "Analytics settings",
+    "Allow Google Analytics to measure visits and help improve this site.",
+    "Allow analytics",
+    "Decline analytics"
+  ],
+  "fr": [
+    "Paramètres de mesure",
+    "Autorisez Google Analytics à mesurer les visites pour améliorer ce site.",
+    "Autoriser",
+    "Refuser"
+  ],
+  "de": [
+    "Analyse-Einstellungen",
+    "Erlauben Sie Google Analytics, Besuche zu messen und diese Website zu verbessern.",
+    "Erlauben",
+    "Ablehnen"
+  ],
+  "es": [
+    "Ajustes de analítica",
+    "Permite que Google Analytics mida las visitas para mejorar este sitio.",
+    "Permitir",
+    "Rechazar"
+  ],
+  "it": [
+    "Impostazioni di analisi",
+    "Consenti a Google Analytics di misurare le visite per migliorare il sito.",
+    "Consenti",
+    "Rifiuta"
+  ],
+  "pt": [
+    "Definições de análise",
+    "Permita que o Google Analytics meça as visitas para melhorar este site.",
+    "Permitir",
+    "Recusar"
+  ],
+  "nl": [
+    "Analyse-instellingen",
+    "Sta Google Analytics toe bezoeken te meten om deze site te verbeteren.",
+    "Toestaan",
+    "Weigeren"
+  ],
+  "pl": [
+    "Ustawienia analityki",
+    "Zezwól Google Analytics na pomiar wizyt, aby ulepszyć tę witrynę.",
+    "Zezwól",
+    "Odrzuć"
+  ],
+  "ro": [
+    "Setări de analiză",
+    "Permite Google Analytics să măsoare vizitele pentru a îmbunătăți site-ul.",
+    "Permite",
+    "Refuză"
+  ],
+  "sv": [
+    "Analysinställningar",
+    "Tillåt Google Analytics att mäta besök för att förbättra webbplatsen.",
+    "Tillåt",
+    "Avböj"
+  ],
+  "da": [
+    "Analyseindstillinger",
+    "Tillad Google Analytics at måle besøg for at forbedre webstedet.",
+    "Tillad",
+    "Afvis"
+  ],
+  "nb": [
+    "Analyseinnstillinger",
+    "Tillat at Google Analytics måler besøk for å forbedre nettstedet.",
+    "Tillat",
+    "Avslå"
+  ],
+  "fi": [
+    "Analytiikka-asetukset",
+    "Salli Google Analyticsin mitata käyntejä sivuston parantamiseksi.",
+    "Salli",
+    "Hylkää"
+  ],
+  "cs": [
+    "Nastavení analytiky",
+    "Povolte Google Analytics měřit návštěvy a pomáhat zlepšovat tento web.",
+    "Povolit",
+    "Odmítnout"
+  ],
+  "sk": [
+    "Nastavenia analytiky",
+    "Povoľte službe Google Analytics merať návštevy a pomáhať zlepšovať tento web.",
+    "Povoliť",
+    "Odmietnuť"
+  ],
+  "hu": [
+    "Analitikai beállítások",
+    "Engedélyezze a Google Analytics számára a látogatások mérését a webhely fejlesztéséhez.",
+    "Engedélyezés",
+    "Elutasítás"
+  ],
+  "el": [
+    "Ρυθμίσεις ανάλυσης",
+    "Επιτρέψτε στο Google Analytics να μετρά επισκέψεις για τη βελτίωση του ιστότοπου.",
+    "Να επιτραπεί",
+    "Απόρριψη"
+  ],
+  "tr": [
+    "Analiz ayarları",
+    "Siteyi iyileştirmek için Google Analytics'in ziyaretleri ölçmesine izin verin.",
+    "İzin ver",
+    "Reddet"
+  ],
+  "zh": [
+    "访问统计设置",
+    "允许 Google Analytics 统计访问情况，帮助改进本站。",
+    "允许统计",
+    "拒绝统计"
+  ],
+  "ja": [
+    "アクセス解析の設定",
+    "サイト改善のため、Google Analytics によるアクセス計測を許可しますか？",
+    "許可する",
+    "拒否する"
+  ],
+  "ko": [
+    "방문 통계 설정",
+    "사이트 개선을 위해 Google Analytics가 방문을 측정하도록 허용할 수 있습니다.",
+    "허용",
+    "거부"
+  ],
+  "ar": [
+    "إعدادات التحليلات",
+    "اسمح لخدمة Google Analytics بقياس الزيارات للمساعدة في تحسين الموقع.",
+    "سماح",
+    "رفض"
+  ]
+}

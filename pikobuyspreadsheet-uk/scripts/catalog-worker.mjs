@@ -1,6 +1,8 @@
 const main = "https://findspreadsheet.com";
 const shardCount = 8;
 let cachedCatalog;
+let cachedProductIndex;
+const cachedShards = new Map();
 
 function json(body, status = 200, cache = "no-store") {
   return Response.json(body, { status, headers: {
@@ -31,10 +33,59 @@ async function asset(env, requestUrl, path) {
   return response.json();
 }
 
+async function productIndex(env, url) {
+  if (!cachedProductIndex) cachedProductIndex = await asset(env, url, "/data/uk-product-index.json");
+  return cachedProductIndex;
+}
+
+async function productShard(env, url, index) {
+  if (!cachedShards.has(index)) {
+    const rows = await asset(env, url, `/data/uk-products-${index}.json`);
+    cachedShards.set(index, rows);
+  }
+  return cachedShards.get(index);
+}
+
+async function productById(env, url, id) {
+  const shard = (await productIndex(env, url))[id];
+  if (!Number.isInteger(shard)) return undefined;
+  return (await productShard(env, url, shard)).find(item => item.id === id);
+}
+
+function escapeAttribute(value) {
+  return value.replaceAll("&", "&amp;").replaceAll('"', "&quot;");
+}
+
+async function productPage(request, env, url) {
+  const id = url.searchParams.get("id") ?? "";
+  const locale = url.pathname.split("/")[1];
+  const shell = new Request(new URL(`/_catalog-product-shell/${locale}/`, url), request);
+  if (request.method !== "GET" || !/^\d{6,16}$/.test(id)) return env.ASSETS.fetch(shell);
+  const [response, item] = await Promise.all([
+    env.ASSETS.fetch(shell), productById(env, url, id).catch(() => undefined),
+  ]);
+  if (!item || !response.ok || !response.headers.get("content-type")?.includes("text/html")) return response;
+  const images = [...new Set([...(item.gallery ?? []), item.image].map(image => originImage(image, true)).filter(Boolean))];
+  if (!images.length) return response;
+  const hints = images.map((image, i) =>
+    `<link rel="preload" as="image" href="${escapeAttribute(image)}" fetchpriority="${i === 0 ? "high" : "low"}">`
+  ).join("");
+  const data = JSON.stringify(item).replace(/</g, "\\u003c");
+  return new HTMLRewriter()
+    .on("head", { element(head) {
+      head.prepend(`${hints}<script id="piko-product-data" type="application/json">${data}</script>`, { html: true });
+    } })
+    .on("#piko-initial-cover", { element(image) {
+      image.setAttribute("src", images[0]);
+      image.setAttribute("alt", item.title);
+    } })
+    .transform(response);
+}
+
 async function catalog(env, url) {
   if (cachedCatalog) return cachedCatalog;
   const shards = await Promise.all(Array.from({length: shardCount}, (_, index) =>
-    asset(env, url, `/data/uk-products-${index}.json`)
+    productShard(env, url, index)
   ));
   const items = shards.flat();
   const byId = new Map(items.map(item => [item.id, item]));
@@ -122,11 +173,10 @@ function qcPhotos(data, id) {
   }).slice(0, 24);
 }
 
-async function details(item) {
-  const id = item.id;
+async function details(id, part) {
   const [listing, qc] = await Promise.allSettled([
-    fetchMain(`/api/Goods/getSkuData?weidian_id=${id}`).then(data => sellerListing(data, id)),
-    fetchMain(`/qcradar-qc.php?item=${id}`).then(data => qcPhotos(data, id)),
+    part === "qc" ? null : fetchMain(`/api/Goods/getSkuData?weidian_id=${id}`).then(data => sellerListing(data, id)),
+    part === "listing" ? [] : fetchMain(`/qcradar-qc.php?item=${id}`).then(data => qcPhotos(data, id)),
   ]);
   const photos = qc.status === "fulfilled" ? qc.value : [];
   const options = listing.status === "fulfilled" ? listing.value : null;
@@ -137,17 +187,21 @@ async function details(item) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (/^\/[a-z]{2}\/product\/?$/.test(url.pathname)) return productPage(request, env, url);
     if (!url.pathname.startsWith("/api/catalog/")) return env.ASSETS.fetch(request);
     if (request.method !== "GET") return json({error: "Method not allowed"}, 405);
     const route = url.pathname.replace(/\/$/, "");
     try {
-      const data = await catalog(env, url);
-      if (route === "/api/catalog/search") return search(url, data);
+      if (route === "/api/catalog/search") return search(url, await catalog(env, url));
       if (route !== "/api/catalog/product" && route !== "/api/catalog/details") return json({error: "Not found"}, 404);
-      const found = data.byId.get(url.searchParams.get("id"));
-      if (!found) return json({error: "Product not found"}, 404);
-      if (route === "/api/catalog/product") return json({ product: found }, 200, "public, max-age=600");
-      return await details(found);
+      const id = url.searchParams.get("id") ?? "";
+      if (!/^\d{6,16}$/.test(id)) return json({error: "Product not found"}, 404);
+      if (route === "/api/catalog/details") {
+        if (!Number.isInteger((await productIndex(env, url))[id])) return json({error: "Product not found"}, 404);
+        return await details(id, url.searchParams.get("part"));
+      }
+      const found = await productById(env, url, id);
+      return found ? json({ product: found }, 200, "public, max-age=600") : json({error: "Product not found"}, 404);
     } catch {
       return json({error: "Catalog temporarily unavailable"}, 503);
     }

@@ -1,0 +1,61 @@
+{
+  "title": "PikoBuy Spreadsheet UK: product links, QC photos and shipping",
+  "intro": "Use the UK catalog to find a Weidian item, compare its listing and photos, then check the live PikoBuy order and shipping cost. Each section covers one decision from search to delivery.",
+  "heading": "PikoBuy spreadsheet UK",
+  "sections": [
+    {
+      "title": "Find PikoBuy spreadsheet products in the UK catalog",
+      "paragraphs": [
+        "Search by product name, category, Weidian item number or original product link. An item number is the most direct way to match a product when several listings use similar names. The product page shows the source ID so you can check that the listing and the agent link refer to the same item.",
+        "The PikoBuy beginner guide describes shopping sources including Weidian, Taobao, Tmall, 1688 and Yupoo. If a link is outside this UK catalog, use PikoBuy’s own search and confirm the original listing before proceeding."
+      ],
+      "action": "browse",
+      "source": "guide"
+    },
+    {
+      "title": "Compare listing images, styles and QC photos",
+      "paragraphs": [
+        "Check the main gallery and thumbnails for the exact finish you want. Where the seller provides option photos, selecting a style previews that option. Check garment measurements, size charts and included pieces on the current purchase page before ordering.",
+        "Listing images are seller illustrations. A section labelled QC photos contains available inspection images. Once your own item arrives, compare that order’s warehouse photos with the intended style, size tag and quantity. Standard photos may leave out measurements or a specific detail."
+      ],
+      "action": "pictures",
+      "source": "guide"
+    },
+    {
+      "title": "Open the PikoBuy product link and check the first payment",
+      "paragraphs": [
+        "Use the purchase button to open the corresponding PikoBuy product page. Options selected on the UK site are a preview, so confirm color, size, quantity and the seller’s price on PikoBuy. An item price in a selected display currency is a comparison estimate.",
+        "The official purchase workflow separates the seller purchase from dispatching the international parcel. Check the order review for the item price and any seller-to-warehouse delivery charge before you compare a total."
+      ],
+      "action": "order",
+      "source": "guide"
+    },
+    {
+      "title": "Estimate PikoBuy shipping and choose a route",
+      "paragraphs": [
+        "The official estimator asks for a destination, product type, weight in kilograms and parcel dimensions in centimetres. For a UK delivery, choose the United Kingdom and use the final packed dimensions when the warehouse makes them available.",
+        "Check the route’s billing method, allowed contents, cover and current conditions. International postage is a separate payment, and the amount shown by an estimate can change with the packed parcel or route selected at submission."
+      ],
+      "action": "shipping",
+      "source": "estimate"
+    },
+    {
+      "title": "Check warehouse returns and tracking",
+      "paragraphs": [
+        "Check photos and keep the order information as soon as the item reaches the warehouse. For an eligible purchase, PikoBuy’s published policy describes a 120-hour application window beginning from the next hour after the order becomes In Warehouse. Seller eligibility and item condition affect the result, and charges can apply.",
+        "Keep domestic and international tracking numbers separate. PikoBuy’s guide says international tracking becomes available within three days after dispatch. Retain the last carrier scan and the parcel number when asking for an update."
+      ],
+      "action": "faq",
+      "source": "returns"
+    },
+    {
+      "title": "Compare the total cost before choosing an agent",
+      "paragraphs": [
+        "Compare the same source item and selected option across purchase links. Use the original listing as a reference, then check each platform’s item charge, seller postage and international estimate. Compare inspection and return conditions alongside price.",
+        "A useful shortlist records the Weidian number, exact option, source link, relevant measurements and the final packed dimensions once available. This keeps a low advertised item price in context when choosing an agent or deciding whether to ship."
+      ],
+      "action": "browse",
+      "source": "shipping"
+    }
+  ]
+}

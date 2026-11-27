@@ -1,13 +1,16 @@
-import { ArrowRight, BaggageClaim, Boxes, Check, CircleAlert, ExternalLink, FileText, Footprints, Gem, Globe2, LayoutGrid, PackageCheck, Search, ShieldCheck, Shirt, Sparkles, Truck, Warehouse, Watch } from "lucide-react";
-import { seoArticles, type SeoArticle } from "./seo-content";
-import { discoverySeoArticles } from "./discovery-articles";
+import { BaggageClaim, BookOpen, Boxes, ChartNoAxesCombined, Check, CircleHelp, ExternalLink, Footprints, Gem, PackageCheck, Search, ShieldCheck, Shirt, Warehouse, Watch } from "lucide-react";
 import languages from "./locales.json";
 import { getLocale, phrase } from "./translations";
 import { HeaderControls } from "./header-controls";
+import { Analytics } from "./analytics";
 import { CatalogCards, CatalogSearch, ProductDetail } from "./catalog-ui";
 import { catalogCategories, catalogHref } from "./catalog-model";
 import { catalogLabels } from "./catalog-labels";
 import catalogData from "./catalog-featured.json";
+import featuredTitles from "./featured-titles.json";
+import { GuidePage, FAQPage } from "./support-pages";
+import { supportCopy } from "./support-copy";
+import { SeoPage } from "./seo-page";
 
 type Lang = string;
 
@@ -34,9 +37,7 @@ export const en={
  }
 };
 export type Copy=typeof en;
-const allSeoArticles=[...seoArticles,...discoverySeoArticles].filter((article,index,list)=>list.findIndex(item=>item.slug===article.slug)===index);
-const articleRoutes=allSeoArticles.map(article=>article.slug);
-const routes=["home","categories","products","guide","qc","shipping","articles","faq","seo",...articleRoutes,"product"];
+const routes=["home","categories","products","guide","qc","shipping","articles","faq","seo","product"];
 type CatIcon="shoe"|"shirt"|"bag"|"pants"|"accessory"|"jewelry"|"watch";
 const cats:{name:string;icon:CatIcon;category:string}[]=[
  {name:"Shoes",icon:"shoe",category:"shoes"},
@@ -53,30 +54,15 @@ const cats:{name:string;icon:CatIcon;category:string}[]=[
  {name:"Sweaters",icon:"shirt",category:"hoodies-sweaters"},
 ];
 const href=(l:Lang,r:string)=>`/${l}${r==="home"?"":`/${r}`}`;
-const englishSeoLabels = {
-  toc: "On this page",
-  direct: "Direct answer",
-  cluster: "Part of the PikoBuy guide",
-  updated: "Last reviewed",
-  continue: "Explore the topic cluster",
-};
-
-function localizedDate(value: string, code: Lang) {
-  return new Intl.DateTimeFormat(code, { dateStyle: "long", timeZone: "UTC" }).format(new Date(`${value} UTC`));
-}
-
 export function Site({ lang, route }: { lang: string; route: string }) {
   const code = languages.find((language) => language.code === lang)?.code ?? "en";
   const bundle = getLocale(code);
   const t = (bundle?.copy ?? en) as Copy;
-  const articles = allSeoArticles.map((base) => {
-    const translated = bundle?.articles.find((article) => article.slug === base.slug);
-    return translated ? { ...base, ...translated, methodology: translated.methodology ?? base.methodology } : base;
-  });
   const current = routes.includes(route) ? route : "home";
   const direction = code === "ar" ? "rtl" : "ltr";
   const shopLabels = catalogLabels(code);
-  const navIndexes = [0, 1, 2, 3, 7, 8];
+  const support = supportCopy(code);
+  const navIndexes = [0, 2, 3, 7, 8];
   const labels = {
     language: phrase(code, "Language"),
     currency: phrase(code, "Currency"),
@@ -85,8 +71,7 @@ export function Site({ lang, route }: { lang: string; route: string }) {
   };
 
   return (
-    <div className="site-shell" lang={code} dir={direction}>
-      <div className="preview-bar"><Sparkles size={14} />{t.ui.preview}</div>
+    <div className={current === "home" ? "site-shell home-shell" : "site-shell"} lang={code} dir={direction}>
       <header className="topbar">
         <a className="brand" href={href(code, "home")}><img src="/pikobuy.png" alt="PikoBuy" /></a>
         <nav dir={direction}>
@@ -100,7 +85,11 @@ export function Site({ lang, route }: { lang: string; route: string }) {
         <HeaderControls locale={code} route={current} labels={labels} />
       </header>
       {current === "home" ? <Home t={t} code={code} />
-        : current === "product" ? <ProductDetail locale={code} labels={shopLabels} />
+        : current === "product" ? <ProductDetail locale={code} labels={shopLabels}
+          photoLabels={{ previous: support.previousPhoto, next: support.nextPhoto }} />
+        : current === "guide" ? <GuidePage code={code} />
+        : current === "seo" ? <SeoPage code={code} />
+        : current === "faq" ? <FAQPage code={code} />
         : current === "products" ? (
           <main className="catalog-page">
             <h1>{shopLabels.browse}</h1>
@@ -113,7 +102,7 @@ export function Site({ lang, route }: { lang: string; route: string }) {
             <h1>{t.nav[1]}</h1>
             <CategoryGrid t={t} code={code} />
           </main>
-        ) : <Inner t={t} code={code} route={current} articles={articles} />}
+        ) : <Inner t={t} code={code} route={current} />}
       <footer>
         <a className="brand footer-brand" href={href(code, "home")}><img src="/pikobuy.png" alt="PikoBuy" /></a>
         <p>{t.footer}</p>
@@ -124,12 +113,22 @@ export function Site({ lang, route }: { lang: string; route: string }) {
           <a href="https://findspreadsheet.com/">FindSpreadsheet <ExternalLink size={12} /></a>
         </div>
       </footer>
+      <Analytics locale={code} />
     </div>
   );
 }
 
+const homeResources = [
+  { navIndex: 3, icon: BookOpen },
+  { navIndex: 7, icon: CircleHelp },
+  { navIndex: 8, icon: ChartNoAxesCombined },
+];
+
 function Home({ t, code }: { t: Copy; code: Lang }) {
   const labels = catalogLabels(code);
+  const support = supportCopy(code);
+  const titles = (featuredTitles as Record<string, Record<string, string>>)[code];
+  const featured = catalogData.featured.map(item => ({ ...item, title: titles?.[item.id] ?? item.title }));
   const homeSchema = {
     "@context": "https://schema.org", "@type": "WebSite", name: "PikoBuy Spreadsheet UK",
     url: `https://pikobuyspreadsheet.uk/${code}/`, description: t.intro,
@@ -140,44 +139,45 @@ function Home({ t, code }: { t: Copy; code: Lang }) {
     },
   };
   return (
-    <main className="compact-home">
+    <main className="catalog-home">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }} />
-      <section className="compact-hero">
-        <div>
-          <p className="eyebrow">{t.kicker}</p>
-          <h1>{t.title}</h1>
-          <form className="catalog-search" action={catalogHref(code)} method="get">
-            <div className="catalog-search-input">
-              <Search size={18} aria-hidden="true" />
-              <input name="q" type="search" maxLength={200} required placeholder={t.search} aria-label={labels.search} />
-            </div>
-            <button type="submit">{labels.search}<ArrowRight size={16} /></button>
-          </form>
-        </div>
-        <div className="compact-categories">
-          <h2>{t.nav[1]}</h2>
-          <div className="catalog-filters">
-            {catalogCategories.map(([slug, label]) => (
-              <a href={catalogHref(code, { category: slug })} key={slug}>{labels[label]}</a>
-            ))}
+      <section className="home-hero">
+        <p className="eyebrow">{t.kicker}</p>
+        <h1>{t.title}</h1>
+        <form className="catalog-search" action={catalogHref(code)} method="get">
+          <div className="catalog-search-input">
+            <Search size={20} aria-hidden="true" />
+            <input name="q" type="search" maxLength={200} required placeholder={t.search} aria-label={labels.search} />
           </div>
-        </div>
+          <button type="submit">{labels.search}</button>
+        </form>
       </section>
-      <section className="compact-featured">
-        <div className="compact-section-head">
-          <h2>{labels.featured}</h2>
-          <a href={catalogHref(code)}>{labels.browse}<ArrowRight size={16} /></a>
-        </div>
-        <CatalogCards locale={code} labels={labels} items={catalogData.featured} />
-      </section>
-      <section className="compact-guides">
-        <div className="compact-section-head"><h2>{labels.buying}</h2></div>
-        <div className="compact-guide-links">
-          {[3, 7, 8].map(index => (
-            <a key={routes[index]} href={href(code, routes[index])}>{t.nav[index]}<ArrowRight size={16} /></a>
+      <section className="home-categories">
+        <div className="home-section-head"><h2>{t.nav[1]}</h2></div>
+        <div className="home-category-links">
+          {catalogCategories.map(([slug, label]) => (
+            <a href={catalogHref(code, { category: slug })} key={slug}>{labels[label]}</a>
           ))}
         </div>
-        <details className="compact-about">
+      </section>
+      <section className="home-featured">
+        <div className="home-section-head">
+          <h2>{labels.featured}</h2>
+          <a href={catalogHref(code)}>{labels.browse}</a>
+        </div>
+        <CatalogCards locale={code} labels={labels} items={featured} />
+      </section>
+      <section className="home-guides">
+        <div className="home-section-head"><h2>{labels.buying}</h2></div>
+        <div className="home-guide-links">
+          {homeResources.map(({ navIndex, icon: Icon }, position) => (
+            <a key={routes[navIndex]} href={href(code, routes[navIndex])}>
+              <Icon size={21} aria-hidden="true" />
+              <div><strong>{t.nav[navIndex]}</strong><span>{support.cards[position]}</span></div>
+            </a>
+          ))}
+        </div>
+        <details className="home-about">
           <summary>{t.ui.factTitle}</summary>
           <p>{t.intro}</p>
           <ul>{t.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
@@ -200,7 +200,6 @@ function CategoryGrid({ t, code }: { t: Copy; code: Lang }) {
     </div>
   );
 }
-function Heading({eyebrow,title,text}:{eyebrow:string;title:string;text:string}){return <div className="section-heading"><div><p className="eyebrow">{eyebrow}</p><h2>{title}</h2></div><p>{text}</p></div>}
 function Callout({t}:{t:Copy}){return <section className="cta"><div><p className="eyebrow">{t.ui.calloutFlow}</p><h2>{t.cta}</h2><p>{t.ctaText}</p></div><a href="https://findspreadsheet.com/">{t.ctaButton}<ExternalLink/></a></section>}
 function Breadcrumbs({t,code,route,label}:{t:Copy;code:Lang;route:string;label:string}){
  const canonical=`https://pikobuyspreadsheet.uk${href(code,route)}/`;
@@ -208,77 +207,10 @@ function Breadcrumbs({t,code,route,label}:{t:Copy;code:Lang;route:string;label:s
  return <><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><nav className="article-breadcrumbs" aria-label={phrase(code, "Breadcrumb")}><a href={href(code,"home")}>{t.nav[0]}</a><span>/</span><span aria-current="page">{label}</span></nav></>;
 }
 
-function Inner({t,code,route,articles}:{t:Copy;code:Lang;route:string;articles:SeoArticle[]}){
- const article=articles.find(item=>item.slug===route);
- if(article)return <ArticlePage article={article} t={t} code={code} articles={articles}/>;
- if(route==="seo")return <SeoIndex t={t} code={code} articles={articles}/>;
- if(route==="guide")return <PillarGuide t={t} code={code} articles={articles}/>;
+function Inner({t,code,route}:{t:Copy;code:Lang;route:string}){
  const key=route as keyof Copy["pageTitles"],sections=t.sections[route as keyof Copy["sections"]]??t.sections.guide;
  const pageTitle=t.pageTitles[key]??t.pageTitles.guide;
  const pageCanonical=`https://pikobuyspreadsheet.uk${href(code,route)}/`;
  const pageSchema={"@context":"https://schema.org","@type":route==="categories"?"CollectionPage":"WebPage",name:pageTitle,description:t.pageIntros[key]??t.pageIntros.guide,url:pageCanonical,isPartOf:{"@type":"WebSite",name:"PikoBuy Spreadsheet UK",url:"https://pikobuyspreadsheet.uk/"}};
- const faqSchema=route==="faq"?{"@context":"https://schema.org","@type":"FAQPage",mainEntity:t.sections.faq.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))}:null;
- return <main className="inner"><Breadcrumbs t={t} code={code} route={route} label={pageTitle}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(pageSchema)}}/>{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<section className="inner-hero"><p className="eyebrow">{phrase(code, "PIKOBUY /") + " "}{t.nav[routes.indexOf(route)]}</p><h1>{pageTitle}</h1><p>{t.pageIntros[key]??t.pageIntros.guide}</p></section>{route==="categories"?<><section className="inner-category-panel"><CategoryGrid t={t} code={code}/></section><div className="article-grid category-notes"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div></>:<div className="article-grid"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><div className="aside-card"><ShieldCheck/><h3>{t.ui.evidenceStandard}</h3><p>{t.ui.evidenceText}</p></div><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div>}<Callout t={t}/></main>
-}
-
-function PillarGuide({t,code,articles}:{t:Copy;code:Lang;articles:SeoArticle[]}){
- const labels=getLocale(code)?.seo ?? englishSeoLabels;
- const canonical=`https://pikobuyspreadsheet.uk/${code}/guide/`;
- const pageSchema={"@context":"https://schema.org","@type":"WebPage",name:t.pageTitles.guide,description:t.pageIntros.guide,url:canonical,isPartOf:{"@type":"WebSite",name:"PikoBuy Spreadsheet UK",url:"https://pikobuyspreadsheet.uk/"},about:{"@type":"Thing",name:"PikoBuy guide"}};
- return <main className="inner pillar-page"><Breadcrumbs t={t} code={code} route="guide" label={t.pageTitles.guide}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(pageSchema)}}/><section className="inner-hero"><p className="eyebrow">{phrase(code, "PIKOBUY /") + " "}{t.nav[3]}</p><h1>{t.pageTitles.guide}</h1><p>{t.pageIntros.guide}</p></section><section className="direct-answer"><b>{labels.direct}</b><p>{t.pageIntros.guide}</p></section><nav className="page-toc" aria-label={labels.toc}><strong>{labels.toc}</strong><ol>{t.sections.guide.map(([heading],i)=><li key={heading}><a href={`#pillar-${i+1}`}>{heading}</a></li>)}<li><a href="#topic-cluster">{labels.continue}</a></li></ol></nav><div className="article-grid"><article className="article-body">{t.sections.guide.map(([h,p],i)=><section id={`pillar-${i+1}`} key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><div className="aside-card"><ShieldCheck/><h3>{t.ui.evidenceStandard}</h3><p>{t.ui.evidenceText}</p></div><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div><section id="topic-cluster" className="pillar-cluster"><Heading eyebrow={t.ui.seoEyebrow} title={labels.continue} text={t.ui.seoIntro}/><div>{articles.map(article=><a key={article.slug} href={href(code,article.slug)}><FileText/><span><b>{article.title}</b><small>{article.description}</small></span><ArrowRight/></a>)}</div></section><Callout t={t}/></main>
-}
-
-function SeoIndex({t,code,articles}:{t:Copy;code:Lang;articles:SeoArticle[]}){const itemListSchema={"@context":"https://schema.org","@type":"ItemList",name:t.pageTitles.seo,itemListElement:articles.map((article,i)=>({"@type":"ListItem",position:i+1,url:`https://pikobuyspreadsheet.uk${href(code,article.slug)}/`,name:article.title}))};return <main className="inner"><Breadcrumbs t={t} code={code} route="seo" label={t.pageTitles.seo}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(itemListSchema)}}/><section className="inner-hero"><p className="eyebrow">{t.ui.seoEyebrow}</p><h1>{t.pageTitles.seo}</h1><p>{t.ui.seoIntro}</p></section><section className="seo-index">{articles.map((article,i)=><a className="seo-card" key={article.slug} href={href(code,article.slug)}><span>0{i+1}</span><FileText/><h2>{article.title}</h2><p>{article.description}</p><small>{t.ui.wordRange} · {t.ui.updated} {localizedDate(article.updated,code)}</small><b>{t.ui.readFull} <ArrowRight/></b></a>)}</section><Callout t={t}/></main>}
-
-function ArticlePage({article,t,code,articles}:{article:SeoArticle;t:Copy;code:Lang;articles:SeoArticle[]}){
- const canonical=`https://pikobuyspreadsheet.uk/${code}/${article.slug}/`;
- const author=article.author??"FindSpreadsheet Editorial Team";
- const published=article.published??article.updated;
- const toIso=(value:string)=>new Date(`${value} UTC`).toISOString();
- const relatedRoutes=article.slug==="compare-pikobuy-spreadsheet-items"?["categories","products","pikobuy-product-search-submit-links-images","pikobuy-qc-photo-checklist"]:article.slug==="pikobuy-sizing-measurement-checks"?["compare-pikobuy-spreadsheet-items","products","pikobuy-qc-photo-checklist","pikobuy-returns-risks-guide"]:article.slug==="pikobuy-tracking-delivery-troubleshooting"?["pikobuy-shipping-planning-guide","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-returns-risks-guide","faq"]:article.slug==="pikobuy-reviews-evidence-guide"?["pikobuy-spreadsheet-beginner-guide","pikobuy-qc-photo-checklist","pikobuy-returns-risks-guide","pikobuy-tracking-delivery-troubleshooting"]:article.slug==="is-pikobuy-safe-buyer-risk-checklist"?["pikobuy-spreadsheet-beginner-guide","pikobuy-returns-risks-guide","pikobuy-qc-photo-checklist","pikobuy-tracking-delivery-troubleshooting"]:article.slug==="pikobuy-buy-for-me-vs-forwarding"?["pikobuy-spreadsheet-beginner-guide","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-returns-risks-guide","pikobuy-shipping-planning-guide"]:article.slug==="pikobuy-customs-declaration-duties-guide"?["pikobuy-shipping-planning-guide","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-tracking-delivery-troubleshooting","is-pikobuy-safe-buyer-risk-checklist"]:article.slug==="pikobuy-customer-service-support-ticket-guide"?["pikobuy-spreadsheet-beginner-guide","pikobuy-returns-risks-guide","pikobuy-tracking-delivery-troubleshooting","pikobuy-buy-for-me-vs-forwarding"]:article.slug==="pikobuy-payment-methods-two-stage-cost-guide"?["pikobuy-fees-full-cost-checklist","pikobuy-buy-for-me-vs-forwarding","pikobuy-returns-risks-guide","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-order-status-stage-guide"?["pikobuy-seller-shipping-domestic-order-checklist","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-returns-risks-guide","pikobuy-tracking-delivery-troubleshooting"]:article.slug==="pikobuy-shipping-insurance-claim-checklist"?["pikobuy-shipping-planning-guide","pikobuy-tracking-delivery-troubleshooting","pikobuy-customs-declaration-duties-guide","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-app-install-safety-guide"?["is-pikobuy-safe-buyer-risk-checklist","pikobuy-product-search-submit-links-images","pikobuy-payment-methods-two-stage-cost-guide","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-prohibited-items-pre-order-checklist"?["pikobuy-customs-declaration-duties-guide","is-pikobuy-safe-buyer-risk-checklist","pikobuy-product-search-submit-links-images","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-seller-shipping-domestic-order-checklist"?["pikobuy-order-status-stage-guide","pikobuy-returns-risks-guide","pikobuy-customer-service-support-ticket-guide","pikobuy-warehouse-consolidation-parcel-preparation"]:article.slug==="pikobuy-fees-full-cost-checklist"?["pikobuy-payment-methods-two-stage-cost-guide","pikobuy-shipping-planning-guide","pikobuy-returns-risks-guide","pikobuy-customs-declaration-duties-guide"]:["pikobuy-qc-photo-checklist","pikobuy-returns-risks-guide","pikobuy-shipping-planning-guide","guide"];
- const effectiveRelatedRoutes=article.slug==="pikobuy-tshirts-spreadsheet-sizing-qc-guide"?["pikobuy-sizing-measurement-checks","pikobuy-qc-photos-decision-guide","pikobuy-spreadsheet-links-checklist","pikobuy-haul-planning-spreadsheet-shortlist"]:article.slug==="pikobuy-hoodies-jackets-spreadsheet-fit-guide"?["pikobuy-tshirts-spreadsheet-sizing-qc-guide","pikobuy-sizing-measurement-checks","pikobuy-qc-photos-decision-guide","pikobuy-haul-planning-spreadsheet-shortlist"]:article.slug==="pikobuy-spreadsheet-links-checklist"?["pikobuy-product-search-submit-links-images","pikobuy-finds-category-budget-guide","pikobuy-qc-photos-decision-guide","pikobuy-haul-planning-spreadsheet-shortlist"]:article.slug==="pikobuy-qc-photos-decision-guide"?["pikobuy-qc-photo-checklist","pikobuy-sizing-measurement-checks","pikobuy-spreadsheet-links-checklist","pikobuy-haul-planning-spreadsheet-shortlist"]:article.slug==="pikobuy-register-account-setup-guide"?["pikobuy-app-install-safety-guide","is-pikobuy-safe-buyer-risk-checklist","pikobuy-spreadsheet-beginner-guide","pikobuy-payment-methods-two-stage-cost-guide"]:article.slug==="pikobuy-app-install-safety-guide"?["pikobuy-register-account-setup-guide","is-pikobuy-safe-buyer-risk-checklist","pikobuy-payment-methods-two-stage-cost-guide","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-yupoo-order-checklist"?["pikobuy-product-search-submit-links-images","pikobuy-weidian-order-checklist","pikobuy-qc-photo-checklist","pikobuy-fees-full-cost-checklist"]:article.slug==="pikobuy-weidian-order-checklist"?["pikobuy-yupoo-order-checklist","pikobuy-product-search-submit-links-images","pikobuy-qc-photo-checklist","pikobuy-fees-full-cost-checklist"]:article.slug==="pikobuy-taobao-vs-1688"?["pikobuy-weidian-order-checklist","pikobuy-1688-order-checklist","pikobuy-product-search-submit-links-images","pikobuy-fees-full-cost-checklist"]:article.slug==="pikobuy-1688-order-checklist"?["pikobuy-taobao-vs-1688","pikobuy-product-search-submit-links-images","pikobuy-qc-photo-checklist","pikobuy-shipping-planning-guide"]:article.slug==="pikobuy-product-search-submit-links-images"?["pikobuy-yupoo-order-checklist","pikobuy-weidian-order-checklist","pikobuy-1688-order-checklist","pikobuy-qc-photo-checklist"]:article.slug==="pikobuy-missing-item-evidence-guide"?["pikobuy-seller-shipping-domestic-order-checklist","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-tracking-delivery-troubleshooting","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-seller-shipping-domestic-order-checklist"?["pikobuy-missing-item-evidence-guide","pikobuy-order-status-stage-guide","pikobuy-returns-risks-guide","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-warehouse-address-forwarding-checklist"?["pikobuy-buy-for-me-vs-forwarding","pikobuy-seller-shipping-domestic-order-checklist","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-customer-service-support-ticket-guide"]:article.slug==="pikobuy-buy-for-me-vs-forwarding"?["pikobuy-warehouse-address-forwarding-checklist","pikobuy-warehouse-consolidation-parcel-preparation","pikobuy-returns-risks-guide","pikobuy-shipping-planning-guide"]:article.slug==="pikobuy-exchange-rate-currency-conversion-guide"?["pikobuy-fees-full-cost-checklist","pikobuy-payment-methods-two-stage-cost-guide","pikobuy-returns-risks-guide","pikobuy-shipping-planning-guide"]:article.slug==="pikobuy-fees-full-cost-checklist"?["pikobuy-exchange-rate-currency-conversion-guide","pikobuy-payment-methods-two-stage-cost-guide","pikobuy-shipping-planning-guide","pikobuy-customs-declaration-duties-guide"]:relatedRoutes;
- const finalRelatedRoutes=article.slug==="pikobuy-pants-spreadsheet-sizing-qc-guide"?["pikobuy-sizing-measurement-checks","pikobuy-qc-photos-decision-guide","pikobuy-tshirts-spreadsheet-sizing-qc-guide","pikobuy-haul-planning-spreadsheet-shortlist"]:article.slug==="pikobuy-tshirts-spreadsheet-sizing-qc-guide"?["pikobuy-pants-spreadsheet-sizing-qc-guide","pikobuy-sizing-measurement-checks","pikobuy-qc-photos-decision-guide","pikobuy-spreadsheet-links-checklist"]:effectiveRelatedRoutes;
- const routeLabel=(route:string)=>articles.find(item=>item.slug===route)?.title??(route==="categories"?t.nav[1]:route==="products"?t.nav[2]:route==="faq"?t.nav[7]:t.nav[3]);
- const labels=getLocale(code)?.seo ?? englishSeoLabels;
- const articleSchema={"@context":"https://schema.org","@type":"Article",headline:article.title,description:article.description,datePublished:toIso(published),dateModified:toIso(article.updated),author:{"@type":"Organization",name:author},publisher:{"@type":"Organization",name:"FindSpreadsheet"},mainEntityOfPage:{"@type":"WebPage","@id":canonical},keywords:[article.primaryKeyword,...(article.secondaryKeywords??[])].filter(Boolean).join(", ")};
- const breadcrumbSchema={"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:t.nav[0],item:`https://pikobuyspreadsheet.uk/${code}/`},{"@type":"ListItem",position:2,name:"SEO Articles",item:`https://pikobuyspreadsheet.uk/${code}/seo/`},{"@type":"ListItem",position:3,name:article.title,item:canonical}]};
- return <main className="inner long-article">
-  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(articleSchema)}}/>
-  <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(breadcrumbSchema)}}/>
-  <nav className="article-breadcrumbs" aria-label={phrase(code, "Breadcrumb")}><a href={href(code,"home")}>{t.nav[0]}</a><span>/</span><a href={href(code,"seo")}>{t.nav[8]}</a><span>/</span><span aria-current="page">{article.title}</span></nav>
-  <article><header className="inner-hero"><p className="eyebrow">{t.ui.articleEyebrow}</p><h1>{article.title}</h1><p>{article.description}</p><div className="article-meta"><span>{phrase(code, "By") + " "}{author}</span><span>{phrase(code, "Published") + " "}{localizedDate(published,code)}</span><span>{phrase(code, "Reviewed") + " "}{localizedDate(article.updated,code)}</span><span>{t.ui.independent}</span></div></header>
-  <section className="direct-answer"><b>{labels.direct}</b><p>{article.description}</p></section>
-  <p className="cluster-parent"><a href={href(code,"guide")}>← {labels.cluster}</a></p>
-  <nav className="page-toc" aria-label={labels.toc}><strong>{labels.toc}</strong><ol>{article.sections.map((section,i)=><li key={section.heading}><a href={`#section-${i+1}`}>{section.heading}</a></li>)}</ol></nav>
-  <aside className="article-source"><ShieldCheck/><div><h2>{phrase(code, "How this guide was fact-checked")}</h2><p>{article.methodology ?? phrase(code, "Our editorial team reviewed PikoBuy’s public platform, policy and guidance pages.")}</p></div></aside>
-  {article.slug==="pikobuy-product-search-submit-links-images"&&<figure className="decision-path" aria-labelledby="search-path-title"><div><span>01</span><b>{phrase(code, "Define")}</b><small>{phrase(code, "Write the product and essential specification.")}</small></div><div><span>02</span><b>{phrase(code, "Submit")}</b><small>{phrase(code, "Use a direct link, focused keywords or an image.")}</small></div><div><span>03</span><b>{phrase(code, "Verify")}</b><small>{phrase(code, "Match the seller, option, price and included parts.")}</small></div><div><span>04</span><b>{phrase(code, "Record")}</b><small>{phrase(code, "Save the exact selection before payment.")}</small></div><figcaption id="search-path-title">{phrase(code, "The evidence path: turn a discovery result into a listing that can be checked later.")}</figcaption></figure>}
-  {article.slug==="pikobuy-warehouse-consolidation-parcel-preparation"&&<figure className="decision-path" aria-labelledby="warehouse-path-title"><div><span>01</span><b>{phrase(code, "Receive")}</b><small>{phrase(code, "Match each check-in record to the expected item.")}</small></div><div><span>02</span><b>{phrase(code, "Resolve")}</b><small>{phrase(code, "Review photos and settle any return question.")}</small></div><div><span>03</span><b>{phrase(code, "Configure")}</b><small>{phrase(code, "Group compatible items and choose packaging.")}</small></div><div><span>04</span><b>{phrase(code, "Submit")}</b><small>{phrase(code, "Compare live routes using the final parcel data.")}</small></div><figcaption id="warehouse-path-title">{phrase(code, "The warehouse decision path: do not repack or consolidate an unresolved item.")}</figcaption></figure>}
-  {article.slug==="compare-pikobuy-spreadsheet-items"&&<figure className="decision-path" aria-labelledby="comparison-path-title"><div><span>01</span><b>{phrase(code, "Filter")}</b><small>{phrase(code, "Choose one category and a non-negotiable requirement.")}</small></div><div><span>02</span><b>{phrase(code, "Record")}</b><small>{phrase(code, "Capture the source, exact option, cost fields and date.")}</small></div><div><span>03</span><b>{phrase(code, "Score evidence")}</b><small>{phrase(code, "Mark each fact confirmed, unclear or missing.")}</small></div><div><span>04</span><b>{phrase(code, "Verify live")}</b><small>{phrase(code, "Move only the strongest candidates to PikoBuy.")}</small></div><figcaption id="comparison-path-title">{phrase(code, "The shortlist path: compare evidence before price or visual appeal.")}</figcaption></figure>}
-  {article.slug==="pikobuy-sizing-measurement-checks"&&<figure className="decision-path" aria-labelledby="sizing-path-title"><div><span>01</span><b>{phrase(code, "Read the chart")}</b><small>{phrase(code, "Identify the unit, subject and exact endpoints.")}</small></div><div><span>02</span><b>{phrase(code, "Measure a reference")}</b><small>{phrase(code, "Use a comparable item with the fit you want.")}</small></div><div><span>03</span><b>{phrase(code, "Save the option")}</b><small>{phrase(code, "Record the selected size and evidence before payment.")}</small></div><div><span>04</span><b>{phrase(code, "Verify arrival")}</b><small>{phrase(code, "Match the label and request clearer evidence if needed.")}</small></div><figcaption id="sizing-path-title">{phrase(code, "The sizing evidence path: compare like with like, then verify what reached the warehouse.")}</figcaption></figure>}
-  {article.slug==="pikobuy-tracking-delivery-troubleshooting"&&<figure className="decision-path" aria-labelledby="tracking-path-title"><div><span>01</span><b>{phrase(code, "Confirm dispatch")}</b><small>{phrase(code, "Separate parcel shipment from order preparation.")}</small></div><div><span>02</span><b>{phrase(code, "Read the last event")}</b><small>{phrase(code, "Record the time, wording and current handoff.")}</small></div><div><span>03</span><b>{phrase(code, "Contact the owner")}</b><small>{phrase(code, "Use PikoBuy or the identified carrier for its stage.")}</small></div><div><span>04</span><b>{phrase(code, "Preserve evidence")}</b><small>{phrase(code, "Keep parcel records, images and case references.")}</small></div><figcaption id="tracking-path-title">{phrase(code, "The tracking decision path: identify the current stage before choosing an action.")}</figcaption></figure>}
-  {article.slug==="pikobuy-reviews-evidence-guide"&&<figure className="decision-path" aria-labelledby="review-path-title"><div><span>01</span><b>{phrase(code, "Identify")}</b><small>{phrase(code, "Separate official, promotional and independent sources.")}</small></div><div><span>02</span><b>{phrase(code, "Match proof")}</b><small>{phrase(code, "Check whether the evidence supports the exact claim.")}</small></div><div><span>03</span><b>{phrase(code, "Assign stage")}</b><small>{phrase(code, "Distinguish seller, warehouse, carrier and customs events.")}</small></div><div><span>04</span><b>{phrase(code, "Decide")}</b><small>{phrase(code, "Turn remaining uncertainty into a controlled next step.")}</small></div><figcaption id="review-path-title">{phrase(code, "The review evidence path: judge the source before accepting its verdict.")}</figcaption></figure>}
-  {article.slug==="is-pikobuy-safe-buyer-risk-checklist"&&<figure className="decision-path" aria-labelledby="safety-path-title"><div><span>01</span><b>{phrase(code, "Verify access")}</b><small>{phrase(code, "Use the correct domain and secure the account.")}</small></div><div><span>02</span><b>{phrase(code, "Check the item")}</b><small>{phrase(code, "Save the source, exact option and payment record.")}</small></div><div><span>03</span><b>{phrase(code, "Review evidence")}</b><small>{phrase(code, "Inspect warehouse photos before the return window closes.")}</small></div><div><span>04</span><b>{phrase(code, "Limit exposure")}</b><small>{phrase(code, "Assess the parcel, route, customs and support path.")}</small></div><figcaption id="safety-path-title">{phrase(code, "The buyer safety path: reduce uncertainty at each handoff instead of relying on one platform verdict.")}</figcaption></figure>}
-  {article.slug==="pikobuy-buy-for-me-vs-forwarding"&&<figure className="decision-path" aria-labelledby="workflow-path-title"><div><span>01</span><b>{phrase(code, "Identify the buyer")}</b><small>{phrase(code, "Decide who will place and pay for the domestic order.")}</small></div><div><span>02</span><b>{phrase(code, "Assign responsibility")}</b><small>{phrase(code, "Know who handles missing goods and seller communication.")}</small></div><div><span>03</span><b>{phrase(code, "Check after-sales")}</b><small>{phrase(code, "Match the item to the return rules that actually apply.")}</small></div><div><span>04</span><b>{phrase(code, "Plan the parcel")}</b><small>{phrase(code, "Use final warehouse data for international shipping.")}</small></div><figcaption id="workflow-path-title">{phrase(code, "The workflow decision path: choose the responsible party before the item moves.")}</figcaption></figure>}
-  {article.slug==="pikobuy-customs-declaration-duties-guide"&&<figure className="decision-path" aria-labelledby="customs-path-title"><div><span>01</span><b>{phrase(code, "Identify contents")}</b><small>{phrase(code, "Match every warehouse item to the final parcel list.")}</small></div><div><span>02</span><b>{phrase(code, "Support the data")}</b><small>{phrase(code, "Use accurate descriptions, quantities and purchase records.")}</small></div><div><span>03</span><b>{phrase(code, "Check the rules")}</b><small>{phrase(code, "Review platform, carrier and destination restrictions.")}</small></div><div><span>04</span><b>{phrase(code, "Budget and retain")}</b><small>{phrase(code, "Allow for import charges and preserve the evidence pack.")}</small></div><figcaption id="customs-path-title">{phrase(code, "The customs preparation path: make each parcel fact specific, supportable and destination-aware.")}</figcaption></figure>}
-  {article.slug==="pikobuy-customer-service-support-ticket-guide"&&<figure className="decision-path" aria-labelledby="support-path-title"><div><span>01</span><b>{phrase(code, "Name the stage")}</b><small>{phrase(code, "Identify the purchase, warehouse, return or parcel record.")}</small></div><div><span>02</span><b>{phrase(code, "Show the evidence")}</b><small>{phrase(code, "Attach only the records that establish the difference.")}</small></div><div><span>03</span><b>{phrase(code, "Ask one question")}</b><small>{phrase(code, "Request a specific check, explanation or next action.")}</small></div><div><span>04</span><b>{phrase(code, "Keep the timeline")}</b><small>{phrase(code, "Follow up in the same case with material updates.")}</small></div><figcaption id="support-path-title">{phrase(code, "The support-ticket path: give the responsible party a verifiable record and a clear next step.")}</figcaption></figure>}
-  {article.slug==="pikobuy-payment-methods-two-stage-cost-guide"&&<figure className="decision-path" aria-labelledby="payment-path-title"><div><span>01</span><b>{phrase(code, "Verify")}</b><small>{phrase(code, "Match the live order, option and displayed amount.")}</small></div><div><span>02</span><b>{phrase(code, "Authorise")}</b><small>{phrase(code, "Use a method offered in the current checkout.")}</small></div><div><span>03</span><b>{phrase(code, "Reconcile")}</b><small>{phrase(code, "Compare the PikoBuy and provider transaction records.")}</small></div><div><span>04</span><b>{phrase(code, "Retain")}</b><small>{phrase(code, "Keep both payment stages and later adjustments separate.")}</small></div><figcaption id="payment-path-title">{phrase(code, "The payment evidence path: connect each charge to one order, balance event or parcel.")}</figcaption></figure>}
-  {article.slug==="pikobuy-order-status-stage-guide"&&<figure className="decision-path" aria-labelledby="status-path-title"><div><span>01</span><b>{phrase(code, "Capture")}</b><small>{phrase(code, "Save the exact status, identifier and timestamp.")}</small></div><div><span>02</span><b>{phrase(code, "Place")}</b><small>{phrase(code, "Locate the event in the purchase-to-parcel workflow.")}</small></div><div><span>03</span><b>{phrase(code, "Assign")}</b><small>{phrase(code, "Identify the party controlling the next action.")}</small></div><div><span>04</span><b>{phrase(code, "Act")}</b><small>{phrase(code, "Check evidence, meet deadlines or ask one clear question.")}</small></div><figcaption id="status-path-title">{phrase(code, "The order-status path: determine the stage and owner before deciding whether to wait or escalate.")}</figcaption></figure>}
-  {article.slug==="pikobuy-shipping-insurance-claim-checklist"&&<figure className="decision-path" aria-labelledby="insurance-path-title"><div><span>01</span><b>{phrase(code, "Verify terms")}</b><small>{phrase(code, "Check the exact route, event, limit and deadline.")}</small></div><div><span>02</span><b>{phrase(code, "Save baseline")}</b><small>{phrase(code, "Keep parcel contents, value, photos and packaging records.")}</small></div><div><span>03</span><b>{phrase(code, "Track handoffs")}</b><small>{phrase(code, "Record dispatch, carrier events and delivery condition.")}</small></div><div><span>04</span><b>{phrase(code, "File once")}</b><small>{phrase(code, "Submit one consistent, claim-ready evidence pack.")}</small></div><figcaption id="insurance-path-title">{phrase(code, "The insurance evidence path: confirm route-specific protection before relying on compensation.")}</figcaption></figure>}
-  {article.slug==="pikobuy-app-install-safety-guide"&&<figure className="decision-path" aria-labelledby="app-path-title"><div><span>01</span><b>{phrase(code, "Verify source")}</b><small>{phrase(code, "Match the provider, website and support domain.")}</small></div><div><span>02</span><b>{phrase(code, "Secure access")}</b><small>{phrase(code, "Use a unique password and review current privacy notices.")}</small></div><div><span>03</span><b>{phrase(code, "Record actions")}</b><small>{phrase(code, "Save each option, payment and warehouse handoff.")}</small></div><div><span>04</span><b>{phrase(code, "Cross-check")}</b><small>{phrase(code, "Use the web account or ticket when mobile detail is unclear.")}</small></div><figcaption id="app-path-title">{phrase(code, "The mobile evidence path: verify the app first, then keep every transaction stage auditable.")}</figcaption></figure>}
-  {article.slug==="pikobuy-prohibited-items-pre-order-checklist"&&<figure className="decision-path" aria-labelledby="restriction-path-title"><div><span>01</span><b>{phrase(code, "Identify")}</b><small>{phrase(code, "Record the exact product, seller and option.")}</small></div><div><span>02</span><b>{phrase(code, "Verify rights")}</b><small>{phrase(code, "Stop illegal, counterfeit or unsupported brand claims.")}</small></div><div><span>03</span><b>{phrase(code, "Check route")}</b><small>{phrase(code, "Confirm current carrier eligibility for the actual parcel.")}</small></div><div><span>04</span><b>{phrase(code, "Check destination")}</b><small>{phrase(code, "Use current official import rules before paying.")}</small></div><figcaption id="restriction-path-title">{phrase(code, "The product eligibility path: platform, route and destination must all permit the item.")}</figcaption></figure>}
-  {article.slug==="pikobuy-seller-shipping-domestic-order-checklist"&&<figure className="decision-path" aria-labelledby="seller-shipping-path-title"><div><span>01</span><b>{phrase(code, "Confirm order")}</b><small>{phrase(code, "Match payment, option and purchasing-order number.")}</small></div><div><span>02</span><b>{phrase(code, "Confirm dispatch")}</b><small>{phrase(code, "Separate seller acceptance from carrier handoff.")}</small></div><div><span>03</span><b>{phrase(code, "Match arrival")}</b><small>{phrase(code, "Link domestic delivery to warehouse check-in.")}</small></div><div><span>04</span><b>{phrase(code, "Act")}</b><small>{phrase(code, "Use evidence and published return conditions.")}</small></div><figcaption id="seller-shipping-path-title">{phrase(code, "The seller-shipping path: preserve each domestic handoff before warehouse arrival.")}</figcaption></figure>}
-  {article.slug==="pikobuy-fees-full-cost-checklist"&&<figure className="decision-path" aria-labelledby="fee-path-title"><div><span>01</span><b>{phrase(code, "Purchase")}</b><small>{phrase(code, "Record product, option and seller-to-warehouse cost.")}</small></div><div><span>02</span><b>{phrase(code, "Warehouse")}</b><small>{phrase(code, "Add only confirmed service or return charges.")}</small></div><div><span>03</span><b>{phrase(code, "Parcel")}</b><small>{phrase(code, "Use final dimensions, route and protection choices.")}</small></div><div><span>04</span><b>{phrase(code, "Destination")}</b><small>{phrase(code, "Reserve taxes, brokerage and documented delivery costs.")}</small></div><figcaption id="fee-path-title">{phrase(code, "The full-cost path: keep paid, quoted, estimated and unknown amounts separate.")}</figcaption></figure>}
-  {article.slug==="pikobuy-exchange-rate-currency-conversion-guide"&&<figure className="decision-path" aria-labelledby="exchange-path-title"><div><span>01</span><b>{phrase(code, "Base")}</b><small>{phrase(code, "Save the CNY amount and exact product option.")}</small></div><div><span>02</span><b>{phrase(code, "Display")}</b><small>{phrase(code, "Timestamp the conversion shown by PikoBuy.")}</small></div><div><span>03</span><b>{phrase(code, "Authorise")}</b><small>{phrase(code, "Record the checkout currency and payment method.")}</small></div><div><span>04</span><b>{phrase(code, "Reconcile")}</b><small>{phrase(code, "Compare the final provider and platform records.")}</small></div><figcaption id="exchange-path-title">{phrase(code, "The currency evidence path: preserve the source, display, checkout and posted amounts separately.")}</figcaption></figure>}
-  {article.slug==="pikobuy-warehouse-address-forwarding-checklist"&&<figure className="decision-path" aria-labelledby="address-path-title"><div><span>01</span><b>{phrase(code, "Retrieve")}</b><small>{phrase(code, "Get the live address from the form or support.")}</small></div><div><span>02</span><b>{phrase(code, "Verify")}</b><small>{phrase(code, "Copy every field to the sender&apos;s final label.")}</small></div><div><span>03</span><b>{phrase(code, "Record")}</b><small>{phrase(code, "Submit the forwarding form and save tracking.")}</small></div><div><span>04</span><b>{phrase(code, "Match")}</b><small>{phrase(code, "Confirm warehouse photos before parcel submission.")}</small></div><figcaption id="address-path-title">{phrase(code, "The forwarding-address path: verify live instructions and preserve every domestic handoff.")}</figcaption></figure>}
-  {article.slug==="pikobuy-missing-item-evidence-guide"&&<figure className="decision-path" aria-labelledby="missing-item-path-title"><div><span>01</span><b>{phrase(code, "Identify stage")}</b><small>{phrase(code, "Find the last handoff where the item was confirmed.")}</small></div><div><span>02</span><b>{phrase(code, "Match records")}</b><small>{phrase(code, "Compare order, tracking, warehouse and parcel quantities.")}</small></div><div><span>03</span><b>{phrase(code, "Preserve condition")}</b><small>{phrase(code, "Keep packaging, labels, photos and timestamps unchanged.")}</small></div><div><span>04</span><b>{phrase(code, "Escalate owner")}</b><small>{phrase(code, "Ask the party controlling the gap for one clear check.")}</small></div><figcaption id="missing-item-path-title">{phrase(code, "The missing-item evidence path: locate the first unexplained gap before assigning responsibility.")}</figcaption></figure>}
-  {article.slug==="pikobuy-1688-order-checklist"&&<figure className="decision-path" aria-labelledby="order-1688-path-title"><div><span>01</span><b>{phrase(code, "Validate listing")}</b><small>{phrase(code, "Save the source, seller, buying unit and live options.")}</small></div><div><span>02</span><b>{phrase(code, "Lock quantity")}</b><small>{phrase(code, "Match MOQ, price tier and every selected variant.")}</small></div><div><span>03</span><b>{phrase(code, "Inspect arrival")}</b><small>{phrase(code, "Compare warehouse evidence with the purchasing order.")}</small></div><div><span>04</span><b>{phrase(code, "Cost parcel")}</b><small>{phrase(code, "Use confirmed weight, dimensions and route terms.")}</small></div><figcaption id="order-1688-path-title">{phrase(code, "The PikoBuy 1688 decision path: define the buying unit before comparing its total cost.")}</figcaption></figure>}
-  {article.slug==="pikobuy-taobao-vs-1688"&&<figure className="decision-path" aria-labelledby="taobao-1688-path-title"><div><span>01</span><b>{phrase(code, "Define need")}</b><small>{phrase(code, "State the exact product, option and quantity required.")}</small></div><div><span>02</span><b>{phrase(code, "Normalise unit")}</b><small>{phrase(code, "Compare pieces, tiers and domestic delivery on one basis.")}</small></div><div><span>03</span><b>{phrase(code, "Verify arrival")}</b><small>{phrase(code, "Match warehouse evidence to the selected source order.")}</small></div><div><span>04</span><b>{phrase(code, "Cost parcel")}</b><small>{phrase(code, "Use confirmed contents, dimensions and route terms.")}</small></div><figcaption id="taobao-1688-path-title">{phrase(code, "The source-comparison path: choose the supported order, not a Taobao or 1688 stereotype.")}</figcaption></figure>}
-  {article.slug==="pikobuy-weidian-order-checklist"&&<figure className="decision-path" aria-labelledby="weidian-path-title"><div><span>01</span><b>{phrase(code, "Validate link")}</b><small>{phrase(code, "Save the source, seller clue and live product page.")}</small></div><div><span>02</span><b>{phrase(code, "Lock option")}</b><small>{phrase(code, "Record every selection, quantity and domestic cost.")}</small></div><div><span>03</span><b>{phrase(code, "Inspect arrival")}</b><small>{phrase(code, "Match warehouse evidence to the purchasing order.")}</small></div><div><span>04</span><b>{phrase(code, "Cost parcel")}</b><small>{phrase(code, "Use confirmed weight, dimensions and route terms.")}</small></div><figcaption id="weidian-path-title">{phrase(code, "The PikoBuy Weidian evidence path: keep the source, order, arrival and parcel records connected.")}</figcaption></figure>}
-  {article.slug==="pikobuy-yupoo-order-checklist"&&<figure className="decision-path" aria-labelledby="yupoo-path-title"><div><span>01</span><b>{phrase(code, "Capture page")}</b><small>{phrase(code, "Save the album, seller clue, captions and item code.")}</small></div><div><span>02</span><b>{phrase(code, "Define order")}</b><small>{phrase(code, "Write every option, quantity, price and buying route.")}</small></div><div><span>03</span><b>{phrase(code, "Inspect arrival")}</b><small>{phrase(code, "Compare warehouse evidence with the saved request.")}</small></div><div><span>04</span><b>{phrase(code, "Cost parcel")}</b><small>{phrase(code, "Use confirmed contents, dimensions and route terms.")}</small></div><figcaption id="yupoo-path-title">{phrase(code, "The PikoBuy Yupoo evidence path: convert visual discovery into a traceable order before shipping.")}</figcaption></figure>}
-  {article.slug==="pikobuy-register-account-setup-guide"&&<figure className="decision-path" aria-labelledby="register-path-title"><div><span>01</span><b>{phrase(code, "Verify access")}</b><small>{phrase(code, "Start from the official domain and inspect the live form.")}</small></div><div><span>02</span><b>{phrase(code, "Read consent")}</b><small>{phrase(code, "Review the current agreement, terms and privacy policy.")}</small></div><div><span>03</span><b>{phrase(code, "Secure account")}</b><small>{phrase(code, "Use controlled contact details and a unique password.")}</small></div><div><span>04</span><b>{phrase(code, "Prepare order")}</b><small>{phrase(code, "Connect the source, payment and later parcel records.")}</small></div><figcaption id="register-path-title">{phrase(code, "The PikoBuy registration path: establish a secure, documented account before the first purchasing order.")}</figcaption></figure>}
-  {article.slug==="pikobuy-tshirts-spreadsheet-sizing-qc-guide"&&<figure className="decision-path" aria-labelledby="tshirt-path-title"><div><span>01</span><b>{phrase(code, "Define fit")}</b><small>{phrase(code, "Measure a reference shirt and state the intended cut.")}</small></div><div><span>02</span><b>{phrase(code, "Verify source")}</b><small>{phrase(code, "Match the live option, fabric claim, print and quantity.")}</small></div><div><span>03</span><b>{phrase(code, "Compare QC")}</b><small>{phrase(code, "Check the received shirt against the saved order record.")}</small></div><div><span>04</span><b>{phrase(code, "Plan parcel")}</b><small>{phrase(code, "Use final warehouse data and current route terms.")}</small></div><figcaption id="tshirt-path-title">{phrase(code, "The T-shirt evidence path: connect fit, source, warehouse and parcel decisions.")}</figcaption></figure>}
-  {article.slug==="pikobuy-pants-spreadsheet-sizing-qc-guide"&&<figure className="decision-path" aria-labelledby="pants-path-title"><div><span>01</span><b>{phrase(code, "Define fit")}</b><small>{phrase(code, "Measure reference pants using named endpoints.")}</small></div><div><span>02</span><b>{phrase(code, "Lock option")}</b><small>{phrase(code, "Save the exact style, colour, size and quantity.")}</small></div><div><span>03</span><b>{phrase(code, "Compare QC")}</b><small>{phrase(code, "Match visible details and decision-critical measurements.")}</small></div><div><span>04</span><b>{phrase(code, "Plan parcel")}</b><small>{phrase(code, "Use final warehouse data and current route terms.")}</small></div><figcaption id="pants-path-title">{phrase(code, "The pants evidence path: connect comparable measurements to the selected option, warehouse evidence and parcel.")}</figcaption></figure>}
-  <div className="long-copy">{article.sections.map((section,i)=><section id={`section-${i+1}`} key={section.heading}><span>{String(i+1).padStart(2,"0")}</span><div><h2>{section.heading}</h2>{section.paragraphs.map(paragraph=><p key={paragraph}>{paragraph}</p>)}</div></section>)}</div>
-  <aside className="related-guides"><h2>{labels.continue}</h2><div>{finalRelatedRoutes.map(route=><a key={route} href={href(code,route)}>{routeLabel(route)} <ArrowRight/></a>)}</div></aside>
-  </article><Callout t={t}/></main>
+ return <main className="inner"><Breadcrumbs t={t} code={code} route={route} label={pageTitle}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(pageSchema)}}/><section className="inner-hero"><p className="eyebrow">{phrase(code, "PIKOBUY /") + " "}{t.nav[routes.indexOf(route)]}</p><h1>{pageTitle}</h1><p>{t.pageIntros[key]??t.pageIntros.guide}</p></section>{route==="categories"?<><section className="inner-category-panel"><CategoryGrid t={t} code={code}/></section><div className="article-grid category-notes"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div></>:<div className="article-grid"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><div className="aside-card"><ShieldCheck/><h3>{t.ui.evidenceStandard}</h3><p>{t.ui.evidenceText}</p></div><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div>}<Callout t={t}/></main>
 }

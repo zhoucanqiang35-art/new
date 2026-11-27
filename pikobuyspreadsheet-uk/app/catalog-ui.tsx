@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight, Copy, Search } from "lucide-react";
 import { catalogHref, mainImage, productHref, purchaseLinks, sellerItem, type CatalogProduct, type Listing } from "./catalog-model";
 import { currencyChanged, defaultCurrency, formatCatalogPrice, preferredCurrency } from "./currency-preference";
@@ -122,11 +122,18 @@ export function CatalogSearch({ locale, labels, placeholder, initial, categories
   );
 }
 
-export function ProductDetail({ locale, labels }: Props) {
+export function ProductDetail({ locale, labels, photoLabels }: Props & {
+  photoLabels: { previous: string; next: string };
+}) {
+  const thumbnails = useRef<HTMLDivElement>(null);
   const [product, setProduct] = useState<CatalogProduct | null>(null);
   const [detail, setDetail] = useState<DetailResult | null>(null);
   const [failure, setFailure] = useState("");
   const [pickedPhoto, setPickedPhoto] = useState("");
+  const [failedImages, setFailedImages] = useState<ReadonlySet<string>>(() => new Set());
+  function hideFailedImage(url: string) {
+    setFailedImages(previous => previous.has(url) ? previous : new Set([...previous, url]));
+  }
   const [selection, setSelection] = useState<Record<number, string>>({});
   const [copyStatus, setCopyStatus] = useState("");
   const currency = useCurrency(locale);
@@ -139,26 +146,57 @@ export function ProductDetail({ locale, labels }: Props) {
     }
     const controller = new AbortController();
     const query = new URLSearchParams({ id });
-    catalogData<{product: CatalogProduct}>("product", query, controller.signal).then(({ product }) => {
-      setProduct(product);
-      document.title = `${product.title} | PikoBuy Spreadsheet UK`;
-    }).catch(error => { if (!controller.signal.aborted) setFailure(error.message); });
-    catalogData<DetailResult>("details", query, controller.signal)
-      .then(setDetail).catch(() => { /* The catalog gallery remains available. */ });
+    const showProduct = (item: CatalogProduct) => {
+      setProduct(item);
+      document.title = `${item.title} | PikoBuy Spreadsheet UK`;
+    };
+    let seeded: CatalogProduct | undefined;
+    const seed = document.getElementById("piko-product-data")?.textContent;
+    if (seed) {
+      try {
+        const item = JSON.parse(seed) as CatalogProduct;
+        if (item.id === id) seeded = item;
+      } catch { /* Fall back to the catalog endpoint. */ }
+    }
+    if (seeded) showProduct(seeded);
+    else catalogData<{product: CatalogProduct}>("product", query, controller.signal)
+      .then(({ product }) => showProduct(product))
+      .catch(error => { if (!controller.signal.aborted) setFailure(error.message); });
+    for (const part of ["listing", "qc"] as const) {
+      catalogData<DetailResult>("details", new URLSearchParams({ id, part }), controller.signal)
+        .then(result => setDetail(previous => ({ listing: null, qc: [], ...previous, [part]: result[part] })))
+        .catch(() => { /* Keep independently loaded product information. */ });
+    }
     return () => controller.abort();
   }, []);
 
   const back = <a className="catalog-back" href={catalogHref(locale)}><ChevronLeft size={16} />{labels.back}</a>;
   if (!product) {
-    return <main className="catalog-page product-page">{back}<p role="status">
-      {failure ? failure === "404" ? labels.productMissing : labels.unavailable : labels.loading}
-    </p></main>;
+    return <main className="catalog-page product-page">
+      {back}
+      <div className="product-layout product-initial">
+        <img id="piko-initial-cover" className="product-main-image" alt="" fetchPriority="high" suppressHydrationWarning />
+        <p role="status">{failure ? failure === "404" ? labels.productMissing : labels.unavailable : labels.loading}</p>
+      </div>
+    </main>;
   }
 
   const listing = detail?.listing;
-  const baseGallery = (product.gallery?.length ? product.gallery : [product.image]).map(mainImage);
+  const baseGallery = [...new Set([...(product.gallery ?? []), product.image].filter(Boolean).map(mainImage))];
   const gallery = [...new Set([...(listing?.photos ?? []), ...baseGallery])];
+  const activePhoto = pickedPhoto || gallery[0];
+  const photoIndex = gallery.indexOf(activePhoto);
+  function selectPhoto(index: number) {
+    const next = (index + gallery.length) % gallery.length;
+    setPickedPhoto(gallery[next]);
+    thumbnails.current?.children[next]?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  }
+  function movePhoto(direction: number) {
+    selectPhoto((photoIndex < 0 ? (direction > 0 ? -1 : 0) : photoIndex) + direction);
+  }
   const groups = listing?.groups ?? [];
+  const hasStylePhotos = groups.some(group => group.values.some(value => value.image && !failedImages.has(value.image)));
+  const sidePhotos = hasStylePhotos ? [] : gallery.filter(photo => !failedImages.has(photo));
   const selectionKey = Object.values(selection).sort().join("-");
   const selectedVariant = listing?.variants.find(variant => variant.key === selectionKey);
   const price = selectedVariant?.price ?? listing?.price ?? product.price;
@@ -180,19 +218,40 @@ export function ProductDetail({ locale, labels }: Props) {
       {back}
       <div className="product-layout">
         <div className="product-media">
-          <img className="product-main-image" src={pickedPhoto || gallery[0]} alt={product.title}
+          <img className="product-main-image" src={activePhoto} alt={product.title}
             fetchPriority="high" onError={event => {
               const image = event.currentTarget;
               if (image.src !== baseGallery[0]) image.src = baseGallery[0];
             }} />
-          {gallery.length > 1 && <div className="product-thumbnails">
-            {gallery.map((photo, index) => (
-              <button type="button" key={photo} aria-pressed={(pickedPhoto || gallery[0]) === photo}
-                aria-label={`${labels.details} ${index + 1}`} onClick={() => setPickedPhoto(photo)}>
-                <img src={photo} alt="" loading="lazy" decoding="async" />
-              </button>
-            ))}
-          </div>}
+          {gallery.length > 1 && (
+            <div className="product-carousel" role="group" aria-label={labels.details}>
+              <div className="product-carousel-controls">
+                <button type="button" aria-label={photoLabels.previous} onClick={() => movePhoto(-1)}>
+                  {locale === "ar" ? <ChevronRight size={19} /> : <ChevronLeft size={19} />}
+                </button>
+                <div ref={thumbnails} className="product-thumbnails"
+                  onKeyDown={event => {
+                    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                    event.preventDefault();
+                    const direction = event.key === "ArrowRight" ? 1 : -1;
+                    movePhoto(locale === "ar" ? -direction : direction);
+                  }}>
+                  {gallery.map((photo, index) => (
+                    <button type="button" key={photo} aria-pressed={photoIndex === index}
+                      aria-label={`${labels.details} ${index + 1}`} onClick={() => selectPhoto(index)}>
+                      <img src={photo} alt="" loading="eager" decoding="async" />
+                    </button>
+                  ))}
+                </div>
+                <button type="button" aria-label={photoLabels.next} onClick={() => movePhoto(1)}>
+                  {locale === "ar" ? <ChevronLeft size={19} /> : <ChevronRight size={19} />}
+                </button>
+              </div>
+              {photoIndex >= 0 && <p className="product-photo-count" aria-live="polite" dir="ltr">
+                {photoIndex + 1} / {gallery.length}
+              </p>}
+            </div>
+          )}
         </div>
         <div className="product-summary">
           <h1 dir="auto">{product.title}</h1>
@@ -207,7 +266,7 @@ export function ProductDetail({ locale, labels }: Props) {
               <div className="product-agent-grid">
                 {links.filter(link => link.id !== "pikobuy").map(link => (
                   <a href={link.url} key={link.id} target="_blank" rel="nofollow noopener">
-                    <img src={link.logo} alt="" loading="lazy" decoding="async" />
+                    <img src={link.logo} alt="" loading="eager" decoding="async" />
                     <span>{link.name}</span>
                   </a>
                 ))}
@@ -225,14 +284,15 @@ export function ProductDetail({ locale, labels }: Props) {
             return (
             <section className="product-option-group" key={`${group.name}-${index}`} aria-label={heading}>
               <h2 dir="auto">{heading}</h2>
-              <div className={`product-options ${group.values.some(value => value.image) ? "with-images" : ""}`}>
+              <div className={`product-options ${group.values.some(value => value.image && !failedImages.has(value.image)) ? "with-images" : ""}`}>
                 {group.values.map(value => (
                   <button type="button" key={value.id} aria-pressed={selection[index] === value.id}
                     onClick={() => {
                       setSelection(previous => ({ ...previous, [index]: value.id }));
-                      if (value.image) setPickedPhoto(value.image);
+                      if (value.image && !failedImages.has(value.image)) setPickedPhoto(value.image);
                     }}>
-                    {value.image && <img src={value.image} alt="" loading="lazy" decoding="async" />}
+                    {value.image && !failedImages.has(value.image) && <img src={value.image} alt="" loading="eager" decoding="async"
+                      onError={() => hideFailedImage(value.image)} />}
                     <span dir="auto">{value.label}</span>
                   </button>
                 ))}
@@ -240,6 +300,20 @@ export function ProductDetail({ locale, labels }: Props) {
             </section>
             );
           })}
+          {sidePhotos.length > 0 && (
+            <section className="product-side-photos" aria-label={labels.details}>
+              <h2>{labels.details}</h2>
+              <div className="product-side-gallery">
+                {sidePhotos.map((photo, index) => (
+                  <button type="button" key={photo} aria-pressed={activePhoto === photo}
+                    aria-label={`${labels.details} ${index + 1}`} onClick={() => setPickedPhoto(photo)}>
+                    <img src={photo} alt="" loading="eager" decoding="async"
+                      onError={() => hideFailedImage(photo)} />
+                  </button>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </div>
       <section className="product-detail-photos">
@@ -247,7 +321,7 @@ export function ProductDetail({ locale, labels }: Props) {
         <div className="product-detail-grid">
           {photos.map((photo, index) => (
             <a key={photo.url} href={photo.url} target="_blank" rel="noopener">
-              <img src={photo.url} alt={photo.label || `${product.title} ${index + 1}`} loading="lazy" decoding="async" />
+              <img src={photo.url} alt={photo.label || `${product.title} ${index + 1}`} loading="eager" decoding="async" />
             </a>
           ))}
         </div>

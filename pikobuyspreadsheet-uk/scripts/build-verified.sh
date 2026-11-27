@@ -27,3 +27,4 @@ timeout \
   "${vinext}" build
 node "${SITES_PROJECT_ROOT}/scripts/set-export-locales.mjs"
 node "${SITES_PROJECT_ROOT}/scripts/copy-catalog-worker.mjs"
+node "${SITES_PROJECT_ROOT}/scripts/write-retired-pages.mjs"

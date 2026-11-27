@@ -200,52 +200,52 @@
   },
   "featured": [
     {
-      "id": "7869664333",
-      "title": "Contrast-Seam Athletic T-Shirt",
-      "image": "/uploads/allimg/20261010/1-261010152553G9.jpg",
-      "price": 140.0,
-      "category": "t-shirts",
-      "path": "/t-shirts/contrast-seam-athletic-t-shirt-8779.html"
-    },
-    {
-      "id": "7857789312",
-      "title": "Dream Batch Sneakers",
-      "image": "/uploads/allimg/20260919/1-2609191FU3114.jpg",
-      "price": 830.0,
+      "id": "7850066542",
+      "title": "ASICS Gel-NYC Sneakers",
+      "image": "/uploads/allimg/20260907/1-260ZGG44KO.jpg",
+      "price": 480.0,
       "category": "shoes",
-      "path": "/shoes/dream-batch-sneakers-6250.html"
+      "path": "/shoes/asics-gel-nyc-sneakers-4108.html"
     },
     {
-      "id": "7869064925",
-      "title": "Gray Full-Zip Hoodie Set",
-      "image": "/uploads/allimg/20261010/1-261010012519260.webp",
-      "price": 520.0,
+      "id": "7866604099",
+      "title": "Washed Zip-Up Hoodie",
+      "image": "/uploads/allimg/20261002/1-26100211414A42.jpg",
+      "price": 840.0,
       "category": "hoodies-sweaters",
-      "path": "/hoodies-sweaters/gray-full-zip-hoodie-set-8661.html"
+      "path": "/hoodies-sweaters/washed-zip-up-hoodie-7366.html"
     },
     {
-      "id": "7869128363",
-      "title": "Cotton-Wreath Print Denim Jack",
-      "image": "/uploads/allimg/20261009/1-261009114A1119.webp",
-      "price": 330.0,
+      "id": "7868738327",
+      "title": "Hooded Windbreaker Jacket",
+      "image": "/uploads/allimg/20261007/1-26100G2201QW.webp",
+      "price": 374.0,
       "category": "jackets",
-      "path": "/jackets/cotton-wreath-print-denim-jacket-and-jeans-collection-8573.html"
+      "path": "/jackets/hooded-windbreaker-jacket-8352.html"
     },
     {
-      "id": "7869696051",
-      "title": "Orb Graphic Crew Socks",
-      "image": "/uploads/allimg/20261010/1-2610101R312B6.jpg",
-      "price": 126.0,
+      "id": "7870736652",
+      "title": "Air Cushion Backpack 5039",
+      "image": "/uploads/allimg/20261005/1-261005121H3939.webp",
+      "price": 308.0,
       "category": "accessories",
-      "path": "/accessories/orb-graphic-crew-socks-9018.html"
+      "path": "/accessories/air-cushion-backpack-5039-7975.html"
     },
     {
-      "id": "7869170181",
-      "title": "Wireless Earbuds with Charging",
-      "image": "/uploads/allimg/20261010/1-2610100I502S3.webp",
-      "price": 302.0,
+      "id": "7858932111",
+      "title": "Trendy Headphones 002",
+      "image": "/uploads/allimg/20260924/1-260924131535196.jpg",
+      "price": 208.0,
       "category": "electronics",
-      "path": "/electronics/wireless-earbuds-with-charging-case-8710.html"
+      "path": "/electronics/shishangchaoliuerji-002-7025.html"
+    },
+    {
+      "id": "7869909500",
+      "title": "Retro Club Football Jersey Col",
+      "image": "/uploads/allimg/20261003/1-261003154425110.jpg",
+      "price": 228.0,
+      "category": "jersey",
+      "path": "/jersey/retro-club-football-jersey-collection-7653.html"
     }
   ]
 }
