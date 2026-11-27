@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown, Coins, Globe2 } from "lucide-react";
 import languages from "./locales.json";
 import currencyData from "./currency-rates.json";
+import { currencyChanged, currencyStorageKey, preferredCurrency } from "./currency-preference";
 
 const registerUrl = "https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716";
 const currencies = Object.entries(currencyData.rates);
@@ -17,8 +18,9 @@ type Props = {
 
 export function HeaderControls({ locale, route, labels }: Props) {
   const language = languages.find(({ code }) => code === locale) ?? languages[0];
-  const storageKey = `piko-uk-currency-${locale}`;
+  const storageKey = currencyStorageKey(locale);
   const [currency, setCurrency] = useState(language.currency);
+  const [query, setQuery] = useState("");
   const [panel, setPanel] = useState<Panel | null>(null);
   const controls = useRef<HTMLDivElement>(null);
   const languageButton = useRef<HTMLButtonElement>(null);
@@ -31,15 +33,11 @@ export function HeaderControls({ locale, route, labels }: Props) {
   }).format(new Date(currencyData.date));
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(storageKey);
-      if (saved && currencies.some(([code]) => code === saved)) setCurrency(saved);
-    } catch {
-      // The current document can still change currency if storage is unavailable.
-    }
+    setCurrency(preferredCurrency(locale));
+    if (route === "product" || route === "products") setQuery(window.location.search);
     document.documentElement.lang = locale;
     document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
-  }, [locale, storageKey]);
+  }, [locale, route]);
 
   useEffect(() => {
     if (!panel) return;
@@ -66,6 +64,7 @@ export function HeaderControls({ locale, route, labels }: Props) {
     } catch {
       // The choice remains active for the current page.
     }
+    window.dispatchEvent(new CustomEvent(currencyChanged, { detail: code }));
     setPanel(null);
     currencyButton.current?.focus();
   }
@@ -81,7 +80,7 @@ export function HeaderControls({ locale, route, labels }: Props) {
         <div className="header-popover" id="piko-languages" role="group" aria-label={labels.language}>
           <div className="header-option-grid">
             {languages.map(({ code, name }) => (
-              <a key={code} href={`/${code}/${route === "home" ? "" : route + "/"}`}
+              <a key={code} href={`/${code}/${route === "home" ? "" : route + "/"}${query}`}
                 hrefLang={code} lang={code} dir="auto" aria-current={code === locale ? "page" : undefined}>
                 {name}
               </a>

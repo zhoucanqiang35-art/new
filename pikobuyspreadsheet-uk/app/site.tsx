@@ -4,6 +4,10 @@ import { discoverySeoArticles } from "./discovery-articles";
 import languages from "./locales.json";
 import { getLocale, phrase } from "./translations";
 import { HeaderControls } from "./header-controls";
+import { CatalogCards, CatalogSearch, ProductDetail } from "./catalog-ui";
+import { catalogCategories, catalogHref } from "./catalog-model";
+import { catalogLabels } from "./catalog-labels";
+import catalogData from "./catalog-featured.json";
 
 type Lang = string;
 
@@ -32,21 +36,21 @@ export const en={
 export type Copy=typeof en;
 const allSeoArticles=[...seoArticles,...discoverySeoArticles].filter((article,index,list)=>list.findIndex(item=>item.slug===article.slug)===index);
 const articleRoutes=allSeoArticles.map(article=>article.slug);
-const routes=["home","categories","products","guide","qc","shipping","articles","faq","seo",...articleRoutes];
+const routes=["home","categories","products","guide","qc","shipping","articles","faq","seo",...articleRoutes,"product"];
 type CatIcon="shoe"|"shirt"|"bag"|"pants"|"accessory"|"jewelry"|"watch";
-const cats:{name:string;icon:CatIcon;url:string}[]=[
- {name:"Shoes",icon:"shoe",url:"https://findspreadsheet.com/search.html?keywords=Shoes&channelid=2"},
- {name:"Sneakers",icon:"shoe",url:"https://findspreadsheet.com/search.html?keywords=Sneakers&channelid=2"},
- {name:"Shirts",icon:"shirt",url:"https://findspreadsheet.com/t-shirts/"},
- {name:"Hoodies",icon:"shirt",url:"https://findspreadsheet.com/search.html?keywords=Hoodies&channelid=2"},
- {name:"Jackets",icon:"shirt",url:"https://findspreadsheet.com/search.html?keywords=Jackets&channelid=2"},
- {name:"Pants",icon:"pants",url:"https://findspreadsheet.com/search.html?keywords=Pants&channelid=2"},
- {name:"Bags",icon:"bag",url:"https://findspreadsheet.com/search.html?keywords=Bags&channelid=2"},
- {name:"Shorts",icon:"pants",url:"https://findspreadsheet.com/search.html?keywords=Shorts&channelid=2"},
- {name:"Accessories",icon:"accessory",url:"https://findspreadsheet.com/accessories/"},
- {name:"Jewelry",icon:"jewelry",url:"https://findspreadsheet.com/search.html?keywords=Jewelry&channelid=2"},
- {name:"Watches",icon:"watch",url:"https://findspreadsheet.com/search.html?keywords=Watches&channelid=2"},
- {name:"Sweaters",icon:"shirt",url:"https://findspreadsheet.com/search.html?keywords=Sweaters&channelid=2"},
+const cats:{name:string;icon:CatIcon;category:string}[]=[
+ {name:"Shoes",icon:"shoe",category:"shoes"},
+ {name:"Sneakers",icon:"shoe",category:"shoes"},
+ {name:"Shirts",icon:"shirt",category:"t-shirts"},
+ {name:"Hoodies",icon:"shirt",category:"hoodies-sweaters"},
+ {name:"Jackets",icon:"shirt",category:"jackets"},
+ {name:"Pants",icon:"pants",category:"pants-shorts"},
+ {name:"Bags",icon:"bag",category:"accessories"},
+ {name:"Shorts",icon:"pants",category:"pants-shorts"},
+ {name:"Accessories",icon:"accessory",category:"accessories"},
+ {name:"Jewelry",icon:"jewelry",category:"accessories"},
+ {name:"Watches",icon:"watch",category:"accessories"},
+ {name:"Sweaters",icon:"shirt",category:"hoodies-sweaters"},
 ];
 const href=(l:Lang,r:string)=>`/${l}${r==="home"?"":`/${r}`}`;
 const englishSeoLabels = {
@@ -71,6 +75,8 @@ export function Site({ lang, route }: { lang: string; route: string }) {
   });
   const current = routes.includes(route) ? route : "home";
   const direction = code === "ar" ? "rtl" : "ltr";
+  const shopLabels = catalogLabels(code);
+  const navIndexes = [0, 1, 2, 3, 7, 8];
   const labels = {
     language: phrase(code, "Language"),
     currency: phrase(code, "Currency"),
@@ -84,24 +90,36 @@ export function Site({ lang, route }: { lang: string; route: string }) {
       <header className="topbar">
         <a className="brand" href={href(code, "home")}><img src="/pikobuy.png" alt="PikoBuy" /></a>
         <nav dir={direction}>
-          {t.nav.map((label, index) => (
-            <a key={routes[index]} className={current === routes[index] ? "active" : ""}
+          {navIndexes.map((index) => (
+            <a key={routes[index]} className={current === routes[index] || (index === 2 && current === "product") ? "active" : ""}
               href={href(code, routes[index])}>
-              {label}
+              {index === 2 ? shopLabels.browse : t.nav[index]}
             </a>
           ))}
         </nav>
         <HeaderControls locale={code} route={current} labels={labels} />
       </header>
-      {current === "home"
-        ? <Home t={t} code={code} />
-        : <Inner t={t} code={code} route={current} articles={articles} />}
+      {current === "home" ? <Home t={t} code={code} />
+        : current === "product" ? <ProductDetail locale={code} labels={shopLabels} />
+        : current === "products" ? (
+          <main className="catalog-page">
+            <h1>{shopLabels.browse}</h1>
+            <CatalogSearch locale={code} labels={shopLabels} placeholder={t.search}
+              initial={catalogData.initial}
+              categories={catalogCategories.map(([slug, key]) => ({ slug, label: shopLabels[key] }))} />
+          </main>
+        ) : current === "categories" ? (
+          <main className="catalog-page">
+            <h1>{t.nav[1]}</h1>
+            <CategoryGrid t={t} code={code} />
+          </main>
+        ) : <Inner t={t} code={code} route={current} articles={articles} />}
       <footer>
         <a className="brand footer-brand" href={href(code, "home")}><img src="/pikobuy.png" alt="PikoBuy" /></a>
         <p>{t.footer}</p>
         <div>
           <a href={href(code, "categories")}>{t.nav[1]}</a>
-          <a href={href(code, "products")}>{t.nav[2]}</a>
+          <a href={catalogHref(code)}>{shopLabels.browse}</a>
           <a href={href(code, "seo")}>{t.nav[8]}</a>
           <a href="https://findspreadsheet.com/">FindSpreadsheet <ExternalLink size={12} /></a>
         </div>
@@ -110,9 +128,78 @@ export function Site({ lang, route }: { lang: string; route: string }) {
   );
 }
 
-function Home({ t, code }: { t: Copy; code: Lang }) { const homeSchema={"@context":"https://schema.org","@type":"WebSite",name:"PikoBuy Spreadsheet UK",url:`https://pikobuyspreadsheet.uk/${code}/`,description:t.intro,potentialAction:{"@type":"SearchAction",target:"https://findspreadsheet.com/search.html?keywords={search_term_string}&channelid=2","query-input":"required name=search_term_string"}};return <main><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(homeSchema)}}/><section className="hero"><div className="hero-copy"><p className="eyebrow"><span/>{t.kicker}</p><h1>{t.title}</h1><p className="lead">{t.intro}</p><form className="search-box" action="https://findspreadsheet.com/search.html" method="get"><Search aria-hidden="true"/><input name="keywords" type="search" placeholder={t.search} aria-label={phrase(code, "Search products")} required/><input type="hidden" name="channelid" value="2"/><button type="submit">{t.button}<ArrowRight size={17}/></button></form><a className="hero-database" href="https://findspreadsheet.com/"><LayoutGrid size={17}/>{t.database}<ExternalLink size={14}/></a><p className="micro"><ShieldCheck size={15}/>{t.trust}</p></div><aside className="fact-card"><div className="fact-head"><span>01</span><PackageCheck/></div><h2>{t.ui.factTitle}</h2>{t.facts.map(x=><p key={x}><Check size={16}/><span>{x}</span></p>)}<a href={href(code,"guide")}>{t.ui.readEvidence} <ArrowRight size={15}/></a></aside></section><section className="stats"><div><strong>{languages.length}</strong><span>{t.ui.priorityLanguages}</span></div><div><strong>12</strong><span>{t.ui.focusedCategories}</span></div><div><strong>5</strong><span>{t.ui.decisionChecks}</span></div><p>{t.sourceText}</p></section><section className="section new-pages"><Heading eyebrow={t.ui.exploreSite} title={t.ui.threeWays} text={t.ui.threeWaysText}/><div className="feature-grid"><a href={href(code,"categories")}><LayoutGrid/><span>01</span><h3>{t.nav[1]}</h3><p>{t.ui.featureCategories}</p><ArrowRight/></a><a href={href(code,"products")}><Boxes/><span>02</span><h3>{t.nav[2]}</h3><p>{t.ui.featureProducts}</p><ArrowRight/></a><a href={href(code,"seo")}><FileText/><span>03</span><h3>{t.nav[8]}</h3><p>{t.ui.featureSeo}</p><ArrowRight/></a></div></section><section className="section categories"><Heading eyebrow={t.ui.liveDatabase} title={t.browse} text={t.browseIntro}/><CategoryGrid t={t}/></section><section className="section workflow"><Heading eyebrow={t.ui.decisionSystem} title={t.workflow} text={t.workflowIntro}/><div className="steps">{t.steps.map(([h,p],i)=><article key={h}><span>0{i+1}</span>{i===0?<Search/>:i===1?<ShieldCheck/>:i===2?<Warehouse/>:i===3?<Truck/>:<PackageCheck/>}<h3>{h}</h3><p>{p}</p></article>)}</div></section><section className="evidence"><div><p className="eyebrow">{t.ui.factCheck}</p><h2>{t.evidence}</h2></div><article className="positive"><h3><Check/>{t.yes}</h3>{t.yesItems.map(x=><p key={x}>{x}</p>)}</article><article className="negative"><h3><CircleAlert/>{t.no}</h3>{t.noItems.map(x=><p key={x}>{x}</p>)}</article></section><section className="language-note"><Globe2/><div><h3>{t.sourceNote}</h3><p>{t.sourceText}</p></div></section><Callout t={t}/></main>}
+function Home({ t, code }: { t: Copy; code: Lang }) {
+  const labels = catalogLabels(code);
+  const homeSchema = {
+    "@context": "https://schema.org", "@type": "WebSite", name: "PikoBuy Spreadsheet UK",
+    url: `https://pikobuyspreadsheet.uk/${code}/`, description: t.intro,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `https://pikobuyspreadsheet.uk/${code}/products/?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  };
+  return (
+    <main className="compact-home">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }} />
+      <section className="compact-hero">
+        <div>
+          <p className="eyebrow">{t.kicker}</p>
+          <h1>{t.title}</h1>
+          <form className="catalog-search" action={catalogHref(code)} method="get">
+            <div className="catalog-search-input">
+              <Search size={18} aria-hidden="true" />
+              <input name="q" type="search" maxLength={200} required placeholder={t.search} aria-label={labels.search} />
+            </div>
+            <button type="submit">{labels.search}<ArrowRight size={16} /></button>
+          </form>
+        </div>
+        <div className="compact-categories">
+          <h2>{t.nav[1]}</h2>
+          <div className="catalog-filters">
+            {catalogCategories.map(([slug, label]) => (
+              <a href={catalogHref(code, { category: slug })} key={slug}>{labels[label]}</a>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="compact-featured">
+        <div className="compact-section-head">
+          <h2>{labels.featured}</h2>
+          <a href={catalogHref(code)}>{labels.browse}<ArrowRight size={16} /></a>
+        </div>
+        <CatalogCards locale={code} labels={labels} items={catalogData.featured} />
+      </section>
+      <section className="compact-guides">
+        <div className="compact-section-head"><h2>{labels.buying}</h2></div>
+        <div className="compact-guide-links">
+          {[3, 7, 8].map(index => (
+            <a key={routes[index]} href={href(code, routes[index])}>{t.nav[index]}<ArrowRight size={16} /></a>
+          ))}
+        </div>
+        <details className="compact-about">
+          <summary>{t.ui.factTitle}</summary>
+          <p>{t.intro}</p>
+          <ul>{t.facts.map(fact => <li key={fact}>{fact}</li>)}</ul>
+        </details>
+      </section>
+    </main>
+  );
+}
+
 function CategoryIcon({kind}:{kind:CatIcon}){return kind==="shoe"?<Footprints/>:kind==="shirt"?<Shirt/>:kind==="bag"?<BaggageClaim/>:kind==="jewelry"?<Gem/>:kind==="watch"?<Watch/>:kind==="accessory"?<Boxes/>:<PackageCheck/>}
-function CategoryGrid({t}:{t:Copy}){return <div className="category-grid">{cats.map((cat,i)=>{const label=t.categoryNames[i];return <a key={cat.name} href={cat.url} aria-label={`${label} — FindSpreadsheet`}><span><CategoryIcon kind={cat.icon}/></span><b>{label}</b></a>})}</div>}
+function CategoryGrid({ t, code }: { t: Copy; code: Lang }) {
+  return (
+    <div className="category-grid">
+      {cats.map((cat, index) => {
+        const label = t.categoryNames[index];
+        return <a key={cat.name} href={catalogHref(code, { category: cat.category })}>
+          <span><CategoryIcon kind={cat.icon} /></span><b>{label}</b>
+        </a>;
+      })}
+    </div>
+  );
+}
 function Heading({eyebrow,title,text}:{eyebrow:string;title:string;text:string}){return <div className="section-heading"><div><p className="eyebrow">{eyebrow}</p><h2>{title}</h2></div><p>{text}</p></div>}
 function Callout({t}:{t:Copy}){return <section className="cta"><div><p className="eyebrow">{t.ui.calloutFlow}</p><h2>{t.cta}</h2><p>{t.ctaText}</p></div><a href="https://findspreadsheet.com/">{t.ctaButton}<ExternalLink/></a></section>}
 function Breadcrumbs({t,code,route,label}:{t:Copy;code:Lang;route:string;label:string}){
@@ -131,7 +218,7 @@ function Inner({t,code,route,articles}:{t:Copy;code:Lang;route:string;articles:S
  const pageCanonical=`https://pikobuyspreadsheet.uk${href(code,route)}/`;
  const pageSchema={"@context":"https://schema.org","@type":route==="categories"?"CollectionPage":"WebPage",name:pageTitle,description:t.pageIntros[key]??t.pageIntros.guide,url:pageCanonical,isPartOf:{"@type":"WebSite",name:"PikoBuy Spreadsheet UK",url:"https://pikobuyspreadsheet.uk/"}};
  const faqSchema=route==="faq"?{"@context":"https://schema.org","@type":"FAQPage",mainEntity:t.sections.faq.map(([question,answer])=>({"@type":"Question",name:question,acceptedAnswer:{"@type":"Answer",text:answer}}))}:null;
- return <main className="inner"><Breadcrumbs t={t} code={code} route={route} label={pageTitle}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(pageSchema)}}/>{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<section className="inner-hero"><p className="eyebrow">{phrase(code, "PIKOBUY /") + " "}{t.nav[routes.indexOf(route)]}</p><h1>{pageTitle}</h1><p>{t.pageIntros[key]??t.pageIntros.guide}</p></section>{route==="categories"?<><section className="inner-category-panel"><CategoryGrid t={t}/></section><div className="article-grid category-notes"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div></>:<div className="article-grid"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><div className="aside-card"><ShieldCheck/><h3>{t.ui.evidenceStandard}</h3><p>{t.ui.evidenceText}</p></div><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div>}<Callout t={t}/></main>
+ return <main className="inner"><Breadcrumbs t={t} code={code} route={route} label={pageTitle}/><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(pageSchema)}}/>{faqSchema&&<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(faqSchema)}}/>}<section className="inner-hero"><p className="eyebrow">{phrase(code, "PIKOBUY /") + " "}{t.nav[routes.indexOf(route)]}</p><h1>{pageTitle}</h1><p>{t.pageIntros[key]??t.pageIntros.guide}</p></section>{route==="categories"?<><section className="inner-category-panel"><CategoryGrid t={t} code={code}/></section><div className="article-grid category-notes"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div></>:<div className="article-grid"><article className="article-body">{sections.map(([h,p],i)=><section key={h}><span>0{i+1}</span><div><h2>{h}</h2><p>{p}</p></div></section>)}</article><aside><div className="aside-card"><ShieldCheck/><h3>{t.ui.evidenceStandard}</h3><p>{t.ui.evidenceText}</p></div><a className="database-button" href="https://findspreadsheet.com/">{t.database}<ExternalLink/></a></aside></div>}<Callout t={t}/></main>
 }
 
 function PillarGuide({t,code,articles}:{t:Copy;code:Lang;articles:SeoArticle[]}){

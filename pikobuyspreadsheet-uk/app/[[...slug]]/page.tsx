@@ -4,10 +4,11 @@ import { seoArticles } from "../seo-content";
 import { discoverySeoArticles } from "../discovery-articles";
 import languages from "../locales.json";
 import { getLocale } from "../translations";
+import { catalogLabels } from "../catalog-labels";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 const supported = new Set(languages.map(({ code }) => code));
-const staticRoutes = ["categories", "products", "guide", "qc", "shipping", "articles", "faq", "seo"];
+const staticRoutes = ["categories", "products", "product", "guide", "qc", "shipping", "articles", "faq", "seo"];
 const allSeoArticles = [...seoArticles, ...discoverySeoArticles].filter((article, index, list) => list.findIndex((item) => item.slug === article.slug) === index);
 
 export function generateStaticParams() {
@@ -32,7 +33,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = baseArticle && { ...baseArticle, ...translated };
   const copy = languageBundle?.copy;
   const localizedTitle = route === "home" ? copy?.title : copy?.pageTitles[route as keyof NonNullable<typeof copy>["pageTitles"]];
-  const title = article?.title ?? localizedTitle ?? names[route] ?? names.home;
+  const title = route === "products" || route === "product" ? catalogLabels(lang).browse :
+    article?.title ?? localizedTitle ?? names[route] ?? names.home;
   const description = article?.description ?? languageBundle?.copy.intro ?? "An independent, evidence-led PikoBuy spreadsheet guide for product discovery, QC checks, parcel planning and safer use of FindSpreadsheet.";
   const canonical = `https://pikobuyspreadsheet.uk/${lang}${route === "home" ? "/" : `/${route}/`}`;
   const languageAlternates=Object.fromEntries(Array.from(supported).map(language=>[language,`https://pikobuyspreadsheet.uk/${language}${route === "home" ? "/" : `/${route}/`}`]));
@@ -40,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${title} | FindSpreadsheet`,
     description,
-    robots: { index: true, follow: true },
+    robots: { index: route !== "product", follow: true },
     alternates: { canonical, languages: languageAlternates },
     ...(article ? {
       authors: [{ name: article.author ?? "FindSpreadsheet Editorial Team" }],
