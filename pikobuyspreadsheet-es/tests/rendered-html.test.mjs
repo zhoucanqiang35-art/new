@@ -26,7 +26,7 @@ test("Spanish homepage carries the requested SEO intent and complete sections", 
   assert.equal((html.match(/class="product-card"/g) || []).length, 8);
 });
 
-test("exported HTML links only to the site, FindSpreadsheet and PikoBuy registration", async () => {
+test("outbound purchase links on detail pages match the listed Weidian item", async () => {
   const queue = ["", "faq", "seo-articles/how-pikobuy-works", "es-ES", "es-ES/shipping", "es-ES/faq"];
   const seen = new Set();
   while (queue.length && seen.size < 80) {
@@ -35,12 +35,14 @@ test("exported HTML links only to the site, FindSpreadsheet and PikoBuy registra
     seen.add(path);
     await access(page(path));
     const html = await readPage(path);
+    const itemId = html.match(/class="listing-id">Weidian ID <span>(\d+)<\/span>/)?.[1];
     for (const match of html.matchAll(/href=["']([^"']+)["']/g)) {
       const href = match[1];
       if (href.startsWith("http")) {
         const url = new URL(href.replaceAll("&amp;", "&"));
         const registration = url.href === "https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716";
-        assert.ok(registration || ["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(url.origin), `Unexpected outbound link: ${href}`);
+        const purchase = itemId && url.protocol === "https:" && decodeURIComponent(url.href).includes(itemId);
+        assert.ok(registration || purchase || ["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(url.origin), `Unexpected outbound link: ${href}`);
       } else if (href.startsWith("/") && !href.startsWith("/_next/") && !/\.(?:png|webp|svg|css|js|ico)$/i.test(href) && !href.includes("#") && !href.includes("?")) {
         const clean = href.replace(/^\/+|\/+$/g, "");
         if (clean) queue.push(clean);
@@ -75,6 +77,24 @@ test("every published non-English locale retains localized FAQ, shipping and SEO
     assert.equal((shippingBody.match(/<li/g) || []).length, 5, `${locale} shipping input count`);
     assert.equal((articleBody.match(/<section/g) || []).length, 7, `${locale} SEO section count`);
     assert.equal((articleBody.match(/data-paragraph-slot=/g) || []).length, 21, `${locale} SEO paragraph count`);
+  }
+});
+
+test("all English and Spanish product routes expose full listing data", async () => {
+  const slugs = (await readdir(new URL("product/", outputRoot), { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory()).map((entry) => entry.name);
+  assert.equal(slugs.length, 8);
+  for (const slug of slugs) {
+    for (const locale of ["", "es-ES/"]) {
+      const html = await readPage(`${locale}product/${slug}`);
+      const item = html.match(/class="listing-id">Weidian ID <span>(\d+)<\/span>/)?.[1];
+      assert.ok(item, slug);
+      assert.ok(html.includes(`class="listing-buy" href="https://www.pikobuy.com/product/detail?productUrl=https%3A%2F%2Fweidian.com%2Fitem.html%3FitemID%3D${item}"`));
+      for (const section of ["listing-thumbnails", "listing-styles", "listing-sizes", "listing-agents", "listing-photos"]) {
+        assert.ok(html.includes(`class="${section}"`), `${slug}: ${section}`);
+      }
+      assert.match(html, /<h2>(Seller photos|Fotos del vendedor)<\/h2>/);
+    }
   }
 });
 
