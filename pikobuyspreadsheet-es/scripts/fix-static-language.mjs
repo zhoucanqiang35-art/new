@@ -1,7 +1,8 @@
 import { readFile, readdir, writeFile } from "node:fs/promises";
 
 const outputRoot = new URL("../out/", import.meta.url);
-const locales = ["de-DE", "fr-FR", "es-ES", "it-IT", "nl-NL", "pl-PL", "pt-PT", "sv-SE"];
+const entries = await readdir(outputRoot, { withFileTypes: true });
+const locales = entries.filter((entry) => entry.isDirectory() && /^[a-z]{2}-[A-Z]{2}$/.test(entry.name)).map((entry) => entry.name);
 
 async function updateHtml(directory, locale) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {

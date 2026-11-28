@@ -2,14 +2,27 @@ export const mainSite = "https://findspreadsheet.com";
 
 export const locales = [
   { code: "en-US", short: "EN", label: "English (US)", country: "United States" },
-  { code: "de-DE", short: "DE", label: "Deutsch", country: "Germany" },
+  { code: "de-DE", short: "DE", label: "Deutsch", country: "Deutschland" },
   { code: "fr-FR", short: "FR", label: "Français", country: "France" },
-  { code: "es-ES", short: "ES", label: "Español", country: "Spain" },
-  { code: "it-IT", short: "IT", label: "Italiano", country: "Italy" },
-  { code: "nl-NL", short: "NL", label: "Nederlands", country: "Netherlands" },
-  { code: "pl-PL", short: "PL", label: "Polski", country: "Poland" },
+  { code: "es-ES", short: "ES", label: "Español", country: "España" },
+  { code: "it-IT", short: "IT", label: "Italiano", country: "Italia" },
+  { code: "nl-NL", short: "NL", label: "Nederlands", country: "Nederland" },
+  { code: "pl-PL", short: "PL", label: "Polski", country: "Polska" },
   { code: "pt-PT", short: "PT", label: "Português", country: "Portugal" },
-  { code: "sv-SE", short: "SV", label: "Svenska", country: "Sweden" },
+  { code: "sv-SE", short: "SV", label: "Svenska", country: "Sverige" },
+  { code: "da-DK", short: "DA", label: "Dansk", country: "Danmark" },
+  { code: "nb-NO", short: "NO", label: "Norsk bokmål", country: "Norge" },
+  { code: "fi-FI", short: "FI", label: "Suomi", country: "Suomi" },
+  { code: "cs-CZ", short: "CS", label: "Čeština", country: "Česko" },
+  { code: "ro-RO", short: "RO", label: "Română", country: "România" },
+  { code: "hu-HU", short: "HU", label: "Magyar", country: "Magyarország" },
+  { code: "el-GR", short: "EL", label: "Ελληνικά", country: "Ελλάδα" },
+  { code: "bg-BG", short: "BG", label: "Български", country: "България" },
+  { code: "hr-HR", short: "HR", label: "Hrvatski", country: "Hrvatska" },
+  { code: "sk-SK", short: "SK", label: "Slovenčina", country: "Slovensko" },
+  { code: "sl-SI", short: "SL", label: "Slovenščina", country: "Slovenija" },
+  { code: "et-EE", short: "ET", label: "Eesti", country: "Eesti" },
+  { code: "lt-LT", short: "LT", label: "Lietuvių", country: "Lietuva" },
 ] as const;
 
 type Copy = {

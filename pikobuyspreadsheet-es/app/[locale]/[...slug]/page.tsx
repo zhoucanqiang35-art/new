@@ -3,7 +3,8 @@ import { locales } from "../../data";
 import { categories, products, seoArticles } from "../../data";
 import { LocalizedRoutePage } from "../../site-components";
 import { pageMetadata } from "../../seo";
-import { getLocalizedArticleMeta } from "../../localized-content";
+import { getLocalizedArticleMeta, getLocalizedContent } from "../../localized-content";
+import { getCopy, getExtra } from "../../i18n";
 const singleRoutes = ["categories","products","guides","shipping","countries","qc","methodology","faq","seo-articles"] as const;
 export function generateStaticParams(){
   const routeParams=[
@@ -51,6 +52,15 @@ export async function generateMetadata({params}:{params:Promise<{locale:string;s
     const item=seoArticles.find((article)=>article.slug===slug[1]);
     if(item){const localized=getLocalizedArticleMeta(locale,item.slug,{title:item.title,intro:item.excerpt});return {...pageMetadata(locale,slug.join("/"),localized.title,localized.intro),other:{"content-language":locale}};}
   }
-  return {...pageMetadata(locale,slug.join("/"),"PikoBuy Spreadsheet Europe","Localized PikoBuy product, shipping, QC and research guide."),other:{"content-language":locale}};
+  const [route, item] = slug;
+  const copy = getCopy(locale), extra = getExtra(locale), localized = getLocalizedContent(locale);
+  const titleByRoute: Record<string, string> = {
+    categories: extra.categories, products: extra.productDetails, guides: copy.navGuides,
+    shipping: copy.navShipping, countries: copy.navCountries, qc: "PikoBuy QC",
+    methodology: copy.evidence, faq: localized.faqTitle, "seo-articles": extra.seoArticles,
+    product: products.find(({ slug }) => slug === item)?.name || extra.productDetails,
+    category: localized.categories[categories.findIndex(({ slug }) => slug === item)] || extra.categories,
+  };
+  return {...pageMetadata(locale, slug.join("/"), titleByRoute[route] || extra.home, extra.researchIntro),other:{"content-language":locale}};
 }
 export default async function Page({params}:{params:Promise<{locale:string;slug:string[]}>}){const {locale,slug}=await params;if(locale==="en-US"||!locales.some(item=>item.code===locale))notFound();return <LocalizedRoutePage locale={locale} slug={slug}/>;}
