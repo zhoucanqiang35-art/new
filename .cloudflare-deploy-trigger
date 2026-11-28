@@ -6,3 +6,7 @@ This file has no effect on website content.
 Cloudflare Pages rebuild requested 2026-10-23.
 Target: pikobuysheet-it
 Reason: deploy the approved Italy original-preview restore entry.
+
+Cloudflare Pages rebuild requested 2026-11-28.
+Target: pikobuyspreadsheet-es
+Reason: retry the production build for the approved homepage and locale controls release (04d85f4).
