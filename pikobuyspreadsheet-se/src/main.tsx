@@ -3,13 +3,27 @@ import { createRoot } from "react-dom/client";
 import { seoTranslations } from "../app/seo-translations";
 import { seoTranslationCoverage } from "../app/seo-translation-coverage";
 import { articleByLanguage, type Article } from "./articles";
+import { locales } from "./data";
+import { getCopy, getExtra, localPath } from "./i18n";
+import { getLocalizedContent, getLocalizedFaq } from "./localized-content";
+import { getHeaderCopy } from "./header-copy";
+import { currencies, rateDate } from "./currency-data";
+import { selectCurrency, useCurrency } from "./currency";
+import { catalogHref } from "./main-catalog";
+import { MainCatalog, MainCatalogProduct } from "./main-catalog-ui";
+import { ImageSearch } from "./image-search-ui";
+import { imageSearchCopy } from "./image-search-copy";
+import { BuyingGuide } from "./buying-guide";
 import "./style.css";
 
-const langs = ["en","de","fr","es","it","nl","pl","sv","pt"] as const;
-type Lang = typeof langs[number];
-const langNames: Record<Lang,string> = {en:"English",de:"Deutsch",fr:"Français",es:"Español",it:"Italiano",nl:"Nederlands",pl:"Polski",sv:"Svenska",pt:"Português"};
-const cats = [["Shoes","/shoes/"],["Hoodies","/hoodies-sweaters/"],["T-Shirts","/t-shirts/"],["Jackets","/jackets/"],["Pants / Shorts","/pants-shorts/"],["Bags","/accessories/"],["Headwear","/headwear/"],["Accessories","/accessories/"],["Jerseys","/jersey/"],["Electronics","/electronics/"]] as const;
-const productRows = [["Nike Phantom GX Elite AG-PRO","$40.48","/shoes/nike-phantom-gx-elite-ag-pro-271.html"],["GCDS Logo Band Hoodie","$36.90","/hoodies-sweaters/gcds-logo-band-hoodiessweaters-40-styles-1523.html"],["New Balance 550 Sneakers","$38.69","/shoes/new-balance-550-sneakers-13-styles-1753.html"]] as const;
+const legacyLanguages = ["en", "de", "fr", "es", "it", "nl", "pl", "sv", "pt"] as const;
+type Lang = typeof legacyLanguages[number];
+const categories = [
+  ["shoes", 0], ["hoodies-sweaters", 3], ["t-shirts", 2], ["jackets", 4], ["pants-shorts", 5],
+  ["headwear", 6], ["ShortSets", 7], ["accessories", 8], ["jersey", 9], ["electronics", 10],
+  ["other-stuff", 11],
+] as const;
+const registration = "https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716";
 type UI = {nav:string[]; kicker:string; hero:string; intro:string; search:string; categories:string; categoryText:string; articles:string; articleText:string; guides:string; products:string; faq:string; read:string; database:string; independent:string; source:string; faqItems:string[]};
 const ui:Record<Lang,UI>={
 en:{nav:["Home","Categories","Products","Guides","SEO Articles","FAQ"],kicker:"INDEPENDENT PIKOBUY RESEARCH",hero:"PikoBuy Spreadsheet: product links, QC photos and shipping checks.",intro:"Compare the current listing, visible warehouse evidence and parcel choices before you order.",search:"Search products",categories:"Browse product categories",categoryText:"Start with the product type, then compare the details that matter.",articles:"PikoBuy spreadsheet guides",articleText:"Evidence-led articles on product links, QC photos, source checks and shipping planning.",guides:"Plan each buying decision",products:"Featured products",faq:"PikoBuy Spreadsheet FAQ",read:"Read article",database:"Open FindSpreadsheet",independent:"Independent research resource. Not operated by PikoBuy.",source:"Listings, prices, route eligibility and policies can change.",faqItems:["This is an independent FindSpreadsheet research resource, not an official PikoBuy website.","Product prices and availability are not final until checked on the live listing.","QC photos show visible details, not authenticity, durability or customs guarantees.","Shipping depends on destination, route, weight, volume and restrictions."]},
@@ -23,15 +37,216 @@ sv:{nav:["Hem","Kategorier","Produkter","Guider","SEO-artiklar","FAQ"],kicker:"O
 pt:{nav:["Início","Categorias","Produtos","Guias","Artigos SEO","FAQ"],kicker:"PESQUISA PIKOBUY INDEPENDENTE",hero:"PikoBuy Spreadsheet: links de produtos, fotos QC e verificações de envio.",intro:"Compare o anúncio atual, as provas do armazém e as decisões do pacote antes de encomendar.",search:"Pesquisar produtos",categories:"Explorar categorias",categoryText:"Comece pelo tipo de produto e compare detalhes relevantes.",articles:"Guias PikoBuy Spreadsheet",articleText:"Artigos baseados em factos sobre links, QC, fontes e envio.",guides:"Planeie cada decisão",products:"Produtos em destaque",faq:"FAQ PikoBuy Spreadsheet",read:"Ler artigo",database:"Abrir FindSpreadsheet",independent:"Recurso independente. Não é operado pela PikoBuy.",source:"Anúncios, preços, rotas e regras podem mudar.",faqItems:["É um recurso FindSpreadsheet independente, não um site PikoBuy oficial.","Confirme preço e stock no anúncio atual.","Fotos QC mostram detalhes visíveis, não garantias de autenticidade, duração ou alfândega.","O envio depende de destino, rota, peso, volume e restrições."]}
 };
 const existingEn={title:"How to Use a PikoBuy Spreadsheet Without Buying Blind",intro:"A practical guide to product links, warehouse photos and international shipping decisions.",quick:"A spreadsheet is a discovery tool, not a final product record.",sections:[["Start with the live listing",["Confirm the current price, stock, selected variation and seller information before payment. A saved product row cannot freeze an offer that may be edited or removed.","Use measurements rather than letter sizes alone. Keep a small comparison list so product, colour, version and seller details stay clear."]],["Use warehouse photos honestly",["Check the visible identity before judging quality: product type, colour, size tag, quantity and included parts. Then inspect category-specific details such as shoe shape, clothing measurements or bag hardware.","Photos are useful visible evidence but cannot prove authenticity, fibre composition, durability, exact screen colour or a customs result."]],["Plan the parcel before submission",["Compare packed weight, dimensions, route eligibility and insurance choices. Bulky packaging, batteries, liquids and sensitive goods can change the available routes.","Keep product, warehouse, return and tracking records together until delivery."]]],checklist:["Match the spreadsheet row to the current listing.","Confirm the exact variant and stock.","Inspect warehouse identity before visible quality.","Compare route eligibility before parcel payment."],final:["Use current evidence at every decision point.","Independent research should explain risk rather than promise an outcome."]};
-function parse(){const x=location.pathname.split("/").filter(Boolean);const lang=langs.includes(x[0] as Lang)?x.shift() as Lang:"en";return{lang,path:x.join("/")};}
-function href(lang:Lang,path:string){return lang==="en"?`/${path}`:`/${lang}/${path}`;}
-function titleFor(lang:Lang,path:string,t:UI){const a=articleByLanguage[path]?.[lang];if(a)return a;if(path==="seo-articles/pikobuy-spreadsheet-research-guide")return lang==="en"?existingEn:{title:seoTranslations[lang].title,intro:seoTranslations[lang].intro};if(!path)return{title:lang==="en"?"PikoBuy Spreadsheet: QC Photos, Product Links & Shipping Checks":t.hero, intro:t.intro};return{title:`${t.nav[["categories","products","guides","seo-articles","faq"].indexOf(path)+1]||"PikoBuy Spreadsheet"} | PikoBuy Spreadsheet`,intro:t.source};}
-function Head({lang,path,t}:{lang:Lang;path:string;t:UI}){useEffect(()=>{const d=titleFor(lang,path,t);document.title=d.title;document.documentElement.lang=lang;const set=(sel:string,attr:string,val:string)=>{let e=document.head.querySelector(sel) as HTMLElement|null;if(!e){e=document.createElement(sel.startsWith("meta")?"meta":"link");document.head.appendChild(e);}e.setAttribute(attr,val)};set('meta[name="description"]',"content",d.intro);set('link[rel="canonical"]',"href",`https://pikobuyspreadsheet.se${href(lang,path)}`);(document.head.querySelector('link[rel="canonical"]') as HTMLLinkElement).rel="canonical";langs.forEach(l=>{let e=document.head.querySelector(`link[hreflang="${l}"]`) as HTMLLinkElement|null;if(!e){e=document.createElement("link");e.rel="alternate";e.hreflang=l;document.head.appendChild(e)}e.href=`https://pikobuyspreadsheet.se${href(l,path)}`});},[lang,path,t]);return null}
-function Header({lang,path,t}:{lang:Lang;path:string;t:UI}){const routes=["","categories","products","guides","seo-articles","faq"];return <header><a className="brand" href={href(lang,"")}><img src="/pikobuy-logo.png" alt="PikoBuy Spreadsheet"/><span>PikoBuy Spreadsheet</span></a><nav>{routes.map((p,i)=><a key={p} href={href(lang,p)}>{t.nav[i]}</a>)}</nav><select aria-label="Language" value={lang} onChange={e=>location.href=href(e.target.value as Lang,path)}>{langs.map(l=><option key={l} value={l}>{langNames[l]}</option>)}</select></header>}
-function ArticleView({article}:{article:Article}){return <article><div className="article-top"><p>{article.label}</p><h1>{article.title}</h1><p>{article.intro}</p></div><div className="fact"><b>{article.quick}</b></div>{article.sections.map(s=><section key={s.title}><h2>{s.title}</h2>{s.paragraphs.map(p=><p key={p}>{p}</p>)}</section>)}<section><h2>Checklist</h2><ol>{article.checklist.map(x=><li key={x}>{x}</li>)}</ol></section>{article.final.map(x=><p key={x}>{x}</p>)}</article>}
-function Existing({lang}:{lang:Lang}){const d:any=lang==="en"?existingEn:seoTranslations[lang];const coverage=lang==="en"?[]:seoTranslationCoverage[lang];return <article><div className="article-top"><p>FACT-CHECKED RESEARCH · 2026</p><h1>{d.title}</h1><p>{d.intro}</p></div><div className="fact"><b>{d.quick}</b></div>{d.sections.map((s:any,i:number)=><section key={s[0]||s.title}><h2>{s[0]||s.title}</h2>{(s[1]||s.paragraphs).map((p:string)=><p key={p}>{p}</p>)}{coverage[i]&&<p>{coverage[i]}</p>}</section>)}</article>}
-function Home({lang,t}:{lang:Lang;t:UI}){return <><section className="hero"><p>{t.kicker}</p><h1>{t.hero}</h1><p>{t.intro}</p><form action="https://findspreadsheet.com/search.html"><input name="keywords" placeholder={t.search}/><button>{t.search}</button></form></section><section><h2>{t.categories}</h2><p className="lead">{t.categoryText}</p><div className="grid">{cats.map(([n,u])=><a className="card" href={`https://findspreadsheet.com${u}`} key={n}><b>{n}</b><span>{t.categoryText}</span></a>)}</div></section><ArticleIndex lang={lang} t={t}/></>}
-function ArticleIndex({lang,t}:{lang:Lang;t:UI}){return <section><h2>{t.articles}</h2><p className="lead">{t.articleText}</p><div className="article-grid">{Object.entries(articleByLanguage).map(([slug,all])=><a className="feature" href={href(lang,slug)} key={slug}><small>{all[lang].label}</small><b>{all[lang].title}</b><span>{all[lang].intro}</span><strong>{t.read} →</strong></a>)}<a className="feature" href={href(lang,"seo-articles/pikobuy-spreadsheet-research-guide")}><b>{lang==="en"?existingEn.title:seoTranslations[lang].title}</b><span>{lang==="en"?existingEn.intro:seoTranslations[lang].intro}</span><strong>{t.read} →</strong></a></div></section>}
-function Simple({lang,path,t}:{lang:Lang;path:string;t:UI}){if(path==="categories")return <section><h1>{t.categories}</h1><div className="grid">{cats.map(([n,u])=><a className="card" href={`https://findspreadsheet.com${u}`} key={n}>{n}</a>)}</div></section>;if(path==="products")return <section><h1>{t.products}</h1><div className="grid">{productRows.map(p=><a className="card" href={`https://findspreadsheet.com${p[2]}`} key={p[0]}><b>{p[0]}</b><span>{p[1]} · {t.database}</span></a>)}</div></section>;if(path==="faq")return <section><h1>{t.faq}</h1>{t.faqItems.map(x=><p className="faq" key={x}>{x}</p>)}</section>;if(path==="guides")return <section><h1>{t.guides}</h1><p className="lead">{t.source}</p><div className="article-grid">{["seo-articles/pikobuy-qc-photos-checklist","seo-articles/pikobuy-shipping-weight-guide"].map(slug=><a className="feature" href={href(lang,slug)} key={slug}><b>{articleByLanguage[slug][lang].title}</b><span>{articleByLanguage[slug][lang].intro}</span></a>)}</div></section>;return <ArticleIndex lang={lang} t={t}/>;}
-function App(){const {lang,path}=parse();const t=ui[lang];const a=articleByLanguage[path]?.[lang];return <><Head lang={lang} path={path} t={t}/><Header lang={lang} path={path} t={t}/><main>{path==="seo-articles/pikobuy-spreadsheet-research-guide"?<Existing lang={lang}/>:a?<ArticleView article={a}/>:path?<Simple lang={lang} path={path} t={t}/>:<Home lang={lang} t={t}/>}</main><footer>{t.independent} · <a href="https://findspreadsheet.com/">FindSpreadsheet</a></footer></>}
+
+function parseLocation() {
+  const segments = location.pathname.split("/").filter(Boolean);
+  const selected = locales.find(locale => locale.code.split("-")[0] === segments[0]);
+  if (selected) segments.shift();
+  return { locale: selected?.code ?? "en-US", path: segments.join("/") };
+}
+
+const articlePath = "seo-articles/pikobuy-spreadsheet-research-guide";
+const routes = ["", "categories", "products", "image-search", "guides", "seo-articles", "faq"];
+
+function articleLanguage(locale: string): Lang {
+  const language = locale.split("-")[0] as Lang;
+  return legacyLanguages.includes(language) ? language : "en";
+}
+
+function labels(locale: string) {
+  const a = getCopy(locale), b = getExtra(locale);
+  const language = locale.split("-")[0] as Lang;
+  if (legacyLanguages.includes(language)) {
+    const local = ui[language];
+    return { ...local, nav: [...local.nav.slice(0, 3), imageSearchCopy(locale).title, ...local.nav.slice(3)] };
+  }
+  return {
+    nav: [b.home, b.categories, a.navProducts, imageSearchCopy(locale).title, a.navGuides, b.seoArticles, "FAQ"],
+    kicker: a.eyebrow, hero: a.title, intro: a.intro, categories: a.categories, categoryText: "",
+    articles: b.seoArticles, articleText: b.researchIntro, guides: a.workflow, products: a.navProducts,
+    faq: getLocalizedContent(locale).faqTitle, read: b.readMore, independent: b.independent, source: b.workflowIntro,
+  };
+}
+
+function Head({ locale, path }: { locale: string; path: string }) {
+  useEffect(() => {
+    const t = labels(locale);
+    const lang = articleLanguage(locale);
+    const article = articleByLanguage[path]?.[lang] ??
+      (path === articlePath ? (lang === "en" ? existingEn : seoTranslations[lang]) : null);
+    const title = article?.title ?? (path ? (t.nav[routes.indexOf(path)] ?? t.products) : t.hero);
+    document.title = path ? `${title} | PikoBuy Spreadsheet` : title;
+    document.documentElement.lang = locale;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (description) description.content = article?.intro ?? t.intro;
+    function link(rel: string, language: string, url: string) {
+      const selector = language ? `link[rel="${rel}"][hreflang="${language}"]` : `link[rel="${rel}"]`;
+      const element = document.querySelector<HTMLLinkElement>(selector) ?? document.createElement("link");
+      element.rel = rel;
+      if (language) element.hreflang = language;
+      element.href = `https://pikobuyspreadsheet.se${url}`;
+      document.head.append(element);
+    }
+    const canonicalLocale = article && lang === "en" ? "en-US" : locale;
+    link("canonical", "", localPath(canonicalLocale, path));
+    document.querySelector('link[hreflang="en"]')?.remove();
+    const alternates = article ? locales.filter(x => legacyLanguages.includes(x.code.split("-")[0] as Lang)) : locales;
+    alternates.forEach(x => link("alternate", x.code, localPath(x.code, path)));
+    link("alternate", "x-default", localPath("en-US", path));
+  }, [locale, path]);
+  return null;
+}
+
+function Header({ locale, path }: { locale: string; path: string }) {
+  const currency = useCurrency();
+  const copy = getHeaderCopy(locale);
+  const t = labels(locale);
+
+  function closeOtherMenus(event: React.SyntheticEvent<HTMLDetailsElement>) {
+    if (!event.currentTarget.open) return;
+    const current = event.currentTarget;
+    current.parentElement?.querySelectorAll<HTMLDetailsElement>("details[open]").forEach(menu => {
+      if (menu !== current) menu.open = false;
+    });
+  }
+
+  useEffect(() => {
+    function dismiss(event: PointerEvent) {
+      document.querySelectorAll<HTMLDetailsElement>(".settings-menu[open]").forEach(menu => {
+        if (!menu.contains(event.target as Node)) menu.open = false;
+      });
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      const menu = document.querySelector<HTMLDetailsElement>(".settings-menu[open]");
+      if (menu) {
+        menu.open = false;
+        menu.querySelector("summary")?.focus();
+      }
+    }
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, []);
+
+  return <header className="site-header">
+    <a className="brand" href={localPath(locale)}><img src="/pikobuy-logo.webp" alt="PikoBuy"/><span>Spreadsheet</span></a>
+    <nav aria-label={t.nav[0]}>{routes.map((route, i) => <a key={route}
+      aria-current={path === route ? "page" : undefined} href={localPath(locale, route)}>{t.nav[i]}</a>)}</nav>
+    <div className="settings">
+      <details className="settings-menu" onToggle={closeOtherMenus}>
+        <summary aria-label={copy.language}>{locales.find(x => x.code === locale)?.short}</summary>
+        <div className="settings-grid" aria-label={copy.language}>
+          {locales.map(choice => <a key={choice.code} href={localPath(choice.code, path) + location.search + location.hash}
+            lang={choice.code} hrefLang={choice.code} aria-current={choice.code === locale ? "true" : undefined}>{choice.label}</a>)}
+        </div>
+      </details>
+      <details className="settings-menu" onToggle={closeOtherMenus}>
+        <summary aria-label={copy.currency}>{currency}</summary>
+        <div className="settings-grid" aria-label={copy.currency}>
+          {currencies.map(code => <button key={code} type="button" aria-pressed={code === currency}
+            onClick={event => {
+              const menu = event.currentTarget.closest("details");
+              selectCurrency(code);
+              if (menu) { menu.open = false; menu.querySelector("summary")?.focus(); }
+            }}>{code}</button>)}
+          <small>{copy.indicativePrices} · ECB {rateDate}</small>
+        </div>
+      </details>
+      <a className="join" href={registration} rel="sponsored noopener noreferrer">{copy.join}</a>
+    </div>
+  </header>;
+}
+
+function ArticleView({article, locale}: {article: Article; locale: string}) {
+  return <article lang={articleLanguage(locale)}>
+    <div className="article-top"><p>{article.label}</p><h1>{article.title}</h1><p>{article.intro}</p></div>
+    <div className="fact"><b>{article.quick}</b></div>
+    {article.sections.map(section => <section key={section.title}><h2>{section.title}</h2>
+      {section.paragraphs.map(p => <p key={p}>{p}</p>)}
+    </section>)}
+    <ul>{article.checklist.map(item => <li key={item}>{item}</li>)}</ul>
+    {article.final.map(item => <p key={item}>{item}</p>)}
+  </article>;
+}
+
+function ExistingArticle({locale}: {locale: string}) {
+  const lang = articleLanguage(locale);
+  const data = lang === "en" ? existingEn : seoTranslations[lang];
+  const coverage = lang === "en" ? [] : seoTranslationCoverage[lang];
+  return <article lang={lang}>
+    <div className="article-top"><h1>{data.title}</h1><p>{data.intro}</p></div>
+    <div className="fact"><b>{data.quick}</b></div>
+    {data.sections.map((item, i) => {
+      const [heading, paragraphs] = Array.isArray(item) ? item as [string, string[]] : [item.title, item.paragraphs];
+      return <section key={heading}><h2>{heading}</h2>{paragraphs.map(p => <p key={p}>{p}</p>)}
+        {coverage[i] && <p>{coverage[i]}</p>}</section>;
+    })}
+  </article>;
+}
+
+function ArticleIndex({locale}: {locale: string}) {
+  const t = labels(locale), lang = articleLanguage(locale);
+  const original = lang === "en" ? existingEn : seoTranslations[lang];
+  const cards = [...Object.entries(articleByLanguage).map(([path, copy]) => [path, copy[lang]] as const), [articlePath, original] as const];
+  return <section><h2>{t.articles}</h2><p className="lead">{t.articleText}</p>
+    <div className="article-grid">{cards.map(([path, copy]) => <a className="feature" href={localPath(locale, path)} key={path}>
+      <b lang={lang}>{copy.title}</b><span lang={lang}>{copy.intro}</span><strong>{t.read}</strong>
+    </a>)}</div>
+  </section>;
+}
+
+function CategoryGrid({locale}: {locale: string}) {
+  const names = getLocalizedContent(locale).categories;
+  return <div className="grid">{categories.map(([slug, index]) => <a className="card" href={catalogHref(locale, slug)} key={slug}>
+    <b>{names[index]}</b>
+  </a>)}</div>;
+}
+
+function Home({locale}: {locale: string}) {
+  const t = labels(locale), copy = getCopy(locale);
+  return <>
+    <section className="hero"><p>{t.kicker}</p><h1>{t.hero}</h1><p>{t.intro}</p>
+      <form action={localPath(locale, "products")}>
+        <input type="search" name="q" placeholder={copy.searchPlaceholder}
+          aria-label={getExtra(locale).searchButton} maxLength={200}/>
+        <button>{getExtra(locale).searchButton}</button>
+      </form>
+      <div className="hero-links"><a href={localPath(locale, "image-search")}>{imageSearchCopy(locale).title}</a>
+        <a href={localPath(locale, "guides")}>{t.guides}</a></div>
+    </section>
+    <section><h2>{t.categories}</h2>{t.categoryText && <p className="lead">{t.categoryText}</p>}<CategoryGrid locale={locale}/></section>
+    <ArticleIndex locale={locale}/>
+  </>;
+}
+
+function Page({locale, path}: {locale: string; path: string}) {
+  const t = labels(locale);
+  const article = articleByLanguage[path]?.[articleLanguage(locale)];
+  if (!path) return <Home locale={locale}/>;
+  if (article) return <ArticleView article={article} locale={locale}/>;
+  if (path === articlePath) return <ExistingArticle locale={locale}/>;
+  if (path === "categories") return <section><h1>{t.categories}</h1><CategoryGrid locale={locale}/></section>;
+  if (path === "products") return <section><h1>{t.products}</h1><MainCatalog locale={locale}/></section>;
+  if (path.startsWith("product/")) return <MainCatalogProduct id={path.slice(8)} locale={locale}
+    priceNote={`${getHeaderCopy(locale).indicativePrices} · ECB ${rateDate}`}/>;
+  if (path === "guides" || path === "guides/how-to-buy") return <BuyingGuide locale={locale}/>;
+  if (path === "image-search") return <section><h1>{imageSearchCopy(locale).title}</h1>
+    <p>{imageSearchCopy(locale).privacy}</p><ImageSearch locale={locale}/>
+  </section>;
+  if (path === "faq") return <section><h1>{t.faq}</h1>{getLocalizedFaq(locale, t.independent).map(item =>
+    <details className="faq" key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</section>;
+  return <ArticleIndex locale={locale}/>;
+}
+
+function App() {
+  const {locale, path} = parseLocation();
+  return <><Head locale={locale} path={path}/><Header locale={locale} path={path}/>
+    <main><Page locale={locale} path={path}/></main>
+    <footer>{labels(locale).independent} · <a href="https://findspreadsheet.com/">FindSpreadsheet</a></footer></>;
+}
+
 createRoot(document.getElementById("root")!).render(<App/>);
