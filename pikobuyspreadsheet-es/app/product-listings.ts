@@ -20,13 +20,10 @@ export const agentLinks = [
   ["Loongbuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/loongbuy.png", "https://loongbuy.com/product-details?url=https://weidian.com/item.html?itemID={item}"],
   ["USFans", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/usfans.png", "https://usfans.com/product/3/{item}"],
   ["Mulebuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/mulebuy.jpg", "https://mulebuy.com/zh/product/?shop_type=weidian&id={item}&ref=200232406"],
-  ["Hoobuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/hoobuy.jpg", "https://hoobuy.com/product/2/{item}?utm_source=share&utm_medium=product_details&inviteCode=vXpLpmrX"],
   ["Ootdbuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/ootdbuy.png", "https://www.ootdbuy.com/goods/details?id={item}&channel=weidian&inviteCode=179LQ1SVA"],
   ["Orientdig", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/orientdig.jpg", "https://orientdig.com/product/?shop_type=weidian&id={item}&ref=100114240"],
   ["Eastmallbuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/eastmallbuy.jpg", "https://eastmallbuy.com/index/weidian/itemID={item}&inviter=lianglook520"],
-  ["Ponybuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/ponybuy.png", "https://www.ponybuy.com/en-gb/goods?tracking=e6cd1dcf21&product_id={item}&platform=weidian"],
   ["Lolobuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/lolobuy.png", "https://www.lolobuy.com/productDetail/1783404849631986?url=https://weidian.com/item.html?itemID={item}"],
-  ["Panglobalbuy", "https://findspreadsheet.com/template/pc/skin/images/platform-logos/panglobalbuy.png", "https://panglobalbuy.com/#/details?type=3&offerId={item}&share_id=14918"],
 ] as const;
 
 export const productListings: Record<string, Listing> = {

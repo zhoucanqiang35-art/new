@@ -4,7 +4,7 @@ import { categories, locales, products, seoArticles } from "./data";
 export const dynamic = "force-static";
 
 const origin = "https://pikobuyspreadsheet.es";
-const fixedRoutes = ["", "categories", "products", "guides", "shipping", "countries", "qc", "methodology", "faq", "seo-articles"];
+const fixedRoutes = ["", "categories", "products", "image-search", "guides", "shipping", "countries", "qc", "methodology", "faq", "seo-articles"];
 const contentRoutes = [
   ...categories.map(({ slug }) => `category/${slug}`),
   ...products.map(({ slug }) => `product/${slug}`),

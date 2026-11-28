@@ -10,7 +10,10 @@ test("desktop content remains present in exported HTML", async () => {
   const html = await readPage();
   assert.doesNotMatch(html, /<details class="mobile-fold"/);
   assert.match(html, /class="mobile-fold-body"/);
-  assert.match(html, />241</);
+  assert.doesNotMatch(html, /class="hero-panel"/);
+  const navigation = html.match(/<nav aria-label="Primary navigation">([\s\S]*?)<\/nav>/)?.[1];
+  assert.ok(navigation);
+  assert.doesNotMatch(navigation, /href="\/shipping\//);
 });
 
 test("Spanish homepage carries the requested SEO intent and complete sections", async () => {
@@ -21,6 +24,7 @@ test("Spanish homepage carries the requested SEO intent and complete sections", 
   assert.match(html, /Buscar hallazgos de PikoBuy/);
   assert.match(html, /Hallazgos de PikoBuy con ficha verificable/);
   assert.match(html, /class="hero-search"/);
+  assert.match(html, /class="site-main home-page"/);
   assert.match(html, /class="product-explorer"/);
   assert.match(html, /"@type":"FAQPage"/);
   assert.equal((html.match(/class="product-card"/g) || []).length, 8);
@@ -40,10 +44,12 @@ test("outbound purchase links on detail pages match the listed Weidian item", as
       const href = match[1];
       if (href.startsWith("http")) {
         const url = new URL(href.replaceAll("&amp;", "&"));
+        const sources = ["https://www.pikobuy.com/guide", "https://www.pikobuy.com/shipping-cost", "https://www.pikobuy.com/protocol/returns", "https://www.pikobuy.com/protocol/shipping", "https://www.pikobuy.com/protocol/terms", "https://www.pikobuy.com/contact", "https://taxation-customs.ec.europa.eu/taxation/vat/vat-directive/taxable-transactions_en", "https://taxation-customs.ec.europa.eu/buying-online-other-territories_en"];
         const registration = url.href === "https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716";
+        const productImage = itemId && url.origin === "https://si.geilicdn.com" && /\.(?:jpe?g|png|webp)$/i.test(url.pathname);
         const purchase = itemId && url.protocol === "https:" && decodeURIComponent(url.href).includes(itemId);
-        assert.ok(registration || purchase || ["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(url.origin), `Unexpected outbound link: ${href}`);
-      } else if (href.startsWith("/") && !href.startsWith("/_next/") && !/\.(?:png|webp|svg|css|js|ico)$/i.test(href) && !href.includes("#") && !href.includes("?")) {
+        assert.ok(registration || sources.includes(url.href) || productImage || purchase || ["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(url.origin), `Unexpected outbound link: ${href}`);
+      } else if (href.startsWith("/") && !href.startsWith("/_next/") && !/\.(?:png|jpe?g|webp|svg|css|js|ico)$/i.test(href) && !href.includes("#") && !href.includes("?")) {
         const clean = href.replace(/^\/+|\/+$/g, "");
         if (clean) queue.push(clean);
       }
@@ -72,11 +78,11 @@ test("every published non-English locale retains localized FAQ, shipping and SEO
     const faqBody = faq.match(/class="prose faq-page">([\s\S]*?)<div class="callout">/)?.[1] || "";
     const shippingBody = shipping.match(/class="prose shipping-prose"[^>]*>([\s\S]*?)<\/div><aside/)?.[1] || "";
     const articleBody = article.match(/class="prose"[^>]*>([\s\S]*?)<div class="callout">/)?.[1] || "";
-    assert.equal((faqBody.match(/<section/g) || []).length, 15, `${locale} FAQ count`);
+    assert.equal((faqBody.match(/<section/g) || []).length, locale === "es-ES" ? 27 : 15, `${locale} FAQ count`);
     assert.equal((shippingBody.match(/<h2/g) || []).length, 3, `${locale} shipping section count`);
     assert.equal((shippingBody.match(/<li/g) || []).length, 5, `${locale} shipping input count`);
     assert.equal((articleBody.match(/<section/g) || []).length, 7, `${locale} SEO section count`);
-    assert.equal((articleBody.match(/data-paragraph-slot=/g) || []).length, 21, `${locale} SEO paragraph count`);
+    assert.equal((articleBody.match(/data-paragraph-slot=/g) || []).length, locale === "es-ES" ? 7 : 21, `${locale} SEO paragraph count`);
   }
 });
 
@@ -93,6 +99,10 @@ test("all English and Spanish product routes expose full listing data", async ()
       for (const section of ["listing-thumbnails", "listing-styles", "listing-sizes", "listing-agents", "listing-photos"]) {
         assert.ok(html.includes(`class="${section}"`), `${slug}: ${section}`);
       }
+      const alternatives = html.match(/class="listing-agents">([\s\S]*?)<\/div>/)?.[1];
+      assert.ok(alternatives);
+      assert.doesNotMatch(alternatives, /href="https:\/\/(?:www\.)?(?:ponybuy|panglobalbuy|hoobuy)\.com/i);
+      assert.ok(alternatives.includes(`href="https://weidian.com/item.html?itemID=${item}"`));
       assert.match(html, /<h2>(Seller photos|Fotos del vendedor)<\/h2>/);
     }
   }
@@ -108,5 +118,51 @@ test("static export contains every currently generated page", async () => {
     }
     return count;
   }
-  assert.equal(await countHtml(outputRoot), 817);
+  assert.equal(await countHtml(outputRoot), 861);
+});
+
+
+test("every catalog record resolves in its product detail shard", async () => {
+  const base = new URL("data/main-catalog/", outputRoot);
+  const index = JSON.parse(await readFile(new URL("index.json", base), "utf8"));
+  const shards = await Promise.all(Array.from({ length: 16 }, async (_, i) =>
+    JSON.parse(await readFile(new URL(`details-${i}.json`, base), "utf8"))));
+  assert.ok(index.length > 8000);
+  assert.equal(new Set(index.map(row => row[0])).size, index.length);
+  assert.equal(new Set(index.map(row => row[3])).size, index.length);
+  assert.equal(shards.reduce((total, shard) => total + Object.keys(shard).length, 0), index.length);
+  for (const row of index) {
+    const [resolved] = shards[Number(row[0]) % 16][row[0]];
+    assert.deepEqual(resolved, row);
+  }
+  assert.match(await readPage(), /<form action="\/products\/" method="get"><input type="search"/);
+  assert.match(await readPage("es-ES/catalog-product"), /<html lang="es-ES">/);
+});
+
+
+test("buying guide embeds all screenshots in English and Spanish", async () => {
+  for (const locale of ["", "es-ES/"]) {
+    const html = await readPage(`${locale}guides`);
+    assert.equal((html.match(/class="guide-step"/g) || []).length, 9);
+    const images = [...html.matchAll(/<img src="(\/guide\/[^"]+)"/g)].map(([,src]) => src);
+    assert.equal(images.length, 8);
+    await Promise.all(images.map(src => access(new URL(src.slice(1),outputRoot))));
+  }
+});
+
+
+test("image search is localized and its index covers all catalog products with photos", async () => {
+  const search = await readPage("image-search");
+  const spanish = await readPage("es-ES/image-search");
+  assert.match(search, /<h1>Image Search<\/h1>/);
+  assert.match(spanish, /<h1>Búsqueda por imagen<\/h1>/);
+  assert.match(search, /type="file" accept="image\/jpeg,image\/png,image\/webp,image\/avif"/);
+  const directory = new URL("data/main-catalog/", outputRoot);
+  const rows = JSON.parse(await readFile(new URL("index.json", directory), "utf8"));
+  const binary = await readFile(new URL("image-features.bin", directory));
+  assert.equal(binary.length % 86, 0);
+  const productIds = new Set();
+  for (let offset = 0; offset < binary.length; offset += 86) productIds.add(binary.readUInt16LE(offset).toString());
+  assert.equal(productIds.size, rows.filter(row => row[4]).length);
+  assert.ok(rows.every(row => !row[4] || productIds.has(row[0])));
 });

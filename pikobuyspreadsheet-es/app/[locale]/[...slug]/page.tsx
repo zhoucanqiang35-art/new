@@ -1,3 +1,5 @@
+import { imageSearchCopy } from "../../image-search-copy";
+import { getEditorialArticle } from "../../editorial-content";
 import { notFound } from "next/navigation";
 import { locales } from "../../data";
 import { categories, products, seoArticles } from "../../data";
@@ -5,7 +7,7 @@ import { LocalizedRoutePage } from "../../site-components";
 import { pageMetadata } from "../../seo";
 import { getLocalizedArticleMeta, getLocalizedContent } from "../../localized-content";
 import { getCopy, getExtra } from "../../i18n";
-const singleRoutes = ["categories","products","guides","shipping","countries","qc","methodology","faq","seo-articles"] as const;
+const singleRoutes = ["categories","products","catalog-product","image-search","guides","shipping","countries","qc","methodology","faq","seo-articles"] as const;
 export function generateStaticParams(){
   const routeParams=[
     ...singleRoutes.map((route)=>[route]),
@@ -20,6 +22,15 @@ export function generateStaticParams(){
 export const dynamicParams=false;
 export async function generateMetadata({params}:{params:Promise<{locale:string;slug:string[]}>}){
   const {locale,slug}=await params;
+  if (slug[0] === "image-search") {
+    const copy = imageSearchCopy(locale);
+    return {...pageMetadata(locale, "image-search", copy.title, copy.drop),other:{"content-language":locale}};
+  }
+  if (slug[0] === "catalog-product") return { title: getExtra(locale).productDetails, robots: { index: false, follow: true } };
+  if(slug[0]==="seo-articles" && slug[1]){
+    const editorial=getEditorialArticle(locale,slug[1]);
+    if(editorial) return {...pageMetadata(locale,slug.join("/"),editorial.title,editorial.intro),other:{"content-language":locale}};
+  }
   if(locale==="es-ES"){
     const [first,second]=slug;
     const singleTitles:Record<string,string>={

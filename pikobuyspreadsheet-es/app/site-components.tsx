@@ -1,3 +1,8 @@
+import { ImageSearch } from "./image-search-ui";
+import { imageSearchCopy } from "./image-search-copy";
+import { Suspense } from "react";
+import { BuyingGuide } from "./buying-guide";
+import { editorialSources, faqEn, faqEs, getEditorialArticle } from "./editorial-content";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -13,6 +18,8 @@ import { ProductDetail } from "./product-detail";
 import { productListings } from "./product-listings";
 import { ProductExplorer } from "./product-explorer";
 import { SearchForm } from "./search-form";
+import { MainCatalog, MainCatalogProduct } from "./main-catalog-ui";
+import { catalogCategories, catalogHref } from "./main-catalog";
 import { getLocalizedArticleMeta, getLocalizedContent, getLocalizedDetailedFaq, getLocalizedFaq, getLocalizedSeoSections } from "./localized-content";
 import { getShippingCopy } from "./shipping-copy";
 
@@ -22,7 +29,7 @@ export function Header({ locale = "en-US" }: { locale?: string }) {
   const t = getCopy(locale), e = getExtra(locale), l = getLocalizedContent(locale);
   return <header className="site-header"><div className="header-inner">
     <Link className="image-brand" href={localPath(locale)} aria-label="PikoBuy Spreadsheet Europe home"><Image src="/pikobuy-logo-final-v2.png" alt="PikoBuy" width={204} height={48} priority unoptimized/></Link>
-    <nav aria-label="Primary navigation"><Link href={localPath(locale)}>{e.home}</Link><Link href={localPath(locale,"categories")}>{e.categories}</Link><Link href={localPath(locale,"products")}>{e.productDetails}</Link><Link href={localPath(locale,"guides")}>{t.navGuides}</Link><Link href={localPath(locale,"shipping")}>{t.navShipping}</Link><Link href={localPath(locale,"seo-articles")}>{e.seoArticles}</Link><Link href={localPath(locale,"faq")}>{l.faqTitle}</Link><a href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener">{e.liveCatalog} ↗</a></nav>
+    <nav aria-label="Primary navigation"><Link href={localPath(locale)}>{e.home}</Link><Link href={localPath(locale,"products")}>{e.productDetails}</Link><Link href={localPath(locale,"image-search")}>{imageSearchCopy(locale).title}</Link><Link href={localPath(locale,"guides")}>{t.navGuides}</Link><Link href={localPath(locale,"seo-articles")}>{e.seoArticles}</Link><Link href={localPath(locale,"faq")}>{l.faqTitle}</Link></nav>
     <HeaderControls locale={locale}/>
   </div></header>;
 }
@@ -33,12 +40,12 @@ export function Footer({ locale = "en-US" }: { locale?: string }) {
 }
 
 export function PageFrame({ children, locale = "en-US", home = false }: { children: React.ReactNode; locale?: string; home?: boolean }) {
-  return <><Header locale={locale}/><main className={home ? "home-page" : undefined}>{children}</main><Footer locale={locale}/></>;
+  return <><Header locale={locale}/><main className={home ? "site-main home-page" : "site-main inner-page"}>{children}</main><Footer locale={locale}/></>;
 }
 
 export function SearchBand({ locale = "en-US" }: { locale?: string }) {
   const t = getCopy(locale), e = getExtra(locale);
-  return <section className="search-band"><div><span className="section-index">{e.searchButton}</span><h2>{t.search}</h2><p>{e.searchDesc}</p></div><SearchForm buttonLabel={e.searchButton} placeholder={t.searchPlaceholder} emptyMessage={`${t.search}: ${t.searchPlaceholder}`}/></section>;
+  return <section className="search-band"><div><span className="section-index">{e.searchButton}</span><h2>{t.search}</h2></div><SearchForm ariaLabel={t.search} buttonLabel={e.searchButton} placeholder={t.searchPlaceholder} action={catalogHref(locale)}/></section>;
 }
 
 function priceNote(locale: string) {
@@ -63,12 +70,12 @@ function CategoryIcon({ kind }: { kind: (typeof categories)[number]["glyph"] }) 
 
 export function CategoryGrid({ locale = "en-US" }: { locale?: string }) {
   const l=getLocalizedContent(locale);
-  return <div className="category-grid" data-locale={locale}>{categories.map((cat,i) => <a key={cat.slug} href={`${mainSite}${cat.path}`} target="_blank" rel="noopener noreferrer" aria-label={`${l.categories[i]} — FindSpreadsheet`}><span className="category-visual"><CategoryIcon kind={cat.glyph}/></span><h3>{l.categories[i]}</h3><span className="category-destination">FindSpreadsheet ↗</span></a>)}</div>;
+  return <div className="category-grid" data-locale={locale}>{categories.map((cat,i) => <a key={cat.slug} href={catalogHref(locale,catalogCategories[i])} aria-label={l.categories[i]}><span className="category-visual"><CategoryIcon kind={cat.glyph}/></span><h3>{l.categories[i]}</h3><span className="category-destination">{getExtra(locale).viewPage}</span></a>)}</div>;
 }
 
 export function SeoArticleGrid({ locale = "en-US" }: { locale?: string }) {
   const t = getCopy(locale), e = getExtra(locale), translated = !isEnglishLocale(locale);
-  return <div className="seo-grid">{seoArticles.map((article,i) => { const localizedArticle=getLocalizedArticleMeta(locale,article.slug,{title:article.title,intro:article.excerpt}); return <Link key={article.slug} href={localPath(locale,`seo-articles/${article.slug}`)}><span>{e.seoArticles} {String(i+1).padStart(2,"0")}{translated ? "" : ` · ${article.readTime}`}</span><h3>{localizedArticle.title}</h3><p>{localizedArticle.intro}</p><b>{e.readMore} →</b></Link>;})}</div>;
+  return <div className="seo-grid">{seoArticles.map((article,i) => { const editorial=getEditorialArticle(locale,article.slug); const localizedArticle=editorial||getLocalizedArticleMeta(locale,article.slug,{title:article.title,intro:article.excerpt}); return <Link key={article.slug} href={localPath(locale,`seo-articles/${article.slug}`)}><span>{e.seoArticles} {String(i+1).padStart(2,"0")}{translated || editorial ? "" : ` · ${article.readTime}`}</span><h3>{localizedArticle.title}</h3><p>{localizedArticle.intro}</p><b>{e.readMore} →</b></Link>;})}</div>;
 }
 
 export function SourcesBlock({ locale = "en-US" }: { locale?: string }) {
@@ -89,7 +96,10 @@ export function CountryTable({ locale = "en-US" }: { locale?: string }) { const 
 const workflow = [["Select","Start with a product URL from Taobao, Tmall, 1688, Weidian or Yupoo."],["Submit","Paste the URL or keywords and choose the product variation."],["Pay #1","Pay for the item and domestic delivery to the warehouse."],["Inspect","Review warehouse photos, quantity and visible condition."],["Pay #2","Choose an international route and pay parcel shipping."],["Track","PikoBuy says tracking is normally available within three days of shipment."]] as const;
 
 export function HomePage({ locale = "en-US" }: { locale?: string }) {
-  const t = getCopy(locale), e = getExtra(locale), l=getLocalizedContent(locale), localizedFaq=getLocalizedFaq(locale,e.researchIntro), translated = !isEnglishLocale(locale);
+  const t = getCopy(locale), e = getExtra(locale), l=getLocalizedContent(locale), translated = !isEnglishLocale(locale);
+  const rewrittenFaq = locale === "es-ES" ? faqEs : locale === "en-US" ? faqEn : null;
+  const localizedFaq = rewrittenFaq ? [0, 3, 6, 10, 14, 18].map(i => ({question:rewrittenFaq[i][0],answer:rewrittenFaq[i][1]}))
+    : getLocalizedFaq(locale,e.researchIntro);
   const homepageFaqSchema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:localizedFaq.slice(0,6).map((item)=>({"@type":"Question",name:item.question,acceptedAnswer:{"@type":"Answer",text:item.answer}}))};
   const homepageSiteSchema={"@context":"https://schema.org","@graph":[
     {"@type":"WebSite",name:"PikoBuy Spreadsheet",url:siteOrigin,description:"Independent PikoBuy product-discovery and warehouse-QC research."},
@@ -99,15 +109,51 @@ export function HomePage({ locale = "en-US" }: { locale?: string }) {
   return <PageFrame locale={locale} home>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(homepageFaqSchema)}}/>
     <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(homepageSiteSchema)}}/>
-    <section className="hero"><div className="hero-copy"><span className="eyebrow">{t.eyebrow}</span><h1>{t.title}</h1><p>{t.intro}</p><div className="hero-search"><SearchForm buttonLabel={e.searchButton} placeholder={t.searchPlaceholder} emptyMessage={`${t.search}: ${t.searchPlaceholder}`}/></div><div className="hero-categories" aria-label={e.categories}>{quickCategoryIndexes.map((index)=><a key={categories[index].slug} href={`${mainSite}${categories[index].path}`} target="_blank" rel="noopener noreferrer">{l.categories[index]}</a>)}</div><div className="actions"><a className="button" href={`${mainSite}/AllProducts/`} target="_blank" rel="noopener">{t.browse} ↗</a><Link className="button button-secondary" href={localPath(locale,"guides")}>{t.navGuides} →</Link><Link className="text-link" href={localPath(locale,"methodology")}>{t.evidence} →</Link></div></div><div className="hero-panel"><MobileFold allScreens label={l.researchSnapshot} openLabel={l.open} closeLabel={l.close}><div className="sticker">{e.independent}</div><span className="section-index">{e.primarySources} / 2026</span><div className="metrics"><div><strong>241</strong><span>{t.navCountries}</span></div><div><strong>47</strong><span>{e.categories}</span></div><div><strong>13</strong><span>{t.navShipping}</span></div><div><strong>6</strong><span>{t.workflow}</span></div></div><p>{e.researchIntro}</p></MobileFold></div></section>
-    <section className="section"><MobileFold label={t.categories} defaultOpen openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">02 / {e.categories}</span><h2>{t.categories}</h2></div><p>{e.categoriesIntro}</p></div><CategoryGrid locale={locale}/><Link className="under-link" href={localPath(locale,"categories")}>{e.categories} →</Link></MobileFold></section>
-    <section className="section mint"><MobileFold label={t.latest} defaultOpen openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">03 / {e.productDetails}</span><h2>{t.latest}</h2></div><p>{priceNote(locale)}</p></div><ProductExplorer locale={locale}/><Link className="under-link" href={localPath(locale,"products")}>{e.productDetails} →</Link></MobileFold></section>
-    <section className="section quick-section"><MobileFold allScreens label={e.exploreTitle} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">01 / {e.viewPage}</span><h2>{e.exploreTitle}</h2></div><p>{e.exploreIntro}</p></div><div className="quick-grid"><Link href={localPath(locale,"categories")}><span>01</span><h3>{e.categories}</h3><p>{e.categoriesIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"products")}><span>02</span><h3>{e.productDetails}</h3><p>{e.productsIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"seo-articles")}><span>03</span><h3>{e.seoArticles}</h3><p>{e.researchIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"faq")}><span>04</span><h3>{l.faqTitle}</h3><p>{l.faqIntro}</p><b>{e.viewPage} →</b></Link></div></MobileFold></section>
-    <section className="section"><MobileFold allScreens label={t.workflow} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">04 / {t.navGuides}</span><h2>{t.workflow}</h2></div><Link className="text-link" href={localPath(locale,"guides")}>{e.readMore} →</Link></div><p className="section-intro">{e.workflowIntro}</p><div className="workflow">{workflow.map(([title,body],i) => <article key={title}><b>{String(i+1).padStart(2,"0")}</b><h3>{translated?`${t.workflow} ${i+1}`:title}</h3><p>{translated?e.workflowIntro:body}</p></article>)}</div></MobileFold></section>
-    <section className="section seo-home"><MobileFold allScreens label={e.seoArticles} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">05 / {e.seoArticles}</span><h2>{e.seoArticles}</h2></div><p>{e.researchIntro}</p></div><SeoArticleGrid locale={locale}/></MobileFold></section>
-    <section className="section faq-home"><MobileFold allScreens label={l.faqTitle} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">06 / {l.faqTitle}</span><h2>{l.faqTitle}</h2></div><p>{l.faqIntro}</p></div><div className="faq-preview">{localizedFaq.slice(0,6).map((item)=><details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div><Link className="under-link" href={localPath(locale,"faq")}>{l.allFaq} →</Link></MobileFold></section>
-    <section className="section dark"><MobileFold allScreens label={t.research} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><span className="section-index">07 / {e.primarySources}</span><h2>{t.research}</h2></div><p>{e.researchIntro}</p></div><div className="research-grid"><Link href={localPath(locale,"countries")}><span>{t.navCountries}</span><h3>{t.navCountries}</h3><p>{e.categoriesIntro}</p><b>{e.readMore} →</b></Link><Link href={localPath(locale,"shipping")}><span>{t.navShipping}</span><h3>{t.navShipping}</h3><p>{e.researchIntro}</p><b>{e.readMore} →</b></Link><Link href={localPath(locale,"qc")}><span>{e.productDetails}</span><h3>QC</h3><p>{e.productsIntro}</p><b>{e.readMore} →</b></Link></div></MobileFold></section>
-    <section className="section home-intro"><MobileFold allScreens label={t.eyebrow} openLabel={l.open} closeLabel={l.close}><HomeSeoCopy locale={locale}/></MobileFold></section>
+    <section className="hero">
+      <div className="hero-copy">
+        <div className="home-hero-heading">
+          <span className="eyebrow">{t.eyebrow}</span>
+          <h1>{t.title}</h1>
+        </div>
+        <div className="home-hero-discovery">
+          <div className="hero-search"><SearchForm ariaLabel={t.search} buttonLabel={e.searchButton} placeholder={t.searchPlaceholder} action={catalogHref(locale)}/></div>
+          <Link className="home-image-search" href={localPath(locale,"image-search")}>{imageSearchCopy(locale).title}</Link>
+          <div className="hero-categories" aria-label={e.categories}>
+            {quickCategoryIndexes.map(index => <Link key={categories[index].slug} href={catalogHref(locale,catalogCategories[index])}>{l.categories[index]}</Link>)}
+          </div>
+        </div>
+        <div className="home-hero-overview">
+          <p>{t.intro}</p>
+          <div className="actions">
+            <Link className="button" href={catalogHref(locale)}>{t.browse}</Link>
+            <Link className="button button-secondary" href={localPath(locale,"guides")}>{t.navGuides}</Link>
+            <Link className="text-link" href={localPath(locale,"methodology")}>{t.evidence}</Link>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section className="section home-category-section">
+      <MobileFold label={t.categories} defaultOpen openLabel={l.open} closeLabel={l.close}>
+        <div className="section-head"><h2>{t.categories}</h2><p>{e.categoriesIntro}</p></div>
+        <CategoryGrid locale={locale}/>
+        <Link className="under-link" href={localPath(locale,"categories")}>{e.categories} →</Link>
+      </MobileFold>
+    </section>
+    <section className="section mint home-featured-section">
+      <MobileFold label={t.latest} defaultOpen openLabel={l.open} closeLabel={l.close}>
+        <div className="section-head"><h2>{t.latest}</h2><p>{priceNote(locale)}</p></div>
+        <ProductExplorer locale={locale}/>
+        <Link className="under-link" href={localPath(locale,"products")}>{e.productDetails} →</Link>
+      </MobileFold>
+    </section>
+    <div className="home-resources">
+      <section className="section quick-section"><MobileFold allScreens label={e.exploreTitle} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><h2>{e.exploreTitle}</h2></div><p>{e.exploreIntro}</p></div><div className="quick-grid"><Link href={localPath(locale,"categories")}><h3>{e.categories}</h3><p>{e.categoriesIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"products")}><h3>{e.productDetails}</h3><p>{e.productsIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"seo-articles")}><h3>{e.seoArticles}</h3><p>{e.researchIntro}</p><b>{e.viewPage} →</b></Link><Link href={localPath(locale,"faq")}><h3>{l.faqTitle}</h3><p>{l.faqIntro}</p><b>{e.viewPage} →</b></Link></div></MobileFold></section>
+      <section className="section"><MobileFold allScreens label={t.workflow} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><h2>{t.workflow}</h2></div><Link className="text-link" href={localPath(locale,"guides")}>{e.readMore} →</Link></div><p className="section-intro">{e.workflowIntro}</p><div className="workflow">{workflow.map(([title,body],i) => <article key={title}><b>{String(i+1).padStart(2,"0")}</b><h3>{translated?`${t.workflow} ${i+1}`:title}</h3><p>{translated?e.workflowIntro:body}</p></article>)}</div></MobileFold></section>
+      <section className="section seo-home"><MobileFold allScreens label={e.seoArticles} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><h2>{e.seoArticles}</h2></div><p>{e.researchIntro}</p></div><SeoArticleGrid locale={locale}/></MobileFold></section>
+      <section className="section faq-home"><MobileFold allScreens label={l.faqTitle} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><h2>{l.faqTitle}</h2></div><p>{l.faqIntro}</p></div><div className="faq-preview">{localizedFaq.slice(0,6).map((item)=><details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div><Link className="under-link" href={localPath(locale,"faq")}>{l.allFaq} →</Link></MobileFold></section>
+      <section className="section dark"><MobileFold allScreens label={t.research} openLabel={l.open} closeLabel={l.close}><div className="section-head"><div><h2>{t.research}</h2></div><p>{e.researchIntro}</p></div><div className="research-grid"><Link href={localPath(locale,"countries")}><span>{t.navCountries}</span><h3>{t.navCountries}</h3><p>{e.categoriesIntro}</p><b>{e.readMore} →</b></Link><Link href={localPath(locale,"shipping")}><span>{t.navShipping}</span><h3>{t.navShipping}</h3><p>{e.researchIntro}</p><b>{e.readMore} →</b></Link><Link href={localPath(locale,"qc")}><span>{e.productDetails}</span><h3>QC</h3><p>{e.productsIntro}</p><b>{e.readMore} →</b></Link></div></MobileFold></section>
+      <section className="section home-intro"><MobileFold allScreens label={t.eyebrow} openLabel={l.open} closeLabel={l.close}><HomeSeoCopy locale={locale}/></MobileFold></section>
+    </div>
   </PageFrame>;
 }
 
@@ -143,7 +189,31 @@ export function CategoryDetailPage({ slug,locale="en-US" }: { slug:string;locale
   return <ArticleShell locale={locale} eyebrow={`${e.categories} / ${category.icon}`} title={translated?`${categoryName} — ${t.navGuides}`:`${categoryName} PikoBuy Spreadsheet Guide`} intro={translated?e.categoriesIntro:`${e.categoriesIntro} ${category.note}.`}><div className="article-body"><div className="prose"><h2>{translated?`${e.categories}: ${categoryName}`:`${categoryName}: warehouse-photo priorities`}</h2><p>{translated?e.categoriesIntro:"Use this category page before opening the live catalog. Confirm the selected variation, measurements, quantity and visible condition while the item is still in the warehouse."}</p><div className="callout"><strong>{translated?e.primarySources:"Category QC focus"}</strong>{translated?e.productsIntro:`${category.note}. Compare the warehouse item with the original seller listing and check the current return policy before international dispatch.`}</div><h2>{e.productDetails}</h2>{matching.length?<ProductGrid locale={locale} limit={4} items={matching}/>:<p>{translated?e.productsIntro:"Product records change frequently. Use the exact category catalog below for the newest available listings."}</p>}<a className="button inline-button" href={`${mainSite}${category.path}`} target="_blank" rel="noopener">{e.liveCatalog}: {categoryName} ↗</a></div><SourcesBlock locale={locale}/></div></ArticleShell>;
 }
 
-export function ProductsPage({ locale="en-US" }: { locale?:string }) { const e=getExtra(locale),translated=!isEnglishLocale(locale); return <ArticleShell locale={locale} eyebrow={`${e.productDetails} / FindSpreadsheet`} title={e.productDetails} intro={e.productsIntro}><ProductGrid locale={locale} limit={products.length}/><div className="prose page-copy"><h2>{priceNote(locale)}</h2><p>{translated?e.productsIntro:"Every card opens its own detail page first. The final button on that page opens the exact FindSpreadsheet listing."}</p></div><SearchBand locale={locale}/></ArticleShell>; }
+export function ProductsPage({ locale = "en-US" }: { locale?: string }) {
+  const t = getCopy(locale);
+  return <PageFrame locale={locale}><section className="catalog-page">
+    <h1>{t.browse}</h1>
+    <p>{priceNote(locale)}</p>
+    <Suspense fallback={<p role="status">…</p>}><MainCatalog locale={locale}/></Suspense>
+  </section></PageFrame>;
+}
+
+export function ImageSearchPage({ locale = "en-US" }: { locale?: string }) {
+  const copy = imageSearchCopy(locale);
+  return <PageFrame locale={locale}><section className="image-search-page">
+    <h1>{copy.title}</h1>
+    <p>{copy.privacy}</p>
+    <ImageSearch locale={locale}/>
+  </section></PageFrame>;
+}
+
+export function CatalogProductPage({ locale = "en-US" }: { locale?: string }) {
+  return <PageFrame locale={locale}>
+    <Suspense fallback={<p className="listing-detail" role="status">…</p>}>
+      <MainCatalogProduct locale={locale} priceNote={priceNote(locale)}/>
+    </Suspense>
+  </PageFrame>;
+}
 
 export function ProductDetailPage({ slug,locale="en-US" }: { slug:string;locale?:string }) {
   const product = products.find((item) => item.slug === slug);
@@ -159,14 +229,46 @@ export function ProductDetailPage({ slug,locale="en-US" }: { slug:string;locale?
 export function SeoHubPage({ locale="en-US" }: { locale?:string }) { const e=getExtra(locale),translated=!isEnglishLocale(locale); return <ArticleShell locale={locale} eyebrow={e.independent} title={e.seoArticles} intro={e.researchIntro}><SeoArticleGrid locale={locale}/><div className="prose page-copy"><h2>{e.primarySources}</h2><p>{translated?e.researchIntro:"Every article separates official platform statements, live interface observations and editorial inference. Dates and limitations are shown where a fact may change."}</p></div></ArticleShell>; }
 
 export function SeoArticlePage({ slug,locale="en-US" }: { slug:string;locale?:string }) {
-  const article=seoArticles.find((item)=>item.slug===slug); if(!article) notFound(); const e=getExtra(locale),l=getLocalizedContent(locale),translated=!isEnglishLocale(locale); const localizedArticle=getLocalizedArticleMeta(locale,article.slug,{title:article.title,intro:article.excerpt}); const splitMasterParagraph=(body:string)=>{const sentences=body.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map((sentence)=>sentence.trim()).filter(Boolean)||[body];const size=Math.ceil(sentences.length/3);return [sentences.slice(0,size),sentences.slice(size,size*2),sentences.slice(size*2)].map((group)=>group.join(" ")).filter(Boolean);}; const sections=translated?getLocalizedSeoSections(locale,article.slug,localizedArticle.intro):article.sections.map(([heading,body],position)=>({slot:`${article.slug}:${position+1}`,heading,paragraphs:splitMasterParagraph(body)})); const minutes=article.readTime.match(/\d+/)?.[0]||"14";
-  return <ArticleShell locale={locale} eyebrow={`${e.seoArticles} / ${translated?`${minutes}′`:article.readTime}`} title={localizedArticle.title} intro={localizedArticle.intro}><div className="article-body"><div className="prose" data-article-template="seo-v3" data-article-slug={article.slug}>{sections.map(({slot,heading,paragraphs})=><section key={slot} data-content-slot={slot}><span className="section-index">{slot.split(":")[1].padStart(2,"0")}</span><h2>{heading}</h2>{paragraphs.map((paragraph,index)=><p key={`${slot}:${index+1}`} data-paragraph-slot={`${slot}:${index+1}`}>{paragraph}</p>)}</section>)}<div className="callout"><strong>{l.researchBasis}</strong>{translated?`${localizedArticle.intro} ${l.scopeText}`:"Official PikoBuy beginner guide, shipping estimator, shipping terms and returns policy. No route, delivery date, return approval or product quality is guaranteed; check the current interface before paying."}</div><Link className="button inline-button" href={localPath(locale,"products")}>{e.productDetails} →</Link></div><SourcesBlock locale={locale}/></div></ArticleShell>;
+  const article=seoArticles.find((item)=>item.slug===slug); if(!article) notFound(); const e=getExtra(locale),l=getLocalizedContent(locale),translated=!isEnglishLocale(locale); const localizedArticle=getEditorialArticle(locale,article.slug)||getLocalizedArticleMeta(locale,article.slug,{title:article.title,intro:article.excerpt}); const splitMasterParagraph=(body:string)=>{const sentences=body.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map((sentence)=>sentence.trim()).filter(Boolean)||[body];const size=Math.ceil(sentences.length/3);return [sentences.slice(0,size),sentences.slice(size,size*2),sentences.slice(size*2)].map((group)=>group.join(" ")).filter(Boolean);}; const editorial=getEditorialArticle(locale,slug); const sections=editorial ? editorial.sections.map(([heading,...paragraphs],position)=>({slot:`${slug}:${position+1}`,heading,paragraphs})) : translated?getLocalizedSeoSections(locale,article.slug,localizedArticle.intro):article.sections.map(([heading,body],position)=>({slot:`${article.slug}:${position+1}`,heading,paragraphs:splitMasterParagraph(body)})); const minutes=editorial ? String(Math.max(2,Math.ceil(editorial.sections.flat().join(" ").split(/\s+/).length/180))) : article.readTime.match(/\d+/)?.[0]||"14";
+  return <ArticleShell locale={locale} eyebrow={`${e.seoArticles} / ${minutes}′`} title={localizedArticle.title} intro={localizedArticle.intro}><div className="article-body"><div className="prose" data-article-template="seo-v3" data-article-slug={article.slug}>{sections.map(({slot,heading,paragraphs})=><section key={slot} data-content-slot={slot}><span className="section-index">{slot.split(":")[1].padStart(2,"0")}</span><h2>{heading}</h2>{paragraphs.map((paragraph,index)=><p key={`${slot}:${index+1}`} data-paragraph-slot={`${slot}:${index+1}`}>{paragraph}</p>)}</section>)}{editorial && <div className="guide-next"><Link href={localPath(locale,"guides")}>{getCopy(locale).navGuides}</Link>{editorial.sources.map(source=><a key={source} href={editorialSources[source]} target="_blank" rel="noopener noreferrer">{sourceLabel(source,locale)}</a>)}</div>}<div className="callout"><strong>{editorial ? e.primarySources + " · " + new Intl.DateTimeFormat(locale,{dateStyle:"medium",timeZone:"UTC"}).format(new Date("2026-11-28")) : l.researchBasis}</strong>{translated?`${localizedArticle.intro} ${l.scopeText}`:"Official PikoBuy beginner guide, shipping estimator, shipping terms and returns policy. No route, delivery date, return approval or product quality is guaranteed; check the current interface before paying."}</div><Link className="button inline-button" href={localPath(locale,"products")}>{e.productDetails} →</Link></div><SourcesBlock locale={locale}/></div></ArticleShell>;
 }
 
 export function FaqPage({ locale="en-US" }: { locale?:string }) {
-  const e=getExtra(locale),l=getLocalizedContent(locale),items=getLocalizedDetailedFaq(locale,e.researchIntro);
+  const e=getExtra(locale),l=getLocalizedContent(locale);
+  const rewritten = locale === "en-US" ? faqEn : locale === "es-ES" ? faqEs : null;
+  const items = rewritten ? rewritten.map(([question, answer, source]) => ({question,answer,source}))
+    : getLocalizedDetailedFaq(locale,e.researchIntro).map(item => ({...item,source:undefined}));
   const schema={"@context":"https://schema.org","@type":"FAQPage",mainEntity:items.map((item)=>({"@type":"Question",name:item.question,acceptedAnswer:{"@type":"Answer",text:item.answer}}))};
-  return <ArticleShell locale={locale} eyebrow={l.factCheckedHelp} title={l.faqTitle} intro={l.faqIntro}><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><div className="article-body"><div className="prose faq-page">{items.map((item,i)=><section key={`${i}-${item.question}`}><span className="section-index">{String(i+1).padStart(2,"0")}</span><h2>{item.question}</h2><p>{item.answer}</p></section>)}<div className="callout"><strong>{l.scopeTitle}</strong>{l.scopeText}</div><Link className="button inline-button" href={localPath(locale,"seo-articles")}>{e.seoArticles} →</Link></div><SourcesBlock locale={locale}/></div></ArticleShell>;
+  return <ArticleShell locale={locale} eyebrow={l.factCheckedHelp} title={l.faqTitle} intro={l.faqIntro}><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema)}}/><div className="article-body"><div className="prose faq-page">{items.map((item,i)=><section key={`${i}-${item.question}`}><span className="section-index">{String(i+1).padStart(2,"0")}</span><h2>{item.question}</h2><p>{item.answer}</p>{item.source && <a href={editorialSources[item.source]} target="_blank" rel="noopener noreferrer">{sourceLabel(item.source,locale)}</a>}</section>)}<div className="callout"><strong>{l.scopeTitle}</strong>{l.scopeText}</div><Link className="button inline-button" href={localPath(locale,"seo-articles")}>{e.seoArticles} →</Link></div><SourcesBlock locale={locale}/></div></ArticleShell>;
+}
+
+function sourceLabel(source: keyof typeof editorialSources, locale: string) {
+  const spanish = locale === "es-ES";
+  const labels = {
+    guide: ["PikoBuy buying guide", "Guía de compra de PikoBuy"],
+    estimate: ["PikoBuy shipping estimator", "Calculadora de envío de PikoBuy"],
+    returns: ["PikoBuy return policy", "Política de devoluciones de PikoBuy"],
+    forwarding: ["PikoBuy forwarding terms", "Condiciones de reenvío de PikoBuy"],
+    terms: ["PikoBuy terms of service", "Condiciones de PikoBuy"],
+    support: ["PikoBuy support", "Soporte de PikoBuy"],
+    vat: ["European Commission: import VAT", "Comisión Europea: IVA de importación"],
+    territories: ["European Commission: special territories", "Comisión Europea: territorios especiales"],
+  };
+  return labels[source][spanish ? 1 : 0];
+}
+
+export function IllustratedGuidesPage({ locale = "en-US" }: { locale?: string }) {
+  const t = getCopy(locale), e = getExtra(locale);
+  const english = locale === "en-US", spanish = locale === "es-ES";
+  const title = english ? "How to buy with PikoBuy" : spanish ? "Cómo comprar en PikoBuy desde España" : t.navGuides;
+  const intro = english ? "Nine steps from finding an item on this spreadsheet to tracking your parcel, with annotated screenshots."
+    : spanish ? "Nueve pasos desde la búsqueda en este spreadsheet hasta el seguimiento del paquete, con capturas anotadas." : e.workflowIntro;
+  return <ArticleShell locale={locale} eyebrow={e.independent} title={title} intro={intro}>
+    <div className="article-body"><div>
+      {!english && !spanish && <WorkflowList locale={locale}/>}
+      <BuyingGuide locale={locale}/>
+    </div><SourcesBlock locale={locale}/></div>
+  </ArticleShell>;
 }
 
 export function ShippingContentPage({ locale="en-US" }: { locale?:string }) {
@@ -180,6 +282,8 @@ export function GenericLocalizedPage({ page,locale="en-US" }: { page:string;loca
 }
 
 export function LocalizedRoutePage({ locale,slug }: { locale:string;slug:string[] }) {
+  if (slug.length === 1 && slug[0] === "image-search") return <ImageSearchPage locale={locale}/>;
+  if (slug.length === 1 && slug[0] === "catalog-product") return <CatalogProductPage locale={locale}/>;
   const [first,second]=slug;
   if(slug.length===1&&first==="categories") return <CategoriesPage locale={locale}/>;
   if(slug.length===2&&first==="category") return <CategoryDetailPage locale={locale} slug={second}/>;
@@ -189,6 +293,7 @@ export function LocalizedRoutePage({ locale,slug }: { locale:string;slug:string[
   if(slug.length===2&&first==="seo-articles") return <SeoArticlePage locale={locale} slug={second}/>;
   if(slug.length===1&&first==="faq") return <FaqPage locale={locale}/>;
   if(slug.length===1&&first==="shipping") return <ShippingContentPage locale={locale}/>;
-  if(slug.length===1&&["guides","countries","qc","methodology"].includes(first)) return <GenericLocalizedPage locale={locale} page={first}/>;
+  if(slug.length===1&&first==="guides") return <IllustratedGuidesPage locale={locale}/>;
+  if(slug.length===1&&["countries","qc","methodology"].includes(first)) return <GenericLocalizedPage locale={locale} page={first}/>;
   notFound();
 }

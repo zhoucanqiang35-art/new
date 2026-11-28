@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { currencies } from "./currency-data";
 import { selectCurrency, useCurrency } from "./currency";
 import { locales } from "./data";
@@ -12,6 +12,8 @@ export const registrationUrl = "https://www.pikobuy.com/register?invitedCode=KPN
 
 export function HeaderControls({ locale }: { locale: string }) {
   const pathname = usePathname() || "/";
+  const [query, setQuery] = useState("");
+  useEffect(() => { setQuery(window.location.search); }, [pathname]);
   const segments = pathname.split("/").filter(Boolean);
   const hasLocale = locales.some((item) => item.code === segments[0] && item.code !== "en-US");
   const rest = (hasLocale ? segments.slice(1) : segments).join("/");
@@ -50,7 +52,7 @@ export function HeaderControls({ locale }: { locale: string }) {
     <HeaderMenu id="language" label={labels.language} value={activeLanguage?.short || "EN"}>
       {locales.map((item) => {
         const path = localPath(item.code, rest);
-        return <a key={item.code} href={path === "/" ? path : `${path}/`}
+        return <a key={item.code} href={`${path === "/" ? path : `${path}/`}${query}`}
           lang={item.code} hrefLang={item.code} aria-current={item.code === locale ? "page" : undefined}>
           <span>{item.label}</span><small>{item.country}</small>
         </a>;
