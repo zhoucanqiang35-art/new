@@ -200,8 +200,24 @@ const articleMeta: Record<string, Record<string, LocalizedArticleMeta>> = {
   },
 };
 
+const articleTopics: Record<string, readonly [number, number]> = {
+  "how-pikobuy-works": [0, 1],
+  "pikobuy-shipping-cost-guide": [3, 7],
+  "pikobuy-qc-photo-checklist": [4, 6],
+  "pikobuy-return-policy-guide": [9, 11],
+  "pikobuy-tracking-guide": [8, 13],
+  "pikobuy-restricted-items-guide": [7, 13],
+  "pikobuy-spain-guide": [14, 7],
+};
+
 export function getLocalizedArticleMeta(locale: string, slug: string, fallback: LocalizedArticleMeta): LocalizedArticleMeta {
-  return articleMeta[locale]?.[slug] || fallback;
+  const translated = articleMeta[locale]?.[slug];
+  if (translated) return translated;
+  const topic = articleTopics[slug];
+  if (!topic || !faqCompact[locale]) return fallback;
+  const [title, intro] = faqCompact[locale][topic[0]].split("|");
+  const related = faqCompact[locale][topic[1]].split("|")[1];
+  return { title: topic[0] === 14 ? getShippingCopy(locale).title : title, intro: `${intro} ${related}` };
 }
 
 /**

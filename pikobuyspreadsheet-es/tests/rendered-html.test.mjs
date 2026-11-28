@@ -26,7 +26,7 @@ test("Spanish homepage carries the requested SEO intent and complete sections", 
   assert.equal((html.match(/class="product-card"/g) || []).length, 8);
 });
 
-test("exported HTML has no outbound links except FindSpreadsheet", async () => {
+test("exported HTML links only to the site, FindSpreadsheet and PikoBuy registration", async () => {
   const queue = ["", "faq", "seo-articles/how-pikobuy-works", "es-ES", "es-ES/shipping", "es-ES/faq"];
   const seen = new Set();
   while (queue.length && seen.size < 80) {
@@ -38,7 +38,9 @@ test("exported HTML has no outbound links except FindSpreadsheet", async () => {
     for (const match of html.matchAll(/href=["']([^"']+)["']/g)) {
       const href = match[1];
       if (href.startsWith("http")) {
-        assert.ok(["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(new URL(href).origin), `Unexpected outbound link: ${href}`);
+        const url = new URL(href.replaceAll("&amp;", "&"));
+        const registration = url.href === "https://www.pikobuy.com/register?invitedCode=KPNJVF&inviteUserId=1109716";
+        assert.ok(registration || ["https://findspreadsheet.com", "https://pikobuyspreadsheet.es"].includes(url.origin), `Unexpected outbound link: ${href}`);
       } else if (href.startsWith("/") && !href.startsWith("/_next/") && !/\.(?:png|webp|svg|css|js|ico)$/i.test(href) && !href.includes("#") && !href.includes("?")) {
         const clean = href.replace(/^\/+|\/+$/g, "");
         if (clean) queue.push(clean);
@@ -48,8 +50,20 @@ test("exported HTML has no outbound links except FindSpreadsheet", async () => {
 });
 
 test("every published non-English locale retains localized FAQ, shipping and SEO structures", async () => {
-  const locales = ["de-DE","fr-FR","es-ES","it-IT","nl-NL","pl-PL","pt-PT","sv-SE"];
+  const home = await readPage();
+  const locales = [...home.matchAll(/<a[^>]* lang="([a-z]{2}-[A-Z]{2})" hrefLang=/g)].map(([, locale]) => locale);
+  assert.equal(locales.length, 22);
+  assert.equal(new Set(locales).size, 22);
+  assert.match(home, /class="hero-search"/);
+  assert.doesNotMatch(home, /class="search-band"/);
+  assert.match(home, /href="https:\/\/www\.pikobuy\.com\/register\?invitedCode=KPNJVF&amp;inviteUserId=1109716"/);
   for (const locale of locales) {
+    if (locale === "en-US") continue;
+    const localizedHome = await readPage(locale);
+    assert.ok(localizedHome.includes(`<html lang="${locale}">`), `${locale} HTML lang`);
+    assert.doesNotMatch(localizedHome, /PikoBuy Spreadsheet 2026: QC Links and Budget Finds, Used Carefully/);
+  }
+  for (const locale of locales.filter((code) => code !== "en-US")) {
     const faq = await readPage(`${locale}/faq`);
     const shipping = await readPage(`${locale}/shipping`);
     const article = await readPage(`${locale}/seo-articles/how-pikobuy-works`);
@@ -74,5 +88,5 @@ test("static export contains every currently generated page", async () => {
     }
     return count;
   }
-  assert.equal(await countHtml(outputRoot), 336);
+  assert.equal(await countHtml(outputRoot), 817);
 });

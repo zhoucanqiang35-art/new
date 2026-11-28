@@ -6,6 +6,9 @@ import { useMemo, useState } from "react";
 import { getExtra, localPath } from "./i18n";
 import { getLocalizedContent } from "./localized-content";
 import { mainSite, products } from "./data";
+import { Price, useCurrency } from "./currency";
+import { formatPrice } from "./currency-data";
+import { getHeaderCopy } from "./header-copy";
 
 const allLabels: Record<string, string> = {
   "en-US": "All", "en-GB": "All", "de-DE": "Alle", "fr-FR": "Tous",
@@ -28,12 +31,13 @@ export function ProductExplorer({ locale = "en-US" }: { locale?: string }) {
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState<"default" | "asc" | "desc">("default");
   const e = getExtra(locale);
+  const currency = useCurrency();
   const l = getLocalizedContent(locale);
 
   const visible = useMemo(() => {
     const filtered = category === "all" ? [...products] : products.filter((item) => item.category === category);
-    if (sort === "asc") filtered.sort((a, b) => a.usd - b.usd);
-    if (sort === "desc") filtered.sort((a, b) => b.usd - a.usd);
+    if (sort === "asc") filtered.sort((a, b) => a.cny - b.cny);
+    if (sort === "desc") filtered.sort((a, b) => b.cny - a.cny);
     return filtered;
   }, [category, sort]);
 
@@ -43,10 +47,10 @@ export function ProductExplorer({ locale = "en-US" }: { locale?: string }) {
         <button type="button" className={category === "all" ? "is-active" : ""} onClick={() => setCategory("all")}>{allLabels[locale] || allLabels["en-US"]}</button>
         {filterGroups.map((group) => <button type="button" key={group.key} className={category === group.key ? "is-active" : ""} onClick={() => setCategory(group.key)}>{l.categories[group.labelIndex]}</button>)}
       </div>
-      <select value={sort} onChange={(event) => setSort(event.target.value as "default" | "asc" | "desc")} aria-label={e.priceNote}>
+      <select value={sort} onChange={(event) => setSort(event.target.value as "default" | "asc" | "desc")} aria-label={getHeaderCopy(locale).indicativePrices}>
         <option value="default">01–08</option>
-        <option value="asc">USD ↑</option>
-        <option value="desc">USD ↓</option>
+        <option value="asc">{currency} ↑</option>
+        <option value="desc">{currency} ↓</option>
       </select>
     </div>
     <div className="product-grid explorer-grid">
@@ -58,7 +62,7 @@ export function ProductExplorer({ locale = "en-US" }: { locale?: string }) {
           <span>{e.productDetails}</span>
           <h3><Link href={localPath(locale, `product/${product.slug}`)}>{product.name}</Link></h3>
           <p>{e.productsIntro}</p>
-          <strong>≈ ${product.usd.toFixed(2)} <small>¥{product.cny}</small></strong>
+          <strong><Price cny={product.cny} locale={locale}/> <small>{formatPrice(product.cny, "CNY", locale)}</small></strong>
           <div className="product-actions">
             <Link href={localPath(locale, `product/${product.slug}`)}>{e.viewPage}</Link>
             <a href={`${mainSite}${product.href}`} target="_blank" rel="noopener noreferrer">{e.openMain} ↗</a>
